@@ -1,0 +1,11 @@
+stateDiagram-v2
+    [*] --> Creating
+    Creating --> Running: create
+    Running --> Paused: pause / autoPause
+    Paused --> Running: connect(auto resume)
+    Running --> Expired: TTL 到期
+    Paused --> Expired: TTL 到期
+    Running --> Killed: kill/delete
+    Paused --> Killed: kill/delete
+    Expired --> [*]
+    Killed --> [*]

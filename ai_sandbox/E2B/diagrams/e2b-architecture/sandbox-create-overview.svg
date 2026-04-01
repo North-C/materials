@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4918.760000000001 498.75" width="4918.760000000001" height="498.75" style="--bg:#ffffff;--fg:#1f2328;--line:#d1d9e0;--accent:#0969da;--muted:#59636e;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 30%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="4.8" refX="8" refY="2.4" orient="auto">
+    <polygon points="0 0, 8 2.4, 0 4.8" fill="var(--_arrow)" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="4.8" refX="0" refY="2.4" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.4, 8 4.8" fill="var(--_arrow)" />
+  </marker>
+</defs>
+<rect x="40" y="82.75" width="629.5400000000001" height="246" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="40" y="82.75" width="629.5400000000001" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="52" y="96.75" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">&quot;客户端与入口层&quot;</text>
+<rect x="1500.9800000000005" y="182.75" width="1348.6700000000003" height="256" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="1500.9800000000005" y="182.75" width="1348.6700000000003" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="1512.9800000000005" y="196.75" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">&quot;控制面编排层&quot;</text>
+<rect x="997.78" y="40" width="3090.5100000000007" height="158.75" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="997.78" y="40" width="3090.5100000000007" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="1009.78" y="54" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">&quot;模板与制品层&quot;</text>
+<rect x="3063.4900000000007" y="222.75" width="1815.2700000000004" height="236" rx="0" ry="0" fill="var(--_group-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="3063.4900000000007" y="222.75" width="1815.2700000000004" height="28" rx="0" ry="0" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="1" />
+<text x="3075.4900000000007" y="236.75" dy="0.35em" font-size="12" font-weight="600" fill="var(--_text-sec)">&quot;节点执行层&quot;</text>
+<polyline points="192.10000000000002,228.75 417.34000000000003,228.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="649.5400000000001,228.75 669.5400000000001,228.75 669.5400000000001,158.75 1017.7800000000002,158.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="649.5400000000001,228.75 669.5400000000001,228.75 669.5400000000001,298.75 1520.9800000000002,298.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="1335.7800000000002,158.75 1601.3300000000002,158.75 1601.3300000000002,280.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="1681.68,298.75 2130,298.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="2262.1000000000004,298.75 2647.5000000000005,298.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="2829.65,298.75 2849.6500000000005,298.75 2849.6500000000005,258.75 2869.6500000000005,258.75 2869.6500000000005,116 3222.915000000001,116" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="3369.3150000000005,116 3848.515000000001,116 3848.515000000001,122.25" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="3628.7400000000007,140.25 3608.7400000000007,140.25 3608.7400000000007,164.5 2849.6500000000005,164.5 2849.6500000000005,278.75 2738.5750000000003,278.75 2738.5750000000003,280.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="2347.9,134.5 2738.5750000000003,134.5 2738.5750000000003,280.75" fill="none" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="4 4" marker-end="url(#arrowhead)" />
+<polyline points="2829.65,298.75 3083.4900000000007,298.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="2829.65,298.75 2849.6500000000005,298.75 2849.6500000000005,358.75 3172.8650000000007,358.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="2829.65,298.75 2849.6500000000005,298.75 2849.6500000000005,418.75 3162.140000000001,418.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="3508.7400000000007,298.75 3848.515000000001,298.75 3848.515000000001,340.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="3419.3650000000007,358.75 3646.6150000000007,358.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="3430.0900000000006,418.75 3848.515000000001,418.75 3848.515000000001,376.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="4050.415000000001,358.75 4264.930000000001,358.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="4425.630000000002,358.75 4719.510000000001,358.75" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<rect x="248.10000000000002" y="215.25" width="113.24000000000001" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="304.72" y="228.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;POST /sandboxes&quot;</text>
+<rect x="705.5400000000001" y="145.25" width="256.24" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="833.6600000000001" y="158.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;解析 template / timeout / secure / network&quot;</text>
+<rect x="1148.7600000000002" y="285.25" width="56.04" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="1176.7800000000002" y="298.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;归一化请求&quot;</text>
+<rect x="1391.7800000000002" y="145.25" width="73.2" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="1428.38" y="158.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;定位 build&quot;</text>
+<rect x="1737.6800000000003" y="285.25" width="250.52" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="1862.9400000000003" y="298.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;生成 envdAccessToken / trafficAccessToken&quot;</text>
+<rect x="2429.640000000001" y="285.25" width="136.12" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="2497.7000000000007" y="298.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;gRPC Sandbox.Create&quot;</text>
+<rect x="2885.6500000000005" y="102.5" width="141.84" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="2956.5700000000006" y="116" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;GetTemplate(buildID)&quot;</text>
+<rect x="3216.6150000000007" y="151" width="159" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="3296.1150000000007" y="164.5" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;普通 create：恢复模板 build 快照&quot;</text>
+<rect x="2403.9000000000005" y="121" width="187.6" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="2497.7000000000007" y="134.5" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;paused sandbox resume：恢复实例快照&quot;</text>
+<rect x="2905.6700000000005" y="285.25" width="101.8" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="2956.5700000000006" y="298.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;ResumeSandbox&quot;</text>
+<rect x="2905.6700000000005" y="345.25" width="101.8" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="2956.5700000000006" y="358.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;ResumeSandbox&quot;</text>
+<rect x="2905.6700000000005" y="405.25" width="101.8" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="2956.5700000000006" y="418.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;ResumeSandbox&quot;</text>
+<rect x="4124.290000000001" y="345.25" width="84.64" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="4166.610000000001" y="358.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;VM resumed&quot;</text>
+<rect x="4481.630000000001" y="345.25" width="181.88" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="4572.570000000001" y="358.75" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">&quot;注入 envVars / token / mounts&quot;</text>
+<rect x="60" y="210.75" width="132.10000000000002" height="36" rx="0" ry="0" fill="#d9eef7" stroke="#3b82f6" stroke-width="0.75" />
+<rect x="417.34000000000003" y="210.75" width="232.20000000000002" height="36" rx="0" ry="0" fill="#d9eef7" stroke="#3b82f6" stroke-width="0.75" />
+<rect x="1520.9800000000002" y="280.75" width="160.70000000000002" height="36" rx="0" ry="0" fill="#fef3c7" stroke="#d97706" stroke-width="0.75" />
+<rect x="2130" y="280.75" width="132.10000000000002" height="36" rx="0" ry="0" fill="#fef3c7" stroke="#d97706" stroke-width="0.75" />
+<rect x="2647.5000000000005" y="280.75" width="182.15" height="36" rx="0" ry="0" fill="#fef3c7" stroke="#d97706" stroke-width="0.75" />
+<rect x="1017.7800000000002" y="140.75" width="318" height="36" rx="0" ry="0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="0.75" />
+<rect x="3222.915000000001" y="98" width="146.4" height="36" rx="0" ry="0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="0.75" />
+<rect x="3628.7400000000007" y="122.25" width="439.55" height="36" rx="0" ry="0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="0.75" />
+<rect x="2044.2000000000003" y="116.5" width="303.70000000000005" height="36" rx="0" ry="0" fill="#e9d5ff" stroke="#7c3aed" stroke-width="0.75" />
+<rect x="3083.4900000000007" y="280.75" width="425.25000000000006" height="36" rx="0" ry="0" fill="#dcfce7" stroke="#16a34a" stroke-width="0.75" />
+<rect x="3172.8650000000007" y="340.75" width="246.50000000000003" height="36" rx="0" ry="0" fill="#dcfce7" stroke="#16a34a" stroke-width="0.75" />
+<rect x="3162.140000000001" y="400.75" width="267.95000000000005" height="36" rx="0" ry="0" fill="#dcfce7" stroke="#16a34a" stroke-width="0.75" />
+<rect x="3646.6150000000007" y="340.75" width="403.8" height="36" rx="0" ry="0" fill="#dcfce7" stroke="#16a34a" stroke-width="0.75" />
+<rect x="4264.930000000001" y="340.75" width="160.70000000000002" height="36" rx="0" ry="0" fill="#dcfce7" stroke="#16a34a" stroke-width="0.75" />
+<rect x="4719.510000000001" y="340.75" width="139.25" height="36" rx="0" ry="0" fill="#dcfce7" stroke="#16a34a" stroke-width="0.75" />
+<text x="126.05000000000001" y="228.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;SDK / Client&quot;</text>
+<text x="533.44" y="228.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;API Handler\nPostSandboxes&quot;</text>
+<text x="1601.3300000000002" y="298.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;API Orchestrator&quot;</text>
+<text x="2196.05" y="298.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Node Manager&quot;</text>
+<text x="2738.5750000000003" y="298.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Orchestrator Server&quot;</text>
+<text x="1176.7800000000002" y="158.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Template Alias\nResolve + Build Lookup&quot;</text>
+<text x="3296.1150000000007" y="116" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Template Cache&quot;</text>
+<text x="3848.515000000001" y="140.25" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Build Artifacts\nrootfs + memfile + snapfile + metadata&quot;</text>
+<text x="2196.05" y="134.5" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Paused Sandbox Snapshot\n仅 resume 场景&quot;</text>
+<text x="3296.1150000000007" y="298.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Network Pool / Slot\nns + veth + tap + NAT + firewall&quot;</text>
+<text x="3296.1150000000007" y="358.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Rootfs Overlay\nNBD Provider&quot;</text>
+<text x="3296.1150000000007" y="418.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;UFFD + Memfile\n按需恢复 / Prefetch&quot;</text>
+<text x="3848.515000000001" y="358.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Firecracker\nconfigure -&gt; loadSnapshot -&gt; resumeVM&quot;</text>
+<text x="4345.280000000002" y="358.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;envd\nPOST /init&quot;</text>
+<text x="4789.135000000001" y="358.75" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="#0f172a">&quot;Sandbox Ready&quot;</text>
+</svg>

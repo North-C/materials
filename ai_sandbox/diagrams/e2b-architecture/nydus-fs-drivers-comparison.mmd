@@ -1,0 +1,35 @@
+flowchart LR
+    subgraph FUSE["fusedev: FUSE 挂载路径"]
+        F1[Container / App]
+        F2[overlayfs lower]
+        F3[FUSE mountpoint]
+        F4[nydusd]
+        F5[bootstrap]
+        F6[data blobs / registry]
+        F1 --> F2 --> F3 --> F4
+        F4 --> F5
+        F4 --> F6
+    end
+
+    subgraph FSCACHE["fscache: EROFS + 懒加载路径"]
+        E1[Container / App]
+        E2[overlayfs lower]
+        E3[EROFS mountpoint]
+        E4[kernel EROFS]
+        E5[kernel fscache]
+        E6[nydusd fscache service]
+        E7[bootstrap]
+        E8[data blobs / registry]
+        E1 --> E2 --> E3 --> E4 --> E5 --> E6
+        E4 --> E7
+        E6 --> E8
+    end
+
+    subgraph BLOCK["blockdev: EROFS + 块设备路径"]
+        B1[Container / App]
+        B2[overlayfs lower]
+        B3[EROFS mountpoint]
+        B4[block device backend]
+        B5[processed image data]
+        B1 --> B2 --> B3 --> B4 --> B5
+    end

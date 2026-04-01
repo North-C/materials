@@ -1,0 +1,23 @@
+flowchart TD
+    A[创建 Sandbox] --> B{提交 network 配置}
+    B --> C[控制面生成 egress 规则]
+    B --> D[控制面生成 ingress 访问策略]
+
+    C --> E{allowOut / denyOut 组合}
+    E -->|deny all + allow selected| E1[白名单模式]
+    E -->|allow all + deny selected| E2[黑名单模式]
+
+    D --> F{allowPublicTraffic}
+    F -->|true| F1[公网可访问平台代理地址]
+    F -->|false| F2[必须校验 traffic access token]
+
+    D --> G{maskRequestHost}
+    G -->|set| G1[代理改写 Host 头]
+    G -->|unset| G2[使用默认 Host 规则]
+
+    E1 --> H[宿主侧/网关侧强制执行]
+    E2 --> H
+    F1 --> H
+    F2 --> H
+    G1 --> H
+    G2 --> H

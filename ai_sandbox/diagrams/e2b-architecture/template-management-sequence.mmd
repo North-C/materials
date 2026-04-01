@@ -1,0 +1,19 @@
+sequenceDiagram
+    participant Dev as 开发者/CLI
+    participant CP as E2B 控制平面
+    participant Builder as 模板构建器
+    participant Store as 模板/快照存储
+    participant FC as Firecracker
+
+    Dev->>CP: 提交模板构建请求\n(fromImage/fromTemplate + steps)
+    CP->>Builder: 执行模板构建
+    Builder->>Store: 保存模板制品
+
+    CP->>FC: 按模板冷启动 VM
+    FC-->>CP: envd ready
+    CP->>FC: 创建 Full Snapshot
+    FC->>Store: 保存 snapshot + mem file
+
+    Dev->>CP: 基于 template 创建 sandbox
+    CP->>FC: 从 snapshot 恢复
+    FC-->>Dev: 返回运行中的 sandbox

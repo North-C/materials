@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1006.225 796.1" width="1006.225" height="796.1" style="--bg:#282c34;--fg:#abb2bf;--line:#4b5263;--accent:#c678dd;--muted:#5c6370;background:var(--bg)">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap');
+  text { font-family: 'Inter', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 30%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="4.8" refX="8" refY="2.4" orient="auto">
+    <polygon points="0 0, 8 2.4, 0 4.8" fill="var(--_arrow)" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="4.8" refX="0" refY="2.4" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.4, 8 4.8" fill="var(--_arrow)" />
+  </marker>
+</defs>
+<polyline points="511.4125,76 511.4125,116" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="454.3152299249792,207.85272992497914 454.3152299249792,284.95 201,284.95 201,304.95" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="556.1462947796682,220.2162052203318 556.1462947796682,284.95 653.5125,284.95 653.5125,304.95" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="201,340.95 201,380.94999999999993" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="160.40153172866522,546.5015317286652 160.40153172866522,615.6 115.5,615.6 115.5,644.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="241.59846827133478,546.5015317286652 241.59846827133478,615.6 286.5,615.6 286.5,644.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="653.5125,340.95 653.5125,360.95 492.04999999999995,360.95 492.04999999999995,391.67499999999995" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="453.9634866584794,538.2884866584794 453.9634866584794,615.6 399.7,615.6 399.7,644.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="530.1365133415205,538.2884866584793 530.1365133415205,615.6 584.4,615.6 584.4,644.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="653.5125,340.95 653.5125,360.95 838.2125,360.95 838.2125,402.4" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="810.1025887573965,537.5400887573965 810.1025887573965,615.6 769.1,615.6 769.1,644.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="866.3224112426035,537.5400887573963 866.3224112426035,615.6 907.325,615.6 907.325,644.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="115.5,680.1 115.5,738.1 436.72499999999997,738.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="286.5,680.1 286.5,738.1 436.72499999999997,738.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="399.7,680.1 399.7,738.1 436.72499999999997,738.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="584.4,680.1 584.4,738.1 547.375,738.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="769.1,680.1 769.1,738.1 547.375,738.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="907.325,680.1 907.325,738.1 547.375,738.1" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<rect x="36" y="602.1" width="159" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="115.5" y="615.6" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">deny all + allow selected</text>
+<rect x="207" y="602.1" width="159" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="286.5" y="615.6" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">allow all + deny selected</text>
+<rect x="380.26" y="602.1" width="38.88" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="399.7" y="615.6" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">true</text>
+<rect x="562.1" y="602.1" width="44.6" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="584.4" y="615.6" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">false</text>
+<rect x="752.52" y="602.1" width="33.16" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="769.1" y="615.6" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">set</text>
+<rect x="885.0250000000001" y="602.1" width="44.6" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="907.325" y="615.6" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">unset</text>
+<rect x="459.6625" y="40" width="103.5" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<polygon points="511.4125,116 585.8875,190.475 511.4125,264.95 436.9375,190.475" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="131.375" y="304.95" width="139.25" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="573.1625" y="304.95" width="160.70000000000002" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<polygon points="201,380.95 304.075,484.025 201,587.1 97.925,484.025" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="81.625" y="644.1" width="67.75" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="252.625" y="644.1" width="67.75" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<polygon points="492.04999999999995,391.67499999999995 584.4,484.025 492.04999999999995,576.375 399.69999999999993,484.025" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="344.375" y="644.1" width="110.65" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="479.025" y="644.1" width="210.75000000000003" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<polygon points="838.2125,402.4 919.8375,484.025 838.2125,565.65 756.5875,484.025" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="713.775" y="644.1" width="110.65" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="848.4250000000001" y="644.1" width="117.80000000000001" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="436.72499999999997" y="720.1" width="110.65" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<text x="511.4125" y="58" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">创建 Sandbox</text>
+<text x="511.4125" y="190.475" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">提交 network 配置</text>
+<text x="201" y="322.95" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">控制面生成 egress 规则</text>
+<text x="653.5125" y="322.95" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">控制面生成 ingress 访问策略</text>
+<text x="201" y="484.025" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">allowOut / denyOut 组合</text>
+<text x="115.5" y="662.1" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">白名单模式</text>
+<text x="286.5" y="662.1" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">黑名单模式</text>
+<text x="492.04999999999995" y="484.025" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">allowPublicTraffic</text>
+<text x="399.7" y="662.1" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">公网可访问平台代理地址</text>
+<text x="584.4" y="662.1" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">必须校验 traffic access token</text>
+<text x="838.2125" y="484.025" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">maskRequestHost</text>
+<text x="769.1" y="662.1" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">代理改写 Host 头</text>
+<text x="907.325" y="662.1" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">使用默认 Host 规则</text>
+<text x="492.04999999999995" y="738.1" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">宿主侧/网关侧强制执行</text>
+</svg>
