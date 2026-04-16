@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: __POD_NAME__
+  namespace: __NAMESPACE__
+  labels:
+    app: kata-latency-lite
+spec:
+  runtimeClassName: __RUNTIME_CLASS__
+  restartPolicy: Never
+  containers:
+    - name: pause
+      image: __IMAGE__
+      imagePullPolicy: IfNotPresent
