@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "name": "__CONTAINER_NAME__",
+    "namespace": "__NAMESPACE__"
+  },
+  "image": {
+    "image": "__IMAGE__"
+  },
+  "command": [
+    "/pause"
+  ],
+  "args": [],
+  "working_dir": "/",
+  "log_path": "",
+  "stdin": false,
+  "stdin_once": false,
+  "tty": false
+}

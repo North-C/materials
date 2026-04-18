@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "name": "__SANDBOX_NAME__",
+    "uid": "__SANDBOX_UID__",
+    "namespace": "__NAMESPACE__"
+  },
+  "hostname": "__SANDBOX_NAME__",
+  "log_directory": "",
+  "dns_config": {},
+  "port_mappings": [],
+  "resources": {},
+  "labels": {
+    "app": "kata-direct-lite"
+  },
+  "annotations": {},
+  "linux": {}
+}
