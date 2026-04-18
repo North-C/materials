@@ -1,0 +1,18 @@
+{
+  "metadata": {
+    "name": "kata-direct-lite-container-100859",
+    "namespace": "default"
+  },
+  "image": {
+    "image": "sealos.hub:5000/pause:3.9"
+  },
+  "command": [
+    "/pause"
+  ],
+  "args": [],
+  "working_dir": "/",
+  "log_path": "",
+  "stdin": false,
+  "stdin_once": false,
+  "tty": false
+}

@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "name": "kata-direct-lite-sandbox-100859",
+    "uid": "kata-direct-lite-100859",
+    "namespace": "default"
+  },
+  "hostname": "kata-direct-lite-sandbox-100859",
+  "log_directory": "",
+  "dns_config": {},
+  "port_mappings": [],
+  "resources": {},
+  "labels": {
+    "app": "kata-direct-lite"
+  },
+  "annotations": {},
+  "linux": {}
+}

@@ -1,0 +1,10 @@
+{
+  "run_id": "run-20260418T100859Z",
+  "workload_type": "direct_kata_container",
+  "sandbox_name": "kata-direct-lite-sandbox-100859",
+  "container_name": "kata-direct-lite-container-100859",
+  "namespace": "default",
+  "runtime_handler": "kata",
+  "hypervisor": "cloud-hypervisor",
+  "t_request_sent": "2026-04-18T10:08:59.313922145Z"
+}

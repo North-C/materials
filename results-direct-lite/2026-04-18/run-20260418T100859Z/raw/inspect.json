@@ -1,0 +1,291 @@
+{
+  "status": {
+    "id": "4f765d00a4d8e12c47753167415c24222862fdae9622fe5d2ec1e6d158b35366",
+    "metadata": {
+      "attempt": 0,
+      "name": "kata-direct-lite-container-100859"
+    },
+    "state": "CONTAINER_RUNNING",
+    "createdAt": "2026-04-18T18:09:01.167928414+08:00",
+    "startedAt": "2026-04-18T18:09:01.249367624+08:00",
+    "finishedAt": "0001-01-01T00:00:00Z",
+    "exitCode": 0,
+    "image": {
+      "annotations": {},
+      "image": "sealos.hub:5000/pause:3.9",
+      "userSpecifiedImage": ""
+    },
+    "imageRef": "sealos.hub:5000/pause@sha256:8d4106c88ec0bd28001e34c975d65175d994072d65341f62a8ab0754b0fafe10",
+    "reason": "",
+    "message": "",
+    "labels": {},
+    "annotations": {},
+    "mounts": [],
+    "logPath": "",
+    "resources": {
+      "linux": {
+        "cpuPeriod": "0",
+        "cpuQuota": "0",
+        "cpuShares": "0",
+        "cpusetCpus": "",
+        "cpusetMems": "",
+        "hugepageLimits": [],
+        "memoryLimitInBytes": "0",
+        "memorySwapLimitInBytes": "0",
+        "oomScoreAdj": "0",
+        "unified": {}
+      },
+      "windows": null
+    }
+  },
+  "info": {
+    "sandboxID": "557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd",
+    "pid": 92880,
+    "removing": false,
+    "snapshotKey": "4f765d00a4d8e12c47753167415c24222862fdae9622fe5d2ec1e6d158b35366",
+    "snapshotter": "overlayfs",
+    "runtimeType": "io.containerd.kata.v2",
+    "runtimeOptions": {
+      "config_path": "/opt/kata/share/defaults/kata-containers/configuration-clh.toml"
+    },
+    "config": {
+      "metadata": {
+        "name": "kata-direct-lite-container-100859"
+      },
+      "image": {
+        "image": "sealos.hub:5000/pause:3.9"
+      },
+      "command": [
+        "/pause"
+      ],
+      "working_dir": "/"
+    },
+    "runtimeSpec": {
+      "ociVersion": "1.1.0",
+      "process": {
+        "user": {
+          "uid": 65535,
+          "gid": 65535,
+          "additionalGids": [
+            65535
+          ]
+        },
+        "args": [
+          "/pause"
+        ],
+        "env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+          "HOSTNAME=kata-direct-lite-sandbox-100859"
+        ],
+        "cwd": "/",
+        "capabilities": {
+          "bounding": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ],
+          "effective": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ],
+          "permitted": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ]
+        },
+        "apparmorProfile": "cri-containerd.apparmor.d"
+      },
+      "root": {
+        "path": "rootfs"
+      },
+      "mounts": [
+        {
+          "destination": "/proc",
+          "type": "proc",
+          "source": "proc",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev"
+          ]
+        },
+        {
+          "destination": "/dev",
+          "type": "tmpfs",
+          "source": "tmpfs",
+          "options": [
+            "nosuid",
+            "strictatime",
+            "mode=755",
+            "size=65536k"
+          ]
+        },
+        {
+          "destination": "/dev/pts",
+          "type": "devpts",
+          "source": "devpts",
+          "options": [
+            "nosuid",
+            "noexec",
+            "newinstance",
+            "ptmxmode=0666",
+            "mode=0620",
+            "gid=5"
+          ]
+        },
+        {
+          "destination": "/dev/mqueue",
+          "type": "mqueue",
+          "source": "mqueue",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev"
+          ]
+        },
+        {
+          "destination": "/sys",
+          "type": "sysfs",
+          "source": "sysfs",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev",
+            "ro"
+          ]
+        },
+        {
+          "destination": "/sys/fs/cgroup",
+          "type": "cgroup",
+          "source": "cgroup",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev",
+            "relatime",
+            "ro"
+          ]
+        },
+        {
+          "destination": "/etc/hostname",
+          "type": "bind",
+          "source": "/var/lib/containerd/io.containerd.grpc.v1.cri/sandboxes/557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd/hostname",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        },
+        {
+          "destination": "/etc/hosts",
+          "type": "bind",
+          "source": "/var/lib/containerd/io.containerd.grpc.v1.cri/sandboxes/557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd/hosts",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        },
+        {
+          "destination": "/etc/resolv.conf",
+          "type": "bind",
+          "source": "/var/lib/containerd/io.containerd.grpc.v1.cri/sandboxes/557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd/resolv.conf",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        },
+        {
+          "destination": "/dev/shm",
+          "type": "bind",
+          "source": "/run/containerd/io.containerd.grpc.v1.cri/sandboxes/557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd/shm",
+          "options": [
+            "rbind",
+            "rprivate",
+            "rw"
+          ]
+        }
+      ],
+      "annotations": {
+        "io.kubernetes.cri.container-name": "kata-direct-lite-container-100859",
+        "io.kubernetes.cri.container-type": "container",
+        "io.kubernetes.cri.image-name": "sealos.hub:5000/pause:3.9",
+        "io.kubernetes.cri.sandbox-id": "557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd",
+        "io.kubernetes.cri.sandbox-name": "kata-direct-lite-sandbox-100859",
+        "io.kubernetes.cri.sandbox-namespace": "default",
+        "io.kubernetes.cri.sandbox-uid": "kata-direct-lite-100859"
+      },
+      "linux": {
+        "resources": {
+          "devices": [
+            {
+              "allow": false,
+              "access": "rwm"
+            }
+          ]
+        },
+        "cgroupsPath": "/k8s.io/4f765d00a4d8e12c47753167415c24222862fdae9622fe5d2ec1e6d158b35366",
+        "namespaces": [
+          {
+            "type": "pid",
+            "path": "/proc/92880/ns/pid"
+          },
+          {
+            "type": "ipc",
+            "path": "/proc/92880/ns/ipc"
+          },
+          {
+            "type": "uts",
+            "path": "/proc/92880/ns/uts"
+          },
+          {
+            "type": "mount"
+          },
+          {
+            "type": "network",
+            "path": "/proc/92880/ns/net"
+          },
+          {
+            "type": "cgroup"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,321 @@
+{
+  "status": {
+    "id": "557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd",
+    "metadata": {
+      "attempt": 0,
+      "name": "kata-direct-lite-sandbox-100859",
+      "namespace": "default",
+      "uid": "kata-direct-lite-100859"
+    },
+    "state": "SANDBOX_READY",
+    "createdAt": "2026-04-18T18:09:00.418207838+08:00",
+    "network": {
+      "additionalIps": [],
+      "ip": "100.64.0.61"
+    },
+    "linux": {
+      "namespaces": {
+        "options": null
+      }
+    },
+    "labels": {
+      "app": "kata-direct-lite"
+    },
+    "annotations": {},
+    "runtimeHandler": "kata"
+  },
+  "info": {
+    "pid": 92880,
+    "processStatus": "running",
+    "netNamespaceClosed": false,
+    "image": "sealos.hub:5000/pause:3.9",
+    "snapshotKey": "557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd",
+    "snapshotter": "overlayfs",
+    "runtimeHandler": "kata",
+    "runtimeType": "io.containerd.kata.v2",
+    "runtimeOptions": {
+      "config_path": "/opt/kata/share/defaults/kata-containers/configuration-clh.toml"
+    },
+    "config": {
+      "metadata": {
+        "name": "kata-direct-lite-sandbox-100859",
+        "uid": "kata-direct-lite-100859",
+        "namespace": "default"
+      },
+      "hostname": "kata-direct-lite-sandbox-100859",
+      "dns_config": {},
+      "labels": {
+        "app": "kata-direct-lite"
+      },
+      "linux": {}
+    },
+    "runtimeSpec": {
+      "ociVersion": "1.1.0",
+      "process": {
+        "user": {
+          "uid": 65535,
+          "gid": 65535,
+          "additionalGids": [
+            65535
+          ]
+        },
+        "args": [
+          "/pause"
+        ],
+        "env": [
+          "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+        ],
+        "cwd": "/",
+        "capabilities": {
+          "bounding": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ],
+          "effective": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ],
+          "permitted": [
+            "CAP_CHOWN",
+            "CAP_DAC_OVERRIDE",
+            "CAP_FSETID",
+            "CAP_FOWNER",
+            "CAP_MKNOD",
+            "CAP_NET_RAW",
+            "CAP_SETGID",
+            "CAP_SETUID",
+            "CAP_SETFCAP",
+            "CAP_SETPCAP",
+            "CAP_NET_BIND_SERVICE",
+            "CAP_SYS_CHROOT",
+            "CAP_KILL",
+            "CAP_AUDIT_WRITE"
+          ]
+        },
+        "noNewPrivileges": true,
+        "oomScoreAdj": -998
+      },
+      "root": {
+        "path": "rootfs",
+        "readonly": true
+      },
+      "hostname": "kata-direct-lite-sandbox-100859",
+      "mounts": [
+        {
+          "destination": "/proc",
+          "type": "proc",
+          "source": "proc",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev"
+          ]
+        },
+        {
+          "destination": "/dev",
+          "type": "tmpfs",
+          "source": "tmpfs",
+          "options": [
+            "nosuid",
+            "strictatime",
+            "mode=755",
+            "size=65536k"
+          ]
+        },
+        {
+          "destination": "/dev/pts",
+          "type": "devpts",
+          "source": "devpts",
+          "options": [
+            "nosuid",
+            "noexec",
+            "newinstance",
+            "ptmxmode=0666",
+            "mode=0620",
+            "gid=5"
+          ]
+        },
+        {
+          "destination": "/dev/mqueue",
+          "type": "mqueue",
+          "source": "mqueue",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev"
+          ]
+        },
+        {
+          "destination": "/sys",
+          "type": "sysfs",
+          "source": "sysfs",
+          "options": [
+            "nosuid",
+            "noexec",
+            "nodev",
+            "ro"
+          ]
+        },
+        {
+          "destination": "/dev/shm",
+          "type": "bind",
+          "source": "/run/containerd/io.containerd.grpc.v1.cri/sandboxes/557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd/shm",
+          "options": [
+            "rbind",
+            "ro",
+            "nosuid",
+            "nodev",
+            "noexec"
+          ]
+        },
+        {
+          "destination": "/etc/resolv.conf",
+          "type": "bind",
+          "source": "/var/lib/containerd/io.containerd.grpc.v1.cri/sandboxes/557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd/resolv.conf",
+          "options": [
+            "rbind",
+            "ro",
+            "nosuid",
+            "nodev",
+            "noexec"
+          ]
+        }
+      ],
+      "annotations": {
+        "io.kubernetes.cri.container-type": "sandbox",
+        "io.kubernetes.cri.sandbox-id": "557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd",
+        "io.kubernetes.cri.sandbox-log-directory": "",
+        "io.kubernetes.cri.sandbox-name": "kata-direct-lite-sandbox-100859",
+        "io.kubernetes.cri.sandbox-namespace": "default",
+        "io.kubernetes.cri.sandbox-uid": "kata-direct-lite-100859"
+      },
+      "linux": {
+        "resources": {
+          "devices": [
+            {
+              "allow": false,
+              "access": "rwm"
+            }
+          ],
+          "cpu": {
+            "shares": 2
+          }
+        },
+        "cgroupsPath": "/k8s.io/557503ceb8a64a7f41931d804921c8a96a0bcb6f63f8fe5ec0333ca45bab9fcd",
+        "namespaces": [
+          {
+            "type": "pid"
+          },
+          {
+            "type": "ipc"
+          },
+          {
+            "type": "uts"
+          },
+          {
+            "type": "mount"
+          },
+          {
+            "type": "network",
+            "path": "/var/run/netns/cni-f95d47d8-4167-6430-2ff4-eb0df0b2032f"
+          }
+        ],
+        "maskedPaths": [
+          "/proc/acpi",
+          "/proc/asound",
+          "/proc/kcore",
+          "/proc/keys",
+          "/proc/latency_stats",
+          "/proc/timer_list",
+          "/proc/timer_stats",
+          "/proc/sched_debug",
+          "/sys/firmware",
+          "/sys/devices/virtual/powercap",
+          "/proc/scsi"
+        ],
+        "readonlyPaths": [
+          "/proc/bus",
+          "/proc/fs",
+          "/proc/irq",
+          "/proc/sys",
+          "/proc/sysrq-trigger"
+        ]
+      }
+    },
+    "cniResult": {
+      "Interfaces": {
+        "cni0": {
+          "IPConfigs": null,
+          "Mac": "6e:b9:17:93:21:6a",
+          "Sandbox": ""
+        },
+        "eth0": {
+          "IPConfigs": [
+            {
+              "IP": "100.64.0.61",
+              "Gateway": "100.64.0.1"
+            }
+          ],
+          "Mac": "52:92:97:66:0c:02",
+          "Sandbox": "/var/run/netns/cni-f95d47d8-4167-6430-2ff4-eb0df0b2032f"
+        },
+        "lo": {
+          "IPConfigs": [
+            {
+              "IP": "127.0.0.1",
+              "Gateway": ""
+            },
+            {
+              "IP": "::1",
+              "Gateway": ""
+            }
+          ],
+          "Mac": "00:00:00:00:00:00",
+          "Sandbox": "/var/run/netns/cni-f95d47d8-4167-6430-2ff4-eb0df0b2032f"
+        },
+        "vethc197d869": {
+          "IPConfigs": null,
+          "Mac": "4a:16:c1:24:03:61",
+          "Sandbox": ""
+        }
+      },
+      "DNS": [
+        {},
+        {}
+      ],
+      "Routes": [
+        {
+          "dst": "100.64.0.0/10"
+        },
+        {
+          "dst": "0.0.0.0/0",
+          "gw": "100.64.0.1"
+        }
+      ]
+    }
+  }
+}
