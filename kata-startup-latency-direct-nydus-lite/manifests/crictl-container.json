@@ -1,0 +1,14 @@
+{
+  "metadata": {
+    "name": "__CONTAINER_NAME__",
+    "attempt": 0
+  },
+  "image": {
+    "image": "__IMAGE__"
+  },
+  "command": [
+    "/pause"
+  ],
+  "working_dir": "/",
+  "linux": {}
+}

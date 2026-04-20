@@ -1,0 +1,17 @@
+{
+  "metadata": {
+    "name": "__SANDBOX_NAME__",
+    "namespace": "__NAMESPACE__",
+    "uid": "__SANDBOX_UID__",
+    "attempt": 0
+  },
+  "hostname": "__SANDBOX_NAME__",
+  "log_directory": "",
+  "linux": {},
+  "labels": {
+    "app": "kata-direct-nydus-lite"
+  },
+  "annotations": {
+    "io.containerd.osfeature": "nydus.remoteimage.v1"
+  }
+}
