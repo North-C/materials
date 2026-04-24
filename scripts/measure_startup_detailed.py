@@ -6,23 +6,6 @@ per-phase timing as measured by the server itself.
 
 This script must run INSIDE the CubeSandbox environment (VM or server).
 
-Sub-phases extracted:
-  From Cubelet-stat (CostTime in ms):
-    sandbox-create         — Cubelet create workflow (VM restore + configure)
-    sandbox-start          — Start the MicroVM
-    sandbox-probe          — Wait for health probe to pass
-    cubebox                — Full cubebox workflow
-    cubebox-service        — Cubebox service total
-    cubebox-service-inner  — Cubebox service inner logic
-
-  From CubeMaster ext_info (ms):
-    cube-e2e               — End-to-end from request received to response sent
-    sandbox-probe          — Probe time reported by CubeMaster
-    all-probe              — All probe time
-
-  From destroy ext_info (ms):
-    Per-step teardown timing (del-task-sandbox, cubebox, network, etc.)
-
 Usage:
   python3 measure_startup_detailed.py [TEMPLATE_ID] [ROUNDS]
 """
@@ -41,7 +24,6 @@ TEMPLATE_ID = os.environ.get("CUBE_TEMPLATE_ID") or (
     sys.argv[1] if len(sys.argv) > 1 else input("Enter template ID: ")
 )
 ROUNDS = int(sys.argv[2]) if len(sys.argv) > 2 else 5
-CODE = "print('Hello from Cube Sandbox, safely isolated!')"
 
 LOG_MASTER_REQ = "/data/log/CubeMaster/cubemaster-req.log"
 LOG_CUBELET_STAT = "/data/log/Cubelet/Cubelet-stat.log"
@@ -49,6 +31,32 @@ LOG_CUBELET_REQ = "/data/log/Cubelet/Cubelet-req.log"
 LOG_API = "/data/log/CubeAPI/cube-api.log"
 
 LOG_FILES = [LOG_MASTER_REQ, LOG_CUBELET_STAT, LOG_CUBELET_REQ, LOG_API]
+
+# Ordered sub-phase definitions for readable output.
+# (log_key, display_name, description)
+CREATE_PHASES = [
+    ("client.create_ms",          "client API call",        "Client POST /sandboxes round-trip (incl. network)"),
+    ("master.cube-e2e",           "CubeMaster E2E",         "CubeMaster total: schedule + Cubelet call + respond"),
+    ("cubelet.create.sandbox-create", "  Cubelet create",   "  Restore MicroVM from snapshot + configure resources"),
+    ("cubelet.create.sandbox-start",  "  Cubelet start",    "  Fire up the restored MicroVM (VMM launch)"),
+    ("cubelet.create.sandbox-probe",  "  Health probe",     "  Poll until guest health endpoint returns 200"),
+    ("cubelet.create.cubebox-service-inner", "  Service inner", "  Cubebox internal bookkeeping"),
+    ("cubelet.create.cubebox-service", "  Cubebox service",  "  Full cubebox-service create (wraps above)"),
+    ("cubelet.create.cubebox",    "  Cubebox workflow",      "  Full workflow incl. storage, network, cgroup, cubebox"),
+]
+
+DESTROY_PHASES = [
+    ("client.kill_ms",            "client API call",        "Client DELETE /sandboxes/{id} round-trip"),
+    ("destroy.sandbox-del-container", "  Delete container", "  Tear down the running MicroVM container"),
+    ("destroy.del-task-sandbox",  "  Delete task",          "  Clean up task metadata"),
+    ("destroy.network",           "  Release network",      "  Free TAP interface and network resources"),
+    ("destroy.volume",            "  Release volume",       "  Clean up writable layer volume"),
+    ("destroy.storage",           "  Release storage",      "  Remove storage backend entries"),
+    ("destroy.cgroup",            "  Release cgroup",       "  Clean up cgroup allocation"),
+    ("destroy.cleanup",           "  Final cleanup",        "  Remaining teardown"),
+]
+
+ALL_PHASES = CREATE_PHASES + DESTROY_PHASES
 
 
 def count_lines(path):
@@ -60,7 +68,6 @@ def count_lines(path):
 
 
 def read_lines_from(path, since):
-    """Read lines starting from line number `since` (1-indexed, exclusive)."""
     try:
         with open(path) as f:
             lines = f.readlines()
@@ -79,10 +86,10 @@ def decode_ext_info_ms(raw):
             return None
 
 
-def parse_logs(request_id, sandbox_id, master_lines, cubelet_stat_lines, cubelet_req_lines, api_lines):
+def parse_logs(request_id, sandbox_id, master_lines, cubelet_stat_lines, api_lines):
     result = {}
 
-    # --- CubeMaster-req: ext_info in CreateSandbox_rsp ---
+    # CubeMaster-req: ext_info in CreateSandbox_rsp
     for line in master_lines:
         try:
             obj = json.loads(line)
@@ -102,7 +109,7 @@ def parse_logs(request_id, sandbox_id, master_lines, cubelet_stat_lines, cubelet
             except (json.JSONDecodeError, IndexError):
                 pass
 
-    # --- CubeMaster-req: destroy ext_info (different request_id) ---
+    # CubeMaster-req: destroy ext_info (different request_id)
     for line in master_lines:
         try:
             obj = json.loads(line)
@@ -122,7 +129,7 @@ def parse_logs(request_id, sandbox_id, master_lines, cubelet_stat_lines, cubelet
             except (json.JSONDecodeError, IndexError):
                 pass
 
-    # --- Cubelet-stat: CostTime per Callee ---
+    # Cubelet-stat: CostTime per Callee
     for line in cubelet_stat_lines:
         try:
             obj = json.loads(line)
@@ -138,42 +145,53 @@ def parse_logs(request_id, sandbox_id, master_lines, cubelet_stat_lines, cubelet
         elif action == "Destroy" and cost > 0:
             result[f"cubelet.destroy.{callee}"] = round(cost, 3)
 
-    # --- CubeAPI: timestamp for sandbox.created ---
-    for line in api_lines:
-        try:
-            obj = json.loads(line)
-        except json.JSONDecodeError:
-            continue
-        if obj.get("event") == "sandbox.created" and obj.get("sandbox_id", "").startswith(sandbox_id[:8]):
-            result["api.sandbox_created_ts"] = obj.get("timestamp", "")
-
     return result
 
 
-def stats(name, values):
-    s = sorted(values)
-    n = len(s)
-    print(
-        f"  {name:40s}  min={min(s):>8.1f}ms  max={max(s):>8.1f}ms  "
-        f"avg={sum(s) / n:>8.1f}ms  p50={s[n // 2]:>8.1f}ms"
-    )
+def print_phase_table(title, phases, parsed):
+    """Print one section (create or destroy) with aligned columns."""
+    print(f"\n  {title}")
+    print(f"  {'-' * 72}")
+    print(f"  {'Phase':24s} {'Time':>8s}   {'Description'}")
+    print(f"  {'-' * 72}")
+    for key, name, desc in phases:
+        val = parsed.get(key)
+        if val is not None:
+            print(f"  {name:24s} {val:>7.1f}ms   {desc}")
+    print()
+
+
+def print_aggregate(title, phases, all_results):
+    """Print aggregate stats (min/avg/p50/max) for a section."""
+    print(f"  {title}")
+    print(f"  {'-' * 80}")
+    print(f"  {'Phase':24s} {'min':>8s} {'avg':>8s} {'p50':>8s} {'max':>8s}")
+    print(f"  {'-' * 80}")
+    for key, name, _ in phases:
+        values = [r[key] for r in all_results if key in r and isinstance(r[key], (int, float))]
+        if values:
+            s = sorted(values)
+            n = len(s)
+            print(f"  {name:24s} {min(s):>7.1f}ms {sum(s)/n:>7.1f}ms {s[n//2]:>7.1f}ms {max(s):>7.1f}ms")
+    print()
 
 
 def main():
     print(f"Template: {TEMPLATE_ID}")
     print(f"Rounds:   {ROUNDS}")
     print(f"API:      {API_URL}")
-    print()
 
     all_results = []
 
     for i in range(ROUNDS):
-        print(f"[{i + 1}/{ROUNDS}]", end=" ")
+        print(f"\n{'=' * 76}")
+        print(f"  Round {i + 1}/{ROUNDS}")
+        print(f"{'=' * 76}")
 
         # Snapshot log positions
         pos = {f: count_lines(f) for f in LOG_FILES}
 
-        # Create sandbox
+        # --- Create ---
         t0 = time.monotonic()
         resp = requests.post(
             f"{API_URL}/sandboxes",
@@ -185,15 +203,14 @@ def main():
         client_create_ms = (t1 - t0) * 1000
 
         if resp.status_code not in (200, 201):
-            print(f"ERROR: {resp.status_code} {resp.text}")
+            print(f"  ERROR: {resp.status_code} {resp.text}")
             continue
 
         data = resp.json()
         sandbox_id = data.get("sandboxID", "unknown")
         request_id = data.get("clientID", "")
-        print(f"sandbox={sandbox_id[:12]}  client_create={client_create_ms:.0f}ms", end="")
 
-        # Kill sandbox
+        # --- Destroy ---
         t2 = time.monotonic()
         try:
             requests.delete(
@@ -205,9 +222,7 @@ def main():
             pass
         t3 = time.monotonic()
         client_kill_ms = (t3 - t2) * 1000
-        print(f"  client_kill={client_kill_ms:.0f}ms")
 
-        # Wait for logs to flush
         time.sleep(0.3)
 
         # Read new log lines
@@ -216,32 +231,22 @@ def main():
         cubelet_req_lines = read_lines_from(LOG_CUBELET_REQ, pos[LOG_CUBELET_REQ])
         api_lines = read_lines_from(LOG_API, pos[LOG_API])
 
-        parsed = parse_logs(request_id, sandbox_id, master_lines, cubelet_stat_lines, cubelet_req_lines, api_lines)
+        parsed = parse_logs(request_id, sandbox_id, master_lines, cubelet_stat_lines, api_lines)
         parsed["client.create_ms"] = round(client_create_ms, 1)
         parsed["client.kill_ms"] = round(client_kill_ms, 1)
         all_results.append(parsed)
 
-        # Print server-side breakdown for this round
-        for k in sorted(parsed.keys()):
-            if k.startswith("cubelet.create.") or k.startswith("master."):
-                print(f"    {k:52s} = {parsed[k]:>8.1f}ms")
-        for k in sorted(parsed.keys()):
-            if k.startswith("cubelet.destroy.") or k.startswith("destroy."):
-                print(f"    {k:52s} = {parsed[k]:>8.1f}ms")
+        print(f"  sandbox_id = {sandbox_id}")
+        print_phase_table("CREATE  (CubeAPI -> CubeMaster -> Cubelet -> MicroVM -> probe)", CREATE_PHASES, parsed)
+        print_phase_table("DESTROY (CubeAPI -> CubeMaster -> Cubelet -> teardown)", DESTROY_PHASES, parsed)
 
-    # Aggregate
-    print(f"\n{'=' * 85}")
-    print(f"Aggregate over {len(all_results)} successful runs")
-    print(f"{'=' * 85}")
-
-    all_keys = set()
-    for r in all_results:
-        all_keys.update(r.keys())
-
-    for k in sorted(all_keys):
-        values = [r[k] for r in all_results if k in r and isinstance(r[k], (int, float))]
-        if values:
-            stats(k, values)
+    # --- Aggregate ---
+    if all_results:
+        print(f"\n{'#' * 76}")
+        print(f"  AGGREGATE over {len(all_results)} successful runs")
+        print(f"{'#' * 76}")
+        print_aggregate("CREATE", CREATE_PHASES, all_results)
+        print_aggregate("DESTROY", DESTROY_PHASES, all_results)
 
 
 if __name__ == "__main__":
