@@ -1,0 +1,34 @@
+FROM e2bdev/base:latest
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+      systemd \
+      systemd-sysv \
+      openssh-server \
+      sudo \
+      chrony \
+      linuxptp \
+      socat \
+      curl \
+      passwd \
+      python3 \
+      bash \
+      coreutils \
+      ca-certificates \
+    && mkdir -p /run/sshd \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+COPY doc /opt/tbench/train-bpe-tokenizer/doc
+COPY app/tokenize.py /opt/tbench/train-bpe-tokenizer/tokenize.py
+COPY solution.sh /opt/tbench/train-bpe-tokenizer/solution.sh
+COPY tests/test_outputs.py /opt/tbench/train-bpe-tokenizer/tests/test_outputs.py
+COPY self-contained/mini_pytest.py /opt/tbench/mini_pytest.py
+COPY self-contained/entrypoint.sh /usr/local/bin/tbench-train-bpe-tokenizer
+
+RUN chmod +x /opt/tbench/train-bpe-tokenizer/solution.sh \
+    /opt/tbench/mini_pytest.py \
+    /usr/local/bin/tbench-train-bpe-tokenizer
