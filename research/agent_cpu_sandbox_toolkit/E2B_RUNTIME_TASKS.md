@@ -10,7 +10,7 @@
 | --- | --- | --- | --- |
 | analyze-access-logs | `xdlyqdocker/tbench-analyze-access-logs-e2b-runtime` | `20260518-arm64` | `/usr/local/bin/tbench-analyze-access-logs` |
 | train-bpe-tokenizer | `xdlyqdocker/tbench-train-bpe-tokenizer-e2b-runtime` | `20260518-arm64` | `/usr/local/bin/tbench-train-bpe-tokenizer` |
-| large-scale-text-editing | `xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime` | `20260519-arm64` | `/usr/local/bin/tbench-large-scale-text-editing` |
+| large-scale-text-editing | `xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime` | `20260528-arm64` | `/usr/local/bin/tbench-large-scale-text-editing` |
 
 ## 任务内容
 
@@ -73,7 +73,7 @@ docker run --rm \
 ```bash
 docker run --rm \
   --entrypoint /usr/local/bin/tbench-large-scale-text-editing \
-  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260519-arm64 \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-arm64 \
   --mode run --rows 1000000
 ```
 
@@ -135,9 +135,93 @@ finally:
 | large-scale-text-editing | `--mode run --rows 10000` | 约 2.2 秒 | 短时 smoke test |
 | large-scale-text-editing | `--mode run --rows 1000000` | 约 1 分 46 秒 | 长时大文件文本处理任务 |
 
+## 吞吐量指标
+
+`large-scale-text-editing` 支持把每次任务完成事件写入宿主机可读的 metrics 目录。每次 `run` 或 `verify` 完成后都会写入一个独立 JSON 文件，文件名包含完成时间、任务名、run id 和 iteration。该设计适合多个容器并发写入同一个宿主机目录，宿主机可按时间窗口统计完成数和吞吐量。
+
+容器侧启动示例：
+
+```bash
+mkdir -p /var/lib/tbench-metrics
+
+docker run --rm \
+  -v /var/lib/tbench-metrics:/metrics \
+  --entrypoint /usr/local/bin/tbench-large-scale-text-editing \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-arm64 \
+  --mode run --rows 1000000 \
+  --metrics-dir /metrics \
+  --run-id worker-001
+```
+
+也可以使用环境变量：
+
+```bash
+docker run --rm \
+  -v /var/lib/tbench-metrics:/metrics \
+  -e TBENCH_METRICS_DIR=/metrics \
+  -e TBENCH_RUN_ID=worker-001 \
+  --entrypoint /usr/local/bin/tbench-large-scale-text-editing \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-arm64 \
+  --mode run --rows 1000000
+```
+
+每个完成事件的 JSON 结构类似：
+
+```json
+{
+  "schema_version": 1,
+  "event": "task_completion",
+  "task_id": "large-scale-text-editing",
+  "mode": "run",
+  "rows": 1000000,
+  "run_id": "worker-001",
+  "iteration": 1,
+  "status": "pass",
+  "exit_code": 0,
+  "started_at": "2026-05-28T10:00:00.000000Z",
+  "finished_at": "2026-05-28T10:01:46.000000Z",
+  "started_at_ms": 1780000000000,
+  "finished_at_ms": 1780000106000,
+  "duration_ms": 106000,
+  "hostname": "container-id",
+  "pid": 1,
+  "output": "/app/score.json"
+}
+```
+
+宿主机统计最近 10 分钟吞吐量：
+
+```bash
+python3 research/agent_cpu_sandbox_toolkit/tools/summarize_tbench_metrics.py \
+  /var/lib/tbench-metrics \
+  --task-id large-scale-text-editing \
+  --window-seconds 600
+```
+
+按 60 秒分桶统计：
+
+```bash
+python3 research/agent_cpu_sandbox_toolkit/tools/summarize_tbench_metrics.py \
+  /var/lib/tbench-metrics \
+  --task-id large-scale-text-editing \
+  --window-seconds 600 \
+  --bucket-seconds 60
+```
+
+输出 JSON 便于进一步整理：
+
+```bash
+python3 research/agent_cpu_sandbox_toolkit/tools/summarize_tbench_metrics.py \
+  /var/lib/tbench-metrics \
+  --task-id large-scale-text-editing \
+  --window-seconds 600 \
+  --json
+```
+
 ## 使用建议
 
 - 若用于 E2B template，优先使用 `*-e2b-runtime` 镜像，不要使用早期 `*-self-contained` 或不带 `runtime` 的自运行镜像。
 - E2B template 构建后，不需要在 sandbox 内再次 `docker run`，直接调用 `/usr/local/bin/tbench-*` 即可。
 - `large-scale-text-editing` 可通过 `--rows` 调节运行时间；建议用 `--rows 10000` 做连通性验证，用 `--rows 1000000` 做长时文本处理测试。
+- 需要宿主机统计吞吐量时，为多个容器挂载同一个 metrics 目录，并通过 `--metrics-dir` 或 `TBENCH_METRICS_DIR` 打开完成事件输出。
 - 如果通过 E2B CLI 执行，建议使用 `bash -lc '...'` 包裹命令，以避免参数解析和工作目录差异。
