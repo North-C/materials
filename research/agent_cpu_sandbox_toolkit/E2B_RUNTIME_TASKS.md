@@ -10,7 +10,7 @@
 | --- | --- | --- | --- |
 | analyze-access-logs | `xdlyqdocker/tbench-analyze-access-logs-e2b-runtime` | `20260518-arm64` | `/usr/local/bin/tbench-analyze-access-logs` |
 | train-bpe-tokenizer | `xdlyqdocker/tbench-train-bpe-tokenizer-e2b-runtime` | `20260518-arm64` | `/usr/local/bin/tbench-train-bpe-tokenizer` |
-| large-scale-text-editing | `xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime` | `20260528-arm64` | `/usr/local/bin/tbench-large-scale-text-editing` |
+| large-scale-text-editing | `xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime` | `20260528-lite-arm64` | `/usr/local/bin/tbench-large-scale-text-editing` |
 
 ## 任务内容
 
@@ -73,7 +73,7 @@ docker run --rm \
 ```bash
 docker run --rm \
   --entrypoint /usr/local/bin/tbench-large-scale-text-editing \
-  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-arm64 \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-lite-arm64 \
   --mode run --rows 1000000
 ```
 
@@ -137,7 +137,9 @@ finally:
 
 ## 吞吐量指标
 
-`large-scale-text-editing` 支持把每次任务完成事件写入宿主机可读的 metrics 目录。每次 `run` 或 `verify` 完成后都会写入一个独立 JSON 文件，文件名包含完成时间、任务名、run id 和 iteration。该设计适合多个容器并发写入同一个宿主机目录，宿主机可按时间窗口统计完成数和吞吐量。
+`large-scale-text-editing` 支持把每次任务完成事件写入宿主机可读的 metrics 目录。每次 `run` 或 `verify` 完成后都会写入一个独立 JSON 文件，文件名包含任务名、run id、hostname、pid 和 iteration。该设计适合多个容器并发写入同一个宿主机目录，宿主机可按文件的完成时间窗口统计完成数和吞吐量。
+
+当前 metrics 是轻量完成事件：任务进程不做额外的开始/结束计时，不记录 duration。宿主机统计脚本读取 metrics 文件的 mtime 作为完成时间，因此低 `--rows` 高频任务不会因为吞吐量统计额外启动计时进程。
 
 容器侧启动示例：
 
@@ -147,7 +149,7 @@ mkdir -p /var/lib/tbench-metrics
 docker run --rm \
   -v /var/lib/tbench-metrics:/metrics \
   --entrypoint /usr/local/bin/tbench-large-scale-text-editing \
-  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-arm64 \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-lite-arm64 \
   --mode run --rows 1000000 \
   --metrics-dir /metrics \
   --run-id worker-001
@@ -161,7 +163,7 @@ docker run --rm \
   -e TBENCH_METRICS_DIR=/metrics \
   -e TBENCH_RUN_ID=worker-001 \
   --entrypoint /usr/local/bin/tbench-large-scale-text-editing \
-  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-arm64 \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-lite-arm64 \
   --mode run --rows 1000000
 ```
 
@@ -178,11 +180,6 @@ docker run --rm \
   "iteration": 1,
   "status": "pass",
   "exit_code": 0,
-  "started_at": "2026-05-28T10:00:00.000000Z",
-  "finished_at": "2026-05-28T10:01:46.000000Z",
-  "started_at_ms": 1780000000000,
-  "finished_at_ms": 1780000106000,
-  "duration_ms": 106000,
   "hostname": "container-id",
   "pid": 1,
   "output": "/app/score.json"

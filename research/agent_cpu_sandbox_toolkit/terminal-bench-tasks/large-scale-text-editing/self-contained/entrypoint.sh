@@ -97,12 +97,8 @@ cp /opt/tbench/large-scale-text-editing/gen_large_csv.py /tests/gen_large_csv.py
 cp /opt/tbench/large-scale-text-editing/tests/test_outputs.py /tests/test_outputs.py
 
 if [[ -z "$RUN_ID" ]]; then
-  RUN_ID="$(date -u +%Y%m%dT%H%M%SZ)-${HOSTNAME:-container}-$$"
+  RUN_ID="${HOSTNAME:-container}-$$"
 fi
-
-epoch_ms() {
-  python3 -c 'import time; print(time.time_ns() // 1000000)'
-}
 
 run_solution() {
   if [[ "$VERBOSE" == "1" ]]; then
@@ -119,10 +115,8 @@ run_verifier() {
 
 write_metric() {
   local iteration="$1"
-  local started_ms="$2"
-  local finished_ms="$3"
-  local status="$4"
-  local exit_code="$5"
+  local status="$2"
+  local exit_code="$3"
 
   if [[ -z "$METRICS_DIR" ]]; then
     return 0
@@ -133,37 +127,42 @@ write_metric() {
     return 0
   fi
 
-  if ! python3 - "$METRICS_DIR" "$TASK_ID" "$MODE" "$ROWS" "$RUN_ID" "$iteration" \
-      "$started_ms" "$finished_ms" "$status" "$exit_code" "$OUTPUT" "${HOSTNAME:-unknown}" "$$" <<'PY'
-import datetime as _dt
+  local safe_run_id
+  local safe_host
+  safe_run_id="$(printf '%s' "$RUN_ID" | tr -cs 'A-Za-z0-9_.-' '_' | cut -c1-120)"
+  safe_host="$(printf '%s' "${HOSTNAME:-container}" | tr -cs 'A-Za-z0-9_.-' '_' | cut -c1-80)"
+  if [[ -z "$safe_run_id" ]]; then
+    safe_run_id="run"
+  fi
+  if [[ -z "$safe_host" ]]; then
+    safe_host="container"
+  fi
+
+  local target
+  local tmp
+  target="$METRICS_DIR/${TASK_ID}-${safe_run_id}-${safe_host}-$$-iter$(printf '%06d' "$iteration").json"
+  tmp="${target}.tmp.$$"
+
+  if ! python3 - "$TASK_ID" "$MODE" "$ROWS" "$RUN_ID" "$iteration" \
+      "$status" "$exit_code" "$OUTPUT" "${HOSTNAME:-unknown}" "$$" "$tmp" "$target" <<'PY'
 import json
 import os
-import re
 import sys
-from pathlib import Path
 
 (
-    metrics_dir,
     task_id,
     mode,
     rows,
     run_id,
     iteration,
-    started_ms,
-    finished_ms,
     status,
     exit_code,
     output,
     hostname,
     pid,
+    tmp,
+    target,
 ) = sys.argv[1:]
-
-started_ms_i = int(started_ms)
-finished_ms_i = int(finished_ms)
-duration_ms = max(0, finished_ms_i - started_ms_i)
-
-def iso(ms):
-    return _dt.datetime.fromtimestamp(ms / 1000, tz=_dt.timezone.utc).isoformat().replace("+00:00", "Z")
 
 event = {
     "schema_version": 1,
@@ -175,22 +174,12 @@ event = {
     "iteration": int(iteration),
     "status": status,
     "exit_code": int(exit_code),
-    "started_at": iso(started_ms_i),
-    "finished_at": iso(finished_ms_i),
-    "started_at_ms": started_ms_i,
-    "finished_at_ms": finished_ms_i,
-    "duration_ms": duration_ms,
     "hostname": hostname,
     "pid": int(pid),
     "output": output,
 }
-
-target_dir = Path(metrics_dir)
-safe_run_id = re.sub(r"[^A-Za-z0-9_.-]+", "_", run_id)[:120] or "run"
-name = f"{finished_ms_i}-{task_id}-{safe_run_id}-iter{int(iteration):06d}.json"
-target = target_dir / name
-tmp = target.with_suffix(target.suffix + f".tmp.{os.getpid()}")
-tmp.write_text(json.dumps(event, sort_keys=True) + "\n", encoding="utf-8")
+with open(tmp, "w", encoding="utf-8") as f:
+    f.write(json.dumps(event, sort_keys=True) + "\n")
 os.replace(tmp, target)
 PY
   then
@@ -211,7 +200,6 @@ fi
 if [[ "$MODE" == "run" || "$MODE" == "solve" ]]; then
   overall_status=0
   for i in $(seq 1 "$REPEAT"); do
-    started_ms="$(epoch_ms)"
     rm -f /app/apply_macros.vim /app/_defs_only.vim /app/vim_keystrokes.out /app/vim_regs.out "$OUTPUT"
 
     set +e
@@ -227,11 +215,10 @@ if [[ "$MODE" == "run" || "$MODE" == "solve" ]]; then
     fi
     set -e
 
-    finished_ms="$(epoch_ms)"
     if [[ "$step_status" -eq 0 ]]; then
-      write_metric "$i" "$started_ms" "$finished_ms" "pass" 0
+      write_metric "$i" "pass" 0
     else
-      write_metric "$i" "$started_ms" "$finished_ms" "fail" "$step_status"
+      write_metric "$i" "fail" "$step_status"
       overall_status="$step_status"
       break
     fi
@@ -240,16 +227,14 @@ if [[ "$MODE" == "run" || "$MODE" == "solve" ]]; then
     exit "$overall_status"
   fi
 else
-  started_ms="$(epoch_ms)"
   set +e
   run_verifier
   step_status="$?"
   set -e
-  finished_ms="$(epoch_ms)"
   if [[ "$step_status" -eq 0 ]]; then
-    write_metric 1 "$started_ms" "$finished_ms" "pass" 0
+    write_metric 1 "pass" 0
   else
-    write_metric 1 "$started_ms" "$finished_ms" "fail" "$step_status"
+    write_metric 1 "fail" "$step_status"
     exit "$step_status"
   fi
 fi

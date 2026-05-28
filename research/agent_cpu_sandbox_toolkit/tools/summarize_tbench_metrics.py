@@ -39,7 +39,9 @@ def load_events(metrics_dir):
             continue
         finished_ms = event.get("finished_at_ms")
         if not isinstance(finished_ms, int):
-            continue
+            finished_ms = int(path.stat().st_mtime_ns // 1_000_000)
+            event["finished_at_ms"] = finished_ms
+            event.setdefault("finished_at", iso(finished_ms))
         event["_path"] = str(path)
         events.append(event)
     return events
