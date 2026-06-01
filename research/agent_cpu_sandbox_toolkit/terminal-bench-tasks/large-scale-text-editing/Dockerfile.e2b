@@ -27,8 +27,10 @@ COPY gen_large_csv.py /opt/tbench/large-scale-text-editing/gen_large_csv.py
 COPY solution.sh /opt/tbench/large-scale-text-editing/solution.sh
 COPY tests/test_outputs.py /opt/tbench/large-scale-text-editing/tests/test_outputs.py
 COPY self-contained/mini_pytest.py /opt/tbench/mini_pytest.py
+COPY self-contained/profile_event.py /opt/tbench/profile_event.py
 COPY self-contained/entrypoint.sh /usr/local/bin/tbench-large-scale-text-editing
 
 RUN chmod +x /opt/tbench/large-scale-text-editing/solution.sh \
     /opt/tbench/mini_pytest.py \
+    /opt/tbench/profile_event.py \
     /usr/local/bin/tbench-large-scale-text-editing

@@ -12,6 +12,8 @@
 | train-bpe-tokenizer | `xdlyqdocker/tbench-train-bpe-tokenizer-e2b-runtime` | `20260518-arm64` | `/usr/local/bin/tbench-train-bpe-tokenizer` |
 | large-scale-text-editing | `xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime` | `20260528-lite-arm64` | `/usr/local/bin/tbench-large-scale-text-editing` |
 
+`large-scale-text-editing` 的阶段插桩版镜像标签为 `20260601-profile-arm64`。该标签默认行为仍然不记录阶段耗时；只有显式传入 profile 参数时才输出 JSONL。
+
 ## 任务内容
 
 ### analyze-access-logs
@@ -222,3 +224,52 @@ python3 research/agent_cpu_sandbox_toolkit/tools/summarize_tbench_metrics.py \
 - `large-scale-text-editing` 可通过 `--rows` 调节运行时间；建议用 `--rows 10000` 做连通性验证，用 `--rows 1000000` 做长时文本处理测试。
 - 需要宿主机统计吞吐量时，为多个容器挂载同一个 metrics 目录，并通过 `--metrics-dir` 或 `TBENCH_METRICS_DIR` 打开完成事件输出。
 - 如果通过 E2B CLI 执行，建议使用 `bash -lc '...'` 包裹命令，以避免参数解析和工作目录差异。
+
+## 阶段耗时插桩
+
+`large-scale-text-editing` 还支持可选的阶段 profile 输出，用于分析不同 `--rows`、不同 sandbox 规格或不同运行环境下的性能变化。默认不启用该功能；只有传入 `--profile-file`、`--profile-dir`，或设置 `TBENCH_PROFILE_FILE` / `TBENCH_PROFILE_DIR` 时才会记录阶段耗时。
+
+推荐以 `--mode run` 作为主路径采集，因为它覆盖完整任务生命周期：
+
+- `entrypoint.prepare_environment`：准备 `/app`、`/tests`，复制任务脚本。
+- `entrypoint.generate_input`：生成 `/app/input.csv`。
+- `entrypoint.generate_solution_macro`：生成 `/app/apply_macros.vim`。
+- `entrypoint.verify_total`：完整 verifier 阶段总耗时。
+- `verify.vim_apply_macros`：headless Vim 执行宏并改写 `/app/input.csv`。
+- `verify.generate_expected`：生成 `/app/expected.csv`。
+- `verify.compare_hashes`：读取并比较 `/app/input.csv` 与 `/app/expected.csv` 的 SHA-256。
+- `verify.macro_efficiency_check`：加载宏定义并检查宏长度。
+
+每条 profile 事件是 JSONL 中的一行，包含 `stage`、`phase`、`resource_type`、`resource_object`、`duration_ms`、`status`、`rows`、`run_id` 和 `iteration`。因此既可以按任务执行阶段聚合，也可以按资源对象类型聚合，例如 `csv_file`、`vim_script`、`vim_process`、`test_suite`、`filesystem`。
+
+E2B CLI 中直接采集并输出 profile：
+
+```bash
+e2b sandbox exec <SANDBOX-ID> \
+  "bash -lc '/usr/local/bin/tbench-large-scale-text-editing --mode run --rows 1000000 --profile-file /tmp/tbench-profile.jsonl && cat /tmp/tbench-profile.jsonl'"
+```
+
+如果在 sandbox 内部执行：
+
+```bash
+/usr/local/bin/tbench-large-scale-text-editing \
+  --mode run \
+  --rows 1000000 \
+  --profile-file /tmp/tbench-profile.jsonl
+```
+
+本地汇总 profile：
+
+```bash
+python3 research/agent_cpu_sandbox_toolkit/tools/summarize_tbench_profile.py \
+  /tmp/tbench-profile.jsonl \
+  --group-by stage
+```
+
+按资源类型汇总：
+
+```bash
+python3 research/agent_cpu_sandbox_toolkit/tools/summarize_tbench_profile.py \
+  /tmp/tbench-profile.jsonl \
+  --group-by resource_type
+```
