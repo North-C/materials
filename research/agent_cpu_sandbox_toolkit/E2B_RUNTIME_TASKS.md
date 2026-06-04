@@ -14,6 +14,8 @@
 
 `large-scale-text-editing` 的阶段插桩版镜像标签为 `20260601-profile-arm64`。该标签默认行为仍然不记录阶段耗时；只有显式传入 profile 参数时才输出 JSONL。
 
+`large-scale-text-editing` 的性能分析增强版镜像标签为 `20260604-profile-perf-arm64`，在阶段插桩版基础上额外安装 `linux-perf`、`perf-tools-unstable`、`strace`、`sysstat`、`procps`、`psmisc`、`time`、`hyperfine`、`gdb`、`binutils`、`elfutils`、`linux-cpupower`、`valgrind` 等工具。该镜像用于 E2B sandbox 内部做性能采样、系统调用跟踪和基础 profiling。
+
 ## 任务内容
 
 ### analyze-access-logs
@@ -273,3 +275,26 @@ python3 research/agent_cpu_sandbox_toolkit/tools/summarize_tbench_profile.py \
   /tmp/tbench-profile.jsonl \
   --group-by resource_type
 ```
+
+### 性能分析工具
+
+使用 perf 增强版镜像时，可以在 E2B sandbox 中直接调用 Linux profiling 工具。例如：
+
+```bash
+perf stat -- \
+  /usr/local/bin/tbench-large-scale-text-editing \
+  --mode run \
+  --rows 1000000 \
+  --profile-file /tmp/tbench-profile.jsonl
+```
+
+也可以用 `strace` 观察文件读写和进程行为：
+
+```bash
+strace -f -o /tmp/tbench.strace \
+  /usr/local/bin/tbench-large-scale-text-editing \
+  --mode run \
+  --rows 10000
+```
+
+注意：E2B 或容器运行环境是否允许 `perf record` / `perf stat` 访问硬件计数器，取决于宿主机内核、sandbox 权限和 `perf_event_paranoid` 设置。即使硬件事件不可用，`strace`、`hyperfine`、`time`、`sysstat` 和阶段 profile JSONL 仍可用于分析任务行为。

@@ -1,0 +1,20 @@
+FROM xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260601-profile-arm64
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+      linux-perf \
+      perf-tools-unstable \
+      strace \
+      sysstat \
+      procps \
+      psmisc \
+      time \
+      hyperfine \
+      gdb \
+      binutils \
+      elfutils \
+      linux-cpupower \
+      valgrind \
+    && rm -rf /var/lib/apt/lists/*
