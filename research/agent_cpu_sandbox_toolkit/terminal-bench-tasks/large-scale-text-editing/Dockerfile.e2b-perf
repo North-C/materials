@@ -1,4 +1,4 @@
-FROM xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260601-profile-arm64
+FROM xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260605-profile-arm64
 
 ENV DEBIAN_FRONTEND=noninteractive
 

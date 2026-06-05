@@ -4,7 +4,6 @@ set -euo pipefail
 MODE="run"
 REPEAT="1"
 ROWS="1000000"
-OUTPUT="/app/score.json"
 PRINT_HASHES="0"
 VERBOSE="0"
 METRICS_DIR="${TBENCH_METRICS_DIR:-}"
@@ -13,6 +12,9 @@ PROFILE_FILE="${TBENCH_PROFILE_FILE:-}"
 PROFILE_DIR="${TBENCH_PROFILE_DIR:-}"
 TASK_ID="large-scale-text-editing"
 CURRENT_ITERATION="1"
+WORK_DIR="${TBENCH_WORK_DIR:-/tmp/tbench-work}"
+TEST_DIR="${TBENCH_TEST_DIR:-/tmp/tbench-tests}"
+OUTPUT="${TBENCH_OUTPUT:-$WORK_DIR/score.json}"
 export PYTHONPATH="/opt/tbench:${PYTHONPATH:-}"
 
 usage() {
@@ -23,7 +25,7 @@ Usage:
 Modes:
   run     Generate input, create Vim macros, run verifier, and write score JSON.
   solve   Generate input and create Vim macros only.
-  verify  Run verifier against current /app files.
+  verify  Run verifier against current task work directory files.
   shell   Generate input and start an interactive shell.
 
 Examples:
@@ -32,6 +34,10 @@ Examples:
   docker run --rm IMAGE --mode run --repeat 3 --print-hashes
   docker run --rm -v /var/lib/tbench-metrics:/metrics IMAGE --mode run --metrics-dir /metrics
   tbench-large-scale-text-editing --mode run --rows 1000000 --profile-file /tmp/tbench-profile.jsonl
+
+Environment:
+  TBENCH_WORK_DIR  Directory for task files such as input.csv and score.json. Default: /tmp/tbench-work
+  TBENCH_TEST_DIR  Directory for copied test helpers. Default: /tmp/tbench-tests
 EOF
 }
 
@@ -224,21 +230,21 @@ time_stage() {
 }
 
 prepare_environment() {
-  mkdir -p /app /tests
-  cp /opt/tbench/large-scale-text-editing/gen_large_csv.py /tests/gen_large_csv.py
-  cp /opt/tbench/large-scale-text-editing/tests/test_outputs.py /tests/test_outputs.py
+  mkdir -p "$WORK_DIR" "$TEST_DIR"
+  cp /opt/tbench/large-scale-text-editing/gen_large_csv.py "$TEST_DIR/gen_large_csv.py"
+  cp /opt/tbench/large-scale-text-editing/tests/test_outputs.py "$TEST_DIR/test_outputs.py"
 }
 
 run_solution() {
   if [[ "$VERBOSE" == "1" ]]; then
-    (cd /app && bash /opt/tbench/large-scale-text-editing/solution.sh)
+    (cd "$WORK_DIR" && bash /opt/tbench/large-scale-text-editing/solution.sh)
   else
-    (cd /app && bash /opt/tbench/large-scale-text-editing/solution.sh) > /app/solution.log 2>&1
+    (cd "$WORK_DIR" && bash /opt/tbench/large-scale-text-editing/solution.sh) > "$WORK_DIR/solution.log" 2>&1
   fi
 }
 
 run_verifier() {
-  (cd /app && TBENCH_TEXT_ROWS="$ROWS" TBENCH_PROFILE_ITERATION="$CURRENT_ITERATION" /opt/tbench/mini_pytest.py /tests/test_outputs.py) | tee "$OUTPUT"
+  (cd "$WORK_DIR" && TBENCH_TEXT_ROWS="$ROWS" TBENCH_WORK_DIR="$WORK_DIR" TBENCH_TEST_DIR="$TEST_DIR" TBENCH_PROFILE_ITERATION="$CURRENT_ITERATION" /opt/tbench/mini_pytest.py "$TEST_DIR/test_outputs.py") | tee "$OUTPUT"
   return "${PIPESTATUS[0]}"
 }
 
@@ -317,13 +323,13 @@ PY
 }
 
 generate_input() {
-  rm -f /app/input.csv /app/expected.csv
-  (cd /app && TBENCH_TEXT_ROWS="$ROWS" python3 /tests/gen_large_csv.py input)
+  rm -f "$WORK_DIR/input.csv" "$WORK_DIR/expected.csv"
+  (cd "$WORK_DIR" && TBENCH_TEXT_ROWS="$ROWS" python3 "$TEST_DIR/gen_large_csv.py" input)
 }
 
 init_profile
 set +e
-time_stage 0 "entrypoint.prepare_environment" "setup" "filesystem" "/app,/tests" prepare_environment
+time_stage 0 "entrypoint.prepare_environment" "setup" "filesystem" "$WORK_DIR,$TEST_DIR" prepare_environment
 prepare_status="$?"
 set -e
 if [[ "$prepare_status" -ne 0 ]]; then
@@ -333,26 +339,26 @@ fi
 if [[ "$MODE" == "shell" ]]; then
   CURRENT_ITERATION="1"
   export TBENCH_PROFILE_ITERATION="$CURRENT_ITERATION"
-  time_stage 1 "entrypoint.generate_input" "input_generation" "csv_file" "/app/input.csv" generate_input
+  time_stage 1 "entrypoint.generate_input" "input_generation" "csv_file" "$WORK_DIR/input.csv" generate_input
   exec /bin/bash
 fi
 
 if [[ "$MODE" == "run" || "$MODE" == "solve" ]]; then
   overall_status=0
   for i in $(seq 1 "$REPEAT"); do
-    rm -f /app/apply_macros.vim /app/_defs_only.vim /app/vim_keystrokes.out /app/vim_regs.out "$OUTPUT"
+    rm -f "$WORK_DIR/apply_macros.vim" "$WORK_DIR/_defs_only.vim" "$WORK_DIR/vim_keystrokes.out" "$WORK_DIR/vim_regs.out" "$OUTPUT"
     CURRENT_ITERATION="$i"
     export TBENCH_PROFILE_ITERATION="$CURRENT_ITERATION"
 
     set +e
-    time_stage "$i" "entrypoint.generate_input" "input_generation" "csv_file" "/app/input.csv" generate_input
+    time_stage "$i" "entrypoint.generate_input" "input_generation" "csv_file" "$WORK_DIR/input.csv" generate_input
     step_status="$?"
     if [[ "$step_status" -eq 0 ]]; then
-      time_stage "$i" "entrypoint.generate_solution_macro" "solution_generation" "vim_script" "/app/apply_macros.vim" run_solution
+      time_stage "$i" "entrypoint.generate_solution_macro" "solution_generation" "vim_script" "$WORK_DIR/apply_macros.vim" run_solution
       step_status="$?"
     fi
     if [[ "$step_status" -eq 0 && "$MODE" == "run" ]]; then
-      time_stage "$i" "entrypoint.verify_total" "verification" "test_suite" "/tests/test_outputs.py" run_verifier
+      time_stage "$i" "entrypoint.verify_total" "verification" "test_suite" "$TEST_DIR/test_outputs.py" run_verifier
       step_status="$?"
     fi
     set -e
@@ -372,7 +378,7 @@ else
   CURRENT_ITERATION="1"
   export TBENCH_PROFILE_ITERATION="$CURRENT_ITERATION"
   set +e
-  time_stage 1 "entrypoint.verify_total" "verification" "test_suite" "/tests/test_outputs.py" run_verifier
+  time_stage 1 "entrypoint.verify_total" "verification" "test_suite" "$TEST_DIR/test_outputs.py" run_verifier
   step_status="$?"
   set -e
   if [[ "$step_status" -eq 0 ]]; then
@@ -384,5 +390,5 @@ else
 fi
 
 if [[ "$PRINT_HASHES" == "1" ]]; then
-  sha256sum /app/input.csv /app/expected.csv 2>/dev/null || true
+  sha256sum "$WORK_DIR/input.csv" "$WORK_DIR/expected.csv" 2>/dev/null || true
 fi

@@ -10,11 +10,11 @@
 | --- | --- | --- | --- |
 | analyze-access-logs | `xdlyqdocker/tbench-analyze-access-logs-e2b-runtime` | `20260518-arm64` | `/usr/local/bin/tbench-analyze-access-logs` |
 | train-bpe-tokenizer | `xdlyqdocker/tbench-train-bpe-tokenizer-e2b-runtime` | `20260518-arm64` | `/usr/local/bin/tbench-train-bpe-tokenizer` |
-| large-scale-text-editing | `xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime` | `20260528-lite-arm64` | `/usr/local/bin/tbench-large-scale-text-editing` |
+| large-scale-text-editing | `xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime` | `20260605-profile-arm64` | `/usr/local/bin/tbench-large-scale-text-editing` |
 
-`large-scale-text-editing` 的阶段插桩版镜像标签为 `20260601-profile-arm64`。该标签默认行为仍然不记录阶段耗时；只有显式传入 profile 参数时才输出 JSONL。
+`large-scale-text-editing` 的推荐标签为 `20260605-profile-arm64`。该版本默认行为仍然不记录阶段耗时；只有显式传入 profile 参数时才输出 JSONL。它默认使用 `TBENCH_WORK_DIR=/tmp/tbench-work` 和 `TBENCH_TEST_DIR=/tmp/tbench-tests`，避免在 E2B 或非 root 容器中因为 `/app`、`/tests` 不可写导致失败。
 
-`large-scale-text-editing` 的性能分析增强版镜像标签为 `20260604-profile-perf-arm64`，在阶段插桩版基础上额外安装 `linux-perf`、`perf-tools-unstable`、`strace`、`sysstat`、`procps`、`psmisc`、`time`、`hyperfine`、`gdb`、`binutils`、`elfutils`、`linux-cpupower`、`valgrind` 等工具。该镜像用于 E2B sandbox 内部做性能采样、系统调用跟踪和基础 profiling。
+`large-scale-text-editing` 的性能分析增强版镜像标签为 `20260605-profile-perf-arm64`，在 `20260605-profile-arm64` 基础上额外安装 `linux-perf`、`perf-tools-unstable`、`strace`、`sysstat`、`procps`、`psmisc`、`time`、`hyperfine`、`gdb`、`binutils`、`elfutils`、`linux-cpupower`、`valgrind` 等工具。该镜像用于 E2B sandbox 内部做性能采样、系统调用跟踪和基础 profiling。
 
 ## 任务内容
 
@@ -46,13 +46,13 @@
 
 该任务生成大规模 CSV 文本并用 Vim macro 完成批量编辑，执行内容包括：
 
-- 根据 `--rows` 生成 `/app/input.csv`。
-- 生成 `/app/apply_macros.vim`。
+- 根据 `--rows` 生成 `${TBENCH_WORK_DIR:-/tmp/tbench-work}/input.csv`。
+- 生成 `${TBENCH_WORK_DIR:-/tmp/tbench-work}/apply_macros.vim`。
 - 使用 headless Vim 执行宏，将 CSV 字段清理、重排、大小写转换并追加标记。
-- 在测试阶段生成 `/app/expected.csv`。
-- 对 `/app/input.csv` 与 `/app/expected.csv` 做哈希比较。
+- 在测试阶段生成 `${TBENCH_WORK_DIR:-/tmp/tbench-work}/expected.csv`。
+- 对 `input.csv` 与 `expected.csv` 做哈希比较。
 
-该任务包含大文件生成、脚本生成、Vim 批处理、文件读写和结果校验。可通过 `--rows` 控制任务时长。
+该任务包含大文件生成、脚本生成、Vim 批处理、文件读写和结果校验。可通过 `--rows` 控制任务时长。默认测试目录为 `${TBENCH_TEST_DIR:-/tmp/tbench-tests}`；如需要兼容旧路径，也可以显式设置 `TBENCH_WORK_DIR=/app TBENCH_TEST_DIR=/app/tests`。
 
 ## 启动方式
 
@@ -77,8 +77,19 @@ docker run --rm \
 ```bash
 docker run --rm \
   --entrypoint /usr/local/bin/tbench-large-scale-text-editing \
-  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-lite-arm64 \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260605-profile-arm64 \
   --mode run --rows 1000000
+```
+
+如需旧版 `/app` 输出路径：
+
+```bash
+docker run --rm \
+  --entrypoint env \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260605-profile-arm64 \
+  TBENCH_WORK_DIR=/app \
+  TBENCH_TEST_DIR=/app/tests \
+  /usr/local/bin/tbench-large-scale-text-editing --mode run --rows 350
 ```
 
 ### E2B CLI 执行
@@ -108,7 +119,7 @@ e2b sandbox exec <SANDBOX-ID> \
 /usr/local/bin/tbench-large-scale-text-editing --mode run --rows 1000000
 ```
 
-`large-scale-text-editing` 的修复版已确保即使当前目录不是 `/app`，也会在 `/app` 下生成输入、预期文件和测试结果。
+`large-scale-text-editing` 的修复版已确保即使当前目录不是 `/app`，也会在可配置工作目录下生成输入、预期文件和测试结果。默认目录为 `/tmp/tbench-work` 和 `/tmp/tbench-tests`，适合 E2B 与非 root 运行。
 
 ### Python SDK 执行
 
@@ -153,7 +164,7 @@ mkdir -p /var/lib/tbench-metrics
 docker run --rm \
   -v /var/lib/tbench-metrics:/metrics \
   --entrypoint /usr/local/bin/tbench-large-scale-text-editing \
-  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-lite-arm64 \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260605-profile-arm64 \
   --mode run --rows 1000000 \
   --metrics-dir /metrics \
   --run-id worker-001
@@ -167,7 +178,7 @@ docker run --rm \
   -e TBENCH_METRICS_DIR=/metrics \
   -e TBENCH_RUN_ID=worker-001 \
   --entrypoint /usr/local/bin/tbench-large-scale-text-editing \
-  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260528-lite-arm64 \
+  xdlyqdocker/tbench-large-scale-text-editing-e2b-runtime:20260605-profile-arm64 \
   --mode run --rows 1000000
 ```
 
@@ -186,7 +197,7 @@ docker run --rm \
   "exit_code": 0,
   "hostname": "container-id",
   "pid": 1,
-  "output": "/app/score.json"
+  "output": "/tmp/tbench-work/score.json"
 }
 ```
 
@@ -233,13 +244,13 @@ python3 research/agent_cpu_sandbox_toolkit/tools/summarize_tbench_metrics.py \
 
 推荐以 `--mode run` 作为主路径采集，因为它覆盖完整任务生命周期：
 
-- `entrypoint.prepare_environment`：准备 `/app`、`/tests`，复制任务脚本。
-- `entrypoint.generate_input`：生成 `/app/input.csv`。
-- `entrypoint.generate_solution_macro`：生成 `/app/apply_macros.vim`。
+- `entrypoint.prepare_environment`：准备 `${TBENCH_WORK_DIR:-/tmp/tbench-work}`、`${TBENCH_TEST_DIR:-/tmp/tbench-tests}`，复制任务脚本。
+- `entrypoint.generate_input`：生成 `input.csv`。
+- `entrypoint.generate_solution_macro`：生成 `apply_macros.vim`。
 - `entrypoint.verify_total`：完整 verifier 阶段总耗时。
-- `verify.vim_apply_macros`：headless Vim 执行宏并改写 `/app/input.csv`。
-- `verify.generate_expected`：生成 `/app/expected.csv`。
-- `verify.compare_hashes`：读取并比较 `/app/input.csv` 与 `/app/expected.csv` 的 SHA-256。
+- `verify.vim_apply_macros`：headless Vim 执行宏并改写 `input.csv`。
+- `verify.generate_expected`：生成 `expected.csv`。
+- `verify.compare_hashes`：读取并比较 `input.csv` 与 `expected.csv` 的 SHA-256。
 - `verify.macro_efficiency_check`：加载宏定义并检查宏长度。
 
 每条 profile 事件是 JSONL 中的一行，包含 `stage`、`phase`、`resource_type`、`resource_object`、`duration_ms`、`status`、`rows`、`run_id` 和 `iteration`。因此既可以按任务执行阶段聚合，也可以按资源对象类型聚合，例如 `csv_file`、`vim_script`、`vim_process`、`test_suite`、`filesystem`。
@@ -298,3 +309,16 @@ strace -f -o /tmp/tbench.strace \
 ```
 
 注意：E2B 或容器运行环境是否允许 `perf record` / `perf stat` 访问硬件计数器，取决于宿主机内核、sandbox 权限和 `perf_event_paranoid` 设置。即使硬件事件不可用，`strace`、`hyperfine`、`time`、`sysstat` 和阶段 profile JSONL 仍可用于分析任务行为。
+
+## 20260605 验证记录
+
+`large-scale-text-editing` 的 `20260605-profile-arm64` 和 `20260605-profile-perf-arm64` 均已推送到 Docker Hub。
+
+| 标签 | Docker Hub index digest | ARM64 image digest |
+| --- | --- | --- |
+| `20260605-profile-arm64` | `sha256:5568b392842ea289a4906e0e26ad3491dbe688edebecbeb7e05e75bef7c60a8f` | `sha256:4bb4ae848fdd724602720e4d3025eb3a0f9f1b340a6e8184d6d655d81c178f7a` |
+| `20260605-profile-perf-arm64` | `sha256:9de6e362855fd6231e13c019841733efcca83baf48d049ba210df8d7c38d61ed` | `sha256:a3be8b08ace23d30f33edba545daa8b84d99fcf3a9d6d3cd9cd0e164cae9f6bb` |
+
+本地已用 QEMU 验证 `--user 1000:1000 --mode run --rows 350`，结果 `passed=5 failed=0`，测试路径为 `/tmp/tbench-tests/test_outputs.py`。同时验证 `--profile-file` 会输出 8 条阶段 JSONL，`resource_object` 指向 `/tmp/tbench-work` 和 `/tmp/tbench-tests`。
+
+远端 ARM64 服务器 `root@192.168.25.61` 已加载 `20260605-profile-perf-arm64` tar 包并验证通过。归档位置为 `/root/agent-cpu-sandbox-toolkit/images/archives/tbench-large-scale-text-editing-e2b-runtime-20260605-profile-perf-arm64.docker.tar`，tar sha256 为 `7a2811e91ee7d0d93c5178caf3f3f494dbf44297d88e37cbb903dcc055836ba9`。远端验证包括性能工具版本检查、非 root `--mode run --rows 350`、profile JSONL 输出检查，任务结果均为 `passed=5 failed=0`。
