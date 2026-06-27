@@ -1,0 +1,78 @@
+# missing evidence for failure real
+
+This seed still lacks one decisive evidence set:
+
+> a single set of artifacts that simultaneously proves:
+> 1. restore request succeeded
+> 2. transport/notifier/backend rebind progressed
+> 3. controller restore status is observable
+> 4. guest-visible device result is still bad
+
+## What already exists in the repository
+
+1. A success baseline `real`:
+   - `ch-backend-notifier-restore-baseline-real-20260622`
+2. Baseline artifacts:
+   - `event.json.sample`
+   - `snapshot-layout.txt`
+
+These are useful contrasts, but they do not prove a failure-side restore case.
+
+## High-value evidence to collect next
+
+### Control plane
+
+- real restore request payload
+- real restore return value
+- same-attempt `event == "restored"` signal
+
+meaning:
+
+- proves restore itself completed
+
+### Transport / notifier
+
+- `set_vring_call`
+- `set_vring_kick`
+- `set_config_call`
+- or equivalent runtime traces showing eventfd rebinding
+
+meaning:
+
+- proves backend was actually reconnected to the VMM notifier model
+
+### Controller / route
+
+- `restore_vgic`
+- GIC / IOAPIC restore traces
+- MSI-X / route / mask / PBA traces
+
+meaning:
+
+- proves whether the failure stopped at controller restore or passed it
+
+### Guest-visible result
+
+- guest does or does not see disk/fs/net/pmem
+- guest sees device but still cannot use it
+
+meaning:
+
+- proves final user-visible outcome
+
+## Why current evidence is insufficient
+
+Current workspace can already prove:
+
+- the expected restore command path
+- the expected `restored` event shape
+- the expected snapshot directory layout
+- the code anchors for notifier/controller restore
+
+But it still cannot prove:
+
+- a real restore attempt in this workspace,
+- with real backend/notifier/controller observations,
+- plus a guest-visible failure result.
+
+Without all three together, this seed must remain `seed`, not be upgraded to `real`.

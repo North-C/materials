@@ -1,0 +1,5 @@
+# 保存 host runtime / runtime-rs 原始错误文本。
+# 重点保留：
+# - backend 名
+# - QMP not initialized / open named tuntap / insert network device
+# - 相关配置片段

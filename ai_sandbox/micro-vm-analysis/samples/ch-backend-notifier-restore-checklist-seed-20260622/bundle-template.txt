@@ -1,0 +1,101 @@
+# bundle template
+
+Use this as the preferred shape of the next evidence bundle.
+
+Goal:
+
+- keep one restore attempt mapped to one evidence set
+- reduce ambiguity about which file proves transport/notifier/controller/guest layers
+
+## Recommended bundle layout
+
+Create one directory per attempt, for example:
+
+`ch-backend-restore-attempt-<date>-<id>/`
+
+Inside it, prefer the following files:
+
+### 1. `api.txt`
+
+Put:
+
+- snapshot / restore command lines
+- request parameters such as `source_url`, `resume`, `memory_restore_mode`
+- request return value / error value
+
+Purpose:
+
+- prove the restore input and whether it succeeded
+
+### 2. `event.log`
+
+Put:
+
+- `event == "restored"`
+- any surrounding lifecycle events
+
+Purpose:
+
+- prove the restore success signal
+
+### 3. `vmm.log`
+
+Put lines around:
+
+- `VirtioPciDeviceState`
+- `set_vring_call`
+- `set_vring_kick`
+- `set_config_call`
+- `restore_vgic`
+- MSI-X / route / mask / PBA traces if present
+
+Purpose:
+
+- prove transport/notifier/controller state
+
+### 4. `backend.log`
+
+Put:
+
+- vhost-user socket reconnect traces
+- vDPA host traces
+- backend-side call/kick/config binding traces
+
+Purpose:
+
+- prove backend reconnect really happened
+
+### 5. `guest.txt`
+
+Put:
+
+- guest-visible device checks
+- mount / network / disk visibility checks
+- whether the device is visible but still unusable
+
+Purpose:
+
+- give the final guest-visible result
+
+## Minimum acceptable bundle
+
+If you cannot provide every file above, the minimum acceptable set is:
+
+1. `api.txt`
+2. `event.log`
+3. `vmm.log` or `backend.log`
+4. `guest.txt`
+
+Without that minimum, the bundle is usually too weak to classify safely.
+
+## Bundle naming advice
+
+Keep one attempt per bundle.
+
+Do not mix:
+
+- documented baseline snippets
+- success-baseline runtime output
+- failure-side runtime output
+
+from different attempts in the same bundle.

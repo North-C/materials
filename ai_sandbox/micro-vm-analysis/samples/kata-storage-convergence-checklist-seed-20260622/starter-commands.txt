@@ -1,0 +1,24 @@
+# 1. rootfs / volume classification
+# rg -n "handler_rootfs|handler_volumes|ShareFsRootfs|BlockRootfs" kata-containers/src/runtime-rs
+
+# 2. CreateContainerRequest.storages
+# rg -n "CreateContainerRequest|storages" kata-containers/src/runtime-rs/crates/runtimes/virt_container/src/container_manager/container.rs
+# 如果当前没有新的 host request dump，先参考本目录下：
+#   request-samples.txt
+#   request-sample-block.txt
+#   request-sample-rootfs-image-guest-pull.txt
+
+# 3. guest storage landing
+# rg -n "add_storages|mount_from|mount_storage" kata-containers/src/agent kata-containers/src/agent/rustjail
+
+# 4. guest 可见性
+# 在 guest 内记录 rootfs / volume 是否真正可用
+
+# 5. 推荐 bundle 组织
+# mkdir -p kata-storage-attempt-<date>-<id>
+# 把 rootfs/volume classification 写入 host.txt
+# 把 CreateContainerRequest 摘录写入 request.json 或 api.txt
+# 如果没有新的 request dump，先用 `request-samples.txt` 做 request-side baseline
+# 如果连 baseline 也不适合当前场景，先复制 `request.template.json` 为 request.json 再手工替换字段
+# 把 add_storages/mount_from 日志写入 agent.log
+# 把最终 rootfs/volume 检查写入 guest.txt

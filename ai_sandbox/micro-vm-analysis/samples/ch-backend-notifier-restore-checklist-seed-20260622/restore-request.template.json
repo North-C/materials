@@ -1,0 +1,12 @@
+{
+  "source_url": "file:///tmp/ch-snap",
+  "resume": false,
+  "prefault": false,
+  "memory_restore_mode": "ondemand",
+  "net_fds": null
+}
+
+# note
+# Placeholder request body for a Cloud Hypervisor restore attempt.
+# Replace all fields with the real request when available.
+# By itself, this file is not evidence.

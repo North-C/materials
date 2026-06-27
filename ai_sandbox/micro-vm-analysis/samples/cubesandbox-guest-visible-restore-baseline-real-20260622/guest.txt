@@ -1,0 +1,20 @@
+# baseline guest-visible observations
+
+- 初次命令输出：
+  `v1`
+  `aarch64`
+- clone 后读取：
+  `v1`
+- 修改后：
+  `v2`
+- rollback 后再次读取：
+  `v1`
+
+## meaning
+
+- guest 命令可执行
+- guest-visible state 在 rollback 后回到预期值
+
+## source
+
+- `requests_snapshot_e2e_result.json`

@@ -1,0 +1,11 @@
+# 参考请求参数骨架
+
+add-net:
+id=test0,tap=,mac=<guest_mac1>,ip=<host_ip1>,mask=255.255.255.128[,pci_segment=<segment>]
+
+# 参考成功返回
+
+{"id":"test0","bdf":"0000:00:06.0"}
+
+# 参考源码位置
+- cloud-hypervisor/cloud-hypervisor/tests/common/tests_wrappers.rs:_test_net_hotplug

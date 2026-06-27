@@ -1,0 +1,73 @@
+# missing evidence for real
+
+This seed still lacks one decisive evidence set:
+
+> a single set of artifacts that simultaneously proves:
+> 1. host-side translation happened
+> 2. `CreateContainerRequest.storages` was really produced/sent
+> 3. guest `add_storages()` / `mount_from()` actually ran
+> 4. final rootfs/volume usability result is observable
+
+## What already exists in the repository
+
+1. Codepath-derived translation chain
+2. Codepath-derived guest storage landing chain
+3. Request-shaped JSON samples already extracted locally:
+   - `request-sample-block.txt`
+   - `request-sample-rootfs-image-guest-pull.txt`
+
+These are stronger than pure codepath evidence, but they are still not guest runtime logs.
+
+## High-value evidence to collect next
+
+### Host translation
+
+- `handler_rootfs()` classification result
+- `handler_volumes()` classification result
+
+meaning:
+
+- proves the host-side storage intent for the same attempt
+
+### Request propagation
+
+- real `CreateContainerRequest` excerpt or dump
+- actual `storages` field from runtime execution
+
+meaning:
+
+- proves this was not just a static sample
+
+### Guest storage landing
+
+- `add_storages`
+- `mount_storage`
+- `mount_from`
+
+meaning:
+
+- proves the guest actually entered storage landing
+
+### Final guest-visible result
+
+- rootfs/volume usable
+- or mount/visibility failed
+
+meaning:
+
+- proves whether the failure stopped at guest landing or at final usability
+
+## Why current evidence is insufficient
+
+Current workspace can already prove:
+
+- translation logic
+- request-shaped storage payloads
+- guest landing code paths
+
+But it still cannot prove:
+
+- one real attempt where request propagation, guest landing, and final usability
+  were all observed together.
+
+Without those together, this seed must remain `seed`, not be upgraded to `real`.

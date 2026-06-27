@@ -1,0 +1,8 @@
+# 记录 collect-logs 产物位置与关键文件。
+# 重点保留：
+# - network-agent
+# - cubeshim
+# - cubevmm
+# - runtime
+# - dmesg
+# - env

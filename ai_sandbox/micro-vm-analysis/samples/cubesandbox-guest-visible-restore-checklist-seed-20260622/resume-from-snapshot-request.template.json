@@ -1,0 +1,11 @@
+{
+  "source_url": "file:///path/to/snapshot",
+  "prefault": false,
+  "dirty_log": false,
+  "memory_vol_url": null
+}
+
+# note
+# Placeholder request body for a CubeSandbox VmResumeFromSnapshot attempt.
+# Replace all fields with the real request when available.
+# By itself, this file is not evidence.

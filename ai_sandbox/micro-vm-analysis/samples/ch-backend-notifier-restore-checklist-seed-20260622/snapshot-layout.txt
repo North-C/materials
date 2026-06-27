@@ -1,0 +1,12 @@
+snapshot/
+  config.json
+  memory-ranges
+  state.json
+
+# source
+# cloud-hypervisor/docs/snapshot_restore.md
+
+# note
+# This is the documented expected snapshot directory layout for a successful
+# snapshot/restore flow. It is useful as a baseline when comparing a real run's
+# artifacts.

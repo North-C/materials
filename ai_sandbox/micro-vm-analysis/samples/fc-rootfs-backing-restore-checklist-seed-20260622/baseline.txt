@@ -1,0 +1,32 @@
+# baseline
+
+kind = codepath_derived
+
+## root expression
+
+- `root=/dev/vda`
+- `root=PARTUUID=...`
+- `root=/dev/pmem{i}`
+
+source =
+- `firecracker/src/vmm/src/builder.rs`
+
+## backing / restore anchors
+
+- `disk_path`
+- `update_disk_image`
+- `prepare_save`
+- restore reopens backing file
+
+source =
+- `firecracker/analysis/virtio-block-data-path-chain.md`
+- `firecracker/analysis/storage-rootfs-sharefs-boundary-chain.md`
+- `firecracker/analysis/snapshot-restore-chain.md`
+
+## boundary
+
+- snapshot saves device state and reconstructable references
+- snapshot does not include backing file bytes
+
+note =
+These are baseline snippets from code and analysis, not a real restore transcript.

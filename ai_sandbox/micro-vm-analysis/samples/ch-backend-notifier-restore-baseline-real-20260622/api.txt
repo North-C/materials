@@ -1,0 +1,21 @@
+# snapshot / restore command baseline
+
+## snapshot
+
+`./ch-remote --api-socket=/tmp/cloud-hypervisor.sock snapshot file:///home/foo/snapshot`
+
+## restore
+
+`./ch-remote --api-socket=/tmp/cloud-hypervisor.sock restore source_url=file:///home/foo/snapshot`
+
+## resume
+
+`./ch-remote --api-socket=/tmp/cloud-hypervisor.sock resume`
+
+## auto-resume variant
+
+`./cloud-hypervisor --api-socket /tmp/cloud-hypervisor.sock --restore source_url=file:///home/foo/snapshot,resume=true`
+
+## source
+
+- `cloud-hypervisor/docs/snapshot_restore.md`

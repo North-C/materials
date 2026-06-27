@@ -1,0 +1,5 @@
+# 记录实际执行的命令。
+# 至少包含：
+# - quickcheck.sh
+# - cube-diag/check-procs.sh
+# - collect-logs.sh 参数

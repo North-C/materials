@@ -1,0 +1,5 @@
+# 记录实际执行的命令。
+# 至少包含：
+# - add-net 请求命令
+# - guest ip -o link / SSH via guest_ip1
+# - 日志收集命令

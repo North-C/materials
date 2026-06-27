@@ -1,0 +1,23 @@
+# guest observations
+
+- agent 是否看到设备：
+- source-derived baseline：应重点看 `get_virtio_blk_pci_device_name` 与 mounted/skip mount 路径
+- uevent 等待是否通过：
+- mount / net / ready 是否完成：
+- 共享目录 / rootfs 是否真的可访问：
+- 是否属于 guest-visible state 未收敛：
+  当前未知；需先证明控制面、backend 重绑和 worker 唤醒已经成立
+
+verified_absent_now =
+- `wait a pci`
+- `Failed to update interface`
+- `Failed to update routes`
+- `Failed to add ARP neighbours`
+
+meaning =
+当前工作树里还没有能证明 guest-visible convergence actually started and then failed 的日志。
+
+contrast_rule =
+如果新 bundle 里只有 success-side guest result，应回到 success baseline 对照；
+如果只有控制面失败签名，应回到控制面失败对照；
+只有 guest-visible progression + guest-visible failure 同证时，才属于本 seed 的目标问题域。

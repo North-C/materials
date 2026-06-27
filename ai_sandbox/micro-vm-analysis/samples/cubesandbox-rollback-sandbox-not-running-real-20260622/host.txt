@@ -1,0 +1,13 @@
+# 关键错误签名
+POST /sandboxes/abf2d5c1a71d4fed8ab1d38d6d8bfd73/snapshots HTTP 500:
+{"code":500,"message":"CubeMaster returned error code 130400: sandbox abf2d5c1a71d4fed8ab1d38d6d8bfd73 is not running"}
+
+# 关键判断
+- 异常发生在 rollback case 内创建 snapshot 的阶段
+- 不是此前的资源不足
+- 也不是 `/dev/shm` 空间不足
+- 单项重跑 `rollback_c10` 通过，说明它更像并发时序窗口问题
+
+# 证据来源
+- `CubeSandbox-sandbox-clone/logs/kunpeng-arm64-benchmark-report-zh.md`
+- `CubeSandbox-sandbox-clone/logs/arm64-network-opt-benchmark-report-20260613.md`

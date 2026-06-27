@@ -1,0 +1,6 @@
+# 对应 restore 准样本的最小动作
+
+1. 记录 restore 前 guest 网络可用性
+2. 执行 snapshot / restore
+3. 记录 restore 完成后的网络状态
+4. 保留相关 GIC / VMM 日志

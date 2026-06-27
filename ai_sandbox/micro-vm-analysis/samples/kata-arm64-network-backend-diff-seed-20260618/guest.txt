@@ -1,0 +1,8 @@
+# 当前是种子包。
+
+# 若真实样本尚未进入 guest，可明确写：
+未进入 guest
+
+# 若进入 guest，再补：
+- ip link
+- ip route

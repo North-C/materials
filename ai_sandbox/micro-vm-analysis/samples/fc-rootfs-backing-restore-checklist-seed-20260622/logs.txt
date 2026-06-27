@@ -1,0 +1,36 @@
+# log / artifact map
+
+## restore input
+
+- snapshot source:
+  当前仓库未在本 seed 中固化真实来源；真实回填时至少要给出 snapshot 目录或 state 文件来源
+- disk / pmem path evidence:
+  `virtio-block-data-path-chain.md:162`
+- related chain:
+  `snapshot-restore-chain.md:203`
+- expected decision:
+  先判断 restore 是否成功，再判断 backing file 是否仍语义一致
+
+## root expression
+
+- root cmdline evidence:
+  `root=/dev/vda` / `root=PARTUUID=...` / `root=/dev/pmem{i}`
+- file path:
+  `firecracker/src/vmm/src/builder.rs:672`
+
+## restore / backing
+
+- disk_path / backing file evidence:
+  snapshot 不包含 backing file 字节，只保存可重建引用
+- file path:
+  `firecracker/analysis/storage-rootfs-sharefs-boundary-chain.md:139`
+  `firecracker/analysis/virtio-block-data-path-chain.md:166`
+
+## guest visibility
+
+- guest device visibility evidence:
+  当前 seed 只固定了应收集的观测点；真实样本需补 guest 中 `/dev/vd*` / `/dev/pmem*` 与 rootfs 可用性
+- file path:
+  预期来自 guest 中 `/dev/vd*` / `/dev/pmem*` 与 rootfs 可用性检查
+- expected decision:
+  最终需区分是 guest 设备不可见，还是设备可见但 rootfs 不可用

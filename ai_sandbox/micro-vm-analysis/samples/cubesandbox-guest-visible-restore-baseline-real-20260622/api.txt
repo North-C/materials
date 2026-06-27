@@ -1,0 +1,16 @@
+# one-click / request result baseline
+
+## summary
+
+- install: `PASS`
+- quickcheck: `PASS`
+- template success: `READY`
+- sandbox create: `PASS`
+- snapshot create/list: `PASS`
+- create from snapshot: `PASS`
+- rollback: `PASS`
+- final health: `PASS`
+
+## source
+
+- `CubeSandbox-sandbox-clone/tmp/oneclick-artifacts/e552b1ba46b7-arm64-20260611103537/e2e-offline-20260611/E2E_SUMMARY.txt`

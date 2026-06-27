@@ -1,0 +1,7 @@
+./ch-remote --api-socket=/tmp/cloud-hypervisor.sock restore source_url=file:///home/foo/snapshot
+
+# source
+# cloud-hypervisor/docs/snapshot_restore.md
+
+# note
+# This is a documented request-shaped sample, not a runtime log from this workspace.

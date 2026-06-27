@@ -1,0 +1,26 @@
+# host observations
+
+- restore 是否成功：
+  待真实回填；最低成功信号参考 `event == "restored"`
+- restore 成功信号来源：
+  `performance-metrics/src/performance_tests.rs:532`
+- snapshot 目录 / source_url：
+  文档示例 `file:///tmp/ch-snap` / `file:///home/foo/snapshot`
+- backend/socket/fd 是否重连：
+  待真实回填；vhost-user/vDPA 路径应至少补 socket 或 `/dev/vhost-vdpa-*` 证据
+- `set_vring_call` / `set_vring_kick` / `set_config_call` 证据：
+  `vhost_user/vu_common_ctrl.rs:272` 与 `vdpa.rs:282`
+- route/mask/controller 恢复情况：
+  GIC restore 见 `device_manager.rs:1728`；IOAPIC snapshot 见 `devices/src/ioapic.rs:445`
+- 是 transport restore 问题还是 controller restore 问题：
+  当前仍未定；待真实日志回填
+- baseline 说明：
+  当前仓库已能证明 restore 请求、`restored` 事件格式、transport/notifier/controller 锚点，但还不能证明真实 backend 已重连
+- 当前工作树中是否已有准真实基线样本：
+  是；可先参考
+  `event.json.sample`
+  `snapshot-layout.txt`
+
+note =
+上面两类样本只能证明 restore success 的基线格式和产物布局；
+不能证明真实 backend 已重连，也不能证明 guest 侧设备已可见。

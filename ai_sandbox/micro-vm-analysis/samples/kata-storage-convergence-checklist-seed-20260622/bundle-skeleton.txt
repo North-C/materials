@@ -1,0 +1,22 @@
+# bundle skeleton
+
+Create a new directory for one attempt and add at least these files:
+
+```
+kata-storage-attempt-<date>-<id>/
+  host.txt
+  request.json
+  agent.log
+  guest.txt
+```
+
+Optional:
+
+```
+  api.txt
+  logs.txt
+```
+
+Goal:
+
+- make one create attempt map cleanly to one evidence set

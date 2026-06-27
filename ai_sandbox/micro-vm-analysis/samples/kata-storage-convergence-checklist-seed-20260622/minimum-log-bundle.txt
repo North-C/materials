@@ -1,0 +1,75 @@
+# minimum log bundle
+
+This file defines the smallest useful evidence bundle for attempting to upgrade
+`kata-storage-convergence-checklist-seed-20260622` to a `real`.
+
+## Required bundle parts
+
+Need all four parts from the same attempt window:
+
+1. host translation evidence
+2. request propagation evidence
+3. guest storage landing evidence
+4. guest-visible result evidence
+
+If any one part is missing, do not attempt to upgrade.
+
+## 1. Host translation evidence
+
+At minimum, provide one of:
+
+- runtime-rs debug/instrumented output showing `handler_rootfs()`
+- runtime-rs debug/instrumented output showing `handler_volumes()`
+- explicit classification into `ShareFsRootfs`, `BlockRootfs`, or another volume type
+
+Goal:
+
+- prove the host-side storage intent was formed
+
+## 2. Request propagation evidence
+
+At minimum, provide one of:
+
+- `CreateContainerRequest.storages` request dump
+- current-worktree request-shaped JSON sample used as comparison baseline
+- host-side wrapper trace that shows storage fields sent to guest
+
+Goal:
+
+- prove storage intent crossed the host -> guest request boundary
+
+## 3. Guest storage landing evidence
+
+At minimum, provide one of:
+
+- `add_storages`
+- `mount_storage`
+- `mount_from`
+
+Goal:
+
+- prove guest-side storage landing actually started
+
+## 4. Guest-visible result evidence
+
+At minimum, provide one of:
+
+- rootfs/volume really usable
+- mount failed
+- device visible but volume unusable
+
+Goal:
+
+- prove the final guest-visible outcome
+
+## Bundle acceptance rule
+
+Only treat an evidence set as an upgrade candidate if all of the following are true:
+
+1. same attempt window
+2. translation present
+3. request propagation present
+4. guest storage landing present
+5. final guest-visible result present
+
+Otherwise, keep it as `seed`.

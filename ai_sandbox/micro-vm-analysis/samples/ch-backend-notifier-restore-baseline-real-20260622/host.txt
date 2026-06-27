@@ -1,0 +1,17 @@
+# baseline host observations
+
+- snapshot 目录基线：
+  `config.json`, `memory-ranges`, `state.json`
+- restore 后默认状态：
+  `paused`
+- 自动恢复方式：
+  `resume=true`
+- 后续失败样本最低应先证明：
+  1. restore 请求真的发生
+  2. `restored` 信号真的出现
+  3. backend/notifier/controller 相关证据至少有一类可见
+
+## source
+
+- `cloud-hypervisor/docs/snapshot_restore.md`
+- `cloud-hypervisor/performance-metrics/src/performance_tests.rs`

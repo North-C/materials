@@ -1,0 +1,147 @@
+# bundle template
+
+Use this as the preferred shape of the next log bundle.
+
+Goal:
+
+- make one restore/update attempt map cleanly into one evidence set
+- reduce ambiguity about which file proves which layer
+
+## Recommended bundle layout
+
+Create one directory per attempt, for example:
+
+`cubesandbox-guest-visible-attempt-<date>-<id>/`
+
+Inside it, prefer the following files:
+
+### 1. `api.txt`
+
+Put:
+
+- restore / resume / set_fs / add_device command lines
+- request payload snippets if available
+- request return value / error value
+- timestamps if available
+
+Purpose:
+
+- prove control-plane input and whether it succeeded
+
+### 2. `shim.log`
+
+Put lines around:
+
+- `VmRestore`
+- `VmResumeFromSnapshot`
+- `VmSetFs`
+- `VmAddDevice`
+- `VsockServerReady`
+- `wait_notify`
+- `VmShutdown`
+- probe fallback
+
+Purpose:
+
+- prove ready-path success or early failure
+
+### 3. `vmm.log`
+
+Put lines around:
+
+- `ApiRequest::VmSetFs`
+- `ApiRequest::VmAddDevice`
+- `FsEvent`
+- eventfd / pending message wakeup
+- interrupt / device restore traces if available
+
+Purpose:
+
+- prove the request reached worker/backend code
+
+### 4. `backend.log`
+
+Put lines around:
+
+- TAP / tap fd rebind
+- native virtio-fs `back_state`
+- `deserialize_and_apply_data`
+- `failed to update filter list`
+
+Purpose:
+
+- prove backend/resource rebind really happened or failed
+
+### 5. `agent.log`
+
+Put lines around:
+
+- `wait a pci`
+- `get_virtio_blk_pci_device_name`
+- `already mounted`
+- `skip mount`
+- `Failed to update interface`
+- `Failed to update routes`
+- `Failed to add ARP neighbours`
+
+Purpose:
+
+- prove guest-visible convergence started and how it ended
+
+### 6. `guest.txt`
+
+Put:
+
+- manual guest checks
+- mount table
+- visible devices
+- ready state observations
+
+Purpose:
+
+- give the final guest-visible result
+
+### 7. `platform.log`
+
+Optional but highly useful.
+
+Put lines from:
+
+- Cubelet
+- network-agent
+- CubeMaster
+
+around the same attempt window.
+
+Purpose:
+
+- separate VMM/worker problems from platform resource-provision problems
+
+## Minimum acceptable bundle
+
+If you cannot provide every file above, the minimum acceptable set is:
+
+1. `api.txt`
+2. `shim.log`
+3. `vmm.log` or `backend.log`
+4. `agent.log` or `guest.txt`
+
+Without that minimum, the bundle is usually too weak to classify safely.
+
+## Bundle naming advice
+
+Keep one attempt per bundle.
+
+Do not mix:
+
+- successful baseline lines
+- control-plane failure lines
+- guest-visible failure lines
+
+from different attempts in the same bundle.
+
+One bundle should answer one question:
+
+- success baseline?
+- control-plane failure?
+- guest-visible failure?

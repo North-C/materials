@@ -1,0 +1,5 @@
+# 保存 guest 侧最小观测。
+# 若尚未进入 guest，可明确写“未进入 guest”。
+# 若进入 guest，至少记录：
+# - ip link
+# - ip route

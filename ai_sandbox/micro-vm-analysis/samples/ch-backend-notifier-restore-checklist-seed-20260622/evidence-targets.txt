@@ -1,0 +1,77 @@
+# evidence targets
+
+This file turns the Cloud Hypervisor backend/notifier/restore seed into a concrete capture target list.
+
+## 1. Restore success targets
+
+Need at least one artifact showing:
+
+- restore request accepted
+- `event == "restored"`
+- or equivalent restore success signal
+
+Good sources:
+
+- API request/response log
+- event monitor output
+- command transcript
+
+Without this, do not classify anything as backend or guest-visible failure yet.
+
+## 2. Transport / notifier targets
+
+Need at least one artifact showing:
+
+- `set_vring_call`
+- `set_vring_kick`
+- `set_config_call`
+- or an equivalent proof that notifier/kick/config eventfds were rebuilt
+
+Good sources:
+
+- VMM log
+- backend log
+- host-side instrumentation
+
+This proves the backend was re-bound to the VMM notifier model.
+
+## 3. Controller restore targets
+
+Need at least one artifact showing:
+
+- MSI-X / route / mask / PBA evidence
+- or aarch64 GIC restore evidence
+- or x86_64 IOAPIC restore evidence
+
+Good sources:
+
+- VMM restore logs
+- GIC / IOAPIC state traces
+- state dump if available
+
+Without this, do not safely distinguish transport failure from controller failure.
+
+## 4. Guest visibility targets
+
+Need at least one artifact showing one of:
+
+- guest sees expected disk/fs/net/pmem device
+- guest still does not see expected device
+- guest sees device but still cannot use it
+
+Good sources:
+
+- guest shell checks
+- boot log
+- mount / network / device visibility checks
+
+## 5. Minimal upgrade sequence
+
+To upgrade this seed to a `real`, the best sequence is:
+
+1. restore success recorded
+2. transport/notifier evidence recorded
+3. controller restore evidence recorded
+4. guest visibility/result recorded
+
+Without step 3 and 4 together, do not upgrade.

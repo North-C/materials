@@ -1,0 +1,23 @@
+# decision table
+
+Use this table after collecting one log bundle.
+
+| What the bundle proves | Classification |
+|---|---|
+| `VmRestore` / `VmResumeFromSnapshot` itself failed | not this seed; still earlier restore/control-plane failure |
+| control-plane failed with `sandbox is not running` or equivalent lifecycle rejection | map to `cubesandbox-rollback-sandbox-not-running-real-20260622` |
+| restore/update succeeded and guest-visible state also succeeded | map to `cubesandbox-guest-visible-restore-baseline-real-20260622` |
+| control-plane succeeded but no worker/backend evidence | keep this seed; classify as `control plane reached VMM but worker not awakened` |
+| worker/backend evidence exists but no guest-visible progression evidence | keep this seed; classify as `backend rebound incomplete` |
+| guest-visible progression exists but no explicit failure anchor yet | keep this seed; classify as `guest agent visibility incomplete` or `ready convergence incomplete` |
+| same bundle proves control-plane success + worker/backend progression + guest-visible convergence failure | eligible to upgrade this seed to a new failure `real` |
+
+## Safe upgrade rule
+
+Upgrade only on the last row.
+
+Every earlier row is either:
+
+- still too early
+- success-only
+- or a different failure class

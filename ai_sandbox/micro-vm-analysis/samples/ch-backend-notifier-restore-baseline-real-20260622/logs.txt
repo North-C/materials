@@ -1,0 +1,34 @@
+# baseline event snippet
+
+```json
+{
+  "timestamp": {
+    "secs": 0,
+    "nanos": 4664404
+  },
+  "source": "virtio-device",
+  "event": "activated",
+  "properties": {
+    "id": "__rng"
+  }
+}
+
+{
+  "timestamp": {
+    "secs": 0,
+    "nanos": 5505133
+  },
+  "source": "vm",
+  "event": "restored",
+  "properties": null
+}
+```
+
+## source
+
+- `cloud-hypervisor/performance-metrics/src/performance_tests.rs:test_parse_restore_time_output`
+
+## meaning
+
+- `event == "restored"` 可作为 restore 成功基线信号
+- `source == "vm"` 与 `properties == null` 是当前仓库测试夹具中的基线形态

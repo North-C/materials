@@ -1,0 +1,10 @@
+{
+  "snapshot_path": "/path/to/vmstate",
+  "mem_file_path": "/path/to/memfile",
+  "resume_vm": false
+}
+
+# note
+# Placeholder request body for a Firecracker LoadSnapshot attempt.
+# Replace all fields with the real request when available.
+# By itself, this file is not evidence.

@@ -1,0 +1,29 @@
+# request / result baseline
+
+## cmd1
+
+- stdout:
+  `v1`
+  `aarch64`
+
+## snapshot
+
+- snapshot status:
+  `READY`
+
+## clone
+
+- clone read:
+  `v1`
+
+## rollback
+
+- status:
+  `READY`
+- after rollback:
+  `v1`
+
+## sources
+
+- `CubeSandbox-sandbox-clone/tmp/oneclick-artifacts/e552b1ba46b7-arm64-20260611103537/e2e-offline-20260611/E2E_SUMMARY.txt`
+- `CubeSandbox-sandbox-clone/tmp/oneclick-artifacts/e552b1ba46b7-arm64-20260611103537/e2e-offline-20260611/requests_snapshot_e2e_result.json`

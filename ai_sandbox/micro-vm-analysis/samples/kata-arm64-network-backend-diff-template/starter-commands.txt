@@ -1,0 +1,11 @@
+# Starter Commands
+
+# 1. 触发 backend 差异
+# 在这里记录实际启动/热插命令。
+
+# 2. 导出 host runtime / runtime-rs 错误日志
+# 例如：journalctl / kata runtime 日志导出命令。
+
+# 3. 若进入 guest，补最小观测
+# ip link
+# ip route

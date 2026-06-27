@@ -1,0 +1,5 @@
+# 保存 host/VMM 侧日志。
+# 重点保留：
+# - Error when adding new network device to the VM
+# - InvalidIommuHotplug
+# - tap/backend 错误

@@ -1,0 +1,85 @@
+# API / control requests
+
+## snapshot request
+
+- endpoint / command:
+  `./ch-remote --api-socket=/tmp/cloud-hypervisor.sock snapshot file:///tmp/ch-snap`
+- destination_url:
+  `file:///tmp/ch-snap`
+- request body:
+  CLI 形式；HTTP 等价路径见 `vm.snapshot`
+- response:
+  文档路径期望 snapshot 目录包含 `config.json`、`memory-ranges`、`state.json`
+
+## restore request
+
+- endpoint / command:
+  `./ch-remote --api-socket=/tmp/cloud-hypervisor.sock restore source_url=file:///tmp/ch-snap`
+- source_url:
+  `file:///tmp/ch-snap`
+- resume flag:
+  可选 `resume=true`；默认 restore 到 paused
+- request body:
+  CLI 形式；文档同时给出 `--restore source_url=file:///tmp/ch-snap`
+- response:
+  restore 成功后仍需显式 `resume`，除非请求里带 `resume=true`
+
+## source-derived baseline
+
+- restore 后默认状态：
+  `paused`
+- auto resume 方式：
+  `resume=true`
+- 额外恢复参数：
+  `memory_restore_mode=ondemand`
+
+## current-worktree baseline artifacts
+
+当前工作树里已经有两类可直接引用的基线样本：
+
+1. `event.json.sample`
+   - 包含 `source = "vm"`
+   - 包含 `event = "restored"`
+   - 当前性质：
+     source-derived baseline event sample
+
+2. `snapshot-layout.txt`
+   - 包含：
+     `config.json`
+     `memory-ranges`
+     `state.json`
+   - 当前性质：
+     documented successful snapshot layout baseline
+
+current boundary:
+
+- 这两类样本足以固定 `restore success` 的最小格式预期
+- 但它们仍然不是 workspace 内真实失败或真实 guest-visible 证据
+
+## request templates
+
+如果当前还没有真实 API request dump，先不要空着：
+
+- `request-samples.txt`
+- `snapshot-request.sample.txt`
+- `restore-request.sample.txt`
+- `snapshot-request.template.json`
+- `restore-request.template.json`
+
+它们只用于占位和统一字段结构。
+
+优先顺序仍然是：
+
+1. 真实 request dump
+2. 当前工作树的 request-shaped sample
+3. 当前工作树的 baseline artifacts
+4. template 文件
+
+## related runtime operations
+
+- vm.add_disk:
+  `vmm/src/lib.rs:2257`
+- vm.add_fs:
+  `vmm/src/lib.rs:2282`
+- vm.add_pmem:
+  `vmm/src/lib.rs:2340`

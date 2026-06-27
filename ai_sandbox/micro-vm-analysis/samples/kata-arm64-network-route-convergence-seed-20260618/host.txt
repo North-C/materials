@@ -1,0 +1,7 @@
+# 当前是种子包，没有真实失败日志。
+
+# 目标错误签名：
+update routes request failed
+
+# 参考源码：
+- kata-containers/src/runtime/virtcontainers/kata_agent.go

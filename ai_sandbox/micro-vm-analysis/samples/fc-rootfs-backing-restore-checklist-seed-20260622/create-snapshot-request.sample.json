@@ -1,0 +1,11 @@
+{
+  "snapshot_type": "Full",
+  "snapshot_path": "foo",
+  "mem_file_path": "bar"
+}
+
+# source
+# firecracker/src/firecracker/src/api_server/request/snapshot.rs
+
+# note
+# This is a parser/test-derived request-shaped sample, not a runtime log from this workspace.

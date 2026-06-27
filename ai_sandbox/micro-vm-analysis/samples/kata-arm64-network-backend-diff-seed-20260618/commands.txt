@@ -1,0 +1,6 @@
+# 对应 backend 差异准样本的最小动作
+
+1. 选择 backend：`qemu` / `cloud-hypervisor` / `dragonball`
+2. 触发 network hotplug 或 add network device
+3. 保存 host runtime / runtime-rs 原始错误
+4. 如进入 guest，再保存 `ip link` / `ip route`

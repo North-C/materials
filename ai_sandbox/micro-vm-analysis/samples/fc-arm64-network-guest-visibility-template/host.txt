@@ -1,0 +1,5 @@
+# 保存 Firecracker logger / metrics / host 侧观测。
+# 重点保留：
+# - TapOpen / TapSetVnetHdrSize 是否成功
+# - 是否出现 undo_pop 或 MMDS 证据
+# - 中断相关可观察信号

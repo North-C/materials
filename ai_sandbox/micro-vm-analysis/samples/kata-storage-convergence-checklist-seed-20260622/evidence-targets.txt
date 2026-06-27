@@ -1,0 +1,78 @@
+# evidence targets
+
+This file turns the Kata storage seed into a concrete capture target list.
+
+## 1. Host-side translation targets
+
+Need at least one artifact showing:
+
+- `handler_rootfs()` classification result
+- `handler_volumes()` classification result
+- whether the path became `ShareFsRootfs`, `BlockRootfs`, or another volume type
+
+Good sources:
+
+- runtime-rs debug logs
+- temporary instrumentation output
+- request dump around `container.create()`
+
+Without this, do not classify anything as guest mount failure yet.
+
+## 2. Request propagation targets
+
+Need at least one artifact showing:
+
+- `CreateContainerRequest.storages` exists
+- storage `driver` / `source` / `mount_point` values
+- whether the request really crossed into guest RPC
+
+Good sources:
+
+- host-side request dump
+- kata-agent wrapper logs
+- ttrpc request tracing
+
+This proves storage intent was not lost before guest handoff.
+
+## 3. Guest storage landing targets
+
+Need at least one artifact showing one of:
+
+- `add_storages()` entered
+- storage handler selected by `storage.driver`
+- `mount_storage()` entered
+- `mount_from()` entered
+
+Good sources:
+
+- guest kata-agent logs
+- debug/trace logs in agent storage path
+- guest-side test harness output
+
+Without this, do not upgrade beyond `request propagation`.
+
+## 4. Guest-visible result targets
+
+Need at least one artifact showing final outcome:
+
+- rootfs/volume really usable
+- or mount still missing / failed
+- or device exists in guest but mount convergence did not finish
+
+Good sources:
+
+- guest shell checks
+- mount table
+- container start result
+- agent error lines after storage handling
+
+## 5. Minimal upgrade sequence
+
+To upgrade this seed to a `real`, the best sequence is:
+
+1. host-side translation recorded
+2. `CreateContainerRequest.storages` recorded
+3. guest storage landing recorded
+4. final guest-visible outcome recorded
+
+Without step 3 and 4 together, do not upgrade.

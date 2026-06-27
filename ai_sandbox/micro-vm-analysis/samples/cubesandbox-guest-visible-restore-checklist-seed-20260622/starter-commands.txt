@@ -1,0 +1,23 @@
+# 1. 控制面 / restore 请求
+# rg -n 'VmRestore|VmResumeFromSnapshot|VmSetFs|VmAddDevice' <shim-or-vmm-logs>
+
+# 2. ready 路径
+# rg -n 'VsockServerReady|VmShutdown|wait_notify|vsock probe|vm ready, vsock is listening' <shim-or-agent-logs>
+
+# 3. worker / backend
+# rg -n 'FsEvent|failed to update filter list|back_state|deserialize_and_apply_data|ApiRequest::VmSetFs|ApiRequest::VmAddDevice' <vmm-or-virtiofs-logs>
+
+# 4. guest 可见性
+# rg -n 'wait a pci|Failed to update interface|Failed to update routes|Failed to add ARP neighbours|create sandbox!, config net|get_virtio_blk_pci_device_name|already mounted|skip mount' <guest-or-agent-logs>
+
+# 5. 推荐 bundle 组织
+# mkdir -p cubesandbox-guest-visible-attempt-<date>-<id>
+# 把控制面请求写入 api.txt
+# 如果没有真实 request dump，先用 request-samples.txt
+# 再参考 restore-request.sample.json
+# 再不行再用 restore/set-fs/add-device 的 template 文件占位
+# 把 CubeShim ready 路径写入 shim.log
+# 把 VMM worker/ApiRequest/FsEvent 写入 vmm.log
+# 把 backend/tap fd/back_state 写入 backend.log
+# 把 agent convergence 写入 agent.log
+# 把 guest 最终结果写入 guest.txt

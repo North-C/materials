@@ -1,0 +1,68 @@
+# request-shaped samples
+
+This file records the strongest current-worktree request-side evidence already available
+for this seed.
+
+These are not runtime logs.
+
+They are still useful because they preserve request-shaped control-plane payloads
+that future real evidence can be compared against.
+
+## sample A: minimal restore request
+
+source:
+
+- `restore-request.sample.json`
+
+important fields:
+
+- `source_url = file:///data/snapshots/my-snap`
+
+why it matters:
+
+- proves the minimal documented request shape for a restore attempt
+
+## sample B: full restore request
+
+source:
+
+- `restore-request.sample-full.json`
+
+important fields:
+
+- `source_url`
+- `memory_vol_url`
+- `prefault`
+- `dirty_log`
+- `disks`
+- `net`
+- `fs`
+
+why it matters:
+
+- proves the richer documented request shape for a restore+replace attempt
+
+## sample C: template-only request classes
+
+available placeholders:
+
+- `restore-request.template.json`
+- `resume-from-snapshot-request.template.json`
+- `set-fs-request.template.json`
+- `add-device-request.template.json`
+
+why it matters:
+
+- keeps request fields consistent even before real dumps are available
+
+## current boundary
+
+These samples strengthen:
+
+- request-shape evidence for control-plane operations
+
+They do not yet prove:
+
+- real control-plane success in this workspace
+- worker/backend progression
+- guest-visible convergence result

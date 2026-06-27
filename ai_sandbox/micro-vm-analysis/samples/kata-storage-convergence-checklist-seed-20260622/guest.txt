@@ -1,0 +1,8 @@
+# guest observations
+
+- add_storages 是否执行：
+  待真实回填
+- mount_from / mount_storage 是否执行：
+  待真实回填
+- rootfs / volume 是否真正可用：
+  待真实回填

@@ -1,0 +1,11 @@
+{
+  "id": "<device-id>",
+  "path": "<host-resource-path-or-device-source>",
+  "iommu": false,
+  "pci_segment": 0
+}
+
+# note
+# Placeholder request body for a CubeSandbox VmAddDevice attempt.
+# Replace the fields with the real request when available.
+# By itself, this file is not evidence.

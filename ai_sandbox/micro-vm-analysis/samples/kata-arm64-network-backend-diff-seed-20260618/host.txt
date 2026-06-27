@@ -1,0 +1,17 @@
+# 当前是种子包，没有真实日志。
+
+# 参考三类最早签名：
+
+- QEMU:
+  `QMP not initialized`
+
+- Cloud Hypervisor:
+  `open named tuntap`
+
+- Dragonball:
+  `insert network device`
+
+# 参考源码位置
+- kata-containers/src/runtime-rs/crates/hypervisor/src/qemu/inner.rs
+- kata-containers/src/runtime-rs/crates/hypervisor/src/ch/inner_device.rs
+- kata-containers/src/runtime-rs/crates/hypervisor/src/dragonball/inner_device.rs

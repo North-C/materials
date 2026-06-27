@@ -1,0 +1,22 @@
+# decision table
+
+Use this table after collecting one evidence bundle.
+
+| What the bundle proves | Classification |
+|---|---|
+| restore itself failed | not a rootfs/backing convergence real; still earlier restore failure |
+| restore succeeded, but root expression is missing | keep this seed; still too early |
+| restore + root expression exist, but backing consistency is missing | keep this seed; classify as unresolved backing side |
+| backing consistency exists, but guest does not see the device | keep this seed; classify as `restore succeeded but guest device invisible` |
+| guest sees the device, but rootfs still unusable | keep this seed; classify as `guest rootfs not usable` until the full bundle is complete |
+| same bundle proves restore success + root expression + backing consistency + device visibility + final outcome | eligible to upgrade |
+
+## Safe upgrade rule
+
+Upgrade only on the last row.
+
+Every earlier row is either:
+
+- an earlier restore failure
+- missing host-side backing proof
+- or missing the final rootfs outcome

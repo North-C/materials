@@ -1,0 +1,10 @@
+# host runtime / request
+# rg -n "handler_rootfs|handler_volumes|ShareFsRootfs|BlockRootfs" kata-containers/src/runtime-rs
+# rg -n "CreateContainerRequest|storages" kata-containers/src/runtime-rs/crates/runtimes/virt_container/src/container_manager/container.rs
+# 如有 Go 路径，也可补 `kataAgent.createContainer()` 与 `Storages` 相关调用
+
+# guest agent / mount
+# rg -n "add_storages|mount_storage|mount_from" kata-containers/src/agent kata-containers/src/agent/rustjail
+
+# guest-visible storage checks
+# 在 guest 内记录 rootfs / volume 是否真正可用

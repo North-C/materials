@@ -1,0 +1,10 @@
+{
+  "snapshot_type": "Full",
+  "snapshot_path": "/path/to/vmstate",
+  "mem_file_path": "/path/to/memfile"
+}
+
+# note
+# Placeholder request body for a Firecracker CreateSnapshot attempt.
+# Replace all fields with the real request when available.
+# By itself, this file is not evidence.

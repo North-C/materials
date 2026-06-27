@@ -1,0 +1,65 @@
+# request-shaped samples
+
+This file records the strongest current-worktree request-side evidence already available
+for this seed.
+
+These are not runtime logs.
+
+They are still useful because they preserve request-shaped snapshot/load inputs
+that future real evidence can be compared against.
+
+## sample A: create snapshot request
+
+source:
+
+- `create-snapshot-request.sample.json`
+
+important fields:
+
+- `snapshot_type = Full`
+- `snapshot_path = "foo"`
+- `mem_file_path = "bar"`
+
+why it matters:
+
+- proves the expected create-snapshot request shape
+
+## sample B: load snapshot request
+
+source:
+
+- `load-snapshot-request.sample.json`
+
+important fields:
+
+- `snapshot_path = "foo"`
+- `mem_backend.backend_path = "bar"`
+- `mem_backend.backend_type = "Uffd"`
+- `resume_vm = true`
+
+why it matters:
+
+- proves the expected load-snapshot request shape
+
+## sample C: template-only request classes
+
+available placeholders:
+
+- `create-snapshot-request.template.json`
+- `load-snapshot-request.template.json`
+
+why it matters:
+
+- keeps request fields consistent even before real dumps are available
+
+## current boundary
+
+These samples strengthen:
+
+- request-shape evidence for snapshot/restore
+
+They do not yet prove:
+
+- real restore execution in this workspace
+- backing consistency
+- guest-visible device/rootfs outcome

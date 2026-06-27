@@ -1,0 +1,9 @@
+# 关键错误签名
+CubeMaster returned error code 130547:
+register network-agent tap for pool failed:
+request original tap fd for z192.168.0.2:
+tap fd unavailable for sandbox "...": Link not found
+
+# 证据来源
+- CubeSandbox-sandbox-clone/logs/arm64-network-opt-benchmark-report-20260613.md
+- CubeSandbox-sandbox-clone/analysis/tap-fd-unavailable-case-study.md

@@ -1,0 +1,27 @@
+# 1. snapshot / restore API
+# curl --unix-socket /tmp/ch.sock -X PUT http://localhost/api/v1/vm.snapshot -d '{"destination_url":"file:///tmp/ch-snap"}'
+# curl --unix-socket /tmp/ch.sock -X PUT http://localhost/api/v1/vm.restore -d '{"source_url":"file:///tmp/ch-snap","resume":false}'
+
+# 2. restore 成功信号
+# rg -n 'event\":\"restored\"|restored' <event-log-or-json>
+
+# 3. backend / notifier
+# rg -n 'set_vring_call|set_vring_kick|set_config_call|VirtioPciDeviceState|msix|restore_vgic|ioapic' <logs-or-artifacts>
+
+# 4. vDPA 主机侧
+# ls -l /dev/vhost-vdpa-*
+# vdpa dev show -jp
+
+# 5. guest 可见性
+# ls /dev | grep -E 'vd|pmem|vdpa'
+
+# 6. 推荐 bundle 组织
+# mkdir -p ch-backend-restore-attempt-<date>-<id>
+# 把 restore 请求写入 api.txt
+# 如果没有真实 request dump，先用 request-samples.txt
+# 再参考 snapshot-request.sample.txt / restore-request.sample.txt
+# 再不行再用 snapshot-request.template.json / restore-request.template.json 占位
+# 把 event monitor 结果写入 event.log
+# 把 transport/notifier/controller grep 结果写入 vmm.log
+# 把 backend reconnect 结果写入 backend.log
+# 把 guest 检查结果写入 guest.txt

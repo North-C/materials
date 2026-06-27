@@ -1,0 +1,55 @@
+# API / control requests
+
+## snapshot / restore
+
+- request:
+  当前仓库侧的权威入口是 `CreateSnapshot` / `LoadSnapshot` 与 `restore_from_snapshot()` 路径；
+  真实命令或 API 仍待回填
+- response:
+  预期应区分 snapshot 成功、restore 成功、restore 拒绝或 restore 后 paused/running 状态
+
+## current-worktree baseline anchors
+
+当前工作树里，关于 snapshot / restore 的最强基线仍然来自源码和项目分析：
+
+1. `CreateSnapshot`
+   - runtime controller 支持
+   - 需要 VM 已暂停
+2. `LoadSnapshot`
+   - pre-boot controller 支持
+   - 普通 boot 路径之后不能再执行
+3. `restore_from_snapshot()`
+   - 是真正把 snapshot state 恢复成 `Vmm` 的主入口
+
+current boundary:
+
+- 这些入口能固定 API / 生命周期边界
+- 但还不是 workspace 内真实 restore transcript
+
+## request templates
+
+如果当前还没有真实 API request dump，先不要空着：
+
+- `request-samples.txt`
+- `create-snapshot-request.sample.json`
+- `load-snapshot-request.sample.json`
+- `create-snapshot-request.template.json`
+- `load-snapshot-request.template.json`
+
+它们只用于占位和统一字段结构。
+
+优先顺序仍然是：
+
+1. 真实 request dump
+2. 当前工作树的 request-shaped sample
+3. 当前工作树的源码/分析基线
+4. template 文件
+
+## related config
+
+- root device config:
+  `builder.rs:672`
+- pmem config:
+  `builder.rs:729`
+- drive config:
+  参考 `virtio-block-data-path-chain.md` 的 `disk_path` / backing file 说明

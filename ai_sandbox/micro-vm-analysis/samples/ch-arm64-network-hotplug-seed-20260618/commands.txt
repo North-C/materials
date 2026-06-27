@@ -1,0 +1,10 @@
+# 对应测试包装 `_test_net_hotplug()` 的最小命令动作
+
+1. 启动没有额外网卡的 VM
+2. 调用 `add-net`
+3. 检查返回的 BDF
+4. 在 guest 执行 `ip -o link | wc -l`
+5. 使用新增网卡 IP 再做一次 SSH 命令
+6. remove-device
+7. 再次 `add-net`
+8. reboot 后再次检查 `ip -o link | wc -l`

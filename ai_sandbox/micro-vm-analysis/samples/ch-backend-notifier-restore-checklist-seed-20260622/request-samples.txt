@@ -1,0 +1,60 @@
+# request-shaped samples
+
+This file records the strongest current-worktree request-side evidence already available
+for this seed.
+
+These are not runtime logs.
+
+They are still useful because they preserve request-shaped restore/snapshot inputs
+that future real evidence can be compared against.
+
+## sample A: snapshot request
+
+source:
+
+- `snapshot-request.sample.txt`
+
+important fields:
+
+- `destination_url = file:///home/foo/snapshot`
+
+why it matters:
+
+- proves the expected snapshot request shape and target layout
+
+## sample B: restore request
+
+source:
+
+- `restore-request.sample.txt`
+
+important fields:
+
+- `source_url = file:///home/foo/snapshot`
+
+why it matters:
+
+- proves the expected restore request shape before adding real runtime evidence
+
+## sample C: template-only request classes
+
+available placeholders:
+
+- `snapshot-request.template.json`
+- `restore-request.template.json`
+
+why it matters:
+
+- keeps request fields consistent even before real dumps are available
+
+## current boundary
+
+These samples strengthen:
+
+- request propagation / request-shape evidence
+
+They do not yet prove:
+
+- real restore execution in this workspace
+- real backend/notifier reconstruction
+- real guest-visible outcome

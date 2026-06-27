@@ -1,0 +1,58 @@
+# log / artifact map
+
+## CubeShim
+
+- restore / resume logs:
+  关注 `restore vm failed` / `resume vm from snapshot failed`
+- wait_notify / probe / ready logs:
+  关注 `vm ready, vsock is listening`、`wait_notify VsockServerReady failed`、probe path
+- source-derived baseline:
+  `notify path` 成功和 `probe path` 成功都是合法 ready 结果；`VmShutdown` 是明确异常信号
+
+## hypervisor VMM
+
+- VmSetFs / VmAddDevice / FsEvent / worker logs:
+  关注 `ApiRequest::VmSetFs`、`ApiRequest::VmAddDevice`、`FsEvent`
+- source-derived baseline:
+  `VmSetFs` 通过 pending `FsEvent` + eventfd 唤醒 fs worker；失败会返回 `failed to update filter list`
+
+## backend / resource rebind
+
+- TAP / tap fd / back_state / deserialize logs:
+  关注 TAP/tap fd 重绑和 native virtio-fs `back_state` 反序列化
+- source-derived baseline:
+  restore 成功不自动等于后端资源已重绑成功；这一层必须单独观测
+
+## guest agent
+
+- device wait / mount / ready logs:
+  关注 `get_virtio_blk_pci_device_name`、mounted/skip mount、vsock ready
+- source-derived baseline:
+  guest-visible state 的关键不是单一日志，而是 device wait、mount、ready 三者是否闭环
+
+## related sidecars
+
+- Cubelet / network-agent logs:
+  关注控制面成功后，侧车是否真的完成资源提供
+
+## current workspace re-check result
+
+I re-checked the current workspace under:
+
+- `CubeSandbox-sandbox-clone/logs/`
+- `CubeSandbox-sandbox-clone/tmp/`
+
+Current decisive signatures are still absent:
+
+- `wait a pci`
+- `Failed to update interface`
+- `Failed to update routes`
+- `Failed to add ARP neighbours`
+- `vm ready, vsock is listening`
+- `ApiRequest::VmSetFs`
+- `FsEvent`
+- `failed to update filter list`
+
+This means the current gap is not “we forgot where to grep”.
+
+It is that the required runtime logs are still not present in the workspace.

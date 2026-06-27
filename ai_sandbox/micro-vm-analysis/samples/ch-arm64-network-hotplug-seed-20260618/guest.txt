@@ -1,0 +1,10 @@
+# 参考 guest 侧最小成功信号
+
+command:
+ip -o link | wc -l
+
+expected:
+3
+
+optional:
+通过新增 guest_ip1 再执行一次 `ip -o link | wc -l`

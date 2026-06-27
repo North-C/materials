@@ -1,0 +1,21 @@
+# bundle skeleton
+
+Create a new directory for one attempt and add at least these files:
+
+```
+fc-rootfs-restore-attempt-<date>-<id>/
+  api.txt
+  host.txt
+  guest.txt
+```
+
+Optional:
+
+```
+  vmm.log
+  request.json
+```
+
+Goal:
+
+- make one snapshot/restore attempt map cleanly to one evidence set

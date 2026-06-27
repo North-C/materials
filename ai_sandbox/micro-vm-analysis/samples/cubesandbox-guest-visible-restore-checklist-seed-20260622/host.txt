@@ -1,0 +1,33 @@
+# host / platform observations
+
+- 控制面请求是否成功：
+- 当前代码路径已知：
+  `VmRestore` / `VmResumeFromSnapshot` / `VmSetFs` / `VmAddDevice`
+- source-derived baseline：至少应先区分 `VmRestore` / `VmResumeFromSnapshot` / `VmSetFs` / `VmAddDevice` 哪一步成功
+- ready 路径是 notify 还是 probe：
+- 当前代码路径已知：
+  `VsockServerReady`、`VmShutdown`、probe fallback
+- source-derived baseline：关键分叉在 `VsockServerReady`、`VmShutdown` 与 vsock probe fallback
+- backend 是否重绑：
+- 当前代码路径已知：
+  TAP/tap fd 重绑、fs `back_state` 反序列化
+- source-derived baseline：至少要看 TAP/tap fd 与 fs `back_state` 是否有重绑/反序列化痕迹
+- `VmSetFs` / `FsEvent` / `back_state` 证据：
+- worker 是否唤醒：
+- 是 VMM 层失败还是平台闭环失败：
+  当前仍未定；待真实日志回填
+
+current_workspace_check =
+当前工作树里还没有同一 attempt 的控制面成功 + worker/backend 推进 + guest-visible 失败证据组合。
+
+verified_absent_now =
+- `vm ready, vsock is listening`
+- `ApiRequest::VmSetFs`
+- `FsEvent`
+- `failed to update filter list`
+
+contrast_rule =
+- lifecycle window failure -> `cubesandbox-rollback-sandbox-not-running-real-20260622`
+- scheduler capacity failure -> `cubesandbox-no-more-resource-real-20260613`
+- only success baseline -> `cubesandbox-guest-visible-restore-baseline-real-20260622`
+- only if worker/backend and guest-visible failure both exist should this seed be upgraded

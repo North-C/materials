@@ -1,0 +1,13 @@
+# Starter Commands
+
+# 1. quickcheck.sh
+
+# 2. cube-diag/check-procs.sh
+
+# 3. collect-logs.sh
+# --module network-agent
+# --module cubeshim
+# --module cubevmm
+# --module runtime
+# --module dmesg
+# --module env

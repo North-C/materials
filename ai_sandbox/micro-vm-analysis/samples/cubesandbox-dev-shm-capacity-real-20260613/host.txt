@@ -1,0 +1,17 @@
+# host observations
+
+- 失败触发命令：
+  `dd if=/dev/zero of=/dev/shm/dirty bs=1M count=100`
+- 直接错误：
+  `dd: error writing '/dev/shm/dirty': No space left on device`
+- 失败前提：
+  `/dev/shm` 仅 64MiB
+- 关键观测：
+  `df -h /dev/shm -> 64M total`
+  `df -B1 /dev/shm -> 67108864 bytes total`
+- 失败边界：
+  50MiB 成功
+  100MiB / 200MiB / 500MiB / 800MiB / 1024MiB 均因 `/dev/shm` 容量不足失败
+- 已验证修复：
+  `dev_shm_size_in_bytes = 2147483648`
+  后 `/dev/shm = 2GiB`，100MiB-1024MiB 用例通过

@@ -1,0 +1,14 @@
+# guest observations
+
+- guest 是否重新看到设备：
+  待真实回填；这是从 `seed -> real` 的关键缺口之一
+- 看到的是哪类设备：disk / fs / net / pmem
+  待真实回填
+- guest 是否恢复中断/数据面：
+  待真实回填
+- guest 是否能访问共享目录或挂载点：
+  待真实回填
+- 是否已经进入 guest 配置层：
+  当前未知；若 VMM restore 与 backend/notifier 已成立，才继续归到 guest 配置层
+- baseline 说明：
+  当前文档与测试夹具未直接给出 guest 侧 transcript，因此 guest 证据仍是升级 `real` 的关键门槛

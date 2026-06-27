@@ -1,0 +1,24 @@
+# bundle skeleton
+
+Create a new directory for one attempt and add at least these files:
+
+```
+cubesandbox-guest-visible-attempt-<date>-<id>/
+  api.txt
+  shim.log
+  vmm.log
+  agent.log
+  guest.txt
+```
+
+Optional:
+
+```
+  backend.log
+  platform.log
+  host.txt
+```
+
+Goal:
+
+- make one restore/update attempt map cleanly to one evidence set

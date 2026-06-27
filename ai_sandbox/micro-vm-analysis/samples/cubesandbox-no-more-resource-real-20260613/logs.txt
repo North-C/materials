@@ -1,0 +1,24 @@
+# log references
+
+- source issue record:
+  `/home/lyq/Projects/Micro-VM/CubeSandbox-sandbox-clone/logs/arm64-benchmark-issues-20260613.md`
+- source benchmark report:
+  `/home/lyq/Projects/Micro-VM/CubeSandbox-sandbox-clone/logs/arm64-network-opt-benchmark-report-20260613.md`
+- source validation report:
+  `/home/lyq/Projects/Micro-VM/CubeSandbox-sandbox-clone/logs/kunpeng-arm64-benchmark-report-zh.md`
+
+## key excerpts
+
+- `CubeMaster returned error code 130597: no more resource`
+- `{"ret":{"ret_code":130597,"ret_msg":"no more resource"}}`
+- CPU quota exhausted context in scheduler filtering
+
+## meaning
+
+This is a real control-plane capacity failure sample.
+
+It is not evidence of:
+
+- guest-visible convergence failure
+- virtio worker failure
+- interrupt injection failure

@@ -1,0 +1,89 @@
+# bundle template
+
+Use this as the preferred shape of the next evidence bundle.
+
+Goal:
+
+- keep one snapshot/restore attempt mapped to one evidence set
+- reduce ambiguity about root expression, backing consistency, and guest-visible result
+
+## Recommended bundle layout
+
+Create one directory per attempt, for example:
+
+`fc-rootfs-restore-attempt-<date>-<id>/`
+
+Inside it, prefer the following files:
+
+### 1. `api.txt`
+
+Put:
+
+- snapshot / restore command lines or API requests
+- request parameters
+- return value / error value
+
+Purpose:
+
+- prove restore input and restore success/failure
+
+### 2. `host.txt`
+
+Put:
+
+- root expression used for the attempt
+- configured disk/pmem path
+- restore-time path checks
+
+Purpose:
+
+- prove root expression and backing consistency
+
+### 3. `vmm.log`
+
+Put lines around:
+
+- `CreateSnapshot`
+- `LoadSnapshot`
+- `restore_from_snapshot`
+- drive/pmem related setup or reopen traces if present
+
+Purpose:
+
+- prove the VMM-side restore lifecycle
+
+### 4. `guest.txt`
+
+Put:
+
+- `/dev/vd*` / `/dev/pmem*`
+- `lsblk`
+- `cat /proc/cmdline`
+- `mount` / `findmnt /`
+- boot reached userspace or failed
+
+Purpose:
+
+- prove device visibility and final rootfs usability
+
+## Minimum acceptable bundle
+
+If you cannot provide every file above, the minimum acceptable set is:
+
+1. `api.txt`
+2. `host.txt`
+3. `guest.txt`
+
+Without that minimum, the bundle is usually too weak to classify safely.
+
+## Bundle naming advice
+
+Keep one attempt per bundle.
+
+Do not mix:
+
+- codepath-only evidence
+- one restore attempt's host checks
+- another attempt's guest result
+
+in the same bundle.

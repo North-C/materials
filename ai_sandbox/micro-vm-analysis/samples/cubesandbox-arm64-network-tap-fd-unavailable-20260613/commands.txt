@@ -1,0 +1,7 @@
+# 样本来自既有报告与案例分析。
+# 当前未新增执行命令。
+#
+# 若后续做复采，建议最少执行：
+# 1. quickcheck.sh
+# 2. cube-diag/check-procs.sh
+# 3. collect-logs.sh --module network-agent --module cubeshim --module cubevmm --module runtime --module dmesg --module env

@@ -1,0 +1,27 @@
+# baseline
+
+kind = report_derived_failure_real
+
+## error signature
+
+`CubeMaster returned error code 130400: sandbox ... is not running`
+
+## failure layer
+
+control plane / sandbox lifecycle window
+
+## what it is not
+
+- not `tap fd unavailable`
+- not `CreateNetworkFailed`
+- not `/dev/shm` exhaustion
+
+## paired comparison
+
+This sample is useful as a failure-side contrast against:
+
+- `ch-backend-notifier-restore-baseline-real-20260622`
+
+and as a control-plane-side contrast against:
+
+- `cubesandbox-guest-visible-restore-checklist-seed-20260622`

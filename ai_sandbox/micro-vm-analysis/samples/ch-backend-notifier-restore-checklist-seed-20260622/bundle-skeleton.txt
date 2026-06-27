@@ -1,0 +1,24 @@
+# bundle skeleton
+
+Create a new directory for one attempt and add at least these files:
+
+```
+ch-backend-restore-attempt-<date>-<id>/
+  api.txt
+  event.log
+  vmm.log
+  backend.log
+  guest.txt
+```
+
+Optional:
+
+```
+  host.txt
+  request.json
+  platform.log
+```
+
+Goal:
+
+- make one restore attempt map cleanly to one evidence set

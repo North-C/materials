@@ -1,0 +1,23 @@
+# log references
+
+- source issue record:
+  `/home/lyq/Projects/Micro-VM/CubeSandbox-sandbox-clone/logs/arm64-benchmark-issues-20260613.md`
+- source validation report:
+  `/home/lyq/Projects/Micro-VM/CubeSandbox-sandbox-clone/logs/kunpeng-arm64-benchmark-report-zh.md`
+
+## key excerpts
+
+- `/dev/shm` only 64MiB in the original template
+- `dd: error writing '/dev/shm/dirty': No space left on device`
+- `50MiB success; 100MiB+ fail at 64MiB`
+- after `dev_shm_size_in_bytes = 2147483648`, 100MiB-1024MiB all pass
+
+## meaning
+
+This is a real non-network failure sample.
+
+It proves a benchmark/storage precondition issue, not:
+
+- guest-visible convergence failure
+- transport/notifier failure
+- controller restore failure

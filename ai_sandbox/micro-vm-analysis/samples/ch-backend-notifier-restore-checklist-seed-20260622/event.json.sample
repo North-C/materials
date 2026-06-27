@@ -1,0 +1,27 @@
+{
+  "timestamp": {
+    "secs": 0,
+    "nanos": 4664404
+  },
+  "source": "virtio-device",
+  "event": "activated",
+  "properties": {
+    "id": "__rng"
+  }
+}
+
+{
+  "timestamp": {
+    "secs": 0,
+    "nanos": 5505133
+  },
+  "source": "vm",
+  "event": "restored",
+  "properties": null
+}
+
+# source
+# cloud-hypervisor/performance-metrics/src/performance_tests.rs:test_parse_restore_time_output
+
+# note
+# This is a source-derived baseline event sample, not a real run log from this workspace.

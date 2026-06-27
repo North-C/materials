@@ -1,0 +1,18 @@
+# host observations
+
+- root block / pmem 与 cmdline 对应关系：
+  参考 `builder.rs:672` / `builder.rs:729`
+- backing file / disk path / pmem path：
+  参考 `virtio-block-data-path-chain.md:166`
+- restore 后这些路径是否仍可用：
+  待真实回填
+- 问题更像 restore 还是 host backing inconsistency：
+  当前未定；seed 先假设这是最需要区分的两类问题
+- snapshot 是否只保存可重建引用：
+  是；参考 `storage-rootfs-sharefs-boundary-chain.md:139`
+- 当前工作树中是否已有准真实运行样本：
+  没有；当前仍主要只有源码与分析锚点
+
+note =
+这份 seed 当前最强的是生命周期边界与 root/backing 语义锚点；
+不是可直接对照 guest-visible 结果的真实 restore 样本。

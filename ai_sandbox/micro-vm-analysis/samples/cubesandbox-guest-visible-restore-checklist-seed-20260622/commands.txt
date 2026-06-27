@@ -1,0 +1,15 @@
+# control plane
+# 在新日志集里先搜：
+# rg -n "VmRestore|VmResumeFromSnapshot|VmSetFs|VmAddDevice" <shim-or-vmm-logs>
+#
+# 如果是 rollback/update 路径，再补：
+# rg -n "RollbackSnapshot|rollback_vm|resume_vm_with_config" <shim-or-cubelet-logs>
+
+# ready path
+# rg -n "VsockServerReady|VmShutdown|wait_notify|vsock probe|vm ready, vsock is listening" <shim-or-agent-logs>
+
+# worker/backend
+# rg -n "FsEvent|failed to update filter list|back_state|deserialize_and_apply_data|ApiRequest::VmSetFs|ApiRequest::VmAddDevice" <vmm-or-virtiofs-logs>
+
+# guest agent visibility
+# rg -n "wait a pci|Failed to update interface|Failed to update routes|Failed to add ARP neighbours|create sandbox!, config net|get_virtio_blk_pci_device_name|already mounted|skip mount" <guest-or-agent-logs>

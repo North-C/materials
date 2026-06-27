@@ -1,0 +1,26 @@
+# host / control plane
+
+# 如果已有 Cloud Hypervisor 事件日志输出，先保留 restore 前后的完整事件流
+# 典型关注字段：event == "restored"
+
+# snapshot / restore
+# 文档路径：cloud-hypervisor/docs/snapshot_restore.md
+# ./cloud-hypervisor --api-socket /tmp/cloud-hypervisor.sock
+# ./ch-remote --api-socket=/tmp/cloud-hypervisor.sock pause
+# ./ch-remote --api-socket=/tmp/cloud-hypervisor.sock snapshot file:///tmp/ch-snap
+# ./ch-remote --api-socket=/tmp/cloud-hypervisor.sock restore source_url=file:///tmp/ch-snap
+# ./ch-remote --api-socket=/tmp/cloud-hypervisor.sock resume
+
+# event monitor 参考路径
+# performance-metrics/src/performance_tests.rs 使用 event.json 并解析 event == \"restored\"
+
+# transport/backend logs
+# rg -n "set_vring_call|set_vring_kick|set_config_call|restore_vgic|ioapic|msix|VirtioPciDeviceState" <cloud-hypervisor-log-or-artifacts>
+
+# vDPA host checks
+# ls -l /dev/vhost-vdpa-*
+# vdpa dev show -jp
+
+# guest visibility checks
+# 在 guest 内记录 block/fs/net 设备是否重新出现
+# 例如：ls /dev | grep -E 'vd|pmem|vdpa'

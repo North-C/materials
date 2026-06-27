@@ -1,0 +1,70 @@
+# evidence targets
+
+This file turns the missing-evidence list into a concrete capture target list.
+
+## 1. Control-plane success targets
+
+Need at least one artifact showing:
+
+- `VmRestore` or `VmResumeFromSnapshot` request accepted
+- or `VmSetFs` / `VmAddDevice` request accepted
+
+Good sources:
+
+- CubeShim request/response logs
+- Cubelet `task.Update` / rollback update logs
+- VMM `ApiRequest` dispatch logs
+
+## 2. Ready-path targets
+
+Need at least one artifact showing one of:
+
+- `vm ready, vsock is listening (notify path)`
+- `vm ready, vsock is listening (probe path)`
+
+And ideally absence/presence of:
+
+- `wait_notify VsockServerReady failed`
+- `VmShutdown`
+
+If only `VmShutdown` or restore failure appears, do not classify as guest-visible failure.
+
+## 3. Worker/backend progression targets
+
+Need at least one artifact showing one of:
+
+- `FsEvent` pushed / processed
+- `ApiRequest::VmSetFs`
+- `ApiRequest::VmAddDevice`
+- native virtio-fs `deserialize_and_apply_data`
+- `failed to update filter list`
+
+This proves the request crossed the API boundary and reached backend/worker code.
+
+## 4. Guest-visible convergence targets
+
+Need at least one guest-side artifact showing progression into convergence:
+
+- `wait a pci`
+- `get_virtio_blk_pci_device_name`
+- `create sandbox!, config net`
+- `already mounted`
+- `skip mount`
+
+Need at least one guest-side failure anchor if classifying failure:
+
+- `Failed to update interface`
+- `Failed to update routes`
+- `Failed to add ARP neighbours`
+
+## 5. Minimal failure-proof sequence
+
+To upgrade this seed to a guest-visible failure `real`, the best sequence is:
+
+1. control-plane request accepted
+2. ready path reached (`notify path` or `probe path`)
+3. backend/worker evidence appears
+4. guest convergence path appears
+5. guest convergence fails
+
+Without step 4 and 5 together, do not upgrade.

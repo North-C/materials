@@ -1,0 +1,21 @@
+# 1. restore / snapshot 请求
+# 记录 Firecracker snapshot / restore 命令或 API 请求
+
+# 2. root cmdline / disk mapping
+# rg -n "root=/dev/vda|root=PARTUUID|root=/dev/pmem" firecracker/src/vmm/src/builder.rs firecracker/analysis
+
+# 3. backing file / restore
+# rg -n "update_disk_image|disk_path|backing file|restore" firecracker/src/vmm firecracker/analysis
+
+# 4. guest 侧设备可见性
+# 在 guest 内记录 /dev/vd* / /dev/pmem* / rootfs 是否可用
+
+# 5. 推荐 bundle 组织
+# mkdir -p fc-rootfs-restore-attempt-<date>-<id>
+# 把 snapshot/restore 请求写入 api.txt
+# 如果没有真实 request dump，先用 request-samples.txt
+# 再参考 create-snapshot-request.sample.json / load-snapshot-request.sample.json
+# 再不行再用 create-snapshot-request.template.json / load-snapshot-request.template.json 占位
+# 把 root expression 与 backing 结果写入 host.txt
+# 如有 restore 生命周期日志，整理到 vmm.log
+# 把 guest 设备与 rootfs 结果写入 guest.txt

@@ -1,0 +1,5 @@
+# 保存 guest 侧观测。
+# 至少记录：
+# - ip -o link | wc -l
+# - 新增接口路径是否可 SSH
+# - /proc/interrupts（如相关）

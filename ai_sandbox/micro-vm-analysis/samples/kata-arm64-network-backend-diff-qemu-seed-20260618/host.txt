@@ -1,0 +1,7 @@
+# 当前是种子包。
+
+# 目标错误签名：
+QMP not initialized
+
+# 参考源码：
+- kata-containers/src/runtime-rs/crates/hypervisor/src/qemu/inner.rs

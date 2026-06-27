@@ -1,0 +1,14 @@
+{
+  "snapshot_path": "foo",
+  "mem_backend": {
+    "backend_path": "bar",
+    "backend_type": "Uffd"
+  },
+  "resume_vm": true
+}
+
+# source
+# firecracker/src/firecracker/src/api_server/request/snapshot.rs
+
+# note
+# This is a parser/test-derived request-shaped sample, not a runtime log from this workspace.

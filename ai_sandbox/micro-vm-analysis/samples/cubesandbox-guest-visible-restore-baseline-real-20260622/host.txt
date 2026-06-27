@@ -1,0 +1,25 @@
+# baseline host observations
+
+- one-click install：
+  `PASS`
+- quickcheck：
+  `OK`
+- sandbox create 成功：
+  `PASS`
+- template create 成功：
+  `READY`
+- snapshot / clone / rollback 闭环：
+  全部 `PASS`
+- final health：
+  `PASS, sandboxes=0`
+
+## extra baseline signals
+
+- `network-agent readyz` 通过
+- `cube-api` / `cubemaster` / `network-agent` / `cubelet` 结束时仍是 `active running`
+
+## source
+
+- `E2E_SUMMARY.txt`
+- `install-xfs.log`
+- `final-health.log`

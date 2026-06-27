@@ -1,0 +1,54 @@
+# baseline
+
+kind = doc_test_derived
+
+## snapshot / restore command path
+
+- `./ch-remote --api-socket=/tmp/cloud-hypervisor.sock pause`
+- `./ch-remote --api-socket=/tmp/cloud-hypervisor.sock snapshot file:///tmp/ch-snap`
+- `./ch-remote --api-socket=/tmp/cloud-hypervisor.sock restore source_url=file:///tmp/ch-snap`
+- `./ch-remote --api-socket=/tmp/cloud-hypervisor.sock resume`
+
+source =
+- `cloud-hypervisor/docs/snapshot_restore.md`
+
+## snapshot directory layout
+
+- `config.json`
+- `memory-ranges`
+- `state.json`
+
+source =
+- `cloud-hypervisor/docs/snapshot_restore.md`
+
+## event monitor success signal
+
+```json
+{
+  "source": "vm",
+  "event": "restored",
+  "properties": null
+}
+```
+
+source =
+- `cloud-hypervisor/performance-metrics/src/performance_tests.rs`
+
+## notifier / backend anchors
+
+- `set_vring_call`
+- `set_vring_kick`
+- `set_config_call`
+- `VirtioPciDeviceState`
+- `restore_vgic`
+- `ioapic`
+
+source =
+- `cloud-hypervisor/virtio-devices/src/vhost_user/vu_common_ctrl.rs`
+- `cloud-hypervisor/virtio-devices/src/vdpa.rs`
+- `cloud-hypervisor/virtio-devices/src/transport/pci_device.rs`
+- `cloud-hypervisor/vmm/src/device_manager.rs`
+- `cloud-hypervisor/devices/src/ioapic.rs`
+
+note =
+These are baseline snippets from docs/tests/code, not a real failure log.

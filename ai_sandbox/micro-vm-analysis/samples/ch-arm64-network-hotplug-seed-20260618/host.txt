@@ -1,0 +1,7 @@
+# 当前是种子包，没有真实失败日志。
+
+# 后续如果转成真实样本，应至少记录：
+# - Error when adding new network device to the VM
+# - InvalidIommuHotplug
+# - tap/backend 错误
+# - BDF 返回值

@@ -1,0 +1,27 @@
+{
+  "container_id": "<replace-with-real-container-id>",
+  "exec_id": "<replace-with-real-exec-id>",
+  "storages": [
+    {
+      "driver": "<blk|image_guest_pull|virtio-fs|...>",
+      "fstype": "<ext4|overlay|...>",
+      "mount_point": "<guest mount point>",
+      "source": "<device or image source>",
+      "options": [],
+      "driver_options": [],
+      "shared": true
+    }
+  ]
+}
+
+/*
+Use this file only as a placeholder when a real host-side request dump is not
+yet available.
+
+Preferred order:
+1. real request dump
+2. current-worktree request-shaped sample
+3. this template
+
+Do not treat this template as evidence by itself.
+*/

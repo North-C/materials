@@ -1,0 +1,10 @@
+# Starter Commands
+
+# 1. 启动 Firecracker 的命令
+
+# 2. host 侧最小观测
+# ip link show <host_dev_name>
+# Firecracker logger / metrics 导出
+
+# 3. guest 侧最小可用性检查
+# 记录最能证明“guest 不具备网络可用性”的命令

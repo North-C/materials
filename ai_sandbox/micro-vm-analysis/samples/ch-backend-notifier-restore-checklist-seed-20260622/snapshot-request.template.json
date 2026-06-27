@@ -1,0 +1,9 @@
+{
+  "destination_url": "file:///tmp/ch-snap",
+  "memory_snapshot_path": null
+}
+
+# note
+# Placeholder request body for a Cloud Hypervisor snapshot attempt.
+# Replace all fields with the real request when available.
+# By itself, this file is not evidence.

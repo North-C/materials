@@ -1,0 +1,10 @@
+# Starter Commands
+
+# 1. 启动 VM 的命令
+
+# 2. 运行期 add-net 请求
+# 记录 ch-remote / API 调用
+
+# 3. guest 最小观测
+# ip -o link | wc -l
+# 如可行，再通过新网卡 IP 执行一次 SSH

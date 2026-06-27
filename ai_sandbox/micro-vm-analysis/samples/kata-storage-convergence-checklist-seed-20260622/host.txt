@@ -1,0 +1,27 @@
+# host observations
+
+- rootfs / volume 被翻译成哪类 storage：
+  参考 `ShareFsRootfs` / `BlockRootfs`
+- CreateContainerRequest.storages 是否生成：
+  参考 `container.rs:260`
+- 当前工作树中是否已有真实形态 request 样本：
+  是；可先参考
+  `state/createcontainer/testcases.json:257`
+  `volumes/emptydir/testcases.json:167`
+- 当前最强 request-propagation 证据：
+  1. `volumes/emptydir/testcases.json:167`
+     - `driver = blk`
+     - `fstype = ext4`
+     - `mount_point = /run/kata-containers/sandbox/storage/...`
+  2. `state/createcontainer/testcases.json:257`
+     - `driver = image_guest_pull`
+     - `fstype = overlay`
+     - `mount_point = /run/kata-containers/<cid>/rootfs`
+- 问题更像 translation 还是 propagation：
+  当前未定；待真实回填
+- 相关收敛链：
+  `sharefs-rootfs-volume-agent-chain.md:196`
+
+note =
+上面两组样本只能证明 request 已经具有真实形态；
+不能证明 guest agent 已执行 `add_storages()` 或 `mount_from()`。

@@ -1,0 +1,70 @@
+# request-shaped samples
+
+This file records the strongest current-worktree request-side evidence already available
+for this seed.
+
+These are not guest runtime logs.
+
+They are still useful because they preserve real-shaped `CreateContainerRequest`
+payloads with storage entries.
+
+## sample A: block-style storages
+
+source:
+
+- `/home/lyq/Projects/Micro-VM/kata-containers/src/tools/genpolicy/tests/policy/testdata/createcontainer/volumes/emptydir/testcases.json:167`
+- local extracted sample:
+  `request-sample-block.txt`
+
+important fields:
+
+- `driver = "blk"`
+- `fstype = "ext4"`
+- `mount_point = /run/kata-containers/sandbox/storage/...`
+- `source = "00/00"`, `01/01`, ...
+- `shared = true`
+
+why it matters:
+
+- proves host-side translation can already produce agent-facing block storage entries
+
+## sample B: rootfs-style image_guest_pull storage
+
+source:
+
+- `/home/lyq/Projects/Micro-VM/kata-containers/src/tools/genpolicy/tests/policy/testdata/state/createcontainer/testcases.json:257`
+- local extracted sample:
+  `request-sample-rootfs-image-guest-pull.txt`
+
+important fields:
+
+- `driver = "image_guest_pull"`
+- `fstype = "overlay"`
+- `mount_point = /run/kata-containers/<cid>/rootfs`
+- `source = "pause"`
+
+why it matters:
+
+- proves current worktree also contains a non-block rootfs-oriented storage request shape
+
+## sample C: template-only request classes
+
+available placeholders:
+
+- `request.template.json`
+
+why it matters:
+
+- keeps request fields consistent even before real dumps are available
+
+## current boundary
+
+These samples strengthen:
+
+- request propagation evidence
+
+They do not yet prove:
+
+- guest `add_storages()`
+- guest `mount_from()`
+- final rootfs / volume usability

@@ -1,0 +1,14 @@
+# host observations
+
+- 错误文本：
+  `CubeMaster returned error code 130597: no more resource`
+- 对应 ret:
+  `{"ret":{"ret_code":130597,"ret_msg":"no more resource"}}`
+- 触发阶段：
+  create-only c=50/n=500 与 clone_n100_c20 相关压力场景
+- 关键判断：
+  当前证据指向 scheduler / quota 过滤结果为空，而不是 VM 内 guest 可见性问题
+- 相关过滤链：
+  `realtime_create_num`、`template_locality`、`mem`、`cpu`
+- 当前归类：
+  control plane / scheduler capacity

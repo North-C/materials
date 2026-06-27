@@ -1,0 +1,94 @@
+# minimum log bundle
+
+This file defines the smallest useful log bundle for attempting to upgrade
+`cubesandbox-guest-visible-restore-checklist-seed-20260622` to a failure `real`.
+
+## Required bundle parts
+
+Need all four parts from the same attempt window:
+
+1. control-plane logs
+2. ready-path logs
+3. worker/backend logs
+4. guest-visible logs
+
+If any one part is missing, do not attempt to upgrade.
+
+## 1. Control-plane logs
+
+At minimum, provide one of:
+
+- CubeShim restore/resume request log
+- Cubelet / cube-runtime update request log
+- VMM API dispatch log containing `VmRestore`, `VmResumeFromSnapshot`, `VmSetFs`, or `VmAddDevice`
+
+Goal:
+
+- prove the request was actually accepted
+
+## 2. Ready-path logs
+
+At minimum, provide one of:
+
+- `vm ready, vsock is listening (notify path)`
+- `vm ready, vsock is listening (probe path)`
+
+And also record whether the same window contains:
+
+- `VmShutdown`
+- `wait_notify VsockServerReady failed`
+
+Goal:
+
+- prove the request progressed into a ready path
+
+## 3. Worker/backend logs
+
+At minimum, provide one of:
+
+- `ApiRequest::VmSetFs`
+- `ApiRequest::VmAddDevice`
+- `FsEvent`
+- `deserialize_and_apply_data`
+- TAP / tap fd rebind evidence
+
+Goal:
+
+- prove control-plane success reached worker/backend code
+
+## 4. Guest-visible logs
+
+At minimum, provide both:
+
+- one convergence-progress signal
+- one final failure or final success signal
+
+Convergence-progress examples:
+
+- `wait a pci`
+- `get_virtio_blk_pci_device_name`
+- `create sandbox!, config net`
+- `already mounted`
+- `skip mount`
+
+Failure examples:
+
+- `Failed to update interface`
+- `Failed to update routes`
+- `Failed to add ARP neighbours`
+
+Goal:
+
+- prove the system reached guest-visible convergence, not just host-side restore
+
+## Bundle acceptance rule
+
+Only treat a log set as an upgrade candidate if all of the following are true:
+
+1. same attempt window
+2. control-plane success present
+3. worker/backend progression present
+4. guest-visible progression present
+5. final result present
+
+Otherwise, keep it as `seed`.

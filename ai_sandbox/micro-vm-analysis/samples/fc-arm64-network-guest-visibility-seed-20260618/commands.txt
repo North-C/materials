@@ -1,0 +1,6 @@
+# 对应 guest visibility 准样本的最小动作
+
+1. 启动 Firecracker
+2. 记录 host `ip link` 相关结果
+3. 导出 Firecracker logger / metrics
+4. 记录 guest 侧最小可用性检查

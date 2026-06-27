@@ -1,0 +1,7 @@
+# 当前样本引用的现有证据位置
+
+- `CubeSandbox-sandbox-clone/logs/arm64-network-opt-benchmark-report-20260613.md`
+- `CubeSandbox-sandbox-clone/logs/kunpeng-arm64-benchmark-report-zh.md`
+- `CubeSandbox-sandbox-clone/analysis/tap-fd-unavailable-case-study.md`
+
+# 若后续补复采，应把 collect-logs 产物目录写在这里。

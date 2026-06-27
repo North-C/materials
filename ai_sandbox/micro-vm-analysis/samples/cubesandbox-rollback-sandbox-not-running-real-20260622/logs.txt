@@ -1,0 +1,13 @@
+# 当前样本引用的现有证据位置
+
+- `CubeSandbox-sandbox-clone/logs/kunpeng-arm64-benchmark-report-zh.md`
+- `CubeSandbox-sandbox-clone/logs/arm64-network-opt-benchmark-report-20260613.md`
+
+# 关键原始结果目录
+
+- `/tmp/cubesandbox-perf-fixed-repeat-20260613-165523`
+- `/tmp/cubesandbox-perf-fixed-repeat-20260613-165523/run03/run-summary.json`
+- `/tmp/cubesandbox-perf-fixed-repeat-20260613-165523/run*/snapshot/tables/snapshot_http_case_results.tsv`
+- `/tmp/cubesandbox-perf-fixed-repeat-20260613-165523/run*/snapshot/tables/snapshot_concurrency_http.txt`
+
+# 若后续补复采，应把 CubeMaster / Cubelet / CubeShim 时序日志目录写在这里。

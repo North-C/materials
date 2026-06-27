@@ -1,0 +1,58 @@
+# baseline
+
+kind = codepath_derived
+
+## control plane request chain
+
+- `ApiRequest::VmRestore`
+- `ApiRequest::VmResumeFromSnapshot`
+- `ApiRequest::VmSetFs`
+- `ApiRequest::VmAddDevice`
+
+source =
+- `CubeShim/shim/src/hypervisor/cube_hypervisor.rs`
+- `hypervisor/vmm/src/api/mod.rs`
+- `hypervisor/vmm/src/lib.rs`
+
+## ready / lifecycle signals
+
+- `NotifyEvent::VsockServerReady`
+- `NotifyEvent::VmShutdown`
+- `wait_notify VsockServerReady failed`
+- `vm ready, vsock is listening (notify path)`
+- `vm ready, vsock is listening (probe path)`
+
+source =
+- `CubeShim/shim/src/sandbox/sb.rs`
+- `agent/src/main.rs`
+- `agent/src/rpc.rs`
+- `hypervisor/devices/src/legacy/sys_ctrl.rs`
+
+## backend / worker anchors
+
+- `FsEvent`
+- `back_state`
+- `deserialize_and_apply_data`
+- `NetEpollHandler`
+- `FsEpollHandler`
+
+source =
+- `hypervisor/vmm/src/device_manager.rs`
+- `hypervisor/virtio-devices/src/fs.rs`
+- `hypervisor/virtio-devices/src/net.rs`
+- `analysis/virtio-net-fs-restore-chain.md`
+
+## guest-visible cues
+
+- `get_virtio_blk_pci_device_name`
+- `already mounted`
+- `skip mount`
+- `vsock server ready`
+
+source =
+- `agent/src/device.rs`
+- `agent/src/mount.rs`
+- `agent/src/main.rs`
+
+note =
+These are baseline snippets from code paths, not a real restored guest transcript.

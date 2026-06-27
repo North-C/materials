@@ -1,0 +1,5 @@
+# 记录实际执行的命令。
+# 至少包含：
+# - 启动 Firecracker 的命令
+# - host ip link / metadata 检查
+# - guest 侧最小可用性检查

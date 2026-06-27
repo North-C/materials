@@ -1,0 +1,39 @@
+# log / artifact map
+
+## event log
+
+- restored signal:
+  `event == "restored"`
+- file path:
+  `event.json` 形式见 `performance-metrics/src/performance_tests.rs`
+- expected extra fields:
+  `timestamp.secs` / `timestamp.nanos`
+
+## VMM / transport
+
+- VirtioPciDeviceState / msix / route evidence:
+  `VirtioPciDevice::snapshot()` 保存 transport/PCI/common/MSI-X state
+- file path:
+  `cloud-hypervisor/virtio-devices/src/transport/pci_device.rs:1305`
+- capture hint:
+  若有 state dump 或 restore 日志，优先摘 transport state、MSI-X state、common config 三类字段
+
+## backend / notifier
+
+- set_vring_call / set_vring_kick / set_config_call:
+  vhost-user / vDPA 复用 notifier 与 queue eventfd
+- file path:
+  `cloud-hypervisor/virtio-devices/src/vhost_user/vu_common_ctrl.rs:272`
+  `cloud-hypervisor/virtio-devices/src/vdpa.rs:282`
+- expected artifact:
+  vhost-user socket / `/dev/vhost-vdpa-*` / backend reconnect 相关日志或宿主观测
+
+## controller
+
+- GIC / IOAPIC restore evidence:
+  `restore_vgic()` / IOAPIC snapshot & restore
+- file path:
+  `cloud-hypervisor/vmm/src/device_manager.rs:1728`
+  `cloud-hypervisor/devices/src/ioapic.rs:445`
+- expected decision:
+  最终需判断更像 `transport/backend` 问题还是 `route/controller` 问题

@@ -1,0 +1,79 @@
+# request / runtime data
+
+## rootfs path
+
+- handler_rootfs result:
+  参考 `rootfs/mod.rs:66`
+- storage generated:
+  `ShareFsRootfs` / `BlockRootfs` 等分类
+
+## volumes path
+
+- handler_volumes result:
+  参考 `volume/mod.rs:52`
+- storages generated:
+  当前 seed 已明确这是 volume -> agent Storage 的关键缺口；真实回填时要补具体 storage 列表
+
+## CreateContainerRequest
+
+- storages field:
+  参考 `container.rs:260`
+- response / result:
+  当前应至少区分：storages 已构造 / 已发送给 guest / guest 落地失败
+
+## current-worktree request-shaped samples
+
+当前工作树里已经有两类可直接引用的 `CreateContainerRequest` JSON 样本。
+
+它们仍然不是 guest 运行日志，但已经比“只有代码路径”更强，因为里面包含真实形态的：
+
+- `storages`
+- `driver`
+- `source`
+- `mount_point`
+- `fstype`
+- `shared`
+
+### sample A: block-style storages
+
+source:
+
+- `kata-containers/src/tools/genpolicy/tests/policy/testdata/createcontainer/volumes/emptydir/testcases.json:167`
+- local extracted sample:
+  `request-sample-block.txt`
+
+example shape:
+
+- `driver = "blk"`
+- `fstype = "ext4"`
+- `mount_point = /run/kata-containers/sandbox/storage/...`
+- `source = "00/00"`, `01/01`, ...
+
+meaning:
+
+- host-side translation has already produced agent-facing block storage entries
+
+### sample B: image_guest_pull rootfs-style storage
+
+source:
+
+- `kata-containers/src/tools/genpolicy/tests/policy/testdata/state/createcontainer/testcases.json:257`
+- local extracted sample:
+  `request-sample-rootfs-image-guest-pull.txt`
+
+example shape:
+
+- `driver = "image_guest_pull"`
+- `fstype = "overlay"`
+- `mount_point = /run/kata-containers/<cid>/rootfs`
+- `source = "pause"`
+
+meaning:
+
+- current worktree also contains a non-block rootfs-oriented storage sample
+
+current boundary:
+
+- these samples are strong `request propagation` evidence
+- they are still not `real`
+- they do not prove guest `add_storages()` / `mount_from()` actually ran

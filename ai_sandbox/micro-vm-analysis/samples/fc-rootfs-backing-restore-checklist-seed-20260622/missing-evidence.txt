@@ -1,0 +1,77 @@
+# missing evidence for real
+
+This seed still lacks one decisive evidence set:
+
+> a single set of artifacts that simultaneously proves:
+> 1. restore request succeeded
+> 2. root expression matched the intended root device
+> 3. backing file / pmem path remained semantically consistent
+> 4. guest-visible device/rootfs result is observable
+
+## What already exists in the repository
+
+1. Codepath-derived root expression anchors:
+   - `root=/dev/vda`
+   - `root=PARTUUID=...`
+   - `root=/dev/pmem{i}`
+2. Backing/restore boundary analysis:
+   - snapshot saves device state and reconstructable references
+   - snapshot does not include backing file bytes
+
+These are useful baselines, but they do not prove a real restore attempt.
+
+## High-value evidence to collect next
+
+### Restore request / result
+
+- real snapshot request
+- real load/restore request
+- return value or failure value
+
+meaning:
+
+- proves restore really happened
+
+### Root expression
+
+- real kernel cmdline
+- mapping to root block or pmem device
+
+meaning:
+
+- proves intended root semantics for the same attempt
+
+### Backing consistency
+
+- pre-restore disk/pmem path
+- post-restore disk/pmem path
+- host check that the backing object still exists and matches expectation
+
+meaning:
+
+- proves host-side backing was not the missing piece
+
+### Guest-visible result
+
+- `/dev/vd*` or `/dev/pmem*`
+- boot / mount / `findmnt /`
+
+meaning:
+
+- proves whether the problem stopped at device visibility or at final rootfs usability
+
+## Why current evidence is insufficient
+
+Current workspace can already prove:
+
+- root expression logic
+- snapshot/restore lifecycle boundaries
+- backing file semantics
+
+But it still cannot prove:
+
+- a real restore attempt in this workspace,
+- plus backing consistency,
+- plus guest-visible device/rootfs outcome.
+
+Without all of these together, this seed must remain `seed`, not be upgraded to `real`.

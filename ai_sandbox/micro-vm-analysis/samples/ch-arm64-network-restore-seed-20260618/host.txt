@@ -1,0 +1,6 @@
+# 当前是种子包，没有真实失败日志。
+
+# 后续真实样本至少应补：
+- restore 调用完成证据
+- `set_gicr_typers()` / `restore_vgic()` / `enable()` 相关日志
+- host/VMM 侧网络相关错误或异常现象

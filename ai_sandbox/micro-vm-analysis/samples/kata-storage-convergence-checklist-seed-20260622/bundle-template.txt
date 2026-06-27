@@ -1,0 +1,100 @@
+# bundle template
+
+Use this as the preferred shape of the next evidence bundle.
+
+Goal:
+
+- keep one container/sandbox create attempt mapped to one evidence set
+- reduce ambiguity between translation, request propagation, guest storage landing, and final usability
+
+## Recommended bundle layout
+
+Create one directory per attempt, for example:
+
+`kata-storage-attempt-<date>-<id>/`
+
+Inside it, prefer the following files:
+
+### 1. `api.txt`
+
+Put:
+
+- host-side create request context
+- `CreateContainerRequest` dump or excerpt
+- relevant runtime/hypervisor mode information
+
+Purpose:
+
+- prove request propagation input
+
+### 2. `host.txt`
+
+Put:
+
+- `handler_rootfs()` classification result
+- `handler_volumes()` classification result
+- which storage type(s) were generated
+
+Purpose:
+
+- prove host-side translation
+
+### 3. `request.json`
+
+Put:
+
+- real request dump if available
+- otherwise current-worktree JSON sample used as comparison baseline
+- if neither exists for the attempt bundle yet, start from `request.template.json`
+
+Purpose:
+
+- isolate the `storages` payload for later comparison
+
+### 4. `agent.log`
+
+Put lines around:
+
+- `add_storages`
+- `mount_storage`
+- `mount_from`
+
+Purpose:
+
+- prove guest storage landing
+
+### 5. `guest.txt`
+
+Put:
+
+- rootfs/volume visibility checks
+- mount table
+- final success/failure result
+
+Purpose:
+
+- give the final guest-visible outcome
+
+## Minimum acceptable bundle
+
+If you cannot provide every file above, the minimum acceptable set is:
+
+1. `host.txt`
+2. `request.json` or equivalent request excerpt
+3. `agent.log` or equivalent guest storage landing log
+4. `guest.txt`
+
+Without that minimum, the bundle is usually too weak to classify safely.
+
+## Bundle naming advice
+
+Keep one attempt per bundle.
+
+Do not mix:
+
+- codepath-only samples
+- request-shaped JSON examples
+- guest landing logs
+- final usability result
+
+from different attempts in the same bundle.

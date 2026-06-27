@@ -1,0 +1,7 @@
+# 样本来自既有报告与基准结果。
+# 当前未新增执行命令。
+#
+# 若后续做复采，建议最少执行：
+# 1. rollback 并发压测 case
+# 2. 同时保留 CubeMaster / Cubelet / CubeShim 日志
+# 3. 保留 run-summary.json 与 snapshot tables

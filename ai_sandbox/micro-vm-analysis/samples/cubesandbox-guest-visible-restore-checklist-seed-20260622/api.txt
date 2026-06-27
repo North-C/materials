@@ -1,0 +1,82 @@
+# API / control requests
+
+## restore / resume
+
+- VmRestore request:
+  `CubeShim -> ApiRequest::VmRestore`
+- VmResumeFromSnapshot request:
+  `CubeShim -> ApiRequest::VmResumeFromSnapshot`
+- response:
+  成功/失败仍待真实回填
+
+## source-derived baseline
+
+- wait_notify 成功路径：
+  `NotifyEvent::VsockServerReady`
+- wait_notify 异常路径：
+  `NotifyEvent::VmShutdown`
+- fallback 路径：
+  `vsock probe`
+
+## runtime updates
+
+- VmSetFs request:
+  `CubeShim -> ApiRequest::VmSetFs`
+- VmAddDevice request:
+  `CubeShim -> ApiRequest::VmAddDevice`
+- response:
+  成功/失败仍待真实回填
+
+## request templates
+
+如果当前还没有真实 request dump，先不要空着：
+
+- `request-samples.txt`
+- `restore-request.sample.json`
+- `restore-request.sample-full.json`
+- `restore-request.template.json`
+- `resume-from-snapshot-request.template.json`
+- `set-fs-request.template.json`
+- `add-device-request.template.json`
+
+它们只用于占位和统一字段结构。
+
+优先顺序仍然是：
+
+1. 真实 request dump
+2. 当前工作树中的 request-shaped sample
+3. 当前工作树中的源码/基线锚点
+4. template 文件
+
+## ready path
+
+- wait_notify result:
+  可能是 `VsockServerReady` 或 `VmShutdown`
+- vsock probe result:
+  wait_notify 失败时 fallback 路径
+
+## current contrast rule
+
+If a new evidence bundle only proves:
+
+- `sandbox is not running`
+
+it should be compared against:
+
+- `cubesandbox-rollback-sandbox-not-running-real-20260622`
+
+If a new evidence bundle only proves:
+
+- success restore / create-from-snapshot / rollback with guest-visible success
+
+it should be compared against:
+
+- `cubesandbox-guest-visible-restore-baseline-real-20260622`
+
+Only when a bundle proves:
+
+- control-plane success
+- worker/backend progression
+- guest-visible convergence failure
+
+should it remain on this seed's upgrade path.

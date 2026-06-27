@@ -1,0 +1,39 @@
+# baseline
+
+kind = codepath_derived
+
+## host-side translation chain
+
+- `handler_rootfs()`
+- `handler_volumes()`
+- `ShareFsRootfs`
+- `BlockRootfs`
+
+source =
+- `kata-containers/src/runtime-rs/crates/resource/src/rootfs/mod.rs`
+- `kata-containers/src/runtime-rs/crates/resource/src/volume/mod.rs`
+
+## request propagation
+
+- `CreateContainerRequest.storages`
+- current-worktree request-shaped samples:
+  `request-samples.txt`
+  `request-sample-block.txt`
+  `request-sample-rootfs-image-guest-pull.txt`
+
+source =
+- `kata-containers/src/runtime-rs/crates/runtimes/virt_container/src/container_manager/container.rs`
+- `kata-containers/analysis/sharefs-rootfs-volume-agent-chain.md`
+
+## guest-side landing
+
+- `add_storages()`
+- `mount_storage()`
+- `mount_from()`
+
+source =
+- `kata-containers/src/agent/src/storage/mod.rs`
+- `kata-containers/src/agent/rustjail/src/mount.rs`
+
+note =
+These are baseline snippets from code paths, not a real guest storage transcript.

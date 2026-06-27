@@ -1,0 +1,59 @@
+{
+  "storages": [
+    {
+      "driver": "blk",
+      "driver_options": [
+        "encryption_key=ephemeral"
+      ],
+      "fs_group": null,
+      "fstype": "ext4",
+      "mount_point": "/run/kata-containers/sandbox/storage/MDAvMDA=",
+      "options": [],
+      "source": "00/00",
+      "shared": true
+    },
+    {
+      "driver": "blk",
+      "driver_options": [
+        "encryption_key=ephemeral"
+      ],
+      "fs_group": null,
+      "fstype": "ext4",
+      "mount_point": "/run/kata-containers/sandbox/storage/MDEvMDE=",
+      "options": [],
+      "source": "01/01",
+      "shared": true
+    },
+    {
+      "driver": "blk",
+      "driver_options": [
+        "encryption_key=ephemeral"
+      ],
+      "fs_group": null,
+      "fstype": "ext4",
+      "mount_point": "/run/kata-containers/sandbox/storage/MDIvMDI=",
+      "options": [],
+      "source": "02/02",
+      "shared": true
+    },
+    {
+      "driver": "blk",
+      "driver_options": [
+        "encryption_key=ephemeral"
+      ],
+      "fs_group": null,
+      "fstype": "ext4",
+      "mount_point": "/run/kata-containers/sandbox/storage/MDMvMDM=",
+      "options": [],
+      "source": "03/03",
+      "shared": true
+    }
+  ]
+}
+
+# source
+# kata-containers/src/tools/genpolicy/tests/policy/testdata/createcontainer/volumes/emptydir/testcases.json:167
+
+# note
+# This is a request-shaped sample extracted from the current workspace.
+# It is stronger than pure codepath evidence, but it is not a guest runtime log.

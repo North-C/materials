@@ -1,0 +1,95 @@
+# evidence targets
+
+This file turns the Firecracker rootfs/backing seed into a concrete capture target list.
+
+## 1. Restore success targets
+
+Need at least one artifact showing:
+
+- snapshot request accepted
+- restore request accepted
+- or equivalent `LoadSnapshot` / restore API success
+
+Good sources:
+
+- API request/response log
+- command transcript
+- snapshot directory metadata
+
+Without this, do not classify anything as guest rootfs failure yet.
+
+## 2. Root expression targets
+
+Need at least one artifact showing:
+
+- `root=/dev/vda`
+- or `root=PARTUUID=...`
+- or `root=/dev/pmem{i}`
+
+And ideally one artifact tying that expression to the actual configured root device.
+
+Good sources:
+
+- kernel cmdline dump
+- Firecracker config snapshot
+- host-side request/config capture
+
+This proves root semantics were expressed the way the VMM intended.
+
+## 3. Backing consistency targets
+
+Need at least one artifact showing:
+
+- disk path / pmem path used before restore
+- disk path / pmem path used after restore
+- whether the backing object was still present and semantically consistent
+
+Good sources:
+
+- drive / pmem configuration
+- host filesystem checks
+- restore command input
+
+Without this, do not upgrade beyond `restore success + root expression`.
+
+## 4. Guest visibility targets
+
+Need at least one artifact showing one of:
+
+- guest sees `/dev/vd*`
+- guest sees `/dev/pmem*`
+- guest can identify the intended root device
+
+Good sources:
+
+- guest shell checks
+- boot log
+- recovery shell output
+
+This proves the storage device is visible after restore.
+
+## 5. Guest rootfs usability targets
+
+Need at least one artifact showing final outcome:
+
+- rootfs really usable
+- or device visible but rootfs still unusable
+- or guest did not even see the expected root device
+
+Good sources:
+
+- successful boot into userspace
+- mount/rootfs checks
+- emergency shell / kernel log / init failure output
+
+## 6. Minimal upgrade sequence
+
+To upgrade this seed to a `real`, the best sequence is:
+
+1. restore success recorded
+2. root expression recorded
+3. backing consistency recorded
+4. guest device visibility recorded
+5. final rootfs usability recorded
+
+Without step 4 and 5 together, do not upgrade.

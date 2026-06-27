@@ -1,0 +1,12 @@
+# 当前是种子包，没有真实失败日志。
+
+# 后续转成真实样本时，应至少证明：
+
+1. `TapOpen` 没失败
+2. `TapSetVnetHdrSize` 没失败
+3. 没有更近的 MMDS / limiter 伪失败解释
+
+# 可回看的源码/文档
+- firecracker/analysis/arm64-network-sample-tap-backend.md
+- firecracker/analysis/arm64-network-sample-mmds-throttle.md
+- firecracker/analysis/arm64-network-sample-guest-visibility.md

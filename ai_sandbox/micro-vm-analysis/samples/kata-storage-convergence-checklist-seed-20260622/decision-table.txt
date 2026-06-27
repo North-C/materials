@@ -1,0 +1,21 @@
+# decision table
+
+Use this table after collecting one evidence bundle.
+
+| What the bundle proves | Classification |
+|---|---|
+| only translation evidence exists | keep this seed; still too early |
+| translation + `CreateContainerRequest.storages`, but no guest landing evidence | keep this seed; stronger request propagation only |
+| guest storage landing evidence exists, but no final rootfs/volume result | keep this seed; classify as `guest add_storages incomplete` |
+| final rootfs/volume failure exists, but request/translation evidence is missing | do not upgrade; evidence set is incomplete |
+| same bundle proves translation + request propagation + guest landing + final failure/success outcome | eligible to upgrade |
+
+## Safe upgrade rule
+
+Upgrade only on the last row.
+
+Every earlier row is either:
+
+- too early
+- request-side only
+- or missing the final guest-visible outcome

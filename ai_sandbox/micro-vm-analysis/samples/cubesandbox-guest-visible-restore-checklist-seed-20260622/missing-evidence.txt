@@ -1,0 +1,152 @@
+# missing evidence for failure real
+
+This seed still lacks one decisive evidence set:
+
+> a single set of artifacts that simultaneously proves:
+> 1. control-plane restore/update request succeeded
+> 2. backend/worker path progressed at least part of the way
+> 3. guest-visible state still failed to converge
+
+## What already exists in the repository
+
+1. A success baseline `real`:
+   - `cubesandbox-guest-visible-restore-baseline-real-20260622`
+2. A control-plane failure `real`:
+   - `cubesandbox-rollback-sandbox-not-running-real-20260622`
+
+These are useful contrasts, but neither one proves a guest-visible convergence failure.
+
+## High-value logs to collect next
+
+### CubeShim
+
+- `vm ready, vsock is listening (notify path)`
+- `wait_notify VsockServerReady failed`
+- `vm ready, vsock is listening (probe path)`
+- `restore vm failed`
+- `resume vm from snapshot failed`
+
+source anchors:
+
+- `CubeSandbox-sandbox-clone/CubeShim/shim/src/sandbox/sb.rs`
+
+meaning:
+
+- `vm ready, vsock is listening (notify path)`:
+  control-plane request succeeded and guest vsock ready notify was observed
+- `vm ready, vsock is listening (probe path)`:
+  control-plane request succeeded but notify path fell back to probe
+- `VmShutdown` / `restore vm failed` / `resume vm from snapshot failed`:
+  failure is still too early to count as guest-visible convergence failure
+
+### hypervisor VMM / virtio-fs
+
+- `ApiRequest::VmSetFs`
+- `ApiRequest::VmAddDevice`
+- `FsEvent`
+- `failed to update filter list`
+- native virtio-fs `back_state` / `deserialize_and_apply_data`
+
+source anchors:
+
+- `CubeSandbox-sandbox-clone/hypervisor/vmm/src/device_manager.rs`
+- `CubeSandbox-sandbox-clone/hypervisor/virtio-devices/src/fs.rs`
+
+meaning:
+
+- `FsEvent` observed:
+  runtime update has crossed the API boundary and reached the fs worker path
+- `failed to update filter list`:
+  failure is inside the fs worker/backend update phase
+- `deserialize_and_apply_data`:
+  restore did reach native virtio-fs backend state re-application
+
+### guest agent
+
+- `wait a pci`
+- `Failed to update interface`
+- `Failed to update routes`
+- `Failed to add ARP neighbours`
+- `create sandbox!, config net`
+- `get_virtio_blk_pci_device_name`
+- `already mounted`
+- `skip mount`
+
+source anchors:
+
+- `CubeSandbox-sandbox-clone/agent/src/rpc.rs`
+- `CubeSandbox-sandbox-clone/agent/src/device.rs`
+- `CubeSandbox-sandbox-clone/agent/src/mount.rs`
+
+meaning:
+
+- `wait a pci`:
+  guest device enumeration reached agent-visible stage
+- `Failed to update interface/routes/ARP neighbours`:
+  convergence failed after device became guest-visible
+- `create sandbox!, config net`:
+  guest network convergence path finished
+- `already mounted` / `skip mount`:
+  mount path was reached, but may indicate pre-existing state rather than clean convergence
+
+### sidecars / platform
+
+- Cubelet rollback/update path logs
+- network-agent TAP/fd restore logs
+- CubeMaster / Cubelet state-window logs around `sandbox is not running`
+
+meaning:
+
+- if these logs already show lifecycle rejection before any worker or guest-agent evidence,
+  the sample still belongs to control-plane failure, not guest-visible failure
+
+## Why current evidence is insufficient
+
+Current workspace can already prove:
+
+- a successful guest-visible convergence baseline
+- a control-plane lifecycle failure
+
+But it still cannot prove:
+
+- that a restore/update request succeeded,
+- while backend/worker advanced,
+- and guest-visible convergence still failed.
+
+Without all three, this seed must remain a `seed`, not be upgraded to `real`.
+
+## Verified absent in current workspace
+
+I re-checked the current `CubeSandbox-sandbox-clone/logs/` and
+`CubeSandbox-sandbox-clone/tmp/oneclick-artifacts/` trees.
+
+At the moment, they do **not** contain hits for the decisive convergence
+signatures below:
+
+- `wait a pci`
+- `Failed to update interface`
+- `Failed to update routes`
+- `Failed to add ARP neighbours`
+- `create sandbox!, config net`
+- `vm ready, vsock is listening`
+- `wait_notify VsockServerReady failed`
+- `ApiRequest::VmSetFs`
+- `FsEvent`
+- `failed to update filter list`
+
+So the next useful move is no longer “search harder in the same files”.
+
+It is to bring in a new log set that actually contains some of these events.
+
+## Minimal success/failure sequence to prove next
+
+The most valuable next evidence set would show this order:
+
+1. `VmRestore` or `VmResumeFromSnapshot` request accepted
+2. `vm ready, vsock is listening (...)`
+3. `FsEvent` or equivalent worker wakeup evidence appears
+4. guest agent logs `wait a pci` or enters network/storage convergence path
+5. guest agent then fails with `Failed to update interface/routes/...` or equivalent
+
+Only after a sequence like this exists should the sample be upgraded to a
+guest-visible failure `real`.

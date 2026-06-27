@@ -1,0 +1,15 @@
+{
+  "tag": "<shared-fs-tag>",
+  "socket": "<backend-socket-or-empty>",
+  "num_queues": 1,
+  "queue_size": 1024,
+  "id": null,
+  "pci_segment": 0,
+  "backendfs_config": null,
+  "rate_limiter_config": null
+}
+
+# note
+# Placeholder request body for a CubeSandbox VmSetFs attempt.
+# Replace the fields with the real request or the closest available payload shape.
+# By itself, this file is not evidence.

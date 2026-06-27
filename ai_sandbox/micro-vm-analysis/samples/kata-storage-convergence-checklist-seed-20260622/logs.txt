@@ -1,0 +1,36 @@
+# log / artifact map
+
+## host runtime
+
+- rootfs / volume translation evidence:
+  `handler_rootfs()` / `handler_volumes()` 分类路径
+
+## request propagation
+
+- CreateContainerRequest.storages evidence:
+  `container.rs:260`
+- related chain:
+  `sharefs-rootfs-volume-agent-chain.md:188`
+- stronger current-worktree evidence:
+  `kata-containers/src/tools/genpolicy/tests/policy/testdata/state/createcontainer/testcases.json:257`
+  `kata-containers/src/tools/genpolicy/tests/policy/testdata/createcontainer/volumes/emptydir/testcases.json:167`
+- expected decision:
+  先区分是 request 尚未构造，还是 storages 已构造但未成功传给 guest。
+  如果当前只有 JSON request 样本而没有 guest agent 运行日志，最多只能推进到更强的 `request propagation` 证据，不能升级成 `real`。
+
+## guest agent
+
+- add_storages / mount_storage evidence:
+  `storage/mod.rs:253`
+
+## rustjail
+
+- mount_from evidence:
+  `rustjail/src/mount.rs:755`
+
+## guest visibility
+
+- final rootfs / volume usability evidence:
+  当前 seed 只固定最终观测点；真实回填时要补 guest 内 rootfs / volume 是否真正可用
+- expected decision:
+  最终需区分是 agent storage 未落地，还是 mount 已落地但 rootfs / volume 仍不可用

@@ -1,0 +1,10 @@
+# restore / snapshot
+# 记录 Firecracker snapshot / restore 的实际请求或命令
+# 若使用 API，请保留 CreateSnapshot / LoadSnapshot / restore_from_snapshot 对应调用
+
+# rootfs / backing checks
+# rg -n "root=/dev/vda|root=PARTUUID|root=/dev/pmem" firecracker/src/vmm/src/builder.rs firecracker/analysis
+# rg -n "disk_path|backing file|update_disk_image|restore" firecracker/src/vmm firecracker/analysis
+
+# guest visibility checks
+# 在 guest 内记录 /dev/vd* / /dev/pmem* / rootfs 是否真正可用

@@ -1,0 +1,89 @@
+# minimum log bundle
+
+This file defines the smallest useful evidence bundle for attempting to upgrade
+`fc-rootfs-backing-restore-checklist-seed-20260622` to a `real`.
+
+## Required bundle parts
+
+Need all five parts from the same attempt window:
+
+1. restore input/success evidence
+2. root expression evidence
+3. backing consistency evidence
+4. guest device visibility evidence
+5. rootfs usability evidence
+
+If any one part is missing, do not attempt to upgrade.
+
+## 1. Restore input/success evidence
+
+At minimum, provide one of:
+
+- snapshot request + response
+- restore request + response
+- command transcript showing restore success
+
+Goal:
+
+- prove the restore attempt itself succeeded
+
+## 2. Root expression evidence
+
+At minimum, provide one of:
+
+- kernel cmdline containing `root=/dev/vda`
+- `root=PARTUUID=...`
+- `root=/dev/pmem{i}`
+
+Goal:
+
+- prove the intended root expression was known for this attempt
+
+## 3. Backing consistency evidence
+
+At minimum, provide one of:
+
+- restore-time disk path
+- restore-time pmem path
+- host check proving the backing object still existed and matched expectation
+
+Goal:
+
+- prove host-side backing consistency
+
+## 4. Guest device visibility evidence
+
+At minimum, provide one of:
+
+- `/dev/vd*`
+- `/dev/pmem*`
+- `lsblk`
+
+Goal:
+
+- prove whether the guest saw the intended device
+
+## 5. Rootfs usability evidence
+
+At minimum, provide one of:
+
+- successful rootfs mount / usable `/`
+- boot reached userspace
+- or a clear rootfs failure outcome
+
+Goal:
+
+- prove the final rootfs outcome
+
+## Bundle acceptance rule
+
+Only treat an evidence set as an upgrade candidate if all of the following are true:
+
+1. same attempt window
+2. restore success present
+3. root expression present
+4. backing consistency present
+5. guest device visibility present
+6. final rootfs usability result present
+
+Otherwise, keep it as `seed`.

@@ -1,0 +1,7 @@
+# 当前是种子包。
+
+# 目标错误签名：
+insert network device
+
+# 参考源码：
+- kata-containers/src/runtime-rs/crates/hypervisor/src/dragonball/inner_device.rs

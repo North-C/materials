@@ -1,0 +1,8 @@
+# guest observations
+
+- guest 是否重新看到 block / pmem：
+  待真实回填
+- rootfs 是否真正可用：
+  待真实回填
+- 是否已经进入 guest rootfs 层问题：
+  当前未知；需先证明 restore 与 host backing 已成立
