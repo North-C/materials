@@ -1,0 +1,267 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+BENCH_HOME="${CUBE_BENCH_HOME:-/opt/cube-bench}"
+UPSTREAM="${BENCH_HOME}/upstream"
+OUT_DIR="${CUBE_BENCH_OUT_DIR:-/tmp/cube-bench-results}"
+mkdir -p "${OUT_DIR}"
+
+usage() {
+  cat <<'EOF'
+Usage: run-benchmark <case>
+
+Cases:
+  versions             print installed runtime/tool versions and upstream source IDs
+  sysbench-memory      upstream sysbench memory workload, configurable read/write and seq/rnd
+  sysbench-memory-all  run seq-read, seq-write, rnd-read, rnd-write memory workloads
+  sysbench-prime       upstream sysbench CPU prime workload (--cpu-max-prime)
+  sysbench-prime-matrix run sysbench prime across SYSBENCH_PRIME_MAX_LIST
+  go-benchmark         upstream golang.org/x/benchmarks build/http/json/garbage average
+  php-benchmark        upstream PHPBench 0.8.1 Pantheon fork
+  python-benchmark     upstream python/pyperformance benchmark suite
+  node-octane          upstream dai-shi/benchmark-octane
+  java-scimark         upstream mork-optimization/scimark 2.2 jar
+  all                  short smoke run of all cases
+  formal               formal benchmark suite with fixed comparison parameters
+EOF
+}
+
+versions() {
+  {
+    echo "go=$(go version)"
+    echo "php=$(php -v | head -n1)"
+    echo "python=$(python3 --version)"
+    echo "pyperformance=$(pyperformance --version 2>/dev/null || true)"
+    echo "node=$(node --version)"
+    echo "java=$(java -version 2>&1 | head -n1)"
+    echo "sysbench=$("${BENCH_HOME}/bin/sysbench-upstream" --version)"
+    echo "sources=${BENCH_HOME}/SOURCES.md"
+    sed 's/^/source: /' "${BENCH_HOME}/SOURCES.md"
+  } | sed 's/^/[versions] /'
+}
+
+sysbench_memory() {
+  local threads="${SYSBENCH_MEMORY_THREADS:-${SYSBENCH_THREADS:-$(nproc)}}"
+  local time_s="${SYSBENCH_MEMORY_TIME:-${SYSBENCH_TIME:-30}}"
+  local block_size="${SYSBENCH_MEMORY_BLOCK_SIZE:-1K}"
+  local total_size="${SYSBENCH_MEMORY_TOTAL_SIZE:-100G}"
+  local oper="${SYSBENCH_MEMORY_OPER:-write}"
+  local access_mode="${SYSBENCH_MEMORY_ACCESS_MODE:-seq}"
+  local scope="${SYSBENCH_MEMORY_SCOPE:-global}"
+
+  echo "[sysbench-memory] upstream=sysbench threads=${threads} time=${time_s} block-size=${block_size} total-size=${total_size} scope=${scope} oper=${oper} access-mode=${access_mode}"
+  "${BENCH_HOME}/bin/sysbench-upstream" \
+    --threads="${threads}" \
+    --time="${time_s}" \
+    --memory-block-size="${block_size}" \
+    --memory-total-size="${total_size}" \
+    --memory-scope="${scope}" \
+    --memory-oper="${oper}" \
+    --memory-access-mode="${access_mode}" \
+    memory run
+}
+
+sysbench_memory_one() {
+  local label="$1"
+  local oper="$2"
+  local access_mode="$3"
+  echo "[sysbench-memory-all] case=${label}"
+  SYSBENCH_MEMORY_OPER="${oper}" SYSBENCH_MEMORY_ACCESS_MODE="${access_mode}" sysbench_memory
+}
+
+sysbench_memory_all() {
+  sysbench_memory_one "seq-read" read seq
+  sysbench_memory_one "seq-write" write seq
+  sysbench_memory_one "rnd-read" read rnd
+  sysbench_memory_one "rnd-write" write rnd
+}
+
+sysbench_prime() {
+  local max_prime="${SYSBENCH_MAX_PRIME:-20000}"
+  local threads="${SYSBENCH_THREADS:-$(nproc)}"
+  local time_s="${SYSBENCH_TIME:-30}"
+  echo "[sysbench-prime] upstream=sysbench cpu-max-prime=${max_prime} threads=${threads} time=${time_s}"
+  "${BENCH_HOME}/bin/sysbench-upstream" --threads="${threads}" --time="${time_s}" cpu --cpu-max-prime="${max_prime}" run
+}
+
+sysbench_prime_matrix() {
+  local primes="${SYSBENCH_PRIME_MAX_LIST:-1000,2000,3000,5000,10000,20000,30000,50000,100000}"
+  local prime
+  for prime in ${primes//,/ }; do
+    echo "[sysbench-prime-matrix] cpu-max-prime=${prime}"
+    SYSBENCH_MAX_PRIME="${prime}" sysbench_prime
+  done
+}
+
+go_benchmark() {
+  local repeats="${GO_BENCH_REPEATS:-1}"
+  local raw_cases="${GO_BENCH_CASES:-build,http,json,garbage}"
+  raw_cases="${raw_cases//,/ }"
+  local cases=()
+  local case_name
+  for case_name in ${raw_cases}; do
+    case "${case_name}" in
+      build|http|json|garbage) cases+=("${case_name}") ;;
+      *) echo "[go-benchmark] invalid GO_BENCH_CASES item: ${case_name}" >&2; exit 2 ;;
+    esac
+  done
+  if (( ${#cases[@]} == 0 )); then
+    echo "[go-benchmark] GO_BENCH_CASES must include at least one of: build,http,json,garbage" >&2
+    exit 2
+  fi
+  local perf_shim_dir=""
+  if [[ "${GO_BENCH_DISABLE_PERF:-1}" == "1" ]]; then
+    perf_shim_dir="$(mktemp -d)"
+    cat >"${perf_shim_dir}/perf" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+case "${1:-}" in
+  record)
+    shift
+    while (($#)); do
+      case "$1" in
+        -o|--output)
+          shift 2
+          ;;
+        --output=*)
+          shift
+          ;;
+        --)
+          shift
+          break
+          ;;
+        -*)
+          shift
+          ;;
+        *)
+          break
+          ;;
+      esac
+    done
+    if (($#)); then
+      exec "$@"
+    fi
+    ;;
+  report)
+    exit 0
+    ;;
+esac
+EOF
+    chmod +x "${perf_shim_dir}/perf"
+  fi
+  local global_total=0
+  local global_count=0
+  echo "[go-benchmark] upstream=golang.org/x/benchmarks cases=${cases[*]} repeats=${repeats} disable-perf=${GO_BENCH_DISABLE_PERF:-1}"
+  for case_name in "${cases[@]}"; do
+    local case_total=0
+    local case_count=0
+    local repeat_idx
+    for repeat_idx in $(seq 1 "${repeats}"); do
+      local log="${OUT_DIR}/go-${case_name}-${repeat_idx}.log"
+      echo "[go-benchmark] running ${case_name} repeat=${repeat_idx}"
+      if [[ "${case_name}" == "build" && -n "${perf_shim_dir}" ]]; then
+        PATH="${perf_shim_dir}:${PATH}" "/opt/cube-bench/bin/go-upstream/${case_name}" | tee "${log}"
+      else
+        "/opt/cube-bench/bin/go-upstream/${case_name}" | tee "${log}"
+      fi
+      local value
+      value="$(awk '/^Benchmark/ {for (i=1; i<NF; i++) if ($(i+1) == "ns/op") {print $i; exit}}' "${log}" || true)"
+      if [[ "${value}" =~ ^[0-9.]+$ ]]; then
+        case_total="$(awk -v a="${case_total}" -v b="${value}" 'BEGIN {printf "%.6f", a+b}')"
+        case_count=$((case_count + 1))
+        global_total="$(awk -v a="${global_total}" -v b="${value}" 'BEGIN {printf "%.6f", a+b}')"
+        global_count=$((global_count + 1))
+      fi
+    done
+    if (( case_count > 0 )); then
+      awk -v name="${case_name}" -v total="${case_total}" -v count="${case_count}" \
+        'BEGIN {printf "{\"benchmark\":\"go-%s-average\",\"case\":\"%s\",\"value\":%.6f,\"unit\":\"ns/op\",\"samples\":%d}\n", name, name, total/count, count}'
+    fi
+  done
+  if (( global_count > 0 )); then
+    awk -v total="${global_total}" -v count="${global_count}" \
+      'BEGIN {printf "{\"benchmark\":\"go-benchmark-average\",\"value\":%.6f,\"unit\":\"ns/op\",\"samples\":%d}\n", total/count, count}'
+  fi
+  if [[ -n "${perf_shim_dir}" ]]; then
+    rm -rf "${perf_shim_dir}"
+  fi
+}
+
+php_benchmark() {
+  local iterations="${PHPBENCH_ITERATIONS:-2000000}"
+  echo "[php-benchmark] upstream=pantheon-systems/php-bench iterations=${iterations}"
+  (
+    cd "${UPSTREAM}/php-bench"
+    PHPBENCH_ERROR_REPORTING=1 php index.php iterations="${iterations}" format=json
+  )
+}
+
+python_benchmark() {
+  local bench="${PYPERFORMANCE_BENCHMARKS:-python_startup,json_dumps,json_loads,richards,scimark}"
+  local mode="${PYPERFORMANCE_MODE:-fast}"
+  local inherit_env="PATH,PIP_INDEX_URL,PIP_TRUSTED_HOST,PIP_EXTRA_INDEX_URL,PIP_CERT,HTTP_PROXY,HTTPS_PROXY,NO_PROXY,http_proxy,https_proxy,no_proxy"
+  local run_args=(--benchmarks "${bench}" --inherit-environ="${inherit_env}" --output "${OUT_DIR}/pyperformance.json" --python "$(command -v python3)")
+  if [[ "${PYPERFORMANCE_RIGOROUS:-0}" == "1" || "${mode}" == "rigorous" ]]; then
+    run_args+=(--rigorous)
+  else
+    run_args+=(--fast)
+  fi
+  echo "[python-benchmark] upstream=python/pyperformance benchmarks=${bench} mode=${mode}"
+  rm -f "${OUT_DIR}/pyperformance.json"
+  pyperformance run "${run_args[@]}"
+  pyperformance show "${OUT_DIR}/pyperformance.json"
+}
+
+node_octane() {
+  echo "[node-octane] upstream=dai-shi/benchmark-octane"
+  (
+    cd "${UPSTREAM}/benchmark-octane"
+    node run.js
+  )
+}
+
+java_scimark() {
+  echo "[java-scimark] upstream=mork-optimization/scimark jar=scimark-2.2.jar"
+  java -jar "${UPSTREAM}/scimark-2.2.jar" -large
+}
+
+formal_suite() {
+  versions
+  SYSBENCH_MEMORY_THREADS="${SYSBENCH_MEMORY_THREADS:-2}" \
+    SYSBENCH_MEMORY_BLOCK_SIZE="${SYSBENCH_MEMORY_BLOCK_SIZE:-1G}" \
+    SYSBENCH_MEMORY_TOTAL_SIZE="${SYSBENCH_MEMORY_TOTAL_SIZE:-100G}" \
+    sysbench_memory_all
+  SYSBENCH_THREADS="${SYSBENCH_THREADS:-2}" sysbench_prime_matrix
+  GO_BENCH_REPEATS="${GO_BENCH_REPEATS:-3}" go_benchmark
+  PHPBENCH_ITERATIONS="${PHPBENCH_ITERATIONS:-2000000}" php_benchmark
+  PYPERFORMANCE_MODE="${PYPERFORMANCE_MODE:-rigorous}" python_benchmark
+  node_octane
+  java_scimark
+}
+
+case "${1:-}" in
+  versions) versions ;;
+  sysbench-memory) sysbench_memory ;;
+  sysbench-memory-all) sysbench_memory_all ;;
+  sysbench-prime) sysbench_prime ;;
+  sysbench-prime-matrix) sysbench_prime_matrix ;;
+  go-benchmark) go_benchmark ;;
+  php-benchmark) php_benchmark ;;
+  python-benchmark) python_benchmark ;;
+  node-octane) node_octane ;;
+  java-scimark) java_scimark ;;
+  all)
+    versions
+    SYSBENCH_MEMORY_TIME="${SYSBENCH_MEMORY_TIME:-5}" SYSBENCH_MEMORY_TOTAL_SIZE="${SYSBENCH_MEMORY_TOTAL_SIZE:-10G}" sysbench_memory_all
+    SYSBENCH_TIME="${SYSBENCH_TIME:-5}" SYSBENCH_MAX_PRIME="${SYSBENCH_MAX_PRIME:-10000}" sysbench_prime
+    GO_BENCH_REPEATS="${GO_BENCH_REPEATS:-1}" go_benchmark
+    PHPBENCH_ITERATIONS="${PHPBENCH_ITERATIONS:-10000}" php_benchmark
+    PYPERFORMANCE_BENCHMARKS="${PYPERFORMANCE_BENCHMARKS:-python_startup,json_dumps}" python_benchmark
+    node_octane
+    java_scimark
+    ;;
+  formal) formal_suite ;;
+  ""|-h|--help|help) usage ;;
+  *) usage >&2; exit 2 ;;
+esac

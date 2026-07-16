@@ -138,21 +138,23 @@ sysbench --threads=<threads> --time=<time> cpu --cpu-max-prime=<max_prime> run
 执行内容：
 
 ```bash
-golang.org/x/benchmarks: build http json garbage
+golang.org/x/benchmarks: http json garbage
 ```
 
 参数：
 
 | 参数 | 默认值 | 说明 |
 |---|---:|---|
+| `GO_BENCH_CASES` | `build,http,json,garbage` | 要运行的 Go 子项，逗号分隔 |
+| `GO_BENCH_DISABLE_PERF` | `1` | 关闭 `build` 子项里的上游 perf profiler，仅保留 `BenchmarkBuild` 主测试 |
 | `GO_BENCH_REPEATS` | `1` | 每个 Go 子项重复次数 |
 
 设计原则：
 
 - Go 子项的耗时跨度很大，`build` 往往远大于其它子项。
-- wrapper 会分别输出 `go-build-average`、`go-http-average`、`go-json-average`、`go-garbage-average`，并额外输出一个全局 `go-benchmark-average`。
+- wrapper 默认输出 `go-build-average`、`go-http-average`、`go-json-average`、`go-garbage-average`，并额外输出一个全局 `go-benchmark-average`。
 - 全局 average 是简单平均，容易被 `build` 主导。
-- 正式分析应优先分别比较 `BenchmarkBuild`、`BenchmarkHTTP`、`BenchmarkJSON`、`BenchmarkGarbage`。
+- 正式分析应分别比较 `BenchmarkBuild`、`BenchmarkHTTP`、`BenchmarkJSON`、`BenchmarkGarbage`。
 
 输出解读：
 
@@ -160,7 +162,7 @@ golang.org/x/benchmarks: build http json garbage
 - `allocated-bytes/op`：每次操作分配字节数，越低越好。
 - `allocs/op`：每次操作分配次数，越低越好。
 - `peak-RSS-bytes`：峰值内存。
-- stderr 中可能出现 perf 缺失提示；若 exit code 为 0，主指标仍有效。
+- `build` 子项上游默认会触发 perf profiler；本套脚本默认 `GO_BENCH_DISABLE_PERF=1`，通过临时 shim 关闭 profiler，避免在未安装/未授权 perf 的环境中产生额外失败或噪声。
 
 ### 4. `php-benchmark`
 
@@ -285,7 +287,7 @@ java -jar scimark-2.2.jar -large
 |---|---|---|---|---|---:|---|
 | sysbench-memory-all | `TIME=30 TOTAL=100G BLOCK=1G THREADS=2` | seq/rnd read/write throughput | MiB/s | 越大越好 | 3+ | median |
 | sysbench-prime | `TIME=30 THREADS=2 PRIME=1000/2000/3000/5000/10000/20000/30000/50000/100000` | events/sec | events/s | 越大越好 | 3+ | median |
-| go-benchmark | `GO_BENCH_REPEATS=3` | build/http/json/garbage average ns/op | ns/op | 越小越好 | 3+ | median |
+| go-benchmark | `GO_BENCH_CASES=build,http,json,garbage GO_BENCH_DISABLE_PERF=1 GO_BENCH_REPEATS=3` | build/http/json/garbage average ns/op | ns/op | 越小越好 | 3+ | median |
 | php-benchmark | `PHPBENCH_ITERATIONS=2000000` | score / total_time | score/s | score 越大越好，time 越小越好 | 3+ | median |
 | python-benchmark | `PYPERFORMANCE_MODE=rigorous` | Mean | ms | 越小越好 | pyperformance 内部采样 | pyperformance report |
 | node-octane | default | Score | score | 越大越好 | 3+ | median |

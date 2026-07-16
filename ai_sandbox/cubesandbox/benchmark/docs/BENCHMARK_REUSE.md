@@ -6,10 +6,12 @@
 
 - 在目标机器上已经启动 CubeSandbox v0.5.0 相关服务。
 - 目标机器架构与镜像匹配：
-  - arm64 使用 `cube-bench-suite:upstream-arm64`
-  - x86_64 使用 `cube-bench-suite:upstream-amd64`
+  - arm64 推荐使用固定 tag `cube-bench-suite:upstream-arm64-20260715-5e54db9`
+  - x86_64 推荐使用固定 tag `cube-bench-suite:upstream-amd64-20260715-5763a38`
 - 镜像已经导入目标机器 Docker，并推送到 CubeSandbox 节点可拉取的 registry。
 - `cubemastercli` 可用，CubeAPI 默认监听 `http://127.0.0.1:3000`。
+
+固定 tag 清单见 `BENCHMARK_IMAGE_TAGS.md`。`upstream-arm64` / `upstream-amd64` 是可变开发 tag，不建议作为正式测试报告中的唯一镜像标识。
 
 ## 1. 导入并推送镜像
 
@@ -17,9 +19,10 @@
 
 ```bash
 docker load -i cube-bench-suite_upstream-arm64.tar.gz
-docker tag cube-bench-suite:upstream-arm64 127.0.0.1:5000/cube-bench-suite:upstream-arm64
+docker tag cube-bench-suite:upstream-arm64 cube-bench-suite:upstream-arm64-20260715-5e54db9
+docker tag cube-bench-suite:upstream-arm64-20260715-5e54db9 127.0.0.1:5000/cube-bench-suite:upstream-arm64-20260715-5e54db9
 docker login 127.0.0.1:5000 -u admin -p passw0rd
-docker push 127.0.0.1:5000/cube-bench-suite:upstream-arm64
+docker push 127.0.0.1:5000/cube-bench-suite:upstream-arm64-20260715-5e54db9
 ```
 
 ## 2. 创建 8C16G Template
@@ -28,7 +31,7 @@ docker push 127.0.0.1:5000/cube-bench-suite:upstream-arm64
 
 ```bash
 cubemastercli template create-from-image \
-  --image 127.0.0.1:5000/cube-bench-suite:upstream-arm64 \
+  --image 127.0.0.1:5000/cube-bench-suite:upstream-arm64-20260715-5e54db9 \
   --registry-username admin \
   --registry-password passw0rd \
   --writable-layer-size 8G \
@@ -85,9 +88,9 @@ python3 scripts/run_cube_bench_envd.py \
 
 正式套件包括：
 
-- `sysbench-memory-all-formal`：`SYSBENCH_MEMORY_THREADS=2 SYSBENCH_MEMORY_BLOCK_SIZE=1G SYSBENCH_MEMORY_TOTAL_SIZE=100G`，依次执行顺序读、顺序写、随机读、随机写。
+- `sysbench-memory-<mode>-formal`：`SYSBENCH_MEMORY_THREADS=2 SYSBENCH_MEMORY_BLOCK_SIZE=1G SYSBENCH_MEMORY_TOTAL_SIZE=100G`，分别执行 `seq-read`, `seq-write`, `rnd-read`, `rnd-write`。
 - `sysbench-prime-<N>`：`SYSBENCH_THREADS=2`，`N` 为 `1000, 2000, 3000, 5000, 10000, 20000, 30000, 50000, 100000`。
-- `go-benchmark-formal`：`GO_BENCH_REPEATS=3`，输出 `build/http/json/garbage` 各子项 average。
+- `go-benchmark-formal`：`GO_BENCH_CASES=build,http,json,garbage GO_BENCH_DISABLE_PERF=1 GO_BENCH_REPEATS=3`，输出 `build/http/json/garbage` 各子项 average，并关闭 build 的上游 perf profiler。
 - `php-benchmark-formal`：`PHPBENCH_ITERATIONS=2000000`。
 - `python-benchmark-formal`：`PYPERFORMANCE_MODE=rigorous`。
 - `node-octane-formal` 和 `java-scimark-formal`：使用镜像内正式默认设置。
@@ -99,7 +102,7 @@ python3 scripts/run_cube_bench_envd.py \
   --template-id <template_id> \
   --suite formal \
   --case versions \
-  --case sysbench-memory-all-formal \
+  --case sysbench-memory-seq-read-formal \
   --case sysbench-prime-10000 \
   --delete
 ```
@@ -108,7 +111,7 @@ python3 scripts/run_cube_bench_envd.py \
 
 - `versions`
 - smoke suite：`sysbench-memory-all`, `sysbench-prime`, `go-benchmark`, `php-benchmark`, `python-benchmark`, `node-octane`, `java-scimark`
-- formal suite：`sysbench-memory-all-formal`, `sysbench-prime-1000`, `sysbench-prime-2000`, `sysbench-prime-3000`, `sysbench-prime-5000`, `sysbench-prime-10000`, `sysbench-prime-20000`, `sysbench-prime-30000`, `sysbench-prime-50000`, `sysbench-prime-100000`, `go-benchmark-formal`, `php-benchmark-formal`, `python-benchmark-formal`, `node-octane-formal`, `java-scimark-formal`
+- formal suite：`sysbench-memory-seq-read-formal`, `sysbench-memory-seq-write-formal`, `sysbench-memory-rnd-read-formal`, `sysbench-memory-rnd-write-formal`, `sysbench-prime-1000`, `sysbench-prime-2000`, `sysbench-prime-3000`, `sysbench-prime-5000`, `sysbench-prime-10000`, `sysbench-prime-20000`, `sysbench-prime-30000`, `sysbench-prime-50000`, `sysbench-prime-100000`, `go-benchmark-formal`, `php-benchmark-formal`, `python-benchmark-formal`, `node-octane-formal`, `java-scimark-formal`
 
 ## 6. 复用已有 Sandbox
 

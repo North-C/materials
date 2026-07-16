@@ -35,109 +35,6 @@ from typing import Any
 
 Case = tuple[str, str, int]
 
-
-GO_BENCH_DIRECT_SCRIPT = r"""set -euo pipefail
-if grep -q "GO_BENCH_DISABLE_PERF" "$(command -v run-benchmark)" 2>/dev/null; then
-  exec run-benchmark go-benchmark
-fi
-
-OUT_DIR="${CUBE_BENCH_OUT_DIR:-/tmp/cube-bench-results}"
-repeats="${GO_BENCH_REPEATS:-1}"
-raw_cases="${GO_BENCH_CASES:-build,http,json,garbage}"
-raw_cases="${raw_cases//,/ }"
-mkdir -p "${OUT_DIR}"
-perf_shim_dir=""
-if [[ "${GO_BENCH_DISABLE_PERF:-1}" == "1" ]]; then
-  perf_shim_dir="$(mktemp -d)"
-  cat >"${perf_shim_dir}/perf" <<'EOF'
-#!/usr/bin/env bash
-set -euo pipefail
-
-case "${1:-}" in
-  record)
-    shift
-    while (($#)); do
-      case "$1" in
-        -o|--output)
-          shift 2
-          ;;
-        --output=*)
-          shift
-          ;;
-        --)
-          shift
-          break
-          ;;
-        -*)
-          shift
-          ;;
-        *)
-          break
-          ;;
-      esac
-    done
-    if (($#)); then
-      exec "$@"
-    fi
-    ;;
-  report)
-    exit 0
-    ;;
-esac
-EOF
-  chmod +x "${perf_shim_dir}/perf"
-fi
-global_total=0
-global_count=0
-echo "[go-benchmark] upstream=golang.org/x/benchmarks cases=${raw_cases} repeats=${repeats} mode=direct disable-perf=${GO_BENCH_DISABLE_PERF:-1}"
-for case_name in ${raw_cases}; do
-  case "${case_name}" in
-    build|http|json|garbage) ;;
-    *) echo "[go-benchmark] invalid GO_BENCH_CASES item: ${case_name}" >&2; exit 2 ;;
-  esac
-  case_total=0
-  case_count=0
-  for repeat_idx in $(seq 1 "${repeats}"); do
-    log="${OUT_DIR}/go-${case_name}-${repeat_idx}.log"
-    echo "[go-benchmark] running ${case_name} repeat=${repeat_idx}"
-    if [[ "${case_name}" == "build" && -n "${perf_shim_dir}" ]]; then
-      PATH="${perf_shim_dir}:${PATH}" "/opt/cube-bench/bin/go-upstream/${case_name}" | tee "${log}"
-    else
-      "/opt/cube-bench/bin/go-upstream/${case_name}" | tee "${log}"
-    fi
-    value="$(awk '/^Benchmark/ {for (i=1; i<NF; i++) if ($(i+1) == "ns/op") {print $i; exit}}' "${log}" || true)"
-    if [[ "${value}" =~ ^[0-9.]+$ ]]; then
-      case_total="$(awk -v a="${case_total}" -v b="${value}" 'BEGIN {printf "%.6f", a+b}')"
-      case_count=$((case_count + 1))
-      global_total="$(awk -v a="${global_total}" -v b="${value}" 'BEGIN {printf "%.6f", a+b}')"
-      global_count=$((global_count + 1))
-    fi
-  done
-  if (( case_count > 0 )); then
-    awk -v name="${case_name}" -v total="${case_total}" -v count="${case_count}" \
-      'BEGIN {printf "{\"benchmark\":\"go-%s-average\",\"case\":\"%s\",\"value\":%.6f,\"unit\":\"ns/op\",\"samples\":%d}\n", name, name, total/count, count}'
-  fi
-done
-if (( global_count > 0 )); then
-  awk -v total="${global_total}" -v count="${global_count}" \
-    'BEGIN {printf "{\"benchmark\":\"go-benchmark-average\",\"value\":%.6f,\"unit\":\"ns/op\",\"samples\":%d}\n", total/count, count}'
-fi
-if [[ -n "${perf_shim_dir}" ]]; then
-  rm -rf "${perf_shim_dir}"
-fi"""
-
-
-def go_benchmark_command(repeats: int) -> str:
-    return (
-        "CUBE_BENCH_OUT_DIR=/tmp/cube-bench-results "
-        "GO_BENCH_CASES=build,http,json,garbage "
-        "GO_BENCH_DISABLE_PERF=1 "
-        f"GO_BENCH_REPEATS={repeats} "
-        "bash <<'CUBE_GO_BENCH'\n"
-        f"{GO_BENCH_DIRECT_SCRIPT}\n"
-        "CUBE_GO_BENCH"
-    )
-
 SMOKE_CASES: list[Case] = [
     ("00-versions", "run-benchmark versions", 60),
     (
@@ -157,7 +54,9 @@ SMOKE_CASES: list[Case] = [
     ),
     (
         "03-go-benchmark",
-        go_benchmark_command(1),
+        "CUBE_BENCH_OUT_DIR=/tmp/cube-bench-results "
+        "GO_BENCH_CASES=build,http,json,garbage GO_BENCH_DISABLE_PERF=1 "
+        "GO_BENCH_REPEATS=1 run-benchmark go-benchmark",
         600,
     ),
     (
@@ -237,7 +136,9 @@ FORMAL_CASES: list[Case] = [
     ],
     (
         "03-go-benchmark-formal",
-        go_benchmark_command(3),
+        "CUBE_BENCH_OUT_DIR=/tmp/cube-bench-results "
+        "GO_BENCH_CASES=build,http,json,garbage GO_BENCH_DISABLE_PERF=1 "
+        "GO_BENCH_REPEATS=3 run-benchmark go-benchmark",
         1800,
     ),
     (

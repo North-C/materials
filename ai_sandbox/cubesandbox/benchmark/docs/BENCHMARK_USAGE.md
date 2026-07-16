@@ -47,7 +47,7 @@ run-benchmark <case>
 | `sysbench-memory-all` | `akopytov/sysbench` | 依次运行顺序读、顺序写、随机读、随机写 |
 | `sysbench-prime` | `akopytov/sysbench` | CPU prime workload，即常用最大素数测试 |
 | `sysbench-prime-matrix` | `akopytov/sysbench` | 按素数上限矩阵运行 CPU prime |
-| `go-benchmark` | `golang.org/x/benchmarks` | `build/http/json/garbage` 并输出各子项 average |
+| `go-benchmark` | `golang.org/x/benchmarks` | 默认运行 `build/http/json/garbage` 并输出各子项 average；默认关闭 build 的上游 perf profiler |
 | `php-benchmark` | `pantheon-systems/php-bench` | PHPBench CPU suite |
 | `python-benchmark` | `python/pyperformance` | 默认运行一组短 pyperformance benchmark |
 | `node-octane` | `dai-shi/benchmark-octane` | Octane benchmark |
@@ -141,8 +141,10 @@ docker run --rm \
   cube-bench-suite:upstream-amd64 \
   run-benchmark sysbench-prime-matrix
 
-# Go build/http/json/garbage 各子项 average
+# Go build/http/json/garbage 各子项 average，默认关闭 build 的 perf profiler
 docker run --rm \
+  -e GO_BENCH_CASES=build,http,json,garbage \
+  -e GO_BENCH_DISABLE_PERF=1 \
   -e GO_BENCH_REPEATS=3 \
   cube-bench-suite:upstream-amd64 \
   run-benchmark go-benchmark
@@ -186,6 +188,8 @@ arm64 只需要将镜像 tag 改成 `cube-bench-suite:upstream-arm64`。
 | `SYSBENCH_MAX_PRIME` | `20000` | `sysbench-prime` |
 | `SYSBENCH_PRIME_MAX_LIST` | `1000,2000,3000,5000,10000,20000,30000,50000,100000` | `sysbench-prime-matrix` |
 | `SYSBENCH_THREADS` | `nproc` | `sysbench-prime`, `sysbench-prime-matrix` |
+| `GO_BENCH_CASES` | `build,http,json,garbage` | `go-benchmark` |
+| `GO_BENCH_DISABLE_PERF` | `1` | `go-benchmark` |
 | `GO_BENCH_REPEATS` | `1` | `go-benchmark` |
 | `PHPBENCH_ITERATIONS` | `2000000` | `php-benchmark` |
 | `PYPERFORMANCE_BENCHMARKS` | `python_startup,json_dumps,json_loads,richards,scimark` | `python-benchmark` |
@@ -209,7 +213,9 @@ arm64 只需要将镜像 tag 改成 `cube-bench-suite:upstream-arm64`。
 
 | case | 可设置参数 | 作用 | 设置建议 |
 |---|---|---|---|
-| `go-benchmark` | `GO_BENCH_REPEATS` | 每个 Go benchmark 子项重复次数。子项固定为 `build/http/json/garbage`，wrapper 会分别输出每个子项的 average，并额外输出全局 average。 | smoke 用 `1`；正式取数使用 `3` 或以上并固定 CPU 资源。 |
+| `go-benchmark` | `GO_BENCH_CASES` | 选择 Go benchmark 子项，逗号分隔。默认 `build,http,json,garbage`。 | 自动脚本默认包含 `build`。 |
+| `go-benchmark` | `GO_BENCH_DISABLE_PERF` | 设为 `1` 时为 `build` 子项注入临时 `perf` shim，保留 `BenchmarkBuild` 主测试但不采集 perf profile。设为 `0` 时使用真实 `perf`。 | 默认 `1`；只有需要 perf profile 且环境已安装/授权 perf 时设为 `0`。 |
+| `go-benchmark` | `GO_BENCH_REPEATS` | 每个 Go benchmark 子项重复次数。wrapper 会分别输出每个子项的 average，并额外输出全局 average。 | smoke 用 `1`；正式取数使用 `3` 或以上并固定 CPU 资源。 |
 | `php-benchmark` | `PHPBENCH_ITERATIONS` | 传给 PHPBench 的 `iterations`。 | smoke 用 `10000`；正式取数可使用默认 `2000000` 或按耗时调高/调低。 |
 | `python-benchmark` | `PYPERFORMANCE_BENCHMARKS` | pyperformance benchmark 名称列表，逗号分隔。 | smoke 用 `python_startup,json_dumps`；正式取数可用默认列表或指定完整目标项。 |
 | `python-benchmark` | `PYPERFORMANCE_MODE` | `fast` 或 `rigorous`。 | smoke 用 `fast`；正式取数用 `rigorous`。 |
@@ -325,13 +331,13 @@ benchmarks = [
         "timeout": 120,
     },
     {
-        "name": "sysbench-memory-all-formal",
-        "cmd": "SYSBENCH_MEMORY_TIME=30 SYSBENCH_MEMORY_TOTAL_SIZE=100G SYSBENCH_MEMORY_BLOCK_SIZE=1G SYSBENCH_MEMORY_THREADS=2 run-benchmark sysbench-memory-all",
-        "timeout": 300,
+        "name": "sysbench-memory-seq-read-formal",
+        "cmd": "SYSBENCH_MEMORY_TIME=30 SYSBENCH_MEMORY_TOTAL_SIZE=100G SYSBENCH_MEMORY_BLOCK_SIZE=1G SYSBENCH_MEMORY_THREADS=2 SYSBENCH_MEMORY_OPER=read SYSBENCH_MEMORY_ACCESS_MODE=seq run-benchmark sysbench-memory",
+        "timeout": 900,
     },
     {
         "name": "go-benchmark-formal",
-        "cmd": "GO_BENCH_REPEATS=3 run-benchmark go-benchmark",
+        "cmd": "GO_BENCH_CASES=build,http,json,garbage GO_BENCH_DISABLE_PERF=1 GO_BENCH_REPEATS=3 run-benchmark go-benchmark",
         "timeout": 1800,
     },
     {
@@ -437,7 +443,7 @@ cubemastercli --address <cubemaster-ip> --port 8089 tpl create-from-image \
 
 ```bash
 run-benchmark sysbench-memory-all
-run-benchmark go-benchmark
+GO_BENCH_CASES=build,http,json,garbage GO_BENCH_DISABLE_PERF=1 run-benchmark go-benchmark
 run-benchmark php-benchmark
 run-benchmark python-benchmark
 run-benchmark node-octane
@@ -501,6 +507,6 @@ cubemastercli --address <cubemaster-ip> --port 8089 tpl create-from-image \
 | template 构建成功但探活失败 | `--probe` 端口或 `--probe-path` 错误 | SDK 模式使用 `--probe 49983 --probe-path /health`，并确认 `--expose-port 49983`；只验证 benchmark health server 时可检查 `49999/health` |
 | Sandbox 启动很慢 | 启动命令中运行了长耗时 benchmark | 默认 template 只跑 health server；长 benchmark 放到 SDK 命令执行或 Image 模式 |
 | `python-benchmark` 下载依赖失败 | pyperformance 创建 venv 时需要 pip 源 | 镜像默认设置腾讯 PyPI 源；离线环境需提前缓存依赖或允许访问内部 PyPI |
-| Go benchmark 出现 `perf` 相关 warning | 上游 Go benchmark 会尝试调用 `perf` | 非致命，benchmark 仍会输出结果；如需 perf 数据需额外给容器权限和工具 |
+| Go benchmark 出现 `perf` 相关 warning | `GO_BENCH_DISABLE_PERF=0` 且环境没有可用 `perf`，或使用了未更新的旧 wrapper | 默认保持 `GO_BENCH_DISABLE_PERF=1`；如需真实 perf profile，需要安装 `perf` 并提供相应容器/内核权限 |
 | 结果波动大 | 容器/Sandbox 资源竞争、CPU 频率、调度干扰 | 固定线程数、重复运行、隔离节点负载，Python 可使用 rigorous 模式 |
 | `sandbox.commands.run()` 报 `502 bad gateway` / `Code.unavailable` | SDK 通过 cube-proxy 访问 Sandbox 内 `49983`，但 template 未启动 envd、端口未暴露、Sandbox 已暂停/删除，或 cube-proxy 到 compute 节点网络不通 | 先确认 template 使用当前 envd-enabled benchmark 镜像或其它 envd-enabled 镜像，并设置 `--expose-port 49983 --probe 49983`；再检查 DNS/TLS、cube-proxy 日志、Sandbox 是否仍存活 |
