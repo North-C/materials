@@ -36,6 +36,109 @@ from typing import Any
 
 Case = tuple[str, str, int]
 
+
+GO_BENCH_DIRECT_SCRIPT = r"""set -euo pipefail
+if grep -q "GO_BENCH_DISABLE_PERF" "$(command -v run-benchmark)" 2>/dev/null; then
+  exec run-benchmark go-benchmark
+fi
+
+OUT_DIR="${CUBE_BENCH_OUT_DIR:-/tmp/cube-bench-results}"
+repeats="${GO_BENCH_REPEATS:-1}"
+raw_cases="${GO_BENCH_CASES:-build,http,json,garbage}"
+raw_cases="${raw_cases//,/ }"
+mkdir -p "${OUT_DIR}"
+perf_shim_dir=""
+if [[ "${GO_BENCH_DISABLE_PERF:-1}" == "1" ]]; then
+  perf_shim_dir="$(mktemp -d)"
+  cat >"${perf_shim_dir}/perf" <<'EOF'
+#!/usr/bin/env bash
+set -euo pipefail
+
+case "${1:-}" in
+  record)
+    shift
+    while (($#)); do
+      case "$1" in
+        -o|--output)
+          shift 2
+          ;;
+        --output=*)
+          shift
+          ;;
+        --)
+          shift
+          break
+          ;;
+        -*)
+          shift
+          ;;
+        *)
+          break
+          ;;
+      esac
+    done
+    if (($#)); then
+      exec "$@"
+    fi
+    ;;
+  report)
+    exit 0
+    ;;
+esac
+EOF
+  chmod +x "${perf_shim_dir}/perf"
+fi
+global_total=0
+global_count=0
+echo "[go-benchmark] upstream=golang.org/x/benchmarks cases=${raw_cases} repeats=${repeats} mode=direct disable-perf=${GO_BENCH_DISABLE_PERF:-1}"
+for case_name in ${raw_cases}; do
+  case "${case_name}" in
+    build|http|json|garbage) ;;
+    *) echo "[go-benchmark] invalid GO_BENCH_CASES item: ${case_name}" >&2; exit 2 ;;
+  esac
+  case_total=0
+  case_count=0
+  for repeat_idx in $(seq 1 "${repeats}"); do
+    log="${OUT_DIR}/go-${case_name}-${repeat_idx}.log"
+    echo "[go-benchmark] running ${case_name} repeat=${repeat_idx}"
+    if [[ "${case_name}" == "build" && -n "${perf_shim_dir}" ]]; then
+      PATH="${perf_shim_dir}:${PATH}" "/opt/cube-bench/bin/go-upstream/${case_name}" | tee "${log}"
+    else
+      "/opt/cube-bench/bin/go-upstream/${case_name}" | tee "${log}"
+    fi
+    value="$(awk '/^Benchmark/ {for (i=1; i<NF; i++) if ($(i+1) == "ns/op") {print $i; exit}}' "${log}" || true)"
+    if [[ "${value}" =~ ^[0-9.]+$ ]]; then
+      case_total="$(awk -v a="${case_total}" -v b="${value}" 'BEGIN {printf "%.6f", a+b}')"
+      case_count=$((case_count + 1))
+      global_total="$(awk -v a="${global_total}" -v b="${value}" 'BEGIN {printf "%.6f", a+b}')"
+      global_count=$((global_count + 1))
+    fi
+  done
+  if (( case_count > 0 )); then
+    awk -v name="${case_name}" -v total="${case_total}" -v count="${case_count}" \
+      'BEGIN {printf "{\"benchmark\":\"go-%s-average\",\"case\":\"%s\",\"value\":%.6f,\"unit\":\"ns/op\",\"samples\":%d}\n", name, name, total/count, count}'
+  fi
+done
+if (( global_count > 0 )); then
+  awk -v total="${global_total}" -v count="${global_count}" \
+    'BEGIN {printf "{\"benchmark\":\"go-benchmark-average\",\"value\":%.6f,\"unit\":\"ns/op\",\"samples\":%d}\n", total/count, count}'
+fi
+if [[ -n "${perf_shim_dir}" ]]; then
+  rm -rf "${perf_shim_dir}"
+fi"""
+
+
+def go_benchmark_command(repeats: int) -> str:
+    return (
+        "CUBE_BENCH_OUT_DIR=/tmp/cube-bench-results "
+        "GO_BENCH_CASES=build,http,json,garbage "
+        "GO_BENCH_DISABLE_PERF=1 "
+        f"GO_BENCH_REPEATS={repeats} "
+        "bash <<'CUBE_GO_BENCH'\n"
+        f"{GO_BENCH_DIRECT_SCRIPT}\n"
+        "CUBE_GO_BENCH"
+    )
+
 SMOKE_CASES: list[Case] = [
     ("00-versions", "run-benchmark versions", 60),
     (
@@ -55,8 +158,7 @@ SMOKE_CASES: list[Case] = [
     ),
     (
         "03-go-benchmark",
-        "CUBE_BENCH_OUT_DIR=/tmp/cube-bench-results "
-        "GO_BENCH_REPEATS=1 run-benchmark go-benchmark",
+        go_benchmark_command(1),
         600,
     ),
     (
@@ -136,8 +238,7 @@ FORMAL_CASES: list[Case] = [
     ],
     (
         "03-go-benchmark-formal",
-        "CUBE_BENCH_OUT_DIR=/tmp/cube-bench-results "
-        "GO_BENCH_REPEATS=3 run-benchmark go-benchmark",
+        go_benchmark_command(3),
         1800,
     ),
     (
@@ -500,14 +601,20 @@ def generate_report(results_dir: Path, summary: list[dict[str, Any]]) -> Path:
     return report_path
 
 
+def rewrite_case_command(raw_cmd: str, sandbox_out_dir: str) -> str:
+    bench_out_dir = f"{sandbox_out_dir.rstrip('/')}/results"
+    return raw_cmd.replace("CUBE_BENCH_OUT_DIR=/tmp/cube-bench-results", f"CUBE_BENCH_OUT_DIR={bench_out_dir}")
+
+
 def run_sdk_case(sandbox: Any, case: Case, result_dir: Path, cwd: str, sandbox_out_dir: str) -> dict[str, Any]:
     name, raw_cmd, timeout = case
+    effective_cmd = rewrite_case_command(raw_cmd, sandbox_out_dir)
     sandbox_log = f"{sandbox_out_dir.rstrip('/')}/{name}.log"
     wrapped = (
         "set -o pipefail; "
-        f"mkdir -p {shlex.quote(sandbox_out_dir)}; "
+        f"mkdir -p {shlex.quote(sandbox_out_dir)} {shlex.quote(cwd)} {shlex.quote(sandbox_out_dir.rstrip('/') + '/results')}; "
         f"cd {shlex.quote(cwd)}; "
-        f"{raw_cmd} 2>&1 | tee {shlex.quote(sandbox_log)}"
+        f"{effective_cmd} 2>&1 | tee {shlex.quote(sandbox_log)}"
     )
     sdk_cmd = f"/bin/bash -lc {shlex.quote(wrapped)}"
     sandbox_id = sandbox_id_of(sandbox)
@@ -541,7 +648,9 @@ def run_sdk_case(sandbox: Any, case: Case, result_dir: Path, cwd: str, sandbox_o
             error = (error + "; " if error else "") + read_error
 
     elapsed = time.time() - start
-    write_text(result_dir / f"{name}.cmd", raw_cmd + "\n")
+    write_text(result_dir / f"{name}.cmd", effective_cmd + "\n")
+    if effective_cmd != raw_cmd:
+        write_text(result_dir / f"{name}.original_cmd", raw_cmd + "\n")
     write_text(result_dir / f"{name}.sdk_cmd", sdk_cmd + "\n")
     write_text(result_dir / f"{name}.log", full_log)
     write_text(result_dir / f"{name}.stdout.log", stdout)
@@ -573,6 +682,8 @@ def run_sdk_case(sandbox: Any, case: Case, result_dir: Path, cwd: str, sandbox_o
         "stderr_bytes": len(stderr.encode("utf-8")),
         "log_bytes": len(full_log.encode("utf-8")),
         "sandbox_log": sandbox_log,
+        "sandbox_work_dir": cwd,
+        "sandbox_out_dir": sandbox_out_dir,
         "result_dir": str(result_dir),
         "copy_method": copy_method,
         "warning": warning,
@@ -597,7 +708,7 @@ def main() -> int:
     parser.add_argument("--results-dir", default=f"cube-bench-sdk-results-{time.strftime('%Y%m%d-%H%M%S')}")
     parser.add_argument("--suite", choices=("smoke", "formal"), default="formal")
     parser.add_argument("--case", action="append", default=[], help="Case name to run; repeatable.")
-    parser.add_argument("--cwd", default="/opt/cube-bench")
+    parser.add_argument("--cwd", help="Sandbox working directory. Defaults to <sandbox-out-dir>/work.")
     parser.add_argument("--sandbox-out-dir", default="/tmp/cube-bench-sdk")
     parser.add_argument("--delete", action="store_true", help="Kill/close Sandbox after the run.")
     parser.add_argument("--no-tar", action="store_true", help="Do not create a .tar.gz result archive.")
@@ -633,6 +744,8 @@ def main() -> int:
         args.isolate_cases = args.suite == "formal" and bool(args.template_id) and not args.sandbox_id
     if args.sandbox_id and args.isolate_cases:
         parser.error("--isolate-cases requires --template-id without --sandbox-id")
+    if not args.cwd:
+        args.cwd = f"{args.sandbox_out_dir.rstrip('/')}/work"
 
     os.environ["E2B_API_URL"] = args.api_url
     os.environ["E2B_API_KEY"] = args.api_key

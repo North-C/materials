@@ -255,7 +255,7 @@ python3 scripts/cube_bench_reusable.py \
 | `versions` | 记录镜像、工具链和 benchmark 版本。 |
 | `sysbench-memory-all` | 5 秒、2 线程的内存四象限快速检查。 |
 | `sysbench-prime` | 5 秒、2 线程、最大素数 5000 的 CPU 快速检查。 |
-| `go-benchmark` | Go 子测试各运行 1 次。 |
+| `go-benchmark` | 默认运行 Go `build/http/json/garbage` 子项各 1 次；`GO_BENCH_DISABLE_PERF=1` 关闭 build 的上游 perf profiler。 |
 | `php-benchmark` | 使用 100000 iterations。 |
 | `python-benchmark` | fast 模式，只跑 `python_startup,json_dumps`。 |
 | `node-octane` | 运行 Node Octane。 |
