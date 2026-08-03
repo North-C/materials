@@ -1,0 +1,21 @@
+attempt-1 FAIL sig=reset guest time failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container 9a46edcc73964cce99e41cdeec688c53: fail
+attempt-2 PASS 68c634ded968478896bc5dc5455e9449
+attempt-3 FAIL sig=reset guest time failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container 9f708ba054314e288c2dbe055277469d: fail
+attempt-4 FAIL sig=reset guest time failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container 0636035746f948049e95b471ee2b4844: fail
+attempt-5 PASS 59a36cb28c85487bb2bc0a286032914c
+attempt-6 FAIL sig=other 
+attempt-7 PASS 9cc8a3d474a94a44b9261ae7e6d20086
+attempt-8 FAIL sig=reset guest time failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container 3a57369ba80643878589ea921607f050: fail
+attempt-9 FAIL sig=other 
+attempt-10 PASS 1651c76492de492da8e60066638420d9
+attempt-11 FAIL sig=other {"code":500,"message":"CubeMaster returned error code -1: failed to run container e5730294042a4161b50c32caf227902a: fail
+attempt-12 FAIL sig=reset guest time failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container 062c2a84990c43daafdac28719b15086: fail
+attempt-13 FAIL sig=other 
+attempt-14 FAIL sig=other {"code":500,"message":"CubeMaster returned error code -1: failed to run container f2abce82d3524cd9a720d2751bbb7647: fail
+attempt-15 FAIL sig=reset guest time failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container 53c40c0f6b85410fa1b8d6e97e68fe54: fail
+attempt-16 FAIL sig=reset reseed random dev failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container 1fcad05fb31f4f8f8da1dbfb53b04fe8: fail
+attempt-17 FAIL sig=reset guest time failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container 10e1361cc9834377928a1d3cfc380352: fail
+attempt-18 FAIL sig=reset guest time failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container cbb2d7fc82934197a8996804b871caa3: fail
+attempt-19 PASS fa7f60ad4bb64dc59245def6cb93d3f1
+attempt-20 FAIL sig=reset guest time failed {"code":500,"message":"CubeMaster returned error code -1: failed to run container 919264048e254c2ab04fb714b8031a0c: fail
+RESULT pass=5 fail=15 rounds=20 template=tpl-42e1ad04f7354b1295e05b78

@@ -1,0 +1,66 @@
+/*
+ * trace_arm64_irq27_entry_pstate_pass.bt
+ *
+ * PASS-case control: aggregate PSTATE.I at every __kvm_vcpu_run entry of
+ * vCPU1 on a HEALTHY sandbox for 5 seconds, plus PC histogram for I=0
+ * entries. No arming. Usage: start a healthy sandbox first, then run
+ * bpftrace on this script.
+ */
+
+BEGIN
+{
+    printf("event,ns,tid,note\n");
+    @n = 0;
+}
+
+kprobe:__kvm_vcpu_run
+{
+    $vcpu = (struct kvm_vcpu *)arg0;
+    if ($vcpu->vcpu_id != 1) {
+        return;
+    }
+    @n += 1;
+    $ps = $vcpu->arch.ctxt.regs.pstate;
+    $pc = $vcpu->arch.ctxt.regs.pc;
+    if (($ps >> 7) & 1) {
+        @i1 += 1;
+        @pc_i1[$pc] = count();
+    } else {
+        @i0 += 1;
+        @pc_i0[$pc] = count();
+    }
+}
+
+kprobe:__kvm_vcpu_run
+/@apr_done == 0/
+{
+    $vcpu = (struct kvm_vcpu *)arg0;
+    if ($vcpu->vcpu_id == 1) {
+        @apr_done = 1;
+        printf("apr,%lld,%d,ap1r0=%llx ap1r1=%llx ap1r2=%llx ap1r3=%llx\n",
+               nsecs, tid,
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[0],
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[1],
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[2],
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[3]);
+    }
+}
+
+interval:s:5
+{
+    printf("done,%lld,%d,entries=%lld i0=%lld i1=%lld\n", nsecs, tid, @n, @i0, @i1);
+    exit();
+}
+
+END
+{
+    printf("summary,entries,%lld\n", @n);
+    printf("summary,entries_i1_masked,%lld\n", @i1);
+    printf("summary,entries_i0_unmasked,%lld\n", @i0);
+    printf("summary,i0_pc_histogram,below\n");
+    print(@pc_i0);
+    printf("summary,i1_pc_histogram_top,below\n");
+    print(@pc_i1, 10);
+    clear(@pc_i0);
+    clear(@pc_i1);
+}

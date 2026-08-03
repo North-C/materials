@@ -1,0 +1,10 @@
+kprobe:__kvm_vcpu_run
+{
+    $vcpu = (struct kvm_vcpu *)arg0;
+    printf("vcpu=%d pfr1_nmi=%llx vgic_has_nmi=%d vgic_model=%d\n",
+           $vcpu->vcpu_id,
+           $vcpu->kvm->arch.pfr1_nmi,
+           $vcpu->kvm->arch.vgic.has_nmi,
+           $vcpu->kvm->arch.vgic.vgic_model);
+    exit();
+}

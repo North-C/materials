@@ -1,0 +1,59 @@
+--- a/arch/arm64/kvm/hyp/vgic-v3-sr.c
++++ b/arch/arm64/kvm/hyp/vgic-v3-sr.c
+@@ -18,6 +18,21 @@
+ #define vtr_to_nr_pre_bits(v)		((((u32)(v) >> 26) & 7) + 1)
+ #define vtr_to_nr_apr_regs(v)		(1 << (vtr_to_nr_pre_bits(v) - 5))
+ 
++/*
++ * Only the low 32 bits of each implemented ICH_AP*R*_EL2 register are
++ * architecturally meaningful (32 preemption levels per register).  On
++ * GICs implementing FEAT_GICv3_NMI, the upper half (bit63 in
++ * particular) may read back as garbage, and since this host does not
++ * virtualize NMIs there is no legitimate way for a guest to have an
++ * NMI active-priority state.  Saving the garbage to the vCPU shadow
++ * and later writing it back to hardware turns it into a real
++ * NMI-active state, which blocks all virtual Group-1 interrupt
++ * delivery and permanently wedges the vCPU.  Mask the state that
++ * crosses the hardware/shadow boundary to the implemented low bits.
++ */
++#define VGIC_V3_APR_MASK	0xffffffffULL
++
++
+ static u64 __gic_v3_get_lr(unsigned int lr)
+ {
+ 	switch (lr & 0xf) {
+@@ -345,26 +360,26 @@
+ 
+ 	switch (nr_pre_bits) {
+ 	case 7:
+-		cpu_if->vgic_ap0r[3] = __vgic_v3_read_ap0rn(3);
+-		cpu_if->vgic_ap0r[2] = __vgic_v3_read_ap0rn(2);
++		cpu_if->vgic_ap0r[3] = __vgic_v3_read_ap0rn(3) & VGIC_V3_APR_MASK;
++		cpu_if->vgic_ap0r[2] = __vgic_v3_read_ap0rn(2) & VGIC_V3_APR_MASK;
+ 		fallthrough;
+ 	case 6:
+-		cpu_if->vgic_ap0r[1] = __vgic_v3_read_ap0rn(1);
++		cpu_if->vgic_ap0r[1] = __vgic_v3_read_ap0rn(1) & VGIC_V3_APR_MASK;
+ 		fallthrough;
+ 	default:
+-		cpu_if->vgic_ap0r[0] = __vgic_v3_read_ap0rn(0);
++		cpu_if->vgic_ap0r[0] = __vgic_v3_read_ap0rn(0) & VGIC_V3_APR_MASK;
+ 	}
+ 
+ 	switch (nr_pre_bits) {
+ 	case 7:
+-		cpu_if->vgic_ap1r[3] = __vgic_v3_read_ap1rn(3);
+-		cpu_if->vgic_ap1r[2] = __vgic_v3_read_ap1rn(2);
++		cpu_if->vgic_ap1r[3] = __vgic_v3_read_ap1rn(3) & VGIC_V3_APR_MASK;
++		cpu_if->vgic_ap1r[2] = __vgic_v3_read_ap1rn(2) & VGIC_V3_APR_MASK;
+ 		fallthrough;
+ 	case 6:
+-		cpu_if->vgic_ap1r[1] = __vgic_v3_read_ap1rn(1);
++		cpu_if->vgic_ap1r[1] = __vgic_v3_read_ap1rn(1) & VGIC_V3_APR_MASK;
+ 		fallthrough;
+ 	default:
+-		cpu_if->vgic_ap1r[0] = __vgic_v3_read_ap1rn(0);
++		cpu_if->vgic_ap1r[0] = __vgic_v3_read_ap1rn(0) & VGIC_V3_APR_MASK;
+ 	}
+ }
+ 

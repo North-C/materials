@@ -1,0 +1,4 @@
+icc entries: 18
+vcpu0: {'SRE': 7, 'CTLR': 33792, 'IGRPEN0': 0, 'IGRPEN1': 1, 'PMR': 240, 'BPR0': 2, 'BPR1': 3, 'AP0R0': 0, 'AP1R0': 0}
+vcpu1: {'SRE': 7, 'CTLR': 33792, 'IGRPEN0': 0, 'IGRPEN1': 1, 'PMR': 240, 'BPR0': 2, 'BPR1': 3, 'AP0R0': 0, 'AP1R0': 0}
+CTLR PRIBITS decode: pbits = 5

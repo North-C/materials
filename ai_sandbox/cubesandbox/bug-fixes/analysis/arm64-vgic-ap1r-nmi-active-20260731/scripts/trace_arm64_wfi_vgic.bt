@@ -1,0 +1,196 @@
+#!/usr/bin/env bpftrace
+
+#define TARGET_VCPU 1
+#define WFI_THRESHOLD 10000
+#define WINDOW_EXITS 256
+
+BEGIN
+{
+    printf("event,ns,tid,cpu,vcpu,pc,pstate_i,exit_ret,esr_ec,used_lrs,hcr,vmcr,lr0,lr1,lr2,lr3,irq,level\n");
+}
+
+kprobe:kvm_handle_wfx
+{
+    $vcpu = (struct kvm_vcpu *)arg0;
+    if ($vcpu->vcpu_id == TARGET_VCPU && !@capture_done) {
+        @wfi_seen[tid] = @wfi_seen[tid] + 1;
+
+        if (@wfi_seen[tid] == WFI_THRESHOLD) {
+            @armed[tid] = 1;
+            @armed_vcpu[tid] = (uint64)arg0;
+            @remaining[tid] = WINDOW_EXITS;
+            @global_armed = 1;
+            @events["arm"] = count();
+            printf("arm,%llu,%d,%d,%d,0x%llx,%d,-1,-1,0,0x0,0x0,0x0,0x0,0x0,0x0,0,0\n",
+                   nsecs, tid, cpu, $vcpu->vcpu_id,
+                   $vcpu->arch.ctxt.regs.pc,
+                   ($vcpu->arch.ctxt.regs.pstate >> 7) & 1);
+        }
+
+        if (@armed[tid]) {
+            @wfx_vcpu[tid] = (uint64)arg0;
+            @events["wfi"] = count();
+            printf("wfi,%llu,%d,%d,%d,0x%llx,%d,-1,-1,0,0x0,0x0,0x0,0x0,0x0,0x0,0,0\n",
+                   nsecs, tid, cpu, $vcpu->vcpu_id,
+                   $vcpu->arch.ctxt.regs.pc,
+                   ($vcpu->arch.ctxt.regs.pstate >> 7) & 1);
+        }
+    }
+}
+
+kretprobe:kvm_handle_wfx
+/@armed[tid] && @wfx_vcpu[tid]/
+{
+    $vcpu = (struct kvm_vcpu *)@wfx_vcpu[tid];
+    @events["wfi_ret"] = count();
+    printf("wfi_ret,%llu,%d,%d,%d,0x%llx,%d,-1,-1,0,0x0,0x0,0x0,0x0,0x0,0x0,0,0\n",
+           nsecs, tid, cpu, $vcpu->vcpu_id,
+           $vcpu->arch.ctxt.regs.pc,
+           ($vcpu->arch.ctxt.regs.pstate >> 7) & 1);
+    @events["wfi_ret_state"] = count();
+    printf("wfi_ret_state,%llu,%d,%d,%d,pc=0x%llx,iflags=0x%x,increment_pc=%d\n",
+           nsecs, tid, cpu, $vcpu->vcpu_id,
+           $vcpu->arch.ctxt.regs.pc, $vcpu->arch.iflags,
+           ($vcpu->arch.iflags >> 1) & 1);
+    delete(@wfx_vcpu[tid]);
+}
+
+kprobe:kvm_vgic_flush_hwstate
+/@armed[tid]/
+{
+    @flush_vcpu[tid] = (uint64)arg0;
+}
+
+kretprobe:kvm_vgic_flush_hwstate
+/@armed[tid] && @flush_vcpu[tid]/
+{
+    $vcpu = (struct kvm_vcpu *)@flush_vcpu[tid];
+    @events["flush"] = count();
+    printf("flush,%llu,%d,%d,%d,0x%llx,%d,-1,-1,%u,0x%x,0x%x,0x%llx,0x%llx,0x%llx,0x%llx,0,0\n",
+           nsecs, tid, cpu, $vcpu->vcpu_id,
+           $vcpu->arch.ctxt.regs.pc,
+           ($vcpu->arch.ctxt.regs.pstate >> 7) & 1,
+           $vcpu->arch.vgic_cpu.vgic_v3.used_lrs,
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_hcr,
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_vmcr,
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[0],
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[1],
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[2],
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[3]);
+    delete(@flush_vcpu[tid]);
+}
+
+kprobe:vgic_v3_fold_lr_state
+/@armed[tid]/
+{
+    $vcpu = (struct kvm_vcpu *)arg0;
+    @events["fold"] = count();
+    printf("fold,%llu,%d,%d,%d,0x%llx,%d,-1,-1,%u,0x%x,0x%x,0x%llx,0x%llx,0x%llx,0x%llx,0,0\n",
+           nsecs, tid, cpu, $vcpu->vcpu_id,
+           $vcpu->arch.ctxt.regs.pc,
+           ($vcpu->arch.ctxt.regs.pstate >> 7) & 1,
+           $vcpu->arch.vgic_cpu.vgic_v3.used_lrs,
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_hcr,
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_vmcr,
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[0],
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[1],
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[2],
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[3]);
+    @events["irq27_state"] = count();
+    printf("irq27_state,%llu,%d,%d,%d,pc=0x%llx,iflags=0x%x,timer_loaded=%d,timer_level=%d,line=%d,pending=%d,active=%d,enabled=%d,hw=%d,hwintid=%u,host_irq=%u,priority=%u,group=%u,config=%u\n",
+           nsecs, tid, cpu, $vcpu->vcpu_id,
+           $vcpu->arch.ctxt.regs.pc,
+           $vcpu->arch.iflags,
+           $vcpu->arch.timer_cpu.timers[1].loaded,
+           $vcpu->arch.timer_cpu.timers[1].irq.level,
+           $vcpu->arch.vgic_cpu.private_irqs[27].line_level,
+           $vcpu->arch.vgic_cpu.private_irqs[27].pending_latch,
+           $vcpu->arch.vgic_cpu.private_irqs[27].active,
+           $vcpu->arch.vgic_cpu.private_irqs[27].enabled,
+           $vcpu->arch.vgic_cpu.private_irqs[27].hw,
+           $vcpu->arch.vgic_cpu.private_irqs[27].hwintid,
+           $vcpu->arch.vgic_cpu.private_irqs[27].host_irq,
+           $vcpu->arch.vgic_cpu.private_irqs[27].priority,
+           $vcpu->arch.vgic_cpu.private_irqs[27].group,
+           $vcpu->arch.vgic_cpu.private_irqs[27].config);
+}
+
+kprobe:vgic_v3_vmcr_sync
+/@armed[tid]/
+{
+    @vmcr_vcpu[tid] = (uint64)arg0;
+}
+
+kretprobe:vgic_v3_vmcr_sync
+/@armed[tid] && @vmcr_vcpu[tid]/
+{
+    $vcpu = (struct kvm_vcpu *)@vmcr_vcpu[tid];
+    @events["vmcr"] = count();
+    printf("vmcr,%llu,%d,%d,%d,0x%llx,%d,-1,-1,%u,0x%x,0x%x,0x%llx,0x%llx,0x%llx,0x%llx,0,0\n",
+           nsecs, tid, cpu, $vcpu->vcpu_id,
+           $vcpu->arch.ctxt.regs.pc,
+           ($vcpu->arch.ctxt.regs.pstate >> 7) & 1,
+           $vcpu->arch.vgic_cpu.vgic_v3.used_lrs,
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_hcr,
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_vmcr,
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[0],
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[1],
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[2],
+           $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[3]);
+    delete(@vmcr_vcpu[tid]);
+}
+
+tracepoint:kvm:kvm_entry
+/@armed[tid]/
+{
+    $vcpu = (struct kvm_vcpu *)@armed_vcpu[tid];
+    @events["entry"] = count();
+    printf("entry,%llu,%d,%d,%d,0x%llx,-1,-1,-1,0,0x0,0x0,0x0,0x0,0x0,0x0,0,0\n",
+           nsecs, tid, cpu, TARGET_VCPU, args.vcpu_pc);
+    @events["entry_state"] = count();
+    printf("entry_state,%llu,%d,%d,%d,pc=0x%llx,iflags=0x%x,increment_pc=%d\n",
+           nsecs, tid, cpu, TARGET_VCPU, args.vcpu_pc,
+           $vcpu->arch.iflags, ($vcpu->arch.iflags >> 1) & 1);
+}
+
+tracepoint:kvm:kvm_exit
+/@armed[tid]/
+{
+    @events["exit"] = count();
+    printf("exit,%llu,%d,%d,%d,0x%llx,-1,%d,%u,0,0x0,0x0,0x0,0x0,0x0,0x0,0,0\n",
+           nsecs, tid, cpu, TARGET_VCPU, args.vcpu_pc, args.ret, args.esr_ec);
+
+    @remaining[tid] = @remaining[tid] - 1;
+    if (@remaining[tid] == 0) {
+        printf("done,%llu,%d,%d,%d,0x%llx,-1,-1,-1,0,0x0,0x0,0x0,0x0,0x0,0x0,0,0\n",
+               nsecs, tid, cpu, TARGET_VCPU, args.vcpu_pc);
+        @armed[tid] = 0;
+        @global_armed = 0;
+        @capture_done = 1;
+        @events["done"] = count();
+    }
+}
+
+tracepoint:kvm:kvm_timer_update_irq
+/@global_armed && args.vcpu_id == TARGET_VCPU && args.irq == 27/
+{
+    @events["timer_irq27"] = count();
+    printf("timer_irq27,%llu,%d,%d,%d,0x0,-1,-1,-1,0,0x0,0x0,0x0,0x0,0x0,0x0,%u,%d\n",
+           nsecs, tid, cpu, args.vcpu_id, args.irq, args.level);
+}
+
+tracepoint:kvm:vgic_update_irq_pending
+/@global_armed && args.vcpu_id == TARGET_VCPU && args.irq == 27/
+{
+    @events["vgic_irq27"] = count();
+    printf("vgic_irq27,%llu,%d,%d,%d,0x0,-1,-1,-1,0,0x0,0x0,0x0,0x0,0x0,0x0,%u,%d\n",
+           nsecs, tid, cpu, args.vcpu_id, args.irq, args.level);
+}
+
+END
+{
+    printf("summary,wfi_threshold=%d,window_exits=%d,capture_done=%d\n",
+           WFI_THRESHOLD, WINDOW_EXITS, @capture_done);
+    print(@wfi_seen);
+    print(@events);
+}

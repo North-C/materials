@@ -1,0 +1,24 @@
+fd8938b2afd0c186fa16eabd0e1cc0431c6bd9b2cc41b5bf687b8a2b3395e7f8  /usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime
+fd8938b2afd0c186fa16eabd0e1cc0431c6bd9b2cc41b5bf687b8a2b3395e7f8  /home/lyq/CubeSandbox-community-clean-a164417f/hypervisor/target/release/cube-hypervisor
+2026-07-31T14:06:23+08:00 DEPLOYED icc-fix cube-runtime
+2026-07-31T14:06:23+08:00 attempt-1 PASS 9a12caf434514974861fffdebe92f01b
+2026-07-31T14:06:25+08:00 attempt-2 PASS 3d47627cfe31408fac778d3c1f549a7e
+2026-07-31T14:06:35+08:00 attempt-3 FAIL sig=reset reseed random dev failed
+2026-07-31T14:06:38+08:00 attempt-4 PASS 65b4bc6ac87a4ba7b230f45b18a69a19
+2026-07-31T14:06:47+08:00 attempt-5 FAIL sig=reset reseed random dev failed
+2026-07-31T14:06:51+08:00 attempt-6 PASS 3aa49f5eaecb4db79088a8903dafc2fc
+2026-07-31T14:07:22+08:00 attempt-7 FAIL sig=other
+2026-07-31T14:07:56+08:00 attempt-8 FAIL sig=other
+2026-07-31T14:08:07+08:00 attempt-9 FAIL sig=reset reseed random dev failed
+2026-07-31T14:08:18+08:00 attempt-10 FAIL sig=reset guest time failed
+2026-07-31T14:08:29+08:00 attempt-11 FAIL sig=reset reseed random dev failed
+2026-07-31T14:08:41+08:00 attempt-12 FAIL sig=reset guest time failed
+2026-07-31T14:08:52+08:00 attempt-13 FAIL sig=reset guest time failed
+2026-07-31T14:09:25+08:00 attempt-14 FAIL sig=other
+2026-07-31T14:09:58+08:00 attempt-15 FAIL sig=other
+2026-07-31T14:10:32+08:00 attempt-16 FAIL sig=other
+2026-07-31T14:10:43+08:00 attempt-17 FAIL sig=reset reseed random dev failed
+2026-07-31T14:11:16+08:00 attempt-18 FAIL sig=other
+2026-07-31T14:11:50+08:00 attempt-19 FAIL sig=other
+2026-07-31T14:11:53+08:00 attempt-20 PASS e2cad679855747dea9487afa11ee5551
+2026-07-31T14:11:54+08:00 RESULT pass=5 fail=15 (rounds=20)

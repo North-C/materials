@@ -1,0 +1,52 @@
+/*
+ * trace_arm64_ap1r_pollution.bt
+ *
+ * Hypothesis: ICH_AP1R0_EL2 bit63 pollution enters the per-vCPU shadow
+ * (vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[0]) when the vCPU is put on
+ * certain host pCPUs (hyp save_aprs reads HW back into the shadow).
+ *
+ * Probe the host-side put path: compare vgic_ap1r[0] before/after
+ * vgic_v3_put, log every change with pCPU and vcpu id. Run system-wide
+ * during fail reproduction to census the pCPUs that introduce bit63.
+ */
+
+BEGIN
+{
+    printf("event,ns,tid,note\n");
+}
+
+kprobe:vgic_v3_put
+{
+    @vp[tid] = arg0;
+    @cpu[tid] = cpu;
+}
+
+kretprobe:vgic_v3_put
+/@vp[tid]/
+{
+    $vcpu = (struct kvm_vcpu *)@vp[tid];
+    $post = $vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[0];
+    if ($post != 0) {
+        printf("put,%lld,%d,vcpu=%d cpu=%d ap1r0=%llx ap1r1=%llx\n",
+               nsecs, tid, $vcpu->vcpu_id, @cpu[tid], $post,
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[1]);
+    }
+    delete(@vp[tid]);
+    delete(@cpu[tid]);
+}
+
+kprobe:vgic_v3_load
+{
+    $vcpu = (struct kvm_vcpu *)arg0;
+    $pre = $vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[0];
+    if ($pre != 0) {
+        printf("load,%lld,%d,vcpu=%d cpu=%d ap1r0=%llx (shadow already dirty)\n",
+               nsecs, tid, $vcpu->vcpu_id, cpu, $pre);
+    }
+}
+
+END
+{
+    clear(@vp);
+    clear(@cpu);
+}

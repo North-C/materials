@@ -1,0 +1,94 @@
+/*
+ * trace_arm64_irq27_interface_state.bt
+ *
+ * After the same 10k-WFI arming, dump the full vIRQ interface state for
+ * vCPU1 at guest-entry time: HCR_EL2 shadow (IMO/TWI/VI), ICH_HCR/VMCR
+ * shadows, LR shadows, vgic_irq(27) software state, and one full walk of
+ * the vCPU1 ap_list. Goal: find which link between "vgic software model
+ * says pending" and "PE sees no vIRQ" is broken.
+ *
+ * Key checks:
+ *   - hcr_el2 bit4 (IMO): if 0, virtual IRQs are never signaled to the PE.
+ *   - vmcr bit1 (VENG1) / vgic_hcr bit0 (En): interface enable state.
+ *   - ap_list contents vs LR shadows: which irqs the model considers
+ *     pending, and whether they match the LRs.
+ */
+
+BEGIN
+{
+    printf("event,ns,tid,note\n");
+    @armed = 0;
+    @done = 0;
+    @seq = 0;
+}
+
+kprobe:kvm_handle_wfx
+{
+    $vcpu = (struct kvm_vcpu *)arg0;
+    if ($vcpu->vcpu_id == 1 && @armed == 0) {
+        @wfi[tid] += 1;
+        if (@wfi[tid] >= 10000) {
+            @armed = 1;
+            @arm_ns = nsecs;
+            printf("arm,%lld,%d,wfi=10000\n", nsecs, tid);
+        }
+    }
+}
+
+kprobe:__kvm_vcpu_run
+{
+    if (@armed == 0 || @done == 1) {
+        return;
+    }
+    $vcpu = (struct kvm_vcpu *)arg0;
+    if ($vcpu->vcpu_id != 1) {
+        return;
+    }
+
+    @seq += 1;
+    @n += 1;
+
+    if (@seq == 1 || @seq % 4096 == 0) {
+        $hcr = $vcpu->arch.hcr_el2;
+        $ps = $vcpu->arch.ctxt.regs.pstate;
+        printf("iface,%lld,%d,seq=%lld cpu=%d pc=%llx ps=%llx hcr=%llx imo=%d twi=%d vi=%d ich_hcr=%x vmcr=%x ulrs=%d lr0=%llx lr1=%llx lr2=%llx lr3=%llx lr4=%llx ap1r0=%llx ap1r1=%llx\n",
+               nsecs, tid, @seq, cpu,
+               $vcpu->arch.ctxt.regs.pc, $ps,
+               $hcr, ($hcr >> 4) & 1, ($hcr >> 13) & 1, ($hcr >> 7) & 1,
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_hcr,
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_vmcr,
+               $vcpu->arch.vgic_cpu.vgic_v3.used_lrs,
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[0],
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[1],
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[2],
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[3],
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_lr[4],
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[0],
+               $vcpu->arch.vgic_cpu.vgic_v3.vgic_ap1r[1]);
+        printf("irq27,%lld,%d,seq=%lld line=%d pend=%d act=%d en=%d hw=%d hwintid=%u host_irq=%u prio=%u grp=%d timer_loaded=%d timer_level=%d\n",
+               nsecs, tid, @seq,
+               $vcpu->arch.vgic_cpu.private_irqs[27].line_level,
+               $vcpu->arch.vgic_cpu.private_irqs[27].pending_latch,
+               $vcpu->arch.vgic_cpu.private_irqs[27].active,
+               $vcpu->arch.vgic_cpu.private_irqs[27].enabled,
+               $vcpu->arch.vgic_cpu.private_irqs[27].hw,
+               $vcpu->arch.vgic_cpu.private_irqs[27].hwintid,
+               $vcpu->arch.vgic_cpu.private_irqs[27].host_irq,
+               $vcpu->arch.vgic_cpu.private_irqs[27].priority,
+               $vcpu->arch.vgic_cpu.private_irqs[27].group,
+               $vcpu->arch.timer_cpu.timers[1].loaded,
+               $vcpu->arch.timer_cpu.timers[1].irq.level);
+    }
+
+    if (@n >= 50000 && @done == 0) {
+        @done = 1;
+        printf("done,%lld,%d,entries=%lld window_ns=%lld\n",
+               nsecs, tid, @n, nsecs - @arm_ns);
+        exit();
+    }
+}
+
+END
+{
+    clear(@wfi);
+}

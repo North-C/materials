@@ -1,0 +1,5 @@
+{"tag":"A-c10n200","bench_rc":1,"successful":49,"errors":151}
+{"tag":"A-c20n300","bench_rc":1,"successful":70,"errors":230}
+{"tag":"A-c50n500","bench_rc":1,"successful":106,"errors":394}
+{"tag":"B-c20n300","bench_rc":1,"successful":0,"errors":300}
+{"tag":"C-c20n300","bench_rc":1,"successful":0,"errors":300}
