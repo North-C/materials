@@ -12,9 +12,11 @@
 |---|---|
 | [`run_c50_profile.sh`](./run_c50_profile.sh) | 执行 c50/n500，截取三层日志增量，同时采集 host、进程和 bpftrace 证据 |
 | [`analyze_c50_profile.mjs`](./analyze_c50_profile.mjs) | 按 `InstanceId` 关联 benchmark、CubeMaster、Cubelet 和 CubeShim 数据，计算分段统计 |
+| [`run_cubesandbox_openeuler_template_perf.sh`](./run_cubesandbox_openeuler_template_perf.sh) | 执行 create-only benchmark、资源门禁和测试后清理 |
+| [`sample_c50_host.sh`](./sample_c50_host.sh) | 以固定间隔采集 `/proc` CPU、调度、内存、Shim 和 VMM 数量 |
 | [`CUBESANDBOX_SEGMENTED_LATENCY_PROFILING_20260803.md`](./CUBESANDBOX_SEGMENTED_LATENCY_PROFILING_20260803.md) | 历史测试结果和热点迁移背景 |
 
-`run_c50_profile.sh` 是历史测试使用的原始采集脚本。它依赖外部 benchmark runner 和 host sampler，执行前需要按第 5 节准备目录。
+四个脚本均为历史测试使用的原始版本。`run_c50_profile.sh` 调用 benchmark runner 和 host sampler，执行前需要按第 5 节准备运行目录。
 
 ## 2. 是否需要开启插桩
 
@@ -111,11 +113,9 @@ Cubelet 仍会把已记录指标写入响应 `ExtInfo`，但当前分析脚本�
 1. CubeMaster、Cubelet、CubeShim、CubeAPI 正常运行；
 2. `/data/log` 中的上述日志存在；
 3. `http://127.0.0.1:9998/v1/metrics` 可访问；
-4. 已安装 Bash、Node.js、`rg`、`curl`、`bpftrace`、`ps` 和 `stat`；
+4. 已安装 Bash、Node.js、`jq`、`rg`、`curl`、`bpftrace`、`ps`、`pgrep`、`systemctl`、`journalctl`、`timeout` 和 `stat`；
 5. 执行用户有权读取日志并运行 bpftrace；
-6. 已准备有效 Template，测试前资源满足清理门禁。
-
-`jq` 只用于查看 `analysis.json`，不属于采集和汇总的必需依赖。
+6. 已准备 `cube-bench` 可执行文件和有效 Template，测试前资源满足清理门禁。
 
 ### 5.2 工具目录
 
@@ -126,6 +126,15 @@ Cubelet 仍会把已记录指标写入响应 `ExtInfo`，但当前分析脚本�
 └── tools/
     ├── run_cubesandbox_openeuler_template_perf.sh
     └── sample_c50_host.sh
+```
+
+可以直接从本目录安装两个脚本：
+
+```bash
+PROFILE_RUNTIME=/path/to/c50-profile-runtime
+install -d "$PROFILE_RUNTIME/tools"
+install -m 755 ./perf/run_cubesandbox_openeuler_template_perf.sh "$PROFILE_RUNTIME/tools/"
+install -m 755 ./perf/sample_c50_host.sh "$PROFILE_RUNTIME/tools/"
 ```
 
 `run_cubesandbox_openeuler_template_perf.sh` 负责 benchmark，并应将启动标记和结果写入 `$OUT_DIR/run.log` 与 `$OUT_DIR/startup-latency/`。
@@ -158,6 +167,7 @@ cd ~/Projects/materials/ai_sandbox/cubesandbox
 sudo env \
   BASE_DIR=/path/to/c50-profile-runtime \
   OUT_DIR=/path/to/results/profile-c50-run1 \
+  BENCH=/path/to/cube-bench \
   TEMPLATE_ID=tpl-xxxxxxxxxxxxxxxxxxxxxxxx \
   CASE_NAME=profile-c50-n500 \
   ./perf/run_c50_profile.sh
@@ -170,10 +180,13 @@ sudo env \
   BASE_DIR=/path/to/c50-profile-runtime \
   RUNNER=/path/to/run_cubesandbox_openeuler_template_perf.sh \
   OUT_DIR=/path/to/results/profile-c50-run1 \
+  BENCH=/path/to/cube-bench \
   TEMPLATE_ID=tpl-xxxxxxxxxxxxxxxxxxxxxxxx \
   CASE_NAME=profile-c50-n500 \
   ./perf/run_c50_profile.sh
 ```
+
+非默认部署还可以传入 `API_URL`、`API_KEY` 和 `TAP_TARGET`。这些变量会由采集脚本继续传递给 benchmark runner。
 
 脚本固定向 runner 传入：
 
