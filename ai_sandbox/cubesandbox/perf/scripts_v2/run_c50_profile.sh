@@ -2,9 +2,11 @@
 
 set -euo pipefail
 
+script_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")" && pwd)
 base_dir=${BASE_DIR:-/home/lyq/cubesandbox-c50-optimization-20260727-220353}
 out_dir=${OUT_DIR:-$base_dir/baseline-profile-2}
-runner=${RUNNER:-$base_dir/tools/run_cubesandbox_openeuler_template_perf.sh}
+runner=${RUNNER:-$script_dir/run_cubesandbox_openeuler_template_perf.sh}
+host_sampler=${HOST_SAMPLER:-$script_dir/sample_c50_host.sh}
 case_name=${CASE_NAME:-profile-c50-n500}
 template_id=${TEMPLATE_ID:-tpl-297f00a33adb43de957bbf90}
 api_log=${API_LOG:-$(find /data/log/CubeAPI -maxdepth 1 -type f -name 'cube-api-*.log' -printf '%T@ %p\n' | sort -nr | head -1 | cut -d' ' -f2-)}
@@ -44,7 +46,7 @@ curl -fsS http://127.0.0.1:9998/v1/metrics >"$out_dir/evidence/metrics-before.pr
   done
 
   date -Is >"$out_dir/evidence/profile-triggered-at.txt"
-  "$base_dir/tools/sample_c50_host.sh" \
+  "$host_sampler" \
     "$out_dir/evidence/host-samples.csv" 12 0.1 &
   sampler_pid=$!
 

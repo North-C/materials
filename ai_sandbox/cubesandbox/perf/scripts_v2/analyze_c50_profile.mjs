@@ -181,9 +181,16 @@ function buildStageRelationshipCsv(result) {
       note: "只记录超过日志阈值的样本，count不足时不能代表全部请求；顺序不在当前日志中确定。",
     },
     {
+      order: 49, depth: 4, component: "Cubelet", id: "cubelet.create-sandbox-metadata", name: "create-sandbox-metadata",
+      parent: "cubelet.cubebox", containment: "partial_observation", group: "cubelet-container", index: 1,
+      previous: "", related: "", kind: "thresholded_direct", additivity: "do_not_sum",
+      source: "cubelet_stages.create-sandbox-metadata",
+      note: "c.NewContainer元数据创建；在sandbox-start之前执行，仅超过日志阈值的样本可见。",
+    },
+    {
       order: 50, depth: 4, component: "Cubelet", id: "cubelet.sandbox-start", name: "sandbox-start",
-      parent: "cubelet.cubebox", containment: "inside", group: "cubelet-container", index: 1,
-      previous: "", related: "", kind: "direct_cumulative", additivity: "do_not_sum",
+      parent: "cubelet.cubebox", containment: "inside", group: "cubelet-container", index: 2,
+      previous: "cubelet.create-sandbox-metadata", related: "", kind: "direct_cumulative", additivity: "do_not_sum",
       source: "cubelet_stages.sandbox-start",
       note: "从NewTask前开始，到task.Start完成；包含sandbox-create。",
     },
@@ -282,7 +289,7 @@ function buildStageRelationshipCsv(result) {
     },
     {
       order: 90, depth: 4, component: "Cubelet", id: "cubelet.sandbox-probe", name: "sandbox-probe",
-      parent: "cubelet.cubebox", containment: "inside", group: "cubelet-container", index: 2,
+      parent: "cubelet.cubebox", containment: "inside", group: "cubelet-container", index: 3,
       previous: "cubelet.sandbox-start", related: "master.sandbox-probe", kind: "direct_inner", additivity: "sequential_child",
       source: "cubelet_stages.sandbox-probe", note: "在runContainer/task.Start完成后执行readiness Probe。",
     },
@@ -323,7 +330,20 @@ function buildStageRelationshipCsv(result) {
   }
 
   const allDefinitions = [...definitions, ...fallback];
+  const includedDefinitions = allDefinitions.filter((definition) => get(result, definition.source));
   const definitionsById = new Map(allDefinitions.map((definition) => [definition.id, definition]));
+  const effectiveSequence = new Map();
+  for (const group of new Set(includedDefinitions.map((definition) => definition.group).filter(Boolean))) {
+    const members = includedDefinitions
+      .filter((definition) => definition.group === group)
+      .sort((left, right) => Number(left.index) - Number(right.index));
+    members.forEach((definition, index) => {
+      effectiveSequence.set(definition.id, {
+        index: index + 1,
+        previous: index > 0 ? members[index - 1].id : "",
+      });
+    });
+  }
   const hierarchyPath = (definition, visited = new Set()) => {
     if (!definition.parent || visited.has(definition.id)) return definition.id;
     const parent = definitionsById.get(definition.parent);
@@ -337,13 +357,14 @@ function buildStageRelationshipCsv(result) {
     "related_stage_ids", "timing_kind", "additivity", "source_field", "count", "avg_ms",
     "min_ms", "p50_ms", "p95_ms", "max_ms", "notes",
   ];
-  const rows = allDefinitions.flatMap((definition) => {
+  const rows = includedDefinitions.flatMap((definition) => {
     const stageStats = get(result, definition.source);
-    if (!stageStats) return [];
+    const sequence = effectiveSequence.get(definition.id);
     return [[
       definition.order, definition.depth, definition.component, definition.id, definition.name,
-      definition.parent, hierarchyPath(definition), definition.containment, definition.group, definition.index,
-      definition.previous, definition.related, definition.kind, definition.additivity,
+      definition.parent, hierarchyPath(definition), definition.containment, definition.group,
+      sequence?.index ?? definition.index, sequence?.previous ?? definition.previous,
+      definition.related, definition.kind, definition.additivity,
       definition.source, stageStats.count, stageStats.avg, stageStats.min, stageStats.p50,
       stageStats.p95, stageStats.max, definition.note,
     ]];

@@ -16,11 +16,12 @@
 ```bash
 BASE_DIR=/home/lyq/cubesandbox-profile-tools-v2 \
 OUT_DIR=/home/lyq/results/profile-c50-n500 \
-RUNNER=/home/lyq/cubesandbox-profile-tools-v2/run_cubesandbox_openeuler_template_perf.sh \
 CASE_NAME=community-baseline-3u2g-c50-n500 \
 TEMPLATE_ID=<template-id> \
   bash /home/lyq/cubesandbox-profile-tools-v2/run_c50_profile.sh
 ```
+
+runner 和 host sampler 默认从 `run_c50_profile.sh` 所在目录读取；只有拆分部署时才需要通过 `RUNNER`、`HOST_SAMPLER` 覆盖路径。`BASE_DIR` 只用于默认结果目录，显式设置 `OUT_DIR` 后不参与工具定位。
 
 `run_c50_profile.sh` 当前固定向 runner 传入 `CASE_MATRIX="$CASE_NAME 50 500"`，即最大并发 50、正式请求 500；runner 另执行 3 个 warmup。它不会重试失败的正式请求。
 
@@ -88,3 +89,7 @@ node ai_sandbox/cubesandbox/perf/scripts_v2/analyze_c50_profile.mjs <profile-dir
 Guest stdout/stderr 经过 wrapper 异步转发，外层 `Timestamp` 可能发生乱序。分析器只用 `LogContent` 中的 guest `ts` 做 guest 内部差值，不使用 wrapper 到达时间计算阶段。
 
 要直接拆开 restore 路径的锁等待、子进程 spawn 和 wait，仍需在社区 `start_exec_process` 内增加结构化计时点；现有社区 metrics 没有这些 RPC latency histogram。
+
+## 5. `.90` 集成验证
+
+2026-08-05 已在 `192.168.25.90` 使用社区原版 openEuler 3U2G Template 完成真实 `c50n500`：500/500 成功，runner/watcher 均退出 0，测试后 0 sandbox、0 shim、0 task。采集得到 503 个关联实例和 5,531 条 CreateContainer 精简事件，本地汇总生成 26 个阶段、22 列关系 CSV。
