@@ -77,6 +77,50 @@ node ai_sandbox/cubesandbox/perf/scripts_v2/analyze_c50_profile.mjs <profile-dir
 
 逐实例 JSONL 每行对应一个 InstanceId。分析长尾时先按 `shim_create_container_ms` 排序，再检查 marker 是否完整和 `path` 是否一致，不要只看整批平均值。
 
+### 3.1 如何理解 `direct_timings_ms`
+
+`direct_timings_ms` 中的“direct”表示数据来自已有计时器，或者来自同一时钟上的两个直接时间戳。它不表示各行互斥，也不表示各行可以相加。
+
+以 `.90` 的 3U2G `c50n500` 验证轮次为例，各边界的关系是：
+
+```text
+T0  create req start
+ |
+ |-- VM start -> agent ready                  Avg  13.642ms
+ |
+Ts  sandbox finish cumulative                Avg  24.064ms
+ |   `-- Shim CreateContainer                 Avg 148.018ms
+ |       `-- Guest receive -> restore branch  Avg   0.439ms
+ |
+Tc  container finish cumulative              Avg 172.618ms
+ |
+Tf  create req finish                        Avg 173.131ms
+```
+
+| 字段 | 计时边界 | 当前示例 Avg | 如何解读 |
+|---|---|---:|---|
+| `shim_create_container` | Shim `CreateContainer` 的 StatDefer | 148.018ms | 从请求参数准备开始，覆盖 agent client lock、完整 CreateContainer RPC、Guest 处理、RPC 返回和 Shim 状态更新 |
+| `create_request_total` | `create req start -> create req finish` | 173.131ms | 整个 Shim create request 的最外层窗口，包含 sandbox 和 container 创建 |
+| `vm_start_to_agent_ready` | `start vm start -> agent is ready` | 13.642ms | 覆盖 VMM 启动、restore、等待 vsock 和连接 agent；它与 `LaunchVmm`、`RestoreVm` 等子阶段重叠 |
+| `sandbox_finish_cumulative` | `T0 -> sandbox finish` | 24.064ms | 从 request 起点开始的累计位置，不是独立阶段 |
+| `container_finish_cumulative` | `T0 -> container finish` | 172.618ms | 从 request 起点开始的累计位置，不是独立阶段 |
+| `sandbox_to_container_finish` | 对每个实例计算 `Tc - Ts` | 148.555ms | sandbox 完成后的 container 创建窗口；与 Shim `CreateContainer` 近似同窗 |
+| `guest_receive_to_restore_branch` | Guest 内两个高精度时间戳之差 | 0.439ms | Guest 收到 RPC 后进行 OCI 转换、读取 annotation 并选择 restore 分支的时间 |
+
+`sandbox_to_container_finish` 与 `shim_create_container` 的 Avg 分别为 148.555ms 和 148.018ms，差约 0.537ms。二者数值接近说明 sandbox 完成到 container 完成之间的主要耗时位于 CreateContainer，但它们是近似同窗的两套边界，不能相加。
+
+`guest_receive_to_restore_branch` 不包含 Shim 到 Guest 的 RPC 传输，也不包含 restore 分支之后的 sandbox lock、PID 查找和 `start_exec_process`。它很短，只能说明 Guest 收到请求后的分支判断不是热点。
+
+阅读 `direct_timings_ms` 时必须遵守以下规则：
+
+1. `sandbox_finish_cumulative` 和 `container_finish_cumulative` 都从 T0 起算；只有两者逐实例相减才得到 container 窗口，不能把两行相加。
+2. `shim_create_container` 被 `create_request_total` 包含，`guest_receive_to_restore_branch` 又被 `shim_create_container` 包含，嵌套行不能相加。
+3. `vm_start_to_agent_ready` 是跨多个 Shim 子阶段的重叠窗口，不能再与 `LaunchVmm`、`RestoreVm`、`ResetVm` 直接求和。
+4. Avg 在样本一一对应时可以用于检查均值闭合；P50/P95 必须先按 InstanceId 计算差值，再对差值求分位数，不能用两行 P50/P95 直接相减。
+5. `count` 必须先一致。API 正式请求为 500 条，而组件分段通常为 503 条（包含 3 个 warmup），两种口径不能直接逐样本比较。
+
+如需查看顺序和包含关系，应同时打开 `stage-latency.csv`：`parent_stage_id`/`hierarchy_path` 表示包含链，`sequence_group`/`sequence_index` 表示执行顺序，`additivity=do_not_sum` 表示禁止直接相加。
+
 ## 4. CreateContainer 计时边界
 
 | 字段 | 计算方式 | 是否可直接解释 |
