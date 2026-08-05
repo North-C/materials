@@ -48,6 +48,22 @@ API 创建请求
 
 默认串行路径先完成 VM/容器启动，再执行 Probe。early Probe 路径让 Probe 与 `runContainer` 并行，但仍要求两条分支都成功后才返回。
 
+两种路径的关键差异可用下列条状图表示。该图只表达顺序和重叠，不按实际时长比例绘制：
+
+```text
+default serial path
+request total       |[==============================================]
+sandbox-start       |  [==================]
+sandbox-probe       |                      [======================]
+
+early Probe path
+request total       |[==============================================]
+sandbox-probe       | [==========================================]
+sandbox-start       |   [==================]
+```
+
+默认路径近似累加启动与 Probe 等待；early Probe 路径取两条重叠分支的较晚完成时间。这里的 `sandbox-start` 代表被观测到的启动区间，不等于全部 `runContainer` 外围开销。
+
 ### 3.2 指标含义
 
 | 指标 | 计时范围 | 关系 |
@@ -105,6 +121,22 @@ Template `tpl-67ae0b72bad044bba4394490` 的 quick-Probe 轮次首次导出了 50
 | MMDS-prime profile | 206.01 / 585.86 | 196.92 | 106.63 | 188.71 | 74.14 | 50.71 | 17.98 | 11.86 | 4.54 |
 | MMDS-prime + 去空 health connect | 207.74 / 606.12 | 199.35 | 106.32 | 191.01 | 76.66 | 53.72 | 23.26 | 11.17 | 3.80 |
 | MMDS-prime + early Probe d75/p20 | 199.38 / 308.12 | 191.84 | 178.84 | 185.57 | 38.27 | 28.25 | 8.49 | 8.43 | 1.83 |
+
+下面将 `period/timeout=100ms` 代表轮次的各阶段 avg 绘制为横向条形图。每个 `#` 约为 5ms，数值标签为原始精确值：
+
+```text
+API total           |################################################| 241.87ms
+Master e2e          |############################################### | 233.49ms
+Cubelet service     |#############################################   | 225.27ms
+Master Probe        |####################################            | 180.07ms
+Cubelet start       |########                                        |  38.41ms
+Shim Pod            |######                                          |  28.55ms
+RestoreVm           |##                                              |   9.55ms
+ResetVm             |#                                               |   5.82ms
+CreateContainer     |#                                               |   2.58ms
+```
+
+这些条形统一从零点绘制，只用于比较 avg 的量级。它们不是同一请求的完整时间线，也不是堆叠图；例如 `RestoreVm`、`ResetVm` 已包含在 `CreatePodSandbox` 中，不能再次加到外层指标上。
 
 所有表中轮次均为 500/500 成功。初始完整 profile 的 host 一度出现 runnable 303、blocked 699、iowait 峰值约 66%，属于明显受扰动的单轮观测；后续稳定基线以 period/timeout=100ms 的三轮均值 241.47ms 为准，而不是把 385.91ms 当作稳定对照。
 
@@ -199,6 +231,17 @@ v3 在 guest 内先轮询 envd `:49983/health`，首次得到 2xx 后才监听 4
 | v3，early Probe 关闭 | 138.63ms | 平均值稳定，p99/吞吐仍受 500ms 串行 Probe 影响 | 深挖 Shim 启动路径 |
 | Shim 连接/RPC 优化 | 78.60ms | `task.Start` 与空 `CreateContainer` 热点基本消除 | 进入新的亚 100ms 基线 |
 
+同一组端到端 avg 的演进如下。每个 `#` 约为 5ms；条形用于展示总体缩短趋势，不表示各优化收益可以线性叠加：
+
+```text
+100ms Probe baseline |################################################| 241.47ms
+MMDS-prime           |#########################################       | 202.72ms
+early Probe d75/p20  |#######################################         | 196.21ms
+native code server v3|###########################                     | 134.31ms
+v3, early Probe off  |############################                    | 138.63ms
+Shim connection/RPC  |################                                |  78.60ms
+```
+
 从 241.47ms 稳定基线到 78.60ms 最终结果，avg 共降低 162.87ms（67.45%）。该数字是整条方案演进的结果，不应解释为三个独立改动百分比可直接相乘；其中 Template、OCI、Probe 调度和 Shim 均发生过变化。
 
 ## 6. 已排除或拒绝的方向
@@ -244,4 +287,3 @@ v3 在 guest 内先轮询 envd `:49983/health`，首次得到 2xx 后才监听 4
 | 400 QPS / Shim 优化 | `CUBESANDBOX_TEMPLATE_400QPS_OPTIMIZATION_20260729.md` |
 | 分段采集脚本 | `scripts/run_c50_profile.sh` |
 | 分段关联分析脚本 | `scripts/analyze_c50_profile.mjs` |
-
