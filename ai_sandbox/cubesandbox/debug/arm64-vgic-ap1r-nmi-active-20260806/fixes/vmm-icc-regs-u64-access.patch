@@ -1,0 +1,104 @@
+--- a/hypervisor/hypervisor/src/kvm/aarch64/gic/icc_regs.rs
++++ b/hypervisor/hypervisor/src/kvm/aarch64/gic/icc_regs.rs
+@@ -79,11 +79,17 @@
+     SYS_ICC_AP1R3_EL1,
+ ];
+ 
+-fn icc_attr_access(gic: &DeviceFd, offset: u64, typer: u64, val: &u32, set: bool) -> Result<()> {
++fn icc_attr_access(gic: &DeviceFd, offset: u64, typer: u64, val: &mut u64, set: bool) -> Result<()> {
+     let mut gic_icc_attr = kvm_device_attr {
+         group: KVM_DEV_ARM_VGIC_GRP_CPU_SYSREGS,
+         attr: ((typer & KVM_DEV_ARM_VGIC_V3_MPIDR_MASK) | offset), // this needs the mpidr
+-        addr: val as *const u32 as u64,
++        // KVM accesses CPU sysregs as u64 (see kvm_sys_reg_{get,set}_user in
++        // the host kernel). Passing a 4-byte slot here used to (a) spill the
++        // high half into the next Vec slot on get, and (b) feed the following
++        // slot (or out-of-bounds heap for the last vCPU) as the high 32 bits
++        // of the restored register on set, which could set the NMI-active bit
++        // (bit63) of ICC_AP1R0_EL1 on NMI-capable GICs and wedge the vCPU.
++        addr: val as *mut u64 as u64,
+         flags: 0,
+     };
+     if set {
+@@ -107,10 +113,10 @@
+     for ix in gicr_typer {
+         let i = *ix;
+         for icc_offset in VGIC_ICC_REGS {
+-            let val = 0;
++            let mut val: u64 = 0;
+             if *icc_offset == SYS_ICC_CTLR_EL1 {
+                 // calculate priority bits by reading the ctrl_el1 register.
+-                icc_attr_access(gic, *icc_offset, i, &val, false)?;
++                icc_attr_access(gic, *icc_offset, i, &mut val, false)?;
+                 // The priority bits are found in the ICC_CTLR_EL1 register (bits from  10:8).
+                 // See page 194 from https://static.docs.arm.com/ihi0069/c/IHI0069C_gic_
+                 // architecture_specification.pdf.
+@@ -118,8 +124,10 @@
+                 // "Priority bits. Read-only and writes are ignored. The number of priority bits
+                 // implemented, minus one."
+                 num_priority_bits =
+-                    ((val & ICC_CTLR_EL1_PRIBITS_MASK) >> ICC_CTLR_EL1_PRIBITS_SHIFT) + 1;
+-                state.push(val);
++                    (((val as u32) & ICC_CTLR_EL1_PRIBITS_MASK) >> ICC_CTLR_EL1_PRIBITS_SHIFT) + 1;
++                // Keep the 32-bit snapshot format: only the low half is
++                // architecturally meaningful for these registers.
++                state.push(val as u32);
+             }
+             // As per ARMv8 documentation: https://static.docs.arm.com/ihi0069/c/IHI0069C_
+             // gic_architecture_specification.pdf
+@@ -130,8 +138,8 @@
+             // 7 bits of priority.
+             else if *icc_offset == SYS_ICC_AP0R1_EL1 || *icc_offset == SYS_ICC_AP1R1_EL1 {
+                 if num_priority_bits >= 6 {
+-                    icc_attr_access(gic, *icc_offset, i, &val, false)?;
+-                    state.push(val);
++                    icc_attr_access(gic, *icc_offset, i, &mut val, false)?;
++                    state.push(val as u32);
+                 }
+             } else if *icc_offset == SYS_ICC_AP0R2_EL1
+                 || *icc_offset == SYS_ICC_AP0R3_EL1
+@@ -139,12 +147,12 @@
+                 || *icc_offset == SYS_ICC_AP1R3_EL1
+             {
+                 if num_priority_bits == 7 {
+-                    icc_attr_access(gic, *icc_offset, i, &val, false)?;
+-                    state.push(val);
++                    icc_attr_access(gic, *icc_offset, i, &mut val, false)?;
++                    state.push(val as u32);
+                 }
+             } else {
+-                icc_attr_access(gic, *icc_offset, i, &val, false)?;
+-                state.push(val);
++                icc_attr_access(gic, *icc_offset, i, &mut val, false)?;
++                state.push(val as u32);
+             }
+         }
+     }
+@@ -165,7 +173,9 @@
+             }
+             if *icc_offset == SYS_ICC_AP0R1_EL1 || *icc_offset == SYS_ICC_AP1R1_EL1 {
+                 if num_priority_bits >= 6 {
+-                    icc_attr_access(gic, *icc_offset, i, &state[idx], true)?;
++                    // Restore with the high 32 bits zeroed (see icc_attr_access).
++                    let mut val64 = state[idx] as u64;
++                    icc_attr_access(gic, *icc_offset, i, &mut val64, true)?;
+                     idx += 1;
+                 }
+                 continue;
+@@ -176,12 +186,14 @@
+                 || *icc_offset == SYS_ICC_AP1R3_EL1
+             {
+                 if num_priority_bits == 7 {
+-                    icc_attr_access(gic, *icc_offset, i, &state[idx], true)?;
++                    let mut val64 = state[idx] as u64;
++                    icc_attr_access(gic, *icc_offset, i, &mut val64, true)?;
+                     idx += 1;
+                 }
+                 continue;
+             }
+-            icc_attr_access(gic, *icc_offset, i, &state[idx], true)?;
++            let mut val64 = state[idx] as u64;
++            icc_attr_access(gic, *icc_offset, i, &mut val64, true)?;
+             idx += 1;
+         }
+     }

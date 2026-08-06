@@ -1,0 +1,19 @@
+start_time	2026-08-05T20:12:07+08:00
+host	master
+kernel	6.6.0-sbench-irqbypass-xarray-v2-aprmask
+runtime_sha256	a68d64cd29c84d544b2c8a4e1f9d6ab2d60d7d451f9ecd1ffccb811d4749ea9f
+runtime_version	cube-runtime 0.0.0-dev (unknown) built at unknown
+api_url	http://127.0.0.1:13000
+image	192.168.25.65:2900/bench/sandbox-code:latest
+cpu_units	1 2 3 4 5
+memory_mb	2000
+templates_per_cpu	5
+rounds	6
+requests_per_template	50
+global_concurrency	50
+tap_wait_timeout	300
+tap_stable_samples	3
+existing_templates_tsv	/home/lyq/aprmask-multi-resource-65-20260805-validate2/templates.tsv
+tap_init_num	1000
+tap_baseline_links	1000
+tap_baseline_pool	984

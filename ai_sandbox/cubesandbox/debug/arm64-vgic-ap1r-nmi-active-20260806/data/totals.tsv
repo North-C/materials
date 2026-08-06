@@ -1,0 +1,12 @@
+metric	value
+templates_expected	25
+templates_ready	25
+template_build_failures	0
+cleanup_failures	0
+restore_total	7500
+restore_pass	7500
+restore_fail	0
+api_reset_guest_time_failed	0
+shim_log_reset_guest_time_failed	0
+shim_log_vm_boot_failed	0
+dmesg_rcu_stall_signatures	0
