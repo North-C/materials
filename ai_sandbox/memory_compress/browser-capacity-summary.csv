@@ -1,0 +1,6 @@
+capacity_compression_pct,memory_limit_mib,runs,harness_completed_runs,full_success_runs,oom_runs,completed_tasks,success_tasks,success_rate_pct,avg_latency_ms,latency_stdev_ms,latency_cv_pct,latency_delta_vs_baseline_pct,p99_latency_ms,throughput_tasks_s,container_cpu_avg_pct,memory_working_set_avg_mib,memory_working_set_max_mib,observed_memory_working_set_max_mib,memory_failcnt_max,terminal_statuses,ddr_read_avg_gbps,ddr_write_avg_gbps,ddr_total_avg_gbps,ddr_total_p95_gbps,numa_locality_pct
+0,4096,3,3,3,0,15,15,100.0000,2794.2667,37.1835,1.3307,0.0000,2936.8667,0.1282,15.5887,1293.6632,1431.7956,1456.0195,0,PASS:3,0.3277,0.1844,0.5121,1.2249,99.4276
+50,2048,3,3,3,0,15,15,100.0000,2739.0333,131.4250,4.7982,-1.9767,2832.1333,0.1292,16.0588,1292.4575,1423.9987,1424.6953,0,PASS:3,0.3323,0.1794,0.5117,1.2144,99.9747
+60,1638,3,3,3,0,15,15,100.0000,2761.9667,46.5963,1.6871,-1.1559,2883.2000,0.1289,16.4831,1297.7217,1431.7669,1436.3516,0,PASS:3,0.3419,0.1944,0.5363,1.2565,99.7748
+70,1229,3,3,0,3,13,9,69.2308,5622.7889,12829.7886,228.1748,101.2259,11292.1000,0.0541,9.1210,1084.7325,1229.0000,1229.0000,0,TASK_FAILURES:3,0.2697,0.1212,0.3909,0.9509,98.7894
+80,819,3,3,2,3,15,14,93.3333,3256.4714,263.5626,8.0935,16.5412,4273.4667,0.1040,18.3357,742.2426,818.9961,819.0000,0,PASS:2;TASK_FAILURES:1,0.3184,0.1572,0.4756,1.2115,99.9611
