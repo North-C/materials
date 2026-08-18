@@ -33,8 +33,8 @@
 <polyline points="186.4,88 227.56,88 227.56,118 272.29499999999996,118" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
 <polyline points="397.245,118 444.39500000000004,118" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
 <polyline points="569.345,118 641.5200000000001,118" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
-<polyline points="709.2700000000001,118 785.0200000000002,118" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
-<rect x="210.98000000000002" y="44.5" width="33.16" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<polyline points="714.52,118 785.0200000000002,118" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<rect x="205.56" y="44.5" width="44" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
 <text x="227.56" y="58" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">旧链表</text>
 <rect x="202.4" y="104.5" width="50.32" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
 <text x="227.56" y="118" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">XArray</text>
@@ -45,15 +45,15 @@
 <rect x="777.8700000000001" y="40" width="110.65" height="36" rx="18" ry="18" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
 <rect x="272.29499999999996" y="100" width="124.95" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
 <rect x="444.39500000000004" y="100" width="124.95" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-<rect x="641.5200000000001" y="100" width="67.75" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="641.5200000000001" y="100" width="73" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
 <rect x="785.0200000000002" y="100" width="96.35000000000001" height="36" rx="18" ry="18" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-<text x="113.2" y="88" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">同一把全局 mutex 仍然保留</text>
+<text x="113.2" y="88" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="113.2" dy="-0.62em">同一把全局 mutex</tspan><tspan x="113.2" dy="1.24em">仍然保留</tspan></text>
 <text x="334.77" y="58" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">扫描 consumer 链表</text>
 <text x="506.87000000000006" y="58" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">扫描 producer 链表</text>
-<text x="675.3950000000001" y="58" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">按 token 匹配并连接</text>
-<text x="833.1950000000002" y="58" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">查找时间随注册对象增多</text>
-<text x="334.77" y="118" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">按 token 检查并插入</text>
-<text x="506.87000000000006" y="118" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">按 token 查找另一侧</text>
-<text x="675.3950000000001" y="118" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">匹配并连接</text>
-<text x="833.1950000000002" y="118" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">不再逐项扫描全局表</text>
+<text x="675.3950000000001" y="58" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="675.3950000000001" dy="-0.62em">按 token</tspan><tspan x="675.3950000000001" dy="1.24em">匹配并连接</tspan></text>
+<text x="833.1950000000002" y="58" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="833.1950000000002" dy="-0.62em">查找时间</tspan><tspan x="833.1950000000002" dy="1.24em">随注册对象增多</tspan></text>
+<text x="334.77" y="118" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="334.77" dy="-0.62em">按 token</tspan><tspan x="334.77" dy="1.24em">检查并插入</tspan></text>
+<text x="506.87000000000006" y="118" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="506.87000000000006" dy="-0.62em">按 token</tspan><tspan x="506.87000000000006" dy="1.24em">查找另一侧</tspan></text>
+<text x="678.0200000000002" y="118" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">匹配并连接</text>
+<text x="833.1950000000002" y="118" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)"><tspan x="833.1950000000002" dy="-0.62em">不再逐项扫描</tspan><tspan x="833.1950000000002" dy="1.24em">全局表</tspan></text>
 </svg>

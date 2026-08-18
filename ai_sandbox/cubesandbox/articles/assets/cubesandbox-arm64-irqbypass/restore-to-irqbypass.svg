@@ -33,27 +33,27 @@
 <line x1="103.2" y1="90" x2="261" y2="90" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#seq-arrow)" />
 <text x="182.1" y="84" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">恢复 VGIC 与 virtio-pci 状态</text>
 <polyline points="261,130 291,130 291,150 261,150" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#seq-arrow)" />
-<text x="297" y="140" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">为每条 MSI-X 路由创建 eventfd 与 GSI</text>
+<text x="297" y="140" font-size="11" font-weight="400" fill="var(--_text-muted)"><tspan x="297" dy="-0.65em">为每条 MSI-X 路由</tspan><tspan x="297" dy="1.25em">创建 eventfd 与 GSI</tspan></text>
 <line x1="261" y1="200" x2="436.675" y2="200" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#seq-arrow)" />
 <text x="348.8375" y="194" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">逐路由调用 KVM_IRQFD</text>
 <polyline points="436.675,240 466.675,240 466.675,260 436.675,260" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#seq-arrow)" />
 <text x="472.675" y="250" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">先建立普通 irqfd 唤醒与注入路径</text>
 <polyline points="436.675,310 466.675,310 466.675,330 436.675,330" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#seq-arrow)" />
-<text x="472.675" y="320" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">再以同一 eventfd 登记 irqbypass consumer</text>
+<text x="472.675" y="320" font-size="11" font-weight="400" fill="var(--_text-muted)"><tspan x="472.675" dy="-0.65em">再以同一 eventfd</tspan><tspan x="472.675" dy="1.25em">登记 irqbypass consumer</tspan></text>
 <polyline points="436.675,380 466.675,380 466.675,400 436.675,400" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#seq-arrow)" />
-<text x="472.675" y="390" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">查找使用同一 token 的硬件 producer</text>
+<text x="472.675" y="390" font-size="11" font-weight="400" fill="var(--_text-muted)"><tspan x="472.675" dy="-0.65em">查找使用同一 token</tspan><tspan x="472.675" dy="1.25em">的硬件 producer</tspan></text>
 <line x1="436.675" y1="450" x2="637.375" y2="450" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#seq-arrow)" />
 <text x="537.025" y="444" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">条件全部满足时请求直接 MSI 转发</text>
 <line x1="637.375" y1="490" x2="436.675" y2="490" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
 <text x="537.025" y="484" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">条件满足：建立直接转发</text>
 <line x1="436.675" y1="530" x2="261" y2="530" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="6 4" marker-end="url(#seq-arrow)" />
 <text x="348.8375" y="524" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">任一条件不满足：保持普通 irqfd 路径</text>
-<rect x="448.945" y="384" width="176.16" height="27" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="0.75" />
-<polygon points="619.105,384 625.105,390 619.105,390" fill="var(--_inner-stroke)" />
-<text x="537.025" y="397.5" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">直接转发还要求 GICv4 / vITS 能力与有效路由</text>
-<rect x="30" y="30" width="146.4" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="472.675" y="402" width="238" height="27" fill="var(--_group-hdr)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<polygon points="704.675,402 710.675,408 704.675,408" fill="var(--_inner-stroke)" />
+<text x="591.675" y="415.5" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">直接转发还要求 GICv4 / vITS 能力与有效路由</text>
+<rect x="27" y="30" width="152.4" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
 <text x="103.2" y="50" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">CubeSandbox 模板恢复</text>
-<rect x="216.4" y="30" width="89.2" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
+<rect x="214.4" y="30" width="93.2" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
 <text x="261" y="50" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">VMM 设备恢复</text>
 <rect x="345.6" y="30" width="182.15" height="40" rx="4" ry="4" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="1" />
 <text x="436.675" y="50" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">KVM irqfd 与 irqbypass</text>
