@@ -76,20 +76,7 @@ irqbypass 接下来会查找使用同一配对键的硬件中断来源。ARM64 �
 
 如果没有匹配的硬件中断来源，或者主机不满足直通条件，就不会建立中断直通，普通 irqfd 路径仍然可用。但 irqbypass 的接收端登记和全局表查找已经发生。
 
-```mermaid
-flowchart TD
-    A[从模板恢复沙箱] --> B[恢复 VGIC 和 virtio-pci 设备]
-    B --> C[每条 MSI-X 路由新建 eventfd 和 GSI]
-    C --> D[重放已启用且未屏蔽的 MSI-X 表项]
-    D --> E[启用中断组并逐路由调用 KVM_IRQFD]
-    E --> F[建立普通 irqfd 注入路径]
-    F --> G[登记 irqbypass 接收端]
-    G --> H{同一 eventfd 配对键下有硬件中断来源?}
-    H -- 否 --> J[继续使用普通 irqfd 路径]
-    H -- 是 --> K{GICv4.1 或 GICv4 加 vITS 且路由有效?}
-    K -- 是 --> I[建立直接 MSI 转发]
-    K -- 否 --> J
-```
+![CubeSandbox 模板恢复到 ARM64 中断直通的建立路径](assets/cubesandbox-arm64-irqbypass/restore-to-irqbypass.svg)
 
 这次测试记录只确认了虚拟设备恢复，没有确认同一配对键下存在硬件中断来源，也不能断言直接 MSI 转发生效。历史证据指向的启动成本，是每次恢复必经的 irqbypass 登记和全局表查找，而不是硬件直通的数据面开销。
 
@@ -160,18 +147,7 @@ out:
 mutex_unlock(&lock);
 ```
 
-```mermaid
-flowchart LR
-    subgraph O[旧链表]
-        O1[全局 mutex] --> O2[扫描 consumer 链表]
-        O2 --> O3[扫描 producer 链表]
-        O3 --> O4[匹配并连接]
-    end
-    subgraph N[改造后]
-        N1[同一全局 mutex] --> N2[XArray 按 token 查找]
-        N2 --> N3[匹配并连接]
-    end
-```
+![irqbypass 链表与 XArray 注册路径对比](assets/cubesandbox-arm64-irqbypass/list-vs-xarray.svg)
 
 关键点是全局 mutex 仍然保留。改造没有把 irqbypass 变成无锁结构，也没有让连接回调并行执行；它只把锁内随对象数量线性增长的查找，换成按 token 索引的查找。
 

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 928.5200000000002 176" width="928.5200000000002" height="176" role="img" aria-labelledby="list-vs-xarray-title" style="--bg:#ffffff;--fg:#1f2328;--line:#d1d9e0;--accent:#0969da;--muted:#59636e;background:var(--bg)">
+<title id="list-vs-xarray-title">irqbypass 链表与 XArray 注册路径对比</title>
+<style>
+  text { font-family: 'Noto Sans CJK SC', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 30%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="arrowhead" markerWidth="8" markerHeight="4.8" refX="8" refY="2.4" orient="auto">
+    <polygon points="0 0, 8 2.4, 0 4.8" fill="var(--_arrow)" />
+  </marker>
+  <marker id="arrowhead-start" markerWidth="8" markerHeight="4.8" refX="0" refY="2.4" orient="auto-start-reverse">
+    <polygon points="8 0, 0 2.4, 8 4.8" fill="var(--_arrow)" />
+  </marker>
+</defs>
+<polyline points="186.4,88 227.56,88 227.56,58 268.71999999999997,58" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="400.82,58 440.82000000000005,58" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="572.9200000000001,58 612.9200000000001,58" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="737.8700000000001,58 777.8700000000001,58" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="186.4,88 227.56,88 227.56,118 272.29499999999996,118" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="397.245,118 444.39500000000004,118" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="569.345,118 641.5200000000001,118" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<polyline points="709.2700000000001,118 785.0200000000002,118" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#arrowhead)" />
+<rect x="210.98000000000002" y="44.5" width="33.16" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="227.56" y="58" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">旧链表</text>
+<rect x="202.4" y="104.5" width="50.32" height="27" rx="4" ry="4" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.5" />
+<text x="227.56" y="118" text-anchor="middle" dy="0.35em" font-size="11" font-weight="400" fill="var(--_text-muted)">XArray</text>
+<rect x="40" y="70" width="146.4" height="36" rx="18" ry="18" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="268.71999999999997" y="40" width="132.10000000000002" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="440.82000000000005" y="40" width="132.10000000000002" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="612.9200000000001" y="40" width="124.95" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="777.8700000000001" y="40" width="110.65" height="36" rx="18" ry="18" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="272.29499999999996" y="100" width="124.95" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="444.39500000000004" y="100" width="124.95" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="641.5200000000001" y="100" width="67.75" height="36" rx="0" ry="0" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<rect x="785.0200000000002" y="100" width="96.35000000000001" height="36" rx="18" ry="18" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<text x="113.2" y="88" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">同一把全局 mutex 仍然保留</text>
+<text x="334.77" y="58" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">扫描 consumer 链表</text>
+<text x="506.87000000000006" y="58" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">扫描 producer 链表</text>
+<text x="675.3950000000001" y="58" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">按 token 匹配并连接</text>
+<text x="833.1950000000002" y="58" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">查找时间随注册对象增多</text>
+<text x="334.77" y="118" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">按 token 检查并插入</text>
+<text x="506.87000000000006" y="118" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">按 token 查找另一侧</text>
+<text x="675.3950000000001" y="118" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">匹配并连接</text>
+<text x="833.1950000000002" y="118" text-anchor="middle" dy="0.35em" font-size="13" font-weight="500" fill="var(--_text)">不再逐项扫描全局表</text>
+</svg>
