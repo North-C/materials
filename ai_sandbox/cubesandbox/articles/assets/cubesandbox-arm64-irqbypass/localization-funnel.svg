@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 512" width="760" height="512" role="img" aria-labelledby="localization-funnel-title" style="--bg:#ffffff;--fg:#1f2328;--line:#d1d9e0;--accent:#0969da;--muted:#59636e;background:var(--bg)">
+<title id="localization-funnel-title">分层定位流程：从端到端长尾收敛到中断登记</title>
+<style>
+  text { font-family: 'Noto Sans CJK SC', system-ui, sans-serif; }
+  svg {
+    /* Derived from --bg and --fg (overridable via --line, --accent, etc.) */
+    --_text:          var(--fg);
+    --_text-sec:      var(--muted, color-mix(in srgb, var(--fg) 60%, var(--bg)));
+    --_text-muted:    var(--muted, color-mix(in srgb, var(--fg) 40%, var(--bg)));
+    --_text-faint:    color-mix(in srgb, var(--fg) 25%, var(--bg));
+    --_line:          var(--line, color-mix(in srgb, var(--fg) 30%, var(--bg)));
+    --_arrow:         var(--accent, color-mix(in srgb, var(--fg) 50%, var(--bg)));
+    --_node-fill:     var(--surface, color-mix(in srgb, var(--fg) 3%, var(--bg)));
+    --_node-stroke:   var(--border, color-mix(in srgb, var(--fg) 20%, var(--bg)));
+    --_group-fill:    var(--bg);
+    --_group-hdr:     color-mix(in srgb, var(--fg) 5%, var(--bg));
+    --_inner-stroke:  color-mix(in srgb, var(--fg) 12%, var(--bg));
+    --_key-badge:     color-mix(in srgb, var(--fg) 10%, var(--bg));
+  }
+</style>
+<defs>
+  <marker id="funnel-arrow" markerWidth="8" markerHeight="4.8" refX="8" refY="2.4" orient="auto">
+    <polygon points="0 0, 8 2.4, 0 4.8" fill="var(--_arrow)" />
+  </marker>
+</defs>
+<text x="736" y="16" text-anchor="end" font-size="10.5" font-weight="400" fill="var(--_text-muted)">P95：并发 50 · 共 200 / 共 500 次请求</text>
+<rect x="250" y="28" width="220" height="50" rx="8" ry="8" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<text x="360" y="48" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)">端到端创建</text>
+<text x="360" y="66" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">P95：1562.9 / 4908.2 ms</text>
+<line x1="360" y1="78" x2="360" y2="100" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#funnel-arrow)" />
+<rect x="230" y="104" width="260" height="50" rx="8" ry="8" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<text x="360" y="124" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)">RestoreVm（模板恢复）</text>
+<text x="360" y="143" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">P95：1520 / 4879 ms，与端到端几乎贴合</text>
+<line x1="490" y1="129" x2="524" y2="129" stroke="var(--_inner-stroke)" stroke-width="0.75" stroke-dasharray="4 3" />
+<rect x="524" y="108" width="212" height="44" rx="6" ry="6" fill="var(--bg)" stroke="var(--_inner-stroke)" stroke-width="0.75" stroke-dasharray="4 3" />
+<text x="630" y="126" text-anchor="middle" font-size="10.5" font-weight="400" fill="var(--_text-muted)">已排除：资源分配 · 就绪通知</text>
+<text x="630" y="143" text-anchor="middle" font-size="10.5" font-weight="400" fill="var(--_text-muted)">内存快速恢复（0 ms）</text>
+<line x1="360" y1="154" x2="360" y2="180" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#funnel-arrow)" />
+<text x="372" y="172" font-size="10.5" font-weight="400" fill="var(--_text-muted)">继续拆分</text>
+<rect x="130" y="186" width="210" height="46" rx="8" ry="8" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<text x="235" y="205" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)">VGIC 启用（中断控制器）</text>
+<text x="235" y="224" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">P95：946 / 3085 ms</text>
+<rect x="440" y="186" width="210" height="46" rx="8" ry="8" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<text x="545" y="205" text-anchor="middle" font-size="13" font-weight="500" fill="var(--_text)">设备恢复（virtio 设备）</text>
+<text x="545" y="224" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">P95：745 / 1909 ms</text>
+<line x1="235" y1="232" x2="235" y2="262" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#funnel-arrow)" />
+<line x1="545" y1="232" x2="545" y2="262" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#funnel-arrow)" />
+<rect x="110" y="266" width="250" height="54" rx="8" ry="8" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<text x="235" y="288" text-anchor="middle" font-size="12" font-weight="500" fill="var(--_text)">诊断实验：中断线 32 → 8 条</text>
+<text x="235" y="307" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">VGIC P95：3085 → 544.0 ms</text>
+<rect x="400" y="266" width="250" height="54" rx="8" ry="8" fill="var(--_node-fill)" stroke="var(--_node-stroke)" stroke-width="0.75" />
+<text x="525" y="288" text-anchor="middle" font-size="12" font-weight="500" fill="var(--_text)">2030 个设备恢复样本分段</text>
+<text x="525" y="307" text-anchor="middle" font-size="11" font-weight="400" fill="var(--_text-muted)">MSI-X 占 97.533 / 97.784 ms</text>
+<polyline points="235,320 235,352 316,390" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#funnel-arrow)" />
+<polyline points="525,320 525,352 404,390" fill="none" stroke="var(--_line)" stroke-width="0.75" marker-end="url(#funnel-arrow)" />
+<rect x="230" y="392" width="260" height="52" rx="8" ry="8" fill="var(--_key-badge)" stroke="var(--accent)" stroke-width="1" />
+<text x="360" y="412" text-anchor="middle" font-size="12" font-weight="400" fill="var(--_text-muted)">两条支路在此汇合</text>
+<text x="360" y="433" text-anchor="middle" font-size="14" font-weight="500" fill="var(--accent)">中断的重新登记</text>
+<line x1="360" y1="444" x2="360" y2="468" stroke="var(--_line)" stroke-width="0.75" stroke-dasharray="4 3" marker-end="url(#funnel-arrow)" />
+<text x="360" y="488" text-anchor="middle" font-size="10.5" font-weight="400" fill="var(--_text-muted)">进入内核继续定位（下一节）</text>
+</svg>
