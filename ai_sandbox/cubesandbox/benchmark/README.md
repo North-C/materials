@@ -194,6 +194,12 @@ python3 scripts/summarize_cube_bench_sdk_csv.py \
 - `scripts/CUBE_BENCH_SDK_GUIDE.md`
 - `scripts/RUN_CUBE_BENCH_ENVD_GUIDE.md`
 
+## Lifecycle benchmark 报告
+
+- [Runtime Snapshot / Dirty / Rollback / Clone / Pause 社区对齐测试（2026-08-24）](reports/CUBESANDBOX_RUNTIME_SNAPSHOT_PAUSE_CLONE_COMMUNITY_ALIGNED_20260824.md)
+  - [机器可读 CSV](reports/CUBESANDBOX_RUNTIME_SNAPSHOT_PAUSE_CLONE_COMMUNITY_ALIGNED_20260824.csv)
+  - [Evidence manifest](reports/CUBESANDBOX_RUNTIME_SNAPSHOT_PAUSE_CLONE_COMMUNITY_ALIGNED_20260824.evidence-manifest.md)
+
 ## 已知导出镜像校验
 
 本目录只保存 checksum，不保存大体积 tar 包：
