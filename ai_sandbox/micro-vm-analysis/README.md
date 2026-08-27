@@ -44,6 +44,7 @@
 
 如果你要横向比较，优先从这些专题开始：
 
+- [CubeSandbox / AgentENV / E2B-infra 三平台源码对比与单页图表](./sandbox-platform-comparison/README.md)
 - [启动路径与控制面](./boot-control-plane-cross-project.md)
 - [Snapshot / Restore / Clone](./snapshot-restore-cross-project.md)
 - [存储、rootfs 与共享文件系统](./storage-rootfs-sharefs-cross-project.md)
