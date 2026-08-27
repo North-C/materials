@@ -42,9 +42,10 @@
 |---|---|---|
 | CubeAPI | E2B 风格 `/sandboxes`、snapshot、pause/resume、connect 路由；将 `NewSandbox` 映射到 CubeMaster request。 | `CubeAPI/src/routes.rs:77-130`；`CubeAPI/src/services/sandboxes.rs:153-291` |
 | CubeMaster | 解析/默认化请求，解析 template/snapshot，调度 host，调用 Cubelet，成功后写 sandbox/proxy/spec。 | `CubeMaster/pkg/service/httpservice/cube/sandbox_create.go:24-170`；`CubeMaster/pkg/service/sandbox/sandbox_run.go:104-340` |
-| Cubelet / CBRI | 本机创建入口；cubebox 插件解析 app image、kernel/rootfs、snapshot annotations、virtiofs。 | `Cubelet/plugins/cbri/local.go:70-81`；`Cubelet/plugins/cbri/cubeboxcbri/cubebox.go:102-260` |
+| Cubelet / CBRI | 本机创建入口；cubebox 插件解析 app image/kernel/rootfs；ext4 image 经 `genPmemOpt` 写入 `AnnotationPmem`。 | `Cubelet/plugins/cbri/local.go:70-81`；`Cubelet/plugins/cbri/cubeboxcbri/cubebox.go:102-260`、`:351-399` |
 | CubeShim / CubeHypervisor | 创建 VM 目录、启动/恢复 VMM、等待 vsock、调用 guest agent；Cloud Hypervisor API 封装 create/boot/snapshot/pause/resume/restore。 | `CubeShim/shim/src/sandbox/sb.rs:139-202`、`:832-999`；`CubeShim/shim/src/hypervisor/cube_hypervisor.rs:75-183` |
 | CubeCow | reflink backend，FICLONE-capable FS 探测，snapshot sibling file。 | `cubecow/src/config/mod.rs:20-83`；`cubecow/src/engine/reflink.rs:131-177`、`:443-462` |
+| Guest/app rootfs devices | 默认 guest image 是 virtio-pmem `/dev/pmem0`，kernel root 为 ext4 + DAX + ro；CBRI 添加的 app ext4 image 使用 offset 1，从 `/dev/pmem1` 起 ro,DAX 挂载。 | `CubeShim/shim/src/hypervisor/config.rs:28`、`:72-77`、`:98-101`；`CubeShim/shim/src/sandbox/pmem.rs:13`、`:29-43`；`CubeShim/shim/src/sandbox/sb.rs:343-348`；`hypervisor/vmm/src/device_manager.rs:2183-2187`、`:2715-2775` |
 | network-agent / CubeVS / CubeEgress / CubeProxy | TAP `EnsureNetwork`、eBPF redirect、L7 egress policy、proxy registry 和 route。 | `Cubelet/network/plugin_tap.go:351-520`；`network-agent/api/v1/network_agent.proto:153-185`；`CubeEgress/lua/access_phase.lua:180-325`；`CubeProxy/lua/proxy_registry.lua:1-137` |
 
 ### AgentENV
@@ -56,7 +57,8 @@
 | Node Orchestrator | `create_sandbox_inner`、`resume_sandbox_inner`、`launch_sandbox`；生成 LaunchPlan、启动 backend、等待 ready、写 proxy route。 | `src/orchestrator/service.rs:347-511`、`:1276-1408`、`:1972-2142` |
 | FirecrackerSandbox / FirecrackerPool | start/start_nowait/wait_for_ready/pause/snapshot/fork；全局 Firecracker warm pool。 | `src/sandbox/firecracker/sandbox.rs:264-340`、`:571-640`；`src/sandbox/firecracker/pool.rs:44-144` |
 | NetworkManager / WarmPool | netns/veth/address plan、slot create/release、fill/drain。 | `src/sandbox/network/manager.rs:57-140`、`:294-372`；`crates/warm-pool/src/lib.rs:82-106`、`:245-291` |
-| OverlayBD / ublk / envd / proxy | OverlayBD backend、ublk ready、envd init、E2B header/fallback/auto-resume proxy。 | `src/sandbox/ublk/device.rs:25-105`；`src/sandbox/firecracker/sandbox.rs:594-629`；`src/api/proxy.rs:82-147`、`:799-880` |
+| OverlayBD / ublk / FC drives | user image 走 OverlayBD runtime → host ublk device → `user-rootfs` symlink → Firecracker Drive1，guest 内为可写 `/dev/vdb`；Drive0 在 guest 内为只读 `/dev/vda` tools root；`add_drive` 调 FC virtio-blk API。 | `src/sandbox/firecracker/sandbox.rs:1198-1228`、`:1432-1456`、`:1668-1730`；`src/sandbox/firecracker/instance.rs:309-337` |
+| envd / proxy | `wait_for_ready` 等待 envd 并通知 ublk ready；proxy 支持 E2B header、fallback 与 auto-resume。 | `src/sandbox/firecracker/sandbox.rs:594-629`；`src/api/proxy.rs:82-147`、`:799-880` |
 
 ### E2B-infra
 
@@ -66,7 +68,8 @@
 | API orchestrator / placement | discovery、sandbox store、nodes、BestOfK placement、routing catalog、snapshot cache、Redis storage。 | `packages/api/internal/orchestrator/orchestrator.go:45-129`；`packages/api/internal/orchestrator/create_instance.go:138-394`；`packages/api/internal/orchestrator/placement/placement_best_of_K.go:15-190` |
 | node orchestrator server | gRPC `Server.Create` 获取 template cache，选择 ResumeSandbox 或 RebootSandbox。 | `packages/orchestrator/pkg/server/sandboxes.go:75-280` |
 | Firecracker process/control | start script、unshare/netns、FC API socket、Create/Resume/loadSnapshot/setMMDS。 | `packages/orchestrator/pkg/sandbox/fc/process.go:159-667`；`packages/orchestrator/pkg/sandbox/fc/client.go:42-166`、`:319-435` |
-| template/build/rootfs/storage | Template files/memfile/rootfs/snapfile/metadata；cold build layer；NBD overlay/cache。 | `packages/orchestrator/pkg/sandbox/template/template.go:16-24`；`packages/orchestrator/pkg/template/build/layer/create_sandbox.go:110-177`；`packages/orchestrator/pkg/sandbox/rootfs/nbd.go:35-170`；`packages/orchestrator/pkg/sandbox/block/cache.go:62-204` |
+| template/build | Template 包含 files/memfile/rootfs/snapfile/metadata；build layer 支持 cold create。 | `packages/orchestrator/pkg/sandbox/template/template.go:16-24`；`packages/orchestrator/pkg/template/build/layer/create_sandbox.go:110-177` |
+| rootfs/storage device | Template rootfs 进入 NBD cache/overlay，host provider path 可为 `/dev/nbdX`；FC process 等待 path 后调用 `PutGuestDriveByID` 配置 guest root drive。`/dev/nbdX` 不是 guest 设备名。 | `packages/orchestrator/pkg/sandbox/sandbox.go:421-425`、`:853-883`；`packages/orchestrator/pkg/sandbox/rootfs/nbd.go:35-170`；`packages/orchestrator/pkg/sandbox/fc/process.go:419-440`；`packages/orchestrator/pkg/sandbox/fc/client.go:215-240` |
 | envd/MMDS/network/proxy/cloud | envd init + MMDS token hash；network slot pool；Redis catalog/client-proxy/node proxy；Terraform/Nomad AWS/GCP。 | `packages/orchestrator/pkg/sandbox/envd.go:259-335`；`packages/envd/internal/api/init.go:43-188`；`packages/orchestrator/pkg/sandbox/network/pool.go:24-233`；`packages/shared/pkg/sandbox-catalog/catalog_redis.go:26-113`；`iac/provider-aws/main.tf:1-41`；`iac/provider-gcp/main.tf:1-33` |
 
 ## 5. 三条创建/恢复流程
@@ -76,7 +79,7 @@
 1. CubeAPI `POST /sandboxes` handler 接请求。
 2. CubeAPI service 规范化 template/env/ports/network/volumes，并调用 CubeMaster。
 3. CubeMaster handler 解析 template/snapshot，`scheduler.Select` 选择 host，调用 Cubelet。
-4. Cubelet/CBRI 解析 app image、kernel/rootfs、snapshot annotations，TAP 插件调用 network-agent `EnsureNetwork`。
+4. Cubelet/CBRI 解析 app image、kernel/rootfs、snapshot annotations；默认 guest base root 是 virtio-pmem `/dev/pmem0` + ext4/DAX/ro，CBRI `AnnotationPmem` 添加的 app ext4 image 从 `/dev/pmem1` 起；TAP 插件调用 network-agent `EnsureNetwork`。
 5. CubeShim `start_vm`：snapshot path 存在时优先 `restore_vm`，否则 `boot_vm` 冷启动。
 6. VM ready 后 Shim 等待 vsock、调用 guest agent 创建/恢复容器；CubeMaster/CubeAPI 返回 envd/token/proxy 信息。
 
@@ -88,7 +91,7 @@
 2. Scheduler 选择 Node，Node Orchestrator 执行生命周期。
 3. `create_sandbox_inner` 按 snapshot 或 image 分支构造 LaunchPlan；resume path 校验 owner/state/paused_state。
 4. `launch_sandbox` 构建 backend、保护 artifact、`start_nowait()`、插入 handle/persist state。
-5. FirecrackerSandbox 根据 LaunchMode Fresh/Resume 启动；FirecrackerPool、NetworkManager warm pool、ublk/OverlayBD 参与资产准备。
+5. FirecrackerSandbox 根据 LaunchMode Fresh/Resume 启动；user image 走 `OverlayBD → host ublk → FC virtio-blk Drive1`，guest Drive1 是 `/dev/vdb`，guest Drive0 `/dev/vda` 为只读 tools root；FirecrackerPool 和 NetworkManager warm pool 参与资产准备。
 6. `wait_for_ready` 等 envd、通知 ublk ready、init envd；Orchestrator 写 proxy route，返回可用。
 
 冷/热边界：fresh path 来自 image/FreshSandboxBuildSpec；热恢复来自 RunnableSnapshot 或 paused_state resume，要求 virtualization mode 匹配。
@@ -99,10 +102,12 @@
 2. API orchestrator 做 team concurrency、active start 去重，构造 sandbox metadata/request。
 3. BestOfK placement 选择 node，并通过 nodemanager gRPC 调 node `Sandbox.Create`。
 4. node orchestrator `Server.Create` 获取 template cache，构造 sandbox config，选择 ResumeSandbox 或 filesystem-only RebootSandbox。
-5. Resume path 准备 files、UFFD memory、NBD overlay rootfs、network slot，启动 FC process 并 `loadSnapshot/resumeVM`；cold build path 用 `Factory.CreateSandbox`。
+5. Resume path 准备 files、UFFD memory 和 network slot；Template rootfs 走 `NBD cache/overlay (host /dev/nbdX) → FC guest root drive`，由 `PutGuestDriveByID` 设置 host path/root flag，再 `loadSnapshot/resumeVM`；cold build path 用 `Factory.CreateSandbox`。
 6. `WaitForEnvd` init envd；MMDS 提供 token hash；routing catalog/client-proxy/node proxy 建立路由。
 
 冷/热边界：主用户 create 对 full snapshot template 走 ResumeSandbox；filesystem-only template 走 RebootSandbox，源码注释明确 RAM、processes、open sockets lost；template build 使用 cold `Factory.CreateSandbox`。
+
+设备链 trace 边界（Inference）：CodeGraph 对 `genPmemOpt -> make_virtio_pmem_device`、`create_overlaybd_runtime_device -> add_drive`、`NewNBDProvider -> PutGuestDriveByID` 都未返回单条直接路径。静态桥接分别是 Go CBRI annotation → containerd shim/Rust config → Cloud Hypervisor device manager、OverlayBD/ublk manager → `user-rootfs` symlink → Firecracker `/drives/<id>` API、NBD Provider path → FC process/symlink → `PutGuestDriveByID`。“无直接 trace”不等于“无调用”，也不能写成同进程函数调用。
 
 ## 6. 技术矩阵
 
@@ -110,7 +115,7 @@
 |---|---|---|---|
 | VMM | Cloud Hypervisor/RustVMM/KVM。 | Firecracker/KVM。 | Firecracker/KVM。 |
 | 模板/快照 | VM snapshot + memory volume URL + app snapshot container id；Cloud Hypervisor restore。 | RunnableSnapshot/LaunchPlan；pause state 包含 `vm_state.bin`、OverlayBD memory/rootfs state。 | Template files/memfile/rootfs/snapfile/metadata；snapshot resume + UFFD；fs-only reboot 不保留内存状态。 |
-| rootfs/存储 | CubeCow reflink；FICLONE-capable FS。 | OverlayBD/ublk；legacy Cow resume unsupported。 | NBD provider + block cache + overlay + dirty/zero diff。 |
+| rootfs/存储设备链 | guest base root 为 virtio-pmem `/dev/pmem0` + ext4/DAX/ro；app ext4 image 从 `/dev/pmem1` 起；CubeCow FICLONE 只属于 volume/storage CoW。 | user image 为 `OverlayBD → host ublk → FC virtio-blk`，guest 内为 `/dev/vdb`；guest `/dev/vda` 是只读 tools root；memory snapshot backend 独立。 | Template rootfs 为 `NBD cache/overlay (host /dev/nbdX) → FC guest root drive`；UFFD 是独立内存链。 |
 | 网络/egress | TAP + network-agent + eBPF CubeVS + CubeEgress + CubeProxy。 | NetworkManager warm pool + proxy route/header/auto-resume。 | network slot pool + Redis routing catalog + client-proxy/node-local proxy。 |
 | guest 控制 | vsock/ttrpc guest agent；CubeAPI 返回 envd metadata/token。 | envd wait/init；ublk ready notification；token/config。 | envd init + MMDS token hash；FC setMmds。 |
 | 调度/池化 | CubeMaster scheduler；CubeCow/network-agent 复用；v0.6.0 未确认 VM warm pool。 | FirecrackerPool、Network warm pool、block pool low/high watermark。 | BestOfK placement、network slot new/reused pool、NBD device pool。 |
@@ -132,16 +137,19 @@
 
 | ID | Claim class | 结论 | 证据 |
 |---|---|---|---|
-| C1 | Official release fact | CubeSandbox baseline 为 `v0.6.0@8721dd...`。 | `research/version-baselines.md` |
+| C1 | Official release fact | CubeSandbox baseline 为 `v0.6.0@8721dd...`。 | 本文件第 2 节“版本范围” |
 | C2 | Local/source fact | CubeSandbox create path 为 CubeAPI → CubeMaster → Cubelet/CBRI → CubeShim → guest agent/proxy。 | `CubeAPI/src/services/sandboxes.rs:153-291`；`CubeMaster/pkg/service/sandbox/sandbox_run.go:104-340`；`Cubelet/plugins/cbri/cubeboxcbri/cubebox.go:102-260`；`CubeShim/shim/src/sandbox/sb.rs:832-999` |
 | C3 | Local/source fact | CubeSandbox 使用 Cloud Hypervisor、CubeCow reflink、TAP/network-agent/eBPF、CubeEgress。 | `CubeShim/shim/src/hypervisor/cube_hypervisor.rs:75-183`；`cubecow/src/engine/reflink.rs:131-177`；`Cubelet/network/plugin_tap.go:351-520`；`CubeEgress/lua/access_phase.lua:180-325` |
-| A1 | Official release fact | AgentENV baseline 为 `v0.1.3@7f4a9b...`。 | `research/version-baselines.md` |
+| C4 | Local/source fact | Cube guest base root 是 virtio-pmem `/dev/pmem0` + DAX；CBRI app ext4 image 从 `/dev/pmem1` 起；FICLONE 是 storage CoW。 | `Cubelet/plugins/cbri/cubeboxcbri/cubebox.go:140-142`、`:351-399`；`CubeShim/shim/src/hypervisor/config.rs:28`、`:72-77`、`:98-101`；`CubeShim/shim/src/sandbox/pmem.rs:13`、`:29-43`；`CubeShim/shim/src/sandbox/sb.rs:343-348`；`hypervisor/vmm/src/device_manager.rs:2715-2775` |
+| A1 | Official release fact | AgentENV baseline 为 `v0.1.3@7f4a9b...`。 | 本文件第 2 节“版本范围” |
 | A2 | Local/source fact | AgentENV create/resume path 为 API/Gateway → Scheduler/Node → LaunchPlan → FirecrackerSandbox → envd/proxy route。 | `src/orchestrator/service.rs:347-511`、`:1276-1408`、`:1972-2142`；`src/sandbox/firecracker/sandbox.rs:571-640`；`src/api/proxy.rs:82-147` |
 | A3 | Local/source fact | AgentENV 明确有 FirecrackerPool、Network warm pool、OverlayBD/ublk。 | `src/sandbox/firecracker/pool.rs:44-144`；`src/sandbox/network/manager.rs:57-140`；`src/sandbox/ublk/device.rs:25-105` |
-| E1 | Official release fact | E2B-infra baseline 为 `2026.29@557445...`。 | `research/version-baselines.md` |
+| A4 | Local/source fact | AgentENV user image 通过 OverlayBD/host ublk 接入 Firecracker virtio-blk，guest 内为 `/dev/vdb`；guest `/dev/vda` 是只读 tools root。 | `src/sandbox/firecracker/sandbox.rs:1198-1228`、`:1432-1456`、`:1668-1730`；`src/sandbox/firecracker/instance.rs:309-337` |
+| E1 | Official release fact | E2B-infra baseline 为 `2026.29@557445...`。 | 本文件第 2 节“版本范围” |
 | E2 | Local/source fact | E2B create path 为 API → API orchestrator/BestOfK → node orchestrator → Resume/Reboot/Create → envd/MMDS/proxy。 | `packages/api/internal/handlers/sandbox_create.go:59-336`；`packages/api/internal/orchestrator/create_instance.go:138-394`；`packages/api/internal/orchestrator/placement/placement_best_of_K.go:15-190`；`packages/orchestrator/pkg/server/sandboxes.go:75-280`；`packages/orchestrator/pkg/sandbox/sandbox.go:753-1165` |
 | E3 | Local/source fact | E2B 存储/恢复核心为 Firecracker + NBD overlay/cache + UFFD + MMDS/envd + routing catalog。 | `packages/orchestrator/pkg/sandbox/fc/process.go:159-667`；`packages/orchestrator/pkg/sandbox/rootfs/nbd.go:35-170`；`packages/orchestrator/pkg/sandbox/block/cache.go:62-204`；`packages/orchestrator/pkg/sandbox/envd.go:259-335`；`packages/shared/pkg/sandbox-catalog/catalog_redis.go:26-113` |
-| X1 | Inference from Local/source facts | 三者共享统一抽象链，但控制面边界和资产复用模型不同。 | C2/A2/E2 三套证据共同支撑；完整矩阵见 `research/technology-matrix.md`。 |
+| E4 | Local/source fact | E2B Template rootfs 通过 NBD cache/overlay host `/dev/nbdX` path 接入 Firecracker guest root drive；不声称 guest 看到 `/dev/nbdX`。 | `packages/orchestrator/pkg/sandbox/sandbox.go:421-425`、`:853-883`；`packages/orchestrator/pkg/sandbox/fc/process.go:419-440`；`packages/orchestrator/pkg/sandbox/fc/client.go:215-240`；`packages/orchestrator/pkg/sandbox/rootfs/nbd.go:35-170` |
+| X1 | Inference from Local/source facts | 三者共享统一抽象链，但控制面边界和资产复用模型不同。 | C2/A2/E2 三套证据共同支撑；完整矩阵见本文件第 6 节。 |
 
 ## 9. 限制
 
