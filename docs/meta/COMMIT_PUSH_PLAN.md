@@ -29,6 +29,7 @@ canonical: false
 - `README.md`
 - `.gitignore`
 - `docs/index.md`
+- `docs/topics/index.md`
 - `docs/CONTENT_CATALOG.md`
 - `docs/meta/INVENTORY.md`
 - `docs/meta/INFORMATION_ARCHITECTURE.md`
