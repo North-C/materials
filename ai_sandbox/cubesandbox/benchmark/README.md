@@ -6,6 +6,7 @@
 
 ```text
 benchmark/
+├── analysis/                      # benchmark口径、内存记账模型和测量方法专题
 ├── docker/
 │   ├── cube-bench-suite-envd/      # benchmark 镜像构建上下文
 │   └── cubesandbox-base-compat/    # cubesandbox-base 兼容构建参考
@@ -24,6 +25,12 @@ benchmark/
 - `scripts/run_cube_bench_envd.py`：直接通过 envd Process API 执行 benchmark。
 - `scripts/cube_bench_reusable.py`：可在其它 CubeSandbox 环境复用的标准库 runner。
 - `scripts/summarize_cube_bench_*.py`：将 runner 结果汇总为 CSV。
+
+## 内存开销分析
+
+- [社区单机密度内存表审计](analysis/community-density-memory-report-audit.md)：复算累计/边际值，说明现有表能证明和不能证明什么。
+- [CubeSandbox CoW 与宿主机内存记账模型](analysis/cubesandbox-cow-memory-accounting-model.md)：区分 rootfs reflink、Snapshot `MAP_PRIVATE`、PSS/USS、cgroup和`MemAvailable`。
+- [CubeSandbox 单机密度内存测量指南](analysis/cubesandbox-memory-density-measurement-guide.md)：给出N=0、阶梯密度、多视角采样、判因、清理和evidence规范。
 
 ## Go build / perf 行为
 
