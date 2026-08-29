@@ -1,4 +1,15 @@
+---
+status: in-progress
+scope: no-LLM Terminal-Bench-style workload toolkit and task execution
+last_verified: 2026-08-27
+source_revision: f036fd2 (tracked baseline only)
+canonical: true
+evidence_manifest: incomplete
+---
+
 # Agent CPU Sandbox Toolkit
+
+> Repository-state boundary: this README describes a broader working toolkit than the clean `f036fd2` checkout currently contains. Core paths such as `tools/run_workload.py`, `scripts/terminal_cpu_io.sh`, `tools/summarize.py`, `trajectories/terminal_cpu_io.jsonl`, `tools/run_terminal_bench_task.py`, and `tools/summarize_terminal_bench.py` are not tracked in this baseline; corresponding files exist only among the read-only main checkout's untracked results as of 2026-08-27. Do not treat the commands below as reproducible from a clean clone until MAT-03 reviews and imports the intended source set.
 
 This toolkit builds a no-LLM, Terminal-bench-style workload for measuring CPU and sandbox overhead on ARM servers.
 
