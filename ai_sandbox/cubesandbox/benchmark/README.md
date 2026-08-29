@@ -31,6 +31,8 @@ benchmark/
 - [社区单机密度内存表审计](analysis/community-density-memory-report-audit.md)：复算累计/边际值，说明现有表能证明和不能证明什么。
 - [CubeSandbox CoW 与宿主机内存记账模型](analysis/cubesandbox-cow-memory-accounting-model.md)：区分 rootfs reflink、Snapshot `MAP_PRIVATE`、PSS/USS、cgroup和`MemAvailable`。
 - [CubeSandbox 单机密度内存测量指南](analysis/cubesandbox-memory-density-measurement-guide.md)：给出N=0、阶梯密度、多视角采样、判因、清理和evidence规范。
+- [CubeSandbox 宿主机内存开销实测报告](analysis/cubesandbox-memory-footprint-report.md)：给出独立N=0/1/10/50、N=100观察点、累计N=100和N=300前停止证据。
+- [CubeSandbox 宿主机内存开销测试计划](analysis/cubesandbox-memory-footprint-test-plan.md)：记录对象模型、采样schema、门禁、统计、精确清理和失败收敛方法。
 
 ## Go build / perf 行为
 
