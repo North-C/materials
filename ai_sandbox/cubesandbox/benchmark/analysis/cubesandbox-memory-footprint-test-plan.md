@@ -2,11 +2,11 @@
 
 ## 0. 文档状态与当前阻塞
 
-- 文档日期：2026-08-29（Asia/Shanghai）。
+- 文档日期：2026-08-30（Asia/Shanghai）。
 - 本地工作树：`<local-worktree>`。
 - 本地源码 HEAD：`09274501dd12e47dbed2dcc77d8eb67dd661d49c`；tree：`3b1b2fce653aa10073ac7a41e97e83d1cc613320`。
 - 2026-08-29 对 `<original-target-host>` 的只读 SSH始终不可用；当前 `<original-target-host>` 的 boot/kernel/hash/Template/资源状态仍未确认，未在 `<original-target-host>` 创建或删除任何对象。
-- 用户随后授权把 `<test-host>` 作为可选现场。Orca 筛选未发现另一个正在运行的 `<test-host>` worker；只读 SSH 确认该机 hostname=`<hostname>`、boot ID=`<boot-id>`、kernel=`6.6.0-132.0.0.111.oe2403sp3.aarch64`。进一步只读审计确认 API Sandbox/Snapshot、shim/VMM/virtiofsd/in-use TAP 为 0，但该机为 cgroup v1、没有 PSI、存在 `dnf-makecache.service` failed，约 13.4k threads、27–29 个 blocked task、Dirty 约 76 MiB，Kubernetes 控制面持续占用 CPU；load1 在 20.65→11.48→12.77 间仍远高于 5。它既不是本任务要求核对的 6.6.119 环境，也同时违反多项 G0/G2 门禁，因此未创建或删除任何 Sandbox。
+- 用户随后授权把 `<test-host>` 作为可选现场。Orca 筛选未发现另一个正在运行的 `<test-host>` worker；只读 SSH 确认该机 hostname=`<hostname>`、boot ID=`<runtime-id>`、kernel=`6.6.0-132.0.0.111.oe2403sp3.aarch64`。进一步只读审计确认 API Sandbox/Snapshot、shim/VMM/virtiofsd/in-use TAP 为 0，但该机为 cgroup v1、没有 PSI、存在 `dnf-makecache.service` failed，约 13.4k threads、27–29 个 blocked task、Dirty 约 76 MiB，Kubernetes 控制面持续占用 CPU；load1 在 20.65→11.48→12.77 间仍远高于 5。它既不是本任务要求核对的 6.6.119 环境，也同时违反多项 G0/G2 门禁，因此未创建或删除任何 Sandbox。
 - Orca 只读状态显示相关历史测试 worktree 的 agent 已结束、旧 SSH 终端已断开；这只能证明 Orca 中已知终端状态，不能替代远端登录/进程核验。
 - 当前工作树没有 `.codegraph/`；CodeGraph MCP 返回 `not initialized`。未获授权前不执行 `codegraph init -i`，本计划仅引用已逐项读取的当前源码文件。
 - 用户在看到 `<test-host>` 的 kernel/cgroup/负载差异后明确授权继续：把 `<test-host>` 作为独立环境，先以 10 分钟纯只读 N=0 建立 control envelope，再以该包络替代 `<original-target-host>` 专用的绝对 load/threads/blocked/Dirty 门禁。该授权不允许修改 `<test-host>` 参数，也不允许把 `<test-host>` 与 `<original-target-host>/6.6.119` 合并成一条结果。
@@ -15,6 +15,9 @@
 - R2在 N=300首个 POST之前发现 CubeMaster/CubeAPI inventory异常；只读诊断确认宿主根分区100%满、Redis RDB `No space left on device`并进入 `MISCONF`。本 worker停止提交并进入精确清理。100个 owned ID各 DELETE一次，均返回500且不重试；最终 Master/Cubelet/API、shim/VMM/TAP运行时对象均为0，但 Redis proxy-map一致性为unknown。
 - N=300/500/1000均未提交、未测、不得外推。当前现场禁止继续测试，直到管理员释放根分区、恢复Redis持久化、核对可能的proxy-map残留，并重新完整通过Phase A。
 - 方法缺陷披露：最初 Phase A已记录 `/` 仅余约357 MiB，但旧 gate未检查文件系统可用空间。现已把默认 `root free >= 10 GiB`加入 Phase A和未来累计 runner；既有结果和失败不被追溯改写。
+- 2026-08-30恢复验证：经用户授权删除历史 `vmcore`、日期化旧备份和部分未引用Docker镜像后，根盘恢复到约117 GiB free；Redis容器healthy且连续RDB保存成功。全新run `<run-label>` 的Phase A、资源空集、hash与Template fingerprint通过。
+- 同run的 `community-cumulative-r3` 使用旧control envelope时，151个preflight样本均因threads超13901失败；0创建、0删除、最终资源空。随后完整重采600秒 `n0-post-cleanup-r1`，302个正式Host样本和41个组件深样本中出现 `oom_kill +2`，均为Kubernetes burstable memcg内 `node_exporter`；新包络 `valid=false`。
+- N=0结束后又发生第3次同类 `node_exporter` memcg OOM。按G3停止条件，不启动R4，不创建N=100/300/500/1000；不修改Pod/cgroup限制，不重启workload，不清零计数。
 
 恢复执行的前提不是“SSH 能连通”本身，而是重新从头通过本计划的 G0、G1、G2，并额外证明根分区空闲不少于10 GiB、Redis persistence健康、proxy-map与Master/Cubelet空集一致。历史报告中的 boot ID、hash、Template ID、endpoint 状态和空载资源不得自动继承。
 
@@ -677,13 +680,14 @@ script SHA-256
 
 ## 14. 当前下一步
 
-当前唯一安全下一步是由现场管理员处理 `<test-host>` 的宿主存储和 Redis；本 worker不删除宿主文件、不修改Redis配置、不restart服务，也不重试旧100个 DELETE。恢复的必要条件：
+存储和Redis故障已经恢复；当前唯一安全下一步变为由现场管理员处理 `<test-host>` 上反复发生的 `node_exporter` memcg OOM。本 worker不修改Kubernetes Pod/cgroup limit、不重启或删除workload，也不清零vmstat计数。恢复的必要条件：
 
-1. `/` 可用空间不少于10 GiB且inode正常，并说明空间耗尽原因已消除。
-2. Redis容器health和RDB/AOF persistence恢复；由管理员核对可能的 Sandbox proxy-map残留与Master/Cubelet/API空集一致。
-3. 重新检查 Orca与远端操作者，重新执行完整 Phase A/G0/G1/G2；不能继承旧boot/hash/Template/health。
-4. 若资源非零、身份不明、存在并发操作者或任一服务/存储异常，停止并报告。
-5. 全部门禁通过后，也必须用新的唯一 run label从same-run N=0重新开始；不得接续 R2、复用旧 cohort或重试旧 DELETE。
+1. `/` 可用空间继续不少于10 GiB且Redis persistence保持健康。
+2. 管理员确认并修复 `node_exporter`所在burstable memcg的重复OOM原因；修复方式和时间必须进入新Phase A身份，不由本测试执行。
+3. 在修复后重新采完整10分钟N=0，要求 `oom_kill/swap/allocstall/reclaim`零增量；当前无效包络不得使用。
+4. 重新检查 Orca与远端操作者，重新执行完整 Phase A/G0/G1/G2；不能继承旧boot/hash/Template/health。
+5. 若资源非零、身份不明、存在并发操作者或任一服务/存储异常，停止并报告。
+6. 全部门禁通过后，必须用新的唯一 run label从same-run N=0重新开始；不得接续 R2/R3或复用旧 cohort。
 
 `<original-target-host>` 路径仍需等待SSH恢复并完整重新核验；`<test-host>` 的6.6.0数据不得表述为`<original-target-host>/6.6.119`结论。
 

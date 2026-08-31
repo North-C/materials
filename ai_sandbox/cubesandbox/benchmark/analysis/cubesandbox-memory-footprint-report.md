@@ -3,9 +3,10 @@
 ## 0. 结论先行
 
 - 测试 Host：`<test-host>`。独立档位正式通过上限为 `N=50`；独立与社区式累计测试均完整测到 `N=100`。
-- 累计测试在提交任何 `N=300` POST **之前**停止；`N=300/500/1000` 未测，不外推。停止原因是宿主 `/` 已满导致 Redis RDB 持久化失败，不是内存耗尽。
+- 2026-08-30最新恢复验证仍停在 `N=0`：根盘已恢复到约117 GiB free、Redis RDB持续成功，但旧包络preflight 151个样本未通过且0创建；随后新600秒 N=0窗口发生2次 `node_exporter` memcg OOM，故新包络 `valid=false`。
+- 累计测试仍未提交任何 `N=300` POST；`N=300/500/1000` 未测，不外推。此前存储故障已解除，当前硬停止原因变为同期宿主Kubernetes workload的重复memcg OOM，不归因于CubeSandbox。
 - 实际 kernel 为 `6.6.0-132.0.0.111.oe2403sp3.aarch64`，不是原目标 `<original-target-host>` 的 6.6.119；本报告只代表 `<test-host>` 独立环境。
-- boot ID：`<boot-id>`；cgroup：`v1`。
+- boot ID：`<runtime-id>`；cgroup：`v1`。
 - 下表中的 PSS/USS、cgroup 和整机 `MemAvailable` 是平行视角，未相加。`MemAvailable/N` 只称整机摊销，不称 Sandbox RSS。
 
 ### 0.1 核心组件随 Sandbox 数量变化
@@ -85,7 +86,36 @@ N=100 的 90 秒 measurement window 已完整结束，100/100 Sandbox 创建、�
 
 同一累计轮从 N=0 到 N=100 的 Host 变化为：`AnonPages +17.003`、`Cached +1.533`、`PageTables +0.521`、`SecPageTables +0.255`、`KernelStack +0.321`、`Slab +0.114 MiB/实例`。整段无 `oom_kill/swap/allocstall/pgscan/pgsteal` 增量，因此这个 N=100 点不是内存回收压力点。
 
-清理时100个 owned ID各只发送一次 DELETE；由于 Redis 已进入 `MISCONF`，100次响应均为 HTTP 500。没有重试，也没有 kill/删目录/restart。随后只读核验 Master、Cubelet、CubeAPI、shim/VMM/TAP均为0，说明运行时对象已消失；但 Redis proxy-map 是否留下逻辑脏状态无法在损坏现场可靠确认，记为 unknown。管理员修复根盘与 Redis 前禁止继续测试。
+清理时100个 owned ID各只发送一次 DELETE；由于 Redis 已进入 `MISCONF`，100次响应均为 HTTP 500。没有重试，也没有 kill/删目录/restart。随后只读核验 Master、Cubelet、CubeAPI、shim/VMM/TAP均为0，说明运行时对象已消失；但 Redis proxy-map 是否留下逻辑脏状态无法在损坏现场可靠确认，记为 unknown。当时在管理员修复根盘与 Redis 前禁止继续测试。
+
+### 0.5 磁盘清理后的恢复验证与最新 N=0
+
+2026-08-30在用户明确授权清理历史 `vmcore`、旧备份和部分未引用Docker镜像后，根盘可用空间恢复到约117 GiB；Redis容器为healthy，且日志连续记录RDB `DB saved on disk`与`Background saving terminated with success`。同一boot、组件hash和Template fingerprint均未漂移，Phase A通过。
+
+随后执行两个全新attempt：
+
+1. `community-cumulative-r3`：使用旧10分钟control envelope，151个preflight样本始终因 `threads > 13901`失败；0 Sandbox创建、0 DELETE，最终资源空。
+2. `n0-post-cleanup-r1`：使用授权的 `observe-baseline`重新采600秒 N=0，共302个正式Host样本、41个组件深样本。资源始终为空，但窗口中 `oom_kill +2`，因此派生包络 `valid=false`，没有启动累计R4或任何密度创建。
+
+OOM一手日志显示两次均为Kubernetes burstable memcg内的 `node_exporter`，不是CubeSandbox进程：
+
+| 时间 | constraint | 被终止对象 | anon RSS |
+|---|---|---|---:|
+| 2026-08-30 00:07:28 +08:00 | `CONSTRAINT_MEMCG` | `node_exporter` PID 1904984 | 140640 KiB |
+| 2026-08-30 00:11:17 +08:00 | `CONSTRAINT_MEMCG` | `node_exporter` PID 1995910 | 142676 KiB |
+
+窗口结束后00:18:28又发生第3次相同 `node_exporter` memcg OOM，证明这是持续的宿主基线异常，而不是单个采样毛刺。没有修改Pod/cgroup限制、重启workload或清零计数来绕过门禁。
+
+最新N=0组件观察值如下。单位MiB；这些值可描述当前固定进程观察，但由于同期OOM，**不能作为密度回归截距或有效容量基线**。
+
+| 指标 | CubeMaster | Cubelet | CubeAPI | network-agent | containerd | Docker daemon |
+|---|---:|---:|---:|---:|---:|---:|
+| PSS median | 283.781 | 190.722 | 42.531 | 113.020 | 166.221 | 141.738 |
+| USS median | 283.777 | 190.715 | 42.500 | 113.016 | 166.215 | 141.703 |
+| cgroup median | 1328.434 | 57.086 | 46.000 | 161.258 | 2235.742 | 3880.020 |
+| PSS sample min/max | 275.367/303.758 | 190.706/191.222 | 42.528/42.531 | 113.020/114.074 | 163.439/174.748 | 140.489/142.830 |
+
+`containerd.service` cgroup包含其层级下的通用Kubernetes/containerd charge，2.236 GiB不是containerd进程PSS，也不能归给CubeSandbox。
 
 ## 1. 环境与身份
 
@@ -351,6 +381,8 @@ OLS、Theil-Sen 和 10,000 次 run-level bootstrap 使用相同 run-level 点；
 | `community-cumulative-r1` | false | N=100 Guest probe在 c50并发下0/100成功；方法失败 | 100/100一次DELETE，最终空 |
 | `community-probe-c1` | true | 单 Sandbox顺序 probe诊断成功 | 1/1一次DELETE，最终空 |
 | `community-cumulative-r2` | false（N=100 tier成功） | N=300前控制面异常；收到本 worker SIGTERM进入清理 | 100次DELETE均500；最终运行时资源空，Redis逻辑状态unknown |
+| `community-cumulative-r3` | false | 旧control envelope preflight 151样本未通过 | 0创建/0删除，最终空 |
+| `n0-post-cleanup-r1` | runner完成、包络无效 | 600秒 N=0内 `oom_kill +2` | 0创建/0删除，最终空 |
 
 本报告独立轮最高正式点为 `N=50`；累计轮最高完整 measurement tier 为 `N=100`。任何更高目标、部分成功或门禁失败点均不外推。
 
@@ -360,6 +392,7 @@ OLS、Theil-Sen 和 10,000 次 run-level bootstrap 使用相同 run-level 点；
 - 只读诊断发现 `/` 为 ext4、492 GiB、可用0、使用率100%；Redis容器 unhealthy，日志反复记录 RDB `No space left on device`，DELETE返回 `MISCONF ... stop-writes-on-bgsave-error`。这是存储故障，不是内存耗尽。
 - Phase A其实已记录根分区仅余约357 MiB，但旧 gate没有据此失败关闭。这是本测试方法的明确缺陷；脚本已增加默认 `root free >= 10 GiB` 门禁，历史 attempt不被追溯改写为成功。
 - R2 的100个 DELETE均已尝试一次且不重试；最终 Master/Cubelet/API、shim/VMM/TAP运行时集合为空。Redis proxy-map 是否残留为 unknown，因此不得把本现场称为完全健康清理。
+- 存储清理后Redis持久化已恢复；R3没有通过旧threads包络且未创建。随后重采的10分钟N=0因 `node_exporter` memcg OOM无效，故没有R4，也没有任何新的N=100/300/500/1000点。
 - 原计划的关键密度三轮重复没有继续，原因同上；因此当前回归和 bootstrap只用于探索趋势，不能作为稳定置信区间。
 - 没有执行 `systemctl reset-failed`、服务重启、参数修改、drop_caches或进程 kill来美化结果。
 
@@ -390,6 +423,7 @@ Raw evidence 与 runner 脚本保留在受控本地，没有发布到 Materials�
 - `community-probe-c1/`：单实例 probe接口诊断，create/probe/delete各一次。
 - `community-cumulative-r2/` 与 `community-cumulative-r2-derived/`：同 run N=0/N=100原始数据、100/100 probe、派生组件/均摊表及故障清理。
 - `community-cumulative-r2-current-blocker.txt`：根盘100%、Redis unhealthy、最终运行时对象0的只读快照。
+- `evidence/<run-label>/`：磁盘清理后的全新Phase A、R3 preflight-only失败、600秒N=0无效包络、OOM/Redis恢复证据及最新组件观察。
 - `final-live-state.txt`：最终 boot/hash、核心服务 active、Sandbox/Snapshot/shim/VMM/TAP=0及已知非 Cube failed unit。
 - `validation.json`：独立轮、累计轮、诊断 probe 的 ledger/at-most-once/final-resource/JSON/CSV/secret验证。
 - `SHA256SUMS`：最终 evidence文件完整性清单；文件数以清单为准。
@@ -401,3 +435,106 @@ python3 <local-tools-root>/analyze.py --evidence-root <local-evidence-root>
 python3 <local-tools-root>/analyze_cumulative.py --run-dir <local-evidence-root>/community-cumulative-r2 --output-root <local-evidence-root>/community-cumulative-r2-derived
 python3 <local-tools-root>/render_report.py --evidence-root <local-evidence-root> --host <host> --output SANDBOX_MEMORY_FOOTPRINT_REPORT.zh-CN.md
 ```
+
+## 9. 指标观察方法与复现命令
+
+本节给出报告中每类数字的直接观察入口。正式数据由 `measure.py`/`measure_cumulative.py` 用Python标准库读取相同内核接口并写入带时间戳JSONL；下面的命令用于人工单点复核。命令均为只读，不包含认证header，也不读取进程环境变量。
+
+### 9.1 Host内存、压力、fault与NUMA
+
+| 报告指标 | 直接来源 | 单点观察命令 |
+|---|---|---|
+| `MemTotal/MemAvailable/AnonPages/Cached/Mapped/Shmem/Slab/PageTables/SecPageTables/KernelStack/Dirty/Writeback` | `/proc/meminfo` | `grep -E '^(MemTotal|MemAvailable|AnonPages|Cached|Mapped|Shmem|Slab|SReclaimable|SUnreclaim|PageTables|SecPageTables|KernelStack|Dirty|Writeback):' /proc/meminfo` |
+| OOM/swap/reclaim/fault | `/proc/vmstat` | `grep -E '^(oom_kill|pswpin|pswpout|pgfault|pgmajfault|pgscan_|pgsteal_|allocstall)' /proc/vmstat` |
+| PSI | `/proc/pressure/{cpu,memory,io}` | `for f in /proc/pressure/{cpu,memory,io}; do echo "$f"; cat "$f"; done`；`<test-host>`对应文件不可用时明确记缺失 |
+| NUMA节点 | node sysfs | `for n in /sys/devices/system/node/node[0-9]*; do cat "$n/meminfo"; cat "$n/numastat"; done` |
+| threads/load/blocked | `/proc/loadavg`、`/proc/stat`、线程列表 | `cat /proc/loadavg; grep '^procs_blocked ' /proc/stat; ps -eLo tid= | wc -l` |
+| IO与内核对象 | `/proc/diskstats`、`/proc/slabinfo`、sockstat | `cat /proc/diskstats; grep -E '^(xfs_|dentry |inode_cache |kmalloc-|task_struct )' /proc/slabinfo; cat /proc/net/sockstat{,6}` |
+
+Host时间序列每2秒写入 `host-samples.jsonl`；主值使用指定phase内样本中位数，而不是单次 `free -h`。本报告的整机摊销按：
+
+```text
+(median(MemAvailable_N0) - median(MemAvailable_settled_N)) / 1024 / N
+```
+
+### 9.2 进程PSS、USS、RSS与Snapshot mapping
+
+先用systemd取得稳定PID和cgroup，再记录 `/proc/PID/stat` 的start ticks，采样前后必须一致：
+
+```bash
+systemctl show <unit> --no-pager \
+  -p MainPID -p ControlGroup -p MemoryCurrent -p MemoryPeak -p TasksCurrent
+readlink /proc/<pid>/exe
+awk '{print $1,$2,$10,$12,$14,$15,$20,$22}' /proc/<pid>/stat
+cat /proc/<pid>/smaps_rollup
+grep -E '^(Name|State|VmRSS|RssAnon|RssFile|RssShmem|VmPTE|VmSwap|Threads):' /proc/<pid>/status
+cat /proc/<pid>/statm
+cat /proc/<pid>/numa_maps
+```
+
+字段形成规则：
+
+```text
+PSS_KiB = smaps_rollup:Pss
+USS_nonhugetlb_KiB = Private_Clean + Private_Dirty
+RSS_KiB = smaps_rollup:Rss
+```
+
+Snapshot mapping不靠进程总RSS推断，而是解析 `/proc/<pid>/smaps`，只保留pathname匹配已冻结Template memory路径的VMA，并同时记录`dev/inode/perms/Pss/Shared_Clean/Shared_Dirty/Private_Clean/Private_Dirty/Anonymous`：
+
+```bash
+grep -n -A30 '<template-memory-path>' /proc/<cube-shim-pid>/smaps
+stat -c 'dev=%d inode=%i size=%s mtime_epoch=%Y' <template-memory-path>
+```
+
+部署中的VMM位于 `containerd-shim-cube-rs`进程内，报告没有虚构独立 `cloud-hypervisor`进程，也没有跨进程直接相加RSS。
+
+### 9.3 cgroup v1 memory
+
+从 `/proc/<pid>/cgroup` 找到`memory` controller路径，再读取：
+
+```bash
+cat /proc/<pid>/cgroup
+cg=/sys/fs/cgroup/memory/<resolved-path>
+stat -c 'inode=%i' "$cg"
+cat "$cg/memory.usage_in_bytes"
+cat "$cg/memory.max_usage_in_bytes"
+cat "$cg/memory.failcnt"
+cat "$cg/memory.stat"
+```
+
+报告中的`cgroup current`来自`memory.usage_in_bytes`；`rss/cache/mapped_file/pgtable`来自`memory.stat`。cgroup v1共享页按charge归属且usage为近似值，所以只与PSS平行对照，不相加、不要求逐字节闭合。
+
+### 9.4 Sandbox归属、readiness与清理
+
+高密度时CubeAPI列表可能分页截断，因此全量集合以Master和Cubelet CLI交叉验证：
+
+```bash
+/usr/local/services/cubetoolbox/CubeMaster/bin/cubemastercli list --all -q
+/usr/local/services/cubetoolbox/Cubelet/bin/cubecli cubebox ls -a -q --no-trunc
+ctr -n cubens tasks ls -q
+ctr -n cubens containers ls -q
+for p in /sys/class/net/z*/operstate; do [ "$(cat "$p")" = up ] && echo "$p"; done
+```
+
+每个创建成功ID立即fsync写入`owned-ids.jsonl`；每个新ID只执行一次Guest probe：
+
+```bash
+/usr/local/services/cubetoolbox/Cubelet/bin/cubecli exec <owned-id> /bin/true
+```
+
+清理只对owned ledger中的精确ID发送一次 `DELETE /sandboxes/<id>`；`delete-events.jsonl`记录HTTP状态。最终要求Master、Cubelet、API、shim、task、VMM、TAP和cgroup集合回到before manifest。
+
+### 9.5 统计与派生
+
+```bash
+python3 <local-tools-root>/analyze.py --evidence-root <local-evidence-root>
+python3 <local-tools-root>/analyze_cumulative.py \
+  --run-dir <local-evidence-root>/community-cumulative-rN \
+  --output-root <local-evidence-root>/community-cumulative-rN-derived
+```
+
+- P50/P95使用nearest-rank：`sorted[ceil(n*p/100)-1]`。
+- 组件主值先在每run settled窗口取中值，再跨成功run取中值。
+- OLS、Theil-Sen和bootstrap只接受完整成功密度点；失败、未提交和无效N=0不会补值。
+- `memory-samples.csv`、`process-map.csv`、`cgroup-memory.csv`分别保存Host、进程/mapping和cgroup的raw-to-derived输入。

@@ -33,6 +33,8 @@ benchmark/
 - [CubeSandbox 单机密度内存测量指南](analysis/cubesandbox-memory-density-measurement-guide.md)：给出N=0、阶梯密度、多视角采样、判因、清理和evidence规范。
 - [CubeSandbox 宿主机内存开销实测报告](analysis/cubesandbox-memory-footprint-report.md)：给出独立N=0/1/10/50、N=100观察点、累计N=100和N=300前停止证据。
 - [CubeSandbox 宿主机内存开销测试计划](analysis/cubesandbox-memory-footprint-test-plan.md)：记录对象模型、采样schema、门禁、统计、精确清理和失败收敛方法。
+- [CubeSandbox `.90` 当前宿主机内存开销正式报告](analysis/cubesandbox-memory-footprint-90-current-report.md)：给出同run累计N=0/100/300/500/1000、组件增长、清理和严格门禁结果。
+- [Cubelet cgroup v1采集纠错](analysis/cubelet-cgroup-v1-collection-erratum.md)：撤回错误层级的Cubelet cgroup值，保留PSS/USS并说明采集器修复。
 
 ## Go build / perf 行为
 
