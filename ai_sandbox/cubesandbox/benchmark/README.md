@@ -274,7 +274,7 @@ python3 scripts/summarize_cube_bench_sdk_csv.py \
 
 ## Template 创建 benchmark 报告
 
-- [create-only c100/n100 单轮测试记录（2026-09-02）](reports/CUBESANDBOX_CREATE_ONLY_C100_N100_20260902.md)
+- [create-only c100/n100 两轮测试记录（2026-09-02）](reports/CUBESANDBOX_CREATE_ONLY_C100_N100_20260902.md)
 - [v0.5.1 ARM64 Template 创建性能测试（2026-07-20）](reports/CUBESANDBOX_TEMPLATE_CREATE_PERF_REPORT_20260720.md)
 - [v0.5.1 ARM64 Template 创建性能复测（2026-07-20）](reports/CUBESANDBOX_TEMPLATE_CREATE_PERF_RETEST_REPORT_20260720.md)
 
