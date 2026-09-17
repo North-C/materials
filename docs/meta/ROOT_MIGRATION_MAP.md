@@ -61,7 +61,7 @@ canonical: false
 
 `docker镜像编译.md`（1.7 KB，通用操作）、`jenkins使用.md`（1.4 KB，CI 使用笔记）。
 
-迁移动作：候选并入 `软件工程/`（现有 3 份方法论文档）。前置条件：补适用版本/环境边界后再定 canonical 状态。
+迁移动作：✅ 已执行（2026-09-17）：以纯 Git rename 并入 `软件工程/`，并新增该目录 README。后续条件：补适用版本/环境边界后再定 canonical 状态。
 
 ### Group R5：云原生趋势报告（1 份）
 
@@ -108,5 +108,6 @@ canonical: false
 
 - 2026-09-17：15 份 Markdown + `记录` + 2 份 Excalidraw 的跟踪状态、大小、行数、首行标题、入链、单 commit provenance 均已在 worktree 内核实；受限文件（`专利修改问题.md`、`华泰问题讨论.md`、`github-tokens.md`）只采集了元数据；两份 cloud-native 报告的姊妹篇关系已按标题与正文主题核对。
 - 2026-09-17（R1 执行）：`design.md`、`Policy模块设计文档.md`、`并发问题.md` 以纯 Git rename（R100，零内容改动）迁入 `nri-resource-policy/`，同批新增该目录 README；新旧路径映射记录于目录 README 的 Provenance 节。
+- 2026-09-17（R4 执行）：`docker镜像编译.md`、`jenkins使用.md` 以纯 Git rename（R100，零内容改动）迁入 `软件工程/`，同批新增该目录 README（含既有 3 份文档的导航与迁入 provenance）。
 
 相关：[根目录散落文件主题页](../topics/root-files.md) · [任务 backlog](TASK_BACKLOG.md) · [大对象治理](LARGE_OBJECT_MANIFEST.md)
