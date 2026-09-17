@@ -410,7 +410,7 @@ curl -fsS -H 'Authorization: Bearer e2b_000000' \
 ## 16. 主要证据入口
 
 - [综合根因复盘](CUBESANDBOX_ARM64_MULTIVCPU_ROOT_CAUSE_REASSESSMENT_20260722.md)
-- [2/3/4 vCPU 新模板矩阵](CUBESANDBOX_ARM64_VCPU_COUNT_TEMPLATE_MATRIX_REPORT_20260723.md)
+- [2/3/4 vCPU 新模板矩阵](../../perf/reports/CUBESANDBOX_ARM64_VCPU_COUNT_TEMPLATE_MATRIX_REPORT_20260723.md)
 - [v0.3/v0.5 源码差异](CUBESANDBOX_ARM64_V030_V050_TEMPLATE_SOURCE_DIFF_ANALYSIS_20260722.md)
 - [社区全栈矩阵结果](remote-results/community-stack-vcpu-matrix-20260723-161000)
 - [v16 拆分矩阵结果](remote-results/arm64-v16-decomposition-v24-20260723-222458)

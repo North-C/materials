@@ -397,7 +397,7 @@ VMM 与 kernel 共同给出的实际顺序为：
 
 ## 11. patched 历史矩阵的清理状态
 
-> 2026-07-24 交接更新：后续不再沿用本文任一历史 Template。v16 拆分结论、V25 计划、每组 20 次协议和最终恢复门禁见[交接与后续执行计划](bug-fixes/investigations/CUBESANDBOX_ARM64_MULTIVCPU_HANDOFF_PLAN_20260724.md)。
+> 2026-07-24 交接更新：后续不再沿用本文任一历史 Template。v16 拆分结论、V25 计划、每组 20 次协议和最终恢复门禁见[交接与后续执行计划](../../bug-fixes/investigations/CUBESANDBOX_ARM64_MULTIVCPU_HANDOFF_PLAN_20260724.md)。
 
 以下仅描述第 5 节 patched 历史矩阵结束时的状态，不代表当前远端状态：
 

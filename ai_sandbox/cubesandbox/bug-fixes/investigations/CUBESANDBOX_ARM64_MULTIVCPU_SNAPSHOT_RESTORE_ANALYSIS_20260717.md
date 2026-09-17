@@ -208,6 +208,6 @@ Snapshot/Restore guest clock 的完整修复，在 Linux 6.6 多 vCPU 环境中�
 ## 11. 参考资料
 
 - [Cloud Hypervisor PR #8343](https://github.com/cloud-hypervisor/cloud-hypervisor/pull/8343)
-- [CubeSandbox ARM64 正式测试报告](./CUBESANDBOX_FORMAL_TEST_REPORT_ARM64_20260716.md)
+- [CubeSandbox ARM64 正式测试报告](../../CUBESANDBOX_FORMAL_TEST_REPORT_ARM64_20260716.md)
 - [CubeSandbox v0.5.0 ARM64 安装报告](./cubesandbox-install-report-v0.5.0-nvme3n1.md)
 - 本地实验补丁：`source_code/CubeSandbox-v0.5.1-cntvct-fix/hypervisor/hypervisor/src/kvm/mod.rs`

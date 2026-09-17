@@ -780,9 +780,9 @@ ef66a68109bda9b57bb67ef1f8b201c1cc3f4e5b02b82e20a9492dd95dc30956  v0.5 destroy.g
 
 ### 11.1 实验 A：只恢复 ARM64 命令行保护
 
-**状态：已完成，结果为负。** 完整实验摘要和原始证据位于 [实验 A 证据目录](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/EXPERIMENT_SUMMARY.md)。
+**状态：已完成，结果为负。** 完整实验摘要和原始证据位于 [实验 A 证据目录](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/EXPERIMENT_SUMMARY.md)。
 
-实验以 `v0.5.1@a164417f497234a0d787cb328b0ae96480b1569b` 为基线，只复用 v0.3 的架构保护。完整差异见 [experiment-a.patch](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/source/experiment-a.patch)。
+实验以 `v0.5.1@a164417f497234a0d787cb328b0ae96480b1569b` 为基线，只复用 v0.3 的架构保护。完整差异见 [experiment-a.patch](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/source/experiment-a.patch)。
 
 关键改动直接展开如下：
 
@@ -804,14 +804,14 @@ pub fn add_sandbox_clock_cmdlines(&mut self) -> &mut Self {
 
 同一保护也用于 snapshot 的 TAP/non-TAP 分支，使 ARM64 不加入 `clocksource=tsc` 和 `tsc=reliable`。原生 ARM64 builder 单测通过。
 
-[单测日志](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/build/arm64-unit-test.log)
+[单测日志](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/build/arm64-unit-test.log)
 
 ```text
 test hypervisor::config::tests::clock_cmdlines_match_architecture ... ok
 test result: ok. 1 passed; 0 failed
 ```
 
-实验二进制身份见 [artifact-identity.txt](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/build/artifact-identity.txt)：
+实验二进制身份见 [artifact-identity.txt](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/build/artifact-identity.txt)：
 
 ```text
 shim    070da9f4f5066a5beb9671b1217c1df3d2ac0acf4c8a4ee451c4de464a30461c
@@ -823,11 +823,11 @@ version v0.5.1-arm64-v03-cmdline-guards-expA
 
 实验重新创建了 `tpl-f88bd35625bd48b5865000a8`，而非复用旧 Template。
 
-[创建响应](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/create.json)
+[创建响应](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/create.json)
 
-[READY 结果](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/watch.json)
+[READY 结果](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/watch.json)
 
-[Template 信息](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/info.json)
+[Template 信息](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/info.json)
 
 ```text
 template_id   tpl-f88bd35625bd48b5865000a8
@@ -841,9 +841,9 @@ image_digest  sha256:e1cb43e12ba70b8453b45f0c063306faab8a6974aa3fd76982dc4d019d0
 
 Template 构建 guest 的实际命令行见完整 Shim 日志和参数计数。
 
-[完整 Shim 日志](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/CubeShim-template-build.log)
+[完整 Shim 日志](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/CubeShim-template-build.log)
 
-[参数计数](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/cmdline-verification.txt)
+[参数计数](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/template/cmdline-verification.txt)
 
 ```text
 Kernel command line: root=/dev/pmem0 rootflags=dax,errors=remount-ro ro
@@ -865,9 +865,9 @@ mitigations=off=0
 
 实验使用与历史问题批次 SHA256 相同的脚本和 benchmark。
 
-[预检记录](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/preflight.txt)
+[预检记录](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/preflight.txt)
 
-[aggregate.json](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/aggregate.json)
+[aggregate.json](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/aggregate.json)
 
 ```text
 runner     55581d9c06a0ee67b47e850b8f02ae294f480feffe55bf2ce61dc9978caf0d4d
@@ -876,10 +876,10 @@ cube-bench 8f7402edb027a772f90108db621237146e0756ea65ef729b1552c4822d761eb1
 
 | 测试 | 成功/总数 | 错误 | 回收 shim | 清理后 sandbox/shim/task |
 | --- | ---: | ---: | ---: | ---: |
-| [c1/n20](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/create-c1-n20.case-summary.json) | 20/20 | 0 | 0 | 0/0/0 |
-| [c10/n200](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/create-c10-n200.case-summary.json) | 191/200 | 9 | 10 | 0/0/0 |
-| [c20/n300](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/create-c20-n300.case-summary.json) | 288/300 | 12 | 12 | 0/0/0 |
-| [c50/n500](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/create-c50-n500.case-summary.json) | 483/500 | 17 | 17 | 0/0/0 |
+| [c1/n20](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/create-c1-n20.case-summary.json) | 20/20 | 0 | 0 | 0/0/0 |
+| [c10/n200](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/create-c10-n200.case-summary.json) | 191/200 | 9 | 10 | 0/0/0 |
+| [c20/n300](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/create-c20-n300.case-summary.json) | 288/300 | 12 | 12 | 0/0/0 |
+| [c50/n500](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/template-create-perf/create-c50-n500.case-summary.json) | 483/500 | 17 | 17 | 0/0/0 |
 | 合计 | **982/1020** | **38** | 39 | 每档均清零 |
 
 与问题侧相同脚本的历史结果比较：
@@ -890,7 +890,7 @@ cube-bench 8f7402edb027a772f90108db621237146e0756ea65ef729b1552c4822d761eb1
 | 问题侧复测 | 980/1020 | 40 | 基线波动 |
 | 实验 A | 982/1020 | 38 | 仍处于约 4% 的同一失败量级 |
 
-实验 A 多 2 至 3 次成功，不能在单批次样本下解释为因果改善。更关键的是，同型 RCU 机制签名没有消失。[签名计数](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/logs/create-pressure-signature-counts.txt)
+实验 A 多 2 至 3 次成功，不能在单批次样本下解释为因果改善。更关键的是，同型 RCU 机制签名没有消失。[签名计数](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/logs/create-pressure-signature-counts.txt)
 
 ```text
 rcu_stall=4
@@ -899,7 +899,7 @@ shim_destroy_ttrpc_timeout=37
 shutdown_event_timeout=37
 ```
 
-4 个 RCU 实例的完整摘取见 [rcu-instance-key.log](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/rcu-instance-key.log)。代表性实例的关键事件按发生顺序展开：
+4 个 RCU 实例的完整摘取见 [rcu-instance-key.log](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/create-pressure/rcu-instance-key.log)。代表性实例的关键事件按发生顺序展开：
 
 ```text
 create req start
@@ -920,11 +920,11 @@ smp_call_function_many+0x20/0x2c
 
 100 次门禁不只检查 API 创建。每次创建后通过 CubeMaster 直连 TAP guest 的 `49999/health`，要求 HTTP 200，再删除 Sandbox。
 
-[逐次结果](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/lifecycle-100/results/results.jsonl)
+[逐次结果](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/lifecycle-100/results/results.jsonl)
 
-[汇总](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/lifecycle-100/results/summary.json)
+[汇总](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/lifecycle-100/results/summary.json)
 
-[预检记录](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/lifecycle-100/preflight.txt)
+[预检记录](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/lifecycle-100/preflight.txt)
 
 ```text
 lifecycle runner sha256 = 91fca43d5f39dcf43b3ebfce2510baa137adaef2632aa0675d803902b531b0c4
@@ -939,7 +939,7 @@ lifecycle    97/100
 失败形式     SandboxException("408: b''"), 每次约 30.00 s
 ```
 
-失败序号、实例和 Shim 事件的关联见 [failed-instances-key.log](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/lifecycle-100/failed-instances-key.log)。
+失败序号、实例和 Shim 事件的关联见 [failed-instances-key.log](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/lifecycle-100/failed-instances-key.log)。
 
 ```text
 34 -> 165ad6124a904e2bb947890092f1bbcd
@@ -953,7 +953,7 @@ wait vm shutdown event failed:Receive event timeout after 1000ms
 
 三个失败 shim 在清理前各占约 174% 至 186% CPU。该阶段没有捕获 RCU dump，因此只能确认相同的高 CPU 和清理超时形态，不能把三次失败直接等同为已记录的 RCU stall。
 
-[签名计数](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/logs/lifecycle-100-signature-counts.txt)
+[签名计数](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/logs/lifecycle-100-signature-counts.txt)
 
 #### 11.1.4 边界、恢复与判定
 
@@ -961,7 +961,7 @@ wait vm shutdown event failed:Receive event timeout after 1000ms
 
 历史控制组 v12 在该内核上使用未修改的 `a164417f4` 源码和相同 builder 重建新 Template，串行生命周期为 `99/100`，失败实例同样出现 CPU1 RCU/timer stall。[v12 证据](/home/lyq/Projects/Verification/cubesandbox/CUBESANDBOX_ARM64_MULTIVCPU_COMPLETE_EXPERIMENT_REPORT_20260718.md:549)
 
-实验后已恢复实验前的 `v16` 诊断 shim 和原始 runtime，服务 active，sandbox/shim/task 为 `0/0/0`。[恢复记录](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/restore/post-restore-state.txt)
+实验后已恢复实验前的 `v16` 诊断 shim 和原始 runtime，服务 active，sandbox/shim/task 为 `0/0/0`。[恢复记录](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/restore/post-restore-state.txt)
 
 ```text
 shim     e7e9433b...d5bbb  v0.5.1-arm64-timer-readback-v16
@@ -970,17 +970,17 @@ sandboxes=[]  shims=0  tasks=0
 template tpl-f88bd35625bd48b5865000a8 READY
 ```
 
-实验 Template 有意保留，以供实验 B 交叉恢复。完整证据校验表见 [SHA256SUMS](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/SHA256SUMS)。
+实验 Template 有意保留，以供实验 B 交叉恢复。完整证据校验表见 [SHA256SUMS](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-a-arm64-v03-cmdline-guards-20260722-1110/SHA256SUMS)。
 
 最终判定：ARM64 命令行保护是必要的正确性修复，但不是本环境下消除该故障的充分条件。实验 A 不支持把 x86 参数视为当前 RCU stall 的主要单一根因，后续应进入实验 B/C。
 
 ### 11.2 实验 B：构建端与恢复端交叉
 
-**状态：已完成，四格均复现失败。** 完整摘要位于 [实验 B/C 摘要](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-b-c-arm64-20260722-1157/EXPERIMENT_B_C_SUMMARY.md)。
+**状态：已完成，四格均复现失败。** 完整摘要位于 [实验 B/C 摘要](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-b-c-arm64-20260722-1157/EXPERIMENT_B_C_SUMMARY.md)。
 
 两种 Template 分别由原版和实验 A 的命令行修正版构建；恢复侧也分别使用两种 Shim/VMM。每格执行 100 次创建、直连 TAP guest `/health`、删除。
 
-[原始矩阵](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-b-c-arm64-20260722-1157/experiment-b/matrix-summary.json)
+[原始矩阵](../../../../../../../../Projects/Verification/cubesandbox/remote-results/experiment-b-c-arm64-20260722-1157/experiment-b/matrix-summary.json)
 
 [特征计数](/home/lyq/Projects/Verification/cubesandbox/remote-results/experiment-b-c-arm64-20260722-1157/experiment-b/matrix-summary-normalized.tsv:1)
 

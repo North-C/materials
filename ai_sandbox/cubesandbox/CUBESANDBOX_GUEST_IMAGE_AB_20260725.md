@@ -1,6 +1,6 @@
 # CubeSandbox guest 镜像 A/B 测试报告
 
-> 后续修正（2026-07-27）：历史镜像在串行 20 次测试中未命中故障，但在并发 10 的创建压力测试中累计出现 3/700 次 `reset guest time failed`。因此，历史镜像没有消除问题；本报告的原始结果只能说明镜像会显著影响故障窗口，不能证明镜像替换已经解决问题。详见 [历史镜像创建压力复测](CUBESANDBOX_HISTORICAL_IMAGE_PRESSURE_20260727.md)。
+> 后续修正（2026-07-27）：历史镜像在串行 20 次测试中未命中故障，但在并发 10 的创建压力测试中累计出现 3/700 次 `reset guest time failed`。因此，历史镜像没有消除问题；本报告的原始结果只能说明镜像会显著影响故障窗口，不能证明镜像替换已经解决问题。详见 [历史镜像创建压力复测](perf/reports/CUBESANDBOX_HISTORICAL_IMAGE_PRESSURE_20260727.md)。
 
 日期：2026-07-25（Asia/Shanghai）  
 目标机：`root@192.168.25.90`  

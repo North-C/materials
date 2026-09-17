@@ -90,8 +90,8 @@ AP1R 主题当前推荐把“根因与修复报告”作为结论候选，把 `d
 - [Benchmark 使用与构建](benchmark/README.md)
 - [openEuler guest image 构建](CUBESANDBOX_OPENEULER_GUEST_IMAGE_BUILD_GUIDE.md)
 - [openEuler vmlinux/BM 构建](CUBESANDBOX_OPENEULER_VMLINUX_BM_BUILD.md)
-- [CubeShim 优化迁移指南](CUBESHIM_OPTIMIZED_MIGRATION_GUIDE_20260729.md)
-- [irqbypass XArray 优化用户指南](kvm-irqbypass-xarray-optimize-user-guide.md)
+- [CubeShim 优化迁移指南](perf/reports/CUBESHIM_OPTIMIZED_MIGRATION_GUIDE_20260729.md)
+- [irqbypass XArray 优化用户指南](perf/reports/kvm-irqbypass-xarray-optimize-user-guide.md)
 
 执行前必须核对文档标明的 release、commit、架构和环境。历史 IP、Template ID、镜像 tag 和路径不能当作当前值复用。
 

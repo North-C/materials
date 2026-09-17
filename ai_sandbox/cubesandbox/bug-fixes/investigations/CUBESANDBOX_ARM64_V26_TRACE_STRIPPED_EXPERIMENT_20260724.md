@@ -46,7 +46,7 @@ v23 插桩原本由运行时文件门禁（`/tmp/cube_arm64_first_entry_trace_en
 | v1-stripped | stripped（零插桩） | `tpl-d531debb219747ae8d69e947` | **5/20** |
 | v2-instrumented | instrumented（v23 插桩，本次重建 `a5f51ee4`） | `tpl-55fd01fc795545a8ad008310` | **3/20** |
 
-对照口径（[matrix 报告 §10](CUBESANDBOX_ARM64_VCPU_COUNT_TEMPLATE_MATRIX_REPORT_20260723.md)）：原 v23 `cf25ae12` 同口径 `20/20`；社区 `2–3/20`。
+对照口径（[matrix 报告 §10](../../perf/reports/CUBESANDBOX_ARM64_VCPU_COUNT_TEMPLATE_MATRIX_REPORT_20260723.md)）：原 v23 `cf25ae12` 同口径 `20/20`；社区 `2–3/20`。
 
 ## 5. 结论
 
