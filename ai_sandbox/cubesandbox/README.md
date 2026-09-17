@@ -33,8 +33,8 @@ evidence_manifest: mixed; see evidence section
 
 | 目标 | 推荐入口 | 状态说明 |
 |---|---|---|
-| 理解 Snapshot 是什么 | [Snapshot 深入分析](snapshot-deep-dive.md) | explanation candidate；需按文内源码语境使用 |
-| 理解 create/rollback/clone/resume 差异 | [Runtime Snapshot 运行机制](snapshot-runtime-deep-dive.md) | explanation candidate；与上篇配套 |
+| 理解 Snapshot 是什么 | [Snapshot 深入分析](testcases_analysis/snapshot-deep-dive.md) | explanation candidate；需按文内源码语境使用 |
+| 理解 create/rollback/clone/resume 差异 | [Runtime Snapshot 运行机制](testcases_analysis/snapshot-runtime-deep-dive.md) | explanation candidate；与上篇配套 |
 | 查看生命周期数据流和当前源码锚点 | [测试用例与数据流分析](testcases_analysis/README.md) | 明确记录源码 commit 的项目内分析入口 |
 | 审阅 canonical/supersede/evidence 关系 | [CubeSandbox 内容收敛图](CONTENT_CONVERGENCE.md) | MAT-02 收敛索引；不移动原文 |
 | 查看外部证据/source 可达性 | [Evidence availability](EVIDENCE_AVAILABILITY.md) | 本地 Verification archive 映射；不可直接发布 |
@@ -51,9 +51,9 @@ evidence_manifest: mixed; see evidence section
 
 ### 架构与生命周期
 
-- [Snapshot 深入分析](snapshot-deep-dive.md)：Snapshot 组成、存储与上层能力。
-- [Runtime Snapshot 运行机制](snapshot-runtime-deep-dive.md)：create、rollback、clone、resume 的边界。
-- [Template 与 Snapshot 内容分析](CUBESANDBOX_TEMPLATE_AND_SNAPSHOT_CONTENT_ANALYSIS.md)：内容构成专题。
+- [Snapshot 深入分析](testcases_analysis/snapshot-deep-dive.md)：Snapshot 组成、存储与上层能力。
+- [Runtime Snapshot 运行机制](testcases_analysis/snapshot-runtime-deep-dive.md)：create、rollback、clone、resume 的边界。
+- [Template 与 Snapshot 内容分析](testcases_analysis/CUBESANDBOX_TEMPLATE_AND_SNAPSHOT_CONTENT_ANALYSIS.md)：内容构成专题。
 - [测试用例与数据流分析](testcases_analysis/README.md)：benchmark 矩阵、数据流、时序和源码证据。
 
 该组目前有多个互补入口，不强行指定一个文档覆盖全部生命周期语义。后续 MAT-02 应明确“概念入口”“当前实现参考”“历史实验报告”的关系。
