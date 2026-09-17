@@ -55,7 +55,7 @@ canonical: false
 
 `容器资源隔离.md`（435 B）：openEuler rubik 容器混部引擎的链接集。与 `katalyst分析/`（Katalyst 混部）同主题域。
 
-迁移动作：候选并入 `katalyst分析/`（作为混部引擎对照资料）或独立保留。前置条件：确认是"混部主题资料"还是"kata 项目专用笔记"。
+迁移动作：✅ 已执行（2026-09-17）：以纯 Git rename 并入 `katalyst分析/` 作为混部引擎对照资料，并新增该目录 README（记录 Katalyst 与 rubik 的方案对照关系与引用注意）。
 
 ### Group R4：工程 how-to（2 份）
 
@@ -111,5 +111,6 @@ canonical: false
 - 2026-09-17（R4 执行）：`docker镜像编译.md`、`jenkins使用.md` 以纯 Git rename（R100，零内容改动）迁入 `软件工程/`，同批新增该目录 README（含既有 3 份文档的导航与迁入 provenance）。
 - 2026-09-17（R5 执行）：`cloud-native-trends-report.md` 以纯 Git rename（R100，零内容改动）迁入 `Paperwork/`，同批新增该目录 README，记录与 `cloud-native-report-2026-02.md` 的姊妹篇关系。
 - 2026-09-17（R6 执行）：`klog日志实践.md` 以纯 Git rename（R100，零内容改动）迁入 `tracing/`，同批新增该目录 README（目录定位扩展为可观测性笔记入口）。
+- 2026-09-17（R3 执行）：`容器资源隔离.md` 以纯 Git rename（R100，零内容改动）迁入 `katalyst分析/`，同批新增该目录 README（记录 rubik 与 Katalyst 的混部方案对照关系）。
 
 相关：[根目录散落文件主题页](../topics/root-files.md) · [任务 backlog](TASK_BACKLOG.md) · [大对象治理](LARGE_OBJECT_MANIFEST.md)

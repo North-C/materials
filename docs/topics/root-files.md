@@ -19,7 +19,7 @@
 | `不同芯片系列.md` | external-reference placeholder（已确认：仅一条 EPYC wiki 链接） | 硬件/架构 | 无自有正文；三态决策待用户确认 |
 | `专利修改问题.md` | project/private candidate | 受限项目资料 | 公开前做保密与授权审查；内容未读取 |
 | `华泰问题讨论.md` | empty placeholder（已确认：2 字节，非正文） | 受限项目资料 | 空占位但命名指向客户相关；处置走保密审查 |
-| `容器资源隔离.md` | external-link collection（已确认：openEuler rubik 混部引擎链接集） | 容器/Kubernetes | 与 `katalyst分析/` 同主题域；确认归置 |
+| `容器资源隔离.md` | external-link collection（已确认：openEuler rubik 混部引擎链接集） | ✅ 已迁至 `katalyst分析/` | 与 Katalyst 作混部方案对照；见 `katalyst分析/README.md` |
 | `并发问题.md` | project-local bug record（已确认：NUMA-aware 调度问题） | ✅ 已迁至 `nri-resource-policy/` | 与 `design.md` 同项目同组迁移 |
 | `指令集学习.md` | external-reference placeholder（已确认：ARM 向量指令集/内核同步链接集） | 硬件/架构 | 无自有正文；三态决策待用户确认 |
 | `日志.md` | mixed（已确认：kata-cpuset-nri 开发计划 + 明文凭据段） | 拆分候选 | 凭据风险见迁移映射；先轮换再拆分迁移 |
