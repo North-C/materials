@@ -9,9 +9,9 @@
 | 当前路径 | 分类候选 | 目标 Wiki 主题 | 风险/待确认 |
 |---|---|---|---|
 | `BDD与cucumber.md` | durable software-engineering | 软件工程/测试方法 | 0 字节空占位；三态决策待用户确认 |
-| `Policy模块设计文档.md` | project-local design（已确认：NRI 资源调度项目子模块） | R1 项目目录 | 与 `design.md` 同项目同组迁移 |
+| `Policy模块设计文档.md` | project-local design（已确认：NRI 资源调度项目子模块） | ✅ 已迁至 `nri-resource-policy/` | 入口见该目录 README |
 | `cloud-native-trends-report.md` | durable research/report | Research/Cloud Native | 与 `Paperwork/cloud-native-report-2026-02.md` 为姊妹篇（长期趋势 vs 季度进展），非重复 |
-| `design.md` | project-local design（已确认：容器资源调度 runtimeHook/NRI 框架设计） | R1 项目目录 | 与 Policy/并发问题/日志.md 同项目聚类 |
+| `design.md` | project-local design（已确认：容器资源调度 runtimeHook/NRI 框架设计） | ✅ 已迁至 `nri-resource-policy/` | 与 Policy/并发问题/日志.md 同项目聚类 |
 | `docker镜像编译.md` | how-to | 容器/构建 | 补平台、版本和验证状态 |
 | `golang_under_the_hood.md` | durable explanation | 软件工程/Go | 0 字节空占位；三态决策待用户确认 |
 | `jenkins使用.md` | how-to/reference | 工程效率/CI | 补适用版本和环境边界 |
@@ -20,7 +20,7 @@
 | `专利修改问题.md` | project/private candidate | 受限项目资料 | 公开前做保密与授权审查；内容未读取 |
 | `华泰问题讨论.md` | empty placeholder（已确认：2 字节，非正文） | 受限项目资料 | 空占位但命名指向客户相关；处置走保密审查 |
 | `容器资源隔离.md` | external-link collection（已确认：openEuler rubik 混部引擎链接集） | 容器/Kubernetes | 与 `katalyst分析/` 同主题域；确认归置 |
-| `并发问题.md` | project-local bug record（已确认：NUMA-aware 调度问题） | R1 项目目录 | 与 `design.md` 同项目同组迁移 |
+| `并发问题.md` | project-local bug record（已确认：NUMA-aware 调度问题） | ✅ 已迁至 `nri-resource-policy/` | 与 `design.md` 同项目同组迁移 |
 | `指令集学习.md` | external-reference placeholder（已确认：ARM 向量指令集/内核同步链接集） | 硬件/架构 | 无自有正文；三态决策待用户确认 |
 | `日志.md` | mixed（已确认：kata-cpuset-nri 开发计划 + 明文凭据段） | 拆分候选 | 凭据风险见迁移映射；先轮换再拆分迁移 |
 
