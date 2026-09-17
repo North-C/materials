@@ -34,7 +34,7 @@ evidence_manifest: partial
 | Template concurrent performance | [perf/CUBESANDBOX_SEGMENTED_LATENCY_PROFILING_20260803.md](perf/CUBESANDBOX_SEGMENTED_LATENCY_PROFILING_20260803.md), [perf/TEMPLATE_CONCURRENT_CREATE_OPTIMIZATION_GUIDE.md](perf/TEMPLATE_CONCURRENT_CREATE_OPTIMIZATION_GUIDE.md), [perf/MANIFEST.md](perf/MANIFEST.md) | `perf/scripts_v2/`, host/profile outputs if manifest exists | 2026-07-27/28/29 top-level performance reports | Split result report from how-to guide; use perf manifest for lineage gaps |
 | irqbypass publication | [articles/cubesandbox-arm64-irqbypass-engineering-story.md](articles/cubesandbox-arm64-irqbypass-engineering-story.md) | `articles/assets/cubesandbox-arm64-irqbypass/*.svg` and profiling/root-cause reports | perf and kernel optimization reports | Publication canonical for public narrative only |
 | Guest image and kernel operations | [CUBESANDBOX_OPENEULER_GUEST_IMAGE_BUILD_GUIDE.md](CUBESANDBOX_OPENEULER_GUEST_IMAGE_BUILD_GUIDE.md), [CUBESANDBOX_OPENEULER_VMLINUX_BM_BUILD.md](CUBESANDBOX_OPENEULER_VMLINUX_BM_BUILD.md) | image checksums and benchmark reports where available | guest image A/B and openEuler performance reports | Keep as operations group; each command needs version/environment review before execution |
-| ARM64 adaptation summaries | [arm64-adaptation-issues-summary-zh.md](arm64-adaptation-issues-summary-zh.md), [arm64-adaptation-issues-summary.md](arm64-adaptation-issues-summary.md) | none in this Workspace | newer AP1R/perf/benchmark materials | Historical language pair until a current owner chooses a primary version |
+| ARM64 adaptation summaries | [arm64-adaptation-issues-summary-zh.md](bug-fixes/investigations/arm64-adaptation-issues-summary-zh.md), [arm64-adaptation-issues-summary.md](bug-fixes/investigations/arm64-adaptation-issues-summary.md) | none in this Workspace | newer AP1R/perf/benchmark materials | Historical language pair until a current owner chooses a primary version |
 
 ## AP1R Supersede Chain
 
@@ -45,9 +45,9 @@ The 2026-07-31 root-cause report explicitly says it corrects and closes the rema
 | Final root-cause candidate | [bug-fixes/CUBESANDBOX_ARM64_VGIC_AP1R_NMI_ACTIVE_ROOTCAUSE_AND_FIX_20260731.md](bug-fixes/CUBESANDBOX_ARM64_VGIC_AP1R_NMI_ACTIVE_ROOTCAUSE_AND_FIX_20260731.md) | conclusion candidate |
 | Evidence bundle | [debug/arm64-vgic-ap1r-nmi-active-20260806/README.md](debug/arm64-vgic-ap1r-nmi-active-20260806/README.md) | evidence canonical candidate |
 | Experiment design and raw chain | `bug-fixes/analysis/arm64-vgic-ap1r-nmi-active-20260731/` | supporting evidence |
-| Prior corrected report | [CUBESANDBOX_ARM64_2VCPU_WFI_TIMER_DELIVERY_ROOTCAUSE_20260724.md](CUBESANDBOX_ARM64_2VCPU_WFI_TIMER_DELIVERY_ROOTCAUSE_20260724.md) | historical, corrected by 2026-07-31 report |
+| Prior corrected report | [CUBESANDBOX_ARM64_2VCPU_WFI_TIMER_DELIVERY_ROOTCAUSE_20260724.md](bug-fixes/investigations/CUBESANDBOX_ARM64_2VCPU_WFI_TIMER_DELIVERY_ROOTCAUSE_20260724.md) | historical, corrected by 2026-07-31 report |
 | Prior investigation reports | `CUBESANDBOX_ARM64_MULTIVCPU_*`, `CUBESANDBOX_ARM64_KVM_VTIMER_*`, `CUBESANDBOX_ARM64_RCU_STALL_*`, trace guides | historical investigation chain |
-| Adjacent UB analysis | [CUBESANDBOX_CH_ISSUE6966_UB_COMPARISON_20260721.md](CUBESANDBOX_CH_ISSUE6966_UB_COMPARISON_20260721.md) | related, not the same root cause |
+| Adjacent UB analysis | [CUBESANDBOX_CH_ISSUE6966_UB_COMPARISON_20260721.md](bug-fixes/investigations/CUBESANDBOX_CH_ISSUE6966_UB_COMPARISON_20260721.md) | related, not the same root cause |
 
 Do not delete or hide historical reports. They explain how earlier hypotheses were ruled out and why the final report changed the conclusion.
 

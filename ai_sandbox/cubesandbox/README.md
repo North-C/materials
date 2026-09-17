@@ -69,8 +69,8 @@ evidence_manifest: mixed; see evidence section
 
 ### ARM64 适配、镜像与 Kernel
 
-- [ARM64 适配问题汇总（中文）](arm64-adaptation-issues-summary-zh.md)
-- [ARM64 adaptation issues summary（English）](arm64-adaptation-issues-summary.md)
+- [ARM64 适配问题汇总（中文）](bug-fixes/investigations/arm64-adaptation-issues-summary-zh.md)
+- [ARM64 adaptation issues summary（English）](bug-fixes/investigations/arm64-adaptation-issues-summary.md)
 - [openEuler guest image 构建指南](CUBESANDBOX_OPENEULER_GUEST_IMAGE_BUILD_GUIDE.md)
 - [Guest image 替换](CUBESANDBOX_GUEST_IMAGE_REPLACEMENT.md)
 - [Guest image、OCI 与 vmlinux 关系](CUBESANDBOX_GUEST_IMAGE_OCI_VMLINUX_RELATIONSHIP.md)
