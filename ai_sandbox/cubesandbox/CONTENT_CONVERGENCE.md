@@ -57,7 +57,7 @@ Do not delete or hide historical reports. They explain how earlier hypotheses we
 |---|---|---|---|
 | Benchmark image builds | `benchmark/docker/`, `benchmark/checksums/`, `benchmark/docs/` | source and checksum available; image tar not stored | Add image artifact manifest if image tar must be retained elsewhere |
 | Benchmark reports | `benchmark/reports/*.md`, `benchmark/reports/*/*.csv` | reports and derived CSV present; [benchmark/reports/README.md](benchmark/reports/README.md) added | Fill raw input and generator details |
-| Profiling tools | `perf/scripts_v2/*`, `perf/run_c50_profile.sh`, `perf/analyze_c50_profile.mjs`; [perf/MANIFEST.md](perf/MANIFEST.md) added | references are mixed: metric-source docs point to `scripts_v2`, older how-to/history docs point to root-level scripts | `scripts_v2/` is strongest canonical candidate, but no pruning until guide status is settled |
+| Profiling tools | `perf/scripts_v2/*`, `perf/run_c50_profile.sh`, `perf/analyze_c50_profile.mjs`; [perf/MANIFEST.md](perf/MANIFEST.md) added | references are mixed: metric-source docs point to `scripts_v2`, older how-to/history docs point to root-level scripts | Decided 2026-09-17: `scripts_v2/` is canonical (v0.5.1 metric mapping points there with line anchors; `run_c50_profile.sh` there is self-contained via `$script_dir`). Root perf copies stay as the v0.5.0 historical workflow set paired with the community profiling guide, now marked `historical`; note root vs `scripts_v2` `run_c50_profile.sh`/`analyze_c50_profile.mjs` are parallel implementations (tools/ deploy mode vs self-contained mode), not exact duplicates. No deletion until user approves pruning |
 | Profiling reports | `perf/CUBESANDBOX_*`, top-level `CUBESANDBOX_*PERF*` | multiple dated historical reports | Map each report to workload, revision, host and raw evidence manifest |
 | Public article assets | `articles/assets/cubesandbox-arm64-irqbypass/*.svg` | publication derived assets | Keep tied to article; do not use as raw evidence |
 
@@ -65,8 +65,8 @@ Do not delete or hide historical reports. They explain how earlier hypotheses we
 
 | Candidate | Current observation | Decision |
 |---|---|---|
-| `perf/sample_c50_host.sh` and `perf/scripts_v2/sample_c50_host.sh` | exact SHA-256 duplicate: `586f88d1e3da177afbcfa1eebae6bf0ae00fb4f60daa4904ff644881f0ba55eb` | Keep both for now; check callers and README references before selecting canonical |
-| `perf/run_cubesandbox_openeuler_template_perf.sh` and `perf/scripts_v2/run_cubesandbox_openeuler_template_perf.sh` | exact SHA-256 duplicate: `64d0ec5aed2b404860f54dadff580309b4bd40c6326630be92e293b40d5788ec` | Keep both for now; likely `scripts_v2/` should be canonical if profiling docs reference it |
+| `perf/sample_c50_host.sh` and `perf/scripts_v2/sample_c50_host.sh` | exact SHA-256 duplicate: `586f88d1e3da177afbcfa1eebae6bf0ae00fb4f60daa4904ff644881f0ba55eb` | Caller review done 2026-09-17: v0.5.1 metric mapping links the `scripts_v2/` copy; the root copy is reached only via the historical guide's `tools/` deploy flow. `scripts_v2/` selected canonical; root copy kept as v0.5.0 historical-workflow artifact, removal pending user approval |
+| `perf/run_cubesandbox_openeuler_template_perf.sh` and `perf/scripts_v2/run_cubesandbox_openeuler_template_perf.sh` | exact SHA-256 duplicate: `64d0ec5aed2b404860f54dadff580309b4bd40c6326630be92e293b40d5788ec` | Same review outcome 2026-09-17: `scripts_v2/` canonical; root copy historical, removal pending user approval |
 | `bug-fixes/.../scripts/*.patch` and `debug/.../fixes/*.patch` | matching patch filenames and sizes for AP1R fixes | Treat `debug/.../fixes/` as evidence bundle copy; keep analysis copy until provenance manifest links them |
 | `snapshot-deep-dive.md`, `snapshot-runtime-deep-dive.md`, `testcases_analysis/` | overlapping Snapshot vocabulary but different writing purpose | Keep separate: concepts, runtime explanation, and implementation/source-evidence index |
 | ARM64 adaptation English/Chinese summaries | language pair from earlier state | Mark historical until owner defines primary version and sync policy |
@@ -106,7 +106,7 @@ Do not delete or hide historical reports. They explain how earlier hypotheses we
 
 ## Next Small Batch
 
-1. Complete missing provenance fields in the three partial manifests.
-2. Run checksum validation for AP1R bundle and benchmark/perf files.
-3. Decide whether [CUBESANDBOX_COMMUNITY_PROFILING_GUIDE.md](perf/CUBESANDBOX_COMMUNITY_PROFILING_GUIDE.md) should be updated to `scripts_v2/` or marked historical.
-4. After provenance is complete, update this file from `in-progress` to `reviewed`.
+1. Complete missing provenance fields in the three partial manifests — partially done; checksum layer now fully verified (see below).
+2. ~~Run checksum validation for AP1R bundle and benchmark/perf files.~~ Done 2026-09-17: AP1R bundle `SHA256SUMS` 15/15 OK；`perf/MANIFEST.md` 全部 8 个 hash 复核 OK；`benchmark/checksums/` 的 4 个镜像 tar（约 1.9 GB，存于本地 Verification 归档，未入库）按仓库 checksum 文件验证全部 OK。
+3. ~~Decide whether CUBESANDBOX_COMMUNITY_PROFILING_GUIDE.md should be updated to scripts_v2 or marked historical.~~ Done 2026-09-17: marked `historical`（指南自述 v0.5.0 原始流程；canonical 指向 `scripts_v2/` 的 C50_PROFILE_GUIDE 与 METRIC_SOURCE_MAPPING）。
+4. Remaining: raw-input/generator 映射补全与 supersede 逐篇审阅完成后，本文件从 `in-progress` 转 `reviewed`。

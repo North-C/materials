@@ -1,7 +1,7 @@
 ---
 status: in-progress
 scope: CubeSandbox external evidence and source-code availability map
-last_verified: 2026-08-29
+last_verified: 2026-09-17
 source_revision: f036fd2 (link extraction and local path existence review only)
 canonical: true
 evidence_manifest: partial
@@ -52,6 +52,24 @@ This means many links that are broken from the materials repository alone are st
 | `artifacts/cubesandbox-core-perf-2u2g-20260803` | core perf artifact bundle | 143 | 870,678 B | external artifact |
 | `source_code/CubeSandbox` | source tree referenced by historical analysis | 20,160 | 7,077,265,865 B | external source checkout; do not import |
 | `source_code/CubeSandbox-v0.6.0-iccfix-20260828` | source tree for later ICC/AP1R fix context | 8,546 | 2,395,107,539 B | external source checkout; do not import |
+
+## Diagram ASSETS Directories (verified 2026-09-17)
+
+Reports under `bug-fixes/investigations/` link `*_ASSETS_*/` svg diagrams that were never committed to the repository. Verification confirmed all of them exist under the verification root:
+
+| Location under verification root | Referenced by | Files | Decision |
+|---|---|---|---|
+| `CUBESANDBOX_ARM64_PAUSE_RESUME_RESTORE_CALL_CHAIN_ASSETS_20260721/` | [PAUSE/RESUME call-chain analysis](bug-fixes/investigations/CUBESANDBOX_ARM64_PAUSE_RESUME_RESTORE_CALL_CHAIN_ANALYSIS_20260721.md) | 5 svg | external diagram source; import as curated assets or convert to manifest entry before publishing |
+| `CUBESANDBOX_TEMPLATE_QUIESCENCE_KVM_ANALYSIS_ASSETS_20260722/` | [Template quiescence KVM analysis](bug-fixes/investigations/CUBESANDBOX_ARM64_TEMPLATE_QUIESCENCE_KVM_ANALYSIS_20260720.md) | 8 svg | same |
+| `CUBESANDBOX_KVM_VGIC_APR_FLOW_ASSETS_20260829/` | not referenced by current repo links (adjacent AP1R material) | — | same class; inventoried for completeness |
+
+These links were unresolvable inside the repository before and after the 2026-09-17 directory migration; resolving them requires the verification archive (see Verification Root) or a later import decision.
+
+## Checksum Verification Record (2026-09-17)
+
+- `debug/arm64-vgic-ap1r-nmi-active-20260806/SHA256SUMS`: 15/15 files OK.
+- `perf/MANIFEST.md` hashed entries: 8/8 recomputed OK.
+- `benchmark/checksums/*.sha256` against the four image tars stored in the verification root (~1.9 GB total, deliberately not committed): 4/4 OK.
 
 ## Publishing and Repository Boundary
 

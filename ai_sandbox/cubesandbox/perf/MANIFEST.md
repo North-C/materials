@@ -25,20 +25,20 @@ This directory contains profiling guides, metric references, analysis scripts an
 
 | Path | Role | SHA-256 | Decision |
 |---|---|---|---|
-| `scripts_v2/analyze_c50_profile.mjs` | current detailed analyzer candidate | `8d7b49fd42eb2d5edc6aa9bcf93e119c13fb9eb7043b360d138c8cf99a2fa402` | likely canonical; verify callers |
-| `scripts_v2/run_c50_profile.sh` | current profiling runner candidate | `4bd09fdbc80d9ccc36e6595c8a17f5ca3e86d5a51d295d3ef63c8331f342a393` | likely canonical; verify callers |
-| `scripts_v2/run_cubesandbox_openeuler_template_perf.sh` | current workload runner candidate | `64d0ec5aed2b404860f54dadff580309b4bd40c6326630be92e293b40d5788ec` | exact duplicate with root perf copy; verify callers before removing either |
-| `scripts_v2/sample_c50_host.sh` | host sampler candidate | `586f88d1e3da177afbcfa1eebae6bf0ae00fb4f60daa4904ff644881f0ba55eb` | exact duplicate with root perf copy; verify callers before removing either |
-| `analyze_c50_profile.mjs` | older or alternate analyzer | `a8f4a915e4ae972ef3611e0da20db2bfeb73e332345f34936e6219482b5f5227` | keep until caller/history review |
-| `run_c50_profile.sh` | older or alternate runner | `2722012d7ad6c92d60623fed2c0141809052c4e58247cc5a8af5d14e388c1d85` | keep until caller/history review |
-| `run_cubesandbox_openeuler_template_perf.sh` | duplicate candidate | `64d0ec5aed2b404860f54dadff580309b4bd40c6326630be92e293b40d5788ec` | exact duplicate with `scripts_v2/`; keep until caller/history review |
-| `sample_c50_host.sh` | duplicate candidate | `586f88d1e3da177afbcfa1eebae6bf0ae00fb4f60daa4904ff644881f0ba55eb` | exact duplicate with `scripts_v2/`; keep until caller/history review |
+| `scripts_v2/analyze_c50_profile.mjs` | current detailed analyzer candidate | `8d7b49fd42eb2d5edc6aa9bcf93e119c13fb9eb7043b360d138c8cf99a2fa402` | canonical (2026-09-17): referenced by metric-source mapping |
+| `scripts_v2/run_c50_profile.sh` | current profiling runner candidate | `4bd09fdbc80d9ccc36e6595c8a17f5ca3e86d5a51d295d3ef63c8331f342a393` | canonical (2026-09-17): self-contained `$script_dir` invocation model |
+| `scripts_v2/run_cubesandbox_openeuler_template_perf.sh` | current workload runner candidate | `64d0ec5aed2b404860f54dadff580309b4bd40c6326630be92e293b40d5788ec` | canonical (2026-09-17); exact duplicate of root copy selected against |
+| `scripts_v2/sample_c50_host.sh` | host sampler candidate | `586f88d1e3da177afbcfa1eebae6bf0ae00fb4f60daa4904ff644881f0ba55eb` | canonical (2026-09-17); exact duplicate of root copy selected against |
+| `analyze_c50_profile.mjs` | older or alternate analyzer | `a8f4a915e4ae972ef3611e0da20db2bfeb73e332345f34936e6219482b5f5227` | historical: v0.5.0 workflow pair of the community guide (`tools/` deploy mode); parallel implementation, not a duplicate; keep, removal pending user approval |
+| `run_c50_profile.sh` | older or alternate runner | `2722012d7ad6c92d60623fed2c0141809052c4e58247cc5a8af5d14e388c1d85` | historical: same pairing as above; keep, removal pending user approval |
+| `run_cubesandbox_openeuler_template_perf.sh` | duplicate candidate | `64d0ec5aed2b404860f54dadff580309b4bd40c6326630be92e293b40d5788ec` | historical v0.5.0 workflow copy (byte-identical to `scripts_v2/`); reached only via the historical guide; removal pending user approval |
+| `sample_c50_host.sh` | duplicate candidate | `586f88d1e3da177afbcfa1eebae6bf0ae00fb4f60daa4904ff644881f0ba55eb` | historical v0.5.0 workflow copy (byte-identical to `scripts_v2/`); removal pending user approval |
 
 ## Reports
 
 | File | Role | SHA-256 |
 |---|---|---|
-| [CUBESANDBOX_COMMUNITY_PROFILING_GUIDE.md](CUBESANDBOX_COMMUNITY_PROFILING_GUIDE.md) | profiling guide | `b1e33c19f1284943511c86ef119a0467e6386bcc170a85a106a3323ece3d383a` |
+| [CUBESANDBOX_COMMUNITY_PROFILING_GUIDE.md](CUBESANDBOX_COMMUNITY_PROFILING_GUIDE.md) | profiling guide (`historical` since 2026-09-17; hash updated for status-header annotation) | `fc825b9c059a57d170449e230336d95bcf94a49bd3ce8a0ab31934078fa0ccb9` |
 | [CUBESANDBOX_CORE_PERF_2U2G_20260803.md](CUBESANDBOX_CORE_PERF_2U2G_20260803.md) | result report | `edeb468a425f5c7a4496f421b902a97b39c1c6ec9065caee5c9449316cc4abb6` |
 | [CUBESANDBOX_PROFILE_METRIC_SOURCE_MAPPING.md](CUBESANDBOX_PROFILE_METRIC_SOURCE_MAPPING.md) | metric reference | `163096fdcb32e5f1b2b2e49e72e84255ec5a88f1351f584eddaa43816c6dbfd5` |
 | [CUBESANDBOX_RUNCONTAINER_PROBE_CALL_CHAIN.md](CUBESANDBOX_RUNCONTAINER_PROBE_CALL_CHAIN.md) | call-chain explanation | `3f16b3c247ada9cc38077ed9ec5a2ed86f9d59ef864c349b82e55389b4711057` |

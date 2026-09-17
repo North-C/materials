@@ -2,6 +2,8 @@
 
 适用版本：TencentCloud/CubeSandbox `v0.5.0`，提交 `30b4e25ab16891187c775e002816274427f541f1`
 
+> 状态（2026-09-17）：`historical`。本指南与其引用的本目录四个脚本描述的是 v0.5.0 时代的原始采集流程，文中亦自述脚本为“历史测试使用的原始版本”。当前 canonical 的 profiling 工具与指标语义见 [scripts_v2/](scripts_v2/C50_PROFILE_GUIDE.md) 与 [CUBESANDBOX_PROFILE_METRIC_SOURCE_MAPPING.md](CUBESANDBOX_PROFILE_METRIC_SOURCE_MAPPING.md)（v0.5.1 基准）。本文保留为历史工作流记录，不改写指向 `scripts_v2/`。
+
 本文说明如何使用社区版本已有的创建阶段插桩，采集 CubeMaster、Cubelet 和 CubeShim 的分段时延，并使用本目录脚本生成统一汇总。
 
 本文只描述社区原生能力。early Probe、MMDS-prime、native code server v3 和后续 Shim 优化均不属于社区 `v0.5.0` 的默认行为。
