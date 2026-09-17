@@ -71,9 +71,9 @@ evidence_manifest: mixed; see evidence section
 
 - [ARM64 适配问题汇总（中文）](bug-fixes/investigations/arm64-adaptation-issues-summary-zh.md)
 - [ARM64 adaptation issues summary（English）](bug-fixes/investigations/arm64-adaptation-issues-summary.md)
-- [openEuler guest image 构建指南](CUBESANDBOX_OPENEULER_GUEST_IMAGE_BUILD_GUIDE.md)
-- [Guest image 替换](CUBESANDBOX_GUEST_IMAGE_REPLACEMENT.md)
-- [Guest image、OCI 与 vmlinux 关系](CUBESANDBOX_GUEST_IMAGE_OCI_VMLINUX_RELATIONSHIP.md)
+- [openEuler guest image 构建指南](guest-image/CUBESANDBOX_OPENEULER_GUEST_IMAGE_BUILD_GUIDE.md)
+- [Guest image 替换](guest-image/CUBESANDBOX_GUEST_IMAGE_REPLACEMENT.md)
+- [Guest image、OCI 与 vmlinux 关系](guest-image/CUBESANDBOX_GUEST_IMAGE_OCI_VMLINUX_RELATIONSHIP.md)
 
 中英文适配汇总是 2026-05-06 的语言变体和历史快照，不代表当前 ARM64 支持状态；后续需确认主版本、同步方式和 historical 标记。
 
@@ -88,8 +88,8 @@ AP1R 主题当前推荐把“根因与修复报告”作为结论候选，把 `d
 ### 操作、构建与用户指南
 
 - [Benchmark 使用与构建](benchmark/README.md)
-- [openEuler guest image 构建](CUBESANDBOX_OPENEULER_GUEST_IMAGE_BUILD_GUIDE.md)
-- [openEuler vmlinux/BM 构建](CUBESANDBOX_OPENEULER_VMLINUX_BM_BUILD.md)
+- [openEuler guest image 构建](guest-image/CUBESANDBOX_OPENEULER_GUEST_IMAGE_BUILD_GUIDE.md)
+- [openEuler vmlinux/BM 构建](guest-image/CUBESANDBOX_OPENEULER_VMLINUX_BM_BUILD.md)
 - [CubeShim 优化迁移指南](perf/reports/CUBESHIM_OPTIMIZED_MIGRATION_GUIDE_20260729.md)
 - [irqbypass XArray 优化用户指南](perf/reports/kvm-irqbypass-xarray-optimize-user-guide.md)
 
