@@ -15,7 +15,7 @@
 | `docker镜像编译.md` | how-to | ✅ 已迁至 `软件工程/` | 补平台、版本和验证状态 |
 | `golang_under_the_hood.md` | durable explanation | 软件工程/Go | 0 字节空占位；三态决策待用户确认 |
 | `jenkins使用.md` | how-to/reference | ✅ 已迁至 `软件工程/` | 补适用版本和环境边界 |
-| `klog日志实践.md` | how-to/explanation | Kubernetes/可观测性 | 确认是否并入 kubelet/tracing 主题 |
+| `klog日志实践.md` | how-to/explanation | ✅ 已迁至 `tracing/`（目录定位扩展为可观测性笔记入口） | 见 `tracing/README.md` |
 | `不同芯片系列.md` | external-reference placeholder（已确认：仅一条 EPYC wiki 链接） | 硬件/架构 | 无自有正文；三态决策待用户确认 |
 | `专利修改问题.md` | project/private candidate | 受限项目资料 | 公开前做保密与授权审查；内容未读取 |
 | `华泰问题讨论.md` | empty placeholder（已确认：2 字节，非正文） | 受限项目资料 | 空占位但命名指向客户相关；处置走保密审查 |

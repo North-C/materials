@@ -73,7 +73,7 @@ canonical: false
 
 `klog日志实践.md`（7.1 KB，klog 结构化日志实践，含 Kubernetes 官方 logging 规范链接）。
 
-迁移动作：候选并入 `kubelet源代码解析/` 旁的 K8s 笔记入口或 `tracing/`。前置条件：确认可观测性主题的最终目录规划（tracing/ 目前仅 1 份文档）。
+迁移动作：✅ 已执行（2026-09-17）：以纯 Git rename 并入 `tracing/`，并新增该目录 README，将目录定位扩展为可观测性笔记入口（logging + tracing），避免为单文档开新目录；未来观测类文档增多时可再议目录名。
 
 ### 不迁移项
 
@@ -110,5 +110,6 @@ canonical: false
 - 2026-09-17（R1 执行）：`design.md`、`Policy模块设计文档.md`、`并发问题.md` 以纯 Git rename（R100，零内容改动）迁入 `nri-resource-policy/`，同批新增该目录 README；新旧路径映射记录于目录 README 的 Provenance 节。
 - 2026-09-17（R4 执行）：`docker镜像编译.md`、`jenkins使用.md` 以纯 Git rename（R100，零内容改动）迁入 `软件工程/`，同批新增该目录 README（含既有 3 份文档的导航与迁入 provenance）。
 - 2026-09-17（R5 执行）：`cloud-native-trends-report.md` 以纯 Git rename（R100，零内容改动）迁入 `Paperwork/`，同批新增该目录 README，记录与 `cloud-native-report-2026-02.md` 的姊妹篇关系。
+- 2026-09-17（R6 执行）：`klog日志实践.md` 以纯 Git rename（R100，零内容改动）迁入 `tracing/`，同批新增该目录 README（目录定位扩展为可观测性笔记入口）。
 
 相关：[根目录散落文件主题页](../topics/root-files.md) · [任务 backlog](TASK_BACKLOG.md) · [大对象治理](LARGE_OBJECT_MANIFEST.md)
