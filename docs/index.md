@@ -11,7 +11,7 @@
 | [大文件与生成物](topics/large-files.md) | 哪些对象是证据、外部参考、图源或可重建产物；为什么不能直接提交 | `classified-candidates` |
 | [CubeSandbox](topics/cubesandbox.md) | 从架构、生命周期、性能、问题修复和证据进入现有材料 | `indexed` |
 | [Research](topics/research.md) | 区分研究结论、toolkit、任务、版本快照、trajectory 和 vendor 输入 | `indexed` |
-| [根目录散落文件](topics/root-files.md) | 为根级文档、图、风险文件和未分类对象建立迁移映射 | `classified-candidates` |
+| [根目录散落文件](topics/root-files.md) | 为根级文档、图、风险文件和未分类对象建立迁移映射 | `migration-mapped` |
 
 ## 怎么使用
 
@@ -29,6 +29,7 @@
 - [事实清单](meta/INVENTORY.md)
 - [内容整理报告](meta/CONTENT_ORGANIZATION_REPORT.md)
 - [大对象 manifest](meta/LARGE_OBJECT_MANIFEST.md)
+- [根级文件迁移映射](meta/ROOT_MIGRATION_MAP.md)
 - [按领域提交与 Push 计划](meta/COMMIT_PUSH_PLAN.md)
 - [迁移计划](meta/MIGRATION_PLAN.md)
 - [后续 Workspace](meta/TASK_BACKLOG.md)
@@ -38,5 +39,5 @@
 
 - 主检出区仍是只读盘点对象；2026-08-27 复核时仍为 HEAD `f036fd2`、2 个 modified、70 个 untracked 文件级条目、0 staged；本地 `main` 相对已知 `origin/main` 落后 3 个提交。
 - 内容目录不复制大型 tar、PDF、日志、results 或可疑敏感文件。
-- `github-tokens.md` 没有被读取或链接；它只保留为私密审计风险项。
+- `github-tokens.md` 没有被读取或链接；它只保留为私密审计风险项。2026-09-17 盘点另在 `记录` 与 `日志.md` 中确认两处明文 API key（值未记录），同样只走 MAT-05。
 - 网页生成和远程发布均已推迟，不属于当前内容整理范围。

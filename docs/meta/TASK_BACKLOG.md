@@ -124,6 +124,8 @@
 
 ## MAT-04：根目录散落文档归类
 
+状态：`phase-1-in-progress`。已新增 `docs/meta/ROOT_MIGRATION_MAP.md`：15 份根级 Markdown 与 2 份图源的逐项 scope 已确认（零入链、单 commit provenance、R1–R6 迁移小组、空文件三态决策、两份 cloud-native 报告的姊妹篇关系）。发现并登记了两处明文凭据风险（`记录`、`日志.md`，均转 MAT-05）。尚未移动、改名或删除任何根级文件。
+
 输入：
 
 - 15 份根级 Markdown、已跟踪/未跟踪图源与 PNG。
@@ -146,7 +148,7 @@
 
 ## MAT-05：私密敏感文件审计
 
-输入：`github-tokens.md` 的当前跟踪状态和 Git 历史元数据。
+输入：`github-tokens.md` 的当前跟踪状态和 Git 历史元数据；2026-09-17 盘点新增两处已确认的明文 API key——`记录`（Gemini 形态，单行）与 `日志.md`（DeepSeek 形态，出现两次；同文件含 kata-cpuset-nri 开发计划正文，轮换后可单独批准正文拆分）。三处均只登记文件与形态，不记录值。
 
 边界：
 
