@@ -1,7 +1,7 @@
 ---
 status: in-progress
 scope: CubeSandbox 架构、生命周期、ARM64 适配、性能、问题修复、操作材料与证据导航
-last_verified: 2026-08-27
+last_verified: 2026-09-17
 source_revision: f036fd2 (navigation baseline only; technical revisions are per document)
 canonical: true
 evidence_manifest: mixed; see evidence section
@@ -36,7 +36,7 @@ evidence_manifest: mixed; see evidence section
 | 理解 Snapshot 是什么 | [Snapshot 深入分析](testcases_analysis/snapshot-deep-dive.md) | explanation candidate；需按文内源码语境使用 |
 | 理解 create/rollback/clone/resume 差异 | [Runtime Snapshot 运行机制](testcases_analysis/snapshot-runtime-deep-dive.md) | explanation candidate；与上篇配套 |
 | 查看生命周期数据流和当前源码锚点 | [测试用例与数据流分析](testcases_analysis/README.md) | 明确记录源码 commit 的项目内分析入口 |
-| 审阅 canonical/supersede/evidence 关系 | [CubeSandbox 内容收敛图](CONTENT_CONVERGENCE.md) | MAT-02 收敛索引；不移动原文 |
+| 审阅 canonical/supersede/evidence 关系 | [CubeSandbox 内容收敛图](CONTENT_CONVERGENCE.md) | MAT-02 收敛索引；2026-09-17 起顶层散落文档已按主题迁入子目录 |
 | 查看外部证据/source 可达性 | [Evidence availability](EVIDENCE_AVAILABILITY.md) | 本地 Verification archive 映射；不可直接发布 |
 | 构建和运行 benchmark | [Benchmark README](benchmark/README.md) | benchmark 子域入口；不保存大型镜像 tar |
 | 审阅 benchmark 报告/CSV lineage | [Benchmark reports manifest](benchmark/reports/README.md) | derived evidence manifest；仍缺 raw input 映射 |
@@ -79,9 +79,8 @@ evidence_manifest: mixed; see evidence section
 
 ### 问题、修复与验证
 
-- `bug-fixes/`：根因结论、分析链、关键数据和修复脚本。
+- `bug-fixes/`：根因结论、分析链、关键数据和修复脚本；AP1R 之前的完整历史调查链（multi-vCPU restore、timer、RCU stall、WFI/vGIC 等）见 [bug-fixes/investigations/](bug-fixes/investigations/README.md)。
 - `debug/`：可审阅问题包、环境、逐请求结果、关键日志、补丁和校验和。
-- 顶层 `CUBESANDBOX_ARM64_*` 日期报告：多 vCPU restore、timer、RCU stall、WFI/vGIC 等历史分析链。
 
 AP1R 主题当前推荐把“根因与修复报告”作为结论候选，把 `debug/.../README.md` 作为证据入口；是否 supersede 更早的 timer/WFI 文档仍需逐篇审阅，不能批量删除。
 
@@ -132,7 +131,7 @@ AP1R 主题当前推荐把“根因与修复报告”作为结论候选，把 `d
 待治理：
 
 - `benchmark/reports/` 混合解释报告与派生 CSV；目录级 manifest 已建立，但 raw input 与 generator 映射仍不完整。
-- 部分顶层报告引用未入库 `remote-results/`、`source_code/` 或绝对本地路径。
+- 原顶层报告（现位于 `bug-fixes/investigations/`、`perf/reports/`、`guest-image/` 等）中部分引用未入库 `remote-results/`、`source_code/` 或绝对本地路径。
 - 虽然本地 Verification archive 可解析这些路径，但仓库内和未来网页端仍不可直接依赖绝对路径；需要按主题转换为 manifest。
 - `perf/` 与 `perf/scripts_v2/` 存在完全相同脚本，需先检查调用者和历史用途。
 

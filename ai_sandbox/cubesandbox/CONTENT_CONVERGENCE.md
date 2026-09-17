@@ -1,7 +1,7 @@
 ---
 status: in-progress
 scope: CubeSandbox canonical, supersede, evidence and duplicate mapping
-last_verified: 2026-08-29
+last_verified: 2026-09-17
 source_revision: f036fd2 (navigation and file-relationship review only)
 canonical: true
 evidence_manifest: partial
@@ -83,12 +83,26 @@ Do not delete or hide historical reports. They explain how earlier hypotheses we
 
 ## Current Non-Actions
 
-- No CubeSandbox file was moved, renamed or deleted.
+- 本节 2026-09-17 部分修订：五批主题迁移已执行（见下节迁移记录），但以下仍未发生——
 - No old report was marked obsolete in place.
 - No benchmark or perf script was removed.
 - No remote experiment was rerun.
 - No large artifact was added.
 - No external `remote-results/` path was copied into the repository.
+
+## 2026-09-17 Directory Migration Record
+
+51 篇顶层散落文档按主题以纯 Git rename（R100，内容零改动）迁入子目录，仓库内入链已全部重写。迁移前即不可解析的链接（`remote-results/`、`source_code/`、`scripts/` 仓库外路径、从未入库的 `*_ASSETS_*/` svg、以及一处指向 `benchmark/reports/` 的错误相对路径——最后一处已顺手修正为正确相对路径）按 external evidence / pre-existing 处理，不视为迁移破坏：
+
+| Batch | Destination | Files | Content |
+|---|---|---|---|
+| C1 | `bug-fixes/investigations/` | 21 | ARM64 snapshot-restore/multi-vCPU 历史调查链、社区先例检索、适配中英总结 |
+| C2 | `perf/reports/` | 18 | 模板/性能对比与优化报告（dated） |
+| C3 | `guest-image/` | 6 | guest image 与 kernel 操作、决策、A/B 与回滚重测 |
+| C4 | `testcases_analysis/` | 3 | snapshot 两份 deep dive 与模板/快照内容分析 |
+| C5 | `benchmark/reports/` | 3 | 正式测试报告、pre-benchmark health、kunpeng 报告 |
+
+顶层现仅保留 `README.md`、`CONTENT_CONVERGENCE.md`、`EVIDENCE_AVAILABILITY.md` 三个治理文件；`bug-fixes/investigations/`、`perf/reports/`、`guest-image/` 新增目录 README。每批独立 commit；revert 单批时需连带检查跨批链接修复。
 
 ## Next Small Batch
 

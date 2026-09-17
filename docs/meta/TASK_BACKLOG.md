@@ -73,7 +73,7 @@
 
 ## MAT-02：CubeSandbox 内容收敛
 
-状态：`phase-2-in-progress`。已新增项目 README、`CONTENT_CONVERGENCE.md`、benchmark reports manifest、perf manifest、AP1R debug manifest 和 evidence availability map；部分 checksum 已复核，raw provenance 和脚本收敛仍待执行。
+状态：`phase-2-in-progress`。已新增项目 README、`CONTENT_CONVERGENCE.md`、benchmark reports manifest、perf manifest、AP1R debug manifest 和 evidence availability map；2026-09-17 完成目录迁移阶段——51 篇顶层散落文档按五批主题（C1 调查链→`bug-fixes/investigations/`、C2 性能报告→`perf/reports/`、C3 镜像操作→`guest-image/`、C4 snapshot 深潜→`testcases_analysis/`、C5 正式报告→`benchmark/reports/`）以纯 Git rename 归入子目录，仓库内入链全部重写，顶层仅剩三个治理文件；迁移记录见 `ai_sandbox/cubesandbox/CONTENT_CONVERGENCE.md`。raw provenance 补全、perf 脚本收敛与 supersede 逐篇审阅仍待执行。
 
 输入：
 
