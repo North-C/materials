@@ -284,6 +284,10 @@ python3 scripts/summarize_cube_bench_sdk_csv.py \
   - [机器可读 CSV](reports/CUBESANDBOX_RUNTIME_SNAPSHOT_PAUSE_CLONE_COMMUNITY_ALIGNED_20260824.csv)
   - [Evidence manifest](reports/CUBESANDBOX_RUNTIME_SNAPSHOT_PAUSE_CLONE_COMMUNITY_ALIGNED_20260824.evidence-manifest.md)
 
+## 核心性能全量套件报告
+
+- [v0.7.0 核心性能全量测试（2026-09-17）](reports/CUBESANDBOX_CORE_PERF_V070_FULL_SUITE_20260917.md)：Template 创建并发（c1-c50 + c100n100×3）、密度爬升 100→1000、Snapshot/Dirty/Rollback/Clone/Pause-Resume 全套，含 density-1000 失败与孤儿 shim/快照问题记录。
+
 ## 已知导出镜像校验
 
 本目录只保存 checksum，不保存大体积 tar 包：
