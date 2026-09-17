@@ -10,7 +10,7 @@
 |---|---|---|---|
 | `BDD与cucumber.md` | durable software-engineering | 软件工程/测试方法 | 0 字节空占位；三态决策待用户确认 |
 | `Policy模块设计文档.md` | project-local design（已确认：NRI 资源调度项目子模块） | ✅ 已迁至 `nri-resource-policy/` | 入口见该目录 README |
-| `cloud-native-trends-report.md` | durable research/report | Research/Cloud Native | 与 `Paperwork/cloud-native-report-2026-02.md` 为姊妹篇（长期趋势 vs 季度进展），非重复 |
+| `cloud-native-trends-report.md` | durable research/report | ✅ 已迁至 `Paperwork/` | 与 `cloud-native-report-2026-02.md` 为姊妹篇（长期趋势 vs 季度进展），非重复；关系见 `Paperwork/README.md` |
 | `design.md` | project-local design（已确认：容器资源调度 runtimeHook/NRI 框架设计） | ✅ 已迁至 `nri-resource-policy/` | 与 Policy/并发问题/日志.md 同项目聚类 |
 | `docker镜像编译.md` | how-to | ✅ 已迁至 `软件工程/` | 补平台、版本和验证状态 |
 | `golang_under_the_hood.md` | durable explanation | 软件工程/Go | 0 字节空占位；三态决策待用户确认 |

@@ -67,7 +67,7 @@ canonical: false
 
 `cloud-native-trends-report.md`（5.8 KB，《云原生领域趋势报告 2020-2026》）。与 `Paperwork/cloud-native-report-2026-02.md`（13 KB，《Cloud Native 领域最新进展报告 2025.12–2026.2`）》**不是重复，是姊妹篇**：一份长期趋势、一份季度进展。已核对标题与正文主题，无收敛提案。
 
-迁移动作：候选迁至 `Paperwork/` 并与姊妹篇互链；或两份一起归入 research 主题页。前置条件：用户选择归置口径（Paperwork vs research）。
+迁移动作：✅ 已执行（2026-09-17）：以纯 Git rename 迁至 `Paperwork/` 与姊妹篇同目录，并在新增的 `Paperwork/README.md` 中记录姊妹篇关系与引用口径（按时间尺度选择）。
 
 ### Group R6：Kubernetes 可观测性笔记（1 份）
 
@@ -109,5 +109,6 @@ canonical: false
 - 2026-09-17：15 份 Markdown + `记录` + 2 份 Excalidraw 的跟踪状态、大小、行数、首行标题、入链、单 commit provenance 均已在 worktree 内核实；受限文件（`专利修改问题.md`、`华泰问题讨论.md`、`github-tokens.md`）只采集了元数据；两份 cloud-native 报告的姊妹篇关系已按标题与正文主题核对。
 - 2026-09-17（R1 执行）：`design.md`、`Policy模块设计文档.md`、`并发问题.md` 以纯 Git rename（R100，零内容改动）迁入 `nri-resource-policy/`，同批新增该目录 README；新旧路径映射记录于目录 README 的 Provenance 节。
 - 2026-09-17（R4 执行）：`docker镜像编译.md`、`jenkins使用.md` 以纯 Git rename（R100，零内容改动）迁入 `软件工程/`，同批新增该目录 README（含既有 3 份文档的导航与迁入 provenance）。
+- 2026-09-17（R5 执行）：`cloud-native-trends-report.md` 以纯 Git rename（R100，零内容改动）迁入 `Paperwork/`，同批新增该目录 README，记录与 `cloud-native-report-2026-02.md` 的姊妹篇关系。
 
 相关：[根目录散落文件主题页](../topics/root-files.md) · [任务 backlog](TASK_BACKLOG.md) · [大对象治理](LARGE_OBJECT_MANIFEST.md)
