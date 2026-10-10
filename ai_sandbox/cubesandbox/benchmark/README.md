@@ -272,6 +272,13 @@ python3 scripts/summarize_cube_bench_sdk_csv.py \
 - `scripts/CUBE_BENCH_SDK_GUIDE.md`
 - `scripts/RUN_CUBE_BENCH_ENVD_GUIDE.md`
 
+## v0.7.1 核心性能数据
+
+- [GICv3 / Kunpeng 950 核心性能结果（2026-10-08–09）](reports/CUBESANDBOX_V071_GICV3_CORE_PERFORMANCE_20261009.md)：32个非密度档位完成；1500密度目标未达，最高完整健康采样档为1000。
+  - [性能结果 CSV：53条指标记录](reports/CUBESANDBOX_V071_GICV3_CORE_PERFORMANCE_20261009.csv)
+  - [机器环境与测试条件 CSV：41项](reports/CUBESANDBOX_V071_GICV3_CORE_PERFORMANCE_20261009.environment.csv)
+  - [来源、脱敏、校验与计时边界](reports/CUBESANDBOX_V071_GICV3_CORE_PERFORMANCE_20261009.evidence-manifest.md)
+
 ## Template 创建 benchmark 报告
 
 - [create-only c100/n100 三轮测试记录（2026-09-02）](reports/CUBESANDBOX_CREATE_ONLY_C100_N100_20260902.md)
