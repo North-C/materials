@@ -18,6 +18,7 @@ benchmark/
 
 ## 核心文件
 
+- [SWE 轨迹回放超分密度测试材料](swe-replay-density/README.md)：测试版 `build_template.py`、完整操作指南、辅助工具与源码改动说明。
 - `docker/cube-bench-suite-envd/Dockerfile`：基于 `cubesandbox-base` 重建 benchmark 镜像，满足 CubeSandbox 自定义镜像/Template 要求。
 - `docker/cube-bench-suite-envd/run-benchmark`：镜像内 benchmark 统一 wrapper。
 - `docker/cube-bench-suite-envd/health_server.py`：镜像默认启动服务，用于 Template 探活。
