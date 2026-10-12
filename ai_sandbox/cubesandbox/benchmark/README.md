@@ -13,8 +13,18 @@ benchmark/
 ├── scripts/                        # 可复用测试脚本、SDK/envd runner、CSV 汇总脚本和脚本指南
 ├── docs/                           # benchmark 使用、参数设计、复用方式和镜像 tag 说明
 ├── reports/                        # 已完成部署/benchmark 报告样例
+├── swe-replay-density/             # SWE 回放通用指南、模板脚本与验收工具
 └── checksums/                      # 已导出镜像 tar.gz 的 sha256 元数据
 ```
+
+## SWE 轨迹回放测试指南
+
+适配镜像已准备好时，从以下入口开始：
+
+- [通用测试指南与依赖文件清单](swe-replay-density/CUBESANDBOX.md)：所需项目、文件用途、测试流程与完成条件。
+- [详细操作指南](swe-replay-density/docs/CUBESANDBOX_DENSITY_GUIDE.md)：按功能拆分的镜像、模板、回放、密度测试及验收命令。
+- [镜像已在 registry：直接创建模板并测试](swe-replay-density/docs/CUBESANDBOX_DENSITY_GUIDE.md#快速入口镜像已在-registry)：跳过归档导入与重新适配。
+- [测试沙箱配置](swe-replay-density/docs/CUBESANDBOX_DENSITY_GUIDE.md#沙箱配置一览)：CPU、内存、可写层、TTL、回放和监控参数。
 
 ## 核心文件
 
