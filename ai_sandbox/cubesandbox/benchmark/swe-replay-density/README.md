@@ -1,52 +1,80 @@
 # SWE 轨迹回放密度测试材料
 
-本目录发布 `density-bench` 的 CubeSandbox 测试版构建脚本与操作指南。
-负载执行由上游原生 `agent_vm_bench/bench-core` 完成；随包小工具负责配置、采样和验收。
+本目录提供 CubeSandbox 模板脚本、通用测试指南和配置/验收工具。
+负载由 `agent_vm_bench/bench-core` 执行，驱动与轨迹数据需要另外准备。
 
-- [完整用户指南](docs/CUBESANDBOX_DENSITY_GUIDE.md)：从镜像导入到模板、预检、密度阶梯和指标验收。
-- [测试数据、Excel 与图表](results/README.md)：.95 功能验证、.90 两批密度结果、准入与中断记录，以及图表修正说明。
-- [镜像筛选与构建脚本说明](CUBESANDBOX.md)：55 条来源、原始镜像拉取、envd 适配与任务恢复。
-- [源码改动清单](SOURCE_CHANGES.md)：修改、新增、既有未提交改动和历史验证边界。
-- [测试版 build_template.py](build_template.py)：与已验证版本逐字节一致。
-- [发布文件 SHA256](SHA256SUMS)：在本目录运行 `sha256sum -c SHA256SUMS`。
+**适配镜像已经推送到 registry：直接进入 [registry 快速入口](docs/CUBESANDBOX_DENSITY_GUIDE.md#快速入口镜像已在-registry)。**
+路径为：准备依赖 → 生成镜像清单 → 拉取适配镜像 → `--phase cube` 创建模板 → 单条回放 → 批量模板 → 密度测试与验收。
+不需要归档 tar，不重复注入 envd。
 
-## 文件与外部输入
+- [通用测试入口与依赖清单](CUBESANDBOX.md)：依赖项目、实际使用文件、沙箱规格和操作顺序。
+- [完整操作指南](docs/CUBESANDBOX_DENSITY_GUIDE.md)：按功能拆分的命令，支持归档导入或已有 registry 镜像。
+- [沙箱配置一览](docs/CUBESANDBOX_DENSITY_GUIDE.md#沙箱配置一览)：示例 2 vCPU / 4 GiB / `10G` 可写层，以及网络、TTL、回放和监控参数。
+- [历史测试数据、Excel 与图表](results/README.md)：独立保留原实验结果，不作为目标环境的默认参数或验收结果。
+- [源码改动清单](SOURCE_CHANGES.md)：最初脚本适配、既有源码差异和历史验证记录。
+- [模板脚本](build_template.py)及[发布文件 SHA256](SHA256SUMS)：在本目录运行 `sha256sum -c SHA256SUMS`。
 
-```text
-swe-replay-density/
-├── build_template.py
-├── CUBESANDBOX.md
-├── SOURCE_CHANGES.md
-├── SHA256SUMS
-├── results/                       # 脱敏结果、图表、配置与来源清单
-└── docs/
-    ├── CUBESANDBOX_DENSITY_GUIDE.md
-    └── tools/
-        ├── make_density_config.py
-        ├── verify_density_run.py
-        ├── snapshot_cube_ids.py
-        └── host_sampler.py
+## 部署依赖
+
+以下操作在运行测试的机器执行。先进入本发布目录；后续指南的 `SUITE_ROOT` 就是该目录。
+也可以将本目录的脚本和文档复制到独立实验目录后再补齐外部依赖。
+
+### 1. 指定运行目录
+
+```bash
+cd /path/to/materials/ai_sandbox/cubesandbox/benchmark/swe-replay-density
+export SUITE_ROOT="$PWD"
 ```
 
-运行前还需要单独取得原项目的 `swerebench-offline-replays-master/verified-135/manifest.csv`
-和 `replays/`，以及目标架构的适配镜像。这里不包含轨迹、镜像 tar、registry 数据、实验凭据、
-集群模板 ID 或原始运行日志。指南第 2.3 节给出分别部署发布文件与数据的命令。
+### 2. 获取测试驱动
 
-55 个已导出 tar 是 `linux/amd64`，历史 `.95/.90` 测试节点是 ARM64；二者不能直接混用。
-需要 x86 镜像包时，从原项目 `exports/cubesandbox-x86-55-20261010/` 取得全部 tar 和校验清单。
-目标集群必须重新创建模板并完成单条端到端预检。
+驱动来源为 `JackWeiw/agent_vm_bench`。下列命令用于新的源码目录；如果已有匹配版本，直接复用并记录版本。
+`93f978f7ec27d9bc519dca2efdc809ada09acbaa` 是既有发布记录使用的兼容基线，
+不是任意平台必须采用的版本；更换版本后重新做 SDK、单条回放和报告格式检查。
 
-## 固定身份与发布处理
+```bash
+git clone https://github.com/JackWeiw/agent_vm_bench.git "$SUITE_ROOT/agent_vm_bench"
+git -C "$SUITE_ROOT/agent_vm_bench" checkout --detach 93f978f7ec27d9bc519dca2efdc809ada09acbaa
+```
 
-- 构建脚本 SHA256：`ed82005f199101fb0c532a4660fe3c6f4dda67ea130a78d3cd0d33d568a1658a`。
-- 原指南 SHA256：`33d13f07c2f1066026804104010e8be614e30dc99219ca818c59f63b74910fba`。
-- 密度驱动：`JackWeiw/agent_vm_bench@93f978f7ec27d9bc519dca2efdc809ada09acbaa`；SDK `cubesandbox==0.7.0`。
-- 发布版指南将本机目录替换为 `/srv/density-lab` 或待填写参数，将节点地址替换为文档示例地址；
-  `.95/.90` 仅为历史环境简称。失效的本地证据链接改为目录说明，原证据仍保留在原项目。
-- 三个指南辅助工具和宿主采样器均按已验证文件原样复制；`CUBESANDBOX.md` 摘录清单与适配说明。
+Python 环境、依赖安装和真实 SDK 核验在详细指南第 2.6–2.7 节执行。
+本目录的辅助脚本不替代驱动项目，也不需要单独启动上游 replay server。
 
-本次是材料发布，不重新执行 Docker load、模板创建或压力测试。发布副本经 19 项既有离线单元测试、
-20 个 Bash 代码块及 27 次指南子进程检查；归档结果验证覆盖普通非零、超时门槛和残次报告拒绝。
-精确命令、工具版本、UTC 时间和原始输出保存在原项目 `validation/20261012-materials-publication/`。
+### 3. 准备数据集
 
-`materials` 中这是发布快照；后续修改应回到原项目验证，再同步本目录并更新哈希。
+从原 `density-bench` 数据包或数据提供者取得对应版本的
+`swerebench-offline-replays-master/verified-135/manifest.csv` 和 `replays/`。
+本发布包不包含这些文件；这里不提供未经核实的数据仓库地址。
+
+下面的 `DATASET_ROOT` 指向已取得的 `swerebench-offline-replays-master` 目录；首次部署时复制到运行目录：
+
+```bash
+export DATASET_ROOT=/path/to/swerebench-offline-replays-master
+mkdir -p "$SUITE_ROOT/swerebench-offline-replays-master/verified-135/replays"
+cp "$DATASET_ROOT/verified-135/manifest.csv" \
+  "$SUITE_ROOT/swerebench-offline-replays-master/verified-135/manifest.csv"
+rsync -a "$DATASET_ROOT/verified-135/replays/" \
+  "$SUITE_ROOT/swerebench-offline-replays-master/verified-135/replays/"
+```
+
+如需逐步比较历史返回码，还需取得匹配案例的 `profiles/.../replay/replay-result.json`，
+或建立低负载基线。轨迹动作文件本身不提供返回码基线。
+
+### 4. 选择镜像来源并开始测试
+
+- **镜像已在目标 registry**：使用 [registry 快速入口](docs/CUBESANDBOX_DENSITY_GUIDE.md#快速入口镜像已在-registry)，设置 `IMAGE_SOURCE=registry`，无需取得任何归档文件。
+- **收到适配镜像归档**：按详细指南第 2 节设置 `IMAGE_SOURCE=archive`，将实际包目录填入 `ARCHIVE_DIR`；包中应有 `manifest.csv`、`SHA256SUMS` 和对应 tar。
+
+x86 镜像仅用于匹配的 x86 节点，ARM64 测试需对应 ARM64 镜像。模板 ID 在目标集群重新生成。
+本目录不包含镜像 tar、归档元数据、registry 数据、实验凭据或可直接复用的集群模板 ID。
+
+## 发布内容与验证边界
+
+本次更新的是两份指南、此导航页、源码改动说明中的更新记录及其 SHA256；测试脚本、辅助工具和历史结果保持原有内容。
+构建脚本 SHA256 为 `ed82005f199101fb0c532a4660fe3c6f4dda67ea130a78d3cd0d33d568a1658a`。
+
+本次文档检查覆盖 Bash/Python 示例语法、链接和章节跳转、registry 模式参数、镜像清单生成及
+模板 dry-run；没有执行镜像推送、模板创建或压力测试。最新文件身份以 `SHA256SUMS` 为准。
+历史实验的版本、环境、验证结果和限制分别保存在 `SOURCE_CHANGES.md` 与 `results/`，不混入通用操作步骤。
+
+后续修改应同步指南并更新 `SHA256SUMS`。依赖版本变化后先做单条验证，再执行密度阶梯。
