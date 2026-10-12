@@ -1,0 +1,976 @@
+diff --git a/CubeShim/shim/src/log/mod.rs b/CubeShim/shim/src/log/mod.rs
+index 530596e6..1ec7413e 100644
+--- a/CubeShim/shim/src/log/mod.rs
++++ b/CubeShim/shim/src/log/mod.rs
+@@ -2,6 +2,7 @@
+ // SPDX-License-Identifier: Apache-2.0
+ //
+ 
++pub mod perf_trace;
+ pub mod stat_defer;
+ use crate::common::CResult;
+ use nix::unistd::dup2;
+@@ -116,6 +117,8 @@ struct StatItem {
+     ret_code: StatRet,
+     cost_time: u128,
+     function_type: String,
++    #[serde(default, skip_serializing_if = "Option::is_none")]
++    perf_trace: Option<perf_trace::PerfTrace>,
+ }
+ 
+ struct ReopenableFile {
+@@ -399,7 +402,9 @@ impl Log {
+         callee_action: String,
+         ret: StatRet,
+         cost: u128,
++        perf_trace: Option<perf_trace::PerfTrace>,
+     ) {
++        let traced = perf_trace.is_some();
+         let si = StatItem {
+             module: self.module.clone(),
+             instance_id: self.instance_id.clone(),
+@@ -411,14 +416,20 @@ impl Log {
+             ret_code: ret,
+             cost_time: cost,
+             function_type: self.function_type.clone(),
++            perf_trace,
+         };
+ 
+         let msg_ret = serde_json::to_string(&si);
+         match msg_ret {
+             Ok(msg) => {
+-                let _ = self.sender.try_send((LogType::Stat, msg + "\n"));
++                if self.sender.try_send((LogType::Stat, msg + "\n")).is_err() && traced {
++                    perf_trace::record_drop();
++                }
+             }
+             Err(e) => {
++                if traced {
++                    perf_trace::record_drop();
++                }
+                 println!("Serialize StatItem failed:{}", e)
+             }
+         }
+@@ -464,6 +475,58 @@ mod tests {
+ 
+     static NEXT_TEST_ID: AtomicU64 = AtomicU64::new(0);
+ 
++    fn trace_fixture() -> perf_trace::PerfTrace {
++        serde_json::from_str(r#"{"SchemaVersion":1,"ClockId":"123:456","OperationId":7,"Kind":"span","StartMonoNs":100,"EndMonoNs":1099,"DurationNs":999,"DurationUs":0,"DroppedRecordsBefore":0}"#).unwrap()
++    }
++
++    #[test]
++    fn stat_without_trace_preserves_legacy_schema() {
++        let (sender, mut receiver) = mpsc::channel(1);
++        let log = Log {
++            sender,
++            ..Default::default()
++        };
++        log.stat(
++            "cid".into(),
++            "Shim".into(),
++            "Create".into(),
++            "RestoreVm".into(),
++            StatRet::Ok,
++            0,
++            None,
++        );
++        let (_, json) = receiver.try_recv().unwrap();
++        let value: serde_json::Value = serde_json::from_str(&json).unwrap();
++        assert_eq!(value["CostTime"], 0);
++        assert!(value.get("PerfTrace").is_none());
++    }
++
++    #[test]
++    fn stat_with_trace_retains_submillisecond_duration_and_attribution() {
++        let (sender, mut receiver) = mpsc::channel(1);
++        let log = Log {
++            sender,
++            instance_id: "instance".into(),
++            ..Default::default()
++        };
++        log.stat(
++            "container".into(),
++            "Shim".into(),
++            "Create".into(),
++            "RestoreVm".into(),
++            StatRet::Ok,
++            0,
++            Some(trace_fixture()),
++        );
++        let (_, json) = receiver.try_recv().unwrap();
++        let value: serde_json::Value = serde_json::from_str(&json).unwrap();
++        assert_eq!(value["CostTime"], 0);
++        assert_eq!(value["PerfTrace"]["DurationNs"], 999);
++        assert_eq!(value["InstanceId"], "instance");
++        assert_eq!(value["ContainerId"], "container");
++        assert_eq!(value["CalleeAction"], "RestoreVm");
++    }
++
+     fn test_log_path() -> PathBuf {
+         let suffix = SystemTime::now()
+             .duration_since(UNIX_EPOCH)
+diff --git a/CubeShim/shim/src/log/stat_defer.rs b/CubeShim/shim/src/log/stat_defer.rs
+index 1a9771e7..b14a9a2b 100644
+--- a/CubeShim/shim/src/log/stat_defer.rs
++++ b/CubeShim/shim/src/log/stat_defer.rs
+@@ -4,6 +4,7 @@
+ 
+ use std::time::Instant;
+ 
++use super::perf_trace::{self, PerfTrace};
+ use super::{Log, StatRet};
+ 
+ pub const ACT_CREATE: &str = "Create";
+@@ -58,6 +59,7 @@ pub struct StatDefer {
+     action: String,
+     callee_act: String,
+     start: Instant,
++    operation_id: Option<u64>,
+     ret: StatRet,
+     log: Log,
+     loged: bool,
+@@ -73,12 +75,15 @@ pub struct StatDefer {
+ */
+ impl StatDefer {
+     pub fn new(cid: String, callee: String, action: String, callee_act: String, log: Log) -> Self {
++        // Initialize the clock before capturing the operation's exact start.
++        let operation_id = perf_trace::new_operation();
+         StatDefer {
+             cid,
+             callee,
+             action,
+             callee_act,
+             start: Instant::now(),
++            operation_id,
+             ret: StatRet::Err,
+             log,
+             loged: false,
+@@ -94,17 +99,37 @@ impl StatDefer {
+     }
+ 
+     pub fn stat(&mut self) {
+-        let duration = self.start.elapsed().as_millis();
++        let duration = self.start.elapsed();
++        let perf_trace = self
++            .operation_id
++            .map(|id| PerfTrace::capture(id, self.start, duration, "span"));
+         self.log.stat(
+             self.cid.clone(),
+             self.callee.clone(),
+             self.action.clone(),
+             self.callee_act.clone(),
+             self.ret.clone(),
+-            duration,
++            duration.as_millis(),
++            perf_trace,
+         );
+         self.loged = true
+     }
++
++    /// Emits a cumulative checkpoint from this operation's start, not a child span.
++    pub fn perf_marker(&self, marker: &str) {
++        if let Some(id) = self.operation_id {
++            let elapsed = self.start.elapsed();
++            self.log.stat(
++                self.cid.clone(),
++                self.callee.clone(),
++                self.action.clone(),
++                format!("TaskCreate.{}", marker),
++                StatRet::Ok,
++                elapsed.as_millis(),
++                Some(PerfTrace::capture(id, self.start, elapsed, "cumulative")),
++            );
++        }
++    }
+ }
+ 
+ impl Drop for StatDefer {
+diff --git a/CubeShim/shim/src/service/srv.rs b/CubeShim/shim/src/service/srv.rs
+index a4ef2938..1e8ca6ee 100644
+--- a/CubeShim/shim/src/service/srv.rs
++++ b/CubeShim/shim/src/service/srv.rs
+@@ -38,7 +38,11 @@ impl Shim for Service {
+ 
+     async fn start_shim(&mut self, opts: StartOpts) -> Result<String, Error> {
+         let grouping = opts.id.clone();
+-        let address: String = spawn(opts, &grouping, Vec::new()).await?;
++        let mut env = Vec::new();
++        if crate::log::perf_trace::enabled() {
++            env.push((crate::log::perf_trace::ENV_PERF_TRACE, "1"));
++        }
++        let address: String = spawn(opts, &grouping, env).await?;
+         fs::write(ADDRESS_FILE, address.as_bytes()).map_err(|e| Error::IoError {
+             context: "write address file failed".to_string(),
+             err: e,
+diff --git a/CubeShim/shim/src/service/task_srv.rs b/CubeShim/shim/src/service/task_srv.rs
+index dc066508..af63b45e 100644
+--- a/CubeShim/shim/src/service/task_srv.rs
++++ b/CubeShim/shim/src/service/task_srv.rs
+@@ -341,6 +341,7 @@ impl Task for TaskService {
+             errf!(self.log, "Load spec failed:{}", e.clone());
+             Others(format!("Load spec failed:{}", e))
+         })?;
++        stat.perf_marker("LoadSpec");
+ 
+         infof!(
+             self.log,
+@@ -349,10 +350,12 @@ impl Task for TaskService {
+         );
+ 
+         let mut sb = self.sandbox.lock().await;
++        stat.perf_marker("AcquireSandboxLock");
+         if sb.paused().await {
+             errf!(self.log, "sandbox not in normal state");
+             return Err(Others(format!("sandbox not in normal state")));
+         }
++        stat.perf_marker("CheckSandboxState");
+         if !sb.inited() {
+             stat.set_callee_act(stat_defer::CALLEE_ACT_CREATE_POD_SANDBOX.to_string());
+             infof!(self.log, "shim pid {}", std::process::id());
+@@ -364,12 +367,14 @@ impl Task for TaskService {
+                 errf!(self.log, "Init sandbox config failed:{}", e.clone());
+                 Error::Other(format!("Init sandbox config failed:{}", e))
+             })?;
++            stat.perf_marker("InitSandbox");
+ 
+             sb.create_sandbox().await.map_err(|e| {
+                 errf!(self.log, "Create sandbox failed:{}", e.clone());
+                 Error::Other(format!("Create sandbox failed:{}", e))
+             })?;
+         }
++        stat.perf_marker("StartSandbox");
+ 
+         infof!(
+             self.log,
+@@ -391,6 +396,7 @@ impl Task for TaskService {
+                 errf!(self.log, "Create container failed:{}", e.clone());
+                 Error::Other(format!("Create container failed:{}", e))
+             })?;
++        stat.perf_marker("CreateContainer");
+         infof!(
+             self.log,
+             "start container finish at:{}",
+@@ -415,6 +421,7 @@ impl Task for TaskService {
+         };
+         let topic = event.topic();
+         self.tx_event(topic, Box::new(event)).await;
++        stat.perf_marker("PublishTaskEvent");
+         stat.set_ok();
+         infof!(self.log, "create req finish");
+         Ok(api::CreateTaskResponse {
+diff --git a/Cubelet/network/runtime/controller.go b/Cubelet/network/runtime/controller.go
+index a454e799..f8d94684 100644
+--- a/Cubelet/network/runtime/controller.go
++++ b/Cubelet/network/runtime/controller.go
+@@ -19,6 +19,7 @@ import (
+ 	"github.com/cilium/ebpf"
+ 	"github.com/tencentcloud/CubeSandbox/CubeNet/cubevs"
+ 	"github.com/tencentcloud/CubeSandbox/Cubelet/network/runtime/systemnet"
++	"github.com/tencentcloud/CubeSandbox/Cubelet/pkg/perftrace"
+ 	CubeLog "github.com/tencentcloud/CubeSandbox/pkgs/CubeLog"
+ )
+ 
+@@ -458,7 +459,7 @@ func (s *NetworkController) EnsureNetwork(ctx context.Context, req *EnsureNetwor
+ 	var pre ensurePrecheckTimings
+ 	idempotent := false
+ 	defer func() {
+-		if total := time.Since(totalStart); err != nil || total >= slowStageLogThreshold {
++		if total := time.Since(totalStart); perftrace.Enabled() || err != nil || total >= slowStageLogThreshold {
+ 			CubeLog.WithContext(ctx).Warnf(
+ 				"network runtime ensure precheck: sandbox_id=%s total=%s success=%t idempotent=%t lock_wait=%s inmem_lookup=%s exists_check=%s legacy_check=%s create_state=%s",
+ 				req.SandboxID, total, err == nil, idempotent,
+@@ -601,7 +602,7 @@ func (s *NetworkController) createState(ctx context.Context, req *EnsureNetworkR
+ 	stageStart := totalStart
+ 	var t createStageTimings
+ 	defer func() {
+-		if total := time.Since(totalStart); err != nil || total >= slowStageLogThreshold {
++		if total := time.Since(totalStart); perftrace.Enabled() || err != nil || total >= slowStageLogThreshold {
+ 			CubeLog.WithContext(ctx).Warnf(
+ 				"network runtime create stages: sandbox_id=%s total=%s success=%t port_mappings=%d ensure_route=%s acquire_tap=%s reserve_ports=%s write_tmp=%s commit_creating=%s apply_port_mappings=%s register_cubevs_tap=%s push_egress=%s commit_success=%s commit_active=%s",
+ 				req.SandboxID, total, err == nil, len(req.PortMappings),
+diff --git a/Cubelet/network/runtime/cubevs_adapter.go b/Cubelet/network/runtime/cubevs_adapter.go
+index 44bd7002..4a63889b 100644
+--- a/Cubelet/network/runtime/cubevs_adapter.go
++++ b/Cubelet/network/runtime/cubevs_adapter.go
+@@ -11,6 +11,7 @@ import (
+ 	"time"
+ 
+ 	"github.com/tencentcloud/CubeSandbox/CubeNet/cubevs"
++	"github.com/tencentcloud/CubeSandbox/Cubelet/pkg/perftrace"
+ 	CubeLog "github.com/tencentcloud/CubeSandbox/pkgs/CubeLog"
+ )
+ 
+@@ -113,7 +114,7 @@ func (s *NetworkController) registerCubeVSTap(ifindex int, ip net.IP, sandboxID
+ 	)
+ 	start := time.Now()
+ 	defer func() {
+-		if total := time.Since(start); err != nil || total >= slowStageLogThreshold {
++		if total := time.Since(start); perftrace.Enabled() || err != nil || total >= slowStageLogThreshold {
+ 			CubeLog.WithContext(context.Background()).Warnf(
+ 				"network runtime register cubevs tap: sandbox_id=%s total=%s success=%t",
+ 				sandboxID, total, err == nil,
+diff --git a/Cubelet/network/runtime/tap_lifecycle.go b/Cubelet/network/runtime/tap_lifecycle.go
+index 3c1282a7..115805a8 100644
+--- a/Cubelet/network/runtime/tap_lifecycle.go
++++ b/Cubelet/network/runtime/tap_lifecycle.go
+@@ -12,6 +12,7 @@ import (
+ 	"os"
+ 	"time"
+ 
++	"github.com/tencentcloud/CubeSandbox/Cubelet/pkg/perftrace"
+ 	CubeLog "github.com/tencentcloud/CubeSandbox/pkgs/CubeLog"
+ 	"golang.org/x/sys/unix"
+ )
+@@ -441,7 +442,7 @@ func (s *NetworkController) GetTapFile(sandboxID, tapName string) (handoff *os.F
+ 	var t tapHandoffTimings
+ 	attempts := 0
+ 	defer func() {
+-		if total := time.Since(totalStart); err != nil || total >= slowStageLogThreshold {
++		if total := time.Since(totalStart); perftrace.Enabled() || err != nil || total >= slowStageLogThreshold {
+ 			CubeLog.WithContext(context.Background()).Warnf(
+ 				"network runtime tap fd handoff: sandbox_id=%s total=%s success=%t attempts=%d lock_wait=%s snapshot=%s open_tap=%s dup_fd=%s",
+ 				sandboxID, total, err == nil, attempts,
+diff --git a/Cubelet/plugins/workflow/engine.go b/Cubelet/plugins/workflow/engine.go
+index 1bf691ef..6321e105 100644
+--- a/Cubelet/plugins/workflow/engine.go
++++ b/Cubelet/plugins/workflow/engine.go
+@@ -15,6 +15,7 @@ import (
+ 
+ 	"github.com/containerd/containerd/v2/pkg/namespaces"
+ 	"github.com/google/uuid"
++	"github.com/tencentcloud/CubeSandbox/Cubelet/pkg/perftrace"
+ 	"golang.org/x/sync/errgroup"
+ 
+ 	"github.com/tencentcloud/CubeSandbox/Cubelet/pkg/config"
+@@ -405,6 +406,9 @@ func (e *Engine) run(do string, ctx context.Context, opts ReqContext) error {
+ 		if flow_create == do {
+ 			rOpts := opts.(*CreateContext)
+ 			rOpts.AddMetric(nil, constants.LimiterId, time.Since(start))
++			if perftrace.Enabled() {
++				perftrace.RecordInterval(ctx, constants.LimiterId, "limiter", start, time.Now(), nil)
++			}
+ 		} else if flow_destroy == do {
+ 			rOpts := opts.(*DestroyContext)
+ 			rOpts.AddMetric(nil, constants.LimiterId, time.Since(start))
+@@ -473,7 +477,9 @@ func (e *Engine) cleanUp(ctx context.Context, opts ReqContext) {
+ 	}
+ }
+ 
+-func (e *Engine) parallelRunSteps(do string, ctx context.Context, opts ReqContext, step *Step) error {
++func (e *Engine) parallelRunSteps(do string, ctx context.Context, opts ReqContext, step *Step) (resultErr error) {
++	ctx, groupSpan := perftrace.Begin(ctx, "workflow.parallel_step", "workflow_group")
++	defer func() { groupSpan.End(resultErr) }()
+ 
+ 	eg, ctxWithCancel := errgroup.WithContext(ctx)
+ 	rt := CubeLog.GetTraceInfo(ctx)
+@@ -484,16 +490,19 @@ func (e *Engine) parallelRunSteps(do string, ctx context.Context, opts ReqContex
+ 		flow := step.Actions[i]
+ 		startGo := time.Now()
+ 		eg.Go(func() (err error) {
++			start := time.Now()
++			perftrace.RecordInterval(ctxWithCancel, "workflow.dispatch", "dispatch", startGo, start, nil)
++			ctxAction, actionSpan := perftrace.Begin(ctxWithCancel, flow.ID(), "workflow_action")
++			defer func() { actionSpan.End(err) }()
+ 			defer recov.HandleCrash(func(panicError interface{}) {
+ 				err = ret.Errorf(errorcode.ErrorCode_Unknown, "flow[%v] do %s panic :%v %v", flow.ID(), do, panicError, string(debug.Stack()))
+ 			})
+-			start := time.Now()
+ 			sRt := rt.DeepCopy()
+ 			sRt.Callee = flow.ID()
+ 			if opts != nil {
+ 				sRt.InstanceID = opts.GetSandboxID()
+ 			}
+-			ctxTmp := CubeLog.WithRequestTrace(ctxWithCancel, sRt)
++			ctxTmp := CubeLog.WithRequestTrace(ctxAction, sRt)
+ 			ctxTmp = log.ReNewLogger(ctxTmp)
+ 			switch do {
+ 			case flow_init:
+diff --git a/Cubelet/plugins/workflow/metric.go b/Cubelet/plugins/workflow/metric.go
+index dcca1b9e..73835dda 100644
+--- a/Cubelet/plugins/workflow/metric.go
++++ b/Cubelet/plugins/workflow/metric.go
+@@ -10,6 +10,7 @@ import (
+ 	"time"
+ 
+ 	"github.com/tencentcloud/CubeSandbox/Cubelet/pkg/constants"
++	"github.com/tencentcloud/CubeSandbox/Cubelet/pkg/perftrace"
+ 	metrictype "github.com/tencentcloud/CubeSandbox/Cubelet/plugins/cube/internals/metric/types"
+ 	"github.com/tencentcloud/CubeSandbox/pkgs/CubeLog"
+ )
+@@ -46,12 +47,13 @@ func RecordCreateMetric(ctx context.Context, err error, id string, cost time.Dur
+ 			default:
+ 			}
+ 			createCtx.AddMetric(err, id, cost)
++			perftrace.RecordDuration(ctx, id, cost, err)
+ 		}
+ 	}
+ }
+ 
+ func RecordCreateMetricIfGreaterThan(ctx context.Context, err error, id string, cost time.Duration, threshold time.Duration) {
+-	if cost <= threshold {
++	if !perftrace.Enabled() && cost <= threshold {
+ 		return
+ 	}
+ 	RecordCreateMetric(ctx, err, id, cost)
+diff --git a/Cubelet/services/cubebox/service.go b/Cubelet/services/cubebox/service.go
+index 68adbe70..27262bf3 100644
+--- a/Cubelet/services/cubebox/service.go
++++ b/Cubelet/services/cubebox/service.go
+@@ -22,6 +22,7 @@ import (
+ 	"github.com/containerd/plugin"
+ 	"github.com/containerd/plugin/registry"
+ 	jsoniter "github.com/json-iterator/go"
++	"github.com/tencentcloud/CubeSandbox/Cubelet/pkg/perftrace"
+ 	"google.golang.org/grpc"
+ 	"google.golang.org/grpc/metadata"
+ 	"k8s.io/utils/clock"
+@@ -288,6 +289,7 @@ func (s *service) Create(ctx context.Context, req *cubebox.RunCubeSandboxRequest
+ 	ctx = setDefaultContext(ctx, req, createInfo)
+ 
+ 	ctx = context.WithValue(ctx, workflow.KCreateContext, createInfo)
++	ctx, perfCollector := perftrace.StartRequest(ctx, start, req.RequestID)
+ 
+ 	rt := &CubeLog.RequestTrace{
+ 		Action:       "Create",
+@@ -310,7 +312,8 @@ func (s *service) Create(ctx context.Context, req *cubebox.RunCubeSandboxRequest
+ 	s.setRequestResource(createInfo, req)
+ 
+ 	defer func() {
+-		cost := time.Since(start)
++		end := time.Now()
++		cost := end.Sub(start)
+ 		if !ret.IsSuccessCode(rsp.Ret.RetCode) {
+ 			log.G(ctx).WithFields(map[string]interface{}{
+ 				"RetCode": int64(rsp.Ret.RetCode),
+@@ -324,6 +327,18 @@ func (s *service) Create(ctx context.Context, req *cubebox.RunCubeSandboxRequest
+ 		rt = CubeLog.GetTraceInfo(ctx)
+ 		rt.InstanceID = createInfo.SandboxID
+ 		go s.reportTrace(rt, createInfo.GetMetric())
++		if perfCollector != nil {
++			var traceErr error
++			if !ret.IsSuccessCode(rsp.Ret.RetCode) {
++				traceErr = ret.Err(rsp.Ret.RetCode, rsp.Ret.RetMsg)
++			}
++			batch := perfCollector.Finish(createInfo.SandboxID, end, traceErr)
++			go func() {
++				if payload, err := jsoniter.Marshal(batch); err == nil {
++					log.G(ctx).Warnf("CUBE_PERF_TRACE %s", payload)
++				}
++			}()
++		}
+ 	}()
+ 
+ 	defer recov.HandleCrash(func(panicError interface{}) {
+@@ -503,7 +518,7 @@ func (s *service) reportTrace(rt *CubeLog.RequestTrace, metrics []*workflow.Metr
+ 			baseRt.Cost = m.Duration()
+ 			baseRt.RetCode = int64(err.Code())
+ 			baseRt.ErrorCode = CubeLog.CodeSuccess
+-			if m.Error() == nil && m.Duration() < 5*time.Millisecond {
++			if !perftrace.Enabled() && m.Error() == nil && m.Duration() < 5*time.Millisecond {
+ 				continue
+ 			}
+ 			CubeLog.Trace(baseRt)
+diff --git a/CubeShim/docs/perf-trace.md b/CubeShim/docs/perf-trace.md
+new file mode 100644
+index 00000000..e1de53b7
+--- /dev/null
++++ b/CubeShim/docs/perf-trace.md
+@@ -0,0 +1,72 @@
++# Host startup trace
++
++Set `CUBE_PERF_TRACE=1` in the process launching the shim. The shim's `start`
++process explicitly forwards this variable to its daemon. The flag is read once
++per process. Restart/recreate the process to change it; existing shims do not
++change their tracing mode. Any other value, including an unset variable, keeps
++the existing stat output schema and disables extra markers.
++
++With tracing enabled, `cube-shim-stat.log` records retain `CostTime` (integer
++milliseconds) and their existing attribution fields. They additionally contain:
++
++```json
++"PerfTrace": {
++  "SchemaVersion": 1,
++  "ClockId": "1234:1790000000000000000",
++  "OperationId": 7,
++  "Kind": "span",
++  "StartMonoNs": 100000,
++  "EndMonoNs": 100999,
++  "DurationNs": 999,
++  "DurationUs": 0,
++  "DroppedRecordsBefore": 0
++}
++```
++
++`DurationNs` and both monotonic endpoints derive from the same `Instant` and
++elapsed duration. `DurationUs` and legacy `CostTime` are truncated views, not
++separate measurements. The clock origin is first trace initialization within
++the process, not OS boot or wall time. Compare monotonic positions only within
++the same `ClockId`. The wall timestamp embedded in `ClockId` distinguishes
++process incarnations; it is not an accurate monotonic-to-wall-clock mapping.
++
++`OperationId` identifies an individual `StatDefer` scope within this clock.
++Existing `InstanceId`, `ContainerId`, `Action`, and `CalleeAction` provide
++attribution. No parent relationship is inferred or emitted.
++
++Task create emits additional `Kind: "cumulative"` records, using the task's
++same operation ID and start. Their `CalleeAction` values are:
++
++- `TaskCreate.LoadSpec`
++- `TaskCreate.AcquireSandboxLock`
++- `TaskCreate.CheckSandboxState`
++- `TaskCreate.InitSandbox` (only for a new sandbox)
++- `TaskCreate.StartSandbox`
++- `TaskCreate.CreateContainer`
++- `TaskCreate.PublishTaskEvent`
++
++These are checkpoints, not independent durations. Subtract adjacent checkpoints
++within the same clock and operation to obtain intervals; never add cumulative
++values. An interval includes any intervening log production, marker production,
++and other host work. For example, `AcquireSandboxLock - LoadSpec` includes the
++existing load-spec completion log before lock acquisition. It is not an isolated
++lock-wait measurement. Early failures may have only a prefix of checkpoints;
++the enclosing span retains its existing error status.
++
++`DroppedRecordsBefore` counts previously failed traced-stat serialization or
++nonblocking queue submissions in the process. It appears on subsequent records
++and cannot detect a lost final tail, file-write failure, or process crash.
++Validate sample coverage independently; zero is not proof of lossless logging.
++Tracing uses the existing asynchronous writer and may affect latency. Compare
++disabled and enabled runs before treating traced timings as the baseline.
++
++Run the logger and trace unit tests on Linux with the project builder:
++
++```sh
++cd CubeShim
++cargo test --locked -p containerd-shim-cube-rs log::
++cargo build --release --locked -p containerd-shim-cube-rs
++```
++
++This instruments host shim scopes already measured by `StatDefer`. It does not
++add timing inside guest restore or require a rebuilt template.
+diff --git a/CubeShim/shim/src/log/perf_trace.rs b/CubeShim/shim/src/log/perf_trace.rs
+new file mode 100644
+index 00000000..1a2d26d8
+--- /dev/null
++++ b/CubeShim/shim/src/log/perf_trace.rs
+@@ -0,0 +1,108 @@
++// Copyright (c) 2026 Tencent Inc.
++// SPDX-License-Identifier: Apache-2.0
++
++use std::sync::atomic::{AtomicU64, Ordering};
++use std::sync::OnceLock;
++use std::time::{Duration, Instant, SystemTime, UNIX_EPOCH};
++
++use serde::{Deserialize, Serialize};
++
++pub const ENV_PERF_TRACE: &str = "CUBE_PERF_TRACE";
++static ENABLED: OnceLock<bool> = OnceLock::new();
++static CLOCK: OnceLock<TraceClock> = OnceLock::new();
++static NEXT_OPERATION: AtomicU64 = AtomicU64::new(1);
++static DROPPED_RECORDS: AtomicU64 = AtomicU64::new(0);
++
++struct TraceClock {
++    origin: Instant,
++    id: String,
++}
++
++pub fn enabled() -> bool {
++    *ENABLED.get_or_init(|| std::env::var(ENV_PERF_TRACE).as_deref() == Ok("1"))
++}
++
++fn clock() -> &'static TraceClock {
++    CLOCK.get_or_init(|| TraceClock {
++        origin: Instant::now(),
++        id: format!(
++            "{}:{}",
++            std::process::id(),
++            SystemTime::now()
++                .duration_since(UNIX_EPOCH)
++                .unwrap_or_default()
++                .as_nanos()
++        ),
++    })
++}
++
++/// Returns an operation identity after initializing its process-local clock.
++pub fn new_operation() -> Option<u64> {
++    if !enabled() {
++        return None;
++    }
++    clock();
++    Some(NEXT_OPERATION.fetch_add(1, Ordering::Relaxed))
++}
++
++pub fn record_drop() {
++    DROPPED_RECORDS.fetch_add(1, Ordering::Relaxed);
++}
++
++#[derive(Debug, Serialize, Deserialize)]
++#[serde(rename_all = "PascalCase")]
++pub struct PerfTrace {
++    pub schema_version: u8,
++    pub clock_id: String,
++    pub operation_id: u64,
++    pub kind: String,
++    pub start_mono_ns: u128,
++    pub end_mono_ns: u128,
++    pub duration_ns: u128,
++    pub duration_us: u128,
++    pub dropped_records_before: u64,
++}
++
++impl PerfTrace {
++    pub fn capture(operation_id: u64, start: Instant, elapsed: Duration, kind: &str) -> Self {
++        let clock = clock();
++        let start_mono_ns = start.duration_since(clock.origin).as_nanos();
++        Self {
++            schema_version: 1,
++            clock_id: clock.id.clone(),
++            operation_id,
++            kind: kind.to_owned(),
++            start_mono_ns,
++            end_mono_ns: start_mono_ns + elapsed.as_nanos(),
++            duration_ns: elapsed.as_nanos(),
++            duration_us: elapsed.as_micros(),
++            dropped_records_before: DROPPED_RECORDS.load(Ordering::Relaxed),
++        }
++    }
++}
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++
++    #[test]
++    fn captures_submicrosecond_duration_without_rounding_the_interval() {
++        clock();
++        let trace = PerfTrace::capture(7, Instant::now(), Duration::from_nanos(999), "span");
++        assert_eq!(trace.end_mono_ns - trace.start_mono_ns, 999);
++        assert_eq!(trace.duration_ns, 999);
++        assert_eq!(trace.duration_us, 0);
++    }
++
++    #[test]
++    fn cumulative_markers_share_operation_clock_and_start() {
++        clock();
++        let start = Instant::now();
++        let first = PerfTrace::capture(42, start, Duration::from_nanos(101), "cumulative");
++        let second = PerfTrace::capture(42, start, Duration::from_nanos(180), "cumulative");
++        assert_eq!(first.clock_id, second.clock_id);
++        assert_eq!(first.operation_id, second.operation_id);
++        assert_eq!(first.start_mono_ns, second.start_mono_ns);
++        assert_eq!(second.end_mono_ns - first.end_mono_ns, 79);
++    }
++}
+diff --git a/Cubelet/pkg/perftrace/trace.go b/Cubelet/pkg/perftrace/trace.go
+new file mode 100644
+index 00000000..1d53f89f
+--- /dev/null
++++ b/Cubelet/pkg/perftrace/trace.go
+@@ -0,0 +1,145 @@
++// Copyright (c) 2024 Tencent Inc.
++// SPDX-License-Identifier: Apache-2.0
++
++// Package perftrace collects opt-in, request-local performance observations.
++// Wall time is only an anchor; all offsets and durations use Go's monotonic clock.
++package perftrace
++
++import (
++	"context"
++	"os"
++	"sync"
++	"time"
++)
++
++var enabled = os.Getenv("CUBE_PERF_TRACE") == "1"
++
++func Enabled() bool { return enabled }
++
++type Span struct {
++	SpanID        uint64  `json:"span_id"`
++	ParentSpanID  uint64  `json:"parent_span_id"`
++	Stage         string  `json:"stage"`
++	Kind          string  `json:"kind"`
++	StartOffsetUS float64 `json:"start_offset_us"`
++	DurationUS    float64 `json:"duration_us"`
++	TimingSource  string  `json:"timing_source"`
++	Success       bool    `json:"success"`
++}
++
++type Batch struct {
++	SchemaVersion int    `json:"schema_version"`
++	Component     string `json:"component"`
++	RequestID     string `json:"request_id"`
++	SandboxID     string `json:"sandbox_id"`
++	OriginUnixNS  int64  `json:"origin_unix_ns"`
++	Spans         []Span `json:"spans"`
++}
++
++type Collector struct {
++	mu        sync.Mutex
++	origin    time.Time
++	requestID string
++	next      uint64
++	closed    bool
++	spans     []Span
++}
++type scope struct {
++	collector *Collector
++	parent    uint64
++}
++type contextKey struct{}
++
++func StartRequest(ctx context.Context, origin time.Time, requestID string) (context.Context, *Collector) {
++	if !enabled {
++		return ctx, nil
++	}
++	c := &Collector{origin: origin, requestID: requestID, next: 1}
++	return context.WithValue(ctx, contextKey{}, scope{c, 1}), c
++}
++
++type ActiveSpan struct {
++	c           *Collector
++	id, parent  uint64
++	stage, kind string
++	start       time.Time
++}
++
++func Begin(ctx context.Context, stage, kind string) (context.Context, *ActiveSpan) {
++	if !enabled {
++		return ctx, nil
++	}
++	s, ok := ctx.Value(contextKey{}).(scope)
++	if !ok {
++		return ctx, nil
++	}
++	start := time.Now()
++	s.collector.mu.Lock()
++	s.collector.next++
++	id := s.collector.next
++	s.collector.mu.Unlock()
++	a := &ActiveSpan{s.collector, id, s.parent, stage, kind, start}
++	return context.WithValue(ctx, contextKey{}, scope{s.collector, id}), a
++}
++
++func (a *ActiveSpan) End(err error) {
++	if a == nil {
++		return
++	}
++	a.c.append(a.id, a.parent, a.stage, a.kind, a.start, time.Now(), "monotonic_interval", err)
++}
++
++// RecordDuration preserves existing duration-only observations. Their start is
++// inferred from the recording time and must not be treated as an exact boundary.
++func RecordDuration(ctx context.Context, stage string, cost time.Duration, err error) {
++	if !enabled {
++		return
++	}
++	end := time.Now()
++	record(ctx, stage, "metric", end.Add(-cost), end, "duration_backfill", err)
++}
++
++func RecordInterval(ctx context.Context, stage, kind string, start, end time.Time, err error) {
++	if !enabled {
++		return
++	}
++	record(ctx, stage, kind, start, end, "monotonic_interval", err)
++}
++
++func record(ctx context.Context, stage, kind string, start, end time.Time, source string, err error) {
++	s, ok := ctx.Value(contextKey{}).(scope)
++	if !ok {
++		return
++	}
++	s.collector.mu.Lock()
++	s.collector.next++
++	id := s.collector.next
++	s.collector.mu.Unlock()
++	s.collector.append(id, s.parent, stage, kind, start, end, source, err)
++}
++
++func (c *Collector) append(id, parent uint64, stage, kind string, start, end time.Time, source string, err error) {
++	span := Span{id, parent, stage, kind, float64(start.Sub(c.origin)) / float64(time.Microsecond), float64(end.Sub(start)) / float64(time.Microsecond), source, err == nil}
++	c.mu.Lock()
++	defer c.mu.Unlock()
++	if !c.closed {
++		c.spans = append(c.spans, span)
++	}
++}
++
++// Finish freezes a snapshot before asynchronous serialization/logging. No log
++// emission timestamp is used as a stage endpoint. Later rollback work is excluded.
++func (c *Collector) Finish(sandboxID string, end time.Time, err error) *Batch {
++	if c == nil {
++		return nil
++	}
++	c.mu.Lock()
++	defer c.mu.Unlock()
++	if c.closed {
++		return nil
++	}
++	c.closed = true
++	spans := append([]Span(nil), c.spans...)
++	spans = append(spans, Span{1, 0, "cubelet.request", "request", 0, float64(end.Sub(c.origin)) / float64(time.Microsecond), "monotonic_interval", err == nil})
++	return &Batch{1, "cubelet", c.requestID, sandboxID, c.origin.UnixNano(), spans}
++}
+diff --git a/Cubelet/pkg/perftrace/trace_test.go b/Cubelet/pkg/perftrace/trace_test.go
+new file mode 100644
+index 00000000..04e90d2b
+--- /dev/null
++++ b/Cubelet/pkg/perftrace/trace_test.go
+@@ -0,0 +1,112 @@
++// Copyright (c) 2024 Tencent Inc.
++// SPDX-License-Identifier: Apache-2.0
++
++package perftrace
++
++import (
++	"context"
++	"encoding/json"
++	"errors"
++	"sync"
++	"testing"
++	"time"
++)
++
++func setEnabled(t *testing.T, on bool) {
++	previous := enabled
++	enabled = on
++	t.Cleanup(func() { enabled = previous })
++}
++
++func TestDisabledDoesNotAllocateOrAlterContext(t *testing.T) {
++	setEnabled(t, false)
++	ctx := context.Background()
++	got, c := StartRequest(ctx, time.Now(), "r")
++	if got != ctx || c != nil {
++		t.Fatal("disabled collector allocated")
++	}
++	got, span := Begin(ctx, "short", "test")
++	if got != ctx || span != nil {
++		t.Fatal("disabled span allocated")
++	}
++	span.End(nil)
++	RecordDuration(ctx, "short", time.Nanosecond, nil)
++	if c.Finish("s", time.Now(), nil) != nil {
++		t.Fatal("disabled finish emitted")
++	}
++}
++
++func TestIntervalsRetainSubMicrosecondTimingAndOriginalEndpoint(t *testing.T) {
++	setEnabled(t, true)
++	origin := time.Now()
++	ctx, c := StartRequest(context.Background(), origin, "request")
++	RecordInterval(ctx, "short", "test", origin.Add(1750*time.Nanosecond), origin.Add(2125*time.Nanosecond), nil)
++	end := origin.Add(5 * time.Millisecond)
++	b := c.Finish("sandbox", end, nil)
++	if b.Spans[0].StartOffsetUS != 1.75 || b.Spans[0].DurationUS != 0.375 {
++		t.Fatalf("lost precision: %+v", b.Spans[0])
++	}
++	if b.Spans[1].DurationUS != 5000 || b.Spans[0].ParentSpanID != 1 {
++		t.Fatalf("wrong endpoint or parent: %+v", b)
++	}
++	payload, err := json.Marshal(b)
++	if err != nil || len(payload) == 0 {
++		t.Fatal(err)
++	}
++	// A later emission/finalization cannot replace recorded endpoints.
++	if c.Finish("sandbox", end.Add(time.Second), nil) != nil {
++		t.Fatal("batch emitted twice")
++	}
++}
++
++func TestParallelRepeatedStagesKeepIdentityAndParents(t *testing.T) {
++	setEnabled(t, true)
++	ctx, c := StartRequest(context.Background(), time.Now(), "request")
++	ctx, group := Begin(ctx, "workflow.parallel_step", "workflow_group")
++	var wg sync.WaitGroup
++	for i := 0; i < 20; i++ {
++		wg.Add(1)
++		go func() {
++			defer wg.Done()
++			child, action := Begin(ctx, "repeated", "workflow_action")
++			RecordDuration(child, "micro", 250*time.Nanosecond, nil)
++			action.End(nil)
++		}()
++	}
++	wg.Wait()
++	group.End(nil)
++	b := c.Finish("sandbox", time.Now(), nil)
++	if len(b.Spans) != 42 {
++		t.Fatalf("lost repeated spans: %d", len(b.Spans))
++	}
++	ids := map[uint64]Span{}
++	for _, s := range b.Spans {
++		if _, exists := ids[s.SpanID]; exists {
++			t.Fatalf("duplicate id %d", s.SpanID)
++		}
++		ids[s.SpanID] = s
++	}
++	for _, s := range b.Spans {
++		if s.Stage == "repeated" && s.ParentSpanID != group.id {
++			t.Fatalf("wrong group %+v", s)
++		}
++		if s.Stage == "micro" && (ids[s.ParentSpanID].Stage != "repeated" || s.DurationUS != .25 || s.TimingSource != "duration_backfill") {
++			t.Fatalf("wrong child %+v", s)
++		}
++	}
++}
++
++func TestFailureAndFinishedCollector(t *testing.T) {
++	setEnabled(t, true)
++	ctx, c := StartRequest(context.Background(), time.Now(), "r")
++	_, a := Begin(ctx, "failed", "test")
++	a.End(errors.New("failed"))
++	b := c.Finish("s", time.Now(), errors.New("failed"))
++	if b.Spans[0].Success || b.Spans[1].Success {
++		t.Fatal("failure reported as success")
++	}
++	RecordDuration(ctx, "late rollback", time.Second, nil)
++	if len(c.spans) != 1 {
++		t.Fatal("accepted work after request finished")
++	}
++}
+diff --git a/Cubelet/plugins/workflow/metric_trace_test.go b/Cubelet/plugins/workflow/metric_trace_test.go
+new file mode 100644
+index 00000000..f888fed9
+--- /dev/null
++++ b/Cubelet/plugins/workflow/metric_trace_test.go
+@@ -0,0 +1,36 @@
++// Copyright (c) 2024 Tencent Inc.
++// SPDX-License-Identifier: Apache-2.0
++
++package workflow
++
++import (
++	"context"
++	"testing"
++	"time"
++
++	"github.com/tencentcloud/CubeSandbox/Cubelet/pkg/perftrace"
++)
++
++// Run once with CUBE_PERF_TRACE unset and once with CUBE_PERF_TRACE=1: the
++// switch is deliberately read at process startup, not on each metric call.
++func TestPerfTraceShortMetricGate(t *testing.T) {
++	info := &CreateContext{}
++	ctx := context.WithValue(context.Background(), KCreateContext, info)
++	ctx, collector := perftrace.StartRequest(ctx, time.Now(), "test-request")
++	RecordCreateMetricIfGreaterThan(ctx, nil, "short", 125*time.Nanosecond, time.Millisecond)
++	RecordCreateMetricIfGreaterThan(ctx, nil, "long", 2*time.Millisecond, time.Millisecond)
++	metrics := info.GetMetric()
++	if !perftrace.Enabled() {
++		if len(metrics) != 1 || metrics[0].ID() != "long" {
++			t.Fatalf("changed default gate: %+v", metrics)
++		}
++		return
++	}
++	if len(metrics) != 2 || metrics[0].Duration() != 125*time.Nanosecond {
++		t.Fatalf("lost short metric: %+v", metrics)
++	}
++	batch := collector.Finish("sandbox", time.Now(), nil)
++	if len(batch.Spans) != 3 || batch.Spans[0].DurationUS != .125 {
++		t.Fatalf("lost precision: %+v", batch)
++	}
++}

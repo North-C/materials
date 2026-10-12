@@ -4,7 +4,8 @@
 
 - [旧 scripts_v2 准确性审计](AUDIT_V2.md)
 - [v0.7.1 源码阶段定义](STAGES.md)
-- [2026-10-12 实测报告](../reports/v071-c100n100-20261012/REPORT.md)
+- [2026-10-12 原版实测报告](../reports/v071-c100n100-20261012/REPORT.md)
+- [网络微秒补解析与精细观测报告（重测待独占窗口）](../reports/v071-c100n100-fine-20261012/REPORT.md)
 
 ## 文件与依赖
 
@@ -17,6 +18,9 @@
 | `analyze.mjs` | 输出 JSON、阶段 CSV、逐实例 CreateContainer 详情、覆盖率、结果状态和同实例 Cubelet 残差 |
 | `metrics.mjs` | 逐标签 counter/histogram 前后差分、重置检测、桶分位估计；Gauge 单列快照变化 |
 | `timeline.mjs` | 输出逐实例 `timeline.json`、可筛选的离线 `timeline.html`，仅画有边界证据的 Shim 局部时间轴 |
+| `network_details.mjs` | 解析已有网络Go duration，输出ns统计及缺失/0语义、逐实例字段 |
+| `precision.mjs` / `precision_timeline.mjs` | 解析观测版Cubelet span与Shim纳秒计时，分时钟画图，回填duration仅列表 |
+| `observation.patch` | v0.7.1源码补丁；CUBE_PERF_TRACE=1开启，默认关闭；需单独构建部署 |
 | `reference/deployed-suite/` | 固定 suite 的执行、汇总与门禁代码，供复核和离线测试；来源与 hash 见 `source.json` |
 
 采集端需要 Linux、Python 3.9+、已安装的 CubeSandbox Python SDK（套件功能预检使用）、fuser、可访问本机部署的 root 权限。分析端需要 Node.js 18+。脚本不安装依赖、不重新编译 cube-bench。`--suite-dir` 推荐指向 90 机器已部署的完整 suite；这里只打包 c100n100 所需的 Python 文件，没有打包官方二进制或其他压测案例。
@@ -86,3 +90,26 @@ node --test test_*.mjs
 ```
 
 测试覆盖归属和串行边界、实际200/Ok结果码、缺失/重复/乱序日志、metrics重置/桶结构、部分时间轴、runner单项选择与账本清理。测试不访问部署，不把模拟通过当作实测成功。
+
+## 可选精细观测（v0.7.1+perftrace）
+
+已有原版capture无需改部署即可运行：
+
+```bash
+node network_details.mjs CAPTURE --phase-classification CAPTURE/phase-classification.json
+```
+
+网络输出`network-details.json/csv`，单位ns；原版日志受各自父阶段1ms门槛控制，0累加器不等同零时延，重复记录排除统计。实际覆盖率始终保留。
+
+观测版补丁在干净v0.7.1上应用，编译细节与依赖来源见细分报告。开启与关闭应使用相同二进制，开启变量须通过Cubelet服务环境传递给Shim。Template会优先使用`component_versions/cube-shim/v0.7.1`组件路径，部署不能只替换全局shim；应以实际运行进程exe和环境验收。`run_verified.py`不会部署或重启服务。
+
+部署且验真后，在原运行命令追加`--observation-manifest observation-on.json`或`observation-off.json`。清单必须包含schema_version=1、固定base_commit、patch_sha256、mode和两个patched组件的sha256/commit；身份文件和分类证据显式保留它。关闭模式仍是重编译的观测版，不冒充官方原版。
+
+```bash
+node precision.mjs CAPTURE --phase-classification CAPTURE/phase-classification.json
+node precision_timeline.mjs CAPTURE/precision.json
+```
+
+精细输出单位ns。Cubelet按kind/stage区分action与metric，批次覆盖单独核验；duration_backfill无精确起止。Shim按ClockId/OperationId区分调用，累计点只有同operation唯一且递增时才差分。两类时钟独立展示，不跨进程相减。`DroppedRecordsBefore=0`不能单独证明无尾部丢失，需检查完整覆盖与源日志缺口。
+
+当前仓库中公开的新增实测仅来自原capture网络补解析；观测版已构建通过，尚未因独占窗口受阻而完成重测。不要把解析单测或合成viewer检查当作c100n100性能结果。

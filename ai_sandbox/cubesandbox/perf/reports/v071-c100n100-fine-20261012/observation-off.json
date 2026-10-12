@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "base_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+  "patch_sha256": "864e4de012cce70050d7033788a387aeec7030774564ee1f779f86646b267d26",
+  "build_kind": "v0.7.1+perftrace",
+  "built_at": "2026-10-12T15:25:26.928805+00:00",
+  "components": {
+    "cubelet": {
+      "sha256": "c209104c1eed4de4d4d2b0162da9e68e0104e41aa313a0b6620d3aee8c5943d1",
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d+perftrace"
+    },
+    "containerd-shim-cube-rs": {
+      "sha256": "5502206f39413bd2e5164709c8a149203f278a837e9490e05616d91dc9e2bb7e",
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d+perftrace"
+    }
+  },
+  "native_architecture": "aarch64",
+  "tests": {
+    "go_exit": 0,
+    "rust_exit": 0
+  },
+  "reused_dependency_evidence_sha256": "4645615733e2a4cf90c3e318919d8dc4916418810ba18a889171e86d8b03aead",
+  "mode": "off",
+  "build_time_note": "built_at marks initial successful build; cubelet was rebuilt after import-only source formatting and final hash/source verification"
+}

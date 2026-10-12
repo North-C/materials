@@ -20,10 +20,11 @@ def main():
     parser.add_argument("--suite-dir", type=Path, required=True)
     parser.add_argument("--benchmark-binary", type=Path, required=True)
     parser.add_argument("--template-id", required=True)
+    parser.add_argument("--observation-manifest", type=Path)
     args = parser.parse_args()
     if args.output.exists():
         raise ValueError("Output already exists; inspect the existing attempt")
-    before = verify(args.template_id)
+    before = verify(args.template_id, args.observation_manifest)
     scripts = Path(__file__).resolve().parent
     command = [sys.executable, str(scripts / "capture.py"), "--output", str(args.output),
                "--owned-ids", str(args.output / "ownership-input.json"),
@@ -36,7 +37,7 @@ def main():
         return code or 2
     save(args.output / "service-identity-before.json", before)
     try:
-        after = verify(args.template_id)
+        after = verify(args.template_id, args.observation_manifest)
         save(args.output / "service-identity-after.json", after)
     except Exception as error:
         save(args.output / "service-identity-after-error.json", {"error_type": type(error).__name__})

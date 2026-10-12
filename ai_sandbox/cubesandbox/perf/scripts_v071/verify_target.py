@@ -27,7 +27,19 @@ def digest(path):
     return result.hexdigest()
 
 
-def verify(template_id):
+def verify(template_id, observation_manifest=None):
+    observation = None
+    if observation_manifest:
+        observation = json.loads(Path(observation_manifest).read_text())
+        assert observation["schema_version"] == 1
+        assert observation["base_commit"] == COMMIT
+        assert observation["mode"] in ("off", "on")
+        assert re.fullmatch(r"[a-f0-9]{64}", observation["patch_sha256"])
+        assert set(observation["components"]) == {"cubelet", "containerd-shim-cube-rs"}
+        for item in observation["components"].values():
+            assert re.fullmatch(r"[a-f0-9]{64}", item["sha256"])
+            assert item["commit"] == COMMIT + "+perftrace"
+
     release = json.loads((ROOT / "release-manifest.json").read_text())
     assert release["git_commit"] == COMMIT, "release commit mismatch"
     services = []
@@ -42,18 +54,27 @@ def verify(template_id):
             exe = os.readlink(proc / "exe")
             actual = digest(proc / "exe")
             component = release["components"][comm]
+            patched = observation["components"].get(comm) if observation else None
+            if comm == "cubelet" and observation:
+                env = (proc / "environ").read_bytes().split(b"\0")
+                enabled = b"CUBE_PERF_TRACE=1" in env
+                assert enabled == (observation["mode"] == "on"), "trace environment mismatch"
             fields = (proc / "stat").read_text().rsplit(")", 1)[1].split()
             services.append({"component": comm, "pid": int(proc.name), "start_ticks": fields[19],
                              "exe": exe, "sha256": actual,
-                             "version": component["version"], "commit": component["commit"]})
-            assert actual == component["digest_sha256"].removeprefix("sha256:"), comm
+                             "version": component["version"], "commit": patched["commit"] if patched else component["commit"]})
+            assert actual == (patched["sha256"] if patched else component["digest_sha256"].removeprefix("sha256:")), comm
             assert component["commit"] == COMMIT, comm
         except (FileNotFoundError, ProcessLookupError):
             continue
     assert len(services) == len(expected) and {s["component"] for s in services} == expected, "service process mismatch"
     shim = ROOT / "cube-shim/bin/containerd-shim-cube-rs"
     shim_digest = digest(shim)
-    assert shim_digest == release["components"][shim.name]["digest_sha256"].removeprefix("sha256:"), "shim mismatch"
+    assert shim_digest == (observation["components"][shim.name]["sha256"] if observation else
+                           release["components"][shim.name]["digest_sha256"].removeprefix("sha256:")), "shim mismatch"
+    versioned_shim = Path("/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs")
+    versioned_digest = digest(versioned_shim)
+    assert versioned_digest == shim_digest, "template versioned shim differs from verified global shim"
     items = get("/v2/sandboxes?limit=10000")
     assert isinstance(items, list) and not items, "sandbox baseline not empty"
     template = get("/templates/" + template_id)
@@ -69,9 +90,12 @@ def verify(template_id):
     assert limit == ["100"], "master concurrency mismatch"
     return {"verified_at": datetime.now(timezone.utc).isoformat(), "read_only": True,
             "release_version": release["release_version"], "commit": COMMIT,
+            "build_kind": "v0.7.1+perftrace" if observation else "official-v0.7.1",
+            "observation": observation,
             "boot_id": Path("/proc/sys/kernel/random/boot_id").read_text().strip(),
             "kernel": os.uname().release, "services": services,
-            "shim": {"path": str(shim), "sha256": shim_digest},
+            "shim": {"path": str(shim), "sha256": shim_digest,
+                     "versioned_path": str(versioned_shim), "versioned_sha256": versioned_digest},
             "sandbox_count": len(items), "master_create_concurrent_limit": 100,
             "template": {"id": template_id, "status": template["status"],
                          "resources": containers[0]["resources"], "writable_layer_size": "1G",
@@ -84,9 +108,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--template-id", required=True)
     parser.add_argument("--output", required=True, type=Path)
+    parser.add_argument("--observation-manifest", type=Path)
     args = parser.parse_args()
     assert re.fullmatch(r"[A-Za-z0-9_-]+", args.template_id), "invalid template id"
-    result = verify(args.template_id)
+    result = verify(args.template_id, args.observation_manifest)
     with args.output.open("x") as stream:
         json.dump(result, stream, indent=2)
         stream.write("\n")

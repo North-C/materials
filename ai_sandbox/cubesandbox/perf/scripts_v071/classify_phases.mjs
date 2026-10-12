@@ -63,12 +63,21 @@ export function classifyPhases(input) {
   check('stable_host_release', nonempty(before.boot_id) && before.boot_id === after.boot_id &&
     before.commit === COMMIT && after.commit === COMMIT &&
     nonempty(before.shim?.sha256) && before.shim.sha256 === after.shim?.sha256);
+  const obs = before.observation;
+  const validObservation = !obs && !after.observation || Boolean(obs && after.observation &&
+    JSON.stringify(obs) === JSON.stringify(after.observation) && obs.schema_version === 1 &&
+    obs.base_commit === COMMIT && ['off', 'on'].includes(obs.mode) && /^[a-f0-9]{64}$/.test(obs.patch_sha256 ?? '') &&
+    sameSet(Object.keys(obs.components ?? {}), ['cubelet', 'containerd-shim-cube-rs']) &&
+    Object.values(obs.components).every(x => /^[a-f0-9]{64}$/.test(x.sha256 ?? '') && x.commit === COMMIT + '+perftrace') &&
+    before.shim?.sha256 === obs.components['containerd-shim-cube-rs'].sha256);
+  check('stable_observation_build', validObservation);
   const components = ['cube-api', 'cubemaster', 'cubelet', 'templatecenter'];
   check('stable_service_processes', Array.isArray(before.services) && Array.isArray(after.services) &&
     sameSet(before.services.map(x => x.component), components) && sameSet(after.services.map(x => x.component), components) &&
     before.services.every(x => { const y = after.services.find(z => z.component === x.component);
       return Number.isInteger(x.pid) && x.pid > 0 && nonempty(String(x.start_ticks ?? '')) &&
-        /^[a-f0-9]{64}$/.test(x.sha256 ?? '') && x.commit === COMMIT && y.commit === COMMIT &&
+        /^[a-f0-9]{64}$/.test(x.sha256 ?? '') && x.commit === (obs?.components?.[x.component]?.commit ?? COMMIT) && y.commit === x.commit &&
+        (!obs?.components?.[x.component] || x.sha256 === obs.components[x.component].sha256) &&
         x.pid === y.pid && x.start_ticks === y.start_ticks && x.sha256 === y.sha256; }));
   const starts = new Map(), responses = new Map(); let badMarkers = 0;
   const records = input.masterRecords ?? [];
@@ -121,6 +130,7 @@ export function classifyPhases(input) {
     raw_seq_to_sandbox_mapping: 'unavailable', checks, errors: [...new Set(errors)],
     ownership: success ? { warmup: pairs.slice(0, 3).map(p => p.sandbox_id), formal: pairs.slice(3).map(p => p.sandbox_id), unknown_phase: [] } : null,
     evidence: { files: input.fileEvidence ?? {}, binary_sha256: a.sources?.native_binary?.sha256 ?? null,
+      build_kind: before.build_kind ?? "official-v0.7.1", observation: obs ?? null,
       template_id: m.template_id ?? null, master_start_count: starts.size, master_response_count: responses.size,
       malformed_or_duplicate_markers: badMarkers, warmup_messages: warmupLines,
       services_before: before.services ?? null, services_after: after.services ?? null,

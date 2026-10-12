@@ -95,3 +95,31 @@ test('nanosecond precision preserves strict serial boundary', () => {
 test('empty evidence returns rejection rather than accepting missing fields', () => {
   assert.equal(classifyPhases({}).status, 'unverified');
 });
+
+function observedFixture() {
+  const input = fixture();
+  const observation = { schema_version: 1, base_commit: COMMIT, patch_sha256: HASH, mode: 'on',
+    components: Object.fromEntries(['cubelet', 'containerd-shim-cube-rs'].map(name => [name, { sha256: HASH, commit: COMMIT + '+perftrace' }])) };
+  for (const identity of [input.identityBefore, input.identityAfter]) {
+    identity.build_kind = 'v0.7.1+perftrace';
+    identity.observation = structuredClone(observation);
+    identity.services.find(x => x.component === 'cubelet').commit = COMMIT + '+perftrace';
+  }
+  return input;
+}
+test('explicit observation build retains provenance and classifies phases', () => {
+  const result = classifyPhases(observedFixture());
+  assert.equal(result.status, 'classified');
+  assert.equal(result.evidence.build_kind, 'v0.7.1+perftrace');
+  assert.equal(result.evidence.observation.mode, 'on');
+});
+for (const [name, change] of [
+  ['mode changed', x => x.identityAfter.observation.mode = 'off'],
+  ['patch not pinned', x => x.identityBefore.observation.patch_sha256 = 'unknown'],
+  ['shim not pinned', x => x.identityBefore.observation.components['containerd-shim-cube-rs'].sha256 = '0'.repeat(64)],
+  ['service differs', x => x.identityBefore.services.find(s => s.component === 'cubelet').sha256 = '0'.repeat(64)],
+  ['unexpected patched component', x => x.identityBefore.observation.components.cubemaster = {sha256: HASH, commit: COMMIT + '+perftrace'}],
+]) test(`rejects observation evidence: ${name}`, () => {
+  const input = observedFixture(); change(input);
+  assert.equal(classifyPhases(input).status, 'unverified');
+});
