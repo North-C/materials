@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "workflow_type": "replay",
+  "replay_mode": "exec_only",
+  "provider": "cubesandbox",
+  "started_at": "2026-10-10T00:09:06.165+08:00",
+  "completed_at": "2026-10-10T00:23:26.988+08:00",
+  "started_epoch": 1791562146.1658742,
+  "completed_epoch": 1791563006.9883513,
+  "test_duration": 14400,
+  "wall_sec": 860.775,
+  "total_count": 768,
+  "running_concurrency": 768,
+  "overcommit_ratio": 1.0,
+  "throughput": {
+    "total": 768,
+    "succeeded": 768,
+    "failed": 0,
+    "total_steps": 63470,
+    "steps_per_sec": 73.736,
+    "tasks_per_sec": 0.892
+  },
+  "admission": null,
+  "lifecycle_overhead": null,
+  "paths": {
+    "report": "replay_mon_mon768_20261010_002257.txt",
+    "obs_xlsx": "replay_mon_mon768_obs.xlsx",
+    "lifecycle_series": "replay_mon_mon768_lifecycle_series.jsonl.gz",
+    "trajectory_index": "trajectories/index.json",
+    "vm_monitor_dir": "vm_monitor"
+  },
+  "error": null,
+  "publication_category": "density_with_monitor"
+}

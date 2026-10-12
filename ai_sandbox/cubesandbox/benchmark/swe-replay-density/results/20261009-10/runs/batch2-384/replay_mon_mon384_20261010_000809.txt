@@ -1,0 +1,75 @@
+================================================================================
+Sandbox Bench - Performance Report
+================================================================================
+
+[Test Configuration]
+  Backend:        cubesandbox
+  Total Sandboxes: 384
+  Mode:            Full workflow
+  Create Batch:    4 batches x 96 sandboxes
+  Create Interval: 1s
+  Task Batch:      77 batches x 5 sandboxes
+  Task Interval:   5s
+  Test Duration:   14400s
+
+[Sandbox Status]
+  Created (API):       384 / 384
+  Command Ready:         384 / 384
+  Create Failed:       0
+  Ready Check Failed:   0
+  Offline (runtime):   0
+
+[Sandbox.create Performance]
+  (sandbox.create API call time, excluding ready check)
+  Min:  0.1s
+  Max:  0.4s
+  Avg:  0.3s
+  P50:  0.3s
+  P95:  0.4s
+  P99:  0.4s
+
+[Ready Check Wait Performance]
+  (Waiting for 'uname -a' command response)
+  Min:  0.0s
+  Max:  0.3s
+  Avg:  0.0s
+  P50:  0.0s
+  P95:  0.0s
+  P99:  0.1s
+
+[Total Startup Performance]
+  (sandbox.create + ready check)
+  Min:  0.1s
+  Max:  0.5s
+  Avg:  0.3s
+  P50:  0.3s
+  P95:  0.4s
+  P99:  0.4s
+
+[Replay Task Statistics]
+  Total Steps:            31701
+  Success:                27820
+  Failed:                 3881 (timeout: 10)
+  Success Rate:           87.8%
+  Trajectory Completions: 384
+  One-pass Target:        384 (1 trajectory/sandbox per round; pool 55 distinct)
+  Delay Fidelity:         0.00
+  Avg Latency:            1.809s
+  P99 Latency:            38.989s
+
+[Step-Level Timing (Replay Mode)]
+Action  Count  Avg(s)  P50(s)  P95(s)  P99(s)  Tail                 
+------  -----  ------  ------  ------  ------  ---------------------
+shell   31701  1.776   0.254   5.287   38.125  150.12x (significant)
+
+  Tail Ratio: P99/P50 - indicates long-tail latency severity
+  < 1.2x: minimal | 1.2-1.5x: moderate | > 1.5x: significant
+
+[Throughput & Overcommit]
+  wall_sec:               1011.7
+  steps_per_sec:          31.33
+  effective_parallelism:  0.00
+  exec_wall_utilization:  14.5%
+  overcommit_ratio:       1.0x
+
+================================================================================

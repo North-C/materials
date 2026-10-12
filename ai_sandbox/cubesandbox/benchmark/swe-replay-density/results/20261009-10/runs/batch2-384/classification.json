@@ -1,0 +1,31 @@
+{
+  "category": "density_with_monitor",
+  "source_run": "validation/20261009-cube90/batch2-monladder-20261010/results/mon-mon384/replay_mon_mon384_20261009-235104",
+  "driver_commit": "93f978f7ec27d9bc519dca2efdc809ada09acbaa",
+  "stats": {
+    "run": "batch2-384",
+    "category": "density_with_monitor",
+    "configured_sandboxes": 384,
+    "cpu_budget_logical": 384,
+    "vcpus_per_vm": 2,
+    "configured_cpu_ratio": 2.0,
+    "native_overcommit_ratio": 1.0,
+    "wall_sec": 1026.827,
+    "total": 384,
+    "succeeded": 384,
+    "failed": 0,
+    "total_steps": 31701,
+    "steps_per_sec": 30.873,
+    "tasks_per_sec": 0.374,
+    "exported_runs": 384,
+    "timeout_runs": 9,
+    "timeout_steps": 10,
+    "non_timeout_slice_failed_steps": 0,
+    "nonzero_exit_steps": 3881,
+    "create_error_runs": 0,
+    "kill_error_runs": 0,
+    "exported_steps": 31701,
+    "monitor_present": true
+  },
+  "cleanup_revalidated_during_publication": false
+}

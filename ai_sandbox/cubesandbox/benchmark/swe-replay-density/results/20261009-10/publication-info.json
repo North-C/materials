@@ -1,0 +1,52 @@
+{
+  "published_on": "2026-10-12",
+  "test_dates": "2026-10-09 to 2026-10-10 (UTC+08:00)",
+  "category": "archived native bench-core outputs; offline publication, no workload rerun",
+  "tools": {
+    "python": "3.10.12",
+    "matplotlib": "3.10.9",
+    "numpy": "2.2.6",
+    "pyyaml": "5.4.1"
+  },
+  "validation": {
+    "start_utc": "2026-10-12T06:29:03.897641+00:00",
+    "end_utc": "2026-10-12T06:31:49.534987+00:00",
+    "checks": {
+      "artifacts": 660,
+      "json_numeric_checks": 468,
+      "series_rows": 481641,
+      "csv_files": 57,
+      "xlsx_files": 17,
+      "svg_files": 61
+    },
+    "numeric_invariants_passed": true,
+    "sanitization_pattern_scan_passed": true,
+    "native_xlsx_cells_preserved_except_identifiers": true,
+    "platform_mutations": false,
+    "runs": 12
+  },
+  "commands": [
+    "python3 results/tools/export_results.py --source SOURCE_EVIDENCE_ROOT --output NEW_OUTPUT_DIRECTORY",
+    "python3 results/tools/render_charts.py NEW_OUTPUT_DIRECTORY"
+  ],
+  "derived_outputs": {
+    "summary.csv": "one row per archived native run_summary, plus counts from per-trajectory steps; invalid run retained and classified",
+    "summary.json": "same rows as summary.csv",
+    "runs/*/classification.json": "classification, source-relative identity and derived counts",
+    "batch2/charts/10_ladder_progress_latency_corrected.*": "from published batch2/data/density-mon*.progress.csv; CPU denominator and time-axis label corrected",
+    "batch2/charts/11_ladder_host_corrected.*": "from published batch2/data/host_metrics_mon*.csv; memory = mem_used_mb / 1024",
+    "batch2/charts/13_ladder_summary_verified.*": "from published summary.json; density_with_monitor rows only"
+  },
+  "withheld_invalid_historical_charts": [
+    {
+      "source": "validation/20261009-cube90/batch2-monladder-20261010/charts/10_ladder_progress_latency.png",
+      "source_sha256": "58dc1a2818fc644609356ed6ebeb5522a82d5ccd2b2819c6d68f94cad4cdce2a",
+      "reason": "383-core title inconsistent with exact 2/4/6/8 configured ratios"
+    },
+    {
+      "source": "validation/20261009-cube90/batch2-monladder-20261010/charts/11_ladder_host.png",
+      "source_sha256": "d8cc58548d37e094c2ac4c7d4e0dfe0f7931a7cef46343554c80d573ce8b91ec",
+      "reason": "invalid mixed-unit memory formula produced negative values"
+    }
+  ]
+}

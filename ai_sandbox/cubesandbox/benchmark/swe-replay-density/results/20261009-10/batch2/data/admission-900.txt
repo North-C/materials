@@ -1,0 +1,29 @@
+[Phase 0 Complete] Create-only mode finished.
+2026-10-09 23:17:37 [INFO] 
+======================================================================
+Creation Timing Report
+======================================================================
+
+[Sandbox Status]
+  Total:              900
+  Ready:              900
+  Create Failed:      0
+  Ready Check Failed: 0
+
+[Sandbox.create Performance]
+  (create API call time, excluding ready check)
+  Min: 0.1s  Max: 0.4s  Avg: 0.2s
+  P50: 0.2s  P95: 0.3s  P99: 0.4s
+
+[Ready Check Wait Performance]
+  (waiting for readiness (port probe / command / validate))
+  Min: 0.0s  Max: 0.3s  Avg: 0.0s
+  P50: 0.0s  P95: 0.0s  P99: 0.0s
+
+[Total Startup Performance]
+  (sandbox.create + ready check)
+  Min: 0.1s  Max: 0.5s  Avg: 0.2s
+  P50: 0.2s  P95: 0.4s  P99: 0.4s
+
+======================================================================
+2026-10-09 23:17:37 [INFO] Saved 900 sandbox IDs to: sandbox_ids_replay_cube90.txt

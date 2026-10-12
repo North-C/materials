@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "workflow_type": "replay",
+  "replay_mode": "exec_only",
+  "provider": "cubesandbox",
+  "started_at": "2026-10-09T21:21:25.237+08:00",
+  "completed_at": "2026-10-09T21:37:10.451+08:00",
+  "started_epoch": 1791552085.2378883,
+  "completed_epoch": 1791553030.4518135,
+  "test_duration": 10800,
+  "wall_sec": 945.174,
+  "total_count": 1152,
+  "running_concurrency": 1152,
+  "overcommit_ratio": 1.0,
+  "throughput": {
+    "total": 1152,
+    "succeeded": 768,
+    "failed": 384,
+    "total_steps": 63470,
+    "steps_per_sec": 67.152,
+    "tasks_per_sec": 0.813
+  },
+  "admission": null,
+  "lifecycle_overhead": null,
+  "paths": {
+    "report": "replay_exec_1152_r3_20261009_213641.txt",
+    "obs_xlsx": "replay_exec_1152_r3_obs.xlsx",
+    "lifecycle_series": "replay_exec_1152_r3_lifecycle_series.jsonl.gz",
+    "trajectory_index": "trajectories/index.json",
+    "vm_monitor_dir": null
+  },
+  "error": null,
+  "publication_category": "admission_limited"
+}

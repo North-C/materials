@@ -1,0 +1,31 @@
+{
+  "category": "functional_verified",
+  "source_run": "validation/20261009-cube95/remote-after-network/results/replay-testbed/cube95_replay_testbed_20261009-144900",
+  "driver_commit": "262a0534cc76d138a38b42bc890c9bdd9b40922d",
+  "stats": {
+    "run": "cube95-testbed",
+    "category": "functional_verified",
+    "configured_sandboxes": 1,
+    "cpu_budget_logical": "",
+    "vcpus_per_vm": 2,
+    "configured_cpu_ratio": "",
+    "native_overcommit_ratio": 1.0,
+    "wall_sec": 20.016,
+    "total": 1,
+    "succeeded": 1,
+    "failed": 0,
+    "total_steps": 118,
+    "steps_per_sec": 5.895,
+    "tasks_per_sec": 0.05,
+    "exported_runs": 1,
+    "timeout_runs": 0,
+    "timeout_steps": 0,
+    "non_timeout_slice_failed_steps": 0,
+    "nonzero_exit_steps": 6,
+    "create_error_runs": 0,
+    "kill_error_runs": 0,
+    "exported_steps": 118,
+    "monitor_present": false
+  },
+  "cleanup_revalidated_during_publication": false
+}

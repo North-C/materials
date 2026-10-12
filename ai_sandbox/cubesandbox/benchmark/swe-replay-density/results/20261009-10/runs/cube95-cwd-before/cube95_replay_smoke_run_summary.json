@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "workflow_type": "replay",
+  "replay_mode": "exec_only",
+  "provider": "cubesandbox",
+  "started_at": "2026-10-09T14:42:10.378+08:00",
+  "completed_at": "2026-10-09T14:42:30.654+08:00",
+  "started_epoch": 1791528130.3786032,
+  "completed_epoch": 1791528150.6543698,
+  "test_duration": 900,
+  "wall_sec": 20.276,
+  "total_count": 1,
+  "running_concurrency": null,
+  "overcommit_ratio": 1.0,
+  "throughput": {
+    "total": 1,
+    "succeeded": 1,
+    "failed": 0,
+    "total_steps": 118,
+    "steps_per_sec": 5.82,
+    "tasks_per_sec": 0.049
+  },
+  "admission": null,
+  "lifecycle_overhead": null,
+  "paths": {
+    "report": "cube95_replay_smoke_20261009_144229.txt",
+    "obs_xlsx": "cube95_replay_smoke_obs.xlsx",
+    "lifecycle_series": "cube95_replay_smoke_lifecycle_series.jsonl.gz",
+    "trajectory_index": "trajectories/index.json",
+    "vm_monitor_dir": null
+  },
+  "error": null,
+  "publication_category": "functional_before_fix"
+}

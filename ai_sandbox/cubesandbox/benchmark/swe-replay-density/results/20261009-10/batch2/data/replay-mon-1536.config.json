@@ -1,0 +1,69 @@
+{
+  "workflow_type": "replay",
+  "cubesandbox": {
+    "template": "TEMPLATE_ID",
+    "timeout": 86400,
+    "sandbox_ids_file": "sandbox_ids_mon1536.txt",
+    "env": {
+      "CUBE_API_URL": "http://127.0.0.1:3000",
+      "CUBE_SANDBOX_DOMAIN": "cube.app"
+    }
+  },
+  "sandbox": {
+    "total_count": 1536,
+    "detect_existing": false,
+    "create_only": false
+  },
+  "create_batch": {
+    "size": 96,
+    "interval": 1
+  },
+  "task_batch": {
+    "size": 5,
+    "interval": 5
+  },
+  "replay": {
+    "trajectory_dir": "replays-55",
+    "trajectory_glob": "*.replay.json",
+    "template_manifest": "trajectory-templates-cube90.json",
+    "workdir": "/testbed",
+    "env": {},
+    "action_timeout": 300,
+    "delay_scale": 0.0,
+    "stop_on_error": false,
+    "mode": "exec_only",
+    "running_concurrency": 1536,
+    "control_plane_qps": 1000.0,
+    "control_plane_inflight_cap": 1024,
+    "pause_duration_sec": 0.0,
+    "ready_probe": true,
+    "lifecycle_retries": 2
+  },
+  "test": {
+    "duration": 14400,
+    "stats_interval": 10,
+    "benchmark_percent": 1.0,
+    "benchmark_mode": "round_robin",
+    "round_size": 1536,
+    "round_count": 1,
+    "round_interval": 0
+  },
+  "report": {
+    "output_dir": "results/mon-mon1536",
+    "filename_prefix": "replay_mon_mon1536",
+    "format": "both"
+  },
+  "monitor": {
+    "enabled": "true",
+    "vmm": "cubesandbox",
+    "interval": 2,
+    "capture": "auto",
+    "numa": "all",
+    "disks": "all",
+    "stress_file": "/dev/shm/bench_core_monitor.lock",
+    "log_dir": null,
+    "merge_report": false,
+    "report_timeout": 300,
+    "skip_charts": true
+  }
+}

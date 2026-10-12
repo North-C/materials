@@ -1,0 +1,31 @@
+{
+  "category": "density_no_monitor",
+  "source_run": "validation/20261009-cube90/batch1-nomonitor-20261009/results/replay-exec-384-r1/replay_exec_384_r1_20261009-203452",
+  "driver_commit": "93f978f7ec27d9bc519dca2efdc809ada09acbaa",
+  "stats": {
+    "run": "batch1-384",
+    "category": "density_no_monitor",
+    "configured_sandboxes": 384,
+    "cpu_budget_logical": 384,
+    "vcpus_per_vm": 2,
+    "configured_cpu_ratio": 2.0,
+    "native_overcommit_ratio": 1.0,
+    "wall_sec": 1087.749,
+    "total": 384,
+    "succeeded": 384,
+    "failed": 0,
+    "total_steps": 31701,
+    "steps_per_sec": 29.144,
+    "tasks_per_sec": 0.353,
+    "exported_runs": 384,
+    "timeout_runs": 34,
+    "timeout_steps": 46,
+    "non_timeout_slice_failed_steps": 0,
+    "nonzero_exit_steps": 3847,
+    "create_error_runs": 0,
+    "kill_error_runs": 0,
+    "exported_steps": 31701,
+    "monitor_present": false
+  },
+  "cleanup_revalidated_during_publication": false
+}

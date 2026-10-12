@@ -1,0 +1,13 @@
+run,category,configured_sandboxes,cpu_budget_logical,vcpus_per_vm,configured_cpu_ratio,native_overcommit_ratio,wall_sec,total,succeeded,failed,total_steps,steps_per_sec,tasks_per_sec,exported_runs,timeout_runs,timeout_steps,non_timeout_slice_failed_steps,nonzero_exit_steps,create_error_runs,kill_error_runs,exported_steps,monitor_present
+cube95-cwd-before,functional_before_fix,1,,2,,1.0,20.276,1,1,0,118,5.82,0.049,1,0,0,0,8,0,0,118,False
+cube95-testbed,functional_verified,1,,2,,1.0,20.016,1,1,0,118,5.895,0.05,1,0,0,0,6,0,0,118,False
+batch1-preflight,preflight,1,384,2,0.005208333333333333,1.0,15.992,1,1,0,118,7.379,0.063,1,0,0,0,6,0,0,118,False
+batch1-384,density_no_monitor,384,384,2,2.0,1.0,1087.749,384,384,0,31701,29.144,0.353,384,34,46,0,3847,0,0,31701,False
+batch1-768,density_no_monitor,768,384,2,4.0,1.0,1174.244,768,768,0,63470,54.052,0.654,768,90,121,0,7749,0,0,63470,False
+batch1-1152-attempt,admission_limited,1152,384,2,6.0,1.0,945.174,1152,768,384,63470,67.152,0.813,768,10,10,0,7776,0,0,63470,False
+batch2-preflight,preflight,1,384,2,0.005208333333333333,1.0,16.441,1,1,0,118,7.177,0.061,1,0,0,0,6,0,0,118,True
+batch2-384,density_with_monitor,384,384,2,2.0,1.0,1026.827,384,384,0,31701,30.873,0.374,384,9,10,0,3881,0,0,31701,True
+batch2-768,density_with_monitor,768,384,2,4.0,1.0,860.775,768,768,0,63470,73.736,0.892,768,15,15,0,7782,0,0,63470,True
+batch2-1152,density_with_monitor,1152,384,2,6.0,1.0,1336.151,1152,1152,0,95229,71.271,0.862,1152,51,52,0,11714,0,0,95229,True
+batch2-1536,density_with_monitor,1536,384,2,8.0,1.0,1514.433,1536,1536,0,126986,83.851,1.014,1536,194,205,0,15760,0,0,126986,True
+quarantine-interrupted,invalid_interrupted,384,384,2,2.0,1.0,8.898,384,0,384,5143,577.977,0.0,384,0,0,0,370,0,0,5142,True

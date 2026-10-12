@@ -1,0 +1,72 @@
+{
+  "n_trajectories": 1,
+  "trajectories": [
+    {
+      "trajectory_id": "aftership__clickhouse-sql-parser-128.replay",
+      "n_runs": 1,
+      "n_success": 1,
+      "n_failed": 0,
+      "success_rate": 1.0,
+      "elapsed_sec": 16.665914,
+      "all_failed": false,
+      "n_steps_max": 118,
+      "time_breakdown_sec": {
+        "slice_total": 16.662559,
+        "exec": 16.662559,
+        "resume": 0.0,
+        "pause": 0.0,
+        "interaction_total": 16.662559,
+        "slot_contention_wait": 0.0,
+        "natural_delay": 0.0,
+        "capacity_wait": 0.0,
+        "rate_pacing_wait": 0.0,
+        "inflight_wait": 0.0,
+        "resume_rate_pacing_wait": 0.0,
+        "pause_rate_pacing_wait": 0.0,
+        "resume_inflight_wait": 0.0,
+        "pause_inflight_wait": 0.0,
+        "running_slot_held": 0.0,
+        "requested_delay": 0.003093,
+        "create": 0.0,
+        "kill": 0.0
+      },
+      "runs": [
+        {
+          "sandbox_index": 1,
+          "round_id": 0,
+          "elapsed_sec": 16.665914,
+          "n_steps": 118,
+          "n_failed": 0,
+          "n_timeout": 0,
+          "success_rate": 1.0,
+          "success": true,
+          "create_error_type": null,
+          "kill_error_type": null,
+          "time_breakdown_sec": {
+            "slice_total": 16.662559,
+            "exec": 16.662559,
+            "resume": 0.0,
+            "pause": 0.0,
+            "interaction_total": 16.662559,
+            "slot_contention_wait": 0.0,
+            "natural_delay": 0.0,
+            "capacity_wait": 0.0,
+            "rate_pacing_wait": 0.0,
+            "inflight_wait": 0.0,
+            "resume_rate_pacing_wait": 0.0,
+            "pause_rate_pacing_wait": 0.0,
+            "resume_inflight_wait": 0.0,
+            "pause_inflight_wait": 0.0,
+            "running_slot_held": 0.0,
+            "requested_delay": 0.003093,
+            "create": 0.0,
+            "kill": 0.0
+          }
+        }
+      ],
+      "create_error_type": null,
+      "kill_error_type": null,
+      "file": "aftership__clickhouse-sql-parser-128.rep_57fa10fe/replay_result.json.gz"
+    }
+  ]
+}

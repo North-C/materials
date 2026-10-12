@@ -1,0 +1,31 @@
+{
+  "category": "preflight",
+  "source_run": "validation/20261009-cube90/batch1-nomonitor-20261009/results/replay-preflight-1/replay_preflight_1_20261009-203247",
+  "driver_commit": "93f978f7ec27d9bc519dca2efdc809ada09acbaa",
+  "stats": {
+    "run": "batch1-preflight",
+    "category": "preflight",
+    "configured_sandboxes": 1,
+    "cpu_budget_logical": 384,
+    "vcpus_per_vm": 2,
+    "configured_cpu_ratio": 0.005208333333333333,
+    "native_overcommit_ratio": 1.0,
+    "wall_sec": 15.992,
+    "total": 1,
+    "succeeded": 1,
+    "failed": 0,
+    "total_steps": 118,
+    "steps_per_sec": 7.379,
+    "tasks_per_sec": 0.063,
+    "exported_runs": 1,
+    "timeout_runs": 0,
+    "timeout_steps": 0,
+    "non_timeout_slice_failed_steps": 0,
+    "nonzero_exit_steps": 6,
+    "create_error_runs": 0,
+    "kill_error_runs": 0,
+    "exported_steps": 118,
+    "monitor_present": false
+  },
+  "cleanup_revalidated_during_publication": false
+}

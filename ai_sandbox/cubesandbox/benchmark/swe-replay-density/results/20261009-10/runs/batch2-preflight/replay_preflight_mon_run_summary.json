@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "workflow_type": "replay",
+  "replay_mode": "exec_only",
+  "provider": "cubesandbox",
+  "started_at": "2026-10-09T23:40:26.206+08:00",
+  "completed_at": "2026-10-09T23:40:42.647+08:00",
+  "started_epoch": 1791560426.206196,
+  "completed_epoch": 1791560442.6475906,
+  "test_duration": 1800,
+  "wall_sec": 16.441,
+  "total_count": 1,
+  "running_concurrency": 1,
+  "overcommit_ratio": 1.0,
+  "throughput": {
+    "total": 1,
+    "succeeded": 1,
+    "failed": 0,
+    "total_steps": 118,
+    "steps_per_sec": 7.177,
+    "tasks_per_sec": 0.061
+  },
+  "admission": null,
+  "lifecycle_overhead": null,
+  "paths": {
+    "report": "replay_preflight_mon_20261009_234042.txt",
+    "obs_xlsx": "replay_preflight_mon_obs.xlsx",
+    "lifecycle_series": "replay_preflight_mon_lifecycle_series.jsonl.gz",
+    "trajectory_index": "trajectories/index.json",
+    "vm_monitor_dir": "vm_monitor"
+  },
+  "error": null,
+  "publication_category": "preflight"
+}

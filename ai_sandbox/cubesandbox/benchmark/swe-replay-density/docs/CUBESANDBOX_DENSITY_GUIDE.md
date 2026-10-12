@@ -691,6 +691,9 @@ curl --noproxy '*' -fsS -X DELETE "$CUBE_API_URL/sandboxes/$OWNED_SANDBOX_ID"
 
 ## 9. 实测结果如何引用
 
+测试数据、原生 Excel、监控曲线和校正版对比图已发布，见[结果报告](../results/20261009-10/README.md)。
+该页保留第一批配额受限和中断批次，并说明旧宿主内存图的换算修正。
+
 下表来自 `.90` **第二批、有完整指标链**的归档。参数为 2U4G、exec_only、delay_scale=0、
 action_timeout=300s、1 轮，背景有约 100 个平台既有 VM；CPU 比例按 384 个 CPU 计算。
 

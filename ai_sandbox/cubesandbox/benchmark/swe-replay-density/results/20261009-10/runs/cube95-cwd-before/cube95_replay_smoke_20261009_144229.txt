@@ -1,0 +1,75 @@
+================================================================================
+Sandbox Bench - Performance Report
+================================================================================
+
+[Test Configuration]
+  Backend:        cubesandbox
+  Total Sandboxes: 1
+  Mode:            Full workflow
+  Create Batch:    1 batches x 1 sandboxes
+  Create Interval: 0s
+  Task Batch:      1 batches x 1 sandboxes
+  Task Interval:   0s
+  Test Duration:   900s
+
+[Sandbox Status]
+  Created (API):       1 / 1
+  Command Ready:         1 / 1
+  Create Failed:       0
+  Ready Check Failed:   0
+  Offline (runtime):   0
+
+[Sandbox.create Performance]
+  (sandbox.create API call time, excluding ready check)
+  Min:  0.0s
+  Max:  0.0s
+  Avg:  0.0s
+  P50:  0.0s
+  P95:  0.0s
+  P99:  0.0s
+
+[Ready Check Wait Performance]
+  (Waiting for 'uname -a' command response)
+  Min:  0.3s
+  Max:  0.3s
+  Avg:  0.3s
+  P50:  0.3s
+  P95:  0.3s
+  P99:  0.3s
+
+[Total Startup Performance]
+  (sandbox.create + ready check)
+  Min:  0.3s
+  Max:  0.3s
+  Avg:  0.3s
+  P50:  0.3s
+  P95:  0.3s
+  P99:  0.3s
+
+[Replay Task Statistics]
+  Total Steps:            118
+  Success:                110
+  Failed:                 8 (timeout: 0)
+  Success Rate:           93.2%
+  Trajectory Completions: 1
+  One-pass Target:        1 (1 trajectory/sandbox per round; pool 1 distinct)
+  Delay Fidelity:         0.00
+  Avg Latency:            0.148s
+  P99 Latency:            2.176s
+
+[Step-Level Timing (Replay Mode)]
+Action  Count  Avg(s)  P50(s)  P95(s)  P99(s)  Tail                 
+------  -----  ------  ------  ------  ------  ---------------------
+shell   118    0.141   0.007   0.504   2.176   321.50x (significant)
+
+  Tail Ratio: P99/P50 - indicates long-tail latency severity
+  < 1.2x: minimal | 1.2-1.5x: moderate | > 1.5x: significant
+
+[Throughput & Overcommit]
+  wall_sec:               19.3
+  steps_per_sec:          6.12
+  effective_parallelism:  0.00
+  exec_wall_utilization:  86.5%
+  overcommit_ratio:       1.0x
+
+================================================================================

@@ -4,6 +4,7 @@
 负载执行由上游原生 `agent_vm_bench/bench-core` 完成；随包小工具负责配置、采样和验收。
 
 - [完整用户指南](docs/CUBESANDBOX_DENSITY_GUIDE.md)：从镜像导入到模板、预检、密度阶梯和指标验收。
+- [测试数据、Excel 与图表](results/README.md)：.95 功能验证、.90 两批密度结果、准入与中断记录，以及图表修正说明。
 - [镜像筛选与构建脚本说明](CUBESANDBOX.md)：55 条来源、原始镜像拉取、envd 适配与任务恢复。
 - [源码改动清单](SOURCE_CHANGES.md)：修改、新增、既有未提交改动和历史验证边界。
 - [测试版 build_template.py](build_template.py)：与已验证版本逐字节一致。
@@ -17,6 +18,7 @@ swe-replay-density/
 ├── CUBESANDBOX.md
 ├── SOURCE_CHANGES.md
 ├── SHA256SUMS
+├── results/                       # 脱敏结果、图表、配置与来源清单
 └── docs/
     ├── CUBESANDBOX_DENSITY_GUIDE.md
     └── tools/

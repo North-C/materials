@@ -1,0 +1,75 @@
+================================================================================
+Sandbox Bench - Performance Report
+================================================================================
+
+[Test Configuration]
+  Backend:        cubesandbox
+  Total Sandboxes: 768
+  Mode:            Full workflow
+  Create Batch:    8 batches x 96 sandboxes
+  Create Interval: 1s
+  Task Batch:      154 batches x 5 sandboxes
+  Task Interval:   5s
+  Test Duration:   10800s
+
+[Sandbox Status]
+  Created (API):       768 / 768
+  Command Ready:         768 / 768
+  Create Failed:       0
+  Ready Check Failed:   0
+  Offline (runtime):   0
+
+[Sandbox.create Performance]
+  (sandbox.create API call time, excluding ready check)
+  Min:  0.1s
+  Max:  0.4s
+  Avg:  0.2s
+  P50:  0.2s
+  P95:  0.3s
+  P99:  0.3s
+
+[Ready Check Wait Performance]
+  (Waiting for 'uname -a' command response)
+  Min:  0.0s
+  Max:  0.3s
+  Avg:  0.0s
+  P50:  0.0s
+  P95:  0.0s
+  P99:  0.0s
+
+[Total Startup Performance]
+  (sandbox.create + ready check)
+  Min:  0.1s
+  Max:  0.4s
+  Avg:  0.2s
+  P50:  0.2s
+  P95:  0.3s
+  P99:  0.4s
+
+[Replay Task Statistics]
+  Total Steps:            63470
+  Success:                55721
+  Failed:                 7749 (timeout: 121)
+  Success Rate:           87.8%
+  Trajectory Completions: 768
+  One-pass Target:        768 (1 trajectory/sandbox per round; pool 55 distinct)
+  Delay Fidelity:         0.00
+  Avg Latency:            3.387s
+  P99 Latency:            53.174s
+
+[Step-Level Timing (Replay Mode)]
+Action  Count  Avg(s)  P50(s)  P95(s)  P99(s)  Tail                
+------  -----  ------  ------  ------  ------  --------------------
+shell   63470  3.350   0.783   10.741  50.666  64.68x (significant)
+
+  Tail Ratio: P99/P50 - indicates long-tail latency severity
+  < 1.2x: minimal | 1.2-1.5x: moderate | > 1.5x: significant
+
+[Throughput & Overcommit]
+  wall_sec:               1145.2
+  steps_per_sec:          55.42
+  effective_parallelism:  0.00
+  exec_wall_utilization:  24.2%
+  overcommit_ratio:       1.0x
+
+================================================================================

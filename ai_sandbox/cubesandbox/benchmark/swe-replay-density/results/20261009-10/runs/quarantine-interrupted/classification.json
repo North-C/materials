@@ -1,0 +1,31 @@
+{
+  "category": "invalid_interrupted",
+  "source_run": "validation/20261009-cube90/batch2-monladder-20261010/quarantine/aborted-manual-20s-run",
+  "driver_commit": "93f978f7ec27d9bc519dca2efdc809ada09acbaa",
+  "stats": {
+    "run": "quarantine-interrupted",
+    "category": "invalid_interrupted",
+    "configured_sandboxes": 384,
+    "cpu_budget_logical": 384,
+    "vcpus_per_vm": 2,
+    "configured_cpu_ratio": 2.0,
+    "native_overcommit_ratio": 1.0,
+    "wall_sec": 8.898,
+    "total": 384,
+    "succeeded": 0,
+    "failed": 384,
+    "total_steps": 5143,
+    "steps_per_sec": 577.977,
+    "tasks_per_sec": 0.0,
+    "exported_runs": 384,
+    "timeout_runs": 0,
+    "timeout_steps": 0,
+    "non_timeout_slice_failed_steps": 0,
+    "nonzero_exit_steps": 370,
+    "create_error_runs": 0,
+    "kill_error_runs": 0,
+    "exported_steps": 5142,
+    "monitor_present": true
+  },
+  "cleanup_revalidated_during_publication": false
+}
