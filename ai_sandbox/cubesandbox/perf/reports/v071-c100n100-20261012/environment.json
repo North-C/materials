@@ -1,0 +1,24 @@
+{
+  "architecture": "aarch64",
+  "logical_cpus": 384,
+  "lscpu": "Architecture:                         aarch64\nCPU op-mode(s):                       64-bit\nByte Order:                           Little Endian\nCPU(s):                               384\nOn-line CPU(s) list:                  0-383\nVendor ID:                            HiSilicon\nBIOS Vendor ID:                       HiSilicon\nModel name:                           -\nBIOS Model name:                      Kunpeng 950 7592C To Be Filled By O.E.M. CPU @ 2.3GHz\nBIOS CPU family:                      280\nModel:                                0\nThread(s) per core:                   2\nCore(s) per socket:                   96\nSocket(s):                            2\nStepping:                             0x0\nFrequency boost:                      enabled\nCPU(s) scaling MHz:                   100%\nCPU max MHz:                          2600.0000\nCPU min MHz:                          1200.0000\nBogoMIPS:                             200.00\nFlags:                                fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm jscvt fcma lrcpc dcpop sha3 sm3 sm4 asimddp sha512 sve asimdfhm dit uscat ilrcpc flagm ssbs sb dcpodp sve2 sveaes svepmull svebitperm svesha3 svesm4 flagm2 frint svei8mm svebf16 i8mm bf16 dgh rng ecv afp rpres wfxt rprfm hbc ls64 ls64_v\nL1d cache:                            12 MiB (192 instances)\nL1i cache:                            24 MiB (192 instances)\nL2 cache:                             192 MiB (192 instances)\nL3 cache:                             546 MiB (24 instances)\nNUMA node(s):                         4\nNUMA node0 CPU(s):                    0-95\nNUMA node1 CPU(s):                    96-191\nNUMA node2 CPU(s):                    192-287\nNUMA node3 CPU(s):                    288-383\nVulnerability Gather data sampling:   Not affected\nVulnerability Itlb multihit:          Not affected\nVulnerability L1tf:                   Not affected\nVulnerability Mds:                    Not affected\nVulnerability Meltdown:               Not affected\nVulnerability Mmio stale data:        Not affected\nVulnerability Reg file data sampling: Not affected\nVulnerability Retbleed:               Not affected\nVulnerability Spec rstack overflow:   Not affected\nVulnerability Spec store bypass:      Mitigation; Speculative Store Bypass disabled via prctl\nVulnerability Spectre v1:             Mitigation; __user pointer sanitization\nVulnerability Spectre v2:             Mitigation; CSV2, but not BHB\nVulnerability Srbds:                  Not affected\nVulnerability Tsa:                    Not affected\nVulnerability Tsx async abort:        Not affected\n",
+  "meminfo": {
+    "MemTotal": "       2371257028 kB",
+    "MemAvailable": "   2268520596 kB"
+  },
+  "cubelet_config_selected_lines": [
+    "    storage_backend = \"cubecow\"",
+    "    # backend: change storage_backend to the corresponding value (e.g. \"ext4\")",
+    "        actions = [[\"cleanup\"],[\"cubebox\"],[\"images\",\"storage\",\"cgroup\",\"network\",\"volume\", \"netfile\", \"cube-sandbox-store\"]]",
+    "        actions = [[\"createid\", \"appsnapshot\"],[\"images\",\"volume\",\"storage\",\"network\",\"netfile\", \"cube-sandbox-store\"],[\"cgroup\"],[\"cubebox\"]]",
+    "        actions = [[\"cubebox\"],[\"images\",\"storage\",\"cgroup\",\"network\",\"volume\",\"netfile\", \"cube-sandbox-store\"],[\"cleanup\"]]",
+    "        actions = [[\"cubebox\"],[\"images\",\"volume\",\"storage\",\"cgroup\",\"network\",\"netfile\", \"cube-sandbox-store\"],[\"cleanup\"]]",
+    "  [plugins.\"io.containerd.snapshotter.v1.overlayfs\"]"
+  ],
+  "runtime_sha256": "10dced40e92c101f9b69b446f3bcc87f74850b6909c483506a419cd1604250f9",
+  "storage_install": "/usr/local/services/cubetoolbox/CubeS3lvol-v0.7.1",
+  "kernel_params": {
+    "force_wfi_trap": "Y",
+    "halt_poll_ns": "500000"
+  }
+}

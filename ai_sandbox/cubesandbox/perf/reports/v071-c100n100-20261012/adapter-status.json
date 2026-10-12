@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "started_at": "2026-10-12T14:14:45.613908Z",
+  "status": "suite_returned_success",
+  "execute_requested": true,
+  "suite_main_invoked": true,
+  "benchmark_invocation_recorded": true,
+  "case": {
+    "section": "3.2",
+    "label": "c100n100",
+    "command": [
+      "cube-bench",
+      "-c",
+      "100",
+      "-n",
+      "100",
+      "-w",
+      "3",
+      "-m",
+      "create-only"
+    ]
+  },
+  "adapter_sha256": "76c4f9626a06742e319e0f9766260dd2e61878d15550bf4191d3c2ff58e9e3d5",
+  "sources": {
+    "suite": {
+      "path": "/data/cubelet/perf-evidence/20261010T112540Z/suite/run_suite.py",
+      "sha256": "399815f259a072db79415a29496283da089308b95e66ba63494aeeb58ecfdd09",
+      "expected_sha256": "399815f259a072db79415a29496283da089308b95e66ba63494aeeb58ecfdd09"
+    },
+    "host_gate": {
+      "path": "/data/cubelet/perf-evidence/20261010T112540Z/suite/host_quiet_gate.py",
+      "sha256": "164d9b81f587a27bc9fd93c9ba24006ac298df9ae097e0b9d389746495c738a1",
+      "expected_sha256": "164d9b81f587a27bc9fd93c9ba24006ac298df9ae097e0b9d389746495c738a1"
+    },
+    "native_binary": {
+      "path": "/data/cubelet/perf-evidence/20261010T112540Z/suite/cube-bench-v071-linux-arm64",
+      "sha256": "d7d7685433bea7909b124504f4851517bdae146c4bb13e279fbb816c20bd032d",
+      "expected_sha256": "d7d7685433bea7909b124504f4851517bdae146c4bb13e279fbb816c20bd032d"
+    }
+  },
+  "errors": [],
+  "suite_exit_code": 0,
+  "ownership": {
+    "ledger": "suite-results/c100n100.delete.json",
+    "status": "loaded",
+    "phase_basis": "official raw contains no sandbox IDs; phases are not inferred",
+    "ledger_status": "drained",
+    "observed_count": 103,
+    "sha256": "20573ed84dd25e30aee1f33062c3619356ed5ebfdef78c0678ae0d1e9bd95d3f"
+  },
+  "raw_result": {
+    "status": "copied",
+    "sha256": "109ab88c6adc7067a8c180a062724f57a25f2a9154ffa69cd969908938bdf9f8",
+    "path": "startup-latency/c100n100.raw.json"
+  },
+  "suite_status": "complete",
+  "suite_preflight": "passed",
+  "case_status": "complete",
+  "ended_at": "2026-10-12T14:15:55.111013Z",
+  "exit_code": 0
+}

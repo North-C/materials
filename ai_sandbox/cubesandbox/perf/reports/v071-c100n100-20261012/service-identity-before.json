@@ -1,0 +1,97 @@
+{
+  "verified_at": "2026-10-12T14:14:45.528937+00:00",
+  "read_only": true,
+  "release_version": "v0.7.1-arm64",
+  "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+  "boot_id": "93eb9b8a-d688-49ad-b435-d35022df780a",
+  "kernel": "6.6.0-9999.sp3.vnmi.xarray.d383a36d",
+  "services": [
+    {
+      "component": "cube-api",
+      "pid": 32327,
+      "start_ticks": "6940",
+      "exe": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+      "sha256": "6a84128504f7e1575d5d86e4f6da9953c794356b2875acae968344d94421d34a",
+      "version": "v0.7.1",
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+    },
+    {
+      "component": "templatecenter",
+      "pid": 32337,
+      "start_ticks": "6944",
+      "exe": "/usr/local/services/cubetoolbox/CubeTemplateCenter/bin/templatecenter",
+      "sha256": "cfdab176aaa39f39352ce2c3eff98d5d7cab4837385a32f6363db835a94e8d65",
+      "version": "v0.7.1",
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+    },
+    {
+      "component": "cubelet",
+      "pid": 1257466,
+      "start_ticks": "15114682",
+      "exe": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+      "sha256": "6814fadeec55e27227686367ab3ed957411ca926caabc63dd12121cbeb190dac",
+      "version": "v0.7.1",
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+    },
+    {
+      "component": "cubemaster",
+      "pid": 1823839,
+      "start_ticks": "9558737",
+      "exe": "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster",
+      "sha256": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9",
+      "version": "v0.7.1",
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+    }
+  ],
+  "shim": {
+    "path": "/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs",
+    "sha256": "8d2b467e19c1f352b439798fa7776249d06a7db180c69c96b9be601355f98478"
+  },
+  "sandbox_count": 0,
+  "master_create_concurrent_limit": 100,
+  "template": {
+    "id": "tpl-cf2b04fdd4604b7c84e157fa",
+    "status": "READY",
+    "resources": {
+      "cpu": "2000m",
+      "mem": "2048Mi"
+    },
+    "writable_layer_size": "1G",
+    "replicas": [
+      {
+        "agent_version": "v0.7.1",
+        "artifact_id": "rfs-dd2b6baa7183b8077c714eb9-e5190241",
+        "compat_checked_unix": 1791798264,
+        "compat_policy": "STRICT",
+        "compat_status": "OK",
+        "guest_image_version": "guest-image-260820-1",
+        "instance_type": "cubebox",
+        "kernel_version": "sha256-a63aa77e9c2d",
+        "last_job_id": "7c6f7d99-1a97-4b47-ade5-ce07bb3a57f4",
+        "node_id": "192.168.25.90",
+        "node_ip": "192.168.25.90",
+        "phase": "READY",
+        "shim_version": "v0.7.1",
+        "spec": "cpu=2000m,mem=2048Mi",
+        "status": "READY"
+      }
+    ],
+    "probe": {
+      "failure_threshold": 60,
+      "period_ms": 500,
+      "probe_handler": {
+        "http_get": {
+          "path": "/health",
+          "port": 49999
+        }
+      },
+      "probe_timeout_ms": 2000,
+      "success_threshold": 1,
+      "timeout_ms": 30000
+    },
+    "args": [
+      "/usr/local/bin/start-lightweight-code-interpreter.sh"
+    ]
+  },
+  "loadavg": "0.04 1.16 2.68 1/7547 550243"
+}
