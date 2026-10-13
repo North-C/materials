@@ -1,0 +1,57 @@
+Tool: built-in image_gen
+
+STYLE RESET PROMPT
+
+Redesign the attached CubeSandbox architecture diagram with a COMPLETE STYLE RESET. Reference image is for component names and topology ONLY. User says the current visual is too flashy and wants a simple diagram emphasizing process and component hierarchy. Produce ONE final high resolution landscape architecture diagram.
+
+VISUAL DIRECTION: understated engineering documentation / academic system architecture figure. Pure white background, nearly black text, thin neutral gray rectangular outlines, subtle 3px corner radius at most. Almost entirely monochrome. ONE restrained muted slate-blue #526B83 is allowed only on data-flow arrows. NO green. NO vivid blue. NO gradients. NO shadows. NO full-width colored bars. NO colored cards. NO large filled component boxes. NO huge centered headline. NO icons. NO unnecessary decorative containers. Generous whitespace and perfectly aligned boxes. Consistent thin strokes. Clear readable Inter/Helvetica-like typography. Compact normal-weight left-aligned title "CubeSandbox architecture", with small subtitle "Control, execution, storage and network flow". Component names semibold; brief subtitles in smaller gray text. Use smaller plain labels on connectors. Canvas approximately 2000×1500 or greater.
+
+HIERARCHY: 4 horizontal tiers with small uppercase gray tier captions in a narrow left gutter: CLIENT, CLUSTER, COMPUTE NODE, EXTERNAL. Tier boundaries established by whitespace, restrained thin dividers and one light-gray outline around the entire compute node. No colored tier headers. Compute boundary labeled "Compute node · repeated across Node 1 … N". Internal section labels "Runtime", "Storage", "Network" in small neutral gray text, not ribbons or full cards.
+
+CONTENT AND EXACT TOPOLOGY:
+CLIENT tier: a SINGLE outlined box "Client / E2B SDK". Below this box optionally a very small plain text line "AI agents · applications". Remove the four redundant blue workload example chips from the original.
+CLUSTER tier: on left "CubeAPI" [REST gateway] → "CubeMaster" [Scheduling & lifecycle]. On center "Redis" [Metadata & lifecycle events]. On right "CubeProxy" [Sandbox request routing]. Small auxiliary text boxes "WebUI" near CubeAPI and "cube-lifecycle-manager" [Idle pause / auto-resume] near CubeProxy.
+Client → CubeAPI is a BLACK solid arrow, labeled "E2B-compatible REST".
+Client → CubeProxy is a muted BLUE solid arrow, labeled "HTTP service access".
+CubeAPI → CubeMaster BLACK arrow "gRPC".
+WebUI → CubeAPI BLACK arrow.
+CubeMaster → Redis GRAY dashed arrow "events".
+CubeProxy → Redis GRAY dashed arrow "metadata".
+Lifecycle-manager → Redis GRAY dashed connection, routed in a clear dedicated gutter. Do not route it through CubeProxy.
+
+COMPUTE NODE tier: one large white thin-outline boundary.
+Runtime section, main row left to right:
+"Cubelet" [Node agent] → "containerd" → "CubeShim" [Shim v2] → "CubeHypervisor" [RustVMM + KVM] → "MicroVM / Sandbox" [Agent · envd · user services].
+These are BLACK solid arrows. CubeShim → CubeHypervisor labeled "start / restore"; Hypervisor → MicroVM labeled "boot / restore".
+CubeMaster has a BLACK orthogonal arrow leading down and left to the TOP EDGE OF CUBELET BOX, labeled "gRPC". The arrow must physically touch Cubelet, NEVER terminate at a tier heading or blank space. Reserve an empty vertical routing gutter and place section labels away from connectors.
+CubeProxy has a muted BLUE arrow to the TOP EDGE OF MICROVM BOX, labeled "route request". It bypasses the other runtime components and physically touches MicroVM.
+Give the runtime row plenty of width. The MicroVM box has the SAME thin outline and white fill as other nodes. No filled highlighting.
+
+Below runtime, within compute boundary, two modules WITHOUT additional large colored backgrounds:
+LEFT Storage:
+Cubelet → "CubeCoW" [XFS reflink / FICLONE] via GRAY dashed arrow "volume operations".
+Below CubeCoW place a simple small inline chain: "Template" → "Sandbox volumes" → "Snapshots / clones". Gray dashed arrows. Label first arrow "O(1) clone". A small gray note "rootfs + memory" under Template. This is a subordinate storage mechanism, not part of main runtime chain.
+RIGHT Network:
+MicroVM → small "TAP" → "CubeVS" [eBPF policy / NAT], all muted BLUE arrows. Every connector must have a visible arrowhead touching the next box. Arrange TAP and CubeVS to avoid long crossings.
+CubeVS → "CubeEgress" [L7 policy · credentials · audit] labeled "TPROXY".
+CubeEgress → "Host NIC".
+CubeVS ALSO has an independent bypass arrow directly to SAME "Host NIC", labeled "SNAT · policy allowed".
+All network arrows muted BLUE solid. Do not draw TAP directly to CubeEgress. Preserve both outbound branches.
+EXTERNAL tier beneath node: "Internet / external services", connected from Host NIC by muted BLUE arrow.
+
+At bottom, ONE unobtrusive plain text note, not a colored panel:
+"Template build: OCI image → Buildkit → rootfs + memory snapshot"
+Below it a small line legend: black solid "Control" · muted blue solid "Data" · gray dashed "State / storage".
+Remove the old bottom six lifecycle chips; lifecycle capability is already indicated by CubeMaster and lifecycle-manager.
+
+IMPORTANT: prioritize a calm, highly legible, spatially organized engineering drawing. This is a structure-and-flow diagram, not a marketing slide or dashboard. No gradients or fills, no colorful labels, no full-width ribbons. Use routing gutters to ensure arrows never cross component text. All arrow destinations must terminate directly on the corresponding component outline. Keep spelling exact. Output only the single finished diagram.
+
+CORRECTION PROMPT
+
+Correct ONLY TWO connectors in this clean monochrome CubeSandbox diagram. Keep every existing box, position, label, font, outline and overall composition unchanged.
+
+1. CRITICAL network error: TAP currently points straight down into the line from CubeEgress to Host NIC. DELETE the entire outgoing vertical line below TAP. Replace it with one muted-blue orthogonal line: from LEFT EDGE of TAP, go horizontally LEFT through the large empty Network panel space above all three network component boxes, until directly above the CENTER of CubeVS, then turn down and end with an arrowhead touching the TOP EDGE of CubeVS. The final explicit topology must be MicroVM → TAP → CubeVS. There must be NO arrow from TAP to Host NIC, NO arrow from TAP to CubeEgress, and NO junction of TAP line with the CubeEgress→Host NIC line. CubeVS→CubeEgress→Host NIC and CubeVS→Host NIC bypass are correct and must remain untouched.
+
+2. Cluster state error: remove the gray dashed metadata arrow from cube-lifecycle-manager to CubeProxy, including that arrow's "metadata" label. Replace it with gray dashed route going from TOP of cube-lifecycle-manager UP into the whitespace immediately above cluster boxes, then LEFT to directly above Redis, then DOWN with arrowhead at TOP of Redis. Label that line "coordination", placed between Redis and CubeProxy above their boxes. This route must not intersect Client or the blue HTTP service access line; if needed put the manager-to-Redis coordination line just 12 pixels above cluster boxes, below the client input route. It must connect directly manager→Redis without passing through CubeProxy. Keep existing CubeProxy→Redis metadata arrow untouched.
+
+NO OTHER CHANGES. Keep simple white background, black text and boxes, slate-blue data lines, gray dashed state lines. Produce the corrected image.
