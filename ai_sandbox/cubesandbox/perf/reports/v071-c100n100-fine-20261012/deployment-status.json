@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-12T15:30:51.645314+00:00",
+  "deployed": false,
+  "benchmark_rerun": false,
+  "blocker": "External density workload uses node; no deployment/restart/cleanup performed by this task",
+  "live_sandboxes": 768,
+  "installed_sha256": {
+    "cubelet": "6814fadeec55e27227686367ab3ed957411ca926caabc63dd12121cbeb190dac",
+    "global_shim": "8d2b467e19c1f352b439798fa7776249d06a7db180c69c96b9be601355f98478",
+    "template_shim": "8d2b467e19c1f352b439798fa7776249d06a7db180c69c96b9be601355f98478"
+  },
+  "build_exit_codes": {
+    "go": 0,
+    "rust": 0
+  }
+}

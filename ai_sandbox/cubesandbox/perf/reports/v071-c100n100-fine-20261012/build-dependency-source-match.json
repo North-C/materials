@@ -1,0 +1,521 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-10-12T15:24:50.908Z",
+  "base_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+  "local_source": "/Users/liuyuqing/orca/workspaces/CubeSandbox/v071-c100n100-bottleneck",
+  "remote_host": "root@192.168.25.90",
+  "remote_source": "/data/rootcause-native-affinity-build-fz32Lg/source",
+  "remote_arch": "aarch64",
+  "comparison_scope": [
+    "cubecow/src/**",
+    "cubecow/include/**",
+    "cubecow/Cargo.toml",
+    "cubecow/Cargo.lock",
+    "cubecow/build.rs if present",
+    "CubeNet/src/**",
+    "CubeNet/vmlinux/**",
+    "CubeNet/cubevs/** excluding generated *_bpfel*"
+  ],
+  "file_count": 75,
+  "all_match": true,
+  "files": [
+    {
+      "file": "CubeNet/cubevs/.gitignore",
+      "local_sha256": "ffd3195a45e738b9b0ca12b586e5fa8994d62d25c13510ffd13955aaa3313850",
+      "remote_sha256": "ffd3195a45e738b9b0ca12b586e5fa8994d62d25c13510ffd13955aaa3313850",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/.golangci.yaml",
+      "local_sha256": "facfc9e73c8dbcc201f4c72070733f4e3e288504d9261fa030f2c1b2bd90b815",
+      "remote_sha256": "facfc9e73c8dbcc201f4c72070733f4e3e288504d9261fa030f2c1b2bd90b815",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/Makefile",
+      "local_sha256": "5f6fb8815d013679df601e36adcf209b6f7c06a2919b089f1b7164ddbc03cc11",
+      "remote_sha256": "5f6fb8815d013679df601e36adcf209b6f7c06a2919b089f1b7164ddbc03cc11",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/cmd/cubevsmapdump/main.go",
+      "local_sha256": "b8fca3d842e31f589c8dd90b04d355002e6af47a1ccee6a6d7f8a1e2828b94be",
+      "remote_sha256": "b8fca3d842e31f589c8dd90b04d355002e6af47a1ccee6a6d7f8a1e2828b94be",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/cubevs.go",
+      "local_sha256": "0ca17768758067623d2e58f58d6e4c3a9d2588241046328822267f7f51a12e20",
+      "remote_sha256": "0ca17768758067623d2e58f58d6e4c3a9d2588241046328822267f7f51a12e20",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/custom_port_test.go",
+      "local_sha256": "415385c600622424d67748b18942b81dd52ce8a80f0d1cb0fe77789bec72f566",
+      "remote_sha256": "415385c600622424d67748b18942b81dd52ce8a80f0d1cb0fe77789bec72f566",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/direct_neigh_scanner.go",
+      "local_sha256": "94aad4370952abf2b9336c3bccf085ddb53f1dc2f71251f37f349251521ef23a",
+      "remote_sha256": "94aad4370952abf2b9336c3bccf085ddb53f1dc2f71251f37f349251521ef23a",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/direct_neigh_scanner_test.go",
+      "local_sha256": "406192325f2eeb22f828cf6b5bb9970352d8ce0dbab5b9241e8232cd2a649409",
+      "remote_sha256": "406192325f2eeb22f828cf6b5bb9970352d8ce0dbab5b9241e8232cd2a649409",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/dns_learn_test.go",
+      "local_sha256": "391c6f277d3a5dcb613e10ed8718299ee3f3f1203ff5c968dec52bcc4647202e",
+      "remote_sha256": "391c6f277d3a5dcb613e10ed8718299ee3f3f1203ff5c968dec52bcc4647202e",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/dns_reaper.go",
+      "local_sha256": "1d811ea3addde9f8461052520b21495759ab95c1d18534099fd33709f6993f08",
+      "remote_sha256": "1d811ea3addde9f8461052520b21495759ab95c1d18534099fd33709f6993f08",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/dnspolicy.go",
+      "local_sha256": "f33bf874a548bc78849b2ed2f1ad4eedba19a20f59a9286914b40cbeaa9dea85",
+      "remote_sha256": "f33bf874a548bc78849b2ed2f1ad4eedba19a20f59a9286914b40cbeaa9dea85",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/dump.go",
+      "local_sha256": "a1d85955b1eb55daf369f528747f479baa5bffc2f1c063d5d7cf398322417498",
+      "remote_sha256": "a1d85955b1eb55daf369f528747f479baa5bffc2f1c063d5d7cf398322417498",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/dump_test.go",
+      "local_sha256": "8d148d6ec36ba12f6b39fdeeeb5c954a0093d39df0f53ec208b76afe7b8a4a29",
+      "remote_sha256": "8d148d6ec36ba12f6b39fdeeeb5c954a0093d39df0f53ec208b76afe7b8a4a29",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/egress_policy_test.go",
+      "local_sha256": "0539106ea12b6d782317e0a3fd15805dd0122072811e8d0c655dfaeb5c56ef73",
+      "remote_sha256": "0539106ea12b6d782317e0a3fd15805dd0122072811e8d0c655dfaeb5c56ef73",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/go.mod",
+      "local_sha256": "100bdc83de0e1da49e9dbcb2fdd9c17e6a583994b6dd4c5caeb8223da81cd24d",
+      "remote_sha256": "100bdc83de0e1da49e9dbcb2fdd9c17e6a583994b6dd4c5caeb8223da81cd24d",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/go.sum",
+      "local_sha256": "af30b0e7add287ab874a19dccdcd04d818b4b66e7d95a70caff1001122ad0d61",
+      "remote_sha256": "af30b0e7add287ab874a19dccdcd04d818b4b66e7d95a70caff1001122ad0d61",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/inner_cache.go",
+      "local_sha256": "fd577f2b51ebc33af0aa7d1b1cc8232c01e6fdf690004b31b0fc60448bf7cbe0",
+      "remote_sha256": "fd577f2b51ebc33af0aa7d1b1cc8232c01e6fdf690004b31b0fc60448bf7cbe0",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/l7_mark_test.go",
+      "local_sha256": "23fe2fc9c539832f8b420532714daedde9238f4e3efce0fc4f8058a3f450b360",
+      "remote_sha256": "23fe2fc9c539832f8b420532714daedde9238f4e3efce0fc4f8058a3f450b360",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/map.go",
+      "local_sha256": "30096bffbf07ec85f2987d0eb0a69bb90d1dc268010497c285ff8a6556820b7b",
+      "remote_sha256": "30096bffbf07ec85f2987d0eb0a69bb90d1dc268010497c285ff8a6556820b7b",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/migration.go",
+      "local_sha256": "82594ebf7fdcb0a57f1a95aab069e002a8fe9f3e335adaff19eedd9930cbf1aa",
+      "remote_sha256": "82594ebf7fdcb0a57f1a95aab069e002a8fe9f3e335adaff19eedd9930cbf1aa",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/migration_test.go",
+      "local_sha256": "83b1ad11ab99c1ea5619bc4fda12c89300e4bad2c19bfa516bf54e91777206ac",
+      "remote_sha256": "83b1ad11ab99c1ea5619bc4fda12c89300e4bad2c19bfa516bf54e91777206ac",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/miscs.go",
+      "local_sha256": "558135b5aca9ee11a14608ad97f22c8d4783aeade02555f7a0704c0d4059f438",
+      "remote_sha256": "558135b5aca9ee11a14608ad97f22c8d4783aeade02555f7a0704c0d4059f438",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/miscs_test.go",
+      "local_sha256": "35f1fcda40bc6d04584a9537d077f13a0261ab80be63083cdfbdf35fed13cac6",
+      "remote_sha256": "35f1fcda40bc6d04584a9537d077f13a0261ab80be63083cdfbdf35fed13cac6",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/netpolicy.go",
+      "local_sha256": "ac969fa71418f2cc9a0cd2665de21317fac14cbffb6ae66c06b03a0d6884bfc1",
+      "remote_sha256": "ac969fa71418f2cc9a0cd2665de21317fac14cbffb6ae66c06b03a0d6884bfc1",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/netpolicy_test.go",
+      "local_sha256": "7f67e89d2a650ebacd75a75b9eaa217c80ee8066693ecab5fca6690eab49f375",
+      "remote_sha256": "7f67e89d2a650ebacd75a75b9eaa217c80ee8066693ecab5fca6690eab49f375",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/port.go",
+      "local_sha256": "359eaa19ba923adfaf5a97ffaac9d891c15c1ea77a707931c87845cb9e05ac5f",
+      "remote_sha256": "359eaa19ba923adfaf5a97ffaac9d891c15c1ea77a707931c87845cb9e05ac5f",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/port_test.go",
+      "local_sha256": "d154cf1b210ea0ff9d706b4b7459819a2e912b806c30a7cbfdfc82025c7d9bbd",
+      "remote_sha256": "d154cf1b210ea0ff9d706b4b7459819a2e912b806c30a7cbfdfc82025c7d9bbd",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/reaper.go",
+      "local_sha256": "68755dae46e260349c3140e570dfc2d89d9bc64d8b93d0fbc2354b2a9c186f4c",
+      "remote_sha256": "68755dae46e260349c3140e570dfc2d89d9bc64d8b93d0fbc2354b2a9c186f4c",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/snat.go",
+      "local_sha256": "488ca1bede19d214d90d978c4283d84412d90ec84f4bf6085a982d89735d93da",
+      "remote_sha256": "488ca1bede19d214d90d978c4283d84412d90ec84f4bf6085a982d89735d93da",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/tap.go",
+      "local_sha256": "2736da516928e8fc04b40c592febf1a2d43cd3f4cc62f17dc54bdb25c8f4aab3",
+      "remote_sha256": "2736da516928e8fc04b40c592febf1a2d43cd3f4cc62f17dc54bdb25c8f4aab3",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/tap_test.go",
+      "local_sha256": "31ff9c945aecdf07a5e83fd6a438df174a35f531092af9c6dcf0e754b9bc1216",
+      "remote_sha256": "31ff9c945aecdf07a5e83fd6a438df174a35f531092af9c6dcf0e754b9bc1216",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/tc.go",
+      "local_sha256": "9b2ec879c0088ad1d2e882d07a63eafade359c5d17bec1af39354cbe964bc9e9",
+      "remote_sha256": "9b2ec879c0088ad1d2e882d07a63eafade359c5d17bec1af39354cbe964bc9e9",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/tcp_state_test.go",
+      "local_sha256": "8569e0c493c99d25de23a48cf52bffc1254c48e5912066ea4fb998eb23d362f4",
+      "remote_sha256": "8569e0c493c99d25de23a48cf52bffc1254c48e5912066ea4fb998eb23d362f4",
+      "match": true
+    },
+    {
+      "file": "CubeNet/cubevs/util.go",
+      "local_sha256": "4101ef7e832bc0bf21b6250a9e9c4c64db1100f98ff4102de4bb4f4831ff4a1e",
+      "remote_sha256": "4101ef7e832bc0bf21b6250a9e9c4c64db1100f98ff4102de4bb4f4831ff4a1e",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/.clang-format",
+      "local_sha256": "fbf26924c7742165ba5fa697648a723b6882ce2d17d0a8f7d8c34f888be735d2",
+      "remote_sha256": "fbf26924c7742165ba5fa697648a723b6882ce2d17d0a8f7d8c34f888be735d2",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/.gitignore",
+      "local_sha256": "1ef1a1f63d3293e0d9636458f6043f6d52bd5e239d318e77e4990e38326ad197",
+      "remote_sha256": "1ef1a1f63d3293e0d9636458f6043f6d52bd5e239d318e77e4990e38326ad197",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/cubevs.h",
+      "local_sha256": "e93220578035fc3bfe3841497969071a3a113e77dfc320fcb63e1280931d4b34",
+      "remote_sha256": "e93220578035fc3bfe3841497969071a3a113e77dfc320fcb63e1280931d4b34",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/dns_learn_test.bpf.c",
+      "local_sha256": "dcf6e8615c86351c8e7c3a1ad7074e82eb4a5b31800ae382cb8c7fa4725f2178",
+      "remote_sha256": "dcf6e8615c86351c8e7c3a1ad7074e82eb4a5b31800ae382cb8c7fa4725f2178",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/dns_parser.h",
+      "local_sha256": "58cc428f0bca22729ef640c9f6dc14311a34d33688e295390b8cf107f9dce50f",
+      "remote_sha256": "58cc428f0bca22729ef640c9f6dc14311a34d33688e295390b8cf107f9dce50f",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/dns_query.h",
+      "local_sha256": "2cb74205584143f5449186f32cc2d4c18b8f129b7adf28c8a809f1ce540b55a2",
+      "remote_sha256": "2cb74205584143f5449186f32cc2d4c18b8f129b7adf28c8a809f1ce540b55a2",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/dns_response.h",
+      "local_sha256": "0f3206d48bf902c86bd4106a36b93d5eca8fe423d03480edbc2ea2aed7c9fd10",
+      "remote_sha256": "0f3206d48bf902c86bd4106a36b93d5eca8fe423d03480edbc2ea2aed7c9fd10",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/egress_policy_test.bpf.c",
+      "local_sha256": "b859fd8bf9796c3b63a634184065b29d99d70514b8dc07b00ab1c392eed7ddaa",
+      "remote_sha256": "b859fd8bf9796c3b63a634184065b29d99d70514b8dc07b00ab1c392eed7ddaa",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/icmp.h",
+      "local_sha256": "2e9f162b0ea6a075af19efd42c7804df38b76f47393173d706628dffa21b8963",
+      "remote_sha256": "2e9f162b0ea6a075af19efd42c7804df38b76f47393173d706628dffa21b8963",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/jhash.h",
+      "local_sha256": "645888027f4fd58c144525a65d7f6bca46cec293d883d0cc69a5f9bd8e934897",
+      "remote_sha256": "645888027f4fd58c144525a65d7f6bca46cec293d883d0cc69a5f9bd8e934897",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/l2l3.h",
+      "local_sha256": "1d859c645f2b491d0e9d23f97e6044654121a9008ce59eaec10cd1b635888b97",
+      "remote_sha256": "1d859c645f2b491d0e9d23f97e6044654121a9008ce59eaec10cd1b635888b97",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/l7_mark_test.bpf.c",
+      "local_sha256": "9b6fe7d123cee29c8e52e892a14f11855d26790e5c91e216c56c87293ceda410",
+      "remote_sha256": "9b6fe7d123cee29c8e52e892a14f11855d26790e5c91e216c56c87293ceda410",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/localgw.bpf.c",
+      "local_sha256": "ce2e6080dcc2ad3955ccb815efec2d21ff1cf69ebd0bf73b53e41d352cdc6ada",
+      "remote_sha256": "ce2e6080dcc2ad3955ccb815efec2d21ff1cf69ebd0bf73b53e41d352cdc6ada",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/map.h",
+      "local_sha256": "cbbc8bed44ab00f9df30ccdf6c422ca1c002fb78fa2d85b49b48c6769cb1fa53",
+      "remote_sha256": "cbbc8bed44ab00f9df30ccdf6c422ca1c002fb78fa2d85b49b48c6769cb1fa53",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/mvmtap.bpf.c",
+      "local_sha256": "a4951aec55ba906d6ae2b7ff2259175d9ae1d61b2e0db8138fae02fc67dd7a14",
+      "remote_sha256": "a4951aec55ba906d6ae2b7ff2259175d9ae1d61b2e0db8138fae02fc67dd7a14",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/nat.h",
+      "local_sha256": "75395b449d03bc97999e523e4934e90b2af9212bf1f54e9136e7dbc17f7a01d9",
+      "remote_sha256": "75395b449d03bc97999e523e4934e90b2af9212bf1f54e9136e7dbc17f7a01d9",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/nodenic.bpf.c",
+      "local_sha256": "3e3f5888d44de6898091a997a5267fca16d0599d71d4e38f7dd7abc578284016",
+      "remote_sha256": "3e3f5888d44de6898091a997a5267fca16d0599d71d4e38f7dd7abc578284016",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/session.h",
+      "local_sha256": "e08331e8f9b6ea0374f20daeed9e54202679a801c5189b3f9337e0a464f88640",
+      "remote_sha256": "e08331e8f9b6ea0374f20daeed9e54202679a801c5189b3f9337e0a464f88640",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/skb.h",
+      "local_sha256": "8d7c98e21ae403ce513c59ba060fbf77a6adbf71549ef546684fe79388367c43",
+      "remote_sha256": "8d7c98e21ae403ce513c59ba060fbf77a6adbf71549ef546684fe79388367c43",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/tcp.h",
+      "local_sha256": "22f8b0245d2ec2d31b1650dc74f66da0e41aee16f5983ef5147f29ed2d25f237",
+      "remote_sha256": "22f8b0245d2ec2d31b1650dc74f66da0e41aee16f5983ef5147f29ed2d25f237",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/tcp_reset.h",
+      "local_sha256": "a9f4dfb7c5aa03d4f5e22e1701b464ef99807ac6b393ea5aa363a169bc250ab4",
+      "remote_sha256": "a9f4dfb7c5aa03d4f5e22e1701b464ef99807ac6b393ea5aa363a169bc250ab4",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/tcp_state_test.bpf.c",
+      "local_sha256": "9bc50e3cd4c5885abaeb79f9e91de5364621a2d7f5edd89b8de420ac95f37255",
+      "remote_sha256": "9bc50e3cd4c5885abaeb79f9e91de5364621a2d7f5edd89b8de420ac95f37255",
+      "match": true
+    },
+    {
+      "file": "CubeNet/src/udp.h",
+      "local_sha256": "d80e8ae2ca9487501908bc3f290f270a223304fd80d61be8dd46db4815929b18",
+      "remote_sha256": "d80e8ae2ca9487501908bc3f290f270a223304fd80d61be8dd46db4815929b18",
+      "match": true
+    },
+    {
+      "file": "CubeNet/vmlinux/Makefile",
+      "local_sha256": "40ce870ea7e428e6a27c1c5804443131c149e0959aafc21c3fd16a955b2fed79",
+      "remote_sha256": "40ce870ea7e428e6a27c1c5804443131c149e0959aafc21c3fd16a955b2fed79",
+      "match": true
+    },
+    {
+      "file": "CubeNet/vmlinux/amd64/vmlinux.h",
+      "local_sha256": "07e22edb271951f6ac5a0ce57a0b322a416987044e19d23406198de5648aee98",
+      "remote_sha256": "07e22edb271951f6ac5a0ce57a0b322a416987044e19d23406198de5648aee98",
+      "match": true
+    },
+    {
+      "file": "CubeNet/vmlinux/arm64/vmlinux.h",
+      "local_sha256": "162980d519b1891e055afdeda1e2fdeb3fc24d8ff3a2c718876042f3c3f49053",
+      "remote_sha256": "162980d519b1891e055afdeda1e2fdeb3fc24d8ff3a2c718876042f3c3f49053",
+      "match": true
+    },
+    {
+      "file": "cubecow/Cargo.lock",
+      "local_sha256": "11cbe42975a8f62c7a577981dab958869b24e7688c81d30e1863feeac76f1431",
+      "remote_sha256": "11cbe42975a8f62c7a577981dab958869b24e7688c81d30e1863feeac76f1431",
+      "match": true
+    },
+    {
+      "file": "cubecow/Cargo.toml",
+      "local_sha256": "2aec4dd9283ffd050909d5b8fd7b22787c9b2a948276739a3885f0ebb74c24a3",
+      "remote_sha256": "2aec4dd9283ffd050909d5b8fd7b22787c9b2a948276739a3885f0ebb74c24a3",
+      "match": true
+    },
+    {
+      "file": "cubecow/include/cubecow.h",
+      "local_sha256": "0b2165cf90696287546dfe0b7b01f22a806c0823c0166f02d75ebb32fe03f987",
+      "remote_sha256": "0b2165cf90696287546dfe0b7b01f22a806c0823c0166f02d75ebb32fe03f987",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/bin/cubecow_cli.rs",
+      "local_sha256": "514f03ede5d85ecd6f5203675f2d698fda1405c32964c6e6cb1697955e5733e1",
+      "remote_sha256": "514f03ede5d85ecd6f5203675f2d698fda1405c32964c6e6cb1697955e5733e1",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/config/mod.rs",
+      "local_sha256": "7998f305fd4ed620371046ba1bb7d33c6a337bc280386773a5cda33ede6a6a96",
+      "remote_sha256": "7998f305fd4ed620371046ba1bb7d33c6a337bc280386773a5cda33ede6a6a96",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/engine/mod.rs",
+      "local_sha256": "41682b31dd0127d3a07e7e5e6a9ae14396dc53a6a02e06a4b6a6b60c61508c5a",
+      "remote_sha256": "41682b31dd0127d3a07e7e5e6a9ae14396dc53a6a02e06a4b6a6b60c61508c5a",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/engine/reflink.rs",
+      "local_sha256": "ac28eaffc545c4a7c49b4a299c8492360621c3e81d5b28a2782b09370fcbbbc0",
+      "remote_sha256": "ac28eaffc545c4a7c49b4a299c8492360621c3e81d5b28a2782b09370fcbbbc0",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/engine/s3.rs",
+      "local_sha256": "249cf6e2eca74763abd7fe378ee0a27de706e90a20b5a788f47e6b26677df336",
+      "remote_sha256": "249cf6e2eca74763abd7fe378ee0a27de706e90a20b5a788f47e6b26677df336",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/ffi.rs",
+      "local_sha256": "a7bfc60ea4766b1797271a15aee2c13ea94de692aabf6a439b49aba6f70981cc",
+      "remote_sha256": "a7bfc60ea4766b1797271a15aee2c13ea94de692aabf6a439b49aba6f70981cc",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/lib.rs",
+      "local_sha256": "c478501f4cc6819336f864738a86b718013ec577966941d70aa992728c250591",
+      "remote_sha256": "c478501f4cc6819336f864738a86b718013ec577966941d70aa992728c250591",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/pkg/errors/mod.rs",
+      "local_sha256": "7b273fa0e229579780ccef5738ef3c272413e4bcba14b4fce91ac720f81f079b",
+      "remote_sha256": "7b273fa0e229579780ccef5738ef3c272413e4bcba14b4fce91ac720f81f079b",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/pkg/executor/mod.rs",
+      "local_sha256": "76d892a7d429327dfc5a4dc9d2cf936fac971e5313605c57debcff0604994e38",
+      "remote_sha256": "76d892a7d429327dfc5a4dc9d2cf936fac971e5313605c57debcff0604994e38",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/pkg/logger/mod.rs",
+      "local_sha256": "a2adfe60db8d7bbde67a8c92255599bff0d0f5b8a9c509fc29a4968ecd378a30",
+      "remote_sha256": "a2adfe60db8d7bbde67a8c92255599bff0d0f5b8a9c509fc29a4968ecd378a30",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/pkg/metrics/mod.rs",
+      "local_sha256": "493eef832821e7ead32c734ad0f1525f6365f5ea32cc9c9f1c7e8824f74d11ac",
+      "remote_sha256": "493eef832821e7ead32c734ad0f1525f6365f5ea32cc9c9f1c7e8824f74d11ac",
+      "match": true
+    },
+    {
+      "file": "cubecow/src/pkg/mod.rs",
+      "local_sha256": "2b0278fa3c5756235dfe2768a34e16481dbb8e3578520b22dd8a4b6cf7b5c774",
+      "remote_sha256": "2b0278fa3c5756235dfe2768a34e16481dbb8e3578520b22dd8a4b6cf7b5c774",
+      "match": true
+    }
+  ],
+  "reused_artifacts": [
+    {
+      "file": "CubeNet/cubevs/localgw_arm64_bpfel.go",
+      "sha256": "dde5f9804abde736e59ab2c636148b3119abbe1cbfd0f0b7f55cd0f324cb7e64"
+    },
+    {
+      "file": "CubeNet/cubevs/localgw_arm64_bpfel.o",
+      "sha256": "42b2017e3eef7c74ced891390c7728a2c6f48a4f1461ebabd16f8d9b5716b453"
+    },
+    {
+      "file": "CubeNet/cubevs/mvmtap_arm64_bpfel.go",
+      "sha256": "ccdc4f21dbac8a4c9d7ef3bd577ebd84527ab79b15513cde8febb1010fbf35b5"
+    },
+    {
+      "file": "CubeNet/cubevs/mvmtap_arm64_bpfel.o",
+      "sha256": "af76564da5510e95ceee0f60f0feb981c3a7be9356e278c98b52256c7350ca8b"
+    },
+    {
+      "file": "CubeNet/cubevs/nodenic_arm64_bpfel.go",
+      "sha256": "fccb06de04c28def77a7213e7d91a8264b3f0017b6ec405363428f3433155663"
+    },
+    {
+      "file": "CubeNet/cubevs/nodenic_arm64_bpfel.o",
+      "sha256": "152b39a5eb5302bd050ae454c5bc29432bc635d4a4fdcd0ba4ce7861719f8043"
+    },
+    {
+      "file": "Cubelet/third_party/cubecow/include/cubecow.h",
+      "sha256": "0b2165cf90696287546dfe0b7b01f22a806c0823c0166f02d75ebb32fe03f987"
+    },
+    {
+      "file": "Cubelet/third_party/cubecow/lib/libcubecow.a",
+      "sha256": "eb29115137bb33e520c1bb9c4b1423d6ab32e3bc383c92602f845b5ccf51933a"
+    }
+  ],
+  "provenance": {
+    "build_script": "/data/rootcause-native-affinity-build-fz32Lg/build-native-arm64.sh",
+    "declared_version": "v0.7.1-native-affinity-experimental",
+    "declared_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d+d30085323a8e",
+    "artifact_date": "2026-09-18",
+    "build_environment": "isolated ARM64 builder; /work source mount",
+    "cubecow_command": "cargo +1.89 build --release --locked --offline -p cubecow",
+    "cubecow_build_log": "/data/rootcause-native-affinity-build-fz32Lg/source/build/logs/cubecow.log",
+    "cubecow_build_log_result": "Finished `release` profile [optimized] target(s) in 28.60s",
+    "bpf_command": "cd CubeNet/cubevs && make gen",
+    "bpf_build_log": "/data/rootcause-native-affinity-build-fz32Lg/source/build/logs/bpf.log",
+    "note": "The prior build included native-affinity changes elsewhere. All 75 source/dependency-definition files relevant to the reused cubecow and CubeNet artifacts match the local v0.7.1 base. This validates source compatibility; it is not a bit-reproducible rebuild or attestation of compiler/toolchain identity."
+  },
+  "reuse_instructions": "Copy listed artifacts preserving relative paths into observation source tree; retain CGO_ENABLED=1. No full build or remote mutation was performed by this audit."
+}

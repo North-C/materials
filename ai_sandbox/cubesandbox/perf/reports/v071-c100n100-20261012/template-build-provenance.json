@@ -1,0 +1,103 @@
+{
+  "request": {
+    "requestID": "bottleneck-v071-20261012T094434Z",
+    "alias": "perf-v071-c100n100-20261012t094434z",
+    "source_image_ref": "cube-sandbox-cn.tencentcloudcr.com/cube-sandbox/sandbox-code@sha256:e1cb43e12ba70b8453b45f0c063306faab8a6974aa3fd76982dc4d019d07c60d",
+    "writable_layer_size": "1G",
+    "instance_type": "cubebox",
+    "network_type": "tap",
+    "distribution_scope": [
+      "192.168.25.90"
+    ],
+    "exposed_ports": [
+      49999,
+      49983
+    ],
+    "container_overrides": {
+      "resources": {
+        "cpu": "2000m",
+        "mem": "2048Mi"
+      },
+      "probe": {
+        "probe_handler": {
+          "http_get": {
+            "path": "/health",
+            "port": 49999
+          }
+        },
+        "initial_delay_ms": 0,
+        "timeout_ms": 30000,
+        "period_ms": 500,
+        "probe_timeout_ms": 2000,
+        "success_threshold": 1,
+        "failure_threshold": 60
+      }
+    }
+  },
+  "submission": {
+    "ret": {
+      "ret_code": 200,
+      "ret_msg": "success"
+    },
+    "job": {
+      "job_id": "7c6f7d99-1a97-4b47-ade5-ce07bb3a57f4",
+      "template_id": "tpl-cf2b04fdd4604b7c84e157fa",
+      "status": "PENDING",
+      "phase": "PULLING",
+      "progress": null,
+      "error_message": null
+    }
+  },
+  "template_id": "tpl-cf2b04fdd4604b7c84e157fa",
+  "ready_validation": {
+    "observed_at": "2026-10-12T09:45:58.995000+00:00",
+    "read_only": true,
+    "templateID": "tpl-cf2b04fdd4604b7c84e157fa",
+    "jobID": "7c6f7d99-1a97-4b47-ade5-ce07bb3a57f4",
+    "status": "READY",
+    "version": "v2",
+    "aliases": [
+      "perf-v071-c100n100-20261012t094434z"
+    ],
+    "replicas": [
+      {
+        "node_id": "192.168.25.90",
+        "node_ip": "192.168.25.90",
+        "status": "READY"
+      }
+    ],
+    "container_resources": [
+      {
+        "cpu": "2000m",
+        "mem": "2048Mi"
+      }
+    ],
+    "writable_sizes": [
+      {
+        "field": "/containers/0/image/writable_layer_size",
+        "value": "1G"
+      },
+      {
+        "field": "/volumes/0/volume_source/empty_dir/size_limit",
+        "value": "1G"
+      }
+    ],
+    "source_image_refs": [
+      {
+        "source": "request",
+        "field": "/source_image_ref",
+        "sha256": "e1cb43e12ba70b8453b45f0c063306faab8a6974aa3fd76982dc4d019d07c60d",
+        "matches_expected_digest": true
+      }
+    ],
+    "checks": {
+      "ready": true,
+      "node_90_ready": true,
+      "resources_2000m_2048Mi": true,
+      "writable_1G": true,
+      "request_digest_pinned": true
+    },
+    "ok": true
+  },
+  "evidence_scope": "Preserved build request and submission, same job/template verified READY; no claim of a fresh image rebuild during the timed run."
+}

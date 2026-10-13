@@ -1,0 +1,1007 @@
+{
+  "schema_version": 1,
+  "status": "classified",
+  "method": "exclusive-template; exact Master request/response pairs; proven serial warmup boundary",
+  "raw_seq_to_sandbox_mapping": "unavailable",
+  "checks": {
+    "master_log_complete": true,
+    "capture_command_succeeded": true,
+    "ownership_originally_unknown_103": true,
+    "adapter_success": true,
+    "pinned_suite_preflight_contract": true,
+    "official_binary_verified": true,
+    "exclusive_ledger_drained": true,
+    "official_workload_success": true,
+    "three_successful_serial_warmup_messages": true,
+    "identity_empty_baselines": true,
+    "stable_host_release": true,
+    "stable_service_processes": true,
+    "master_exactly_104_unique_pairs_including_preflight": true,
+    "single_preflight_completed_and_delete_ack_before_owned": true,
+    "master_pairs_successful_owned_in_window": true,
+    "warmup_boundary_strictly_ordered": true
+  },
+  "errors": [],
+  "ownership": {
+    "warmup": [
+      "865afc1d92e940509c558a992093ac1c",
+      "01b947e0c2c04684b9c909223d334f2c",
+      "aca7ffbe46b94271a7fae91a701d6a87"
+    ],
+    "formal": [
+      "6a5e928378114a5494b3c07d064fef34",
+      "8eae00555a954636b30f40d9df19fd95",
+      "35a373783b334a238d1a68a2b5823d68",
+      "25f374a9633f4c57b91501a84d7ae396",
+      "adf7f5dea85a48e2aeec7feaf80ae1cf",
+      "9cc5e862db484d11a67eeaa7af764c44",
+      "716a7a4fb27049e69d1a2e7f94d2abb7",
+      "7259e1fca89d425d915732d3c3f27b07",
+      "66be88a984524c27a64195b44bf880ed",
+      "eec82c0346244eee86f4bdedc9549cef",
+      "13954107babf4e1cb0c177f819eb2328",
+      "4ff3fed3d16e4608a02974b90910c31d",
+      "7be508d36e524f419405464700b1dd6f",
+      "e9acb1529de14a8c9eef62a6b28ea8a1",
+      "0efebe7f1ffa4d60916938185d9cc8ba",
+      "96d0b7e079304de9b0d6b9f22ca66d4c",
+      "cba0ab05cfea43068fd61948649a6548",
+      "4b194b6d62c343b6abd57dfc31d8e856",
+      "f0f4dc72bfc5441c8562432de35a8ecd",
+      "966e0b201c424877a0d31e9b9aaf62a1",
+      "7547c69184b9496a8285acbcb7381ed4",
+      "08781e7d6706472796eb6fcde06e9412",
+      "4be0d93f8e6f4e9791148925e92fb775",
+      "1f7b1d5ce475493494047661d868cafa",
+      "f707876c69904c38890f11d413d90183",
+      "d5431be021114fb08066eff46a24ed49",
+      "5591ba2e9f9b4803b0a9211f045eb3b3",
+      "af133b1f8e154eff990b8124228aafb1",
+      "29f3a7f237474dd59d40badd57570de8",
+      "b8b7014ce51844af8fa33b8b9fafea7d",
+      "62acb9639dca4103a2bf65e3556523f6",
+      "b9a9bd44dc7c4b4e8fa5ef0352636d95",
+      "0c2566e3b85d4695b4936960e2a019cc",
+      "5f2ed7ba622641b98af66a79ad1444c4",
+      "5022c71727e94ff19e75ef11fbb6ff0a",
+      "220bd9fc77a74f15844b30c8c58fc01c",
+      "8ebe4a5a36d644bf9d4ec83e73ad7e59",
+      "1cba94208b554e0fbb04b32aa4035ef6",
+      "bc026e4559924794b4b8b5dbeba82f7b",
+      "1e5e6ba307764c60bd5f8747d6f3e120",
+      "5b3c7139804e4b41b8650c048d3da04a",
+      "5415ac5c087f42549fb2b3b4b65bc181",
+      "b8ccea917d98498c885e3b1a329b859b",
+      "f439a82e69524d7b830dbc187a47dacc",
+      "9d6f288d66f4472bb129c2f42a35f89d",
+      "ce01b623949c41c6b0fc00c47afbc6aa",
+      "64f4f9ca4a9542dfa95fc3fc8c9ad4d2",
+      "dd28f20dcdd348ceb2ba536b9dbdc350",
+      "4f0437f38d2c423e92b02519e96a0c5d",
+      "6d6972a0bb304f6c8eb8addd86cf326a",
+      "fe7820d51b4f443e81c53147c8d04026",
+      "6ab3bfe6ab284d4485ebd347f5012ba6",
+      "1b4b1e3cf6614e6794301bc48ec91074",
+      "a8474c0e4d5547fead15ba4146717255",
+      "a482ce549ad942e6a3cdc69f07e61c09",
+      "1ffc8e2385994dd3ababd9e7a59bc32f",
+      "f9e549d15aff4dc4a114fb9a8785c8ed",
+      "b4d72c2b88c342f4b662472a7f576e1d",
+      "e12911b9e1d140feaab09f6b00c62222",
+      "3c9bb09d7c4f4d0cbe840307cf0e1909",
+      "c7dfab1c25b441268e7927164ce50e60",
+      "00024c601b254d5ab6a6a1b3afb6e386",
+      "adf977910bb94796bb3ac2c978b5a834",
+      "b8f2f6422f644ed4a4bb1602d09eb980",
+      "461d7f472df44b79a9fb4f3d2f0ff664",
+      "7038d4c09c0445df8532630d3339b1d5",
+      "6a95894877a748159f555d18a569bd88",
+      "6ae3576f567a449ab1a461d02b6aabbd",
+      "65c881da5f9f46c39c8c29194edbe9ae",
+      "14392719a5624fb5bfa41d49bfcc1f6b",
+      "90a3fe12849b4e7b82841f8cfb4b3f44",
+      "296e8022a12a43519769a209fc125993",
+      "baddfeae334d43bba0025e9e79602f35",
+      "b1a735c7bae34b7c8bdf168532bf2ac3",
+      "d421084c55194294a114198dfea17ba1",
+      "acae6c8e80d94e3cb77d27efbc29308d",
+      "714a450c4e234e7a9d0bf799c359cf55",
+      "4388258105a54fd8bd926370ec67532a",
+      "6aa8f556a4e244cc8706cd26d2c3246d",
+      "d510e142c86c4de3b82b4e080cedfd89",
+      "502e14b264d04fbf866f43576007d024",
+      "bfa5c897d82c456388ea564c14ca05e9",
+      "415a538cfbe74457979fa3669abb84bc",
+      "165917d007584df98c460c03220721d5",
+      "1e1278c8e94c4235862edb253c783d4c",
+      "fa54c3b4844d473fa672068f143b505a",
+      "e77ff999d1f64e26bdd0302ace4bc1c5",
+      "aa49a4ba26204af6bb677ac1ef3de667",
+      "572ab222e95646a9bad3b632ad74ceb6",
+      "044962cc528e4e0b959f2c9a26a73d20",
+      "ee96c00b90c64910b67502eed6d6981c",
+      "5d4f461ac03540e5b9e0b62fba449b4f",
+      "ad54b66673e84d6b8445a7f529e920d3",
+      "48231df04c2840dab1d85b7cc0814a65",
+      "a65c884a34c4452a91c9513d9de96801",
+      "2ee924167afe436a96c4ca5fc3aeffa3",
+      "a591e4ff0b7f41608b237a58a9854ddb",
+      "ca705d5a266141dc96f30994d6684678",
+      "4996cf9c10de405b952332ead14fe28e",
+      "a08556d7086a433d944d5b26ef0aeeba"
+    ],
+    "unknown_phase": []
+  },
+  "evidence": {
+    "files": {
+      "capture-manifest.json": {
+        "bytes": 11335,
+        "sha256": "14defa3e7ddf25c1e34b8cd6b4875d0315e02708d63ae3de85d29883e7fbd7c3"
+      },
+      "evidence/master-delta.log": {
+        "bytes": 855090,
+        "sha256": "e1a74f82a81e16a2ec4c4ba1e5eea5ce937cda259a6da9ee74068e0aa8e7a0d6"
+      },
+      "owned-sandbox-ids.json": {
+        "bytes": 4180,
+        "sha256": "3d074fcda1263f1eecae7bcc23c1685a3ef7a3a3ce4382b5d9b63ac5743b0eab"
+      },
+      "adapter-status.json": {
+        "bytes": 2092,
+        "sha256": "280fd6275cf72e1d11007401e37d7e0ae6dd6fc668c22654ed81fc1ab5b53eb5"
+      },
+      "suite-results/c100n100.delete.json": {
+        "bytes": 23438,
+        "sha256": "20573ed84dd25e30aee1f33062c3619356ed5ebfdef78c0678ae0d1e9bd95d3f"
+      },
+      "startup-latency/c100n100.raw.json": {
+        "bytes": 8636,
+        "sha256": "109ab88c6adc7067a8c180a062724f57a25f2a9154ffa69cd969908938bdf9f8"
+      },
+      "suite-results/3.2-c100n100.log": {
+        "bytes": 9261,
+        "sha256": "53c9dc81825bc04906b62089db96f88141de6785e82f33105619ae567a10d663"
+      },
+      "service-identity-before.json": {
+        "bytes": 3156,
+        "sha256": "266a2cd1d1c5a70656871cd2ce9de2821ce14a4bbbae40b87882f13f94869f61"
+      },
+      "service-identity-after.json": {
+        "bytes": 3157,
+        "sha256": "9c99133df78e9284938d88808c905e2e28287ffb6154f0bffa57072f542c5bbd"
+      }
+    },
+    "binary_sha256": "d7d7685433bea7909b124504f4851517bdae146c4bb13e279fbb816c20bd032d",
+    "template_id": "tpl-cf2b04fdd4604b7c84e157fa",
+    "master_start_count": 104,
+    "master_response_count": 104,
+    "malformed_or_duplicate_markers": 0,
+    "warmup_messages": [
+      "    warmup [1/3] ok",
+      "    warmup [2/3] ok",
+      "    warmup [3/3] ok"
+    ],
+    "services_before": [
+      {
+        "component": "cube-api",
+        "pid": 32327,
+        "start_ticks": "6940",
+        "exe": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+        "sha256": "6a84128504f7e1575d5d86e4f6da9953c794356b2875acae968344d94421d34a",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      },
+      {
+        "component": "templatecenter",
+        "pid": 32337,
+        "start_ticks": "6944",
+        "exe": "/usr/local/services/cubetoolbox/CubeTemplateCenter/bin/templatecenter",
+        "sha256": "cfdab176aaa39f39352ce2c3eff98d5d7cab4837385a32f6363db835a94e8d65",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      },
+      {
+        "component": "cubelet",
+        "pid": 1257466,
+        "start_ticks": "15114682",
+        "exe": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+        "sha256": "6814fadeec55e27227686367ab3ed957411ca926caabc63dd12121cbeb190dac",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      },
+      {
+        "component": "cubemaster",
+        "pid": 1823839,
+        "start_ticks": "9558737",
+        "exe": "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster",
+        "sha256": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      }
+    ],
+    "services_after": [
+      {
+        "component": "cube-api",
+        "pid": 32327,
+        "start_ticks": "6940",
+        "exe": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+        "sha256": "6a84128504f7e1575d5d86e4f6da9953c794356b2875acae968344d94421d34a",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      },
+      {
+        "component": "templatecenter",
+        "pid": 32337,
+        "start_ticks": "6944",
+        "exe": "/usr/local/services/cubetoolbox/CubeTemplateCenter/bin/templatecenter",
+        "sha256": "cfdab176aaa39f39352ce2c3eff98d5d7cab4837385a32f6363db835a94e8d65",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      },
+      {
+        "component": "cubelet",
+        "pid": 1257466,
+        "start_ticks": "15114682",
+        "exe": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+        "sha256": "6814fadeec55e27227686367ab3ed957411ca926caabc63dd12121cbeb190dac",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      },
+      {
+        "component": "cubemaster",
+        "pid": 1823839,
+        "start_ticks": "9558737",
+        "exe": "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster",
+        "sha256": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      }
+    ],
+    "excluded_preflight": [
+      {
+        "request_id": "aeec23af-9a77-48e1-ae8a-39ae99914876",
+        "sandbox_id": "7096c86af9504e9e9e83f337f6d954b3",
+        "start": "2026-10-12T22:15:14.7187766+08:00",
+        "response": "2026-10-12T22:15:14.77584799+08:00",
+        "success": true
+      }
+    ],
+    "preflight_delete_ack": [
+      {
+        "sandbox_id": "7096c86af9504e9e9e83f337f6d954b3",
+        "request_id": "cd8b67e7-9498-4370-ab08-e2f58b4e9cfb",
+        "at": "2026-10-12T22:15:14.94021497+08:00",
+        "success": true
+      }
+    ],
+    "preflight_drain_basis": "Pinned suite requires empty API inventory after guest_preflight and again before benchmark; suite preflight/case success verified. Delete ack alone is not proof of drain.",
+    "pairs": [
+      {
+        "request_id": "0ec7d7bb-e8a5-4d07-b535-9e42861b3fd1",
+        "sandbox_id": "865afc1d92e940509c558a992093ac1c",
+        "start": "2026-10-12T22:15:43.87450515+08:00",
+        "response": "2026-10-12T22:15:43.94048265+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a1e80108-4078-40db-9196-9e92cafefc8e",
+        "sandbox_id": "01b947e0c2c04684b9c909223d334f2c",
+        "start": "2026-10-12T22:15:43.94251051+08:00",
+        "response": "2026-10-12T22:15:44.00803823+08:00",
+        "success": true
+      },
+      {
+        "request_id": "bcf58587-75f6-44a2-a6c0-4b39c77740f9",
+        "sandbox_id": "aca7ffbe46b94271a7fae91a701d6a87",
+        "start": "2026-10-12T22:15:44.01013914+08:00",
+        "response": "2026-10-12T22:15:44.06012601+08:00",
+        "success": true
+      },
+      {
+        "request_id": "7256f2ef-5f79-4ad0-aa03-0dc012ad669f",
+        "sandbox_id": "6a5e928378114a5494b3c07d064fef34",
+        "start": "2026-10-12T22:15:44.06415886+08:00",
+        "response": "2026-10-12T22:15:44.2216702+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b42b7f46-630b-40c1-8cc2-fd586cc48b28",
+        "sandbox_id": "8eae00555a954636b30f40d9df19fd95",
+        "start": "2026-10-12T22:15:44.06505842+08:00",
+        "response": "2026-10-12T22:15:44.22148462+08:00",
+        "success": true
+      },
+      {
+        "request_id": "9c9c7186-f86b-4b6b-b480-30bab3692876",
+        "sandbox_id": "35a373783b334a238d1a68a2b5823d68",
+        "start": "2026-10-12T22:15:44.0650898+08:00",
+        "response": "2026-10-12T22:15:44.20869243+08:00",
+        "success": true
+      },
+      {
+        "request_id": "96a6a56a-743f-496b-9130-c0dcc0cc0c9f",
+        "sandbox_id": "25f374a9633f4c57b91501a84d7ae396",
+        "start": "2026-10-12T22:15:44.06521156+08:00",
+        "response": "2026-10-12T22:15:44.22123058+08:00",
+        "success": true
+      },
+      {
+        "request_id": "43d0c773-918b-4745-b5ff-08c51653a110",
+        "sandbox_id": "adf7f5dea85a48e2aeec7feaf80ae1cf",
+        "start": "2026-10-12T22:15:44.06530949+08:00",
+        "response": "2026-10-12T22:15:44.22151988+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a320b574-1d0f-45ed-bb23-c40428a7b60d",
+        "sandbox_id": "9cc5e862db484d11a67eeaa7af764c44",
+        "start": "2026-10-12T22:15:44.0653326+08:00",
+        "response": "2026-10-12T22:15:44.23759357+08:00",
+        "success": true
+      },
+      {
+        "request_id": "e02fee5b-444a-4bc6-9d6c-827afbca9afe",
+        "sandbox_id": "716a7a4fb27049e69d1a2e7f94d2abb7",
+        "start": "2026-10-12T22:15:44.06551996+08:00",
+        "response": "2026-10-12T22:15:44.20156927+08:00",
+        "success": true
+      },
+      {
+        "request_id": "262af222-ba65-4dc0-8fed-08418b89fa82",
+        "sandbox_id": "7259e1fca89d425d915732d3c3f27b07",
+        "start": "2026-10-12T22:15:44.0657627+08:00",
+        "response": "2026-10-12T22:15:44.28385338+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f995181a-11b0-47d0-8989-479b882585e5",
+        "sandbox_id": "66be88a984524c27a64195b44bf880ed",
+        "start": "2026-10-12T22:15:44.06587825+08:00",
+        "response": "2026-10-12T22:15:44.29941422+08:00",
+        "success": true
+      },
+      {
+        "request_id": "3aa17c5a-9d9a-48ba-bbdf-2ed596565e67",
+        "sandbox_id": "eec82c0346244eee86f4bdedc9549cef",
+        "start": "2026-10-12T22:15:44.06619941+08:00",
+        "response": "2026-10-12T22:15:44.24474077+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d7c14b4a-e66f-4848-9348-b9ce2cf33a8d",
+        "sandbox_id": "13954107babf4e1cb0c177f819eb2328",
+        "start": "2026-10-12T22:15:44.06682895+08:00",
+        "response": "2026-10-12T22:15:44.26433477+08:00",
+        "success": true
+      },
+      {
+        "request_id": "449faed5-61f2-49b5-a176-d30e6a415946",
+        "sandbox_id": "4ff3fed3d16e4608a02974b90910c31d",
+        "start": "2026-10-12T22:15:44.06700144+08:00",
+        "response": "2026-10-12T22:15:44.30417348+08:00",
+        "success": true
+      },
+      {
+        "request_id": "8a8d4e05-ce47-4fde-91a0-46a962f51e7b",
+        "sandbox_id": "7be508d36e524f419405464700b1dd6f",
+        "start": "2026-10-12T22:15:44.06700981+08:00",
+        "response": "2026-10-12T22:15:44.29535642+08:00",
+        "success": true
+      },
+      {
+        "request_id": "af64613f-94d0-4785-9f9f-21f0d194373b",
+        "sandbox_id": "e9acb1529de14a8c9eef62a6b28ea8a1",
+        "start": "2026-10-12T22:15:44.06708111+08:00",
+        "response": "2026-10-12T22:15:44.29759481+08:00",
+        "success": true
+      },
+      {
+        "request_id": "3f42de89-f4bc-40df-b920-c9ce88c256fe",
+        "sandbox_id": "0efebe7f1ffa4d60916938185d9cc8ba",
+        "start": "2026-10-12T22:15:44.06710882+08:00",
+        "response": "2026-10-12T22:15:44.29269467+08:00",
+        "success": true
+      },
+      {
+        "request_id": "02fb61ef-85a1-4087-b7d6-1e54cd3d7e40",
+        "sandbox_id": "96d0b7e079304de9b0d6b9f22ca66d4c",
+        "start": "2026-10-12T22:15:44.06721765+08:00",
+        "response": "2026-10-12T22:15:44.26422979+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c71c0ca9-2856-4e3c-9496-f1f701b80854",
+        "sandbox_id": "cba0ab05cfea43068fd61948649a6548",
+        "start": "2026-10-12T22:15:44.06731983+08:00",
+        "response": "2026-10-12T22:15:44.24268035+08:00",
+        "success": true
+      },
+      {
+        "request_id": "e8b07965-d810-4e1f-8285-1416d7cc59eb",
+        "sandbox_id": "4b194b6d62c343b6abd57dfc31d8e856",
+        "start": "2026-10-12T22:15:44.06748652+08:00",
+        "response": "2026-10-12T22:15:44.35182055+08:00",
+        "success": true
+      },
+      {
+        "request_id": "3a948bdf-22fb-4784-87cf-53bd2a76fce8",
+        "sandbox_id": "f0f4dc72bfc5441c8562432de35a8ecd",
+        "start": "2026-10-12T22:15:44.06768652+08:00",
+        "response": "2026-10-12T22:15:44.28433387+08:00",
+        "success": true
+      },
+      {
+        "request_id": "815fc0ab-c21a-42ee-82ab-2542958c1989",
+        "sandbox_id": "966e0b201c424877a0d31e9b9aaf62a1",
+        "start": "2026-10-12T22:15:44.06775794+08:00",
+        "response": "2026-10-12T22:15:44.27167857+08:00",
+        "success": true
+      },
+      {
+        "request_id": "e60d1f04-5ff5-44e3-8fa7-432d52b35f6b",
+        "sandbox_id": "7547c69184b9496a8285acbcb7381ed4",
+        "start": "2026-10-12T22:15:44.06785908+08:00",
+        "response": "2026-10-12T22:15:44.35348821+08:00",
+        "success": true
+      },
+      {
+        "request_id": "6a732266-126c-419d-bfa8-e7f7d6d86028",
+        "sandbox_id": "08781e7d6706472796eb6fcde06e9412",
+        "start": "2026-10-12T22:15:44.06853533+08:00",
+        "response": "2026-10-12T22:15:44.30092499+08:00",
+        "success": true
+      },
+      {
+        "request_id": "10aaeaf3-171c-43ef-bd08-e2939974063c",
+        "sandbox_id": "4be0d93f8e6f4e9791148925e92fb775",
+        "start": "2026-10-12T22:15:44.06882631+08:00",
+        "response": "2026-10-12T22:15:44.26399114+08:00",
+        "success": true
+      },
+      {
+        "request_id": "25fe4a81-afd2-4221-ae1a-39c6d3a6dfa2",
+        "sandbox_id": "1f7b1d5ce475493494047661d868cafa",
+        "start": "2026-10-12T22:15:44.07100175+08:00",
+        "response": "2026-10-12T22:15:44.34027461+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a0f4ce03-285d-4f48-8941-b98ac5530807",
+        "sandbox_id": "f707876c69904c38890f11d413d90183",
+        "start": "2026-10-12T22:15:44.07128063+08:00",
+        "response": "2026-10-12T22:15:44.40391191+08:00",
+        "success": true
+      },
+      {
+        "request_id": "038d305f-81d5-4c5b-9f39-f3a89462bbe7",
+        "sandbox_id": "d5431be021114fb08066eff46a24ed49",
+        "start": "2026-10-12T22:15:44.07138814+08:00",
+        "response": "2026-10-12T22:15:44.40472365+08:00",
+        "success": true
+      },
+      {
+        "request_id": "7bfe02b0-aeb8-42d3-a034-98eb723ac238",
+        "sandbox_id": "5591ba2e9f9b4803b0a9211f045eb3b3",
+        "start": "2026-10-12T22:15:44.07159557+08:00",
+        "response": "2026-10-12T22:15:44.38852882+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c1fd4b5a-344c-4340-965c-e6d3a5c0b70b",
+        "sandbox_id": "af133b1f8e154eff990b8124228aafb1",
+        "start": "2026-10-12T22:15:44.07171082+08:00",
+        "response": "2026-10-12T22:15:44.39169163+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a2c172b3-4381-4e7e-b955-930692eb6deb",
+        "sandbox_id": "29f3a7f237474dd59d40badd57570de8",
+        "start": "2026-10-12T22:15:44.07171597+08:00",
+        "response": "2026-10-12T22:15:44.3917139+08:00",
+        "success": true
+      },
+      {
+        "request_id": "1c1fbf1c-5f25-4ad7-bb0e-73f7e95824fe",
+        "sandbox_id": "b8b7014ce51844af8fa33b8b9fafea7d",
+        "start": "2026-10-12T22:15:44.07176254+08:00",
+        "response": "2026-10-12T22:15:44.43331296+08:00",
+        "success": true
+      },
+      {
+        "request_id": "4977aa31-fd7f-4259-b119-2bfcf95a464c",
+        "sandbox_id": "62acb9639dca4103a2bf65e3556523f6",
+        "start": "2026-10-12T22:15:44.07182569+08:00",
+        "response": "2026-10-12T22:15:44.42735144+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a33819f4-0df2-4709-b0a3-b2e306a3bb25",
+        "sandbox_id": "b9a9bd44dc7c4b4e8fa5ef0352636d95",
+        "start": "2026-10-12T22:15:44.07185536+08:00",
+        "response": "2026-10-12T22:15:44.43067058+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d28e7a39-a84a-43bb-baac-a5302e4d2f02",
+        "sandbox_id": "0c2566e3b85d4695b4936960e2a019cc",
+        "start": "2026-10-12T22:15:44.07198822+08:00",
+        "response": "2026-10-12T22:15:44.46340056+08:00",
+        "success": true
+      },
+      {
+        "request_id": "1cbeb022-a1eb-4b38-bc9a-21a9c359445f",
+        "sandbox_id": "5f2ed7ba622641b98af66a79ad1444c4",
+        "start": "2026-10-12T22:15:44.07207548+08:00",
+        "response": "2026-10-12T22:15:44.41267779+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f396df4c-7a12-4169-a520-abce007800e7",
+        "sandbox_id": "5022c71727e94ff19e75ef11fbb6ff0a",
+        "start": "2026-10-12T22:15:44.07209927+08:00",
+        "response": "2026-10-12T22:15:44.29269763+08:00",
+        "success": true
+      },
+      {
+        "request_id": "5a6ae477-b65c-472c-ad2a-c7afeefce6c7",
+        "sandbox_id": "220bd9fc77a74f15844b30c8c58fc01c",
+        "start": "2026-10-12T22:15:44.07211589+08:00",
+        "response": "2026-10-12T22:15:44.43818183+08:00",
+        "success": true
+      },
+      {
+        "request_id": "aea4a5bf-d58f-488e-8793-4b45f726a980",
+        "sandbox_id": "8ebe4a5a36d644bf9d4ec83e73ad7e59",
+        "start": "2026-10-12T22:15:44.07217108+08:00",
+        "response": "2026-10-12T22:15:44.44355507+08:00",
+        "success": true
+      },
+      {
+        "request_id": "41231957-1411-466e-a4a0-20c8d2f09225",
+        "sandbox_id": "1cba94208b554e0fbb04b32aa4035ef6",
+        "start": "2026-10-12T22:15:44.0722727+08:00",
+        "response": "2026-10-12T22:15:44.43084672+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d5931b46-16e8-4de8-aae2-2afab2fea21a",
+        "sandbox_id": "bc026e4559924794b4b8b5dbeba82f7b",
+        "start": "2026-10-12T22:15:44.07228492+08:00",
+        "response": "2026-10-12T22:15:44.43094345+08:00",
+        "success": true
+      },
+      {
+        "request_id": "cb7365f3-65f2-45ca-88b9-6ac7959a4c2d",
+        "sandbox_id": "1e5e6ba307764c60bd5f8747d6f3e120",
+        "start": "2026-10-12T22:15:44.07229616+08:00",
+        "response": "2026-10-12T22:15:44.3974971+08:00",
+        "success": true
+      },
+      {
+        "request_id": "2968d69d-a64a-4c53-b3fe-02df9988ae2b",
+        "sandbox_id": "5b3c7139804e4b41b8650c048d3da04a",
+        "start": "2026-10-12T22:15:44.07242607+08:00",
+        "response": "2026-10-12T22:15:44.38838326+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c3e1931b-a6c9-438f-8956-4d60fc3afac4",
+        "sandbox_id": "5415ac5c087f42549fb2b3b4b65bc181",
+        "start": "2026-10-12T22:15:44.07253159+08:00",
+        "response": "2026-10-12T22:15:44.40397288+08:00",
+        "success": true
+      },
+      {
+        "request_id": "4a6c4464-f163-43df-a1fd-54c3a41c21b2",
+        "sandbox_id": "b8ccea917d98498c885e3b1a329b859b",
+        "start": "2026-10-12T22:15:44.07256507+08:00",
+        "response": "2026-10-12T22:15:44.41495318+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c7a5ee09-1e87-4655-823a-8c5390110e3e",
+        "sandbox_id": "f439a82e69524d7b830dbc187a47dacc",
+        "start": "2026-10-12T22:15:44.0725911+08:00",
+        "response": "2026-10-12T22:15:44.39711171+08:00",
+        "success": true
+      },
+      {
+        "request_id": "7bef8508-a3c5-4ae7-848c-2f2de5581b9b",
+        "sandbox_id": "9d6f288d66f4472bb129c2f42a35f89d",
+        "start": "2026-10-12T22:15:44.07261047+08:00",
+        "response": "2026-10-12T22:15:44.43971316+08:00",
+        "success": true
+      },
+      {
+        "request_id": "2af7a2db-a5c6-45ef-86e9-82d891496e6f",
+        "sandbox_id": "ce01b623949c41c6b0fc00c47afbc6aa",
+        "start": "2026-10-12T22:15:44.07267685+08:00",
+        "response": "2026-10-12T22:15:44.4479885+08:00",
+        "success": true
+      },
+      {
+        "request_id": "4136f5a4-216f-407e-ae62-d857cbe64685",
+        "sandbox_id": "64f4f9ca4a9542dfa95fc3fc8c9ad4d2",
+        "start": "2026-10-12T22:15:44.07276711+08:00",
+        "response": "2026-10-12T22:15:44.39172764+08:00",
+        "success": true
+      },
+      {
+        "request_id": "28aa0215-677b-4b31-ae91-d028dde4983d",
+        "sandbox_id": "dd28f20dcdd348ceb2ba536b9dbdc350",
+        "start": "2026-10-12T22:15:44.07285604+08:00",
+        "response": "2026-10-12T22:15:44.41486211+08:00",
+        "success": true
+      },
+      {
+        "request_id": "54769c76-c7f6-4187-bb3c-dc6a23bc51fe",
+        "sandbox_id": "4f0437f38d2c423e92b02519e96a0c5d",
+        "start": "2026-10-12T22:15:44.07288794+08:00",
+        "response": "2026-10-12T22:15:44.46498197+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f5489ce4-b138-46c9-8bb2-9908a387a6b4",
+        "sandbox_id": "6d6972a0bb304f6c8eb8addd86cf326a",
+        "start": "2026-10-12T22:15:44.07310615+08:00",
+        "response": "2026-10-12T22:15:44.38818008+08:00",
+        "success": true
+      },
+      {
+        "request_id": "6ad6a437-762c-4856-a040-1e5d2eb972ca",
+        "sandbox_id": "fe7820d51b4f443e81c53147c8d04026",
+        "start": "2026-10-12T22:15:44.07345046+08:00",
+        "response": "2026-10-12T22:15:44.45119699+08:00",
+        "success": true
+      },
+      {
+        "request_id": "0fcc9d70-dea9-481c-88f7-dad2f267cff7",
+        "sandbox_id": "6ab3bfe6ab284d4485ebd347f5012ba6",
+        "start": "2026-10-12T22:15:44.07345762+08:00",
+        "response": "2026-10-12T22:15:44.43506791+08:00",
+        "success": true
+      },
+      {
+        "request_id": "2e86289b-0798-4a39-aa65-14fc97459bff",
+        "sandbox_id": "1b4b1e3cf6614e6794301bc48ec91074",
+        "start": "2026-10-12T22:15:44.07385048+08:00",
+        "response": "2026-10-12T22:15:44.33954115+08:00",
+        "success": true
+      },
+      {
+        "request_id": "1465793f-5e00-4882-b7c7-7eb753057eff",
+        "sandbox_id": "a8474c0e4d5547fead15ba4146717255",
+        "start": "2026-10-12T22:15:44.07581528+08:00",
+        "response": "2026-10-12T22:15:44.43093119+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f8ccccd4-ba61-4e3e-ab6e-aee2a75eddbf",
+        "sandbox_id": "a482ce549ad942e6a3cdc69f07e61c09",
+        "start": "2026-10-12T22:15:44.12706938+08:00",
+        "response": "2026-10-12T22:15:44.54536534+08:00",
+        "success": true
+      },
+      {
+        "request_id": "ce524f83-2c5e-4f2a-b4a5-b70b3756b57b",
+        "sandbox_id": "1ffc8e2385994dd3ababd9e7a59bc32f",
+        "start": "2026-10-12T22:15:44.12730284+08:00",
+        "response": "2026-10-12T22:15:44.52092637+08:00",
+        "success": true
+      },
+      {
+        "request_id": "0716d7ee-284d-4caf-8b6e-13604e4e718d",
+        "sandbox_id": "f9e549d15aff4dc4a114fb9a8785c8ed",
+        "start": "2026-10-12T22:15:44.12742149+08:00",
+        "response": "2026-10-12T22:15:44.4883884+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d087eaa1-ea84-42c3-91fa-b11255ec04d3",
+        "sandbox_id": "b4d72c2b88c342f4b662472a7f576e1d",
+        "start": "2026-10-12T22:15:44.12814484+08:00",
+        "response": "2026-10-12T22:15:44.54131781+08:00",
+        "success": true
+      },
+      {
+        "request_id": "292ab501-7689-48ab-8613-1e4b2643e48c",
+        "sandbox_id": "e12911b9e1d140feaab09f6b00c62222",
+        "start": "2026-10-12T22:15:44.12825887+08:00",
+        "response": "2026-10-12T22:15:44.54471144+08:00",
+        "success": true
+      },
+      {
+        "request_id": "2ef15d42-da2a-492c-9c75-f5cd2d448fc5",
+        "sandbox_id": "3c9bb09d7c4f4d0cbe840307cf0e1909",
+        "start": "2026-10-12T22:15:44.12854924+08:00",
+        "response": "2026-10-12T22:15:44.51162907+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d4c01d56-4f59-4e09-950e-2143ebd8c7c7",
+        "sandbox_id": "c7dfab1c25b441268e7927164ce50e60",
+        "start": "2026-10-12T22:15:44.128662+08:00",
+        "response": "2026-10-12T22:15:44.46337981+08:00",
+        "success": true
+      },
+      {
+        "request_id": "bfcb88c3-3a2c-4792-aac4-10a863226f75",
+        "sandbox_id": "00024c601b254d5ab6a6a1b3afb6e386",
+        "start": "2026-10-12T22:15:44.12866411+08:00",
+        "response": "2026-10-12T22:15:44.5460723+08:00",
+        "success": true
+      },
+      {
+        "request_id": "592cad86-0730-4124-b471-0f41f7b75e3e",
+        "sandbox_id": "adf977910bb94796bb3ac2c978b5a834",
+        "start": "2026-10-12T22:15:44.13174541+08:00",
+        "response": "2026-10-12T22:15:44.47648656+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d11e8c70-795e-48b2-98af-4d29f9dbee82",
+        "sandbox_id": "b8f2f6422f644ed4a4bb1602d09eb980",
+        "start": "2026-10-12T22:15:44.132942+08:00",
+        "response": "2026-10-12T22:15:44.502503+08:00",
+        "success": true
+      },
+      {
+        "request_id": "186e1572-18db-45b7-9af7-4ba19b1c3ab7",
+        "sandbox_id": "461d7f472df44b79a9fb4f3d2f0ff664",
+        "start": "2026-10-12T22:15:44.13297772+08:00",
+        "response": "2026-10-12T22:15:44.47631537+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f8c15c82-62e6-462b-9c04-7f5ec41f6e62",
+        "sandbox_id": "7038d4c09c0445df8532630d3339b1d5",
+        "start": "2026-10-12T22:15:44.13307386+08:00",
+        "response": "2026-10-12T22:15:44.54148978+08:00",
+        "success": true
+      },
+      {
+        "request_id": "ba54085b-9118-4325-a525-f6e4d5242c40",
+        "sandbox_id": "6a95894877a748159f555d18a569bd88",
+        "start": "2026-10-12T22:15:44.1332048+08:00",
+        "response": "2026-10-12T22:15:44.53279821+08:00",
+        "success": true
+      },
+      {
+        "request_id": "1f6d1e09-5227-4dfc-bec3-b9cf9bdc153d",
+        "sandbox_id": "6ae3576f567a449ab1a461d02b6aabbd",
+        "start": "2026-10-12T22:15:44.13336494+08:00",
+        "response": "2026-10-12T22:15:44.54659247+08:00",
+        "success": true
+      },
+      {
+        "request_id": "64ebb69e-c49e-4c1f-871f-568528e313a1",
+        "sandbox_id": "65c881da5f9f46c39c8c29194edbe9ae",
+        "start": "2026-10-12T22:15:44.13340541+08:00",
+        "response": "2026-10-12T22:15:44.47663244+08:00",
+        "success": true
+      },
+      {
+        "request_id": "8385e3cb-e27c-4735-93a7-4a67e0e9c486",
+        "sandbox_id": "14392719a5624fb5bfa41d49bfcc1f6b",
+        "start": "2026-10-12T22:15:44.1335217+08:00",
+        "response": "2026-10-12T22:15:44.55370961+08:00",
+        "success": true
+      },
+      {
+        "request_id": "da92df82-6cf0-4190-b477-bbd26e8e2475",
+        "sandbox_id": "90a3fe12849b4e7b82841f8cfb4b3f44",
+        "start": "2026-10-12T22:15:44.13363442+08:00",
+        "response": "2026-10-12T22:15:44.52216049+08:00",
+        "success": true
+      },
+      {
+        "request_id": "1eb35451-4450-4d02-9d6f-28a73897dd33",
+        "sandbox_id": "296e8022a12a43519769a209fc125993",
+        "start": "2026-10-12T22:15:44.13368374+08:00",
+        "response": "2026-10-12T22:15:44.5284256+08:00",
+        "success": true
+      },
+      {
+        "request_id": "dece6063-8bbd-42c6-9545-dd798ecf978e",
+        "sandbox_id": "baddfeae334d43bba0025e9e79602f35",
+        "start": "2026-10-12T22:15:44.13369738+08:00",
+        "response": "2026-10-12T22:15:44.54919569+08:00",
+        "success": true
+      },
+      {
+        "request_id": "1b05c683-d9b1-4a96-b07f-a8de7d6c5d7d",
+        "sandbox_id": "b1a735c7bae34b7c8bdf168532bf2ac3",
+        "start": "2026-10-12T22:15:44.133781+08:00",
+        "response": "2026-10-12T22:15:44.51158007+08:00",
+        "success": true
+      },
+      {
+        "request_id": "caf981c2-1955-4b2a-a8ad-a4f0c39882fd",
+        "sandbox_id": "d421084c55194294a114198dfea17ba1",
+        "start": "2026-10-12T22:15:44.13396156+08:00",
+        "response": "2026-10-12T22:15:44.50132015+08:00",
+        "success": true
+      },
+      {
+        "request_id": "9bdad979-10f2-40e2-88be-611ca98a7bf9",
+        "sandbox_id": "acae6c8e80d94e3cb77d27efbc29308d",
+        "start": "2026-10-12T22:15:44.13409401+08:00",
+        "response": "2026-10-12T22:15:44.50261239+08:00",
+        "success": true
+      },
+      {
+        "request_id": "e2ca4de2-a696-461c-840b-7c27bcd3bb74",
+        "sandbox_id": "714a450c4e234e7a9d0bf799c359cf55",
+        "start": "2026-10-12T22:15:44.13422844+08:00",
+        "response": "2026-10-12T22:15:44.53846315+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c805989a-bd90-4dcf-a9d4-b7207fae31d5",
+        "sandbox_id": "4388258105a54fd8bd926370ec67532a",
+        "start": "2026-10-12T22:15:44.13433535+08:00",
+        "response": "2026-10-12T22:15:44.55294657+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d82d751e-0e7c-4f92-9c69-3f7586f9796a",
+        "sandbox_id": "6aa8f556a4e244cc8706cd26d2c3246d",
+        "start": "2026-10-12T22:15:44.13435438+08:00",
+        "response": "2026-10-12T22:15:44.52712982+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b7525266-2594-40dc-a7c8-e287743a8901",
+        "sandbox_id": "d510e142c86c4de3b82b4e080cedfd89",
+        "start": "2026-10-12T22:15:44.13435673+08:00",
+        "response": "2026-10-12T22:15:44.52477614+08:00",
+        "success": true
+      },
+      {
+        "request_id": "706ca421-5721-4498-a163-6b05a3748c1f",
+        "sandbox_id": "502e14b264d04fbf866f43576007d024",
+        "start": "2026-10-12T22:15:44.13437188+08:00",
+        "response": "2026-10-12T22:15:44.4973867+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b0b1a5b4-4a70-48e1-abc0-a18432659b48",
+        "sandbox_id": "bfa5c897d82c456388ea564c14ca05e9",
+        "start": "2026-10-12T22:15:44.134488+08:00",
+        "response": "2026-10-12T22:15:44.54949692+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b9841fae-c862-4856-9bec-80da81ee4581",
+        "sandbox_id": "415a538cfbe74457979fa3669abb84bc",
+        "start": "2026-10-12T22:15:44.13452683+08:00",
+        "response": "2026-10-12T22:15:44.53429437+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f68a2fc9-a612-4063-8f82-f88d439c9882",
+        "sandbox_id": "165917d007584df98c460c03220721d5",
+        "start": "2026-10-12T22:15:44.13457494+08:00",
+        "response": "2026-10-12T22:15:44.47006173+08:00",
+        "success": true
+      },
+      {
+        "request_id": "44af411e-ce73-48b3-b03d-909106b44086",
+        "sandbox_id": "1e1278c8e94c4235862edb253c783d4c",
+        "start": "2026-10-12T22:15:44.13466562+08:00",
+        "response": "2026-10-12T22:15:44.52085577+08:00",
+        "success": true
+      },
+      {
+        "request_id": "ff17d135-716f-4063-856b-2b725d1674b1",
+        "sandbox_id": "fa54c3b4844d473fa672068f143b505a",
+        "start": "2026-10-12T22:15:44.13468505+08:00",
+        "response": "2026-10-12T22:15:44.52692521+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d652472a-f1fd-4138-9012-3aefa4f4bcfc",
+        "sandbox_id": "e77ff999d1f64e26bdd0302ace4bc1c5",
+        "start": "2026-10-12T22:15:44.13472278+08:00",
+        "response": "2026-10-12T22:15:44.51610416+08:00",
+        "success": true
+      },
+      {
+        "request_id": "8ae6756e-2978-4ff3-8233-bb8c95344eb6",
+        "sandbox_id": "aa49a4ba26204af6bb677ac1ef3de667",
+        "start": "2026-10-12T22:15:44.13478967+08:00",
+        "response": "2026-10-12T22:15:44.52841658+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a11e54f9-192f-49e5-b7a4-15a6b19f2187",
+        "sandbox_id": "572ab222e95646a9bad3b632ad74ceb6",
+        "start": "2026-10-12T22:15:44.1349029+08:00",
+        "response": "2026-10-12T22:15:44.55620785+08:00",
+        "success": true
+      },
+      {
+        "request_id": "16550d52-dbb0-4f4a-bdf1-1c581621a9f4",
+        "sandbox_id": "044962cc528e4e0b959f2c9a26a73d20",
+        "start": "2026-10-12T22:15:44.13491073+08:00",
+        "response": "2026-10-12T22:15:44.54794107+08:00",
+        "success": true
+      },
+      {
+        "request_id": "843f6b9f-4ebc-4cc7-9bd0-e6fa2ad25b0c",
+        "sandbox_id": "ee96c00b90c64910b67502eed6d6981c",
+        "start": "2026-10-12T22:15:44.13491632+08:00",
+        "response": "2026-10-12T22:15:44.55631697+08:00",
+        "success": true
+      },
+      {
+        "request_id": "e8e3f734-dbd5-4e95-83b7-e42b6ba538e9",
+        "sandbox_id": "5d4f461ac03540e5b9e0b62fba449b4f",
+        "start": "2026-10-12T22:15:44.13501741+08:00",
+        "response": "2026-10-12T22:15:44.55257681+08:00",
+        "success": true
+      },
+      {
+        "request_id": "67b29bf7-d0b0-46b8-b977-053c655ffb09",
+        "sandbox_id": "ad54b66673e84d6b8445a7f529e920d3",
+        "start": "2026-10-12T22:15:44.13543513+08:00",
+        "response": "2026-10-12T22:15:44.55648167+08:00",
+        "success": true
+      },
+      {
+        "request_id": "32e52f4f-0e28-4f85-bee3-eba63c1b50b4",
+        "sandbox_id": "48231df04c2840dab1d85b7cc0814a65",
+        "start": "2026-10-12T22:15:44.13562048+08:00",
+        "response": "2026-10-12T22:15:44.50062394+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b17a0056-79f8-4d2e-9c64-8d10f073aaec",
+        "sandbox_id": "a65c884a34c4452a91c9513d9de96801",
+        "start": "2026-10-12T22:15:44.13646667+08:00",
+        "response": "2026-10-12T22:15:44.54279942+08:00",
+        "success": true
+      },
+      {
+        "request_id": "df0c8c5a-8401-4dfa-8423-6bcb2aed7630",
+        "sandbox_id": "2ee924167afe436a96c4ca5fc3aeffa3",
+        "start": "2026-10-12T22:15:44.13671414+08:00",
+        "response": "2026-10-12T22:15:44.5209248+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b7502b3f-45fe-4401-9918-f383f808f14d",
+        "sandbox_id": "a591e4ff0b7f41608b237a58a9854ddb",
+        "start": "2026-10-12T22:15:44.13728673+08:00",
+        "response": "2026-10-12T22:15:44.52041645+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c476a6b8-db5d-478d-bbfe-81afed37426e",
+        "sandbox_id": "ca705d5a266141dc96f30994d6684678",
+        "start": "2026-10-12T22:15:44.13731344+08:00",
+        "response": "2026-10-12T22:15:44.52392667+08:00",
+        "success": true
+      },
+      {
+        "request_id": "69b0eded-9e24-496d-a640-742376533eb8",
+        "sandbox_id": "4996cf9c10de405b952332ead14fe28e",
+        "start": "2026-10-12T22:15:44.13793504+08:00",
+        "response": "2026-10-12T22:15:44.55360613+08:00",
+        "success": true
+      },
+      {
+        "request_id": "7481448b-7de6-441e-9a31-265dab09b5a5",
+        "sandbox_id": "a08556d7086a433d944d5b26ef0aeeba",
+        "start": "2026-10-12T22:15:44.13851557+08:00",
+        "response": "2026-10-12T22:15:44.47665412+08:00",
+        "success": true
+      }
+    ]
+  },
+  "limitations": [
+    "Server phase classification only; cube-bench raw rows are not mapped to sandbox IDs.",
+    "Depends on exclusive use of the dedicated template, the pinned official runner, and complete captured Master logs.",
+    "No source ownership file is modified. Failed checks leave all phases unclassified."
+  ]
+}

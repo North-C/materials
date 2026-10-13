@@ -1,0 +1,16 @@
+{
+  "python_tests_passed": 27,
+  "node_tests_passed": 67,
+  "integration_checks": [
+    "current classification recomputed against raw evidence",
+    "swapped formal/warmup IDs rejected",
+    "changed Master log with stale classification rejected"
+  ],
+  "formal_api_samples": 100,
+  "formal_owned_instances": 100,
+  "warmup_owned_instances": 3,
+  "independent_preflight_instances": 1,
+  "partial_timeline_instances": 103,
+  "timeline_ordering_anomalies": 0,
+  "credential_pattern_scan_findings": []
+}

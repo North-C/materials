@@ -1,0 +1,31 @@
+{
+  "node_tests": {
+    "passed": 101,
+    "failed": 0
+  },
+  "python_tests": {
+    "passed": 27,
+    "failed": 0
+  },
+  "shim_log_tests": {
+    "passed": 6,
+    "failed": 0,
+    "native_arm64": true
+  },
+  "cubelet_go_packages_passed": [
+    "pkg/perftrace",
+    "plugins/workflow",
+    "network/runtime",
+    "services/cubebox"
+  ],
+  "cubelet_short_metric_gate_on_passed": true,
+  "cubelet_race_tests_on_off_passed": true,
+  "release_builds_passed": [
+    "cubelet",
+    "containerd-shim-cube-rs"
+  ],
+  "patch_applies_to_clean_v071": true,
+  "compiled_source_files_match": 14,
+  "observation_c100n100_executed": false,
+  "reason": "External density workload occupies node; test window pending."
+}
