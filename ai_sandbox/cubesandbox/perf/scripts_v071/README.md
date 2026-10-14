@@ -1,5 +1,7 @@
 # CubeSandbox v0.7.1 · Template c100n100 时间轴工具
 
+> 历史版本归档：本页脚本用于复核原有报告，后续功能维护已迁至 [GitCode 私有仓库 cubesandbox-startup-profiler](https://gitcode.com/yuncongyue/cubesandbox-startup-profiler)。新仓库为通用工具，不包含本页部署信息或历史实测数据；访问需成员权限。
+
 面向 192.168.25.90 的官方 ARM64 v0.7.1：并发 100、正式请求 100、串行预热 3 次，sandbox-code Template 为 2 vCPU / 2048 MiB / 1G 可写层。保留现有服务与配置，采集日志增量和 Prometheus 快照；只清理本轮专用模板下有归属证据的实例。
 
 - [旧 scripts_v2 准确性审计](AUDIT_V2.md)

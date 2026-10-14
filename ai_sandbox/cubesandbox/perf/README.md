@@ -1,6 +1,8 @@
 # CubeSandbox 性能分析报告与工具索引
 
-本次 v0.7.1 Template c100n100 分析统一保存在 materials 主分支 **`main`**。查阅时从本页进入，无需在不同提交链接之间切换；后续本任务的报告直接更新主分支，不再新建分支。
+本目录在 materials 主分支 **`main`** 保留 v0.7.1 Template c100n100 的历史脚本、三份报告及证据归档，既有内容继续可查阅。
+
+**后续通用工具维护迁至 [GitCode 私有仓库 cubesandbox-startup-profiler](https://gitcode.com/yuncongyue/cubesandbox-startup-profiler)**，访问需要相应成员权限。新仓库仅包含通用分析与参数化采集代码、阶段文档和合成样例，不携带本目录中的测试机信息、实测报告或运行证据。本目录脚本作为历史版本保留，不再同步工具功能更新。
 
 ## v0.7.1 · 90机器 · Template c100n100
 
