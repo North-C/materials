@@ -3,7 +3,7 @@
 面向 192.168.25.90 的官方 ARM64 v0.7.1：并发 100、正式请求 100、串行预热 3 次，sandbox-code Template 为 2 vCPU / 2048 MiB / 1G 可写层。保留现有服务与配置，采集日志增量和 Prometheus 快照；只清理本轮专用模板下有归属证据的实例。
 
 - [旧 scripts_v2 准确性审计](AUDIT_V2.md)
-- [v0.7.1 Template 启动阶段口径（含各阶段整体关系示意）](STAGES.md#各阶段整体关系)
+- [v0.7.1 Template 启动阶段口径（含简版条状图与完整关系图）](STAGES.md#各阶段整体关系)
 - [2026-10-12 原版实测报告](../reports/v071-c100n100-20261012/REPORT.md)
 - [网络微秒补解析与精细观测报告（重测待独占窗口）](../reports/v071-c100n100-fine-20261012/REPORT.md)
 - [2026-10-14 优化版＋NUMA0 实测与更细拆解报告（第三份）](../reports/v071-c100n100-optimized-20261014/REPORT.md)
