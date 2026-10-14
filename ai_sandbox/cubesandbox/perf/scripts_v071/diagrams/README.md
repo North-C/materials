@@ -1,12 +1,5 @@
-# 启动阶段流程图源文件
+# 启动阶段整体关系示意
 
-`template-startup-stages.mmd` 是图的唯一结构源文件；口径及图例见 [STAGES.md](../STAGES.md#启动流程与计时覆盖关系)。SVG 可在 GitHub 文档中直接显示，放大后查看细节。
+[template-startup-stages.svg](template-startup-stages.svg) 是可直接编辑的 SVG 源文件，可在 GitHub 文档中显示并放大查看。图使用嵌套方框表达主要阶段的包含关系，以文字标注并行与异步，不再展开逐步调用和分支箭头。
 
-本次使用 Mermaid CLI 12.0.0 和本目录配置渲染。安装 Node.js 与该版本 CLI 后，在本目录执行：
-
-```sh
-mmdc -i template-startup-stages.mmd -o template-startup-stages.svg \
-  -c mermaid-config.json -b white --no-font-embed
-```
-
-如使用已有浏览器，可追加 `-p /path/to/puppeteer.json` 指定其 `executablePath`。字体优先使用 PingFang SC，其他系统使用 sans-serif 回退；渲染后检查中文、换行、箭头和嵌套框。SVG 不嵌入字体，不需要网络加载字体。
+口径及详细边界见 [STAGES.md](../STAGES.md#各阶段整体关系)。更新时需同时核对图与文字；框的大小不表示时延，跨进程嵌套不表示已建立统一时钟。字体采用系统中文字体，不嵌入字体或加载外部资源。

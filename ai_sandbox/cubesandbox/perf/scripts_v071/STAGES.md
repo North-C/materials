@@ -4,15 +4,15 @@
 
 这些数据可以给出启动调用树、主要耗时分布和部分真实时间窗口，不能拼成各段互斥、总和恰好等于客户端延迟的完整瀑布图。尤其要区分持续时间、累计时间、并行子任务、传播副本和派生残差。
 
-## 启动流程与计时覆盖关系
+## 各阶段整体关系
 
-下图展示**单容器、Template snapshot-restore 成功路径**；模板预构建不在本次启动路径内。节点是操作或指标边界，**图的长度不代表耗时**。失败重试、回滚、多容器等分支未展开。
+下图用嵌套方框概括**单容器、Template 恢复启动**的主要阶段。外框包含内框；同层按先上后下、同排从左到右的阅读顺序展示主要阶段。并行任务在框内标注，异步工作单列在底部。**框的大小不表示时延**，也不表示各阶段已经对齐到同一时钟。
 
-![v0.7.1 Template启动：串行等待、并行汇合、异步支线与计时嵌套](diagrams/template-startup-stages.svg)
+![v0.7.1 Template 启动阶段整体关系](diagrams/template-startup-stages.svg)
 
-[打开原尺寸 SVG](diagrams/template-startup-stages.svg) · [Mermaid 源文件](diagrams/template-startup-stages.mmd)
+[放大查看 SVG](diagrams/template-startup-stages.svg)
 
-**读图约定：**实线箭头表示执行依赖或请求等待；同一分叉后的多条支路并行，汇合点等待全部完成。虚线表示发出后不等待完成的异步支线。粗箭头只表示指标数值传播，不代表新增执行。嵌套框表示调用/计时覆盖关系；内部可包含未单列的准备、锁等待与收尾，不能把所有子项相加当作父项。跨进程框表达调用包含，不表示已建立统一的精确单调时钟。
+重点看三层关系：Master 等待 Cubelet 完成，再等待并行后处理；Cubelet 在准备工作各组完成后，依次进入 cgroup 与 cubebox；cubebox 中的 `sandbox-start` 包含 `sandbox-create`，后者又包含 Shim 的 `CreatePodSandbox`。**父子阶段不可重复相加，组内并行阶段也不能相加作为该组壁钟耗时。** 各框还包含未展开的准备、锁等待和收尾，详细边界见下表。
 
 | 关系 | 应如何理解 |
 | --- | --- |
@@ -27,7 +27,7 @@
 | 统计与事件支线 | Cubelet `reportTrace`、Master `dealMetric`及事件后台转发不等待完成；日志落盘时间不是业务阶段结束时间 |
 | probe传播与派生残差 | Master probe是Cubelet probe的传播值；`cubebox-service-inner`、`cubebox-inner`等是公式派生值，不是图上额外执行节点，不重复累计 |
 
-图中的`ResetVm`采用**原版v0.7.1串行路径**：时间RPC → RNG生成 → reseed RPC。[10月14日优化版报告](../reports/v071-c100n100-optimized-20261014/REPORT.md)使用了不同补丁组合，其中time/reseed RPC的并行关系以该报告的源码边界说明为准，不能混用。
+原版v0.7.1的`ResetVm`采用**串行路径**：时间RPC → RNG生成 → reseed RPC。[10月14日优化版报告](../reports/v071-c100n100-optimized-20261014/REPORT.md)使用了不同补丁组合，其中time/reseed RPC的并行关系以该报告的源码边界说明为准，不能混用。
 
 实际工作流须核对部署配置。本页下方列出各计时边界和固定版本源码；异步cgroup操作另见[发起位置](https://github.com/TencentCloud/CubeSandbox/blob/31d911e430fdf8a8879bd062b8e78066c1a8e89d/Cubelet/services/cubebox/cube_container_create.go#L454)、[CPU更新goroutine](https://github.com/TencentCloud/CubeSandbox/blob/31d911e430fdf8a8879bd062b8e78066c1a8e89d/Cubelet/services/cubebox/cube_container_create.go#L1267)，事件入队见[tx_event](https://github.com/TencentCloud/CubeSandbox/blob/31d911e430fdf8a8879bd062b8e78066c1a8e89d/CubeShim/shim/src/service/task_srv.rs#L314)。
 

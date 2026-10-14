@@ -12,7 +12,7 @@
 | [更细阶段时延分析报告](reports/v071-c100n100-fine-20261012/REPORT.md) | 旧日志网络微秒级补解析；Cubelet/Shim精细观测方案与构建验证。观测版重测仍待独占窗口，尚无该版本压测结果 |
 | [优化版＋NUMA0 实测与更细拆解报告（第三份，2026-10-14）](reports/v071-c100n100-optimized-20261014/REPORT.md) | 正式 API 100 次成功，均值260.965 ms、P95 360.840 ms；组件统计103个含预热，版本漂移的确认轮排除。不是perftrace观测版 |
 | [旧 scripts_v2 准确性审计](scripts_v071/AUDIT_V2.md) | 检查日志、metrics、时钟、阶段边界与样本归属的可靠性 |
-| [v0.7.1 源码阶段定义](scripts_v071/STAGES.md) | 同步/并行/异步与计时嵌套流程图、源码计时点、阶段含义及不能直接相加的边界 |
+| [v0.7.1 源码阶段定义](scripts_v071/STAGES.md) | 整体阶段关系示意、同步/并行/异步与计时包含关系、源码计时点、阶段含义及不能直接相加的边界 |
 | [新版工具与复现步骤](scripts_v071/README.md) | 采集、正式/预热分类、网络细分、精细span解析、独立时钟时间轴 |
 
 最新报告入口：[第三份 Markdown](reports/v071-c100n100-optimized-20261014/REPORT.md) · [HTML](reports/v071-c100n100-optimized-20261014/REPORT.html) · [发布范围与证据索引](reports/v071-c100n100-optimized-20261014/PUBLICATION.md)。
