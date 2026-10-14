@@ -1,0 +1,53 @@
+{
+  "observed_at": "2026-10-14T01:45:15.155914+00:00",
+  "files": [
+    {
+      "path": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+      "actual": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9",
+      "expected": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9",
+      "matches": true,
+      "mtime_ns": 1791903067273024610,
+      "ctime_ns": 1791903067313024610
+    },
+    {
+      "path": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+      "actual": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac",
+      "expected": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac",
+      "matches": true,
+      "mtime_ns": 1791903067317024610,
+      "ctime_ns": 1791903067321024610
+    },
+    {
+      "path": "/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs",
+      "actual": "917cc57fce257a1bef7fff91d4b6b2cad2e39aaf2f09333ed75f707d943add70",
+      "expected": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9",
+      "matches": false,
+      "mtime_ns": 1791942141825024610,
+      "ctime_ns": 1791942141829024610
+    },
+    {
+      "path": "/usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime",
+      "actual": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec",
+      "expected": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec",
+      "matches": true,
+      "mtime_ns": 1791903067337024610,
+      "ctime_ns": 1791903067341024610
+    },
+    {
+      "path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs",
+      "actual": "917cc57fce257a1bef7fff91d4b6b2cad2e39aaf2f09333ed75f707d943add70",
+      "expected": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9",
+      "matches": false,
+      "mtime_ns": 1791942141821024610,
+      "ctime_ns": 1791942141825024610
+    },
+    {
+      "path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/cube-runtime",
+      "actual": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec",
+      "expected": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec",
+      "matches": true,
+      "mtime_ns": 1791903067353024610,
+      "ctime_ns": 1791903067357024610
+    }
+  ]
+}

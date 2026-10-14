@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "source_run": "20261014T013154Z-optimized",
+  "source_root_description": "CubeSandbox workspace tools/bottleneck/runs/20261014T013154Z-optimized",
+  "publication_scope": "Reports, derived numeric data, benchmark latency samples without credentials, and identity/attribution verification. Raw request logs and environment dumps excluded.",
+  "files": [
+    {
+      "path": "REPORT.html",
+      "source_sha256": "67a98f64d54e4bec1bf3dc13dc09a4cf8c0035ed234fbc288e9f861f883e0729",
+      "source_bytes": 15707,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "REPORT.txt",
+      "source_sha256": "a6e544b71f2922edef4428123f88c328245f46c2468a343188480d3c10d7af7a",
+      "source_bytes": 12653,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "source-boundaries.txt",
+      "source_sha256": "08d45bcc54d86c021039cf3c2c245f59fdb2c9a1e4c13226e62684d05f861e7c",
+      "source_bytes": 6202,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "first-run-attribution-note.txt",
+      "source_sha256": "43949aae0bd9406cf26d52a056933b54192d1c0553bc41e50f4d562ff584f2c5",
+      "source_bytes": 4025,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "comparison.csv",
+      "source_sha256": "eada7f20386d2d8e1a1da4210a3e46c4fb7e065078cd2da5cf646af003b81c13",
+      "source_bytes": 1999,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "comparison.json",
+      "source_sha256": "d05b51393dad9718b577416fc08536f13834d2491b893bd7b341590fac301ae4",
+      "source_bytes": 7365,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "paired-newtask-gap.json",
+      "source_sha256": "d8903397598e1ff7bb3cf6822604f45dd1c29c09d416d5a921efbac4846f79dc",
+      "source_bytes": 19325,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "baseline-comparable-103.csv",
+      "source_sha256": "4465199861f222ff9c116d81538922bdfe8065ac3250a71e1d0f0cd5d7b2059a",
+      "source_bytes": 18100,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "baseline-comparable-103.json",
+      "source_sha256": "9079bc37f1fd7dd51e77f09a195d0bf270fe76bc693053f7bec7c0f143f0657c",
+      "source_bytes": 1211080,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/analysis.json",
+      "source_sha256": "1d97aa6a97fe305883a32f4209856e729d2d083aa2085c72b185072ac523c51f",
+      "source_bytes": 1210919,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/stage-latency.csv",
+      "source_sha256": "3c9aa70d95578644ab84b69449375fca81ee0ff42c83118d58d96d88ecb493a4",
+      "source_bytes": 18101,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/network-details.json",
+      "source_sha256": "cc19ccfa1ce8ca30a97ed454e97eb6a98e5aa4f409517c1dad12c4d2a531af6e",
+      "source_bytes": 580036,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/network-details.csv",
+      "source_sha256": "1bbd50e91a453ea46db33e7ec856a3888c4177f6c64dead26ba7da8574eabdb6",
+      "source_bytes": 5623,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/precision.json",
+      "source_sha256": "20c29e1e9da82b4f48c0b8f334ca56b2e887ed5e2c76fbd1d836510d9ec316fc",
+      "source_bytes": 40901,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/precision.csv",
+      "source_sha256": "de3a19beb81fe156239054a420db8ce62a2e3d8a46734e6688793f34bdbc6cc6",
+      "source_bytes": 130,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/owned-sandbox-ids.json",
+      "source_sha256": "bd22464e060cab4db9ffb7dd26d4514fdc223afcc963879396f57410d25d92bd",
+      "source_bytes": 4180,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/phase-classification.json",
+      "source_sha256": "e632e5f805c97ea4708a77cb50d2001091d7d1e7c228772a7bbb390644d731cb",
+      "source_bytes": 39955,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/verified-run.json",
+      "source_sha256": "ab42f2db3e965edfb5d7de2bb86a855f2578d71ef433dfdae4f0f13e9cc08e1f",
+      "source_bytes": 188,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/service-identity-before.json",
+      "source_sha256": "1262f5c4f973dc0d3887ca3d86b7c320d0d1065bdc3d3bc028c556283d2302ac",
+      "source_bytes": 8120,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/service-identity-after.json",
+      "source_sha256": "ef3df046067f7b70c24d54ecdb8333a2bae4ef2ac8fe61bd0bf5fd982b386cf5",
+      "source_bytes": 8122,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/startup-latency/c100n100.raw.json",
+      "source_sha256": "74f2470ede9f910b709db91aabed1a2461cc7514acc1f3019e01870393a8e8ae",
+      "source_bytes": 8610,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/suite-results/c100n100.delete.json",
+      "source_sha256": "77a8b70470afa700cd97b02bf9121e6952eca759cd43e2f2532fc1816e41dccf",
+      "source_bytes": 23438,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/create-container-details.jsonl",
+      "source_sha256": "0460e8e0ee987d096d87f3b171ae1997e45efbb250e108e04159e0583f415490",
+      "source_bytes": 98792,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/timeline.html",
+      "source_sha256": "1ada56e55a8f9d0ce2abe8c41bfc656c631960cbc720e49a2ee5e2a491ccca60",
+      "source_bytes": 418416,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture/timeline.json",
+      "source_sha256": "1f48264c7453fb60ea12ad829a55e5763545e245b4ddebffc778e5d2784f6022",
+      "source_bytes": 934311,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "capture-confirmation/service-identity-after-error.json",
+      "source_sha256": "2914cd3359b928c1f7714dcafdd4fb7a5458499f23ac487a3cccd7d5b7e1107a",
+      "source_bytes": 139,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "post-confirmation-version-drift.json",
+      "source_sha256": "5ec044d91e992116136c6c6179942fb6dc83b761f828fb6a5aca2ebf9624b1f0",
+      "source_bytes": 2264,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "build_report.py",
+      "source_sha256": "1a06d965de14c9ca6423036e80fb069998f0c2f5a5bdd91d5c2df1dcae54ed7e",
+      "source_bytes": 16118,
+      "publication": "adapted renderer to also emit Markdown"
+    },
+    {
+      "path": "run.exit",
+      "source_sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+      "source_bytes": 2,
+      "publication": "byte-identical copy"
+    },
+    {
+      "path": "run-confirmation.exit",
+      "source_sha256": "53c234e5e8472b6ac51c1ae1cab3fe06fad053beb8ebfd8977b010655bfdd3c3",
+      "source_bytes": 2,
+      "publication": "byte-identical copy"
+    }
+  ]
+}

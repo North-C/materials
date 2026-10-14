@@ -1,0 +1,146 @@
+#!/usr/bin/env python3
+"""Render this run's report from saved analysis; performs no remote actions."""
+import csv
+import html
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+read = lambda p: json.loads((ROOT / p).read_text())
+current = read('capture/analysis.json')
+baseline = read('baseline-comparable-103.json')
+network = read('capture/network-details.json')['phases']['unknown_phase']['stages']
+gap = read('paired-newtask-gap.json')['stats_ms']
+cur = current['phases']['unknown_phase']
+old = baseline['phases']['unknown_phase']
+api = current['benchmark']['create']
+old_api = baseline['benchmark']['create']
+fmt = lambda x: f'{x:.3f}'
+change = lambda x, y: f'{(x / y - 1) * 100:+.1f}%'
+sections = []
+
+def section(title, paragraphs=(), headers=None, rows=None):
+    sections.append(dict(title=title, paragraphs=list(paragraphs), headers=headers, rows=rows))
+
+section('结论与有效数据范围', [
+    '目标机：192.168.25.90；测试日期：2026-10-14（Asia/Shanghai）。指定优化版本首轮正式请求 100/100 成功、0 错误，归属实例已清理。',
+    f'首轮 API 平均耗时 {api["avg"]:.2f} ms、P95 {api["p95"]:.2f} ms；相较 2026-10-12 基线分别降低 {-float(change(api["avg"], old_api["avg"]).strip("%")):.1f}%、{-float(change(api["p95"], old_api["p95"]).strip("%")):.1f}%。这是两次不同时间、不同配置组合的观测差异，不是各 PR 的独立收益或统计显著性结论。',
+    '本报告使用 capture/ 的首轮数据：前后组件哈希、进程身份、NUMA 配置核验通过。API 统计仅含 100 个正式请求；组件阶段保留为 unknown_phase=103（含 3 次预热），不声称已按 sandbox ID 分成正式与预热。',
+    '补采确认轮 capture-confirmation/ 虽然也有 100 个成功请求，但结束后的 Shim 哈希不匹配，退出码为 2，全部排除出指定优化版本的性能结论。未恢复或覆盖另一任务部署的 Shim。',
+    '剩余高耗时区域：NewTask 中 Shim handler 之外的工作、RestoreVm，以及网络端口映射和慢路径。下文的“瓶颈”指观测到的高耗时区域，尚未证明具体锁、系统调用或 CPU 指令是根因。',
+])
+section('平均耗时和 P95 的定义', [
+    '单位统一为毫秒（ms）。API 的样本 x_i 是官方 cube-bench raw 中单次创建请求的 create_ms，从客户端发起创建到收到 HTTP 返回；它包含请求链路和平台创建处理，不是进程 CPU 时间，也不是额外执行的应用交互测试。',
+    '算术平均值：avg = (x_1 + x_2 + … + x_N) / N。本轮 API N=100，3 次串行预热不在官方 raw 的这 100 条记录中；全部成功，无失败样本排除问题。平均值描述整体水平，容易受少量慢请求影响。',
+    'P95 使用 nearest-rank：把有效样本升序排列为 x_(1)…x_(N)，取 x_(ceil(0.95×N))，不插值。API N=100 时取第 95 个样本；至少 95 个正式请求耗时不大于该值。P95 不是最慢 5% 请求的平均值，也不是 95% 置信区间。',
+    f'例如：本轮 API avg={api["avg"]:.5f} ms，P95={api["p95"]:.3f} ms。官方整轮正式请求用时为 0.36489465 s；并发请求相互重叠，因此 364.89465 ms ÷ 100 = 3.6489465 ms 只是完成速率的倒数，绝不能称为单次请求平均延迟。',
+    '阶段统计独立计算：只使用该阶段实际可归属、有效的记录。表中的 n 是该行统计的样本数，103 是本轮 owned 实例总数。n=103 的阶段 P95 取第 98 个；network n=43 的 P95 取第 41 个，只描述这 43 个可见样本，不代表全部 103 个实例。',
+    'Cubelet 通常不写成功且不足 5 ms 的阶段日志；网络细分在父操作达到约 1 ms 门槛时才输出。因此部分阶段是偏向慢样本的条件分布，缺失不能填 0。Shim StatDefer 使用整数毫秒，存在不足 1 ms 的截断；记录为 0 不代表实际零成本。',
+    '父子阶段互相包含，不可相加；不同阶段的 P95 通常来自不同实例，不可相减。报告中的 NewTask 外围差值先逐个匹配 sandbox ID 相减，再对 103 个差值求均值和 P95。API raw 没有 sandbox ID，不能把某条 API 延迟强行与某个组件实例配对。',
+])
+section('实验配置与完整性', [
+    '源码：v0.7.1 基线 31d911e430fdf8a8879bd062b8e78066c1a8e89d；优化 HEAD 9dce2f877d9470908dd68594e4fe38edf365e141。合入 #1、#4 的 handler clone 去除、#2、#5 的 time/RNG 并行部分；#10 未合入。',
+    'Cubelet、CubeAPI、Shim 和配套 runtime 使用部署清单固定哈希；Master、TemplateCenter 保持社区基线。首轮全局与模板缓存 Shim 均为 d4450a9f…；Cubelet、CubeAPI 所有被核验线程允许 CPU 0–95，NUMAPolicy=local（NUMA0 CPU、本地优先内存，可回退其他节点）。未证明所有 guest/vCPU 的实际内存页均位于 NUMA0。',
+    '模板 tpl-cf2b04fdd4604b7c84e157fa：2 vCPU、2048 MiB、1 GiB 可写层。Master create_concurrent_limit=100。官方 ARM64 cube-bench SHA-256 为 d7d7685433bea7909b124504f4851517bdae146c4bb13e279fbb816c20bd032d；参数 -c 100 -n 100 -w 3 -m create-only --no-tui。',
+    '模板 probe 配置仍为 period_ms=500、failure_threshold=60；#2 在实际代码中把间隔限制到 10 ms 并调整失败阈值。不能只读模板配置就断言实际仍每 500 ms 探测。',
+    '首轮采集窗口为 09:35:56.803–09:38:42.652；103 个 owned 创建集中于 09:38:30.827–09:38:31.355。前面的编译等待、功能预检、静默检查和后面的清理不计入官方 create_ms。',
+    '另一项 cargo/rustc 构建在压测前自然结束，没有暂停或恢复进程。首轮窗口中的另一个模板产生了 2 次创建，触发门禁重置；它们均在 09:38:00.287 前删除。随后门禁连续 5 次通过才开始压测。外来实例不在本轮 ledger，也未被本轮 cleanup 删除。',
+    'Master 共有 106 对创建请求/响应：1 次本轮功能预检＋2 次外来模板请求＋103 次 owned。严格分类器要求只有 104 对，因此拒绝分组；保留原始证据与拒绝结果，没有修改门槛来强行通过。组件分析仅取显式 owned 清单中的 103 个 ID，外来实例与功能预检排除。',
+    '所需请求/阶段日志增量未发生轮转、截断或采样上限丢失。现场不存在独立 master_stat 文件，已标注该缺口；Master 数据来自请求日志的 trace/响应字段。precision 脚本确认本构建无额外精细埋点，不生成虚构的 time/RNG 子步骤时延。',
+])
+api_rows = [[name, fmt(old_api[key]), fmt(api[key]), change(api[key], old_api[key])]
+            for name,key in [('平均耗时','avg'),('P50','p50'),('P95','p95'),('最大值','max')]]
+section('API 对照：两侧均为正式 100 个请求', [
+    '基线为 tools/bottleneck/runs/20261012T141529Z/capture，同一模板与官方压测参数。基线和本轮均 100/100 成功。',
+    '本轮表观完成速率为 274.05 请求/s，基线 201.48 请求/s。该值来自一次 100 请求突发测试，不代表长期稳定吞吐能力。',
+], ['指标（ms）','10月12日基线','本轮指定优化版本','相对变化'], api_rows)
+
+selected = [('cubelet_stages',s) for s in ['cubebox-service','cubebox','sandbox-create','sandbox-start','sandbox-probe','network','storage','cgroup','create-sandbox-metadata']]
+selected += [('shim_stages',s) for s in ['CreatePodSandbox','RestoreVm','ResetVm','CreateSandbox','CreateContainer','LaunchVmm']]
+stage_rows=[]
+comparison=[]
+for family,name in selected:
+    a,b=cur[family][name]['stats'],old[family][name]['stats']
+    label=('Cubelet.' if family=='cubelet_stages' else 'Shim.')+name
+    stage_rows.append([label,f'{b["count"]}/103',fmt(b['avg']),fmt(b['p95']),f'{a["count"]}/103',fmt(a['avg']),fmt(a['p95'])])
+    comparison.append(dict(stage=label,baseline=b,current=a,population='103 owned including warmup',full_coverage=(a['count']==b['count']==103)))
+section('组件阶段对照：两侧均按 103 个归属实例重算', [
+    '为避免把本轮含预热的组件数据与历史 formal-only 数据混用，本报告用相同分析器将历史 103 个 owned 实例重新汇总到 baseline-comparable-103.json。这里的阶段均值和 P95 与上表 API 的样本总体不同。',
+    'n 不足 103 的行仅比较可见慢样本；例如 network 可见数从 77 降到 43，不能仅凭可见均值上升宣称网络整体退化，也不能仅凭样本变少宣称优化成功。',
+], ['阶段','基线n','基线均值ms','基线P95ms','本轮n','本轮均值ms','本轮P95ms'], stage_rows)
+
+net_names=['ensure_precheck.total','ensure_precheck.legacy_check','ensure_precheck.create_state','create_stages.total','create_stages.apply_port_mappings','create_stages.write_tmp','create_stages.register_cubevs_tap','register_cubevs_tap.total','tap_fd_handoff.total']
+net_rows=[]
+for name in net_names:
+    s=network[name]['stats_ns'];net_rows.append([name,f'{s["count"]}/103',fmt(s['avg']/1e6),fmt(s['p95']/1e6)])
+section('网络阶段细分', [
+    '原始 network-details.json 的单位为 ns，下表除以 1,000,000 转为 ms。各父操作的日志门槛不同，行与行的样本集合也不同，不可相减整体 P95。',
+    'create_state 内含 create_stages；register_cubevs_tap 内含注册子步骤。register_cubevs_tap.total 只有 8 个可见样本，其 P95 为这 8 个里的最大值，不能据此描述全体尾延迟。',
+], ['子阶段','n/103','均值ms','P95ms'], net_rows)
+
+section('具体瓶颈与下一步优先级', [
+    f'1. NewTask 外围工作：sandbox-create 均值 106.368 ms、P95 154.579 ms；对每个同 ID 的成功请求扣除嵌套 Shim.CreatePodSandbox 后，103 个差值均值 {gap["avg"]:.3f} ms、P95 {gap["p95"]:.3f} ms。该差值包含 containerd/IPC、Shim 启动及其他外围工作，不能称作纯调度等待；Shim 毫秒截断带来每项不足 1 ms 的误差。优先补 NewTask 发出、containerd 接收、Shim 启动、Task Create 入口/返回的关联时间戳。证据：paired-newtask-gap.json。',
+    '2. RestoreVm 尾部：103/103 覆盖，均值 25.388 ms、P95 76 ms；相同 103 口径基线为 17.932 ms、46 ms。这一轮观测到恢复阶段更慢，值得优先查 VMM 恢复子步骤、线程调度与内存缺页，但现有计时不含 channel mutex 获取前的等待，也没有 on-CPU/off-CPU 栈证据来证明根因。',
+    '3. 网络慢路径：network 可见 43/103，均值 66.724 ms、P95 78.400 ms。细分中 apply_port_mappings 的 56 个可见样本均值 24.928 ms、P95 72.463 ms；legacy_check 和 write_tmp 也出现约 54 ms 的 P95。优先为这些子步骤关联锁等待、系统调用和调度；不能把不同样本集合的 P95 相加为网络总耗时。',
+    '4. Probe 与 ResetVm 有明显降低的观测：probe（103实例）均值 40.081→23.601 ms；ResetVm 均值 19.078→5.243 ms。方向与 #2、#5 一致，但版本、NUMA、缓存及运行时状态同时改变，不能将差值全部归因单个 PR。#5 的 get_rng 在 join 之前同步执行，time 与 RNG 两个 RPC 没有独立计时。',
+    '5. cgroup 已不再呈现基线那样高的可见样本均值，但本轮仍有 P95 37.780 ms（85/103）。该阶段包含资源匹配、pool.Get/可能新建、UsageSnapshot 基线采集与重试、数据库保存；后续应分别计时，不能直接认定 allocator 锁或 mkdir 为原因。',
+    '实际 workflow：createid/appsnapshot → images/volume/storage/network/netfile/store 并行组 → cgroup → cubebox。network 与 storage 不可简单相加；sandbox-start 已包含 sandbox-create；Shim.CreatePodSandbox 已包含 CreateContainer。源码定位与完整计时边界见 source-boundaries.txt。',
+])
+section('版本漂移、复现与交付文件', [
+    '确认轮开始前身份核验通过，但约 09:42:21 全局及模板缓存 containerd-shim-cube-rs 被其他任务替换为 SHA-256 917cc57fce257a1bef7fff91d4b6b2cad2e39aaf2f09333ed75f707d943add70。预期为 d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9。Cubelet、CubeAPI、cube-runtime 仍匹配。确认轮结束后的校验正确拒绝，不能把它当作指定组合的第二次有效重复。',
+    '当前 .90 已不是本报告首轮的完整组件组合。继续做同版本验证前应协调其他部署任务、重新核验固定哈希，不能仅按服务版本字符串或文件名判断。报告未修改另一任务的新 Shim。',
+    '本轮确实调用了 classify_phases.mjs、analyze.mjs、network_details.mjs、timeline.mjs、precision.mjs。分类失败与精细观测缺失原样保留。时间线是基于已有日志/持续时间重建的视图，不是新增高精度单调时钟探针。',
+    '主要数据：capture/analysis.json、capture/stage-latency.csv、capture/network-details.json、capture/network-details.csv、capture/create-container-details.jsonl、capture/timeline.html、capture/precision.json。',
+    '归属与验收：capture/owned-sandbox-ids.json、capture/suite-results/c100n100.delete.json、capture/verified-run.json、capture/service-identity-before.json、capture/service-identity-after.json。原始 100 条 API：capture/startup-latency/c100n100.raw.json。',
+    '异常证据：first-run-attribution-note.txt、capture/phase-classification.json、capture-confirmation/service-identity-after-error.json、post-confirmation-version-drift.json。',
+    '远端原始证据：/data/cubelet/perf-evidence/bottleneck-optimized-20261014T013154Z/。本报告不包含原始日志中的访问令牌；分享时优先使用报告与汇总 CSV，不公开整份请求日志。',
+])
+
+title='CubeSandbox v0.7.1 优化版本＋NUMA0：c100n100 阶段瓶颈报告'
+text=[title,'']
+body=[f'<h1>{html.escape(title)}</h1>', '<p><a href="capture/timeline.html">打开 103 实例时间线</a> · <a href="capture/stage-latency.csv">阶段 CSV</a> · <a href="capture/network-details.csv">网络细分 CSV</a></p>']
+for s in sections:
+    text += [s['title'], ''] + s['paragraphs'] + ['']
+    body.append('<section><h2>'+html.escape(s['title'])+'</h2>')
+    body += ['<p>'+html.escape(p)+'</p>' for p in s['paragraphs']]
+    if s['headers']:
+        text.append(' | '.join(s['headers']))
+        text += [' | '.join(row) for row in s['rows']]
+        text.append('')
+        body.append('<div class="table"><table><thead><tr>'+''.join('<th>'+html.escape(x)+'</th>' for x in s['headers'])+'</tr></thead><tbody>')
+        body += ['<tr>'+''.join('<td>'+html.escape(x)+'</td>' for x in row)+'</tr>' for row in s['rows']]
+        body.append('</tbody></table></div>')
+    body.append('</section>')
+(ROOT/'REPORT.txt').write_text('\n'.join(text)+'\n')
+css='body{max-width:1120px;margin:40px auto;padding:0 24px;font:16px/1.75 system-ui,sans-serif;color:#18202a;background:#fff}h1{font-size:28px;line-height:1.35}h2{font-size:21px;margin-top:36px}p{overflow-wrap:anywhere}a{color:#1556a0}.table{overflow:auto}table{border-collapse:collapse;width:100%;font-size:14px;font-variant-numeric:tabular-nums}th,td{border-bottom:1px solid #d5dbe2;padding:9px;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}th{background:#f0f3f6}@media print{body{margin:0;max-width:none}.table{overflow:visible}h2{break-after:avoid}tr{break-inside:avoid}}'
+(ROOT/'REPORT.html').write_text('<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+html.escape(title)+'</title><style>'+css+'</style><body>'+''.join(body)+'</body></html>')
+(ROOT/'comparison.json').write_text(json.dumps({'api':{'baseline':old_api,'current':api},'components_103':comparison},ensure_ascii=False,indent=2)+'\n')
+with (ROOT/'comparison.csv').open('w',newline='') as out:
+    writer=csv.writer(out);writer.writerow(['stage','baseline_n','baseline_avg_ms','baseline_p95_ms','current_n','current_avg_ms','current_p95_ms','population'])
+    for r in stage_rows:writer.writerow(r+['103 owned incl.3 warmup; partial rows are conditional samples'])
+print(ROOT/'REPORT.html')
+
+# Public Markdown entry point; numeric content comes from the same saved analysis.
+md = ['# ' + title, '',
+      '> 2026-10-14 首轮优化版本实测；API 为正式 100 次，组件为含预热的 103 个 owned 实例。确认轮因 Shim 版本漂移排除。', '',
+      '[HTML 报告](REPORT.html) · [原文 TXT](REPORT.txt) · [证据与复现说明](PUBLICATION.md) · [103 实例时间线](capture/timeline.html)', '']
+link_paths = ['baseline-comparable-103.json', 'paired-newtask-gap.json', 'source-boundaries.txt', 'first-run-attribution-note.txt',
+              'capture/analysis.json', 'capture/stage-latency.csv', 'capture/network-details.json', 'capture/network-details.csv',
+              'capture/create-container-details.jsonl', 'capture/timeline.html', 'capture/precision.json',
+              'capture/owned-sandbox-ids.json', 'capture/suite-results/c100n100.delete.json', 'capture/verified-run.json',
+              'capture/service-identity-before.json', 'capture/service-identity-after.json', 'capture/startup-latency/c100n100.raw.json',
+              'capture/phase-classification.json', 'capture-confirmation/service-identity-after-error.json', 'post-confirmation-version-drift.json']
+def links(paragraph):
+    for path in sorted(link_paths, key=len, reverse=True):
+        paragraph = paragraph.replace(path, '[' + path + '](' + path + ')')
+    return paragraph
+for s in sections:
+    md += ['## ' + s['title'], '']
+    for paragraph in s['paragraphs']:
+        md += [links(paragraph), '']
+    if s['headers']:
+        md += ['| ' + ' | '.join(s['headers']) + ' |', '| ' + ' | '.join(['---'] * len(s['headers'])) + ' |']
+        md += ['| ' + ' | '.join(row) + ' |' for row in s['rows']]
+        md.append('')
+md += ['## 发布说明', '', '本文保留测试当日的版本与现场描述；“当前 .90”仅指 2026-10-14 当时状态。源码核查中的 PR 编号属于当时优化组合的简称，不代表可由本次组合测试分离各项收益。证据公开范围、原文件校验值和复现方式见 [PUBLICATION.md](PUBLICATION.md)。', '']
+(ROOT / 'REPORT.md').write_text('\n'.join(md))

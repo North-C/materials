@@ -1,0 +1,337 @@
+{
+  "api": {
+    "baseline": {
+      "count": 100,
+      "avg": 368.5901199999999,
+      "min": 141.565,
+      "p50": 382.516,
+      "p95": 491.46,
+      "max": 494.975
+    },
+    "current": {
+      "count": 100,
+      "avg": 260.96527,
+      "min": 81.288,
+      "p50": 262.347,
+      "p95": 360.84,
+      "max": 364.021
+    }
+  },
+  "components_103": [
+    {
+      "stage": "Cubelet.cubebox-service",
+      "baseline": {
+        "count": 103,
+        "avg": 314.7731650485438,
+        "min": 46.946,
+        "p50": 350.45,
+        "p95": 407.236,
+        "max": 411.513
+      },
+      "current": {
+        "count": 103,
+        "avg": 197.59409708737863,
+        "min": 45.251,
+        "p50": 224.852,
+        "p95": 262.938,
+        "max": 276.969
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Cubelet.cubebox",
+      "baseline": {
+        "count": 103,
+        "avg": 219.1615533980582,
+        "min": 44.675,
+        "p50": 235.114,
+        "p95": 279.893,
+        "max": 303.608
+      },
+      "current": {
+        "count": 103,
+        "avg": 151.58694174757287,
+        "min": 43.476,
+        "p50": 163.148,
+        "p95": 216.118,
+        "max": 218.432
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Cubelet.sandbox-create",
+      "baseline": {
+        "count": 103,
+        "avg": 150.9951067961165,
+        "min": 30.592,
+        "p50": 159.075,
+        "p95": 209.193,
+        "max": 224.198
+      },
+      "current": {
+        "count": 103,
+        "avg": 106.36750485436897,
+        "min": 28.279,
+        "p50": 112.389,
+        "p95": 154.579,
+        "max": 165.068
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Cubelet.sandbox-start",
+      "baseline": {
+        "count": 103,
+        "avg": 157.35840776699027,
+        "min": 31.116,
+        "p50": 164.684,
+        "p95": 218.796,
+        "max": 225.628
+      },
+      "current": {
+        "count": 103,
+        "avg": 116.27197087378642,
+        "min": 28.812,
+        "p50": 123.203,
+        "p95": 171.663,
+        "max": 184.026
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Cubelet.sandbox-probe",
+      "baseline": {
+        "count": 103,
+        "avg": 40.08063106796116,
+        "min": 10.697,
+        "p50": 39.223,
+        "p95": 62.092,
+        "max": 72.278
+      },
+      "current": {
+        "count": 103,
+        "avg": 23.60138834951457,
+        "min": 11.734,
+        "p50": 22.599,
+        "p95": 37.261,
+        "max": 74.598
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Cubelet.network",
+      "baseline": {
+        "count": 77,
+        "avg": 52.792194805194804,
+        "min": 18.422,
+        "p50": 42.883,
+        "p95": 121.139,
+        "max": 138.669
+      },
+      "current": {
+        "count": 43,
+        "avg": 66.72400000000002,
+        "min": 57.586,
+        "p50": 64.935,
+        "p95": 78.4,
+        "max": 81.641
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": false
+    },
+    {
+      "stage": "Cubelet.storage",
+      "baseline": {
+        "count": 87,
+        "avg": 15.025793103448274,
+        "min": 6.372,
+        "p50": 14.147,
+        "p95": 20.755,
+        "max": 26.197
+      },
+      "current": {
+        "count": 67,
+        "avg": 31.270671641791047,
+        "min": 5.034,
+        "p50": 9.098,
+        "p95": 69.363,
+        "max": 74.032
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": false
+    },
+    {
+      "stage": "Cubelet.cgroup",
+      "baseline": {
+        "count": 92,
+        "avg": 60.14867391304347,
+        "min": 7.881,
+        "p50": 54.409,
+        "p95": 99.312,
+        "max": 190.164
+      },
+      "current": {
+        "count": 85,
+        "avg": 14.610729411764707,
+        "min": 5.448,
+        "p50": 12.125,
+        "p95": 37.78,
+        "max": 62.01
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": false
+    },
+    {
+      "stage": "Cubelet.create-sandbox-metadata",
+      "baseline": {
+        "count": 80,
+        "avg": 18.989399999999996,
+        "min": 5.33,
+        "p50": 15.827,
+        "p95": 38.838,
+        "max": 46.153
+      },
+      "current": {
+        "count": 62,
+        "avg": 10.20891935483871,
+        "min": 5.052,
+        "p50": 8.416,
+        "p95": 16.896,
+        "max": 64.148
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": false
+    },
+    {
+      "stage": "Shim.CreatePodSandbox",
+      "baseline": {
+        "count": 103,
+        "avg": 76.2135922330097,
+        "min": 21,
+        "p50": 75,
+        "p95": 107,
+        "max": 121
+      },
+      "current": {
+        "count": 103,
+        "avg": 54.9126213592233,
+        "min": 19,
+        "p50": 43,
+        "p95": 106,
+        "max": 117
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Shim.RestoreVm",
+      "baseline": {
+        "count": 103,
+        "avg": 17.932038834951456,
+        "min": 6,
+        "p50": 13,
+        "p95": 46,
+        "max": 52
+      },
+      "current": {
+        "count": 103,
+        "avg": 25.388349514563107,
+        "min": 7,
+        "p50": 14,
+        "p95": 76,
+        "max": 88
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Shim.ResetVm",
+      "baseline": {
+        "count": 103,
+        "avg": 19.07766990291262,
+        "min": 2,
+        "p50": 20,
+        "p95": 28,
+        "max": 30
+      },
+      "current": {
+        "count": 103,
+        "avg": 5.242718446601942,
+        "min": 1,
+        "p50": 5,
+        "p95": 9,
+        "max": 11
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Shim.CreateSandbox",
+      "baseline": {
+        "count": 103,
+        "avg": 4.135922330097087,
+        "min": 0,
+        "p50": 4,
+        "p95": 9,
+        "max": 12
+      },
+      "current": {
+        "count": 103,
+        "avg": 3.4757281553398056,
+        "min": 0,
+        "p50": 2,
+        "p95": 10,
+        "max": 23
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Shim.CreateContainer",
+      "baseline": {
+        "count": 103,
+        "avg": 19.796116504854368,
+        "min": 7,
+        "p50": 16,
+        "p95": 38,
+        "max": 73
+      },
+      "current": {
+        "count": 103,
+        "avg": 12.116504854368932,
+        "min": 3,
+        "p50": 8,
+        "p95": 35,
+        "max": 54
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    },
+    {
+      "stage": "Shim.LaunchVmm",
+      "baseline": {
+        "count": 103,
+        "avg": 1.2135922330097086,
+        "min": 1,
+        "p50": 1,
+        "p95": 2,
+        "max": 2
+      },
+      "current": {
+        "count": 103,
+        "avg": 1.4563106796116505,
+        "min": 1,
+        "p50": 1,
+        "p95": 2,
+        "max": 4
+      },
+      "population": "103 owned including warmup",
+      "full_coverage": true
+    }
+  ]
+}

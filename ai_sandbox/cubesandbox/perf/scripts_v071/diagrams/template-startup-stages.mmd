@@ -1,0 +1,74 @@
+flowchart TB
+  CLIENT["cube-bench: 开始 create_ms"] --> API["CubeAPI: 构造并等待 Master 请求"]
+  subgraph MASTER["Master · cube-e2e（response ext_info 窗口）"]
+    QUEUE["newContext / 入队调度 / Handle<br/>请求端 Wait 等待完成"] --> VALID["Cubelet RPC<br/>参数检查等前置处理"]
+    subgraph SERVICE["Cubelet · cubebox-service（参数检查之后起计时）"]
+      FORK1{"并行组 1"} --> ID["createid"]
+      FORK1 --> SNAP["appsnapshot"]
+      ID --> JOIN1{"全部完成"}
+      SNAP --> JOIN1
+      JOIN1 --> FORK2{"并行组 2"}
+      FORK2 --> IMAGE["images / volume / netfile / store<br/>各自为独立并行 action"]
+      FORK2 --> NETWORK["network<br/>EnsureNetwork / allocation 保存"]
+      FORK2 --> STORAGE["storage<br/>卷准备 ∥ restore memory 预取<br/>等待两者后保存 metadata"]
+      IMAGE --> JOIN2{"全部完成"}
+      NETWORK --> JOIN2
+      STORAGE --> JOIN2
+      JOIN2 --> CGROUP["cgroup<br/>资源匹配 → 池分配或新建<br/>→ 用量基线 → 数据库保存"]
+      subgraph CUBEBOX["Cubelet · cubebox"]
+        SPEC["gen-spec-sandbox / 其他准备"] --> META["create-sandbox-metadata<br/>containerd.NewContainer"]
+        subgraph START["sandbox-start：从 taskStart 累计到状态更新完成"]
+          subgraph NEWTASK["sandbox-create：从同一 taskStart 到 NewTask 返回"]
+            IPC["containerd / 启动 Shim / Task Create RPC"]
+            subgraph SHIM["Shim · CreatePodSandbox（首次 Task Create）"]
+              LOAD["load spec / sandbox lock / init"]
+              subgraph READY["日志窗口：start vm start → agent is ready"]
+                LAUNCH["LaunchVmm"] --> PREP["snapshot 校验 / restore 配置准备"]
+                PREP --> RESTORE["RestoreVm<br/>VMM 请求往返；CH lock 之后起计时"]
+                RESTORE --> CONNECT["connect_agent<br/>跳过普通 vsock ready 等待<br/>其他恢复收尾 / 可选结果通知"]
+              end
+              RESET["ResetVm<br/>原版：时间 RPC → RNG 生成 → reseed RPC"]
+              GUEST["storages / DNS 准备"]
+              CS["CreateSandbox<br/>Guest RPC + 监控启动等收尾"]
+              CC["CreateContainer<br/>passfd / 请求准备 / Guest RPC / 状态"]
+              EVENT["TaskCreate 事件入队 / 返回"]
+              LOAD --> LAUNCH
+              CONNECT --> RESET --> GUEST --> CS --> CC --> EVENT
+            end
+            IPC --> LOAD
+            EVENT --> NEWRETURN["NewTask 返回"]
+          end
+          NEWRETURN --> TASKSTART["注册 Wait / 调用 Start / 更新状态<br/>Wait 不等待容器退出"]
+        end
+        META --> IPC
+        TASKSTART --> PROBE["sandbox-probe<br/>探测及必要的重试等待"]
+        PROBE --> POST["PostCreate / 保存状态 / 可选 envd init"]
+        POST --> HOSTLIMIT["cube-inner-cgroup<br/>仅宿主侧限额设置"]
+        HOSTLIMIT --> TAIL["guest metrics epoch 等收尾<br/>不计入 cube-inner-cgroup"]
+      end
+      CGROUP --> SPEC
+      TAIL --> SVCDONE["service defer：结束计时 / 组装响应"]
+    end
+    VALID --> FORK1
+    SVCDONE --> POSTFORK{"Master 后处理并行"}
+    POSTFORK --> REDIS["cubemaster-post-redis<br/>实际执行时"]
+    POSTFORK --> MYSQL["cubemaster-post-spec<br/>实际执行时"]
+    REDIS --> POSTJOIN{"等待两项完成"}
+    MYSQL --> POSTJOIN
+    POSTJOIN --> MDONE["Wait 返回 / stat endTime<br/>defer 设置 ext_info 后返回"]
+  end
+  API --> QUEUE
+  MDONE --> RESPONSE["CubeAPI 返回 HTTP<br/>client.Do 返回：结束 create_ms"]
+  RESPONSE --> BODY["读取 body / 解码 / 判定成功<br/>不计入 create_ms"]
+  subgraph ASYNC["异步支线：发出后不等待完成，可能与响应重叠"]
+    CGASYNC["Shim PID 加入 cgroup<br/>VM CPU resource update（按开关）"]
+    EVENTS["后台事件转发"]
+    CLOG["Cubelet reportTrace 批量写 stat"]
+    MLOG["Master dealMetric 写 stat（按开关）"]
+  end
+  POST -.->|"go：不等待完成"| CGASYNC
+  EVENT -.->|"队列转发，不等待发布完成"| EVENTS
+  SVCDONE -.->|"go reportTrace"| CLOG
+  MDONE -.->|"go dealMetric"| MLOG
+  COPY["Master sandbox-probe / all-probe<br/>传播数值，非新增执行阶段"]
+  PROBE ==>|"仅数值传播；非控制流"| COPY

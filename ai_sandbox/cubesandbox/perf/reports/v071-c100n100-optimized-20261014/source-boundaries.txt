@@ -1,0 +1,73 @@
+优化版 c100n100 源码计时边界核查
+核查版本：9dce2f877d9470908dd68594e4fe38edf365e141。
+权威源码：192.168.25.137:/data/cubesandbox-build/v0.7.1/merge-source。
+以下行号指该版本；本地工作区含未部署的 perftrace 观测改动，行号可能不同。
+仅进行了源码和配置只读检查，未增加远端负载或更改服务。
+
+实际执行结构
+192.168.25.90:/usr/local/services/cubetoolbox/Cubelet/config/config.toml:178：
+  [createid, appsnapshot]
+  -> [images, volume, storage, network, netfile, cube-sandbox-store]
+  -> [cgroup]
+  -> [cubebox]
+同组并行、组间串行。因此 network 与 storage 不可相加成关键路径；cgroup 在第二组完成后、cubebox 前。
+Cubelet/plugins/workflow/engine.go:476-508：插件计时从工作协程开始到 flow.Create 返回，包含插件内部等待；协程启动等待另记 workflow 指标，并可能被短阶段日志门槛抑制。
+
+cgroup
+Cubelet/plugins/cube/internals/cgroup/local.go:302-370：Create 包含资源和快照规格匹配、pool.Get、hostMetricsBaselineAtAssignment、db.Set。
+local.go:320：usePoolV2=false；服务 CPU 绑核不能等同启用了 NUMA cgroup pool。
+pool.go:213-235：pool.Get 分配后还会检查/创建 cgroup；createCgroup 在 pool.go:59，已有目录则返回。
+local.go:69、511：用量基线采集最多 3 次，失败间隔 10ms。
+支持结论：整个 cgroup 创建/分配路径耗时高。
+不支持结论：不能仅由 cgroup 总时长断言 allocator 锁、mkdir、数据库或某个内核调用是瓶颈；它们尚无独立计时。
+
+network
+Cubelet/network/plugin.go:145、plugin_tap.go:170：workflow network 包围参数/策略准备、EnsureNetwork、返回转换、allocation metadata Sync 等。
+runtime/controller.go:452：EnsureNetwork；:456 起总计时，包含 lock_wait/inmem_lookup/exists_check/legacy_check/create_state。
+runtime/controller.go:599：createState；其明细包含 route、TAP 分配、端口、持久化、CubeVS、Egress 等。
+runtime/controller.go:431：每条细分记录按自身父操作总耗时 >=1ms 或失败才记录。
+支持结论：可用 network-details 将现有被记录样本细分到具体阶段。
+限制：network 总值不等同 TAP 创建或 eBPF；嵌套阶段不可累加。零累计字段是 unknown_execution，不证明执行耗时为零；缺失记录可能来自门槛、分支、失败或日志缺口。
+
+sandbox-create / sandbox-start
+Cubelet/services/cubebox/cube_container_create.go:1353-1360：sandbox-create 从 c.NewTask 前到成功返回，包含 containerd/启动 Shim/Task Create 往返等工作。
+同文件:1375-1392：sandbox-start 沿用同一个 taskStart，继续包含 task.Wait、task.Start 及状态更新。
+sandbox-start 是累计计时，已经包含 sandbox-create。两者不能相加；只能对同一实例、唯一成功样本作配对差值。
+sandbox-create 不等同 VM restore，也不能仅凭跨组件总量差定位 RPC 或调度等待。
+
+sandbox-probe
+Cubelet/services/cubebox/probe.go：doProbe 的入口计时覆盖配置处理、异步探测、重试等待、退出检查直到返回；调用位于 cube_container_create.go:428。
+probe.go:118-128：#2 将 period 限制为 10ms，并按原 period 缩放正 failure_threshold。当前模板原 period 为 500ms。
+Cubelet/pkg/telnet/telnet.go:87-132：探测循环包含实际探测和失败后的 time.Sleep(period)。
+支持结论：探测路径等待降低与 #2 方向一致。
+不支持结论：不能分离应用真正就绪时刻、HTTP 请求耗时与轮询等待；未采集逐次探测时序，不能断言节省恰好来自重试间隔。
+
+Shim CreatePodSandbox
+CubeShim/shim/src/service/task_srv.rs:330-423：StatDefer 包围读 spec、sandbox mutex、初始化、create_sandbox、create_container、TaskCreate event 到返回。
+CreatePodSandbox 是父阶段，包含 CreateContainer；不能再把 CreateContainer 加到其总耗时上。
+同文件的 load spec/start sandbox/start container finish 日志是从同一 start 起的累计检查点，可在同一实例且无歧义时配对相减；不是独立阶段。
+
+Shim RestoreVm
+CubeShim/shim/src/hypervisor/cube_hypervisor.rs:173-184：获取 ch mutex 后才创建计时器，包围 VmRestore send_request 的整体往返。
+不含此前 mutex 等待，也不覆盖之后 agent reconnect；无法从该总值区分内存恢复、设备恢复、VMM 调度或内核子步骤。
+
+Shim ResetVm 与 #5 time/RNG
+CubeShim/shim/src/sandbox/sb.rs:438-467：获取 agent client mutex 后才创建 ResetVm 计时器。
+包含时间请求构造、同步 Utils::get_rng、随机数请求构造、tokio::join! 两个 RPC 至完成。
+tokio::join! 位于 :459；随机数生成在 join 之前同步执行。
+当前日志没有 time RPC、RNG 生成、reseed RPC 的独立计时。ResetVm 变化只能说明这个聚合区间变化，不能分配两路耗时或独立证明 #5 收益。
+
+Shim CreateSandbox
+CubeShim/shim/src/sandbox/sb.rs:495 起：包含请求构造、client mutex、agent CreateSandbox RPC。
+不包括之前 start_vm、connect_agent、reset_guest、get_storages。
+
+Shim CreateContainer
+CubeShim/shim/src/container/mod.rs:573 起：包括 passfd 建立、storage/spec/custom_files 请求构造、client mutex、agent RPC及状态初始化。
+不能全部解释成 guest 应用启动；恢复分支也可能执行必要的 I/O 重连。
+
+共同限制与后续建议
+Cubelet/services/cubebox/service.go:497-506：成功且低于 5ms 的阶段不写 trace。覆盖率降低不等于缺失部分是零。
+CubeShim/shim/src/log/stat_defer.rs:96：elapsed().as_millis()，整数毫秒截断；没有 perftrace 纳秒端点。
+不同进程日志时间戳不能合成精确单调时钟；父子、累计、传播指标不可直接相加，也不可相减整体 P95。
+本轮是批准补丁组合加 NUMA0 CPU/内存本地优先的组合变化，单轮对照不能拆分各 PR 与绑核收益。
+下一轮若补观测，优先拆 cgroup 的分配/创建/用量读取/数据库阶段，以及 ResetVm 的取锁、get_rng、两个 RPC；作为独立观测版本进行开关对照，不能冒充本轮原始优化产物。

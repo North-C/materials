@@ -1,0 +1,221 @@
+{
+  "verified_at": "2026-10-14T01:35:56.752508+00:00",
+  "read_only": true,
+  "release_version": "v0.7.1-arm64",
+  "commit": "9dce2f877d9470908dd68594e4fe38edf365e141",
+  "base_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+  "build_kind": "v0.7.1+local.9dce2f8",
+  "observation": null,
+  "trace_environment": {
+    "cubelet": false,
+    "cube-api": false
+  },
+  "optimization": {
+    "schema_version": 1,
+    "commit": "9dce2f877d9470908dd68594e4fe38edf365e141",
+    "base_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+    "components": {
+      "cubelet": {
+        "sha256": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9",
+        "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+      },
+      "cube-api": {
+        "sha256": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac",
+        "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+      },
+      "containerd-shim-cube-rs": {
+        "sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9",
+        "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+      },
+      "cube-runtime": {
+        "sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec",
+        "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+      }
+    },
+    "files": [
+      {
+        "name": "cubelet",
+        "path": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+        "sha256": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9"
+      },
+      {
+        "name": "cube-api",
+        "path": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+        "sha256": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac"
+      },
+      {
+        "name": "containerd-shim-cube-rs",
+        "path": "/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs",
+        "sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9"
+      },
+      {
+        "name": "cube-runtime",
+        "path": "/usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime",
+        "sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec"
+      },
+      {
+        "name": "containerd-shim-cube-rs",
+        "path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs",
+        "sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9"
+      },
+      {
+        "name": "cube-runtime",
+        "path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/cube-runtime",
+        "sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec"
+      }
+    ]
+  },
+  "release_manifest_sha256": "3165ca52d62c1bb4ba04cfccc4728633b9940179c75dc89130fd3347ed35efd8",
+  "optimized_files": [
+    {
+      "name": "cubelet",
+      "path": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+      "sha256": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9"
+    },
+    {
+      "name": "cube-api",
+      "path": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+      "sha256": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac"
+    },
+    {
+      "name": "containerd-shim-cube-rs",
+      "path": "/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs",
+      "sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9"
+    },
+    {
+      "name": "cube-runtime",
+      "path": "/usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime",
+      "sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec"
+    },
+    {
+      "name": "containerd-shim-cube-rs",
+      "path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs",
+      "sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9"
+    },
+    {
+      "name": "cube-runtime",
+      "path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/cube-runtime",
+      "sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec"
+    }
+  ],
+  "boot_id": "93eb9b8a-d688-49ad-b435-d35022df780a",
+  "kernel": "6.6.0-9999.sp3.vnmi.xarray.d383a36d",
+  "services": [
+    {
+      "component": "cube-api",
+      "pid": 2154769,
+      "start_ticks": "43962141",
+      "exe": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+      "sha256": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac",
+      "version": "v0.7.1+local.9dce2f8",
+      "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+    },
+    {
+      "component": "cubelet",
+      "pid": 2154388,
+      "start_ticks": "43961074",
+      "exe": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+      "sha256": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9",
+      "version": "v0.7.1+local.9dce2f8",
+      "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+    },
+    {
+      "component": "cubemaster",
+      "pid": 1823839,
+      "start_ticks": "9558737",
+      "exe": "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster",
+      "sha256": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9",
+      "version": "v0.7.1",
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+    },
+    {
+      "component": "templatecenter",
+      "pid": 32337,
+      "start_ticks": "6944",
+      "exe": "/usr/local/services/cubetoolbox/CubeTemplateCenter/bin/templatecenter",
+      "sha256": "cfdab176aaa39f39352ce2c3eff98d5d7cab4837385a32f6363db835a94e8d65",
+      "version": "v0.7.1",
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+    }
+  ],
+  "numa": {
+    "cpu_affinity": "0-95",
+    "policy": "local",
+    "node": 0,
+    "services": [
+      {
+        "component": "cube-api",
+        "pid": 2154769,
+        "cpu_affinity": "0-95",
+        "numa_policy": "local",
+        "all_threads_verified": true,
+        "thread_count": 17
+      },
+      {
+        "component": "cubelet",
+        "pid": 2154388,
+        "cpu_affinity": "0-95",
+        "numa_policy": "local",
+        "all_threads_verified": true,
+        "thread_count": 40
+      }
+    ]
+  },
+  "shim": {
+    "path": "/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs",
+    "sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9",
+    "versioned_path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs",
+    "versioned_sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9",
+    "runtime_path": "/usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime",
+    "runtime_sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec",
+    "versioned_runtime_path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/cube-runtime",
+    "versioned_runtime_sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec"
+  },
+  "sandbox_count": 0,
+  "master_create_concurrent_limit": 100,
+  "template": {
+    "id": "tpl-cf2b04fdd4604b7c84e157fa",
+    "status": "READY",
+    "resources": {
+      "cpu": "2000m",
+      "mem": "2048Mi"
+    },
+    "writable_layer_size": "1G",
+    "replicas": [
+      {
+        "agent_version": "v0.7.1",
+        "artifact_id": "rfs-dd2b6baa7183b8077c714eb9-e5190241",
+        "compat_checked_unix": 1791798264,
+        "compat_policy": "STRICT",
+        "compat_status": "OK",
+        "guest_image_version": "guest-image-260820-1",
+        "instance_type": "cubebox",
+        "kernel_version": "sha256-a63aa77e9c2d",
+        "last_job_id": "7c6f7d99-1a97-4b47-ade5-ce07bb3a57f4",
+        "node_id": "192.168.25.90",
+        "node_ip": "192.168.25.90",
+        "phase": "READY",
+        "shim_version": "v0.7.1",
+        "spec": "cpu=2000m,mem=2048Mi",
+        "status": "READY"
+      }
+    ],
+    "probe": {
+      "failure_threshold": 60,
+      "period_ms": 500,
+      "probe_handler": {
+        "http_get": {
+          "path": "/health",
+          "port": 49999
+        }
+      },
+      "probe_timeout_ms": 2000,
+      "success_threshold": 1,
+      "timeout_ms": 30000
+    },
+    "args": [
+      "/usr/local/bin/start-lightweight-code-interpreter.sh"
+    ]
+  },
+  "loadavg": "2.43 2.83 3.68 3/6754 3324738"
+}

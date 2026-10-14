@@ -1,0 +1,1034 @@
+{
+  "schema_version": 1,
+  "status": "unverified",
+  "method": "exclusive-template; exact Master request/response pairs; proven serial warmup boundary",
+  "raw_seq_to_sandbox_mapping": "unavailable",
+  "checks": {
+    "master_log_complete": true,
+    "capture_command_succeeded": true,
+    "ownership_originally_unknown_103": true,
+    "adapter_success": true,
+    "pinned_suite_preflight_contract": true,
+    "official_binary_verified": true,
+    "exclusive_ledger_drained": true,
+    "official_workload_success": true,
+    "three_successful_serial_warmup_messages": true,
+    "identity_empty_baselines": true,
+    "stable_optimized_build": true,
+    "stable_host_release": true,
+    "stable_observation_build": true,
+    "stable_service_processes": true,
+    "master_exactly_104_unique_pairs_including_preflight": false,
+    "single_preflight_completed_and_delete_ack_before_owned": false,
+    "master_pairs_successful_owned_in_window": true,
+    "warmup_boundary_strictly_ordered": true
+  },
+  "errors": [
+    "master_exactly_104_unique_pairs_including_preflight",
+    "single_preflight_completed_and_delete_ack_before_owned"
+  ],
+  "ownership": null,
+  "evidence": {
+    "files": {
+      "capture-manifest.json": {
+        "bytes": 11352,
+        "sha256": "5fbe158ff150539b1bfaeffe32cdbb4f809cb999f5c7ed059ff5f1eaacd9d801"
+      },
+      "evidence/master-delta.log": {
+        "bytes": 892273,
+        "sha256": "894c28f341f0b1b92fdb18f428545c798429255380f06ba2b439d12dd69b7484"
+      },
+      "owned-sandbox-ids.json": {
+        "bytes": 4180,
+        "sha256": "bd22464e060cab4db9ffb7dd26d4514fdc223afcc963879396f57410d25d92bd"
+      },
+      "adapter-status.json": {
+        "bytes": 2092,
+        "sha256": "2a1c9a3251e6a294427c44ae40a1544b442d22f6090cb7dbdf9405a278ae5f51"
+      },
+      "suite-results/c100n100.delete.json": {
+        "bytes": 23438,
+        "sha256": "77a8b70470afa700cd97b02bf9121e6952eca759cd43e2f2532fc1816e41dccf"
+      },
+      "startup-latency/c100n100.raw.json": {
+        "bytes": 8610,
+        "sha256": "74f2470ede9f910b709db91aabed1a2461cc7514acc1f3019e01870393a8e8ae"
+      },
+      "suite-results/3.2-c100n100.log": {
+        "bytes": 9223,
+        "sha256": "89a99c6070d7a77630fbea32c2e7e64a6275a1e343ae8a8d025da74af149b85c"
+      },
+      "service-identity-before.json": {
+        "bytes": 8120,
+        "sha256": "1262f5c4f973dc0d3887ca3d86b7c320d0d1065bdc3d3bc028c556283d2302ac"
+      },
+      "service-identity-after.json": {
+        "bytes": 8122,
+        "sha256": "ef3df046067f7b70c24d54ecdb8333a2bae4ef2ac8fe61bd0bf5fd982b386cf5"
+      }
+    },
+    "binary_sha256": "d7d7685433bea7909b124504f4851517bdae146c4bb13e279fbb816c20bd032d",
+    "build_kind": "v0.7.1+local.9dce2f8",
+    "observation": null,
+    "optimization": {
+      "schema_version": 1,
+      "commit": "9dce2f877d9470908dd68594e4fe38edf365e141",
+      "base_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+      "components": {
+        "cubelet": {
+          "sha256": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9",
+          "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+        },
+        "cube-api": {
+          "sha256": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac",
+          "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+        },
+        "containerd-shim-cube-rs": {
+          "sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9",
+          "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+        },
+        "cube-runtime": {
+          "sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec",
+          "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+        }
+      },
+      "files": [
+        {
+          "name": "cubelet",
+          "path": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+          "sha256": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9"
+        },
+        {
+          "name": "cube-api",
+          "path": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+          "sha256": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac"
+        },
+        {
+          "name": "containerd-shim-cube-rs",
+          "path": "/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs",
+          "sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9"
+        },
+        {
+          "name": "cube-runtime",
+          "path": "/usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime",
+          "sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec"
+        },
+        {
+          "name": "containerd-shim-cube-rs",
+          "path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs",
+          "sha256": "d4450a9fdc4f20041afad7679470f116f48d6d2e668ae1be56ca4fa184225cf9"
+        },
+        {
+          "name": "cube-runtime",
+          "path": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/cube-runtime",
+          "sha256": "40f9c21792c8afdf60a4428e51f90089577d64209596d775e1f05d0f75a736ec"
+        }
+      ]
+    },
+    "base_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+    "deployment_commit": "9dce2f877d9470908dd68594e4fe38edf365e141",
+    "numa_before": {
+      "cpu_affinity": "0-95",
+      "policy": "local",
+      "node": 0,
+      "services": [
+        {
+          "component": "cube-api",
+          "pid": 2154769,
+          "cpu_affinity": "0-95",
+          "numa_policy": "local",
+          "all_threads_verified": true,
+          "thread_count": 17
+        },
+        {
+          "component": "cubelet",
+          "pid": 2154388,
+          "cpu_affinity": "0-95",
+          "numa_policy": "local",
+          "all_threads_verified": true,
+          "thread_count": 40
+        }
+      ]
+    },
+    "numa_after": {
+      "cpu_affinity": "0-95",
+      "policy": "local",
+      "node": 0,
+      "services": [
+        {
+          "component": "cube-api",
+          "pid": 2154769,
+          "cpu_affinity": "0-95",
+          "numa_policy": "local",
+          "all_threads_verified": true,
+          "thread_count": 18
+        },
+        {
+          "component": "cubelet",
+          "pid": 2154388,
+          "cpu_affinity": "0-95",
+          "numa_policy": "local",
+          "all_threads_verified": true,
+          "thread_count": 114
+        }
+      ]
+    },
+    "template_id": "tpl-cf2b04fdd4604b7c84e157fa",
+    "master_start_count": 106,
+    "master_response_count": 106,
+    "malformed_or_duplicate_markers": 0,
+    "warmup_messages": [
+      "    warmup [1/3] ok",
+      "    warmup [2/3] ok",
+      "    warmup [3/3] ok"
+    ],
+    "services_before": [
+      {
+        "component": "cube-api",
+        "pid": 2154769,
+        "start_ticks": "43962141",
+        "exe": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+        "sha256": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac",
+        "version": "v0.7.1+local.9dce2f8",
+        "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+      },
+      {
+        "component": "cubelet",
+        "pid": 2154388,
+        "start_ticks": "43961074",
+        "exe": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+        "sha256": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9",
+        "version": "v0.7.1+local.9dce2f8",
+        "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+      },
+      {
+        "component": "cubemaster",
+        "pid": 1823839,
+        "start_ticks": "9558737",
+        "exe": "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster",
+        "sha256": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      },
+      {
+        "component": "templatecenter",
+        "pid": 32337,
+        "start_ticks": "6944",
+        "exe": "/usr/local/services/cubetoolbox/CubeTemplateCenter/bin/templatecenter",
+        "sha256": "cfdab176aaa39f39352ce2c3eff98d5d7cab4837385a32f6363db835a94e8d65",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      }
+    ],
+    "services_after": [
+      {
+        "component": "cube-api",
+        "pid": 2154769,
+        "start_ticks": "43962141",
+        "exe": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+        "sha256": "6a0fc52784d64ceb85b2cf8d020749d979073c87917c77499f43be865801ccac",
+        "version": "v0.7.1+local.9dce2f8",
+        "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+      },
+      {
+        "component": "cubelet",
+        "pid": 2154388,
+        "start_ticks": "43961074",
+        "exe": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+        "sha256": "3debe035cdd92339a864e88f897cec375e87ebfd9444136c2e09967b200c44e9",
+        "version": "v0.7.1+local.9dce2f8",
+        "commit": "9dce2f877d9470908dd68594e4fe38edf365e141"
+      },
+      {
+        "component": "cubemaster",
+        "pid": 1823839,
+        "start_ticks": "9558737",
+        "exe": "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster",
+        "sha256": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      },
+      {
+        "component": "templatecenter",
+        "pid": 32337,
+        "start_ticks": "6944",
+        "exe": "/usr/local/services/cubetoolbox/CubeTemplateCenter/bin/templatecenter",
+        "sha256": "cfdab176aaa39f39352ce2c3eff98d5d7cab4837385a32f6363db835a94e8d65",
+        "version": "v0.7.1",
+        "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d"
+      }
+    ],
+    "excluded_preflight": [
+      {
+        "request_id": "49462b19-271f-4128-bccf-308f6049b160",
+        "sandbox_id": "eb4503570a684af0a180207cb88e1b87",
+        "start": "2026-10-14T09:37:32.56670215+08:00",
+        "response": "2026-10-14T09:37:32.62014312+08:00",
+        "success": true
+      },
+      {
+        "request_id": "010427e8-d898-4ec1-b023-351ced6967a6",
+        "sandbox_id": "5df92e11eefa41bca2f65d1d0d2372d5",
+        "start": "2026-10-14T09:37:34.41561307+08:00",
+        "response": "2026-10-14T09:37:34.46818982+08:00",
+        "success": true
+      },
+      {
+        "request_id": "75775b2c-2503-4095-98a2-1b878385d2b7",
+        "sandbox_id": "1c1215868ecb4455942ac0b908a86e5f",
+        "start": "2026-10-14T09:37:57.09093509+08:00",
+        "response": "2026-10-14T09:37:57.14872088+08:00",
+        "success": true
+      }
+    ],
+    "preflight_delete_ack": [
+      {
+        "sandbox_id": "eb4503570a684af0a180207cb88e1b87",
+        "request_id": "482ba3d7-58f0-4d35-8f56-550641259d57",
+        "at": "2026-10-14T09:37:32.81207445+08:00",
+        "success": true
+      },
+      {
+        "sandbox_id": "5df92e11eefa41bca2f65d1d0d2372d5",
+        "request_id": "40bf7150-2f47-4435-b8d2-81939f0f076d",
+        "at": "2026-10-14T09:37:34.59056187+08:00",
+        "success": true
+      },
+      {
+        "sandbox_id": "1c1215868ecb4455942ac0b908a86e5f",
+        "request_id": "b04abe85-14f3-406f-b7f9-3bb2ff324fc6",
+        "at": "2026-10-14T09:38:00.28709886+08:00",
+        "success": true
+      }
+    ],
+    "preflight_drain_basis": "Pinned suite requires empty API inventory after guest_preflight and again before benchmark; suite preflight/case success verified. Delete ack alone is not proof of drain.",
+    "pairs": [
+      {
+        "request_id": "6680fc62-e08c-429e-89e8-c2a4fed2e83b",
+        "sandbox_id": "e00d2925fe4146cdb6bd1a8bf85476cf",
+        "start": "2026-10-14T09:38:30.82797369+08:00",
+        "response": "2026-10-14T09:38:30.88210874+08:00",
+        "success": true
+      },
+      {
+        "request_id": "097fd77a-bc98-4baf-aca6-f3964f0df928",
+        "sandbox_id": "33eca91c91a9489fbd679cb9a3211c46",
+        "start": "2026-10-14T09:38:30.88393474+08:00",
+        "response": "2026-10-14T09:38:30.93867753+08:00",
+        "success": true
+      },
+      {
+        "request_id": "5d2f2b67-a99b-4bef-988f-b763265edece",
+        "sandbox_id": "90478a31d2c44b44a8d2ba956de5ed44",
+        "start": "2026-10-14T09:38:30.94059358+08:00",
+        "response": "2026-10-14T09:38:30.98915006+08:00",
+        "success": true
+      },
+      {
+        "request_id": "edb9e34b-4ef4-477d-a6b9-83d9237c6f82",
+        "sandbox_id": "2e62bf447b1d4594a9e0d8034c35b3cb",
+        "start": "2026-10-14T09:38:30.99247916+08:00",
+        "response": "2026-10-14T09:38:31.05691038+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c3d00b84-6313-43aa-a313-b4a4796d74e0",
+        "sandbox_id": "9f34ef1c81034e8995004784e074115e",
+        "start": "2026-10-14T09:38:30.99270814+08:00",
+        "response": "2026-10-14T09:38:31.06689038+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d81d121c-ac9c-4421-b617-29e23f707dfa",
+        "sandbox_id": "80236dbc59c94f658a0886f56ace3745",
+        "start": "2026-10-14T09:38:30.99402002+08:00",
+        "response": "2026-10-14T09:38:31.08984369+08:00",
+        "success": true
+      },
+      {
+        "request_id": "52ea33fb-d58e-4589-ada6-cccc20ef765c",
+        "sandbox_id": "7bbf42f88467430f8a3968978e249e91",
+        "start": "2026-10-14T09:38:30.99430332+08:00",
+        "response": "2026-10-14T09:38:31.07774102+08:00",
+        "success": true
+      },
+      {
+        "request_id": "cf36b65f-e2a9-4480-ba13-d951c70ba3c4",
+        "sandbox_id": "1c3343a993fe49afaa2aae3295bf5981",
+        "start": "2026-10-14T09:38:30.99435683+08:00",
+        "response": "2026-10-14T09:38:31.06987928+08:00",
+        "success": true
+      },
+      {
+        "request_id": "adb26598-17a1-4e19-81a8-1f3e60db980b",
+        "sandbox_id": "49304de98af54bc9b47674c12cecc329",
+        "start": "2026-10-14T09:38:30.99474229+08:00",
+        "response": "2026-10-14T09:38:31.07834604+08:00",
+        "success": true
+      },
+      {
+        "request_id": "df73f19e-f0b0-4abc-8c33-01e33c848fa3",
+        "sandbox_id": "c615012f90594cefbbcc766695d0fe63",
+        "start": "2026-10-14T09:38:30.99581363+08:00",
+        "response": "2026-10-14T09:38:31.08826166+08:00",
+        "success": true
+      },
+      {
+        "request_id": "34feecda-aeb7-4f3c-9f19-1d7c766b2267",
+        "sandbox_id": "01e28791e68e4069845f4f883bc524a2",
+        "start": "2026-10-14T09:38:30.99584039+08:00",
+        "response": "2026-10-14T09:38:31.09682868+08:00",
+        "success": true
+      },
+      {
+        "request_id": "26c694ee-a42c-47d2-b4ba-dd0e89fd2071",
+        "sandbox_id": "8ae62c09b2e143a1a38539cc2ec5b34d",
+        "start": "2026-10-14T09:38:30.99633931+08:00",
+        "response": "2026-10-14T09:38:31.09485954+08:00",
+        "success": true
+      },
+      {
+        "request_id": "943967a3-3e09-413e-94ae-a705ca0b2e81",
+        "sandbox_id": "db5236badb5b416da454899ee236ce64",
+        "start": "2026-10-14T09:38:30.99635835+08:00",
+        "response": "2026-10-14T09:38:31.09024965+08:00",
+        "success": true
+      },
+      {
+        "request_id": "42580b66-6385-443e-ae84-c050a609859a",
+        "sandbox_id": "c7ca5ab0c5ab484986a8cdbe500d54cf",
+        "start": "2026-10-14T09:38:30.99637093+08:00",
+        "response": "2026-10-14T09:38:31.09288634+08:00",
+        "success": true
+      },
+      {
+        "request_id": "2a1eafef-1f86-4f1f-9eb8-0f128ecc9adb",
+        "sandbox_id": "1848c1d8ce834a3dadaffd266e7b8f1b",
+        "start": "2026-10-14T09:38:30.99775005+08:00",
+        "response": "2026-10-14T09:38:31.0944745+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c53c6e53-e8b2-4671-aede-3e207eb3b397",
+        "sandbox_id": "e3c75c8999634c38b8af1fe55654b8c4",
+        "start": "2026-10-14T09:38:30.99874286+08:00",
+        "response": "2026-10-14T09:38:31.09052013+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d09cb990-94a7-4a5b-a5c4-8394a3d77c78",
+        "sandbox_id": "b9d3b36be61346849935e7c383e3f689",
+        "start": "2026-10-14T09:38:30.99914847+08:00",
+        "response": "2026-10-14T09:38:31.09502421+08:00",
+        "success": true
+      },
+      {
+        "request_id": "5d42153a-d6fa-42e8-b69d-a5fac7f1ebe7",
+        "sandbox_id": "45bb68da552d44d9a9e94c34dd5cb907",
+        "start": "2026-10-14T09:38:31.00108555+08:00",
+        "response": "2026-10-14T09:38:31.11138265+08:00",
+        "success": true
+      },
+      {
+        "request_id": "694d2101-1e5a-478c-9057-c966c62ebad8",
+        "sandbox_id": "2fd4307767ce4863bcbf37978f477502",
+        "start": "2026-10-14T09:38:31.0011375+08:00",
+        "response": "2026-10-14T09:38:31.22507018+08:00",
+        "success": true
+      },
+      {
+        "request_id": "e3c1fc96-69e2-40cf-876f-3d1740bcb9f1",
+        "sandbox_id": "8feaf51242d24a7a806ceb1905e4a8ff",
+        "start": "2026-10-14T09:38:31.00117634+08:00",
+        "response": "2026-10-14T09:38:31.22002658+08:00",
+        "success": true
+      },
+      {
+        "request_id": "88f0c8a5-4e3e-4f23-be47-28237af642e1",
+        "sandbox_id": "e224c82bde5341dd9f425b1ba1a1886f",
+        "start": "2026-10-14T09:38:31.00134499+08:00",
+        "response": "2026-10-14T09:38:31.09827872+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d02b578a-a574-4182-b16c-e39549705697",
+        "sandbox_id": "124ad31936d44912bd9d972dbe32080e",
+        "start": "2026-10-14T09:38:31.00178027+08:00",
+        "response": "2026-10-14T09:38:31.11543774+08:00",
+        "success": true
+      },
+      {
+        "request_id": "80aa0fd2-11e9-4668-8a70-8405aa86c61e",
+        "sandbox_id": "9920582b68854de4bc1b17c20bfe42e6",
+        "start": "2026-10-14T09:38:31.00207587+08:00",
+        "response": "2026-10-14T09:38:31.25051277+08:00",
+        "success": true
+      },
+      {
+        "request_id": "8942e076-2bb1-4afd-8915-031bdac28f6b",
+        "sandbox_id": "77668e4baf614063b205640464175725",
+        "start": "2026-10-14T09:38:31.00218319+08:00",
+        "response": "2026-10-14T09:38:31.17014991+08:00",
+        "success": true
+      },
+      {
+        "request_id": "82c5ec87-ef54-4843-92e9-091ee9231dc5",
+        "sandbox_id": "c7e3d82f160f4e2a8d8c6054b9aad82c",
+        "start": "2026-10-14T09:38:31.0022112+08:00",
+        "response": "2026-10-14T09:38:31.11420306+08:00",
+        "success": true
+      },
+      {
+        "request_id": "df7e5c98-1420-4f45-a5a3-85da9978e1f6",
+        "sandbox_id": "5dacec0f2b4e41e79f4c1654ddb34d71",
+        "start": "2026-10-14T09:38:31.00234421+08:00",
+        "response": "2026-10-14T09:38:31.11400032+08:00",
+        "success": true
+      },
+      {
+        "request_id": "31a853e5-d767-4e5a-ba00-d928e3f36492",
+        "sandbox_id": "b2d31be3224e49abb13b6dfa21d622d4",
+        "start": "2026-10-14T09:38:31.00248387+08:00",
+        "response": "2026-10-14T09:38:31.24940935+08:00",
+        "success": true
+      },
+      {
+        "request_id": "7728e6b8-baca-42be-95df-c1faf41d909e",
+        "sandbox_id": "7a8c712804144682b2404e603152a23e",
+        "start": "2026-10-14T09:38:31.00281027+08:00",
+        "response": "2026-10-14T09:38:31.20117264+08:00",
+        "success": true
+      },
+      {
+        "request_id": "d84cb0ab-d79b-43b3-b82d-a347f039efd2",
+        "sandbox_id": "29ba163a03fe4c338b2b129f05ce79c4",
+        "start": "2026-10-14T09:38:31.00305899+08:00",
+        "response": "2026-10-14T09:38:31.21957312+08:00",
+        "success": true
+      },
+      {
+        "request_id": "231faa4c-ad38-4801-963c-aa9ccc4c9baf",
+        "sandbox_id": "68b81af4a7fa484db88cf6bc98824c04",
+        "start": "2026-10-14T09:38:31.00317401+08:00",
+        "response": "2026-10-14T09:38:31.23596499+08:00",
+        "success": true
+      },
+      {
+        "request_id": "cf9bd0ed-d0a3-456f-946c-675c42ff847b",
+        "sandbox_id": "3babd9d3a64d4d0e8b0a1c90123ada93",
+        "start": "2026-10-14T09:38:31.00327002+08:00",
+        "response": "2026-10-14T09:38:31.24233522+08:00",
+        "success": true
+      },
+      {
+        "request_id": "3a60acd9-3810-4ef6-bfc7-77519a42189a",
+        "sandbox_id": "d908de8a745e438381deea3962a125ec",
+        "start": "2026-10-14T09:38:31.00335318+08:00",
+        "response": "2026-10-14T09:38:31.24920558+08:00",
+        "success": true
+      },
+      {
+        "request_id": "e10ea59c-2fae-4763-bfba-a42e6afcb590",
+        "sandbox_id": "1ada2b9b44cb4827a9b21750c7ff15f8",
+        "start": "2026-10-14T09:38:31.00364338+08:00",
+        "response": "2026-10-14T09:38:31.24334528+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c43e1388-7191-418f-9dba-0af5bc1cf00a",
+        "sandbox_id": "0fc934ae58ed4e3c865bcdf674697625",
+        "start": "2026-10-14T09:38:31.00368156+08:00",
+        "response": "2026-10-14T09:38:31.22026503+08:00",
+        "success": true
+      },
+      {
+        "request_id": "5660e6e8-29eb-4b1b-b543-7dd7d87f492a",
+        "sandbox_id": "d8a45fdb06d74bc98b78ec74de806149",
+        "start": "2026-10-14T09:38:31.00389267+08:00",
+        "response": "2026-10-14T09:38:31.24794175+08:00",
+        "success": true
+      },
+      {
+        "request_id": "7d97471d-3736-48b1-87ca-5b7ab6347730",
+        "sandbox_id": "0b6cda105a0a461face4cf6620441ec0",
+        "start": "2026-10-14T09:38:31.00420639+08:00",
+        "response": "2026-10-14T09:38:31.2492652+08:00",
+        "success": true
+      },
+      {
+        "request_id": "cd5f994f-ebf3-4fe3-bd40-c39cdb6342ea",
+        "sandbox_id": "40bd37e212c8439d82a9466781c3574a",
+        "start": "2026-10-14T09:38:31.00438646+08:00",
+        "response": "2026-10-14T09:38:31.25240016+08:00",
+        "success": true
+      },
+      {
+        "request_id": "12438910-82c1-4bf5-a028-7ecb25d899bb",
+        "sandbox_id": "e5af7a30287a4400a93c9e71b6991bb0",
+        "start": "2026-10-14T09:38:31.00475519+08:00",
+        "response": "2026-10-14T09:38:31.23701939+08:00",
+        "success": true
+      },
+      {
+        "request_id": "3dcb0013-8e4e-45bd-a334-0bf0da6eae65",
+        "sandbox_id": "48b094055e5c4a5bb584ebdaf5020ee0",
+        "start": "2026-10-14T09:38:31.00500263+08:00",
+        "response": "2026-10-14T09:38:31.20933439+08:00",
+        "success": true
+      },
+      {
+        "request_id": "4e363da0-3024-41da-a4f4-d712558ed011",
+        "sandbox_id": "77db20585ed3428980d28617b8d3c2d5",
+        "start": "2026-10-14T09:38:31.00546025+08:00",
+        "response": "2026-10-14T09:38:31.25025333+08:00",
+        "success": true
+      },
+      {
+        "request_id": "79c43ce6-26a9-4809-98c0-d6b6019575b6",
+        "sandbox_id": "debd2e32452742d7ace37de9f5adc9ed",
+        "start": "2026-10-14T09:38:31.00559412+08:00",
+        "response": "2026-10-14T09:38:31.23586509+08:00",
+        "success": true
+      },
+      {
+        "request_id": "28070fab-25eb-41d6-befa-edf3571b376b",
+        "sandbox_id": "2bc6eeda96d849578e2465f92beb332d",
+        "start": "2026-10-14T09:38:31.00571864+08:00",
+        "response": "2026-10-14T09:38:31.11968598+08:00",
+        "success": true
+      },
+      {
+        "request_id": "0d9617f2-377b-4ce8-89a0-824da0f5ecf0",
+        "sandbox_id": "0a5da2588d9d45fc88aae41e01546fef",
+        "start": "2026-10-14T09:38:31.00572793+08:00",
+        "response": "2026-10-14T09:38:31.21994249+08:00",
+        "success": true
+      },
+      {
+        "request_id": "20f7039c-572e-4191-885d-9ea7c9e31c74",
+        "sandbox_id": "093be9a5f88e434eb9e5f76e98fbbf6e",
+        "start": "2026-10-14T09:38:31.00589771+08:00",
+        "response": "2026-10-14T09:38:31.25091449+08:00",
+        "success": true
+      },
+      {
+        "request_id": "9f6c535b-4a2c-4dbc-9a7d-2558f7ecf44f",
+        "sandbox_id": "b522112c6df0406a9dfe5de4843f1259",
+        "start": "2026-10-14T09:38:31.0062312+08:00",
+        "response": "2026-10-14T09:38:31.25220547+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f66a3a0f-cc6d-4bc2-9235-0614b28509f1",
+        "sandbox_id": "9d6ca207fe7141f88e9e91b59da3d308",
+        "start": "2026-10-14T09:38:31.00646014+08:00",
+        "response": "2026-10-14T09:38:31.25555324+08:00",
+        "success": true
+      },
+      {
+        "request_id": "4ca03bdd-d663-4310-96e8-1a8148d5ea90",
+        "sandbox_id": "1037b7fe85764ea288a4a3fa853f7bdc",
+        "start": "2026-10-14T09:38:31.00663838+08:00",
+        "response": "2026-10-14T09:38:31.22552668+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b2c05c7a-b2d4-40c3-a7cf-9ad2a2a8812a",
+        "sandbox_id": "081759346c9f4185a730c709eda6e2cf",
+        "start": "2026-10-14T09:38:31.00686051+08:00",
+        "response": "2026-10-14T09:38:31.24208006+08:00",
+        "success": true
+      },
+      {
+        "request_id": "561d283f-e403-49aa-b353-7b6969ab2b96",
+        "sandbox_id": "45d3b2478ba94f1f9078cf8ca7354098",
+        "start": "2026-10-14T09:38:31.00713125+08:00",
+        "response": "2026-10-14T09:38:31.25024112+08:00",
+        "success": true
+      },
+      {
+        "request_id": "53bd60fc-1684-40c4-bc1c-6c2e8da2a1b3",
+        "sandbox_id": "a5137e0be4154782a2440db00d62fd2d",
+        "start": "2026-10-14T09:38:31.00724004+08:00",
+        "response": "2026-10-14T09:38:31.25069917+08:00",
+        "success": true
+      },
+      {
+        "request_id": "0f4a8e4b-7e2d-43d5-aaa7-7a24d1053ae9",
+        "sandbox_id": "3bef0fbad4734171ac70284653e8ba60",
+        "start": "2026-10-14T09:38:31.00770469+08:00",
+        "response": "2026-10-14T09:38:31.24864422+08:00",
+        "success": true
+      },
+      {
+        "request_id": "259e9471-4861-4c43-9410-d5a15f3f5219",
+        "sandbox_id": "12b60c9b1f9343fd9e55b53800467476",
+        "start": "2026-10-14T09:38:31.00773247+08:00",
+        "response": "2026-10-14T09:38:31.24192787+08:00",
+        "success": true
+      },
+      {
+        "request_id": "fd587efc-c9f2-4463-8146-2f168a863ce9",
+        "sandbox_id": "c93243e4bf234b509a3f485fee7a361c",
+        "start": "2026-10-14T09:38:31.07497536+08:00",
+        "response": "2026-10-14T09:38:31.35405745+08:00",
+        "success": true
+      },
+      {
+        "request_id": "6567647b-6e4a-4c7c-9f6b-52c71970e34c",
+        "sandbox_id": "c00624f366dc4b69a371aec7f6d7f469",
+        "start": "2026-10-14T09:38:31.07504995+08:00",
+        "response": "2026-10-14T09:38:31.2942617+08:00",
+        "success": true
+      },
+      {
+        "request_id": "4b1860fa-1d8a-43fe-8b44-e6fedd9948cd",
+        "sandbox_id": "671ddc4f06284f0b9f9cde6aacd7b0eb",
+        "start": "2026-10-14T09:38:31.07515969+08:00",
+        "response": "2026-10-14T09:38:31.35345235+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f6a1b672-0a3f-4426-bae9-9b8ec0810053",
+        "sandbox_id": "3db90cc1f8fd4eacaf4374511d67f817",
+        "start": "2026-10-14T09:38:31.07517128+08:00",
+        "response": "2026-10-14T09:38:31.35336859+08:00",
+        "success": true
+      },
+      {
+        "request_id": "87d44af3-850c-4599-944a-b49b2d3e5152",
+        "sandbox_id": "3cb526838724434e8e54e2904e4aa459",
+        "start": "2026-10-14T09:38:31.07688221+08:00",
+        "response": "2026-10-14T09:38:31.35029011+08:00",
+        "success": true
+      },
+      {
+        "request_id": "2af70d30-5ae3-46b3-98e4-daeac18a464e",
+        "sandbox_id": "6c237eb1a83c4ceda99cd3cbaabac46f",
+        "start": "2026-10-14T09:38:31.0809251+08:00",
+        "response": "2026-10-14T09:38:31.25134045+08:00",
+        "success": true
+      },
+      {
+        "request_id": "e318d588-c370-4a5e-8bca-f0c36d93a6e4",
+        "sandbox_id": "a9aa404abe7147e3b3fea7dd840de209",
+        "start": "2026-10-14T09:38:31.0812943+08:00",
+        "response": "2026-10-14T09:38:31.25550109+08:00",
+        "success": true
+      },
+      {
+        "request_id": "ee409511-5eab-40e8-b0b7-721d2bb58a96",
+        "sandbox_id": "2a4f2c8ce5424789a95ab358884dd42e",
+        "start": "2026-10-14T09:38:31.08130232+08:00",
+        "response": "2026-10-14T09:38:31.2551795+08:00",
+        "success": true
+      },
+      {
+        "request_id": "7b2f3c95-3fb1-4116-a063-219f2de56408",
+        "sandbox_id": "e79e7e4f9dde42669834e0653fdddcd6",
+        "start": "2026-10-14T09:38:31.08158249+08:00",
+        "response": "2026-10-14T09:38:31.31091911+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c5a61a42-3fae-456c-9569-ea59f473056f",
+        "sandbox_id": "bf966e6a386b40838ebc1705525524ac",
+        "start": "2026-10-14T09:38:31.08255526+08:00",
+        "response": "2026-10-14T09:38:31.31884863+08:00",
+        "success": true
+      },
+      {
+        "request_id": "252aadb2-c449-4edd-9e93-455a48c918fe",
+        "sandbox_id": "240fa3b158ac4de2bf6a87f3806139eb",
+        "start": "2026-10-14T09:38:31.08258678+08:00",
+        "response": "2026-10-14T09:38:31.31789055+08:00",
+        "success": true
+      },
+      {
+        "request_id": "e6795ba1-4a10-40d8-abd5-36ea9cc22630",
+        "sandbox_id": "d4f747b3388e462ca985326239cbb5ae",
+        "start": "2026-10-14T09:38:31.08264895+08:00",
+        "response": "2026-10-14T09:38:31.35196969+08:00",
+        "success": true
+      },
+      {
+        "request_id": "16b0bbc3-13e6-41b4-ba01-981fc109431b",
+        "sandbox_id": "cff3e5fe12eb446bb27644e8353f4da8",
+        "start": "2026-10-14T09:38:31.0829706+08:00",
+        "response": "2026-10-14T09:38:31.32244001+08:00",
+        "success": true
+      },
+      {
+        "request_id": "2d50f2aa-ea82-46a2-b51f-b410e814fc19",
+        "sandbox_id": "92acf49034f742b5bdd6509d8468bab2",
+        "start": "2026-10-14T09:38:31.08303083+08:00",
+        "response": "2026-10-14T09:38:31.33610122+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f4db1c48-a112-4288-bdba-0cb71129d164",
+        "sandbox_id": "2fab4ec3109f48dfaa8c7a0241b51f3e",
+        "start": "2026-10-14T09:38:31.08313071+08:00",
+        "response": "2026-10-14T09:38:31.35219936+08:00",
+        "success": true
+      },
+      {
+        "request_id": "88ba3c82-7f7e-4b8d-a06c-cd3ce3b5460b",
+        "sandbox_id": "3f65e91ad3574877a99fa6d0821d6f06",
+        "start": "2026-10-14T09:38:31.08317059+08:00",
+        "response": "2026-10-14T09:38:31.33104041+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b32f8fa6-1f76-4215-a3f5-084c2b0be564",
+        "sandbox_id": "4d95835650194d92b9bfe9f42511c2d5",
+        "start": "2026-10-14T09:38:31.08319631+08:00",
+        "response": "2026-10-14T09:38:31.25080334+08:00",
+        "success": true
+      },
+      {
+        "request_id": "8d8d37c7-ce66-484c-8ec1-09d2e49d6601",
+        "sandbox_id": "df99380733d647dfa79c27688be7e9fd",
+        "start": "2026-10-14T09:38:31.08352229+08:00",
+        "response": "2026-10-14T09:38:31.33165189+08:00",
+        "success": true
+      },
+      {
+        "request_id": "f3185ec9-efcf-4eb6-8376-b879998f4256",
+        "sandbox_id": "6d71378ec9cc46499c7f8e68e9e9719d",
+        "start": "2026-10-14T09:38:31.08403732+08:00",
+        "response": "2026-10-14T09:38:31.33006956+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b7c63adc-c630-43dd-9e51-8582ceb784c3",
+        "sandbox_id": "7632c2d15b8646439aa738e49f3c567c",
+        "start": "2026-10-14T09:38:31.08420545+08:00",
+        "response": "2026-10-14T09:38:31.25439642+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a704a599-4452-458f-a995-3385d0fea6b2",
+        "sandbox_id": "764ef1c5569b407799db06d0d5c70113",
+        "start": "2026-10-14T09:38:31.08427842+08:00",
+        "response": "2026-10-14T09:38:31.34746011+08:00",
+        "success": true
+      },
+      {
+        "request_id": "058b637c-dbb6-4cb3-9ccf-692fa6b04cb5",
+        "sandbox_id": "2c307ade039f4c4daaf4232dee209f4e",
+        "start": "2026-10-14T09:38:31.0844578+08:00",
+        "response": "2026-10-14T09:38:31.35327556+08:00",
+        "success": true
+      },
+      {
+        "request_id": "b5445289-7d94-4ded-a2e6-32c222a633bf",
+        "sandbox_id": "efd75b58ab1d4382beea6d68fc1f6736",
+        "start": "2026-10-14T09:38:31.08455861+08:00",
+        "response": "2026-10-14T09:38:31.31998947+08:00",
+        "success": true
+      },
+      {
+        "request_id": "8ac62973-f178-4c96-837a-983573ac0b33",
+        "sandbox_id": "8440d2eff71545e584660340c28e4e83",
+        "start": "2026-10-14T09:38:31.08475564+08:00",
+        "response": "2026-10-14T09:38:31.30887077+08:00",
+        "success": true
+      },
+      {
+        "request_id": "014cf72c-f155-48bd-866b-afffb10191bc",
+        "sandbox_id": "45abcf3b085a4ce4886559b045b0ac2e",
+        "start": "2026-10-14T09:38:31.08515149+08:00",
+        "response": "2026-10-14T09:38:31.3361602+08:00",
+        "success": true
+      },
+      {
+        "request_id": "992d18a3-b946-412f-8743-114b37080686",
+        "sandbox_id": "bcd1d22d85e8481cb87fef5632cc5b08",
+        "start": "2026-10-14T09:38:31.08554808+08:00",
+        "response": "2026-10-14T09:38:31.33610152+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a956073d-d236-497c-a19a-3accbd334932",
+        "sandbox_id": "7b15c52086504140807b0c51f8b160b2",
+        "start": "2026-10-14T09:38:31.08569238+08:00",
+        "response": "2026-10-14T09:38:31.31068685+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c226c2ac-6e75-4a7c-9e68-3b9bd0e9d4fc",
+        "sandbox_id": "8cc2d9a1baeb4a858abe0350067d4ea2",
+        "start": "2026-10-14T09:38:31.08586514+08:00",
+        "response": "2026-10-14T09:38:31.31521001+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c630c03e-0bfe-4fe4-a770-ffeb7437edf5",
+        "sandbox_id": "311536c23ed44a6abf25374fc5c5737d",
+        "start": "2026-10-14T09:38:31.08590711+08:00",
+        "response": "2026-10-14T09:38:31.30954091+08:00",
+        "success": true
+      },
+      {
+        "request_id": "842b8acd-08f0-4e54-8010-76eff795cddf",
+        "sandbox_id": "151a96f3da894a9da2d89c45dfc6b968",
+        "start": "2026-10-14T09:38:31.08624797+08:00",
+        "response": "2026-10-14T09:38:31.3507293+08:00",
+        "success": true
+      },
+      {
+        "request_id": "28406fd7-f1f0-4630-8dd4-881014de906f",
+        "sandbox_id": "9a54d9c716394b50b9053206795be65a",
+        "start": "2026-10-14T09:38:31.08667581+08:00",
+        "response": "2026-10-14T09:38:31.31005754+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a155ebe8-4155-437c-8852-e1ed257e2855",
+        "sandbox_id": "a57f5377d4b942ca8f6a646d4eac5394",
+        "start": "2026-10-14T09:38:31.08710433+08:00",
+        "response": "2026-10-14T09:38:31.2920894+08:00",
+        "success": true
+      },
+      {
+        "request_id": "526ef91d-6427-4dff-a447-80000fa8fa66",
+        "sandbox_id": "39ed1430cc1d43a38585986dba23a9a8",
+        "start": "2026-10-14T09:38:31.08715326+08:00",
+        "response": "2026-10-14T09:38:31.33200079+08:00",
+        "success": true
+      },
+      {
+        "request_id": "41593774-6112-4d71-b43f-8e6310ad7b2a",
+        "sandbox_id": "97353d7a42604df1aa20fb76a8f0d195",
+        "start": "2026-10-14T09:38:31.08715759+08:00",
+        "response": "2026-10-14T09:38:31.35009725+08:00",
+        "success": true
+      },
+      {
+        "request_id": "141506ef-ce63-465f-8008-04ff577852ca",
+        "sandbox_id": "65c7ed91154e4a9f975757e8e8788893",
+        "start": "2026-10-14T09:38:31.08728058+08:00",
+        "response": "2026-10-14T09:38:31.33784625+08:00",
+        "success": true
+      },
+      {
+        "request_id": "699412e5-3372-46cc-ba5d-031b678a5b12",
+        "sandbox_id": "fc7611e5c2bf4bb299cbbc62ba49b3f9",
+        "start": "2026-10-14T09:38:31.08752535+08:00",
+        "response": "2026-10-14T09:38:31.33648621+08:00",
+        "success": true
+      },
+      {
+        "request_id": "7a5eb70f-efec-4169-974e-e35e07ba4b23",
+        "sandbox_id": "5cdc2f8697774f53a0e2f4fc4d0a58ea",
+        "start": "2026-10-14T09:38:31.0875964+08:00",
+        "response": "2026-10-14T09:38:31.33213726+08:00",
+        "success": true
+      },
+      {
+        "request_id": "774b2800-087e-4230-ae14-35db3b458b15",
+        "sandbox_id": "ae4cac8bca724cf2a8301d7b924dcb01",
+        "start": "2026-10-14T09:38:31.08770267+08:00",
+        "response": "2026-10-14T09:38:31.33974685+08:00",
+        "success": true
+      },
+      {
+        "request_id": "5d27a786-2ac6-4bdd-a4a4-27405c2df65b",
+        "sandbox_id": "07a6494d597840f783bdacdd55826fe5",
+        "start": "2026-10-14T09:38:31.08786634+08:00",
+        "response": "2026-10-14T09:38:31.34161623+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c793197a-9aac-40f9-b80c-c8710b4402ac",
+        "sandbox_id": "64095b5991134ceba98c0b85c4a79bb4",
+        "start": "2026-10-14T09:38:31.08816229+08:00",
+        "response": "2026-10-14T09:38:31.35308318+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a703cc5b-b8f4-40ac-b29c-91f21e88a0ba",
+        "sandbox_id": "4bc57b7618e346fd82ecdad2dcd7996c",
+        "start": "2026-10-14T09:38:31.0881882+08:00",
+        "response": "2026-10-14T09:38:31.33893293+08:00",
+        "success": true
+      },
+      {
+        "request_id": "253b26e0-dad7-4831-8f66-5e06d5e4e781",
+        "sandbox_id": "e93ca4effdd042c78cc58f55000ae8ce",
+        "start": "2026-10-14T09:38:31.08827237+08:00",
+        "response": "2026-10-14T09:38:31.35100655+08:00",
+        "success": true
+      },
+      {
+        "request_id": "44e0d24f-77df-44eb-8395-e7620fea8a90",
+        "sandbox_id": "c8ce5b924a4a4ec09f27d50bb0ed0208",
+        "start": "2026-10-14T09:38:31.08886598+08:00",
+        "response": "2026-10-14T09:38:31.34717167+08:00",
+        "success": true
+      },
+      {
+        "request_id": "db592539-15f1-44fd-bc9e-c609f3045cc7",
+        "sandbox_id": "4de0b2a8d0b245738929d7b753a8d791",
+        "start": "2026-10-14T09:38:31.08919237+08:00",
+        "response": "2026-10-14T09:38:31.30914047+08:00",
+        "success": true
+      },
+      {
+        "request_id": "a9083da2-8577-4bea-a6b6-59866df8a344",
+        "sandbox_id": "56857374a4c24040865d84567734e55a",
+        "start": "2026-10-14T09:38:31.08929248+08:00",
+        "response": "2026-10-14T09:38:31.27613214+08:00",
+        "success": true
+      },
+      {
+        "request_id": "378ef9c2-20c9-4c0d-b9bd-3dd069c4c183",
+        "sandbox_id": "08e9c3893aa84652bc93defa1f636873",
+        "start": "2026-10-14T09:38:31.08941906+08:00",
+        "response": "2026-10-14T09:38:31.29500086+08:00",
+        "success": true
+      },
+      {
+        "request_id": "c8202382-ae58-439b-b961-4819e3ac04da",
+        "sandbox_id": "b505994a635d4cc6acf4c6d8f04b6ec7",
+        "start": "2026-10-14T09:38:31.09019254+08:00",
+        "response": "2026-10-14T09:38:31.31501286+08:00",
+        "success": true
+      },
+      {
+        "request_id": "3d661a44-9091-4469-9511-0c4cd3793662",
+        "sandbox_id": "cdf03cafe00640f896e57da784366711",
+        "start": "2026-10-14T09:38:31.09028542+08:00",
+        "response": "2026-10-14T09:38:31.33154344+08:00",
+        "success": true
+      },
+      {
+        "request_id": "0d78c64d-9988-47f6-92c4-bc6129102dfc",
+        "sandbox_id": "002c30a02bf141b1a7c97c0f2aa9c130",
+        "start": "2026-10-14T09:38:31.09028728+08:00",
+        "response": "2026-10-14T09:38:31.30361557+08:00",
+        "success": true
+      },
+      {
+        "request_id": "1aa7a55a-6191-4498-83a9-829b472f071c",
+        "sandbox_id": "06fb5b8f08cd445ca532fee418758635",
+        "start": "2026-10-14T09:38:31.09055083+08:00",
+        "response": "2026-10-14T09:38:31.3225181+08:00",
+        "success": true
+      },
+      {
+        "request_id": "7778006b-f066-4561-be63-a0f49f668760",
+        "sandbox_id": "087cf3f7f8bc41bcaa9a34987cd4835f",
+        "start": "2026-10-14T09:38:31.09101836+08:00",
+        "response": "2026-10-14T09:38:31.31262921+08:00",
+        "success": true
+      }
+    ]
+  },
+  "limitations": [
+    "Server phase classification only; cube-bench raw rows are not mapped to sandbox IDs.",
+    "Depends on exclusive use of the dedicated template, the pinned official runner, and complete captured Master logs.",
+    "No source ownership file is modified. Failed checks leave all phases unclassified."
+  ]
+}

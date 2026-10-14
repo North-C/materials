@@ -1,0 +1,16 @@
+stage,baseline_n,baseline_avg_ms,baseline_p95_ms,current_n,current_avg_ms,current_p95_ms,population
+Cubelet.cubebox-service,103/103,314.773,407.236,103/103,197.594,262.938,103 owned incl.3 warmup; partial rows are conditional samples
+Cubelet.cubebox,103/103,219.162,279.893,103/103,151.587,216.118,103 owned incl.3 warmup; partial rows are conditional samples
+Cubelet.sandbox-create,103/103,150.995,209.193,103/103,106.368,154.579,103 owned incl.3 warmup; partial rows are conditional samples
+Cubelet.sandbox-start,103/103,157.358,218.796,103/103,116.272,171.663,103 owned incl.3 warmup; partial rows are conditional samples
+Cubelet.sandbox-probe,103/103,40.081,62.092,103/103,23.601,37.261,103 owned incl.3 warmup; partial rows are conditional samples
+Cubelet.network,77/103,52.792,121.139,43/103,66.724,78.400,103 owned incl.3 warmup; partial rows are conditional samples
+Cubelet.storage,87/103,15.026,20.755,67/103,31.271,69.363,103 owned incl.3 warmup; partial rows are conditional samples
+Cubelet.cgroup,92/103,60.149,99.312,85/103,14.611,37.780,103 owned incl.3 warmup; partial rows are conditional samples
+Cubelet.create-sandbox-metadata,80/103,18.989,38.838,62/103,10.209,16.896,103 owned incl.3 warmup; partial rows are conditional samples
+Shim.CreatePodSandbox,103/103,76.214,107.000,103/103,54.913,106.000,103 owned incl.3 warmup; partial rows are conditional samples
+Shim.RestoreVm,103/103,17.932,46.000,103/103,25.388,76.000,103 owned incl.3 warmup; partial rows are conditional samples
+Shim.ResetVm,103/103,19.078,28.000,103/103,5.243,9.000,103 owned incl.3 warmup; partial rows are conditional samples
+Shim.CreateSandbox,103/103,4.136,9.000,103/103,3.476,10.000,103 owned incl.3 warmup; partial rows are conditional samples
+Shim.CreateContainer,103/103,19.796,38.000,103/103,12.117,35.000,103 owned incl.3 warmup; partial rows are conditional samples
+Shim.LaunchVmm,103/103,1.214,2.000,103/103,1.456,2.000,103 owned incl.3 warmup; partial rows are conditional samples

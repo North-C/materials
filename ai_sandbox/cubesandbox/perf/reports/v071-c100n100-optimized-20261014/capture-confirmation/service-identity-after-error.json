@@ -1,0 +1,4 @@
+{
+  "error_type": "ValueError",
+  "error": "binary hash mismatch: /usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs"
+}

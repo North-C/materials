@@ -1,0 +1,62 @@
+首轮优化版 c100n100 请求归属诊断
+采集目录：tools/bottleneck/runs/20261014T013154Z-optimized/capture。
+以下时刻为 Asia/Shanghai（UTC+08:00），日期 2026-10-14。
+只读诊断；未修改原始证据、归属文件或分类器。
+
+总计与分类失败原因
+Master delta 中有 106 个唯一 CreateSandbox 请求、106 个唯一成功响应、106 个成功删除确认；无重复标记、请求/响应缺失或创建失败。
+其中 103 个 sandbox 是本轮 ledger 明确归属的请求，另有 1 个 suite guest_preflight 和 2 个使用其他模板的外来请求。
+严格分类器原合同要求总共 104 对（1 次预检 + 3 次预热 + 100 次正式），因此此次返回 unverified：
+  master_exactly_104_unique_pairs_including_preflight
+  single_preflight_completed_and_delete_ack_before_owned
+不应把预期 104 改成 106，也不能将外来请求改名成本轮预检。
+
+本轮目标模板
+tpl-cf2b04fdd4604b7c84e157fa。
+suite 功能预检：sandbox eb4503570a684af0a180207cb88e1b87。
+  创建开始 09:37:32.566702150，成功响应 09:37:32.620143120。
+  删除确认 09:37:32.812074450。
+固定 reference profile 的 run_suite.py:492、776 仅执行一次该目标模板 guest_preflight。
+
+额外请求
+两个请求的模板均为 tpl-d9406d0c0c0747358d6cfcfb，不是本轮目标模板。
+1. sandbox 5df92e11eefa41bca2f65d1d0d2372d5
+   创建开始 09:37:34.415613070，成功响应 09:37:34.468189820。
+   删除确认 09:37:34.590561870。
+2. sandbox 1c1215868ecb4455942ac0b908a86e5f
+   创建开始 09:37:57.090935090，成功响应 09:37:57.148720880。
+   删除确认 09:38:00.287098860。
+仅能确认它们是本轮归属之外的创建；没有证据识别外部操作者或任务，不应推断。
+
+静默门禁与 benchmark 边界
+case host gate 在 09:37:34、40、46、53 连续通过 4 次。
+09:37:59 观察到外来实例，consecutive 重置为 0。
+随后 09:38:05、11、18、24、30 连续通过 5 次后才启动 benchmark。
+103 个 owned 请求全部使用本轮目标模板。
+最先三个 owned 请求串行：
+  09:38:30.827973690 -> 09:38:30.882108740
+  09:38:30.883934740 -> 09:38:30.938677530
+  09:38:30.940593580 -> 09:38:30.989150060
+第四个 owned 请求起点为 09:38:30.992479160，随后进入并发请求。
+这些时序与 3 次串行预热一致，但当前严格分类合同未满足；交付保留组件 unknown_phase=103，不手工覆盖分类。
+
+归属清理验证
+suite-results/c100n100.delete.json：status=drained，observed_ids=103，最终无存活归属实例。
+两个外来 sandbox ID 在整个 ledger 中均不存在，包括 observed_ids、observations、deletes。
+因此本轮 suite cleanup 未删除这两个外来实例；Master 看到的外来删除确认不应记作本轮清理行为。
+
+结果解释
+官方 raw 的 100 次正式 API 请求为 100 成功、0 错误；run.exit=0、服务身份稳定、最终 sandbox=0。
+首轮 API 结果有效，组件阶段暂保留 unknown_phase=103。
+采集窗口包含 benchmark 之前的外来活动，应披露，不能宣称整个采集窗口完全独占。
+干净确认轮 capture-confirmation 用于取得符合 104 对严格合同的正式组件分组，不覆盖首轮记录。
+
+主要证据（均相对本轮 capture 目录）
+  evidence/master-delta.log：106 对请求/响应，模板标签与删除确认。
+  phase-classification.json：原分类失败检查和全部配对证据。
+  owned-sandbox-ids.json：formal=0、warmup=0、unknown_phase=103。
+  suite-results/c100n100.delete.json：只含本轮 103 个归属 ID 的清理账本。
+  suite-results/host-gate-3.2-c100n100.log：外来活动触发门禁重置与后续 5 次静默通过。
+  suite-results/report.json、adapter-status.json：固定 suite/官方 benchmark 来源及执行成功。
+  startup-latency/c100n100.raw.json：100 次正式请求原始 API 结果。
+  verified-run.json、service-identity-before.json、service-identity-after.json：退出状态与服务身份核验。

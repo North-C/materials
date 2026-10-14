@@ -1,0 +1,7 @@
+{
+  "capture_exit_code": 0,
+  "stable_service_identity": true,
+  "final_sandbox_count": 0,
+  "commit": "9dce2f877d9470908dd68594e4fe38edf365e141",
+  "build_kind": "v0.7.1+local.9dce2f8"
+}

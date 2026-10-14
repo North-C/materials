@@ -3,9 +3,11 @@
 面向 192.168.25.90 的官方 ARM64 v0.7.1：并发 100、正式请求 100、串行预热 3 次，sandbox-code Template 为 2 vCPU / 2048 MiB / 1G 可写层。保留现有服务与配置，采集日志增量和 Prometheus 快照；只清理本轮专用模板下有归属证据的实例。
 
 - [旧 scripts_v2 准确性审计](AUDIT_V2.md)
-- [v0.7.1 源码阶段定义](STAGES.md)
+- [v0.7.1 Template 启动阶段口径（含同步、并行、异步与计时覆盖流程图）](STAGES.md#启动流程与计时覆盖关系)
 - [2026-10-12 原版实测报告](../reports/v071-c100n100-20261012/REPORT.md)
 - [网络微秒补解析与精细观测报告（重测待独占窗口）](../reports/v071-c100n100-fine-20261012/REPORT.md)
+- [2026-10-14 优化版＋NUMA0 实测与更细拆解报告（第三份）](../reports/v071-c100n100-optimized-20261014/REPORT.md)
+- [三份报告统一索引](../README.md)
 
 ## 文件与依赖
 
@@ -112,4 +114,4 @@ node precision_timeline.mjs CAPTURE/precision.json
 
 精细输出单位ns。Cubelet按kind/stage区分action与metric，批次覆盖单独核验；duration_backfill无精确起止。Shim按ClockId/OperationId区分调用，累计点只有同operation唯一且递增时才差分。两类时钟独立展示，不跨进程相减。`DroppedRecordsBefore=0`不能单独证明无尾部丢失，需检查完整覆盖与源日志缺口。
 
-当前仓库中公开的新增实测仅来自原capture网络补解析；观测版已构建通过，尚未因独占窗口受阻而完成重测。不要把解析单测或合成viewer检查当作c100n100性能结果。
+第二份报告的细分数值来自原 capture 网络补解析；perftrace 观测版已构建通过，但其重测仍未完成。第三份报告另行归档了优化版＋NUMA0 的实际 c100n100 结果，该构建没有新增 perftrace 端点，不能作为观测版重测结果。不要把解析单测或合成viewer检查当作c100n100性能结果。
