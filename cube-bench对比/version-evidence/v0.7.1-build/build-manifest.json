@@ -1,0 +1,43 @@
+{
+  "repository": "https://github.com/TencentCloud/CubeSandbox.git",
+  "tag": "v0.7.1",
+  "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+  "source_tree": "fa4895544c890a6204b5defbb1750e7217b7f980",
+  "source_files_sha256": {
+    ".gitignore": "aaccb1a00557171b31d00a99a6a2666856e417964732490685cdcba9f02de491",
+    "Makefile": "521122c1d4a048f366e2a22bf674c4dd8175befe7eb53d7687ed7e67f9de431e",
+    "README.md": "0c83ea03f077539b7937d0f4454cf26216ef8d8b6ca2a37bceed663aa8b7d6e3",
+    "go.mod": "7e87006f2aadf8d673fff66ab087dbd3d3153601ee4e70aa2ece37a2ba62390f",
+    "go.sum": "1f42e737a91100fc5890c3c6e9c16a8a9b90b4558d8172361c7878fcad3f8e2e",
+    "main.go": "853c7ae9aac97ea99c0186e908f01cfd3a89b9ffebecf82c651bdb34c1230167",
+    "main_test.go": "bc261cb4808bb73d4f4a1566189390b5f9c8fcfddcc5b1079e0dde5c02989a23",
+    "network_policy.go": "35f1256459c45d782fa736f37bb943108ddd36f4c4df9c4e9f963b60e90014c5",
+    "report.go": "7ad9ef7ede52e4e80682acf0e8e88f30b8325cf7b0ec0dd95f9013ac2f7faac6",
+    "runner.go": "91087b507ec059a2d21ad33b4a0c790ac8e0f5e1f05123ca26f1da8fb99b2640",
+    "runner_test.go": "c3357eaac5d5ed34688e44496e28f18f9052c2528bf9e94a565f998b25b51c93",
+    "stats.go": "f9f8bc59b62b90717503435417238818ae49b4c93f324ab8f2734153af750950",
+    "theme.go": "d1b1fce3c69a3c8876f06d448fdd0cd01b10b70b0f77efe13ebbc06598d375d0",
+    "ui.go": "1603d9efe0502eb73075976212c8c6c0c237d9796de1bc4ae8cc186ffdfd15fb"
+  },
+  "source_modified": false,
+  "toolchain": "go version go1.25.0 linux/arm64",
+  "environment": {
+    "CGO_ENABLED": "0",
+    "GOOS": "linux",
+    "GOARCH": "arm64",
+    "GOARM64": "v8.0",
+    "GOTOOLCHAIN": "local"
+  },
+  "build_command": "go build -mod=readonly -trimpath -o cube-bench-v0.7.1-linux-arm64 .",
+  "artifact": "bin/cube-bench-v0.7.1-linux-arm64",
+  "sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+  "size_bytes": 9589347,
+  "validation": {
+    "go_test": "passed",
+    "go_mod_verify": "passed",
+    "native_linux_help": "passed",
+    "source_files_match_git_blobs": true
+  },
+  "evidence_collected_at_utc": "2026-10-16T04:02:29.608683+00:00",
+  "hash_scope": "Hashes in this file identify upstream source files and original built binaries, not publication file bytes."
+}

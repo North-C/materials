@@ -1,0 +1,68 @@
+{
+  "time": "2026-10-16T04:01:15.702424+00:00",
+  "sandbox_count": 0,
+  "template": {
+    "id": "template-anonymous",
+    "status": "READY",
+    "aliases": [
+      "perf-v071-c100n100-20261012t094434z"
+    ],
+    "containers": [
+      {
+        "resources": {
+          "cpu": "2000m",
+          "mem": "2048Mi"
+        },
+        "probe": {
+          "failure_threshold": 60,
+          "period_ms": 500,
+          "probe_handler": {
+            "http_get": {
+              "path": "/health",
+              "port": 49999
+            }
+          },
+          "probe_timeout_ms": 2000,
+          "success_threshold": 1,
+          "timeout_ms": 30000
+        },
+        "image": {
+          "image": "template-anonymous",
+          "storage_media": "ext4",
+          "writable_layer_size": "1G"
+        }
+      }
+    ]
+  },
+  "image": {
+    "Id": "sha256:79972015a4a2b48b18a2165af61606d87e7d859143165fcd33f104fbd8590bee",
+    "RepoTags": [
+      "cube-sandbox-cn.tencentcloudcr.com/cube-sandbox/sandbox-code:latest"
+    ],
+    "RepoDigests": [
+      "cube-sandbox-cn.tencentcloudcr.com/cube-sandbox/sandbox-code@sha256:743d264fad8c9dc9a49f07e931166d24d025363360ae770ca4b70e3f19540944",
+      "cube-sandbox-cn.tencentcloudcr.com/cube-sandbox/sandbox-code@sha256:e1cb43e12ba70b8453b45f0c063306faab8a6974aa3fd76982dc4d019d07c60d"
+    ],
+    "Architecture": "arm64",
+    "Created": "2026-06-30T05:56:25.571654669Z"
+  },
+  "settings": {
+    "/sys/kernel/mm/transparent_hugepage/enabled": "always madvise [never]",
+    "/sys/kernel/mm/transparent_hugepage/defrag": "always defer defer+madvise madvise [never]",
+    "/proc/sys/kernel/numa_balancing": "0"
+  },
+  "hugepages": [
+    "AnonHugePages:  16576512 kB",
+    "ShmemHugePages:        0 kB",
+    "FileHugePages:  854253568 kB",
+    "HugePages_Total:       0",
+    "HugePages_Free:        0",
+    "HugePages_Rsvd:        0",
+    "HugePages_Surp:        0",
+    "Hugepagesize:       2048 kB",
+    "Hugetlb:               0 kB"
+  ],
+  "hugetlbfs_mounts": [],
+  "loadavg": "0.22 0.14 0.15 1/6236 1039790",
+  "publication_notice": "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+}

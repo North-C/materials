@@ -1,0 +1,127 @@
+phase,component,stage,parent_stage_id,containment,timing_kind,additivity,count,avg_ms,min_ms,p50_ms,p95_ms,max_ms,observed_instances,owned_instances,expected_requests,fraction_of_owned,fraction_of_expected_requests,repeated_instance_records,benchmark_successful_instances,fraction_of_benchmark_successes,benchmark_observed_attempts,fraction_of_observed_attempts,measured_success_records,measured_failure_records,measured_unknown_outcome_records
+formal,API,create,,,client_observed,do_not_sum,100,316.10619,112.069,340.678,447.812,452.53,,,100,,1,,100,1,100,1,,,
+formal,Cubelet,cgroup,,unverified,direct_unknown,do_not_sum,93,44.06096774193549,9.331,41.319,96.767,109.051,93,100,100,0.93,0.93,0,100,0.93,100,0.93,93,0,0
+formal,Cubelet,create-sandbox-metadata,cubelet.cubebox,inside,thresholded_direct,do_not_sum,65,17.648707692307696,5.096,16.232,30.405,45.738,65,100,100,0.65,0.65,0,100,0.65,100,0.65,65,0,0
+formal,Cubelet,cubebox,cubelet.cubebox-service,inside,direct_outer,do_not_sum,100,185.88766000000004,101.028,185.471,247.281,262.993,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,Cubelet,cubebox-service,master.cube-e2e,remote_child,direct_outer,do_not_sum,100,258.82724,103.917,276.766,338.516,345.36,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,Cubelet,cubebox-service-inner,cubelet.cubebox-service,derived_from,derived_residual,do_not_sum,100,224.04535999999985,71.853,241.21,312.998,319.732,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,Cubelet,gen-spec-sandbox,,unverified,direct_unknown,do_not_sum,57,11.168421052631578,5.248,11.069,16.083,32.302,57,100,100,0.57,0.57,0,100,0.57,100,0.57,57,0,0
+formal,Cubelet,network,cubelet.cubebox-service,precedes_cubebox,thresholded_direct,do_not_sum,82,33.562707317073176,5.035,36.277,73.362,77.438,82,100,100,0.82,0.82,0,100,0.82,100,0.82,82,0,0
+formal,Cubelet,sandbox-create,cubelet.sandbox-start,inside,direct_inner,do_not_sum,100,123.27919999999999,66.893,127.756,154.364,167.559,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,Cubelet,sandbox-probe,cubelet.cubebox,inside,direct_inner,do_not_sum,100,34.71243999999999,12.979,31.909,62.319,72.134,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,Cubelet,sandbox-start,cubelet.cubebox,inside,direct_cumulative,do_not_sum,100,130.9635,67.576,129.335,178.312,191.317,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,Cubelet,storage,cubelet.cubebox-service,precedes_cubebox,thresholded_direct,do_not_sum,87,16.222080459770115,7.6,15.411,25.825,26.577,87,100,100,0.87,0.87,0,100,0.87,100,0.87,87,0,0
+formal,CubeShim,CreateContainer,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,100,15.9,5,14,26,36,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CubeShim,CreatePodSandbox,cubelet.sandbox-create,cross_component_inside,direct_outer,do_not_sum,100,60.17,28,53,96,103,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CubeShim,CreateSandbox,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,100,1.77,0,1,7,9,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CubeShim,LaunchVmm,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,100,1.2,1,1,2,4,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CubeShim,ResetVm,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,100,13.67,2,12,33,42,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CubeShim,RestoreVm,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,100,15.2,7,14,24,53,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CubeMaster,cube-e2e,api.create,server_window,direct_outer,do_not_sum,100,263.8,107,283,342,348,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CubeMaster,sandbox-probe,cubelet.sandbox-probe,propagated_copy,propagated_metric,do_not_sum,100,34.22,12,31,62,72,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CubeMaster,all-probe,master.cube-e2e,aggregate_within,derived_aggregate,do_not_sum,100,34.22,12,31,62,72,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CubeMaster trace,bufferhandle,master_trace.cube-e2e,inside,direct_inner,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CubeMaster trace,cube-e2e,api.create,server_window,direct_outer,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CubeMaster trace,cubemaster-inner,master_trace.cube-e2e,derived_from,derived_residual,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CubeMaster trace,cubemaster-inner-handle,master_trace.cube-e2e,inside,direct_inner,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CubeMaster trace,cubemaster-post-redis,master_trace.cubemaster-inner-handle,parallel_child,direct_inner,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CubeMaster trace,cubemaster-post-spec,master_trace.cubemaster-inner-handle,parallel_child,direct_inner,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,Cubelet paired residual,service_outside_cubebox,cubelet.cubebox-service,derived_from_same_instance,paired_duration_residual,do_not_sum,100,72.93957999999996,2.8759999999999906,85.673,124.84699999999998,157.71400000000003,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,Cubelet paired residual,sandbox_after_newtask,cubelet.sandbox-start,derived_from_same_instance,paired_duration_residual,do_not_sum,100,7.6842999999999995,0.5390000000000157,1.1229999999999905,32.662000000000006,40.458,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,Cubelet paired residual,cubebox_outside_task_and_probe,cubelet.cubebox,derived_from_same_instance,paired_duration_residual,do_not_sum,100,20.21172,1.427999999999983,22.38900000000001,37.87700000000001,62.822,100,100,100,1,1,0,100,1,100,1,100,0,0
+warmup,Cubelet,create-sandbox-metadata,cubelet.cubebox,inside,thresholded_direct,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet,cubebox,cubelet.cubebox-service,inside,direct_outer,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet,cubebox-service,master.cube-e2e,remote_child,direct_outer,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet,cubebox-service-inner,cubelet.cubebox-service,derived_from,derived_residual,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet,network,cubelet.cubebox-service,precedes_cubebox,thresholded_direct,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet,sandbox-create,cubelet.sandbox-start,inside,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet,sandbox-probe,cubelet.cubebox,inside,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet,sandbox-start,cubelet.cubebox,inside,direct_cumulative,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet,storage,cubelet.cubebox-service,precedes_cubebox,thresholded_direct,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeShim,CreateContainer,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeShim,CreatePodSandbox,cubelet.sandbox-create,cross_component_inside,direct_outer,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeShim,CreateSandbox,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeShim,LaunchVmm,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeShim,ResetVm,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeShim,RestoreVm,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeMaster,cube-e2e,api.create,server_window,direct_outer,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeMaster,sandbox-probe,cubelet.sandbox-probe,propagated_copy,propagated_metric,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeMaster,all-probe,master.cube-e2e,aggregate_within,derived_aggregate,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeMaster trace,bufferhandle,master_trace.cube-e2e,inside,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeMaster trace,cube-e2e,api.create,server_window,direct_outer,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeMaster trace,cubemaster-inner,master_trace.cube-e2e,derived_from,derived_residual,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeMaster trace,cubemaster-inner-handle,master_trace.cube-e2e,inside,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeMaster trace,cubemaster-post-redis,master_trace.cubemaster-inner-handle,parallel_child,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CubeMaster trace,cubemaster-post-spec,master_trace.cubemaster-inner-handle,parallel_child,direct_inner,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet paired residual,service_outside_cubebox,cubelet.cubebox-service,derived_from_same_instance,paired_duration_residual,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet paired residual,sandbox_after_newtask,cubelet.sandbox-start,derived_from_same_instance,paired_duration_residual,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,Cubelet paired residual,cubebox_outside_task_and_probe,cubelet.cubebox,derived_from_same_instance,paired_duration_residual,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+unknown_phase,Cubelet,create-sandbox-metadata,cubelet.cubebox,inside,thresholded_direct,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet,cubebox,cubelet.cubebox-service,inside,direct_outer,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet,cubebox-service,master.cube-e2e,remote_child,direct_outer,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet,cubebox-service-inner,cubelet.cubebox-service,derived_from,derived_residual,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet,network,cubelet.cubebox-service,precedes_cubebox,thresholded_direct,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet,sandbox-create,cubelet.sandbox-start,inside,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet,sandbox-probe,cubelet.cubebox,inside,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet,sandbox-start,cubelet.cubebox,inside,direct_cumulative,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet,storage,cubelet.cubebox-service,precedes_cubebox,thresholded_direct,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeShim,CreateContainer,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeShim,CreatePodSandbox,cubelet.sandbox-create,cross_component_inside,direct_outer,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeShim,CreateSandbox,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeShim,LaunchVmm,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeShim,ResetVm,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeShim,RestoreVm,shim.CreatePodSandbox,inside,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeMaster,cube-e2e,api.create,server_window,direct_outer,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeMaster,sandbox-probe,cubelet.sandbox-probe,propagated_copy,propagated_metric,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeMaster,all-probe,master.cube-e2e,aggregate_within,derived_aggregate,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeMaster trace,bufferhandle,master_trace.cube-e2e,inside,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeMaster trace,cube-e2e,api.create,server_window,direct_outer,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeMaster trace,cubemaster-inner,master_trace.cube-e2e,derived_from,derived_residual,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeMaster trace,cubemaster-inner-handle,master_trace.cube-e2e,inside,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeMaster trace,cubemaster-post-redis,master_trace.cubemaster-inner-handle,parallel_child,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CubeMaster trace,cubemaster-post-spec,master_trace.cubemaster-inner-handle,parallel_child,direct_inner,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet paired residual,service_outside_cubebox,cubelet.cubebox-service,derived_from_same_instance,paired_duration_residual,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet paired residual,sandbox_after_newtask,cubelet.sandbox-start,derived_from_same_instance,paired_duration_residual,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,Cubelet paired residual,cubebox_outside_task_and_probe,cubelet.cubebox,derived_from_same_instance,paired_duration_residual,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+formal,CreateContainer detail,shim_create_container,,,per_instance_measurement,do_not_sum,100,15.9,5,14,26,36,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CreateContainer detail,create_request_total,,,per_instance_measurement,do_not_sum,100,60.6847119140625,28.8359375,53.742919921875,96.40283203125,103.698486328125,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CreateContainer detail,vm_start_to_agent_ready,,,per_instance_measurement,do_not_sum,100,27.38751953125,13.891845703125,25.28369140625,44.589111328125,72.60107421875,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CreateContainer detail,load_spec_cumulative,,,per_instance_measurement,do_not_sum,100,0,0,0,0,0,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CreateContainer detail,sandbox_finish_cumulative,,,per_instance_measurement,do_not_sum,100,43.72,19,39,84,88,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CreateContainer detail,container_finish_cumulative,,,per_instance_measurement,do_not_sum,100,60.17,28,53,96,103,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CreateContainer detail,sandbox_to_container_finish,,,per_instance_measurement,do_not_sum,100,16.45,6,15,26,36,100,100,100,1,1,0,100,1,100,1,100,0,0
+formal,CreateContainer detail,guest_receive_to_restore_branch,,,per_instance_measurement,do_not_sum,98,0.6514095384247449,0.008544921875,0.2060546875,3.27197265625,5.480224609375,98,100,100,0.98,0.98,0,100,0.98,100,0.98,98,0,0
+formal,CreateContainer detail,normal_add_devices,,,per_instance_measurement,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CreateContainer detail,normal_add_storage,,,per_instance_measurement,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CreateContainer detail,normal_setup_bundle,,,per_instance_measurement,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CreateContainer detail,normal_init_container,,,per_instance_measurement,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CreateContainer detail,normal_start_container,,,per_instance_measurement,do_not_sum,,,,,,,0,100,100,0,0,0,100,0,100,0,0,0,0
+formal,CreateContainer detail,restore_path_unresolved,,,diagnostic_residual,do_not_sum,98,15.124100665656888,4.891357421875,13.63232421875,24.990478515625,31.91162109375,98,100,100,0.98,0.98,0,100,0.98,100,0.98,98,0,0
+warmup,CreateContainer detail,shim_create_container,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,create_request_total,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,vm_start_to_agent_ready,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,load_spec_cumulative,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,sandbox_finish_cumulative,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,container_finish_cumulative,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,sandbox_to_container_finish,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,guest_receive_to_restore_branch,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,normal_add_devices,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,normal_add_storage,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,normal_setup_bundle,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,normal_init_container,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,normal_start_container,,,per_instance_measurement,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+warmup,CreateContainer detail,restore_path_unresolved,,,diagnostic_residual,do_not_sum,,,,,,,0,0,0,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,shim_create_container,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,create_request_total,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,vm_start_to_agent_ready,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,load_spec_cumulative,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,sandbox_finish_cumulative,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,container_finish_cumulative,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,sandbox_to_container_finish,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,guest_receive_to_restore_branch,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,normal_add_devices,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,normal_add_storage,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,normal_setup_bundle,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,normal_init_container,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,normal_start_container,,,per_instance_measurement,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0
+unknown_phase,CreateContainer detail,restore_path_unresolved,,,diagnostic_residual,do_not_sum,,,,,,,0,0,,,,0,,,,,0,0,0

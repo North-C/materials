@@ -1,0 +1,1043 @@
+{
+  "started_at": "2026-10-16T04:08:06.689661+00:00",
+  "status": "complete",
+  "outcomes": [
+    {
+      "id": "r04-formal-001",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-002",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-003",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-004",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-005",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-006",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-007",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-008",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-009",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-010",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-011",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-012",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-013",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-014",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-015",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-016",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-017",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-018",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-019",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-020",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-021",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-022",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-023",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-warmup-001",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-024",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-025",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-026",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-027",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-028",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-029",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-030",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-031",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-032",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-033",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-034",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-035",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-warmup-002",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-036",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-037",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-038",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-039",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-040",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-041",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-042",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-warmup-003",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-043",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-044",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-045",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-046",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-047",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-048",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-049",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-050",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-051",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-052",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-053",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-054",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-055",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-056",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-057",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-058",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-059",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-060",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-061",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-062",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-063",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-064",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-065",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-066",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-067",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-068",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-069",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-070",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-071",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-072",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-073",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-074",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-075",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-076",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-077",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-078",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-079",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-080",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-081",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-082",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-083",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-084",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-085",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-086",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-087",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-088",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-089",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-090",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-091",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-092",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-093",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-094",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-095",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-096",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-097",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-098",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-099",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    },
+    {
+      "id": "r04-formal-100",
+      "attempts": [
+        {
+          "status": 204
+        }
+      ],
+      "confirmed_absent": true
+    }
+  ],
+  "errors": [],
+  "ownership_basis": "empty_initial_inventory_and_operator_declared_template_exclusivity",
+  "remaining_owned_ids": [],
+  "candidate_ids": [
+    "r04-formal-001",
+    "r04-formal-002",
+    "r04-formal-003",
+    "r04-formal-004",
+    "r04-formal-005",
+    "r04-formal-006",
+    "r04-formal-007",
+    "r04-formal-008",
+    "r04-formal-009",
+    "r04-formal-010",
+    "r04-formal-011",
+    "r04-formal-012",
+    "r04-formal-013",
+    "r04-formal-014",
+    "r04-formal-015",
+    "r04-formal-016",
+    "r04-formal-017",
+    "r04-formal-018",
+    "r04-formal-019",
+    "r04-formal-020",
+    "r04-formal-021",
+    "r04-formal-022",
+    "r04-formal-023",
+    "r04-warmup-001",
+    "r04-formal-024",
+    "r04-formal-025",
+    "r04-formal-026",
+    "r04-formal-027",
+    "r04-formal-028",
+    "r04-formal-029",
+    "r04-formal-030",
+    "r04-formal-031",
+    "r04-formal-032",
+    "r04-formal-033",
+    "r04-formal-034",
+    "r04-formal-035",
+    "r04-warmup-002",
+    "r04-formal-036",
+    "r04-formal-037",
+    "r04-formal-038",
+    "r04-formal-039",
+    "r04-formal-040",
+    "r04-formal-041",
+    "r04-formal-042",
+    "r04-warmup-003",
+    "r04-formal-043",
+    "r04-formal-044",
+    "r04-formal-045",
+    "r04-formal-046",
+    "r04-formal-047",
+    "r04-formal-048",
+    "r04-formal-049",
+    "r04-formal-050",
+    "r04-formal-051",
+    "r04-formal-052",
+    "r04-formal-053",
+    "r04-formal-054",
+    "r04-formal-055",
+    "r04-formal-056",
+    "r04-formal-057",
+    "r04-formal-058",
+    "r04-formal-059",
+    "r04-formal-060",
+    "r04-formal-061",
+    "r04-formal-062",
+    "r04-formal-063",
+    "r04-formal-064",
+    "r04-formal-065",
+    "r04-formal-066",
+    "r04-formal-067",
+    "r04-formal-068",
+    "r04-formal-069",
+    "r04-formal-070",
+    "r04-formal-071",
+    "r04-formal-072",
+    "r04-formal-073",
+    "r04-formal-074",
+    "r04-formal-075",
+    "r04-formal-076",
+    "r04-formal-077",
+    "r04-formal-078",
+    "r04-formal-079",
+    "r04-formal-080",
+    "r04-formal-081",
+    "r04-formal-082",
+    "r04-formal-083",
+    "r04-formal-084",
+    "r04-formal-085",
+    "r04-formal-086",
+    "r04-formal-087",
+    "r04-formal-088",
+    "r04-formal-089",
+    "r04-formal-090",
+    "r04-formal-091",
+    "r04-formal-092",
+    "r04-formal-093",
+    "r04-formal-094",
+    "r04-formal-095",
+    "r04-formal-096",
+    "r04-formal-097",
+    "r04-formal-098",
+    "r04-formal-099",
+    "r04-formal-100"
+  ],
+  "unexpected_remaining_ids": [],
+  "ended_at": "2026-10-16T04:08:09.849857+00:00"
+}

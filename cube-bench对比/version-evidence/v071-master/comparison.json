@@ -1,0 +1,141 @@
+{
+  "verified_at_utc": "2026-10-16T04:00:58.078232+00:00",
+  "upstream": "https://github.com/TencentCloud/CubeSandbox.git",
+  "scope": "examples/cube-bench (all tracked files including go.mod/go.sum)",
+  "versions": {
+    "v0.7.1": {
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+      "source_tree": "fa4895544c890a6204b5defbb1750e7217b7f980",
+      "files": {
+        "examples/cube-bench/.gitignore": {
+          "sha256": "aaccb1a00557171b31d00a99a6a2666856e417964732490685cdcba9f02de491",
+          "size": 5
+        },
+        "examples/cube-bench/Makefile": {
+          "sha256": "521122c1d4a048f366e2a22bf674c4dd8175befe7eb53d7687ed7e67f9de431e",
+          "size": 648
+        },
+        "examples/cube-bench/README.md": {
+          "sha256": "0c83ea03f077539b7937d0f4454cf26216ef8d8b6ca2a37bceed663aa8b7d6e3",
+          "size": 5230
+        },
+        "examples/cube-bench/go.mod": {
+          "sha256": "7e87006f2aadf8d673fff66ab087dbd3d3153601ee4e70aa2ece37a2ba62390f",
+          "size": 1393
+        },
+        "examples/cube-bench/go.sum": {
+          "sha256": "1f42e737a91100fc5890c3c6e9c16a8a9b90b4558d8172361c7878fcad3f8e2e",
+          "size": 5000
+        },
+        "examples/cube-bench/main.go": {
+          "sha256": "853c7ae9aac97ea99c0186e908f01cfd3a89b9ffebecf82c651bdb34c1230167",
+          "size": 14196
+        },
+        "examples/cube-bench/main_test.go": {
+          "sha256": "bc261cb4808bb73d4f4a1566189390b5f9c8fcfddcc5b1079e0dde5c02989a23",
+          "size": 5324
+        },
+        "examples/cube-bench/network_policy.go": {
+          "sha256": "35f1256459c45d782fa736f37bb943108ddd36f4c4df9c4e9f963b60e90014c5",
+          "size": 5478
+        },
+        "examples/cube-bench/report.go": {
+          "sha256": "7ad9ef7ede52e4e80682acf0e8e88f30b8325cf7b0ec0dd95f9013ac2f7faac6",
+          "size": 6474
+        },
+        "examples/cube-bench/runner.go": {
+          "sha256": "91087b507ec059a2d21ad33b4a0c790ac8e0f5e1f05123ca26f1da8fb99b2640",
+          "size": 4123
+        },
+        "examples/cube-bench/runner_test.go": {
+          "sha256": "c3357eaac5d5ed34688e44496e28f18f9052c2528bf9e94a565f998b25b51c93",
+          "size": 4998
+        },
+        "examples/cube-bench/stats.go": {
+          "sha256": "f9f8bc59b62b90717503435417238818ae49b4c93f324ab8f2734153af750950",
+          "size": 2961
+        },
+        "examples/cube-bench/theme.go": {
+          "sha256": "d1b1fce3c69a3c8876f06d448fdd0cd01b10b70b0f77efe13ebbc06598d375d0",
+          "size": 4433
+        },
+        "examples/cube-bench/ui.go": {
+          "sha256": "1603d9efe0502eb73075976212c8c6c0c237d9796de1bc4ae8cc186ffdfd15fb",
+          "size": 5455
+        }
+      }
+    },
+    "master": {
+      "commit": "5741deb433b7e2b9c9d2dcadb1c87214de74bd24",
+      "source_tree": "fa4895544c890a6204b5defbb1750e7217b7f980",
+      "files": {
+        "examples/cube-bench/.gitignore": {
+          "sha256": "aaccb1a00557171b31d00a99a6a2666856e417964732490685cdcba9f02de491",
+          "size": 5
+        },
+        "examples/cube-bench/Makefile": {
+          "sha256": "521122c1d4a048f366e2a22bf674c4dd8175befe7eb53d7687ed7e67f9de431e",
+          "size": 648
+        },
+        "examples/cube-bench/README.md": {
+          "sha256": "0c83ea03f077539b7937d0f4454cf26216ef8d8b6ca2a37bceed663aa8b7d6e3",
+          "size": 5230
+        },
+        "examples/cube-bench/go.mod": {
+          "sha256": "7e87006f2aadf8d673fff66ab087dbd3d3153601ee4e70aa2ece37a2ba62390f",
+          "size": 1393
+        },
+        "examples/cube-bench/go.sum": {
+          "sha256": "1f42e737a91100fc5890c3c6e9c16a8a9b90b4558d8172361c7878fcad3f8e2e",
+          "size": 5000
+        },
+        "examples/cube-bench/main.go": {
+          "sha256": "853c7ae9aac97ea99c0186e908f01cfd3a89b9ffebecf82c651bdb34c1230167",
+          "size": 14196
+        },
+        "examples/cube-bench/main_test.go": {
+          "sha256": "bc261cb4808bb73d4f4a1566189390b5f9c8fcfddcc5b1079e0dde5c02989a23",
+          "size": 5324
+        },
+        "examples/cube-bench/network_policy.go": {
+          "sha256": "35f1256459c45d782fa736f37bb943108ddd36f4c4df9c4e9f963b60e90014c5",
+          "size": 5478
+        },
+        "examples/cube-bench/report.go": {
+          "sha256": "7ad9ef7ede52e4e80682acf0e8e88f30b8325cf7b0ec0dd95f9013ac2f7faac6",
+          "size": 6474
+        },
+        "examples/cube-bench/runner.go": {
+          "sha256": "91087b507ec059a2d21ad33b4a0c790ac8e0f5e1f05123ca26f1da8fb99b2640",
+          "size": 4123
+        },
+        "examples/cube-bench/runner_test.go": {
+          "sha256": "c3357eaac5d5ed34688e44496e28f18f9052c2528bf9e94a565f998b25b51c93",
+          "size": 4998
+        },
+        "examples/cube-bench/stats.go": {
+          "sha256": "f9f8bc59b62b90717503435417238818ae49b4c93f324ab8f2734153af750950",
+          "size": 2961
+        },
+        "examples/cube-bench/theme.go": {
+          "sha256": "d1b1fce3c69a3c8876f06d448fdd0cd01b10b70b0f77efe13ebbc06598d375d0",
+          "size": 4433
+        },
+        "examples/cube-bench/ui.go": {
+          "sha256": "1603d9efe0502eb73075976212c8c6c0c237d9796de1bc4ae8cc186ffdfd15fb",
+          "size": 5455
+        }
+      }
+    }
+  },
+  "source_equal": true,
+  "diff_bytes": 0,
+  "file_count": 14,
+  "matched_build": {
+    "v071_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+    "master_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+    "byte_equal": true,
+    "toolchain": "Go1.25.0 linux/arm64 CGO0 GOARM64=v8.0 -mod=readonly -trimpath"
+  },
+  "hash_scope": "Hashes in this file identify upstream source files and original built binaries, not publication file bytes."
+}

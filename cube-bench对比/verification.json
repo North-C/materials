@@ -1,0 +1,65 @@
+{
+  "status": "passed",
+  "rounds": [
+    {
+      "round": 1,
+      "group": "v071",
+      "formal_successful": 100,
+      "prewarmup_successful": 3,
+      "deleted_or_absent": 103,
+      "total_time_ms": 514.2778099999999,
+      "run_id": "20261016T040607Z-4a181a42"
+    },
+    {
+      "round": 2,
+      "group": "v051",
+      "formal_successful": 100,
+      "prewarmup_successful": 3,
+      "deleted_or_absent": 103,
+      "total_time_ms": 459.94404,
+      "run_id": "20261016T040647Z-ecdba122"
+    },
+    {
+      "round": 3,
+      "group": "v071",
+      "formal_successful": 100,
+      "prewarmup_successful": 3,
+      "deleted_or_absent": 103,
+      "total_time_ms": 518.51017,
+      "run_id": "20261016T040715Z-fb59979b"
+    },
+    {
+      "round": 4,
+      "group": "v051",
+      "formal_successful": 100,
+      "prewarmup_successful": 3,
+      "deleted_or_absent": 103,
+      "total_time_ms": 473.13839,
+      "run_id": "20261016T040743Z-217078a6"
+    },
+    {
+      "round": 5,
+      "group": "v071",
+      "formal_successful": 100,
+      "prewarmup_successful": 3,
+      "deleted_or_absent": 103,
+      "total_time_ms": 452.73077,
+      "run_id": "20261016T040810Z-20f11a40"
+    },
+    {
+      "round": 6,
+      "group": "v051",
+      "formal_successful": 100,
+      "prewarmup_successful": 3,
+      "deleted_or_absent": 103,
+      "total_time_ms": 484.97863,
+      "run_id": "20261016T040838Z-0006bebc"
+    }
+  ],
+  "formal_successful": 600,
+  "prewarmup_successful": 18,
+  "deleted_or_absent": 618,
+  "services_unchanged": true,
+  "host_settings_unchanged": true,
+  "publication_notice": "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+}

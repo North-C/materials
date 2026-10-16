@@ -1,0 +1,7 @@
+round,version,status,total_time_s,total_time_ms,avg_ms,p50_ms,p95_ms,p99_ms,request_max_ms,valid_samples,successful,errors,attempts,success_rate,prewarmup_status,prewarmup_successful,prewarmup_duration_ms,cleanup_status,remaining_owned,attribution_status,master_stat_status,issues
+round-01-v071,v071,complete,0.51427781,514.2778099999999,365.19764000000004,389.725,510.862,512.545,513.703,100,100,0,100,1.0,complete,3,193.23445000918582,verified_empty,0,limited,unavailable,
+round-02-v051,v051,complete,0.45994404,459.94404,331.28169,344.437,452.958,457.119,458.752,100,100,0,100,1.0,complete,3,185.53638001321815,verified_empty,0,limited,unavailable,
+round-03-v071,v071,complete,0.51851017,518.51017,362.93831,408.74,514.808,517.729,517.982,100,100,0,100,1.0,complete,3,205.9690199967008,verified_empty,0,limited,unavailable,
+round-04-v051,v051,complete,0.47313839,473.13839,357.51716,384.467,470.552,471.888,472.012,100,100,0,100,1.0,complete,3,211.24433001386933,verified_empty,0,limited,unavailable,
+round-05-v071,v071,complete,0.45273077,452.73077,316.10618999999997,340.678,447.812,452.401,452.53,100,100,0,100,1.0,complete,3,190.82894999883138,verified_empty,0,limited,unavailable,
+round-06-v051,v051,complete,0.48497863,484.97863,349.45703000000003,349.455,480.958,483.901,484.192,100,100,0,100,1.0,complete,3,200.6332199962344,verified_empty,0,limited,unavailable,

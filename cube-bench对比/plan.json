@@ -1,0 +1,90 @@
+{
+  "created_at_utc": "2026-10-16T04:02:18.366690+00:00",
+  "target": "测试机",
+  "source_groups": {
+    "v071": {
+      "version": "v0.7.1",
+      "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+      "equivalent_master_commit": "5741deb433b7e2b9c9d2dcadb1c87214de74bd24",
+      "tree": "fa4895544c890a6204b5defbb1750e7217b7f980",
+      "binary_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+      "build_command": "go build -mod=readonly -trimpath -o cube-bench-v0.7.1-linux-arm64 .",
+      "toolchain": "go version go1.25.0 linux/arm64",
+      "environment": {
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "arm64",
+        "GOARM64": "v8.0",
+        "GOTOOLCHAIN": "local"
+      }
+    },
+    "v051": {
+      "version": "v0.5.1",
+      "commit": "a164417f497234a0d787cb328b0ae96480b1569b",
+      "tree": "8f1f5b660e7f7a8f02c4678ceadcfb0e9c02446c",
+      "binary_sha256": "17cfe223a9cb1f40db9753e74eebecc08b106cf2ec5fc7a05b352719e3e6c6e4",
+      "build_command": "go build -mod=readonly -trimpath -o cube-bench-v0.5.1-linux-arm64 .",
+      "toolchain": "go version go1.25.0 linux/arm64",
+      "environment": {
+        "CGO_ENABLED": "0",
+        "GOOS": "linux",
+        "GOARCH": "arm64",
+        "GOARM64": "v8.0",
+        "GOTOOLCHAIN": "local"
+      }
+    }
+  },
+  "order": [
+    {
+      "number": 1,
+      "group": "v071",
+      "directory": "round-01-v071"
+    },
+    {
+      "number": 2,
+      "group": "v051",
+      "directory": "round-02-v051"
+    },
+    {
+      "number": 3,
+      "group": "v071",
+      "directory": "round-03-v071"
+    },
+    {
+      "number": 4,
+      "group": "v051",
+      "directory": "round-04-v051"
+    },
+    {
+      "number": 5,
+      "group": "v071",
+      "directory": "round-05-v071"
+    },
+    {
+      "number": 6,
+      "group": "v051",
+      "directory": "round-06-v051"
+    }
+  ],
+  "warmup": {
+    "concurrency": 1,
+    "requests": 3,
+    "internal_warmup": 0
+  },
+  "formal": {
+    "concurrency": 100,
+    "requests": 100,
+    "internal_warmup": 0
+  },
+  "mode": "create-only",
+  "no_tui": true,
+  "output": "JSON",
+  "cleanup": "each round, including failed rounds; must verify no owned residuals before next round",
+  "template_id": "template-anonymous",
+  "image_tag": "cube-sandbox-cn.tencentcloudcr.com/cube-sandbox/sandbox-code:latest",
+  "arm64_manifest_digest": "sha256:e1cb43e12ba70b8453b45f0c063306faab8a6974aa3fd76982dc4d019d07c60d",
+  "profiler_commit": "912b1ba2e65b6a261201cff1c4bb2de8e88f5ac5",
+  "profiler_archive_sha256": "19315d4e873653567b9f9fe35567fb383637229ca50ff1fed1c6bd1521c5e840",
+  "retries": "No benchmark reruns to select results; cleanup network retries permitted",
+  "publication_notice": "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+}

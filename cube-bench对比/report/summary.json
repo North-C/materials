@@ -1,0 +1,2743 @@
+{
+  "schema_version": 1,
+  "planned_rounds": 6,
+  "planned_requests": 600,
+  "percentile_method": "nearest-rank: sorted_values[ceil(p*N)-1]",
+  "notes": [
+    "客户端 create_ms 从请求准备到 client.Do 返回响应头计时，不包含随后读取响应体和 JSON 解码；CubeMaster cube-e2e 仅覆盖内部 CreateSandbox 到 setProbeInfo，不覆盖模板前处理、API 和完整 HTTP 链路。",
+    "比较对象为两个 cube-bench 客户端源码组，每组 3 轮；v0.7.1 与 master 的源码一致性由独立证据链接说明。服务端沿用 测试机 环境，镜像 sandbox-code:latest；此处不代表服务端版本升级实验。",
+    "每轮先独立进程预热 c1n3w0，再正式 c100n100w0、create-only、-no-tui JSON。预热不计入正式 total_time_s，且不复用客户端连接。正式计时包含调度与结果收集，不等于单请求 max，也不等于采集窗口。",
+    "每轮和版本聚合的请求分位数均由有效成功 raw.create_ms 样本按 nearest-rank：排序后第 ceil(p×N) 项计算；版本级合并 3 轮，完整时 N=300，绝不平均各轮 P95/P99。原工具可能采用不同分位数索引，其 create 汇总另保留在 JSON。",
+    "请求成功率使用原始 summary.successful/(successful+errors)，并保留生产者报告值。缺失和无效数据保留 null/N/A，缺轮不会补零或伪装成 300 个样本。",
+    "归属 limited 表示模板独占声明及 CLI inventory 差集等有限证据；客户端 seq 未映射到 sandbox ID，不能建立逐请求端到端分解。阶段统计仅描述已观察日志记录，覆盖率按实例统计。",
+    "Cubelet 成功阶段低于 5 ms 可能不记日志，覆盖不足不等于失败或耗时为零；master_stat 缺失时其内部 trace 阶段不可测。嵌套阶段不能相加，也不能把跨群体均值之差命名为网络耗时。",
+    "结论仅描述本次已采集轮次的观测；样本、环境时变与日志覆盖限制不支持因果结论或泛化性能回归判断。报告不嵌入原始日志或配置。",
+    "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+  ],
+  "rounds": [
+    {
+      "round": "round-01-v071",
+      "version": "v071",
+      "run_id": "20261016T040607Z-4a181a42",
+      "status": "complete",
+      "issues": [],
+      "formal_config": {
+        "concurrency": 100,
+        "total": 100,
+        "warmup": 0,
+        "mode": "create-only"
+      },
+      "total_time_s": 0.51427781,
+      "total_time_ms": 514.2778099999999,
+      "request_latency_ms": {
+        "count": 100,
+        "avg": 365.19764000000004,
+        "p50": 389.725,
+        "p95": 510.862,
+        "p99": 512.545,
+        "max": 513.703
+      },
+      "producer_create_stats": {
+        "avg": 365.1976400000001,
+        "count": 100,
+        "max": 513.703,
+        "min": 88.839,
+        "p50": 389.725,
+        "p90": 508.117,
+        "p95": 510.862,
+        "p99": 512.545,
+        "std": 130.56371306540208
+      },
+      "successful": 100,
+      "errors": 0,
+      "attempts": 100,
+      "success_rate": 1.0,
+      "producer_success_rate": 1,
+      "excluded_raw_rows": 0,
+      "prewarmup": {
+        "status": "complete",
+        "mode": "separate_process",
+        "count": 3,
+        "successful": 3,
+        "benchmark_exit_code": 0,
+        "duration_ms": 193.23445000918582,
+        "client_connection_reused": false
+      },
+      "collector_durations": {
+        "benchmark": {
+          "duration_ms": 514.2778099999999,
+          "status": "available",
+          "source": [
+            "raw.summary.total_time_s"
+          ],
+          "scope": "Runner's measured formal workload, excluding warmup under the cube-bench contract. Includes scheduling and result collection; create-delete mode also includes deletion. Generic producers must use this same scope."
+        },
+        "command": {
+          "duration_ms": 20584.734130859375,
+          "status": "available",
+          "source": [
+            "manifest.command.started_at/ended_at"
+          ],
+          "scope": "Collector's external-command wall-clock window; may include warmup, setup, cleanup and console draining. Not the formal benchmark duration."
+        },
+        "capture": {
+          "duration_ms": 21625.97412109375,
+          "status": "available",
+          "source": [
+            "manifest.started_at/ended_at"
+          ],
+          "scope": "Collector's entire wall-clock capture window, including surrounding log/metrics collection. Not the formal benchmark duration."
+        }
+      },
+      "benchmark_command": {
+        "exit_code": 0,
+        "timed_out": null
+      },
+      "wrapper_exit": {
+        "exit_code": 0,
+        "status": "complete"
+      },
+      "cleanup": {
+        "status": "verified_empty",
+        "remaining_owned": 0,
+        "deleted_count": null,
+        "confirmed_absent_count": 103,
+        "unexpected_remaining": 0,
+        "wrapper_status": "complete",
+        "ownership_verified_by_cli_sets": true
+      },
+      "attribution_status": "limited",
+      "phase_attribution_status": "declared",
+      "client_sample_mapping": false,
+      "master_stat_status": "unavailable",
+      "capture_gaps": [
+        "master_stat:no_readable_start_offset"
+      ],
+      "analysis_warnings": [
+        "Phase labels are caller-declared, not independently verified against benchmark execution.",
+        "Log rotation/truncation/capture gaps were reported; stage coverage may be incomplete.",
+        "Collector reported additional capture gaps; inspect evidence_integrity.capture_gaps.",
+        "Phase map is caller-declared, NOT independently verified against benchmark execution.",
+        "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+      ],
+      "stages": {
+        "master.cube-e2e": {
+          "stats": {
+            "count": 100,
+            "avg": 295.98,
+            "min": 84,
+            "p50": 309,
+            "p95": 434,
+            "max": 439
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "cubelet.cubebox-service": {
+          "stats": {
+            "count": 100,
+            "avg": 290.48,
+            "min": 77.975,
+            "p50": 303.476,
+            "p95": 425.875,
+            "max": 433.955
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.network": {
+          "stats": {
+            "count": 72,
+            "avg": 22.931749999999997,
+            "min": 5.202,
+            "p50": 22.915,
+            "p95": 45.425,
+            "max": 65.554
+          },
+          "coverage": {
+            "observed_instances": 72,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.72,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.72,
+            "record_count": 72,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.72,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.72
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.storage": {
+          "stats": {
+            "count": 79,
+            "avg": 14.688025316455697,
+            "min": 5.47,
+            "p50": 11.871,
+            "p95": 27.085,
+            "max": 28.211
+          },
+          "coverage": {
+            "observed_instances": 79,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.79,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.79,
+            "record_count": 79,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.79,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.79
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.cubebox": {
+          "stats": {
+            "count": 100,
+            "avg": 211.13165000000004,
+            "min": 75.112,
+            "p50": 210.52,
+            "p95": 297.061,
+            "max": 304.03
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-start": {
+          "stats": {
+            "count": 100,
+            "avg": 155.53109999999998,
+            "min": 41.562,
+            "p50": 146.949,
+            "p95": 246.809,
+            "max": 260.722
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_cumulative",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-create": {
+          "stats": {
+            "count": 100,
+            "avg": 141.57551000000004,
+            "min": 41.009,
+            "p50": 140.658,
+            "p95": 202.304,
+            "max": 250.215
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-probe": {
+          "stats": {
+            "count": 100,
+            "avg": 28.563009999999995,
+            "min": 11.99,
+            "p50": 28.942,
+            "p95": 41.6,
+            "max": 47.635
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "shim.CreatePodSandbox": {
+          "stats": {
+            "count": 100,
+            "avg": 55.91,
+            "min": 25,
+            "p50": 57,
+            "p95": 86,
+            "max": 120
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "shim.CreateContainer": {
+          "stats": {
+            "count": 100,
+            "avg": 16.08,
+            "min": 4,
+            "p50": 11,
+            "p95": 34,
+            "max": 59
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "shim.RestoreVm": {
+          "stats": {
+            "count": 100,
+            "avg": 17.5,
+            "min": 7,
+            "p50": 12,
+            "p95": 45,
+            "max": 64
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "master.trace.bufferhandle": {
+          "stats": null,
+          "coverage": {
+            "observed_instances": 0,
+            "owned_instances": 100,
+            "fraction_of_owned": 0,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0,
+            "record_count": 0,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        }
+      },
+      "links": {
+        "HTML": "../round-01-v071/runs/20261016T040607Z-4a181a42/analysis/report.html",
+        "CSV": "../round-01-v071/runs/20261016T040607Z-4a181a42/analysis/stage-latency.csv",
+        "JSON": "../round-01-v071/runs/20261016T040607Z-4a181a42/analysis/analysis.json",
+        "timeline HTML": "../round-01-v071/runs/20261016T040607Z-4a181a42/analysis/timeline.html",
+        "timeline JSON": "../round-01-v071/runs/20261016T040607Z-4a181a42/analysis/timeline.json",
+        "precision": "../round-01-v071/runs/20261016T040607Z-4a181a42/analysis/precision.json",
+        "raw JSON": "../round-01-v071/runs/20261016T040607Z-4a181a42/capture/startup-latency/benchmark.raw.json",
+        "cleanup": "../round-01-v071/evidence/cleanup.json",
+        "runner-validation": "../round-01-v071/runs/20261016T040607Z-4a181a42/capture/startup-latency/runner-validation.json",
+        "prewarmup": "../round-01-v071/runs/20261016T040607Z-4a181a42/capture/startup-latency/prewarmup.json"
+      }
+    },
+    {
+      "round": "round-02-v051",
+      "version": "v051",
+      "run_id": "20261016T040647Z-ecdba122",
+      "status": "complete",
+      "issues": [],
+      "formal_config": {
+        "concurrency": 100,
+        "total": 100,
+        "warmup": 0,
+        "mode": "create-only"
+      },
+      "total_time_s": 0.45994404,
+      "total_time_ms": 459.94404,
+      "request_latency_ms": {
+        "count": 100,
+        "avg": 331.28169,
+        "p50": 344.437,
+        "p95": 452.958,
+        "p99": 457.119,
+        "max": 458.752
+      },
+      "producer_create_stats": {
+        "avg": 331.28168999999997,
+        "count": 100,
+        "max": 458.752,
+        "min": 105.482,
+        "p50": 344.437,
+        "p90": 445.15,
+        "p95": 452.958,
+        "p99": 457.119,
+        "std": 100.80770021721925
+      },
+      "successful": 100,
+      "errors": 0,
+      "attempts": 100,
+      "success_rate": 1.0,
+      "producer_success_rate": 1,
+      "excluded_raw_rows": 0,
+      "prewarmup": {
+        "status": "complete",
+        "mode": "separate_process",
+        "count": 3,
+        "successful": 3,
+        "benchmark_exit_code": 0,
+        "duration_ms": 185.53638001321815,
+        "client_connection_reused": false
+      },
+      "collector_durations": {
+        "benchmark": {
+          "duration_ms": 459.94404,
+          "status": "available",
+          "source": [
+            "raw.summary.total_time_s"
+          ],
+          "scope": "Runner's measured formal workload, excluding warmup under the cube-bench contract. Includes scheduling and result collection; create-delete mode also includes deletion. Generic producers must use this same scope."
+        },
+        "command": {
+          "duration_ms": 21276.27099609375,
+          "status": "available",
+          "source": [
+            "manifest.command.started_at/ended_at"
+          ],
+          "scope": "Collector's external-command wall-clock window; may include warmup, setup, cleanup and console draining. Not the formal benchmark duration."
+        },
+        "capture": {
+          "duration_ms": 22319.402099609375,
+          "status": "available",
+          "source": [
+            "manifest.started_at/ended_at"
+          ],
+          "scope": "Collector's entire wall-clock capture window, including surrounding log/metrics collection. Not the formal benchmark duration."
+        }
+      },
+      "benchmark_command": {
+        "exit_code": 0,
+        "timed_out": null
+      },
+      "wrapper_exit": {
+        "exit_code": 0,
+        "status": "complete"
+      },
+      "cleanup": {
+        "status": "verified_empty",
+        "remaining_owned": 0,
+        "deleted_count": null,
+        "confirmed_absent_count": 103,
+        "unexpected_remaining": 0,
+        "wrapper_status": "complete",
+        "ownership_verified_by_cli_sets": true
+      },
+      "attribution_status": "limited",
+      "phase_attribution_status": "declared",
+      "client_sample_mapping": false,
+      "master_stat_status": "unavailable",
+      "capture_gaps": [
+        "master_stat:no_readable_start_offset"
+      ],
+      "analysis_warnings": [
+        "Phase labels are caller-declared, not independently verified against benchmark execution.",
+        "Log rotation/truncation/capture gaps were reported; stage coverage may be incomplete.",
+        "Collector reported additional capture gaps; inspect evidence_integrity.capture_gaps.",
+        "Phase map is caller-declared, NOT independently verified against benchmark execution.",
+        "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+      ],
+      "stages": {
+        "master.cube-e2e": {
+          "stats": {
+            "count": 100,
+            "avg": 284.92,
+            "min": 102,
+            "p50": 307,
+            "p95": 364,
+            "max": 370
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "cubelet.cubebox-service": {
+          "stats": {
+            "count": 100,
+            "avg": 277.82084,
+            "min": 98.077,
+            "p50": 301.025,
+            "p95": 356.789,
+            "max": 360.448
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.network": {
+          "stats": {
+            "count": 90,
+            "avg": 31.82145555555557,
+            "min": 20.461,
+            "p50": 32.358,
+            "p95": 36.213,
+            "max": 38.283
+          },
+          "coverage": {
+            "observed_instances": 90,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.9,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.9,
+            "record_count": 90,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.9,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.9
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.storage": {
+          "stats": {
+            "count": 90,
+            "avg": 17.078288888888878,
+            "min": 7.943,
+            "p50": 18.196,
+            "p95": 23.267,
+            "max": 23.491
+          },
+          "coverage": {
+            "observed_instances": 90,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.9,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.9,
+            "record_count": 90,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.9,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.9
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.cubebox": {
+          "stats": {
+            "count": 100,
+            "avg": 191.4614599999999,
+            "min": 95.599,
+            "p50": 201.012,
+            "p95": 236.591,
+            "max": 258.462
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-start": {
+          "stats": {
+            "count": 100,
+            "avg": 140.80475,
+            "min": 62.627,
+            "p50": 147.651,
+            "p95": 183.97,
+            "max": 200.107
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_cumulative",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-create": {
+          "stats": {
+            "count": 100,
+            "avg": 132.65317000000002,
+            "min": 58.634,
+            "p50": 139.396,
+            "p95": 170.619,
+            "max": 189.977
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-probe": {
+          "stats": {
+            "count": 100,
+            "avg": 31.878849999999996,
+            "min": 12.74,
+            "p50": 32.382,
+            "p95": 53.789,
+            "max": 61.771
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "shim.CreatePodSandbox": {
+          "stats": {
+            "count": 100,
+            "avg": 57.59,
+            "min": 31,
+            "p50": 54,
+            "p95": 82,
+            "max": 88
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "shim.CreateContainer": {
+          "stats": {
+            "count": 100,
+            "avg": 18.26,
+            "min": 6,
+            "p50": 15,
+            "p95": 29,
+            "max": 61
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "shim.RestoreVm": {
+          "stats": {
+            "count": 100,
+            "avg": 13.72,
+            "min": 8,
+            "p50": 13,
+            "p95": 24,
+            "max": 33
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "master.trace.bufferhandle": {
+          "stats": null,
+          "coverage": {
+            "observed_instances": 0,
+            "owned_instances": 100,
+            "fraction_of_owned": 0,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0,
+            "record_count": 0,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        }
+      },
+      "links": {
+        "HTML": "../round-02-v051/runs/20261016T040647Z-ecdba122/analysis/report.html",
+        "CSV": "../round-02-v051/runs/20261016T040647Z-ecdba122/analysis/stage-latency.csv",
+        "JSON": "../round-02-v051/runs/20261016T040647Z-ecdba122/analysis/analysis.json",
+        "timeline HTML": "../round-02-v051/runs/20261016T040647Z-ecdba122/analysis/timeline.html",
+        "timeline JSON": "../round-02-v051/runs/20261016T040647Z-ecdba122/analysis/timeline.json",
+        "precision": "../round-02-v051/runs/20261016T040647Z-ecdba122/analysis/precision.json",
+        "raw JSON": "../round-02-v051/runs/20261016T040647Z-ecdba122/capture/startup-latency/benchmark.raw.json",
+        "cleanup": "../round-02-v051/evidence/cleanup.json",
+        "runner-validation": "../round-02-v051/runs/20261016T040647Z-ecdba122/capture/startup-latency/runner-validation.json",
+        "prewarmup": "../round-02-v051/runs/20261016T040647Z-ecdba122/capture/startup-latency/prewarmup.json"
+      }
+    },
+    {
+      "round": "round-03-v071",
+      "version": "v071",
+      "run_id": "20261016T040715Z-fb59979b",
+      "status": "complete",
+      "issues": [],
+      "formal_config": {
+        "concurrency": 100,
+        "total": 100,
+        "warmup": 0,
+        "mode": "create-only"
+      },
+      "total_time_s": 0.51851017,
+      "total_time_ms": 518.51017,
+      "request_latency_ms": {
+        "count": 100,
+        "avg": 362.93831,
+        "p50": 408.74,
+        "p95": 514.808,
+        "p99": 517.729,
+        "max": 517.982
+      },
+      "producer_create_stats": {
+        "avg": 362.93830999999983,
+        "count": 100,
+        "max": 517.982,
+        "min": 104.593,
+        "p50": 408.74,
+        "p90": 511.408,
+        "p95": 514.808,
+        "p99": 517.729,
+        "std": 132.8652261528211
+      },
+      "successful": 100,
+      "errors": 0,
+      "attempts": 100,
+      "success_rate": 1.0,
+      "producer_success_rate": 1,
+      "excluded_raw_rows": 0,
+      "prewarmup": {
+        "status": "complete",
+        "mode": "separate_process",
+        "count": 3,
+        "successful": 3,
+        "benchmark_exit_code": 0,
+        "duration_ms": 205.9690199967008,
+        "client_connection_reused": false
+      },
+      "collector_durations": {
+        "benchmark": {
+          "duration_ms": 518.51017,
+          "status": "available",
+          "source": [
+            "raw.summary.total_time_s"
+          ],
+          "scope": "Runner's measured formal workload, excluding warmup under the cube-bench contract. Includes scheduling and result collection; create-delete mode also includes deletion. Generic producers must use this same scope."
+        },
+        "command": {
+          "duration_ms": 21178.035888671875,
+          "status": "available",
+          "source": [
+            "manifest.command.started_at/ended_at"
+          ],
+          "scope": "Collector's external-command wall-clock window; may include warmup, setup, cleanup and console draining. Not the formal benchmark duration."
+        },
+        "capture": {
+          "duration_ms": 22218.126953125,
+          "status": "available",
+          "source": [
+            "manifest.started_at/ended_at"
+          ],
+          "scope": "Collector's entire wall-clock capture window, including surrounding log/metrics collection. Not the formal benchmark duration."
+        }
+      },
+      "benchmark_command": {
+        "exit_code": 0,
+        "timed_out": null
+      },
+      "wrapper_exit": {
+        "exit_code": 0,
+        "status": "complete"
+      },
+      "cleanup": {
+        "status": "verified_empty",
+        "remaining_owned": 0,
+        "deleted_count": null,
+        "confirmed_absent_count": 103,
+        "unexpected_remaining": 0,
+        "wrapper_status": "complete",
+        "ownership_verified_by_cli_sets": true
+      },
+      "attribution_status": "limited",
+      "phase_attribution_status": "declared",
+      "client_sample_mapping": false,
+      "master_stat_status": "unavailable",
+      "capture_gaps": [
+        "master_stat:no_readable_start_offset"
+      ],
+      "analysis_warnings": [
+        "Phase labels are caller-declared, not independently verified against benchmark execution.",
+        "Log rotation/truncation/capture gaps were reported; stage coverage may be incomplete.",
+        "Collector reported additional capture gaps; inspect evidence_integrity.capture_gaps.",
+        "Phase map is caller-declared, NOT independently verified against benchmark execution.",
+        "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+      ],
+      "stages": {
+        "master.cube-e2e": {
+          "stats": {
+            "count": 100,
+            "avg": 296.87,
+            "min": 101,
+            "p50": 327,
+            "p95": 440,
+            "max": 442
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "cubelet.cubebox-service": {
+          "stats": {
+            "count": 100,
+            "avg": 287.34238000000005,
+            "min": 97.438,
+            "p50": 318.85,
+            "p95": 427.209,
+            "max": 428.64
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.network": {
+          "stats": {
+            "count": 74,
+            "avg": 16.796175675675673,
+            "min": 5.004,
+            "p50": 10.032,
+            "p95": 52.17,
+            "max": 73.736
+          },
+          "coverage": {
+            "observed_instances": 74,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.74,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.74,
+            "record_count": 74,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.74,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.74
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.storage": {
+          "stats": {
+            "count": 79,
+            "avg": 16.923101265822787,
+            "min": 5.898,
+            "p50": 14.267,
+            "p95": 28.284,
+            "max": 32.251
+          },
+          "coverage": {
+            "observed_instances": 79,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.79,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.79,
+            "record_count": 79,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.79,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.79
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.cubebox": {
+          "stats": {
+            "count": 100,
+            "avg": 210.47578000000004,
+            "min": 93.879,
+            "p50": 210.989,
+            "p95": 311.428,
+            "max": 328.357
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-start": {
+          "stats": {
+            "count": 100,
+            "avg": 152.8954,
+            "min": 60.404,
+            "p50": 148.76,
+            "p95": 256.78,
+            "max": 280.505
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_cumulative",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-create": {
+          "stats": {
+            "count": 100,
+            "avg": 141.90918000000005,
+            "min": 59.357,
+            "p50": 137.167,
+            "p95": 215.877,
+            "max": 252.87
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-probe": {
+          "stats": {
+            "count": 100,
+            "avg": 30.677559999999993,
+            "min": 12.405,
+            "p50": 31.731,
+            "p95": 47.871,
+            "max": 52.181
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "shim.CreatePodSandbox": {
+          "stats": {
+            "count": 100,
+            "avg": 59.45,
+            "min": 31,
+            "p50": 58,
+            "p95": 88,
+            "max": 103
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "shim.CreateContainer": {
+          "stats": {
+            "count": 100,
+            "avg": 17.57,
+            "min": 4,
+            "p50": 13,
+            "p95": 35,
+            "max": 78
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "shim.RestoreVm": {
+          "stats": {
+            "count": 100,
+            "avg": 17.61,
+            "min": 7,
+            "p50": 13,
+            "p95": 45,
+            "max": 55
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "master.trace.bufferhandle": {
+          "stats": null,
+          "coverage": {
+            "observed_instances": 0,
+            "owned_instances": 100,
+            "fraction_of_owned": 0,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0,
+            "record_count": 0,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        }
+      },
+      "links": {
+        "HTML": "../round-03-v071/runs/20261016T040715Z-fb59979b/analysis/report.html",
+        "CSV": "../round-03-v071/runs/20261016T040715Z-fb59979b/analysis/stage-latency.csv",
+        "JSON": "../round-03-v071/runs/20261016T040715Z-fb59979b/analysis/analysis.json",
+        "timeline HTML": "../round-03-v071/runs/20261016T040715Z-fb59979b/analysis/timeline.html",
+        "timeline JSON": "../round-03-v071/runs/20261016T040715Z-fb59979b/analysis/timeline.json",
+        "precision": "../round-03-v071/runs/20261016T040715Z-fb59979b/analysis/precision.json",
+        "raw JSON": "../round-03-v071/runs/20261016T040715Z-fb59979b/capture/startup-latency/benchmark.raw.json",
+        "cleanup": "../round-03-v071/evidence/cleanup.json",
+        "runner-validation": "../round-03-v071/runs/20261016T040715Z-fb59979b/capture/startup-latency/runner-validation.json",
+        "prewarmup": "../round-03-v071/runs/20261016T040715Z-fb59979b/capture/startup-latency/prewarmup.json"
+      }
+    },
+    {
+      "round": "round-04-v051",
+      "version": "v051",
+      "run_id": "20261016T040743Z-217078a6",
+      "status": "complete",
+      "issues": [],
+      "formal_config": {
+        "concurrency": 100,
+        "total": 100,
+        "warmup": 0,
+        "mode": "create-only"
+      },
+      "total_time_s": 0.47313839,
+      "total_time_ms": 473.13839,
+      "request_latency_ms": {
+        "count": 100,
+        "avg": 357.51716,
+        "p50": 384.467,
+        "p95": 470.552,
+        "p99": 471.888,
+        "max": 472.012
+      },
+      "producer_create_stats": {
+        "avg": 357.5171600000003,
+        "count": 100,
+        "max": 472.012,
+        "min": 119.943,
+        "p50": 384.467,
+        "p90": 463.096,
+        "p95": 470.552,
+        "p99": 471.888,
+        "std": 92.04227501608028
+      },
+      "successful": 100,
+      "errors": 0,
+      "attempts": 100,
+      "success_rate": 1.0,
+      "producer_success_rate": 1,
+      "excluded_raw_rows": 0,
+      "prewarmup": {
+        "status": "complete",
+        "mode": "separate_process",
+        "count": 3,
+        "successful": 3,
+        "benchmark_exit_code": 0,
+        "duration_ms": 211.24433001386933,
+        "client_connection_reused": false
+      },
+      "collector_durations": {
+        "benchmark": {
+          "duration_ms": 473.13839,
+          "status": "available",
+          "source": [
+            "raw.summary.total_time_s"
+          ],
+          "scope": "Runner's measured formal workload, excluding warmup under the cube-bench contract. Includes scheduling and result collection; create-delete mode also includes deletion. Generic producers must use this same scope."
+        },
+        "command": {
+          "duration_ms": 20087.7509765625,
+          "status": "available",
+          "source": [
+            "manifest.command.started_at/ended_at"
+          ],
+          "scope": "Collector's external-command wall-clock window; may include warmup, setup, cleanup and console draining. Not the formal benchmark duration."
+        },
+        "capture": {
+          "duration_ms": 21129.947998046875,
+          "status": "available",
+          "source": [
+            "manifest.started_at/ended_at"
+          ],
+          "scope": "Collector's entire wall-clock capture window, including surrounding log/metrics collection. Not the formal benchmark duration."
+        }
+      },
+      "benchmark_command": {
+        "exit_code": 0,
+        "timed_out": null
+      },
+      "wrapper_exit": {
+        "exit_code": 0,
+        "status": "complete"
+      },
+      "cleanup": {
+        "status": "verified_empty",
+        "remaining_owned": 0,
+        "deleted_count": null,
+        "confirmed_absent_count": 103,
+        "unexpected_remaining": 0,
+        "wrapper_status": "complete",
+        "ownership_verified_by_cli_sets": true
+      },
+      "attribution_status": "limited",
+      "phase_attribution_status": "declared",
+      "client_sample_mapping": false,
+      "master_stat_status": "unavailable",
+      "capture_gaps": [
+        "master_stat:no_readable_start_offset"
+      ],
+      "analysis_warnings": [
+        "Phase labels are caller-declared, not independently verified against benchmark execution.",
+        "Log rotation/truncation/capture gaps were reported; stage coverage may be incomplete.",
+        "Collector reported additional capture gaps; inspect evidence_integrity.capture_gaps.",
+        "Phase map is caller-declared, NOT independently verified against benchmark execution.",
+        "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+      ],
+      "stages": {
+        "master.cube-e2e": {
+          "stats": {
+            "count": 100,
+            "avg": 324.73,
+            "min": 115,
+            "p50": 349,
+            "p95": 405,
+            "max": 410
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "cubelet.cubebox-service": {
+          "stats": {
+            "count": 100,
+            "avg": 319.1618,
+            "min": 111.208,
+            "p50": 343.016,
+            "p95": 395.418,
+            "max": 406.65
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.network": {
+          "stats": {
+            "count": 60,
+            "avg": 49.15151666666668,
+            "min": 5,
+            "p50": 56.139,
+            "p95": 70.053,
+            "max": 154.274
+          },
+          "coverage": {
+            "observed_instances": 60,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.6,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.6,
+            "record_count": 60,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.6,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.6
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.storage": {
+          "stats": {
+            "count": 77,
+            "avg": 25.33577922077922,
+            "min": 5.602,
+            "p50": 30.859,
+            "p95": 43.047,
+            "max": 43.448
+          },
+          "coverage": {
+            "observed_instances": 77,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.77,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.77,
+            "record_count": 77,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.77,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.77
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.cubebox": {
+          "stats": {
+            "count": 100,
+            "avg": 210.90932999999998,
+            "min": 108.791,
+            "p50": 203.676,
+            "p95": 265.725,
+            "max": 298.832
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-start": {
+          "stats": {
+            "count": 100,
+            "avg": 157.18466999999993,
+            "min": 65.426,
+            "p50": 157.107,
+            "p95": 209.998,
+            "max": 238.122
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_cumulative",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-create": {
+          "stats": {
+            "count": 100,
+            "avg": 149.51727000000002,
+            "min": 64.407,
+            "p50": 141.374,
+            "p95": 204.919,
+            "max": 222.977
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-probe": {
+          "stats": {
+            "count": 100,
+            "avg": 31.30194999999999,
+            "min": 12.217,
+            "p50": 30.778,
+            "p95": 50.761,
+            "max": 61.165
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "shim.CreatePodSandbox": {
+          "stats": {
+            "count": 100,
+            "avg": 61.66,
+            "min": 28,
+            "p50": 58,
+            "p95": 90,
+            "max": 95
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "shim.CreateContainer": {
+          "stats": {
+            "count": 100,
+            "avg": 16.14,
+            "min": 6,
+            "p50": 14,
+            "p95": 25,
+            "max": 52
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "shim.RestoreVm": {
+          "stats": {
+            "count": 100,
+            "avg": 15.21,
+            "min": 8,
+            "p50": 15,
+            "p95": 24,
+            "max": 34
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "master.trace.bufferhandle": {
+          "stats": null,
+          "coverage": {
+            "observed_instances": 0,
+            "owned_instances": 100,
+            "fraction_of_owned": 0,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0,
+            "record_count": 0,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        }
+      },
+      "links": {
+        "HTML": "../round-04-v051/runs/20261016T040743Z-217078a6/analysis/report.html",
+        "CSV": "../round-04-v051/runs/20261016T040743Z-217078a6/analysis/stage-latency.csv",
+        "JSON": "../round-04-v051/runs/20261016T040743Z-217078a6/analysis/analysis.json",
+        "timeline HTML": "../round-04-v051/runs/20261016T040743Z-217078a6/analysis/timeline.html",
+        "timeline JSON": "../round-04-v051/runs/20261016T040743Z-217078a6/analysis/timeline.json",
+        "precision": "../round-04-v051/runs/20261016T040743Z-217078a6/analysis/precision.json",
+        "raw JSON": "../round-04-v051/runs/20261016T040743Z-217078a6/capture/startup-latency/benchmark.raw.json",
+        "cleanup": "../round-04-v051/evidence/cleanup.json",
+        "runner-validation": "../round-04-v051/runs/20261016T040743Z-217078a6/capture/startup-latency/runner-validation.json",
+        "prewarmup": "../round-04-v051/runs/20261016T040743Z-217078a6/capture/startup-latency/prewarmup.json"
+      }
+    },
+    {
+      "round": "round-05-v071",
+      "version": "v071",
+      "run_id": "20261016T040810Z-20f11a40",
+      "status": "complete",
+      "issues": [],
+      "formal_config": {
+        "concurrency": 100,
+        "total": 100,
+        "warmup": 0,
+        "mode": "create-only"
+      },
+      "total_time_s": 0.45273077,
+      "total_time_ms": 452.73077,
+      "request_latency_ms": {
+        "count": 100,
+        "avg": 316.10618999999997,
+        "p50": 340.678,
+        "p95": 447.812,
+        "p99": 452.401,
+        "max": 452.53
+      },
+      "producer_create_stats": {
+        "avg": 316.10619,
+        "count": 100,
+        "max": 452.53,
+        "min": 112.069,
+        "p50": 340.678,
+        "p90": 440.945,
+        "p95": 447.812,
+        "p99": 452.401,
+        "std": 101.811881538145
+      },
+      "successful": 100,
+      "errors": 0,
+      "attempts": 100,
+      "success_rate": 1.0,
+      "producer_success_rate": 1,
+      "excluded_raw_rows": 0,
+      "prewarmup": {
+        "status": "complete",
+        "mode": "separate_process",
+        "count": 3,
+        "successful": 3,
+        "benchmark_exit_code": 0,
+        "duration_ms": 190.82894999883138,
+        "client_connection_reused": false
+      },
+      "collector_durations": {
+        "benchmark": {
+          "duration_ms": 452.73077,
+          "status": "available",
+          "source": [
+            "raw.summary.total_time_s"
+          ],
+          "scope": "Runner's measured formal workload, excluding warmup under the cube-bench contract. Includes scheduling and result collection; create-delete mode also includes deletion. Generic producers must use this same scope."
+        },
+        "command": {
+          "duration_ms": 21084.364990234375,
+          "status": "available",
+          "source": [
+            "manifest.command.started_at/ended_at"
+          ],
+          "scope": "Collector's external-command wall-clock window; may include warmup, setup, cleanup and console draining. Not the formal benchmark duration."
+        },
+        "capture": {
+          "duration_ms": 22121.719970703125,
+          "status": "available",
+          "source": [
+            "manifest.started_at/ended_at"
+          ],
+          "scope": "Collector's entire wall-clock capture window, including surrounding log/metrics collection. Not the formal benchmark duration."
+        }
+      },
+      "benchmark_command": {
+        "exit_code": 0,
+        "timed_out": null
+      },
+      "wrapper_exit": {
+        "exit_code": 0,
+        "status": "complete"
+      },
+      "cleanup": {
+        "status": "verified_empty",
+        "remaining_owned": 0,
+        "deleted_count": null,
+        "confirmed_absent_count": 103,
+        "unexpected_remaining": 0,
+        "wrapper_status": "complete",
+        "ownership_verified_by_cli_sets": true
+      },
+      "attribution_status": "limited",
+      "phase_attribution_status": "declared",
+      "client_sample_mapping": false,
+      "master_stat_status": "unavailable",
+      "capture_gaps": [
+        "master_stat:no_readable_start_offset"
+      ],
+      "analysis_warnings": [
+        "Phase labels are caller-declared, not independently verified against benchmark execution.",
+        "Log rotation/truncation/capture gaps were reported; stage coverage may be incomplete.",
+        "Collector reported additional capture gaps; inspect evidence_integrity.capture_gaps.",
+        "Phase map is caller-declared, NOT independently verified against benchmark execution.",
+        "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+      ],
+      "stages": {
+        "master.cube-e2e": {
+          "stats": {
+            "count": 100,
+            "avg": 263.8,
+            "min": 107,
+            "p50": 283,
+            "p95": 342,
+            "max": 348
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "cubelet.cubebox-service": {
+          "stats": {
+            "count": 100,
+            "avg": 258.82724,
+            "min": 103.917,
+            "p50": 276.766,
+            "p95": 338.516,
+            "max": 345.36
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.network": {
+          "stats": {
+            "count": 82,
+            "avg": 33.562707317073176,
+            "min": 5.035,
+            "p50": 36.277,
+            "p95": 73.362,
+            "max": 77.438
+          },
+          "coverage": {
+            "observed_instances": 82,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.82,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.82,
+            "record_count": 82,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.82,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.82
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.storage": {
+          "stats": {
+            "count": 87,
+            "avg": 16.222080459770115,
+            "min": 7.6,
+            "p50": 15.411,
+            "p95": 25.825,
+            "max": 26.577
+          },
+          "coverage": {
+            "observed_instances": 87,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.87,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.87,
+            "record_count": 87,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.87,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.87
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.cubebox": {
+          "stats": {
+            "count": 100,
+            "avg": 185.88766000000004,
+            "min": 101.028,
+            "p50": 185.471,
+            "p95": 247.281,
+            "max": 262.993
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-start": {
+          "stats": {
+            "count": 100,
+            "avg": 130.9635,
+            "min": 67.576,
+            "p50": 129.335,
+            "p95": 178.312,
+            "max": 191.317
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_cumulative",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-create": {
+          "stats": {
+            "count": 100,
+            "avg": 123.27919999999999,
+            "min": 66.893,
+            "p50": 127.756,
+            "p95": 154.364,
+            "max": 167.559
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-probe": {
+          "stats": {
+            "count": 100,
+            "avg": 34.71243999999999,
+            "min": 12.979,
+            "p50": 31.909,
+            "p95": 62.319,
+            "max": 72.134
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "shim.CreatePodSandbox": {
+          "stats": {
+            "count": 100,
+            "avg": 60.17,
+            "min": 28,
+            "p50": 53,
+            "p95": 96,
+            "max": 103
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "shim.CreateContainer": {
+          "stats": {
+            "count": 100,
+            "avg": 15.9,
+            "min": 5,
+            "p50": 14,
+            "p95": 26,
+            "max": 36
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "shim.RestoreVm": {
+          "stats": {
+            "count": 100,
+            "avg": 15.2,
+            "min": 7,
+            "p50": 14,
+            "p95": 24,
+            "max": 53
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "master.trace.bufferhandle": {
+          "stats": null,
+          "coverage": {
+            "observed_instances": 0,
+            "owned_instances": 100,
+            "fraction_of_owned": 0,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0,
+            "record_count": 0,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        }
+      },
+      "links": {
+        "HTML": "../round-05-v071/runs/20261016T040810Z-20f11a40/analysis/report.html",
+        "CSV": "../round-05-v071/runs/20261016T040810Z-20f11a40/analysis/stage-latency.csv",
+        "JSON": "../round-05-v071/runs/20261016T040810Z-20f11a40/analysis/analysis.json",
+        "timeline HTML": "../round-05-v071/runs/20261016T040810Z-20f11a40/analysis/timeline.html",
+        "timeline JSON": "../round-05-v071/runs/20261016T040810Z-20f11a40/analysis/timeline.json",
+        "precision": "../round-05-v071/runs/20261016T040810Z-20f11a40/analysis/precision.json",
+        "raw JSON": "../round-05-v071/runs/20261016T040810Z-20f11a40/capture/startup-latency/benchmark.raw.json",
+        "cleanup": "../round-05-v071/evidence/cleanup.json",
+        "runner-validation": "../round-05-v071/runs/20261016T040810Z-20f11a40/capture/startup-latency/runner-validation.json",
+        "prewarmup": "../round-05-v071/runs/20261016T040810Z-20f11a40/capture/startup-latency/prewarmup.json"
+      }
+    },
+    {
+      "round": "round-06-v051",
+      "version": "v051",
+      "run_id": "20261016T040838Z-0006bebc",
+      "status": "complete",
+      "issues": [],
+      "formal_config": {
+        "concurrency": 100,
+        "total": 100,
+        "warmup": 0,
+        "mode": "create-only"
+      },
+      "total_time_s": 0.48497863,
+      "total_time_ms": 484.97863,
+      "request_latency_ms": {
+        "count": 100,
+        "avg": 349.45703000000003,
+        "p50": 349.455,
+        "p95": 480.958,
+        "p99": 483.901,
+        "max": 484.192
+      },
+      "producer_create_stats": {
+        "avg": 349.4570299999999,
+        "count": 100,
+        "max": 484.192,
+        "min": 101.442,
+        "p50": 349.455,
+        "p90": 478.205,
+        "p95": 480.958,
+        "p99": 483.901,
+        "std": 112.55945168095063
+      },
+      "successful": 100,
+      "errors": 0,
+      "attempts": 100,
+      "success_rate": 1.0,
+      "producer_success_rate": 1,
+      "excluded_raw_rows": 0,
+      "prewarmup": {
+        "status": "complete",
+        "mode": "separate_process",
+        "count": 3,
+        "successful": 3,
+        "benchmark_exit_code": 0,
+        "duration_ms": 200.6332199962344,
+        "client_connection_reused": false
+      },
+      "collector_durations": {
+        "benchmark": {
+          "duration_ms": 484.97863,
+          "status": "available",
+          "source": [
+            "raw.summary.total_time_s"
+          ],
+          "scope": "Runner's measured formal workload, excluding warmup under the cube-bench contract. Includes scheduling and result collection; create-delete mode also includes deletion. Generic producers must use this same scope."
+        },
+        "command": {
+          "duration_ms": 19904.884033203125,
+          "status": "available",
+          "source": [
+            "manifest.command.started_at/ended_at"
+          ],
+          "scope": "Collector's external-command wall-clock window; may include warmup, setup, cleanup and console draining. Not the formal benchmark duration."
+        },
+        "capture": {
+          "duration_ms": 20951.198974609375,
+          "status": "available",
+          "source": [
+            "manifest.started_at/ended_at"
+          ],
+          "scope": "Collector's entire wall-clock capture window, including surrounding log/metrics collection. Not the formal benchmark duration."
+        }
+      },
+      "benchmark_command": {
+        "exit_code": 0,
+        "timed_out": null
+      },
+      "wrapper_exit": {
+        "exit_code": 0,
+        "status": "complete"
+      },
+      "cleanup": {
+        "status": "verified_empty",
+        "remaining_owned": 0,
+        "deleted_count": null,
+        "confirmed_absent_count": 103,
+        "unexpected_remaining": 0,
+        "wrapper_status": "complete",
+        "ownership_verified_by_cli_sets": true
+      },
+      "attribution_status": "limited",
+      "phase_attribution_status": "declared",
+      "client_sample_mapping": false,
+      "master_stat_status": "unavailable",
+      "capture_gaps": [
+        "master_stat:no_readable_start_offset"
+      ],
+      "analysis_warnings": [
+        "Phase labels are caller-declared, not independently verified against benchmark execution.",
+        "Log rotation/truncation/capture gaps were reported; stage coverage may be incomplete.",
+        "Collector reported additional capture gaps; inspect evidence_integrity.capture_gaps.",
+        "Phase map is caller-declared, NOT independently verified against benchmark execution.",
+        "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+      ],
+      "stages": {
+        "master.cube-e2e": {
+          "stats": {
+            "count": 100,
+            "avg": 304.98,
+            "min": 97,
+            "p50": 316,
+            "p95": 407,
+            "max": 409
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "cubelet.cubebox-service": {
+          "stats": {
+            "count": 100,
+            "avg": 300.31254000000007,
+            "min": 94.276,
+            "p50": 311.589,
+            "p95": 400.24,
+            "max": 404.328
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.network": {
+          "stats": {
+            "count": 73,
+            "avg": 15.834219178082197,
+            "min": 5.223,
+            "p50": 14.426,
+            "p95": 31.133,
+            "max": 86.337
+          },
+          "coverage": {
+            "observed_instances": 73,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.73,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.73,
+            "record_count": 73,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.73,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.73
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.storage": {
+          "stats": {
+            "count": 86,
+            "avg": 16.75609302325582,
+            "min": 5.019,
+            "p50": 17.128,
+            "p95": 26.619,
+            "max": 27.502
+          },
+          "coverage": {
+            "observed_instances": 86,
+            "owned_instances": 100,
+            "fraction_of_owned": 0.86,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0.86,
+            "record_count": 86,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0.86,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0.86
+          },
+          "timing_kind": "thresholded_direct",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.cubebox": {
+          "stats": {
+            "count": 100,
+            "avg": 212.90945,
+            "min": 92.095,
+            "p50": 222.429,
+            "p95": 276.826,
+            "max": 288.315
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-start": {
+          "stats": {
+            "count": 100,
+            "avg": 157.24709,
+            "min": 62.539,
+            "p50": 163.599,
+            "p95": 219.425,
+            "max": 245.346
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_cumulative",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-create": {
+          "stats": {
+            "count": 100,
+            "avg": 147.00721999999993,
+            "min": 61.517,
+            "p50": 156.739,
+            "p95": 187.338,
+            "max": 228.873
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "cubelet.sandbox-probe": {
+          "stats": {
+            "count": 100,
+            "avg": 34.12216,
+            "min": 12.268,
+            "p50": 33.193,
+            "p95": 64.14,
+            "max": 69.786
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": "Successful Cubelet traces below 5 ms can be suppressed; observed samples are conditional on logging."
+        },
+        "shim.CreatePodSandbox": {
+          "stats": {
+            "count": 100,
+            "avg": 59.52,
+            "min": 35,
+            "p50": 57,
+            "p95": 83,
+            "max": 95
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_outer",
+          "note": null
+        },
+        "shim.CreateContainer": {
+          "stats": {
+            "count": 100,
+            "avg": 17.82,
+            "min": 5,
+            "p50": 14,
+            "p95": 31,
+            "max": 65
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "shim.RestoreVm": {
+          "stats": {
+            "count": 100,
+            "avg": 15.41,
+            "min": 7,
+            "p50": 14,
+            "p95": 27,
+            "max": 40
+          },
+          "coverage": {
+            "observed_instances": 100,
+            "owned_instances": 100,
+            "fraction_of_owned": 1,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 1,
+            "record_count": 100,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 1,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 1
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        },
+        "master.trace.bufferhandle": {
+          "stats": null,
+          "coverage": {
+            "observed_instances": 0,
+            "owned_instances": 100,
+            "fraction_of_owned": 0,
+            "expected_requests": 100,
+            "fraction_of_expected_requests": 0,
+            "record_count": 0,
+            "repeated_instance_records": 0,
+            "benchmark_successful_instances": 100,
+            "fraction_of_benchmark_successes": 0,
+            "benchmark_observed_attempts": 100,
+            "fraction_of_observed_attempts": 0
+          },
+          "timing_kind": "direct_inner",
+          "note": null
+        }
+      },
+      "links": {
+        "HTML": "../round-06-v051/runs/20261016T040838Z-0006bebc/analysis/report.html",
+        "CSV": "../round-06-v051/runs/20261016T040838Z-0006bebc/analysis/stage-latency.csv",
+        "JSON": "../round-06-v051/runs/20261016T040838Z-0006bebc/analysis/analysis.json",
+        "timeline HTML": "../round-06-v051/runs/20261016T040838Z-0006bebc/analysis/timeline.html",
+        "timeline JSON": "../round-06-v051/runs/20261016T040838Z-0006bebc/analysis/timeline.json",
+        "precision": "../round-06-v051/runs/20261016T040838Z-0006bebc/analysis/precision.json",
+        "raw JSON": "../round-06-v051/runs/20261016T040838Z-0006bebc/capture/startup-latency/benchmark.raw.json",
+        "cleanup": "../round-06-v051/evidence/cleanup.json",
+        "runner-validation": "../round-06-v051/runs/20261016T040838Z-0006bebc/capture/startup-latency/runner-validation.json",
+        "prewarmup": "../round-06-v051/runs/20261016T040838Z-0006bebc/capture/startup-latency/prewarmup.json"
+      }
+    }
+  ],
+  "versions": [
+    {
+      "version": "v071",
+      "label": "v0.7.1 / master（同源码组）",
+      "planned_samples": 300,
+      "round_total_time_stats_ms": {
+        "count": 3,
+        "avg": 495.17291666666665,
+        "min": 452.73077,
+        "max": 518.51017
+      },
+      "complete_rounds": 3,
+      "round_total_time_ms": [
+        {
+          "round": "round-01-v071",
+          "value": 514.2778099999999
+        },
+        {
+          "round": "round-03-v071",
+          "value": 518.51017
+        },
+        {
+          "round": "round-05-v071",
+          "value": 452.73077
+        }
+      ],
+      "request_latency_ms": {
+        "count": 300,
+        "avg": 348.08071333333334,
+        "p50": 354.371,
+        "p95": 511.408,
+        "p99": 515.841,
+        "max": 517.982
+      },
+      "successful": 300,
+      "errors": 0,
+      "success_rate": 1.0,
+      "sample_completeness": 1.0,
+      "aggregation": "pooled valid successful raw.create_ms; nearest-rank"
+    },
+    {
+      "version": "v051",
+      "label": "v0.5.1",
+      "planned_samples": 300,
+      "round_total_time_stats_ms": {
+        "count": 3,
+        "avg": 472.68702,
+        "min": 459.94404,
+        "max": 484.97863
+      },
+      "complete_rounds": 3,
+      "round_total_time_ms": [
+        {
+          "round": "round-02-v051",
+          "value": 459.94404
+        },
+        {
+          "round": "round-04-v051",
+          "value": 473.13839
+        },
+        {
+          "round": "round-06-v051",
+          "value": 484.97863
+        }
+      ],
+      "request_latency_ms": {
+        "count": 300,
+        "avg": 346.08529333333337,
+        "p50": 364.711,
+        "p95": 474.396,
+        "p99": 481.847,
+        "max": 484.192
+      },
+      "successful": 300,
+      "errors": 0,
+      "success_rate": 1.0,
+      "sample_completeness": 1.0,
+      "aggregation": "pooled valid successful raw.create_ms; nearest-rank"
+    }
+  ],
+  "source_evidence": "../version-evidence/v071-master/README.md",
+  "metadata": {
+    "fields": {
+      "created_at_utc": "2026-10-16T04:02:18.366690+00:00",
+      "target": "测试机",
+      "template_id": "template-anonymous",
+      "image_tag": "cube-sandbox-cn.tencentcloudcr.com/cube-sandbox/sandbox-code:latest",
+      "arm64_manifest_digest": "sha256:e1cb43e12ba70b8453b45f0c063306faab8a6974aa3fd76982dc4d019d07c60d",
+      "profiler_commit": "912b1ba2e65b6a261201cff1c4bb2de8e88f5ac5",
+      "profiler_archive_sha256": "19315d4e873653567b9f9fe35567fb383637229ca50ff1fed1c6bd1521c5e840",
+      "mode": "create-only",
+      "no_tui": true,
+      "output": "JSON",
+      "warmup": {
+        "concurrency": 1,
+        "requests": 3,
+        "internal_warmup": 0
+      },
+      "formal": {
+        "concurrency": 100,
+        "requests": 100,
+        "internal_warmup": 0
+      },
+      "retries": "No benchmark reruns to select results; cleanup network retries permitted",
+      "host": {
+        "time": "2026-10-16T04:01:15.702424+00:00",
+        "sandbox_count": 0,
+        "image": {
+          "Id": "sha256:79972015a4a2b48b18a2165af61606d87e7d859143165fcd33f104fbd8590bee",
+          "RepoTags": [
+            "cube-sandbox-cn.tencentcloudcr.com/cube-sandbox/sandbox-code:latest"
+          ],
+          "RepoDigests": [
+            "cube-sandbox-cn.tencentcloudcr.com/cube-sandbox/sandbox-code@sha256:743d264fad8c9dc9a49f07e931166d24d025363360ae770ca4b70e3f19540944",
+            "cube-sandbox-cn.tencentcloudcr.com/cube-sandbox/sandbox-code@sha256:e1cb43e12ba70b8453b45f0c063306faab8a6974aa3fd76982dc4d019d07c60d"
+          ],
+          "Architecture": "arm64",
+          "Created": "2026-06-30T05:56:25.571654669Z"
+        },
+        "settings": {
+          "/sys/kernel/mm/transparent_hugepage/enabled": "always madvise [never]",
+          "/sys/kernel/mm/transparent_hugepage/defrag": "always defer defer+madvise madvise [never]",
+          "/proc/sys/kernel/numa_balancing": "0"
+        },
+        "hugepages": [
+          "AnonHugePages:  16576512 kB",
+          "ShmemHugePages:        0 kB",
+          "FileHugePages:  854253568 kB",
+          "HugePages_Total:       0",
+          "HugePages_Free:        0",
+          "HugePages_Rsvd:        0",
+          "HugePages_Surp:        0",
+          "Hugepagesize:       2048 kB",
+          "Hugetlb:               0 kB"
+        ],
+        "hugetlbfs_mounts": [],
+        "loadavg": "0.22 0.14 0.15 1/6236 1039790"
+      },
+      "template": {
+        "id": "template-anonymous",
+        "status": "READY",
+        "containers": [
+          {
+            "resources": {
+              "cpu": "2000m",
+              "mem": "2048Mi"
+            },
+            "probe": {
+              "failure_threshold": 60,
+              "period_ms": 500,
+              "probe_handler": {
+                "http_get": {
+                  "path": "/health",
+                  "port": 49999
+                }
+              },
+              "probe_timeout_ms": 2000,
+              "success_threshold": 1,
+              "timeout_ms": 30000
+            },
+            "image": {
+              "image": "template-anonymous",
+              "storage_media": "ext4",
+              "writable_layer_size": "1G"
+            }
+          }
+        ]
+      },
+      "registry_platforms": [
+        {
+          "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+          "size": 2623,
+          "digest": "sha256:e1cb43e12ba70b8453b45f0c063306faab8a6974aa3fd76982dc4d019d07c60d",
+          "platform": {
+            "architecture": "arm64",
+            "os": "linux"
+          }
+        },
+        {
+          "mediaType": "application/vnd.docker.distribution.manifest.v2+json",
+          "size": 2622,
+          "digest": "sha256:467494c38f3c335e42d590e23d5cbb00dc15c2627c9da4f7e7f3bd9f4ec18c5e",
+          "platform": {
+            "architecture": "amd64",
+            "os": "linux"
+          }
+        }
+      ],
+      "source_groups": {
+        "v071": {
+          "version": "v0.7.1",
+          "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+          "equivalent_master_commit": "5741deb433b7e2b9c9d2dcadb1c87214de74bd24",
+          "tree": "fa4895544c890a6204b5defbb1750e7217b7f980",
+          "binary_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+          "build_command": "go build -mod=readonly -trimpath -o cube-bench-v0.7.1-linux-arm64 .",
+          "toolchain": "go version go1.25.0 linux/arm64",
+          "environment": {
+            "CGO_ENABLED": "0",
+            "GOOS": "linux",
+            "GOARCH": "arm64",
+            "GOARM64": "v8.0",
+            "GOTOOLCHAIN": "local"
+          }
+        },
+        "v051": {
+          "version": "v0.5.1",
+          "commit": "a164417f497234a0d787cb328b0ae96480b1569b",
+          "equivalent_master_commit": null,
+          "tree": "8f1f5b660e7f7a8f02c4678ceadcfb0e9c02446c",
+          "binary_sha256": "17cfe223a9cb1f40db9753e74eebecc08b106cf2ec5fc7a05b352719e3e6c6e4",
+          "build_command": "go build -mod=readonly -trimpath -o cube-bench-v0.5.1-linux-arm64 .",
+          "toolchain": "go version go1.25.0 linux/arm64",
+          "environment": {
+            "CGO_ENABLED": "0",
+            "GOOS": "linux",
+            "GOARCH": "arm64",
+            "GOARM64": "v8.0",
+            "GOTOOLCHAIN": "local"
+          }
+        }
+      }
+    },
+    "links": {
+      "plan": "../plan.json",
+      "host": "../preflight/host.json",
+      "registry": "../preflight/registry-manifest.json",
+      "verification": "../verification.json",
+      "final-state": "../preflight/final-state.json"
+    },
+    "issues": [],
+    "verification": {
+      "status": "passed",
+      "formal_successful": 600,
+      "prewarmup_successful": 18,
+      "deleted_or_absent": 618,
+      "services_unchanged": true,
+      "host_settings_unchanged": true
+    },
+    "final_state": {
+      "checked_at_utc": "2026-10-16T04:09:28.685080+00:00",
+      "sandbox_count": 0,
+      "benchmark_processes": []
+    }
+  },
+  "publication_notice": "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+}

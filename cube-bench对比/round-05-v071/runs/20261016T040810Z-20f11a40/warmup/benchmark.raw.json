@@ -1,0 +1,54 @@
+{
+  "config": {
+    "concurrency": 1,
+    "total": 3,
+    "warmup": 0,
+    "mode": "create-only",
+    "network_allow_out": 0,
+    "network_inject_rules": 0,
+    "network_policy": "none",
+    "network_rules": 0
+  },
+  "create": {
+    "avg": 56.730999999999995,
+    "count": 3,
+    "max": 61.904,
+    "min": 53.783,
+    "p50": 54.506,
+    "p90": 61.904,
+    "p95": 61.904,
+    "p99": 61.904,
+    "std": 4.494510985635703
+  },
+  "raw": [
+    {
+      "create_ms": 61.904,
+      "delete_ms": 0,
+      "seq": 1
+    },
+    {
+      "create_ms": 54.506,
+      "delete_ms": 0,
+      "seq": 2
+    },
+    {
+      "create_ms": 53.783,
+      "delete_ms": 0,
+      "seq": 3
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "success_rate": 1,
+    "successful": 3,
+    "throughput_qps": 17.59945127257526,
+    "total_time_s": 0.17045986
+  },
+  "timestamp": "2026-10-16T04:08:10Z",
+  "publication": {
+    "deidentified": true,
+    "original_file_bytes_preserved": false,
+    "timing_samples_summary_and_timestamp_unchanged": true,
+    "notice": "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+  }
+}

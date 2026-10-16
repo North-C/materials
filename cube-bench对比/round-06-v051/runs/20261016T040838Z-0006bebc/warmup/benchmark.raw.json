@@ -1,0 +1,50 @@
+{
+  "config": {
+    "concurrency": 1,
+    "total": 3,
+    "warmup": 0,
+    "mode": "create-only"
+  },
+  "create": {
+    "avg": 59.93666666666667,
+    "count": 3,
+    "max": 63.061,
+    "min": 57.568,
+    "p50": 59.181,
+    "p90": 63.061,
+    "p95": 63.061,
+    "p99": 63.061,
+    "std": 2.8233909281807468
+  },
+  "raw": [
+    {
+      "create_ms": 63.061,
+      "delete_ms": 0,
+      "seq": 1
+    },
+    {
+      "create_ms": 57.568,
+      "delete_ms": 0,
+      "seq": 2
+    },
+    {
+      "create_ms": 59.181,
+      "delete_ms": 0,
+      "seq": 3
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "success_rate": 1,
+    "successful": 3,
+    "throughput_qps": 16.657865760922977,
+    "total_time_s": 0.1800951
+  },
+  "timestamp": "2026-10-16T04:08:39Z",
+  "publication": {
+    "deidentified": true,
+    "original_file_bytes_preserved": false,
+    "timing_samples_summary_and_timestamp_unchanged": true,
+    "notice": "这是脱敏发布副本。原始时延、样本顺序、统计与时间戳保留；实例使用轮内一致别名，环境标识已匿名化，文件字节不同于原件。原始组件日志、配置、metrics 与 CLI 清单未公开，不能从此副本重放日志解析。发布清单只校验发布文件；源码及二进制哈希仍指对应源码和构建产物。"
+  }
+}
