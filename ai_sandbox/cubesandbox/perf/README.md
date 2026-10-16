@@ -38,5 +38,6 @@
 - [Template启动与NUMA balancing分析](CUBESANDBOX_TEMPLATE_STARTUP_NUMA_BALANCING_ANALYSIS.md)
 - [Template并发创建优化指南](TEMPLATE_CONCURRENT_CREATE_OPTIMIZATION_GUIDE.md)
 - [社区性能分析指南](CUBESANDBOX_COMMUNITY_PROFILING_GUIDE.md)
+- [cube-bench 计时分析：TUI 计时偏差、-no-tui 时间轴与 v0.5.1→v0.7.1 版本核对（2026-10-16）](CUBESANDBOX_CUBE_BENCH_TIMING_ANALYSIS_20261016.md)
 
 历史资料的版本、环境和口径以各自文档为准，不与本轮v0.7.1结果混用。
