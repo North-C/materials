@@ -1,0 +1,49 @@
+{
+  "config": {
+    "concurrency": 1,
+    "total": 3,
+    "warmup": 0,
+    "mode": "create-only",
+    "network_allow_out": 0,
+    "network_inject_rules": 0,
+    "network_policy": "none",
+    "network_rules": 0
+  },
+  "create": {
+    "avg": 53.839,
+    "count": 3,
+    "max": 60.526,
+    "min": 49.009,
+    "p50": 51.982,
+    "p90": 60.526,
+    "p95": 60.526,
+    "p99": 60.526,
+    "std": 5.978850976567323
+  },
+  "raw": [
+    {
+      "create_ms": 60.526,
+      "delete_ms": 0,
+      "seq": 1
+    },
+    {
+      "create_ms": 49.009,
+      "delete_ms": 0,
+      "seq": 2
+    },
+    {
+      "create_ms": 51.982,
+      "delete_ms": 0,
+      "seq": 3
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "success_rate": 1,
+    "successful": 3,
+    "throughput_qps": 18.540063903892264,
+    "total_time_s": 0.16181174
+  },
+  "timestamp": "2026-10-16T07:26:46Z",
+  "publication_notice": "脱敏发布副本：时延样本、顺序、统计及时间戳保留；实例使用本实验一致别名。私有配置、完整环境、原始组件日志、Docker inspect及CLI清单未公开，不能从副本重放原始日志解析。"
+}

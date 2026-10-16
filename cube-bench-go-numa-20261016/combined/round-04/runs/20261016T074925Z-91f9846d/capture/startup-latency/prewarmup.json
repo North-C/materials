@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "mode": "separate_process",
+  "count": 3,
+  "status": "complete",
+  "successful": 3,
+  "benchmark_exit_code": 0,
+  "started_at": "2026-10-16T07:49:25.457656+00:00",
+  "problems": [],
+  "binary_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+  "capture_scope": "outside_formal_capture",
+  "cleanup": "not_performed",
+  "client_connection_reused": false,
+  "ended_at": "2026-10-16T07:49:25.649022+00:00",
+  "duration_ms": 191.36726000579074
+}

@@ -1,0 +1,1368 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-10-16T08:02:03.115646+00:00",
+  "component": "Cubelet",
+  "help_type_consistent_across_30_snapshots": true,
+  "help": {
+    "go_gc_duration_seconds": "A summary of the wall-time pause (stop-the-world) duration in garbage collection cycles.",
+    "go_goroutines": "Number of goroutines that currently exist.",
+    "go_memstats_heap_alloc_bytes": "Number of heap bytes allocated and currently in use, same as go_memstats_alloc_bytes. Equals to /memory/classes/heap/objects:bytes.",
+    "go_memstats_heap_inuse_bytes": "Number of heap bytes that are in use. Equals to /memory/classes/heap/objects:bytes + /memory/classes/heap/unused:bytes",
+    "go_threads": "Number of OS threads created.",
+    "process_cpu_seconds_total": "Total user and system CPU time spent in seconds.",
+    "process_resident_memory_bytes": "Resident memory size in bytes."
+  },
+  "types": {
+    "go_gc_duration_seconds": "summary",
+    "go_goroutines": "gauge",
+    "go_memstats_heap_alloc_bytes": "gauge",
+    "go_memstats_heap_inuse_bytes": "gauge",
+    "go_threads": "gauge",
+    "process_cpu_seconds_total": "counter",
+    "process_resident_memory_bytes": "gauge"
+  },
+  "notes": [
+    "端点9998属于Cubelet，不是CubeMaster。",
+    "快照窗口包括正式创建、CLI清单和周边采集，差分不是100请求专属。",
+    "process_cpu_seconds_total为进程user+system累计CPU秒；不可除正式benchmark耗时来报告CPU利用率。",
+    "go_gc_duration_seconds为STW wall-time暂停summary；sum差分是累计暂停秒，count差分是GC周期暂停观测数，不是并发GC全部CPU耗时。",
+    "gauges只有前后值，不是peak；不对端点下降做异常归因。",
+    "缺失、非有限数、负counter差分、未验证进程身份或进程重启均标unknown。",
+    "count增量0时平均暂停为null；不相减summary quantiles。",
+    "不能据这些指标推断CubeMaster GC变化。"
+  ],
+  "states": {
+    "baseline": {
+      "rounds": 5,
+      "window_seconds": {
+        "n": 5,
+        "median": 21.644979,
+        "min": 21.067108,
+        "max": 22.324527
+      },
+      "counter_deltas": {
+        "go_gc_duration_seconds_sum": {
+          "n": 5,
+          "median": 0.0004130799999999546,
+          "min": 0.00021741000000008448,
+          "max": 0.011880490000000021
+        },
+        "go_gc_duration_seconds_count": {
+          "n": 5,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 2.0
+        },
+        "process_cpu_seconds_total": {
+          "n": 5,
+          "median": 23.91999999999996,
+          "min": 19.170000000000073,
+          "max": 25.75
+        }
+      },
+      "gc_pause_sum_delta_ms": {
+        "n": 5,
+        "median": 0.4130799999999546,
+        "min": 0.21741000000008448,
+        "max": 11.880490000000021
+      },
+      "gc_observed_mean_pause_ms": {
+        "n": 5,
+        "median": 0.24745500000000753,
+        "min": 0.2065399999999773,
+        "max": 11.880490000000021
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": {
+            "n": 5,
+            "median": 281872040.0,
+            "min": 129952952.0,
+            "max": 393376312.0
+          },
+          "after": {
+            "n": 5,
+            "median": 174743168.0,
+            "min": 76985464.0,
+            "max": 372525072.0
+          }
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": {
+            "n": 5,
+            "median": 311746560.0,
+            "min": 161824768.0,
+            "max": 426549248.0
+          },
+          "after": {
+            "n": 5,
+            "median": 219340800.0,
+            "min": 136896512.0,
+            "max": 415498240.0
+          }
+        },
+        "go_goroutines": {
+          "before": {
+            "n": 5,
+            "median": 79.0,
+            "min": 76.0,
+            "max": 79.0
+          },
+          "after": {
+            "n": 5,
+            "median": 479.0,
+            "min": 479.0,
+            "max": 584.0
+          }
+        },
+        "go_threads": {
+          "before": {
+            "n": 5,
+            "median": 165.0,
+            "min": 61.0,
+            "max": 187.0
+          },
+          "after": {
+            "n": 5,
+            "median": 187.0,
+            "min": 165.0,
+            "max": 187.0
+          }
+        },
+        "process_resident_memory_bytes": {
+          "before": {
+            "n": 5,
+            "median": 431472640.0,
+            "min": 365453312.0,
+            "max": 469221376.0
+          },
+          "after": {
+            "n": 5,
+            "median": 444358656.0,
+            "min": 359120896.0,
+            "max": 469221376.0
+          }
+        }
+      }
+    },
+    "go": {
+      "rounds": 5,
+      "window_seconds": {
+        "n": 5,
+        "median": 21.88926,
+        "min": 21.719966,
+        "max": 37.087824
+      },
+      "counter_deltas": {
+        "go_gc_duration_seconds_sum": {
+          "n": 5,
+          "median": 0.00045813999999999577,
+          "min": 0.0003348300000000082,
+          "max": 0.016677849999999994
+        },
+        "go_gc_duration_seconds_count": {
+          "n": 5,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 2.0
+        },
+        "process_cpu_seconds_total": {
+          "n": 5,
+          "median": 26.089999999999918,
+          "min": 23.910000000000082,
+          "max": 26.66999999999996
+        }
+      },
+      "gc_pause_sum_delta_ms": {
+        "n": 5,
+        "median": 0.4581399999999958,
+        "min": 0.3348300000000082,
+        "max": 16.677849999999992
+      },
+      "gc_observed_mean_pause_ms": {
+        "n": 5,
+        "median": 0.3348300000000082,
+        "min": 0.2290699999999979,
+        "max": 16.677849999999992
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": {
+            "n": 5,
+            "median": 270868552.0,
+            "min": 124617176.0,
+            "max": 411652688.0
+          },
+          "after": {
+            "n": 5,
+            "median": 262101536.0,
+            "min": 112217176.0,
+            "max": 336312288.0
+          }
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": {
+            "n": 5,
+            "median": 290168832.0,
+            "min": 161374208.0,
+            "max": 441081856.0
+          },
+          "after": {
+            "n": 5,
+            "median": 305897472.0,
+            "min": 165535744.0,
+            "max": 364052480.0
+          }
+        },
+        "go_goroutines": {
+          "before": {
+            "n": 5,
+            "median": 79.0,
+            "min": 76.0,
+            "max": 79.0
+          },
+          "after": {
+            "n": 5,
+            "median": 479.0,
+            "min": 479.0,
+            "max": 572.0
+          }
+        },
+        "go_threads": {
+          "before": {
+            "n": 5,
+            "median": 230.0,
+            "min": 187.0,
+            "max": 230.0
+          },
+          "after": {
+            "n": 5,
+            "median": 230.0,
+            "min": 187.0,
+            "max": 230.0
+          }
+        },
+        "process_resident_memory_bytes": {
+          "before": {
+            "n": 5,
+            "median": 425283584.0,
+            "min": 387497984.0,
+            "max": 428429312.0
+          },
+          "after": {
+            "n": 5,
+            "median": 425283584.0,
+            "min": 352931840.0,
+            "max": 434720768.0
+          }
+        }
+      }
+    },
+    "combined": {
+      "rounds": 5,
+      "window_seconds": {
+        "n": 5,
+        "median": 21.292659,
+        "min": 20.879514,
+        "max": 21.448324
+      },
+      "counter_deltas": {
+        "go_gc_duration_seconds_sum": {
+          "n": 5,
+          "median": 0.00036292000000001656,
+          "min": 0.00015211000000001085,
+          "max": 0.012750129999999998
+        },
+        "go_gc_duration_seconds_count": {
+          "n": 5,
+          "median": 1.0,
+          "min": 1.0,
+          "max": 1.0
+        },
+        "process_cpu_seconds_total": {
+          "n": 5,
+          "median": 9.909999999999997,
+          "min": 9.489999999999995,
+          "max": 11.36
+        }
+      },
+      "gc_pause_sum_delta_ms": {
+        "n": 5,
+        "median": 0.36292000000001656,
+        "min": 0.15211000000001085,
+        "max": 12.750129999999999
+      },
+      "gc_observed_mean_pause_ms": {
+        "n": 5,
+        "median": 0.36292000000001656,
+        "min": 0.15211000000001085,
+        "max": 12.750129999999999
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": {
+            "n": 5,
+            "median": 157293872.0,
+            "min": 123766712.0,
+            "max": 385114896.0
+          },
+          "after": {
+            "n": 5,
+            "median": 285450552.0,
+            "min": 181155832.0,
+            "max": 359580376.0
+          }
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": {
+            "n": 5,
+            "median": 180518912.0,
+            "min": 154025984.0,
+            "max": 414998528.0
+          },
+          "after": {
+            "n": 5,
+            "median": 322224128.0,
+            "min": 216367104.0,
+            "max": 401809408.0
+          }
+        },
+        "go_goroutines": {
+          "before": {
+            "n": 5,
+            "median": 79.0,
+            "min": 79.0,
+            "max": 83.0
+          },
+          "after": {
+            "n": 5,
+            "median": 479.0,
+            "min": 479.0,
+            "max": 581.0
+          }
+        },
+        "go_threads": {
+          "before": {
+            "n": 5,
+            "median": 148.0,
+            "min": 41.0,
+            "max": 148.0
+          },
+          "after": {
+            "n": 5,
+            "median": 148.0,
+            "min": 148.0,
+            "max": 148.0
+          }
+        },
+        "process_resident_memory_bytes": {
+          "before": {
+            "n": 5,
+            "median": 413761536.0,
+            "min": 344764416.0,
+            "max": 420098048.0
+          },
+          "after": {
+            "n": 5,
+            "median": 420098048.0,
+            "min": 354201600.0,
+            "max": 492404736.0
+          }
+        }
+      }
+    }
+  },
+  "rounds": [
+    {
+      "state": "baseline",
+      "round": "round-01",
+      "sources": {
+        "before": "baseline/round-01/runs/20261016T072437Z-ebbb3767/capture/evidence/metrics-before.prom",
+        "after": "baseline/round-01/runs/20261016T072437Z-ebbb3767/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:24:37.455211Z",
+        "after": "2026-10-16T07:24:59.079056Z"
+      },
+      "window_seconds": 21.623845,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.67303687,
+          "after": 0.67344995,
+          "delta": 0.0004130799999999546,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 881.0,
+          "after": 883.0,
+          "delta": 2.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 559.8,
+          "after": 578.97,
+          "delta": 19.170000000000073,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 239052144.0,
+          "after": 142008736.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 253542400.0,
+          "after": 178208768.0
+        },
+        "go_goroutines": {
+          "before": 76.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 61.0,
+          "after": 165.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 365453312.0,
+          "after": 359120896.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.4130799999999546,
+      "gc_observed_mean_pause_ms": 0.2065399999999773
+    },
+    {
+      "state": "baseline",
+      "round": "round-02",
+      "sources": {
+        "before": "baseline/round-02/runs/20261016T072509Z-032cdf36/capture/evidence/metrics-before.prom",
+        "after": "baseline/round-02/runs/20261016T072509Z-032cdf36/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:25:09.466482Z",
+        "after": "2026-10-16T07:25:30.533590Z"
+      },
+      "window_seconds": 21.067108,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.67344995,
+          "after": 0.67366736,
+          "delta": 0.00021741000000008448,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 883.0,
+          "after": 884.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 582.49,
+          "after": 605.34,
+          "delta": 22.850000000000023,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 349607168.0,
+          "after": 372525072.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 381353984.0,
+          "after": 415498240.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 584.0
+        },
+        "go_threads": {
+          "before": 165.0,
+          "after": 165.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 377995264.0,
+          "after": 431472640.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.21741000000008448,
+      "gc_observed_mean_pause_ms": 0.21741000000008448
+    },
+    {
+      "state": "baseline",
+      "round": "round-03",
+      "sources": {
+        "before": "baseline/round-03/runs/20261016T072540Z-8b4b1980/capture/evidence/metrics-before.prom",
+        "after": "baseline/round-03/runs/20261016T072540Z-8b4b1980/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:25:41.237921Z",
+        "after": "2026-10-16T07:26:02.882900Z"
+      },
+      "window_seconds": 21.644979,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.6740281,
+          "after": 0.68590859,
+          "delta": 0.011880490000000021,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 885.0,
+          "after": 886.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 609.48,
+          "after": 633.4,
+          "delta": 23.91999999999996,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 281872040.0,
+          "after": 308668608.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 311746560.0,
+          "after": 346677248.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 165.0,
+          "after": 187.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 431472640.0,
+          "after": 450347008.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 11.880490000000021,
+      "gc_observed_mean_pause_ms": 11.880490000000021
+    },
+    {
+      "state": "baseline",
+      "round": "round-04",
+      "sources": {
+        "before": "baseline/round-04/runs/20261016T072613Z-25c331fd/capture/evidence/metrics-before.prom",
+        "after": "baseline/round-04/runs/20261016T072613Z-25c331fd/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:26:13.618535Z",
+        "after": "2026-10-16T07:26:35.943062Z"
+      },
+      "window_seconds": 22.324527,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.68618501,
+          "after": 0.68648191,
+          "delta": 0.00029690000000004435,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 887.0,
+          "after": 888.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 637.25,
+          "after": 663.0,
+          "delta": 25.75,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 129952952.0,
+          "after": 174743168.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 161824768.0,
+          "after": 219340800.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 187.0,
+          "after": 187.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 469221376.0,
+          "after": 469221376.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.29690000000004435,
+      "gc_observed_mean_pause_ms": 0.29690000000004435
+    },
+    {
+      "state": "baseline",
+      "round": "round-05",
+      "sources": {
+        "before": "baseline/round-05/runs/20261016T072646Z-62d8e2af/capture/evidence/metrics-before.prom",
+        "after": "baseline/round-05/runs/20261016T072646Z-62d8e2af/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:26:46.966751Z",
+        "after": "2026-10-16T07:27:09.041235Z"
+      },
+      "window_seconds": 22.074484,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.68648191,
+          "after": 0.68697682,
+          "delta": 0.0004949100000000151,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 888.0,
+          "after": 890.0,
+          "delta": 2.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 666.51,
+          "after": 691.98,
+          "delta": 25.470000000000027,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 393376312.0,
+          "after": 76985464.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 426549248.0,
+          "after": 136896512.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 187.0,
+          "after": 187.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 469221376.0,
+          "after": 444358656.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.49491000000001506,
+      "gc_observed_mean_pause_ms": 0.24745500000000753
+    },
+    {
+      "state": "go",
+      "round": "round-01",
+      "sources": {
+        "before": "go/round-01/runs/20261016T072818Z-a115f54a/capture/evidence/metrics-before.prom",
+        "after": "go/round-01/runs/20261016T072818Z-a115f54a/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:28:18.539552Z",
+        "after": "2026-10-16T07:28:55.627376Z"
+      },
+      "window_seconds": 37.087824,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.68741506,
+          "after": 0.6878732,
+          "delta": 0.00045813999999999577,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 892.0,
+          "after": 894.0,
+          "delta": 2.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 702.07,
+          "after": 728.74,
+          "delta": 26.66999999999996,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 270868552.0,
+          "after": 336312288.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 290168832.0,
+          "after": 361046016.0
+        },
+        "go_goroutines": {
+          "before": 76.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 187.0,
+          "after": 187.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 387497984.0,
+          "after": 352931840.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.4581399999999958,
+      "gc_observed_mean_pause_ms": 0.2290699999999979
+    },
+    {
+      "state": "go",
+      "round": "round-02",
+      "sources": {
+        "before": "go/round-02/runs/20261016T072906Z-487b7cbb/capture/evidence/metrics-before.prom",
+        "after": "go/round-02/runs/20261016T072906Z-487b7cbb/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:29:06.799054Z",
+        "after": "2026-10-16T07:29:28.591103Z"
+      },
+      "window_seconds": 21.792049,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.6881822,
+          "after": 0.68851703,
+          "delta": 0.0003348300000000082,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 895.0,
+          "after": 896.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 732.58,
+          "after": 758.82,
+          "delta": 26.24000000000001,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 205910448.0,
+          "after": 262101536.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 237428736.0,
+          "after": 305897472.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 187.0,
+          "after": 230.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 422137856.0,
+          "after": 425283584.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.3348300000000082,
+      "gc_observed_mean_pause_ms": 0.3348300000000082
+    },
+    {
+      "state": "go",
+      "round": "round-03",
+      "sources": {
+        "before": "go/round-03/runs/20261016T072939Z-9ee6560c/capture/evidence/metrics-before.prom",
+        "after": "go/round-03/runs/20261016T072939Z-9ee6560c/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:29:39.831168Z",
+        "after": "2026-10-16T07:30:01.551134Z"
+      },
+      "window_seconds": 21.719966,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.68880329,
+          "after": 0.68915139,
+          "delta": 0.00034810000000007335,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 897.0,
+          "after": 898.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 762.58,
+          "after": 787.87,
+          "delta": 25.289999999999964,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 124617176.0,
+          "after": 161212760.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 161374208.0,
+          "after": 203153408.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 230.0,
+          "after": 230.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 428429312.0,
+          "after": 428429312.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.34810000000007335,
+      "gc_observed_mean_pause_ms": 0.34810000000007335
+    },
+    {
+      "state": "go",
+      "round": "round-04",
+      "sources": {
+        "before": "go/round-04/runs/20261016T073012Z-caff7bf7/capture/evidence/metrics-before.prom",
+        "after": "go/round-04/runs/20261016T073012Z-caff7bf7/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:30:12.657381Z",
+        "after": "2026-10-16T07:30:34.684956Z"
+      },
+      "window_seconds": 22.027575,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.68915139,
+          "after": 0.68973304,
+          "delta": 0.0005816499999999891,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 898.0,
+          "after": 900.0,
+          "delta": 2.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 791.66,
+          "after": 815.57,
+          "delta": 23.910000000000082,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 411652688.0,
+          "after": 112217176.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 441081856.0,
+          "after": 165535744.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 572.0
+        },
+        "go_threads": {
+          "before": 230.0,
+          "after": 230.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 428429312.0,
+          "after": 425283584.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.5816499999999891,
+      "gc_observed_mean_pause_ms": 0.29082499999999456
+    },
+    {
+      "state": "go",
+      "round": "round-05",
+      "sources": {
+        "before": "go/round-05/runs/20261016T073045Z-5a710cc5/capture/evidence/metrics-before.prom",
+        "after": "go/round-05/runs/20261016T073045Z-5a710cc5/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:30:45.791646Z",
+        "after": "2026-10-16T07:31:07.680906Z"
+      },
+      "window_seconds": 21.88926,
+      "process_start_time_seconds": {
+        "before": 1792130040.16,
+        "after": 1792130040.16
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.68973304,
+          "after": 0.70641089,
+          "delta": 0.016677849999999994,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 900.0,
+          "after": 901.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 819.22,
+          "after": 845.31,
+          "delta": 26.089999999999918,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 320433808.0,
+          "after": 322619128.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 353730560.0,
+          "after": 364052480.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 230.0,
+          "after": 230.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 425283584.0,
+          "after": 434720768.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 16.677849999999992,
+      "gc_observed_mean_pause_ms": 16.677849999999992
+    },
+    {
+      "state": "combined",
+      "round": "round-01",
+      "sources": {
+        "before": "combined/round-01/runs/20261016T074751Z-bea5ecc6/capture/evidence/metrics-before.prom",
+        "after": "combined/round-01/runs/20261016T074751Z-bea5ecc6/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:47:51.860263Z",
+        "after": "2026-10-16T07:48:13.164748Z"
+      },
+      "window_seconds": 21.304485,
+      "process_start_time_seconds": {
+        "before": 1792136071.2,
+        "after": 1792136071.2
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.18089781,
+          "after": 0.18126073,
+          "delta": 0.00036292000000001656,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 978.0,
+          "after": 979.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 68.04,
+          "after": 77.53,
+          "delta": 9.489999999999995,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 157293872.0,
+          "after": 294718496.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 170893312.0,
+          "after": 332275712.0
+        },
+        "go_goroutines": {
+          "before": 83.0,
+          "after": 581.0
+        },
+        "go_threads": {
+          "before": 41.0,
+          "after": 148.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 344764416.0,
+          "after": 354201600.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.36292000000001656,
+      "gc_observed_mean_pause_ms": 0.36292000000001656
+    },
+    {
+      "state": "combined",
+      "round": "round-02",
+      "sources": {
+        "before": "combined/round-02/runs/20261016T074823Z-c7ec9141/capture/evidence/metrics-before.prom",
+        "after": "combined/round-02/runs/20261016T074823Z-c7ec9141/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:48:23.280948Z",
+        "after": "2026-10-16T07:48:44.160462Z"
+      },
+      "window_seconds": 20.879514,
+      "process_start_time_seconds": {
+        "before": 1792136071.2,
+        "after": 1792136071.2
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.18147992,
+          "after": 0.19423005,
+          "delta": 0.012750129999999998,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 980.0,
+          "after": 981.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 80.26,
+          "after": 91.2,
+          "delta": 10.939999999999998,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 220265880.0,
+          "after": 285450552.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 245252096.0,
+          "after": 322224128.0
+        },
+        "go_goroutines": {
+          "before": 83.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 148.0,
+          "after": 148.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 410824704.0,
+          "after": 429699072.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 12.750129999999999,
+      "gc_observed_mean_pause_ms": 12.750129999999999
+    },
+    {
+      "state": "combined",
+      "round": "round-03",
+      "sources": {
+        "before": "combined/round-03/runs/20261016T074854Z-d728d071/capture/evidence/metrics-before.prom",
+        "after": "combined/round-03/runs/20261016T074854Z-d728d071/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:48:54.269605Z",
+        "after": "2026-10-16T07:49:15.390892Z"
+      },
+      "window_seconds": 21.121287,
+      "process_start_time_seconds": {
+        "before": 1792136071.2,
+        "after": 1792136071.2
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.1943762,
+          "after": 0.19481181,
+          "delta": 0.00043561000000000294,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 982.0,
+          "after": 983.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 93.68,
+          "after": 105.04,
+          "delta": 11.36,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 151861072.0,
+          "after": 221449520.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 180518912.0,
+          "after": 253485056.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 148.0,
+          "after": 148.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 420098048.0,
+          "after": 420098048.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.43561000000000294,
+      "gc_observed_mean_pause_ms": 0.43561000000000294
+    },
+    {
+      "state": "combined",
+      "round": "round-04",
+      "sources": {
+        "before": "combined/round-04/runs/20261016T074925Z-91f9846d/capture/evidence/metrics-before.prom",
+        "after": "combined/round-04/runs/20261016T074925Z-91f9846d/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:49:25.705029Z",
+        "after": "2026-10-16T07:49:47.153353Z"
+      },
+      "window_seconds": 21.448324,
+      "process_start_time_seconds": {
+        "before": 1792136071.2,
+        "after": 1792136071.2
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.19498791,
+          "after": 0.19514002,
+          "delta": 0.00015211000000001085,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 984.0,
+          "after": 985.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 107.66,
+          "after": 117.57,
+          "delta": 9.909999999999997,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 123766712.0,
+          "after": 181155832.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 154025984.0,
+          "after": 216367104.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 580.0
+        },
+        "go_threads": {
+          "before": 148.0,
+          "after": 148.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 413761536.0,
+          "after": 413761536.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.15211000000001085,
+      "gc_observed_mean_pause_ms": 0.15211000000001085
+    },
+    {
+      "state": "combined",
+      "round": "round-05",
+      "sources": {
+        "before": "combined/round-05/runs/20261016T074957Z-40d1045d/capture/evidence/metrics-before.prom",
+        "after": "combined/round-05/runs/20261016T074957Z-40d1045d/capture/evidence/metrics-after.prom"
+      },
+      "observed_at": {
+        "before": "2026-10-16T07:49:57.365296Z",
+        "after": "2026-10-16T07:50:18.657955Z"
+      },
+      "window_seconds": 21.292659,
+      "process_start_time_seconds": {
+        "before": 1792136071.2,
+        "after": 1792136071.2
+      },
+      "same_process_verified": true,
+      "counters": {
+        "go_gc_duration_seconds_sum": {
+          "before": 0.19514002,
+          "after": 0.19530554,
+          "delta": 0.00016552000000000233,
+          "status": "available",
+          "reason": null
+        },
+        "go_gc_duration_seconds_count": {
+          "before": 985.0,
+          "after": 986.0,
+          "delta": 1.0,
+          "status": "available",
+          "reason": null
+        },
+        "process_cpu_seconds_total": {
+          "before": 120.01,
+          "after": 129.59,
+          "delta": 9.579999999999998,
+          "status": "available",
+          "reason": null
+        }
+      },
+      "gauges": {
+        "go_memstats_heap_alloc_bytes": {
+          "before": 385114896.0,
+          "after": 359580376.0
+        },
+        "go_memstats_heap_inuse_bytes": {
+          "before": 414998528.0,
+          "after": 401809408.0
+        },
+        "go_goroutines": {
+          "before": 79.0,
+          "after": 479.0
+        },
+        "go_threads": {
+          "before": 148.0,
+          "after": 148.0
+        },
+        "process_resident_memory_bytes": {
+          "before": 413761536.0,
+          "after": 492404736.0
+        }
+      },
+      "problems": [],
+      "gc_pause_sum_delta_ms": 0.16552000000000233,
+      "gc_observed_mean_pause_ms": 0.16552000000000233
+    }
+  ],
+  "publication_notice": "脱敏发布副本：时延样本、顺序、统计及时间戳保留；实例使用本实验一致别名。私有配置、完整环境、原始组件日志、Docker inspect及CLI清单未公开，不能从副本重放原始日志解析。"
+}

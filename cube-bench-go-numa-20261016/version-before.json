@@ -1,0 +1,166 @@
+{
+  "address-redacted": {
+    "cube": [
+      {
+        "key": "CubeSandbox 结论",
+        "value": "一致",
+        "note": "二进制、运行进程与容器镜像均与社区 v0.7.1 相同; 脚本/配置 17 项不同 (安装器会渲染部分配置, 不计入结论)"
+      },
+      {
+        "key": "CubeSandbox 对比基准",
+        "value": "社区 v0.7.1 (aarch64)",
+        "note": "cube-sandbox-one-click-v0.7.1-arm64.tar.gz, commit 31d911e430fd"
+      },
+      {
+        "key": "CubeSandbox 安装目录",
+        "value": "installation-path-redacted",
+        "note": ""
+      },
+      {
+        "key": "CubeSandbox 部署版本",
+        "value": "v0.7.1-arm64 (commit 31d911e430fd)",
+        "note": "与基准相同; VERSION.txt: release_version=v0.7.1-arm64 / git_commit=31d911e430fdf8a8879bd062b8e78066c1a8e89d / built_at=2026-09-11T09:58:19Z / manifest=release-manifest.json"
+      },
+      {
+        "key": "组件 CubeAPI",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 CubeMaster",
+        "value": "一致 (二进制 3/3)",
+        "note": "脚本/配置 1 项不同, 仅供参考: conf.yaml"
+      },
+      {
+        "key": "组件 CubeOps",
+        "value": "一致 (二进制 2/2)",
+        "note": ""
+      },
+      {
+        "key": "组件 CubeS3lvol",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 CubeTemplateCenter",
+        "value": "一致 (二进制 1/1)",
+        "note": "脚本/配置 1 项不同, 仅供参考: conf.yaml"
+      },
+      {
+        "key": "组件 Cubelet",
+        "value": "一致 (二进制 3/3)",
+        "note": "脚本/配置 2 项不同, 仅供参考: config/config.toml, dynamicconf/conf.yaml"
+      },
+      {
+        "key": "组件 coredns",
+        "value": "一致 (脚本/配置 2/2)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-agent",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-egress",
+        "value": "一致 (脚本/配置 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-image",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-kernel-scf",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-lifecycle-manager",
+        "value": "一致 (脚本/配置 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-shim",
+        "value": "一致 (二进制 2/2)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-vs",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cubeproxy",
+        "value": "有差异 (脚本/配置 33/34)",
+        "note": "脚本/配置 1 项不同, 仅供参考: global.conf.template"
+      },
+      {
+        "key": "组件 scripts",
+        "value": "有差异 (脚本/配置 81/87)",
+        "note": "脚本/配置 6 项不同, 仅供参考: common/validation.sh, one-click/up-cube-lifecycle-manager.sh, one-click/up-cube-proxy.sh, one-click/up.sh, systemd/cube-egress-start.sh 等 6 项"
+      },
+      {
+        "key": "组件 support",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 systemd",
+        "value": "有差异 (脚本/配置 17/18)",
+        "note": "脚本/配置 1 项不同, 仅供参考: cube-sandbox-s3lvol.service"
+      },
+      {
+        "key": "组件 terraform",
+        "value": "有差异 (脚本/配置 10/14)",
+        "note": "脚本/配置 4 项不同, 仅供参考: tencentcloud/build_images.sh, tencentcloud/create.sh, tencentcloud/env.example, tencentcloud/variables.tf"
+      },
+      {
+        "key": "组件 webui",
+        "value": "有差异 (脚本/配置 22/23)",
+        "note": "脚本/配置 1 项不同, 仅供参考: dist/index.html"
+      },
+      {
+        "key": "进程 CubeAPI/bin/cube-api",
+        "value": "一致 (pid 32083)",
+        "note": "exe installation-path-redacted"
+      },
+      {
+        "key": "进程 CubeMaster/bin/cubemaster",
+        "value": "一致 (pid 2643051)",
+        "note": "exe installation-path-redacted"
+      },
+      {
+        "key": "进程 CubeOps/bin/cubeops",
+        "value": "一致 (pid 1231946)",
+        "note": "exe installation-path-redacted"
+      },
+      {
+        "key": "进程 CubeTemplateCenter/bin/templatecenter",
+        "value": "一致 (pid 32085)",
+        "note": "exe installation-path-redacted"
+      },
+      {
+        "key": "进程 Cubelet/bin/cubelet",
+        "value": "一致 (pid 1334659)",
+        "note": "exe installation-path-redacted"
+      },
+      {
+        "key": "容器 cube-egress",
+        "value": "一致 (容器 running)",
+        "note": "cube-sandbox-int.tencentcloudcr.com/cube-sandbox/cube-egress:v0.7.1, image sha256:7363ab280b34…; 本地另有 5 个其它构建的镜像"
+      },
+      {
+        "key": "容器 cube-lifecycle-manager",
+        "value": "一致 (容器 running)",
+        "note": "cube-sandbox-int.tencentcloudcr.com/cube-sandbox/cube-lifecycle-manager:v0.7.1, image sha256:91dfa6829f4d…; 本地另有 5 个其它构建的镜像"
+      },
+      {
+        "key": "容器 cube-proxy",
+        "value": "一致 (容器 running)",
+        "note": "cube-sandbox-int.tencentcloudcr.com/cube-sandbox/cube-proxy:v0.7.1, image sha256:67957f63c92a…; 本地另有 5 个其它构建的镜像"
+      }
+    ]
+  }
+}

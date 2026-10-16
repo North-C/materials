@@ -1,0 +1,43 @@
+{
+  "time": "2026-10-16T07:57:52.488634+00:00",
+  "rounds": [
+    "baseline/round-01",
+    "baseline/round-02",
+    "baseline/round-03",
+    "baseline/round-04",
+    "baseline/round-05",
+    "combined/round-01",
+    "combined/round-02",
+    "combined/round-03",
+    "combined/round-04",
+    "combined/round-05",
+    "go/round-01",
+    "go/round-02",
+    "go/round-03",
+    "go/round-04",
+    "go/round-05"
+  ],
+  "formal_requests": 1500,
+  "warmup_requests": 45,
+  "unique_owned_ids": 1545,
+  "inventory": [],
+  "owned_process_hits": [],
+  "shim_process_pids": [],
+  "services": {
+    "cubemaster": "active",
+    "cubelet": "active",
+    "cube-api": "active",
+    "cube-templatecenter": "active",
+    "cubeops": "active",
+    "cube-egress": "active",
+    "cube-lifecycle-manager": "active",
+    "cube-proxy": "active",
+    "coredns": "active",
+    "minio": "active",
+    "mysql": "active",
+    "redis": "active",
+    "webui": "active"
+  },
+  "template_status": "READY",
+  "passed": true
+}

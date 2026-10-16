@@ -1,0 +1,4681 @@
+{
+  "schema_version": 1,
+  "publication_notice": "脱敏发布副本：时延样本、顺序、统计及时间戳保留；实例使用本实验一致别名。私有配置、完整环境、原始组件日志、Docker inspect及CLI清单未公开，不能从副本重放原始日志解析。",
+  "gc_semantics": {
+    "GOGC_environment_overridden_by_application": true,
+    "source_SetGCPercent": 90,
+    "runtime_gc_target_directly_measured": false,
+    "GOMEMLIMIT": "Go soft memory limit, not a cgroup or RSS hard ceiling"
+  },
+  "states": {
+    "baseline": {
+      "time": "2026-10-16T07:26:09.787645+00:00",
+      "cubemaster_go_environment": {
+        "GOGC": "400",
+        "GOMAXPROCS": "16",
+        "GOMEMLIMIT": "4GiB"
+      },
+      "services": {
+        "cubemaster": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 24
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 143
+            },
+            "numa_pages": {
+              "N2": 7673,
+              "N0": 4283,
+              "N1": 6519,
+              "N3": 320
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cubelet": {
+          "declared": {
+            "NRestarts": "1",
+            "AllowedCPUs": "0-383",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 186
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 902
+            },
+            "numa_pages": {
+              "N1": 58304,
+              "N0": 31335,
+              "N2": 49162,
+              "N3": 9494
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-api": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 18
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 143
+            },
+            "numa_pages": {
+              "N0": 8399,
+              "N1": 20240,
+              "N2": 2948,
+              "N3": 7120
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-templatecenter": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 71
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 326
+            },
+            "numa_pages": {
+              "N0": 7750,
+              "N1": 8290,
+              "N2": 45,
+              "N3": 264
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cubeops": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 67
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 313
+            },
+            "numa_pages": {
+              "N3": 5826,
+              "N0": 1000,
+              "N1": 9953,
+              "N2": 30
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "coredns": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 79
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 184
+            },
+            "numa_pages": {
+              "N1": 4246,
+              "N3": 4193,
+              "N0": 1172,
+              "N2": 158
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-egress": {
+          "declared": {
+            "NRestarts": "8",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 71
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 167
+            },
+            "numa_pages": {
+              "N1": 3988,
+              "N0": 3270,
+              "N2": 19
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-lifecycle-manager": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 631,
+              "N3": 122,
+              "N1": 39
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-proxy": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 751,
+              "N1": 54
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "minio": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 769,
+              "N1": 25
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "mysql": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 694,
+              "N1": 98,
+              "N2": 4
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "redis": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 786,
+              "N1": 10
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "webui": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 754,
+              "N3": 32
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        }
+      },
+      "containers": {
+        "cube-egress": {
+          "image_id": "sha256:7363ab280b3497e1d1f644dae6183c959bc9d40baf8ad98a59c6a03a17074bc4",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-16T06:04:28.50603072Z"
+          },
+          "docker_cpuset_cpus": "",
+          "docker_cpuset_mems": "",
+          "process_count": 3,
+          "thread_sets": [
+            {
+              "cpus": "0-383",
+              "mems": "0-3",
+              "count": 3
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 196
+          },
+          "numa_pages": {
+            "N2": 10323,
+            "N0": 170,
+            "N1": 1
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-proxy": {
+          "image_id": "sha256:67957f63c92a4d52190a196a6a2adaaf6fd9664ef37f54f98b2cdc52489102ee",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:55.97274646Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 387,
+          "thread_sets": [
+            {
+              "cpus": "100",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "101",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "102",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "103",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "104",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "105",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "106",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "107",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "108",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "109",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "110",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "111",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "112",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "113",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "114",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "115",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "116",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "117",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "118",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "119",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "120",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "121",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "122",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "123",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "124",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "125",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "126",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "127",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "96",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 291
+            },
+            {
+              "cpus": "97",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "98",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "99",
+              "mems": "0-3",
+              "count": 3
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 19406
+          },
+          "numa_pages": {
+            "N3": 576809,
+            "N1": 1050241,
+            "N0": 3105108,
+            "N2": 1204
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-lifecycle-manager": {
+          "image_id": "sha256:91dfa6829f4dbbf96d3fdc8ef22daea5548a28370ac0ef42510f5be7c14d8546",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:55.34988695Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 43
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 25
+          },
+          "numa_pages": {
+            "N1": 9349,
+            "N3": 91,
+            "N0": 5
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-webui": {
+          "image_id": "sha256:9808bfe96c4ff5252bd1af78850ed879f1d1a03d941252c48378b39b7578171c",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:56.6157426Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 385,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 385
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 15397
+          },
+          "numa_pages": {
+            "N2": 194725,
+            "N3": 116885,
+            "N1": 51
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-sandbox-redis": {
+          "image_id": "sha256:80dd823f4d2bf93dd5e418a0ae2817319a1ba279953e234082e54a5a18306223",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.73155628Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 6
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 36
+          },
+          "numa_pages": {
+            "N0": 2401,
+            "N1": 6626,
+            "N3": 458,
+            "N2": 339
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-sandbox-mysql": {
+          "image_id": "sha256:b7e118f56c5963e079252e0d6e2978c9c010eb7fc7aaaec100e367796b5dd08f",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.81694142Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 55
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 304
+          },
+          "numa_pages": {
+            "N1": 92178,
+            "N3": 12220,
+            "N0": 47094,
+            "N2": 1585
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-sandbox-minio": {
+          "image_id": "sha256:8f08aee614800a237906bd48114d733e5ac5bfac4ccdf731f141b0e880d7a253",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.15758464Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 105
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 23
+          },
+          "numa_pages": {
+            "N3": 15271,
+            "N1": 30435,
+            "N2": 16
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-proxy-coredns": {
+          "image_id": "sha256:fe81a497e85f174f8d7d5739d14f5184141f4e80596977ff8f838d7062fecf02",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:46.58115761Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 106
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 28
+          },
+          "numa_pages": {
+            "N0": 23047,
+            "N1": 2907,
+            "N2": 1470,
+            "N3": 1955
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        }
+      }
+    },
+    "go": {
+      "time": "2026-10-16T07:28:30.568980+00:00",
+      "cubemaster_go_environment": {
+        "GOGC": "800",
+        "GOMAXPROCS": "32",
+        "GOMEMLIMIT": "8GiB"
+      },
+      "services": {
+        "cubemaster": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 38
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 198
+            },
+            "numa_pages": {
+              "N2": 7539,
+              "N0": 5343,
+              "N1": 1867,
+              "N3": 507
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cubelet": {
+          "declared": {
+            "NRestarts": "1",
+            "AllowedCPUs": "0-383",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 186
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 902
+            },
+            "numa_pages": {
+              "N1": 33693,
+              "N0": 26425,
+              "N2": 47250,
+              "N3": 6605
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-api": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 18
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 143
+            },
+            "numa_pages": {
+              "N0": 8399,
+              "N1": 20240,
+              "N2": 2948,
+              "N3": 7120
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-templatecenter": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 71
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 326
+            },
+            "numa_pages": {
+              "N0": 7751,
+              "N1": 8512,
+              "N2": 45,
+              "N3": 264
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cubeops": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 67
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 313
+            },
+            "numa_pages": {
+              "N3": 5827,
+              "N0": 1000,
+              "N1": 10139,
+              "N2": 30
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "coredns": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 79
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 184
+            },
+            "numa_pages": {
+              "N1": 4246,
+              "N3": 4193,
+              "N0": 1172,
+              "N2": 158
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-egress": {
+          "declared": {
+            "NRestarts": "8",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 71
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 167
+            },
+            "numa_pages": {
+              "N1": 3988,
+              "N0": 3305,
+              "N2": 19
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-lifecycle-manager": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 631,
+              "N3": 122,
+              "N1": 39
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "cube-proxy": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 751,
+              "N1": 54
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "minio": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 769,
+              "N1": 25
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "mysql": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 694,
+              "N1": 98,
+              "N2": 4
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "redis": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 786,
+              "N1": 10
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        },
+        "webui": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "",
+            "CPUAffinity": "",
+            "NUMAPolicy": "n/a",
+            "NUMAMask": "",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 754,
+              "N3": 32
+            },
+            "cpuset": {
+              "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+            }
+          }
+        }
+      },
+      "containers": {
+        "cube-egress": {
+          "image_id": "sha256:7363ab280b3497e1d1f644dae6183c959bc9d40baf8ad98a59c6a03a17074bc4",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-16T06:04:28.50603072Z"
+          },
+          "docker_cpuset_cpus": "",
+          "docker_cpuset_mems": "",
+          "process_count": 3,
+          "thread_sets": [
+            {
+              "cpus": "0-383",
+              "mems": "0-3",
+              "count": 3
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 196
+          },
+          "numa_pages": {
+            "N2": 10323,
+            "N0": 170,
+            "N1": 1
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-proxy": {
+          "image_id": "sha256:67957f63c92a4d52190a196a6a2adaaf6fd9664ef37f54f98b2cdc52489102ee",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:55.97274646Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 387,
+          "thread_sets": [
+            {
+              "cpus": "100",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "101",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "102",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "103",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "104",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "105",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "106",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "107",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "108",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "109",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "110",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "111",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "112",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "113",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "114",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "115",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "116",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "117",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "118",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "119",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "120",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "121",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "122",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "123",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "124",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "125",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "126",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "127",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "96",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 291
+            },
+            {
+              "cpus": "97",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "98",
+              "mems": "0-3",
+              "count": 3
+            },
+            {
+              "cpus": "99",
+              "mems": "0-3",
+              "count": 3
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 19406
+          },
+          "numa_pages": {
+            "N3": 576809,
+            "N1": 1050241,
+            "N0": 3105108,
+            "N2": 1204
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-lifecycle-manager": {
+          "image_id": "sha256:91dfa6829f4dbbf96d3fdc8ef22daea5548a28370ac0ef42510f5be7c14d8546",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:55.34988695Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 43
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 25
+          },
+          "numa_pages": {
+            "N1": 9838,
+            "N3": 91,
+            "N0": 5
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-webui": {
+          "image_id": "sha256:9808bfe96c4ff5252bd1af78850ed879f1d1a03d941252c48378b39b7578171c",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:56.6157426Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 385,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 385
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 15397
+          },
+          "numa_pages": {
+            "N2": 194725,
+            "N3": 116885,
+            "N1": 51
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-sandbox-redis": {
+          "image_id": "sha256:80dd823f4d2bf93dd5e418a0ae2817319a1ba279953e234082e54a5a18306223",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.73155628Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 6
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 36
+          },
+          "numa_pages": {
+            "N0": 2400,
+            "N1": 6634,
+            "N3": 458,
+            "N2": 339
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-sandbox-mysql": {
+          "image_id": "sha256:b7e118f56c5963e079252e0d6e2978c9c010eb7fc7aaaec100e367796b5dd08f",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.81694142Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 55
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 304
+          },
+          "numa_pages": {
+            "N1": 92225,
+            "N3": 12220,
+            "N0": 47094,
+            "N2": 1585
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-sandbox-minio": {
+          "image_id": "sha256:8f08aee614800a237906bd48114d733e5ac5bfac4ccdf731f141b0e880d7a253",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.15758464Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 105
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 23
+          },
+          "numa_pages": {
+            "N3": 15271,
+            "N1": 30435,
+            "N2": 16
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        },
+        "cube-proxy-coredns": {
+          "image_id": "sha256:fe81a497e85f174f8d7d5739d14f5184141f4e80596977ff8f838d7062fecf02",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:46.58115761Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 106
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 28
+          },
+          "numa_pages": {
+            "N0": 23047,
+            "N1": 2915,
+            "N2": 1470,
+            "N3": 1955
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": null,
+          "actual_cpuset_examples": {
+            "availability": "not captured in initial snapshot; actual root cpuset established by runtime-before and final snapshots"
+          }
+        }
+      }
+    },
+    "combined": {
+      "time": "2026-10-16T07:46:21.762247+00:00",
+      "cubemaster_go_environment": {
+        "GOGC": "800",
+        "GOMAXPROCS": "32",
+        "GOMEMLIMIT": "8GiB"
+      },
+      "services": {
+        "cubemaster": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 38
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 38,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 193
+            },
+            "numa_pages": {
+              "N2": 7189,
+              "N0": 325,
+              "N1": 5006,
+              "N3": 1
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cubelet": {
+          "declared": {
+            "NRestarts": "1",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 40
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 40,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 310
+            },
+            "numa_pages": {
+              "N1": 95858,
+              "N0": 462,
+              "N2": 329,
+              "N3": 154
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-api": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 17
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 17,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 135
+            },
+            "numa_pages": {
+              "N0": 1345,
+              "N1": 307,
+              "N3": 2
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-templatecenter": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 39
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 39,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 197
+            },
+            "numa_pages": {
+              "N0": 6946,
+              "N1": 4548,
+              "N3": 1
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cubeops": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 37
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 37,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 190
+            },
+            "numa_pages": {
+              "N3": 5308,
+              "N0": 295,
+              "N1": 3902
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "coredns": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 79
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 79,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 184
+            },
+            "numa_pages": {
+              "N1": 4246,
+              "N3": 4193,
+              "N0": 1188,
+              "N2": 150
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-egress": {
+          "declared": {
+            "NRestarts": "10",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 14
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 14,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 52
+            },
+            "numa_pages": {
+              "N1": 5861
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-lifecycle-manager": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 631,
+              "N3": 122,
+              "N1": 39
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-proxy": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 751,
+              "N1": 54
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "minio": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 769,
+              "N1": 25
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "mysql": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 694,
+              "N1": 98,
+              "N2": 4
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "redis": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 786,
+              "N1": 10
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "webui": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 754,
+              "N3": 32
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        }
+      },
+      "containers": {
+        "cube-egress": {
+          "image_id": "sha256:7363ab280b3497e1d1f644dae6183c959bc9d40baf8ad98a59c6a03a17074bc4",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-16T07:45:46.24435015Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 3,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 3
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 196
+          },
+          "numa_pages": {
+            "N2": 10194,
+            "N1": 305
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-proxy": {
+          "image_id": "sha256:67957f63c92a4d52190a196a6a2adaaf6fd9664ef37f54f98b2cdc52489102ee",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:55.97274646Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 387,
+          "thread_sets": [
+            {
+              "cpus": "100",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "101",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "102",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "103",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "104",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "105",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "106",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "107",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "108",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "109",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "110",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "111",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "112",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "113",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "114",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "115",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "116",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "117",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "118",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "119",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "120",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "121",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "122",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "123",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "124",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "125",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "126",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "127",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "96",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 291
+            },
+            {
+              "cpus": "97",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "98",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "99",
+              "mems": "1",
+              "count": 3
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 19406
+          },
+          "numa_pages": {
+            "N3": 576809,
+            "N1": 1050241,
+            "N0": 3105108,
+            "N2": 1204
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-lifecycle-manager": {
+          "image_id": "sha256:91dfa6829f4dbbf96d3fdc8ef22daea5548a28370ac0ef42510f5be7c14d8546",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:55.34988695Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 43
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 25
+          },
+          "numa_pages": {
+            "N1": 9486,
+            "N3": 91,
+            "N0": 5
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-webui": {
+          "image_id": "sha256:9808bfe96c4ff5252bd1af78850ed879f1d1a03d941252c48378b39b7578171c",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:56.6157426Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 385,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 385
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 15397
+          },
+          "numa_pages": {
+            "N2": 194725,
+            "N3": 116885,
+            "N1": 51
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-sandbox-redis": {
+          "image_id": "sha256:80dd823f4d2bf93dd5e418a0ae2817319a1ba279953e234082e54a5a18306223",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.73155628Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 6
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 36
+          },
+          "numa_pages": {
+            "N0": 2400,
+            "N1": 6615,
+            "N3": 458,
+            "N2": 339
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-sandbox-mysql": {
+          "image_id": "sha256:b7e118f56c5963e079252e0d6e2978c9c010eb7fc7aaaec100e367796b5dd08f",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.81694142Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 50
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 304
+          },
+          "numa_pages": {
+            "N1": 92892,
+            "N3": 11708,
+            "N0": 47090,
+            "N2": 1585
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-sandbox-minio": {
+          "image_id": "sha256:8f08aee614800a237906bd48114d733e5ac5bfac4ccdf731f141b0e880d7a253",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.15758464Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 105
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 23
+          },
+          "numa_pages": {
+            "N3": 15271,
+            "N1": 30707,
+            "N2": 16
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-proxy-coredns": {
+          "image_id": "sha256:fe81a497e85f174f8d7d5739d14f5184141f4e80596977ff8f838d7062fecf02",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:46.58115761Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 106
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 28
+          },
+          "numa_pages": {
+            "N0": 23047,
+            "N1": 2955,
+            "N2": 1470,
+            "N3": 1955
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        }
+      }
+    },
+    "final": {
+      "time": "2026-10-16T07:52:59.093136+00:00",
+      "cubemaster_go_environment": {
+        "GOGC": "800",
+        "GOMAXPROCS": "32",
+        "GOMEMLIMIT": "8GiB"
+      },
+      "services": {
+        "cubemaster": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 39
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 39,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 197
+            },
+            "numa_pages": {
+              "N2": 7317,
+              "N0": 324,
+              "N1": 8114,
+              "N3": 1
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cubelet": {
+          "declared": {
+            "NRestarts": "1",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 147
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 147,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 742
+            },
+            "numa_pages": {
+              "N1": 109812,
+              "N0": 1190,
+              "N2": 881,
+              "N3": 902
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-api": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 17
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 17,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 141
+            },
+            "numa_pages": {
+              "N0": 1425,
+              "N1": 5848,
+              "N3": 2
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-templatecenter": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 39
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 39,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 197
+            },
+            "numa_pages": {
+              "N0": 6978,
+              "N1": 4372,
+              "N3": 1
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cubeops": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 38
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 38,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 194
+            },
+            "numa_pages": {
+              "N3": 5356,
+              "N0": 294,
+              "N1": 4007
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "coredns": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 79
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 79,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 184
+            },
+            "numa_pages": {
+              "N1": 4246,
+              "N3": 4193,
+              "N0": 1196,
+              "N2": 150
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-egress": {
+          "declared": {
+            "NRestarts": "10",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "96-191",
+                "mems": "0-3",
+                "count": 30
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 30,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "bind:1": 83
+            },
+            "numa_pages": {
+              "N1": 5852
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-lifecycle-manager": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 631,
+              "N3": 122,
+              "N1": 39
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "cube-proxy": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 751,
+              "N1": 54
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "minio": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 769,
+              "N1": 25
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "mysql": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 694,
+              "N1": 98,
+              "N2": 4
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "redis": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 786,
+              "N1": 10
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        },
+        "webui": {
+          "declared": {
+            "NRestarts": "0",
+            "AllowedCPUs": "96-191",
+            "AllowedMemoryNodes": "1",
+            "CPUAffinity": "96-191",
+            "NUMAPolicy": "bind",
+            "NUMAMask": "1",
+            "ActiveState": "active",
+            "SubState": "running"
+          },
+          "actual_wrapper_or_native_process": {
+            "threads": [
+              {
+                "cpus": "0-383",
+                "mems": "0-3",
+                "count": 1
+              }
+            ],
+            "thread_errors": [],
+            "thread_count": 1,
+            "thread_sample_complete": true,
+            "thread_set_changed": false,
+            "numa_policy_map_counts": {
+              "default": 24
+            },
+            "numa_pages": {
+              "N0": 754,
+              "N3": 32
+            },
+            "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+            "process_errors": [],
+            "cpuset": {
+              "path_kind": "root",
+              "read_complete": true,
+              "ancestors": [
+                {
+                  "level": 0,
+                  "files": {
+                    "cpuset.cpus": "0-383",
+                    "cpuset.mems": "0-3",
+                    "cpuset.effective_cpus": "0-383",
+                    "cpuset.effective_mems": "0-3",
+                    "cpuset.memory_migrate": "0"
+                  },
+                  "errors": []
+                }
+              ]
+            }
+          }
+        }
+      },
+      "containers": {
+        "cube-egress": {
+          "image_id": "sha256:7363ab280b3497e1d1f644dae6183c959bc9d40baf8ad98a59c6a03a17074bc4",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-16T07:45:46.24435015Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 3,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 3
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 196
+          },
+          "numa_pages": {
+            "N2": 10194,
+            "N1": 305
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-proxy": {
+          "image_id": "sha256:67957f63c92a4d52190a196a6a2adaaf6fd9664ef37f54f98b2cdc52489102ee",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:55.97274646Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 387,
+          "thread_sets": [
+            {
+              "cpus": "100",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "101",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "102",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "103",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "104",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "105",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "106",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "107",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "108",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "109",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "110",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "111",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "112",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "113",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "114",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "115",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "116",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "117",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "118",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "119",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "120",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "121",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "122",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "123",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "124",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "125",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "126",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "127",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "96",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 291
+            },
+            {
+              "cpus": "97",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "98",
+              "mems": "1",
+              "count": 3
+            },
+            {
+              "cpus": "99",
+              "mems": "1",
+              "count": 3
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 19406
+          },
+          "numa_pages": {
+            "N3": 576809,
+            "N1": 1050241,
+            "N0": 3105108,
+            "N2": 1204
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-lifecycle-manager": {
+          "image_id": "sha256:91dfa6829f4dbbf96d3fdc8ef22daea5548a28370ac0ef42510f5be7c14d8546",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:55.34988695Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 43
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 25
+          },
+          "numa_pages": {
+            "N1": 9385,
+            "N3": 91,
+            "N0": 5
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-webui": {
+          "image_id": "sha256:9808bfe96c4ff5252bd1af78850ed879f1d1a03d941252c48378b39b7578171c",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:56.6157426Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 385,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 385
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 15397
+          },
+          "numa_pages": {
+            "N2": 194725,
+            "N3": 116885,
+            "N1": 51
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-sandbox-redis": {
+          "image_id": "sha256:80dd823f4d2bf93dd5e418a0ae2817319a1ba279953e234082e54a5a18306223",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.73155628Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 6
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 36
+          },
+          "numa_pages": {
+            "N0": 2399,
+            "N1": 6609,
+            "N3": 458,
+            "N2": 339
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-sandbox-mysql": {
+          "image_id": "sha256:b7e118f56c5963e079252e0d6e2978c9c010eb7fc7aaaec100e367796b5dd08f",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.81694142Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 54
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 304
+          },
+          "numa_pages": {
+            "N1": 92905,
+            "N3": 11708,
+            "N0": 47082,
+            "N2": 1585
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-sandbox-minio": {
+          "image_id": "sha256:8f08aee614800a237906bd48114d733e5ac5bfac4ccdf731f141b0e880d7a253",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:48.15758464Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 105
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 23
+          },
+          "numa_pages": {
+            "N3": 15271,
+            "N1": 30707,
+            "N2": 16
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        },
+        "cube-proxy-coredns": {
+          "image_id": "sha256:fe81a497e85f174f8d7d5739d14f5184141f4e80596977ff8f838d7062fecf02",
+          "state": {
+            "Status": "running",
+            "Running": true,
+            "OOMKilled": false,
+            "Restarting": false,
+            "ExitCode": 0,
+            "StartedAt": "2026-10-14T08:39:46.58115761Z"
+          },
+          "docker_cpuset_cpus": "96-191",
+          "docker_cpuset_mems": "1",
+          "process_count": 1,
+          "thread_sets": [
+            {
+              "cpus": "96-191",
+              "mems": "1",
+              "count": 106
+            }
+          ],
+          "numa_policy_map_counts": {
+            "default": 28
+          },
+          "numa_pages": {
+            "N0": 23047,
+            "N1": 2963,
+            "N2": 1470,
+            "N3": 1955
+          },
+          "process_errors": [],
+          "all_thread_errors_empty": true,
+          "all_thread_sample_complete": true,
+          "actual_cpuset_examples": {
+            "path_kind": "docker-container",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "96-191",
+                  "cpuset.mems": "1",
+                  "cpuset.effective_cpus": "96-191",
+                  "cpuset.effective_mems": "1",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 1,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              },
+              {
+                "level": 2,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "identity": {
+    "server_version": "community v0.7.1 ARM64",
+    "commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+    "client_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+    "client_go": "go1.25.0",
+    "template_resources": {
+      "vcpus": 2,
+      "memory_MiB": 2048,
+      "writable_GiB": 1
+    },
+    "sandbox_image_digest": "sandbox-code@sha256:e1cb43e12ba70b8453b45f0c063306faab8a6974aa3fd76982dc4d019d07c60d",
+    "sandbox_local_image_id": "sha256:79972015a4a2b48b18a2165af61606d87e7d859143165fcd33f104fbd8590bee"
+  },
+  "final_health_cleanup": {
+    "time": "2026-10-16T07:57:52.488634+00:00",
+    "rounds": [
+      "baseline/round-01",
+      "baseline/round-02",
+      "baseline/round-03",
+      "baseline/round-04",
+      "baseline/round-05",
+      "combined/round-01",
+      "combined/round-02",
+      "combined/round-03",
+      "combined/round-04",
+      "combined/round-05",
+      "go/round-01",
+      "go/round-02",
+      "go/round-03",
+      "go/round-04",
+      "go/round-05"
+    ],
+    "formal_requests": 1500,
+    "warmup_requests": 45,
+    "unique_owned_ids": 1545,
+    "inventory": [],
+    "owned_process_hits": [],
+    "shim_process_pids": [],
+    "services": {
+      "cubemaster": "active",
+      "cubelet": "active",
+      "cube-api": "active",
+      "cube-templatecenter": "active",
+      "cubeops": "active",
+      "cube-egress": "active",
+      "cube-lifecycle-manager": "active",
+      "cube-proxy": "active",
+      "coredns": "active",
+      "minio": "active",
+      "mysql": "active",
+      "redis": "active",
+      "webui": "active"
+    },
+    "template_status": "READY",
+    "passed": true
+  },
+  "limitations": [
+    "Native cgroup-v1 cpuset remains root 0-383/0-3; affinity and main-thread bind:1 enforce native constraints.",
+    "Seven container wrappers retain previous unrestricted processes; actual container workloads are cpuset constrained.",
+    "Container policy is default within cpuset.mems=1, not bind:1.",
+    "Page mappings span nodes; no claim that existing pages migrated.",
+    "Original initial snapshots have less sampling detail; null completeness is unknown."
+  ]
+}

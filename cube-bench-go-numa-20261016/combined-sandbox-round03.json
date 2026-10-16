@@ -1,0 +1,54 @@
+{
+  "time": "2026-10-16T07:49:04.831067+00:00",
+  "status": "ok",
+  "round": "combined/round-03",
+  "sandboxes": [
+    {
+      "sandbox_alias": "combined-round-03-warmup-001",
+      "phase": "warmup",
+      "processes": [
+        {
+          "threads": [
+            {
+              "cpus": "96-191",
+              "mems": "0-3",
+              "count": 22
+            }
+          ],
+          "thread_errors": [],
+          "thread_count": 22,
+          "thread_sample_complete": true,
+          "thread_set_changed": false,
+          "numa_policy_map_counts": {
+            "bind:1": 191
+          },
+          "numa_pages": {
+            "N1": 8171,
+            "N2": 512,
+            "N3": 32175,
+            "N0": 392
+          },
+          "numa_scope": "main-thread maps; page counts aggregate mappings, not unique resident pages",
+          "process_errors": [],
+          "cpuset": {
+            "path_kind": "root",
+            "read_complete": true,
+            "ancestors": [
+              {
+                "level": 0,
+                "files": {
+                  "cpuset.cpus": "0-383",
+                  "cpuset.mems": "0-3",
+                  "cpuset.effective_cpus": "0-383",
+                  "cpuset.effective_mems": "0-3",
+                  "cpuset.memory_migrate": "0"
+                },
+                "errors": []
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

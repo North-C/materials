@@ -1,0 +1,948 @@
+{
+  "status": "limited",
+  "problems": [],
+  "warnings": [
+    "cubemastercli_instance_ids_collected: 100 formal run IDs available under declared template exclusivity and validated cube-bench warmup=0",
+    "client_sample_id_mapping_unavailable: CLI inventory does not map client seq to server IDs"
+  ],
+  "limitations": [
+    "Formal instance set is inferred from exclusive-template inventory difference with cube-bench warmup=0; client seq mapping requires explicit raw IDs."
+  ],
+  "capabilities": {
+    "formal_results": true,
+    "formal_instance_ids": true,
+    "warmup_results": true,
+    "warmup_instance_ids": true,
+    "client_sample_mapping": false,
+    "phase_attribution": true,
+    "server_instance_ids": true
+  },
+  "rows": [
+    {
+      "source_phase": "formal",
+      "index": 0,
+      "seq": 30,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 1,
+      "seq": 14,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 2,
+      "seq": 22,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 3,
+      "seq": 7,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 4,
+      "seq": 2,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 5,
+      "seq": 44,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 6,
+      "seq": 13,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 7,
+      "seq": 39,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 8,
+      "seq": 11,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 9,
+      "seq": 33,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 10,
+      "seq": 41,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 11,
+      "seq": 8,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 12,
+      "seq": 34,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 13,
+      "seq": 26,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 14,
+      "seq": 16,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 15,
+      "seq": 6,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 16,
+      "seq": 45,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 17,
+      "seq": 40,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 18,
+      "seq": 3,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 19,
+      "seq": 73,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 20,
+      "seq": 43,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 21,
+      "seq": 21,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 22,
+      "seq": 49,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 23,
+      "seq": 76,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 24,
+      "seq": 36,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 25,
+      "seq": 92,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 26,
+      "seq": 20,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 27,
+      "seq": 19,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 28,
+      "seq": 31,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 29,
+      "seq": 4,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 30,
+      "seq": 74,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 31,
+      "seq": 12,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 32,
+      "seq": 9,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 33,
+      "seq": 32,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 34,
+      "seq": 60,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 35,
+      "seq": 90,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 36,
+      "seq": 75,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 37,
+      "seq": 23,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 38,
+      "seq": 10,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 39,
+      "seq": 35,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 40,
+      "seq": 48,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 41,
+      "seq": 46,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 42,
+      "seq": 47,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 43,
+      "seq": 100,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 44,
+      "seq": 29,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 45,
+      "seq": 77,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 46,
+      "seq": 53,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 47,
+      "seq": 28,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 48,
+      "seq": 24,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 49,
+      "seq": 1,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 50,
+      "seq": 68,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 51,
+      "seq": 71,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 52,
+      "seq": 37,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 53,
+      "seq": 64,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 54,
+      "seq": 42,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 55,
+      "seq": 85,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 56,
+      "seq": 61,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 57,
+      "seq": 99,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 58,
+      "seq": 5,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 59,
+      "seq": 96,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 60,
+      "seq": 17,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 61,
+      "seq": 62,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 62,
+      "seq": 51,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 63,
+      "seq": 66,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 64,
+      "seq": 69,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 65,
+      "seq": 67,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 66,
+      "seq": 83,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 67,
+      "seq": 78,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 68,
+      "seq": 58,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 69,
+      "seq": 65,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 70,
+      "seq": 59,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 71,
+      "seq": 25,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 72,
+      "seq": 81,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 73,
+      "seq": 72,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 74,
+      "seq": 18,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 75,
+      "seq": 95,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 76,
+      "seq": 91,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 77,
+      "seq": 38,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 78,
+      "seq": 84,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 79,
+      "seq": 86,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 80,
+      "seq": 54,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 81,
+      "seq": 57,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 82,
+      "seq": 52,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 83,
+      "seq": 88,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 84,
+      "seq": 55,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 85,
+      "seq": 50,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 86,
+      "seq": 15,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 87,
+      "seq": 93,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 88,
+      "seq": 63,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 89,
+      "seq": 27,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 90,
+      "seq": 98,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 91,
+      "seq": 56,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 92,
+      "seq": 70,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 93,
+      "seq": 89,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 94,
+      "seq": 80,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 95,
+      "seq": 94,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 96,
+      "seq": 87,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 97,
+      "seq": 97,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 98,
+      "seq": 82,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    },
+    {
+      "source_phase": "formal",
+      "index": 99,
+      "seq": 79,
+      "sandbox_id": null,
+      "phase": null,
+      "problems": []
+    }
+  ],
+  "ownership_basis": "benchmark_raw_ids_plus_cli_inventory_under_declared_template_exclusivity",
+  "inventory": {
+    "source": "cubemastercli_before_after",
+    "candidate_ids": [
+      "combined-round-05-formal-001",
+      "combined-round-05-formal-002",
+      "combined-round-05-formal-003",
+      "combined-round-05-formal-004",
+      "combined-round-05-formal-005",
+      "combined-round-05-formal-006",
+      "combined-round-05-formal-007",
+      "combined-round-05-formal-008",
+      "combined-round-05-formal-009",
+      "combined-round-05-formal-010",
+      "combined-round-05-formal-011",
+      "combined-round-05-formal-012",
+      "combined-round-05-formal-013",
+      "combined-round-05-formal-014",
+      "combined-round-05-formal-015",
+      "combined-round-05-formal-016",
+      "combined-round-05-formal-017",
+      "combined-round-05-formal-018",
+      "combined-round-05-formal-019",
+      "combined-round-05-formal-020",
+      "combined-round-05-formal-021",
+      "combined-round-05-formal-022",
+      "combined-round-05-formal-023",
+      "combined-round-05-formal-024",
+      "combined-round-05-formal-025",
+      "combined-round-05-formal-026",
+      "combined-round-05-formal-027",
+      "combined-round-05-formal-028",
+      "combined-round-05-formal-029",
+      "combined-round-05-formal-030",
+      "combined-round-05-formal-031",
+      "combined-round-05-formal-032",
+      "combined-round-05-formal-033",
+      "combined-round-05-formal-034",
+      "combined-round-05-formal-035",
+      "combined-round-05-formal-036",
+      "combined-round-05-formal-037",
+      "combined-round-05-formal-038",
+      "combined-round-05-formal-039",
+      "combined-round-05-formal-040",
+      "combined-round-05-formal-041",
+      "combined-round-05-formal-042",
+      "combined-round-05-formal-043",
+      "combined-round-05-formal-044",
+      "combined-round-05-formal-045",
+      "combined-round-05-formal-046",
+      "combined-round-05-formal-047",
+      "combined-round-05-formal-048",
+      "combined-round-05-formal-049",
+      "combined-round-05-formal-050",
+      "combined-round-05-formal-051",
+      "combined-round-05-formal-052",
+      "combined-round-05-formal-053",
+      "combined-round-05-formal-054",
+      "combined-round-05-formal-055",
+      "combined-round-05-formal-056",
+      "combined-round-05-formal-057",
+      "combined-round-05-formal-058",
+      "combined-round-05-formal-059",
+      "combined-round-05-formal-060",
+      "combined-round-05-formal-061",
+      "combined-round-05-formal-062",
+      "combined-round-05-formal-063",
+      "combined-round-05-formal-064",
+      "combined-round-05-formal-065",
+      "combined-round-05-formal-066",
+      "combined-round-05-formal-067",
+      "combined-round-05-formal-068",
+      "combined-round-05-formal-069",
+      "combined-round-05-formal-070",
+      "combined-round-05-formal-071",
+      "combined-round-05-formal-072",
+      "combined-round-05-formal-073",
+      "combined-round-05-formal-074",
+      "combined-round-05-formal-075",
+      "combined-round-05-formal-076",
+      "combined-round-05-formal-077",
+      "combined-round-05-formal-078",
+      "combined-round-05-formal-079",
+      "combined-round-05-formal-080",
+      "combined-round-05-formal-081",
+      "combined-round-05-formal-082",
+      "combined-round-05-formal-083",
+      "combined-round-05-formal-084",
+      "combined-round-05-formal-085",
+      "combined-round-05-formal-086",
+      "combined-round-05-formal-087",
+      "combined-round-05-formal-088",
+      "combined-round-05-formal-089",
+      "combined-round-05-formal-090",
+      "combined-round-05-formal-091",
+      "combined-round-05-formal-092",
+      "combined-round-05-formal-093",
+      "combined-round-05-formal-094",
+      "combined-round-05-formal-095",
+      "combined-round-05-formal-096",
+      "combined-round-05-formal-097",
+      "combined-round-05-formal-098",
+      "combined-round-05-formal-099",
+      "combined-round-05-formal-100"
+    ],
+    "accepted": true,
+    "errors": [],
+    "phase": "formal",
+    "expected_count": 100,
+    "exclusive_template": true,
+    "client_sample_mapping": false,
+    "before_template_count": 3,
+    "limitations": [
+      "operator_asserted_template_exclusivity",
+      "healthy_nodes_inventory_only",
+      "node_query_failures_may_be_omitted_despite_complete_reported_scan",
+      "ownership_inferred_not_independently_verified",
+      "client_samples_not_mapped_to_instances",
+      "formal_only_requires_validated_warmup_zero_benchmark"
+    ]
+  },
+  "benchmark_attempted": true,
+  "benchmark_exit_code": 0,
+  "command_started_at": "2026-10-16T07:49:57.401120+00:00",
+  "command_ended_at": "2026-10-16T07:50:07.342164+00:00",
+  "cleanup": "not_performed; inspect ownership IDs before any manual cleanup"
+}
