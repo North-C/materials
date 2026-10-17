@@ -1,0 +1,121 @@
+diff --git a/CubeShim/shim/src/sandbox/config.rs b/CubeShim/shim/src/sandbox/config.rs
+index 1cf2ae4..057849c 100644
+--- a/CubeShim/shim/src/sandbox/config.rs
++++ b/CubeShim/shim/src/sandbox/config.rs
+@@ -24,6 +24,11 @@ pub const ANNO_SNAPSHOT_NOTIFY: &str = "cube.snapshot.healthcheck";
+ pub const ANNO_VM_KERNEL: &str = "cube.vm.kernel.path";
+ /// Annotation key used to append extra kernel cmdline parameters.
+ pub const ANNO_VM_KERNEL_CMDLINE_APPEND: &str = "cube.vm.kernel.cmdline.append";
++/// Alias of ANNO_VM_KERNEL_CMDLINE_APPEND without the reserved `cube.` prefix.
++/// CubeMaster drops non-`cube.master` container annotations under `cube.`, so a
++/// template can only reach the shim through a key outside that namespace.
++pub const ANNO_VM_KERNEL_CMDLINE_APPEND_ALIAS: &str =
++    "io.cubesandbox.vm.kernel.cmdline.append";
+ /// Override path to cube-agent.ext4 (virtio-pmem1).
+ pub const ANNO_VM_AGENT: &str = "cube.vm.agent.path";
+ /// Override path to guest OS image (virtio-pmem0).
+@@ -233,7 +238,10 @@ impl Config {
+         if let Some(anno) = anno.get(ANNO_VIRTIOFS) {
+             virtiofs = Utils::anno_to_obj::<Vec<VirtioFs>>(anno)?;
+         }
+-        let extra_kernel_params = if let Some(params) = anno.get(ANNO_VM_KERNEL_CMDLINE_APPEND) {
++        let extra_kernel_params = if let Some(params) = anno
++            .get(ANNO_VM_KERNEL_CMDLINE_APPEND)
++            .or_else(|| anno.get(ANNO_VM_KERNEL_CMDLINE_APPEND_ALIAS))
++        {
+             let params_vec = Utils::anno_to_obj::<Vec<String>>(params)?;
+             params_vec
+                 .into_iter()
+diff --git a/hypervisor/vmm/src/device_manager.rs b/hypervisor/vmm/src/device_manager.rs
+index 2e2edae..f934eaa 100644
+--- a/hypervisor/vmm/src/device_manager.rs
++++ b/hypervisor/vmm/src/device_manager.rs
+@@ -2835,6 +2835,11 @@ impl DeviceManager {
+         )
+         .map_err(DeviceManagerError::NewMmapRegion)?;
+         let host_addr: u64 = mmap_region.as_ptr() as u64;
++        crate::memory_manager::perf_madv_random(
++            mmap_region.as_ptr() as _,
++            region_size as usize,
++            "pmem",
++        );
+ 
+         let mem_slot = self
+             .memory_manager
+diff --git a/hypervisor/vmm/src/memory_manager.rs b/hypervisor/vmm/src/memory_manager.rs
+index fd9616a..f683e85 100644
+--- a/hypervisor/vmm/src/memory_manager.rs
++++ b/hypervisor/vmm/src/memory_manager.rs
+@@ -1508,6 +1508,7 @@ impl MemoryManager {
+         thp: bool,
+     ) -> Result<Arc<GuestRegionMmap>, Error> {
+         let mut mmap_flags = libc::MAP_NORESERVE;
++        let is_snapshot_mapping = snap_file.is_some();
+ 
+         // The duplication of mmap_flags ORing here is unfortunate but it also makes
+         // the complexity of the handling clear.
+@@ -1560,6 +1561,43 @@ impl MemoryManager {
+             }
+         }
+ 
++        if is_snapshot_mapping {
++            perf_madv_random(region.as_ptr() as _, size, "snapshot memory");
++        }
++
++        // Experimental (perf-tuning-90): pre-map a restored snapshot's private file
++        // mapping with PMD entries before any vCPU runs. Guest writes create 4K CoW
++        // page tables early, after which reads in the same 2MB range can only be
++        // stage-2 mapped at 4K; populating first lets KVM install 2MB read-only
++        // blocks for ranges the guest only reads. Enabled only when the flag file
++        // exists, so the default behaviour is unchanged.
++        if is_snapshot_mapping
++            && std::path::Path::new("/run/cube-perf/snap_populate_read").exists()
++        {
++            const MADV_POPULATE_READ: libc::c_int = 22;
++            let start = std::time::Instant::now();
++            let ret = unsafe { libc::madvise(region.as_ptr() as _, size, libc::MADV_HUGEPAGE) };
++            if ret != 0 {
++                warn!(
++                    "snap populate: MADV_HUGEPAGE failed: {}",
++                    io::Error::last_os_error()
++                );
++            }
++            let ret = unsafe { libc::madvise(region.as_ptr() as _, size, MADV_POPULATE_READ) };
++            if ret != 0 {
++                warn!(
++                    "snap populate: MADV_POPULATE_READ failed: {}",
++                    io::Error::last_os_error()
++                );
++            }
++            info!(
++                "snap populate: region 0x{:x} size 0x{:x} populated in {}us",
++                region.as_ptr() as u64,
++                size,
++                start.elapsed().as_micros()
++            );
++        }
++
+         // Apply NUMA policy if needed.
+         if let Some(node) = host_numa_node {
+             let addr = region.deref().as_ptr();
+@@ -3202,3 +3240,20 @@ impl Migratable for MemoryManager {
+         Ok(table)
+     }
+ }
++
++/// Experimental (perf-tuning-90): mark a file-backed guest mapping MADV_RANDOM so
++/// cold-cache faults allocate order-0 page-cache folios instead of readahead
++/// large folios. With ~100 VMs sharing one snapshot/pmem file, every stage-2 fault
++/// takes a reference on the backing folio; large folios make all their subpages
++/// share one refcount cache line. Enabled only when the flag file exists.
++pub fn perf_madv_random(addr: *mut libc::c_void, len: usize, what: &str) {
++    if !std::path::Path::new("/run/cube-perf/snap_madv_random").exists() {
++        return;
++    }
++    let ret = unsafe { libc::madvise(addr, len, libc::MADV_RANDOM) };
++    if ret != 0 {
++        warn!("{}: MADV_RANDOM failed: {}", what, std::io::Error::last_os_error());
++    } else {
++        info!("{}: MADV_RANDOM applied to 0x{:x} size 0x{:x}", what, addr as u64, len);
++    }
++}

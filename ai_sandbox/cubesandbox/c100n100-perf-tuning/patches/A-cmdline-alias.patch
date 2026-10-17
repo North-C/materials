@@ -1,0 +1,26 @@
+--- a/CubeShim/shim/src/sandbox/config.rs
++++ b/CubeShim/shim/src/sandbox/config.rs
+@@ -24,6 +24,11 @@ pub const ANNO_SNAPSHOT_NOTIFY: &str = "cube.snapshot.healthcheck";
+ pub const ANNO_VM_KERNEL: &str = "cube.vm.kernel.path";
+ /// Annotation key used to append extra kernel cmdline parameters.
+ pub const ANNO_VM_KERNEL_CMDLINE_APPEND: &str = "cube.vm.kernel.cmdline.append";
++/// Alias of ANNO_VM_KERNEL_CMDLINE_APPEND without the reserved `cube.` prefix.
++/// CubeMaster drops non-`cube.master` container annotations under `cube.`, so a
++/// template can only reach the shim through a key outside that namespace.
++pub const ANNO_VM_KERNEL_CMDLINE_APPEND_ALIAS: &str =
++    "io.cubesandbox.vm.kernel.cmdline.append";
+ /// Override path to cube-agent.ext4 (virtio-pmem1).
+ pub const ANNO_VM_AGENT: &str = "cube.vm.agent.path";
+ /// Override path to guest OS image (virtio-pmem0).
+@@ -233,7 +238,10 @@ impl Config {
+         if let Some(anno) = anno.get(ANNO_VIRTIOFS) {
+             virtiofs = Utils::anno_to_obj::<Vec<VirtioFs>>(anno)?;
+         }
+-        let extra_kernel_params = if let Some(params) = anno.get(ANNO_VM_KERNEL_CMDLINE_APPEND) {
++        let extra_kernel_params = if let Some(params) = anno
++            .get(ANNO_VM_KERNEL_CMDLINE_APPEND)
++            .or_else(|| anno.get(ANNO_VM_KERNEL_CMDLINE_APPEND_ALIAS))
++        {
+             let params_vec = Utils::anno_to_obj::<Vec<String>>(params)?;
+             params_vec
+                 .into_iter()
