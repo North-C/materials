@@ -1,0 +1,18 @@
+{
+  "/sys/kernel/rcu_expedited": {
+    "exists": true,
+    "value": "0\n"
+  },
+  "/run/cube-perf/snap_madv_random": {
+    "exists": false,
+    "value": null
+  },
+  "/run/cube-perf/snap_pmd_folio": {
+    "exists": false,
+    "value": null
+  },
+  "/run/cube-perf/snap_small_folio": {
+    "exists": false,
+    "value": null
+  }
+}

@@ -1,0 +1,346 @@
+{
+  "time": "2026-10-17T10:17:17.957093+00:00",
+  "boot_id": "b0f9d3e8-597d-4a60-9b4c-c0ded801b28f",
+  "loadavg": "0.30 0.35 0.99 1/6942 966476",
+  "kernel": {
+    "thp_enabled": "always madvise [never]",
+    "thp_defrag": "always defer defer+madvise [madvise] never",
+    "numa_balancing": "0",
+    "governor_cpu0": "performance"
+  },
+  "tuned": "Current active profile: throughput-performance",
+  "binaries": {
+    "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet": "6814fadeec55e27227686367ab3ed957411ca926caabc63dd12121cbeb190dac",
+    "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api": "6a84128504f7e1575d5d86e4f6da9953c794356b2875acae968344d94421d34a",
+    "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9",
+    "/usr/local/services/cubetoolbox/CubeTemplateCenter/bin/templatecenter": "cfdab176aaa39f39352ce2c3eff98d5d7cab4837385a32f6363db835a94e8d65",
+    "/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs": "67d8d06a6f264023df91d2f928f4205fcc33f3e02b8f2d0fe03a4d953614cbad",
+    "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs": "67d8d06a6f264023df91d2f928f4205fcc33f3e02b8f2d0fe03a4d953614cbad",
+    "/usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime": "10dced40e92c101f9b69b446f3bcc87f74850b6909c483506a419cd1604250f9",
+    "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/cube-runtime": "10dced40e92c101f9b69b446f3bcc87f74850b6909c483506a419cd1604250f9"
+  },
+  "configs": {
+    "/usr/local/services/cubetoolbox/CubeMaster/conf.yaml": "6848cb7bab5c897f632202c73c7d9f47407b2cf38d357d5c991fc3f7c72a2438",
+    "/usr/local/services/cubetoolbox/Cubelet/config/config.toml": "26a93c91418e320cf2bb663091a643f0bc6f1d1b4cd835c7c6754a4b90e3b0aa"
+  },
+  "tap_count": 0,
+  "net_dev_count": 514,
+  "units": {
+    "cubemaster": {
+      "MainPID": "35295",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-cubemaster.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-cubemaster.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-cubemaster.service.d/50-artifact-store-mount.conf /etc/systemd/system/cube-sandbox-cubemaster.service.d/gc-tuning.conf /etc/systemd/system/cube-sandbox-cubemaster.service.d/zz-c100-session-go.conf /etc/systemd/system/cube-sandbox-cubemaster.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "35295",
+        "exe_sha256": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9",
+        "threads": 40,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": [
+          "GOGC=800",
+          "GOMAXPROCS=32",
+          "GOMEMLIMIT=8GiB"
+        ]
+      }
+    },
+    "cubelet": {
+      "MainPID": "25125",
+      "NRestarts": "0",
+      "CPUAffinity": "0-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "0-1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-cubelet.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-cubelet.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-cubelet.service.d/50-runtime-image-cache-mount.conf /etc/systemd/system/cube-sandbox-cubelet.service.d/zz-c100-session-numa.conf /etc/systemd/system/cube-sandbox-cubelet.service.d/zzz-perf-tuning-numa.conf",
+      "process": {
+        "pid": "25125",
+        "exe_sha256": "6814fadeec55e27227686367ab3ed957411ca926caabc63dd12121cbeb190dac",
+        "threads": 169,
+        "thread_affinities": [
+          "0-191"
+        ],
+        "numa_policy_first_map": "bind:0-1",
+        "go_env": []
+      }
+    },
+    "cube-api": {
+      "MainPID": "36249",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-cube-api.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-cube-api.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-cube-api.service.d/override.conf /etc/systemd/system/cube-sandbox-cube-api.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "36249",
+        "exe_sha256": "6a84128504f7e1575d5d86e4f6da9953c794356b2875acae968344d94421d34a",
+        "threads": 17,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "cube-templatecenter": {
+      "MainPID": "36360",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-cube-templatecenter.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-cube-templatecenter.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-cube-templatecenter.service.d/50-artifact-store-mount.conf /etc/systemd/system/cube-sandbox-cube-templatecenter.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "36360",
+        "exe_sha256": "cfdab176aaa39f39352ce2c3eff98d5d7cab4837385a32f6363db835a94e8d65",
+        "threads": 46,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "cubeops": {
+      "MainPID": "33085",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-cubeops.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-cubeops.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-cubeops.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "33085",
+        "exe_sha256": "1385bc6aed3f0f6a3ee8059da5e500aeff7af4333191b6cb8bdac3110031cbab",
+        "threads": 41,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "cube-egress": {
+      "MainPID": "39474",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-cube-egress.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-cube-egress.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-cube-egress.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "39474",
+        "exe_sha256": "494fdd1729077ceb1479405c4de7b232219012be65a504ee788febc24c541926",
+        "threads": 41,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "cube-proxy": {
+      "MainPID": "35592",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-cube-proxy.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-cube-proxy.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-cube-proxy.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "35592",
+        "exe_sha256": "7665fd78ef729e0966148a1284d09fb3bbaacd9cd668da91350b7bee406137c0",
+        "threads": 1,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "cube-lifecycle-manager": {
+      "MainPID": "33269",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-cube-lifecycle-manager.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-cube-lifecycle-manager.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-cube-lifecycle-manager.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "33269",
+        "exe_sha256": "7665fd78ef729e0966148a1284d09fb3bbaacd9cd668da91350b7bee406137c0",
+        "threads": 1,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "coredns": {
+      "MainPID": "26441",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-coredns.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-coredns.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-coredns.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "26441",
+        "exe_sha256": "494fdd1729077ceb1479405c4de7b232219012be65a504ee788febc24c541926",
+        "threads": 40,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "minio": {
+      "MainPID": "26677",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-minio.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-minio.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-minio.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "26677",
+        "exe_sha256": "7665fd78ef729e0966148a1284d09fb3bbaacd9cd668da91350b7bee406137c0",
+        "threads": 1,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "mysql": {
+      "MainPID": "26900",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-mysql.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-mysql.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-mysql.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "26900",
+        "exe_sha256": "7665fd78ef729e0966148a1284d09fb3bbaacd9cd668da91350b7bee406137c0",
+        "threads": 1,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "redis": {
+      "MainPID": "27104",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-redis.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-redis.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-redis.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "27104",
+        "exe_sha256": "7665fd78ef729e0966148a1284d09fb3bbaacd9cd668da91350b7bee406137c0",
+        "threads": 1,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    },
+    "webui": {
+      "MainPID": "36524",
+      "NRestarts": "0",
+      "CPUAffinity": "96-191",
+      "NUMAPolicy": "bind",
+      "NUMAMask": "1",
+      "ActiveState": "active",
+      "SubState": "running",
+      "DropInPaths": "/etc/systemd/system.control/cube-sandbox-webui.service.d/50-AllowedCPUs.conf /etc/systemd/system.control/cube-sandbox-webui.service.d/50-AllowedMemoryNodes.conf /etc/systemd/system/cube-sandbox-webui.service.d/zz-c100-session-numa.conf",
+      "process": {
+        "pid": "36524",
+        "exe_sha256": "7665fd78ef729e0966148a1284d09fb3bbaacd9cd668da91350b7bee406137c0",
+        "threads": 1,
+        "thread_affinities": [
+          "96-191"
+        ],
+        "numa_policy_first_map": "bind:1",
+        "go_env": []
+      }
+    }
+  },
+  "containers": {
+    "cube-egress": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "1",
+      "pid": "39618"
+    },
+    "cube-webui": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "1",
+      "pid": "37076"
+    },
+    "cube-proxy": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "1",
+      "pid": "35994"
+    },
+    "cube-lifecycle-manager": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "1",
+      "pid": "33894"
+    },
+    "cube-sandbox-redis": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "1",
+      "pid": "28752"
+    },
+    "cube-sandbox-mysql": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "1",
+      "pid": "28543"
+    },
+    "cube-sandbox-minio": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "1",
+      "pid": "28533"
+    },
+    "cube-proxy-coredns": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "1",
+      "pid": "27029"
+    },
+    "grafana": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "0-3",
+      "pid": "26120"
+    },
+    "prometheus": {
+      "cpuset_cpus": "96-191",
+      "cpuset_mems": "0-3",
+      "pid": "26131"
+    }
+  }
+}

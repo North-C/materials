@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/root/profiler90-agentwarn-w3-20261017T101659Z/tool/capture_w3.py",
+    "--config",
+    "/root/profiler90-agentwarn-w3-20261017T101659Z/capture100.agentwarn.json",
+    "--benchmark-binary",
+    "/root/profiler90-agentwarn-w3-20261017T101659Z/bin/cube-bench",
+    "--output-root",
+    "/root/profiler90-agentwarn-w3-20261017T101659Z/pilot/round-01/runs"
+  ],
+  "started_at": "2026-10-17T10:17:29.493702+00:00",
+  "formal": {
+    "concurrency": 100,
+    "total": 100,
+    "warmup": 3,
+    "warmup_mode": "in_process_shared_client",
+    "mode": "create-only",
+    "no_tui": true
+  },
+  "prewarmup": null
+}

@@ -1,0 +1,137 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "offline": true,
+  "source_capture": "/root/profiler90-agentwarn-w3-20261017T101659Z/pilot/round-01/runs/20261017T101729Z-4ead2b6a/capture",
+  "inputs": {
+    "capture-manifest.json": {
+      "bytes": 11181,
+      "sha256": "ef79da12e9fc154738e514ea2ec9e421ada47b5db33cc0111844178930fbcf48"
+    },
+    "evidence/cubelet_req-delta.log": {
+      "bytes": 436877,
+      "sha256": "9a8199f7ca9d78d5cc8752706f8a1aa0303b18cb8a85744d09780be915096edc"
+    },
+    "evidence/cubelet_stat-delta.log": {
+      "bytes": 340589,
+      "sha256": "7bcd9091f924135aa4d6e5cf37326570eb34f40247eccf076f5ecdb6cbc204de"
+    },
+    "evidence/cubemastercli/after.json": {
+      "bytes": 109091,
+      "sha256": "0c2d22a6fea6275c7d52f1eb690ad9e8dac1a2fc36e424a892be3e2f91a1b0df"
+    },
+    "evidence/cubemastercli/after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/cubemastercli/after.stdout": {
+      "bytes": 76570,
+      "sha256": "63fff0ce35e914b8a2d867ad1ca648d53c1d6c4bce45646576a9256539f923cd"
+    },
+    "evidence/cubemastercli/before.json": {
+      "bytes": 1164,
+      "sha256": "471e96112d3efd9ea25a32909c575d2e6c7da2c4cacfb598247eef81c2583c94"
+    },
+    "evidence/cubemastercli/before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/cubemastercli/before.stdout": {
+      "bytes": 203,
+      "sha256": "918e92ad5103fa3615d568a6be107e7a480114b35090a7f7bc77299250d7b98d"
+    },
+    "evidence/cubemastercli/ownership.json": {
+      "bytes": 4689,
+      "sha256": "1cee72cd056f2833cf550ee95b1394126164eb09c1c89bca8be0c1052e32b438"
+    },
+    "evidence/master-delta.log": {
+      "bytes": 702166,
+      "sha256": "ae488b57a375c14c88e6f0979a3561f140588415ce86b640b9a4a5228f8c7fed"
+    },
+    "evidence/metrics-after.prom": {
+      "bytes": 961090,
+      "sha256": "8686a933484680946ac9fab385d577b5232100d4fb67f61b8ef8d89157508618"
+    },
+    "evidence/metrics-before.prom": {
+      "bytes": 346650,
+      "sha256": "cb8aae9a828ef1ac485d817f57445f84c23434faf0b3c3a1d65bac15de5bf8bf"
+    },
+    "evidence/shim_req-delta.log": {
+      "bytes": 556846,
+      "sha256": "53b068b5bba908190d5b38e06a30d5e8f0ff77d17665107b6fcba7d5b44b382d"
+    },
+    "evidence/shim_stat-delta.log": {
+      "bytes": 148716,
+      "sha256": "40ec436849f363d89e71549cf14ca3870bcb32c17954b35f89c591adb8343e53"
+    },
+    "owned-sandbox-ids.json": {
+      "bytes": 4180,
+      "sha256": "baa450cbf441adead45eeeb24b5e48d85fee0dcc19649c1598a90616c7dc6a0b"
+    },
+    "startup-latency/benchmark.raw.json": {
+      "bytes": 8603,
+      "sha256": "40172b9ae28eb4ac18414d6f123f8b3385b0b9e1e2947bc266bdc79d39df615b"
+    },
+    "startup-latency/prewarmup.json": {
+      "bytes": 168,
+      "sha256": "8899c5b16ec1097f3b0e5df1134a2ab3c1fd688174b3ddadfcb898ed71aa5d4d"
+    },
+    "startup-latency/runner-validation.json": {
+      "bytes": 21123,
+      "sha256": "14f89e4932dc80c4195fee4fcc751688622b3b1e512c514977d0b35399f105a7"
+    }
+  },
+  "runtime": {
+    "status": "ok",
+    "python": {
+      "version": "3.11.6",
+      "minimum": "3.9",
+      "ok": true
+    },
+    "node": {
+      "path": "/usr/bin/node",
+      "version": "v20.18.2",
+      "minimum": "18",
+      "ok": true
+    },
+    "scope": "Offline runtime only; does not validate a cluster, capture, or benchmark."
+  },
+  "phase_policy": "No automatic phase inference. An explicit map is caller-declared, never independently verified; without a map all unambiguous owned IDs remain unknown_phase.",
+  "classification_status": "unverified",
+  "ownership_downgraded_to_unknown": false,
+  "conflicting_ownership_ids": [],
+  "warnings": [
+    "Phase membership is unverified. Component results remain unknown_phase and are NOT a valid formal-only benchmark distribution."
+  ],
+  "owned_instances": {
+    "formal": 0,
+    "warmup": 0,
+    "unknown_phase": 103
+  },
+  "outputs": [
+    "REPORT.md",
+    "analysis.json",
+    "benchmark-inputs/benchmark.raw.json",
+    "benchmark-inputs/prewarmup.json",
+    "benchmark-inputs/runner-validation.json",
+    "instances.jsonl",
+    "inventory-evidence/after.json",
+    "inventory-evidence/after.stderr",
+    "inventory-evidence/after.stdout",
+    "inventory-evidence/before.json",
+    "inventory-evidence/before.stderr",
+    "inventory-evidence/before.stdout",
+    "inventory-evidence/ownership.json",
+    "network-details.csv",
+    "network-details.json",
+    "phase-classification.json",
+    "precision-timeline.html",
+    "precision.csv",
+    "precision.json",
+    "report.html",
+    "run-summary.json",
+    "stage-latency.csv",
+    "timeline.html",
+    "timeline.json"
+  ]
+}

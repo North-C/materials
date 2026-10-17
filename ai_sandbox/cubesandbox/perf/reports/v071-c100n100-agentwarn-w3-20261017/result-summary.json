@@ -1,0 +1,563 @@
+{
+  "schema_version": 1,
+  "template": "tpl-381852bfe518c30bb815e163",
+  "benchmark_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+  "method": "one excluded pilot plus five c100n100 w3 create-only no-tui runs",
+  "rounds": [
+    {
+      "state": "pilot",
+      "round": "round-01",
+      "run": "pilot/round-01/runs/20261017T101729Z-4ead2b6a",
+      "total_ms": 167.95698000000002,
+      "avg_ms": 122.29853999999996,
+      "p50_ms": 113.233,
+      "p95_ms": 161.908,
+      "p99_ms": 164.547,
+      "max_ms": 164.666,
+      "successful": 100,
+      "deleted": 103,
+      "capture_gaps": [
+        "ownership_phase_unknown",
+        "owned_counts_differ_from_declared_workload",
+        "master_stat:no_readable_start_offset"
+      ]
+    },
+    {
+      "state": "formal",
+      "round": "round-01",
+      "run": "formal/round-01/runs/20261017T101851Z-4973571d",
+      "total_ms": 156.81380000000001,
+      "avg_ms": 125.31067000000002,
+      "p50_ms": 121.893,
+      "p95_ms": 151.384,
+      "p99_ms": 153.626,
+      "max_ms": 153.998,
+      "successful": 100,
+      "deleted": 103,
+      "capture_gaps": [
+        "ownership_phase_unknown",
+        "owned_counts_differ_from_declared_workload",
+        "master_stat:no_readable_start_offset"
+      ]
+    },
+    {
+      "state": "formal",
+      "round": "round-02",
+      "run": "formal/round-02/runs/20261017T101958Z-83e98662",
+      "total_ms": 162.33527,
+      "avg_ms": 128.55323,
+      "p50_ms": 128.579,
+      "p95_ms": 156.844,
+      "p99_ms": 158.944,
+      "max_ms": 159.655,
+      "successful": 100,
+      "deleted": 103,
+      "capture_gaps": [
+        "ownership_phase_unknown",
+        "owned_counts_differ_from_declared_workload",
+        "master_stat:no_readable_start_offset"
+      ]
+    },
+    {
+      "state": "formal",
+      "round": "round-03",
+      "run": "formal/round-03/runs/20261017T102027Z-d037c2c4",
+      "total_ms": 158.02999,
+      "avg_ms": 122.66820999999996,
+      "p50_ms": 133.644,
+      "p95_ms": 154.686,
+      "p99_ms": 155.037,
+      "max_ms": 157.32,
+      "successful": 100,
+      "deleted": 103,
+      "capture_gaps": [
+        "ownership_phase_unknown",
+        "owned_counts_differ_from_declared_workload",
+        "master_stat:no_readable_start_offset"
+      ]
+    },
+    {
+      "state": "formal",
+      "round": "round-04",
+      "run": "formal/round-04/runs/20261017T102056Z-492ebfb1",
+      "total_ms": 159.49012000000002,
+      "avg_ms": 120.21734000000002,
+      "p50_ms": 110.765,
+      "p95_ms": 156.076,
+      "p99_ms": 158.46,
+      "max_ms": 158.513,
+      "successful": 100,
+      "deleted": 103,
+      "capture_gaps": [
+        "ownership_phase_unknown",
+        "owned_counts_differ_from_declared_workload",
+        "master_stat:no_readable_start_offset"
+      ]
+    },
+    {
+      "state": "formal",
+      "round": "round-05",
+      "run": "formal/round-05/runs/20261017T102302Z-7423eb1a",
+      "total_ms": 165.84700999999998,
+      "avg_ms": 122.07755000000004,
+      "p50_ms": 139.784,
+      "p95_ms": 161.747,
+      "p99_ms": 163.606,
+      "max_ms": 164.838,
+      "successful": 100,
+      "deleted": 103,
+      "capture_gaps": [
+        "ownership_phase_unknown",
+        "owned_counts_differ_from_declared_workload",
+        "master_stat:no_readable_start_offset"
+      ]
+    }
+  ],
+  "formal_total_ms_median": 159.49012000000002,
+  "formal_total_ms_min": 156.81380000000001,
+  "formal_total_ms_max": 165.84700999999998,
+  "formal_successful_requests": 500,
+  "deleted_including_pilot": 618,
+  "baseline_total_ms_median": 153.68424,
+  "stage_summary": [
+    {
+      "stage": "Cubelet/cgroup",
+      "median_of_round_means_ms": 5.683999999999999,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 2,
+      "max_observed_per_round": 9,
+      "baseline_median_of_round_means_ms": 7.2523333333333335,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/create-sandbox-metadata",
+      "median_of_round_means_ms": 5.633999999999999,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 1,
+      "max_observed_per_round": 31,
+      "baseline_median_of_round_means_ms": 8.181533333333334,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/cube-sandbox-store",
+      "median_of_round_means_ms": 6.570625,
+      "rounds_with_observation": 2,
+      "min_observed_per_round": 1,
+      "max_observed_per_round": 8,
+      "baseline_median_of_round_means_ms": 8.636050000000001,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/cubebox",
+      "median_of_round_means_ms": 72.95998058252424,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 95.22714563106796,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/cubebox-service",
+      "median_of_round_means_ms": 82.03894174757278,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 106.16510679611655,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/cubebox-service-inner",
+      "median_of_round_means_ms": 63.96532038834951,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 82.91098058252426,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/network",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": 10.042,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/sandbox-create",
+      "median_of_round_means_ms": 50.01975728155342,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 63.50098058252427,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/sandbox-probe",
+      "median_of_round_means_ms": 18.694553398058257,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 22.820640776699033,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/sandbox-start",
+      "median_of_round_means_ms": 51.0136796116505,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 65.13063106796118,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet/storage",
+      "median_of_round_means_ms": 7.476900000000003,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 31,
+      "max_observed_per_round": 56,
+      "baseline_median_of_round_means_ms": 10.328957446808511,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeShim/CreateContainer",
+      "median_of_round_means_ms": 7.223300970873787,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 9.932038834951456,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeShim/CreatePodSandbox",
+      "median_of_round_means_ms": 40.786407766990294,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 53.56310679611651,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeShim/CreateSandbox",
+      "median_of_round_means_ms": 1.6213592233009708,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 2.854368932038835,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeShim/LaunchVmm",
+      "median_of_round_means_ms": 1.2427184466019416,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 1.3883495145631068,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeShim/ResetVm",
+      "median_of_round_means_ms": 11.300970873786408,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 15.776699029126213,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeShim/RestoreVm",
+      "median_of_round_means_ms": 8.359223300970873,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 10.611650485436893,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeMaster/cube-e2e",
+      "median_of_round_means_ms": 87.7378640776699,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 113.70873786407768,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeMaster/sandbox-probe",
+      "median_of_round_means_ms": 18.184466019417474,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 22.300970873786408,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeMaster/all-probe",
+      "median_of_round_means_ms": 18.184466019417474,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 22.300970873786408,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeMaster trace/bufferhandle",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeMaster trace/cube-e2e",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeMaster trace/cubemaster-inner",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeMaster trace/cubemaster-inner-handle",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeMaster trace/cubemaster-post-redis",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CubeMaster trace/cubemaster-post-spec",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet paired residual/service_outside_cubebox",
+      "median_of_round_means_ms": 8.199582524271847,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 11.005669902912615,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet paired residual/sandbox_after_newtask",
+      "median_of_round_means_ms": 0.9893883495145631,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 1.4033495145631072,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "Cubelet paired residual/cubebox_outside_task_and_probe",
+      "median_of_round_means_ms": 3.5710776699029148,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 5.105990291262136,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/shim_create_container",
+      "median_of_round_means_ms": 7.223300970873787,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 9.932038834951456,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/create_request_total",
+      "median_of_round_means_ms": 41.287424624544904,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 54.14675695919296,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/vm_start_to_agent_ready",
+      "median_of_round_means_ms": 18.507622876213592,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 23.044272413531555,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/load_spec_cumulative",
+      "median_of_round_means_ms": 0.0,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 0.0,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/sandbox_finish_cumulative",
+      "median_of_round_means_ms": 33.067961165048544,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 42.116504854368934,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/container_finish_cumulative",
+      "median_of_round_means_ms": 40.786407766990294,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 53.56310679611651,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/sandbox_to_container_finish",
+      "median_of_round_means_ms": 7.718446601941747,
+      "rounds_with_observation": 5,
+      "min_observed_per_round": 103,
+      "max_observed_per_round": 103,
+      "baseline_median_of_round_means_ms": 10.485436893203884,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/guest_receive_to_restore_branch",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/normal_add_devices",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/normal_add_storage",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/normal_setup_bundle",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/normal_init_container",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/normal_start_container",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    },
+    {
+      "stage": "CreateContainer detail/restore_path_unresolved",
+      "median_of_round_means_ms": null,
+      "rounds_with_observation": 0,
+      "min_observed_per_round": 0,
+      "max_observed_per_round": 0,
+      "baseline_median_of_round_means_ms": null,
+      "phase": "unknown_phase",
+      "includes_in_process_warmup": true
+    }
+  ],
+  "limitations": [
+    "server stats include 3 warmup + 100 formal, unknown_phase103 per round",
+    "no client seq to sandbox mapping; do not infer warmup IDs from ordering",
+    "stage summary is median of round means, not pooled samples",
+    "kernel, THP defrag, RCU and MADV_RANDOM runtime settings differ from historical s13",
+    "template, warmup method and benchmark binary differ from previous 414.373ms run",
+    "nested stages must not be summed; missing thresholded stages are not zero",
+    "agent.log=warn suppresses guest INFO anchors; no new CPU/perf sampling in reference method"
+  ]
+}

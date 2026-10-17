@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "mode": "in_process_cube_bench_w3",
+  "count": 0,
+  "status": "skipped",
+  "separate_prewarmup": false,
+  "client_connection_reused": true
+}

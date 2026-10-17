@@ -1,0 +1,11 @@
+{
+  "template_id": "tpl-381852bfe518c30bb815e163",
+  "api_url": "http://127.0.0.1:3000",
+  "exclusive_template": true,
+  "baseline": [],
+  "started_at": "2026-10-17T10:18:51.179947+00:00",
+  "wrapper_pid": 978294,
+  "capture_started": true,
+  "capture_processes_stopped": true,
+  "binary_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511"
+}

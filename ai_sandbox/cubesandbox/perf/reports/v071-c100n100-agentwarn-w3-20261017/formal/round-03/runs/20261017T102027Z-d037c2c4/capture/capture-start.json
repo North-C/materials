@@ -1,0 +1,112 @@
+{
+  "started_at": "2026-10-17T10:20:27.735451Z",
+  "logs": {
+    "cubelet_req": {
+      "source_path": "/data/log/Cubelet/Cubelet-req.log",
+      "before": {
+        "observed_at": "2026-10-17T10:20:27.735466Z",
+        "device": 64768,
+        "inode": 18916615,
+        "size": 242942796,
+        "mtime_ns": 1792232404104000000,
+        "status": "ok",
+        "anchor_offset": 242938700,
+        "anchor_sha256": "0b4a5bec5b2d55a89ea4ca77af0bcf05b2568bd24d0fea313c270eca2e001a90",
+        "starts_on_line_boundary": true
+      }
+    },
+    "cubelet_stat": {
+      "source_path": "/data/log/Cubelet/Cubelet-stat.log",
+      "before": {
+        "observed_at": "2026-10-17T10:20:27.735512Z",
+        "device": 64768,
+        "inode": 18916617,
+        "size": 165225208,
+        "mtime_ns": 1792232417484000000,
+        "status": "ok",
+        "anchor_offset": 165221112,
+        "anchor_sha256": "b2a7d3fc21707167603b8f36b1372b8be27912f4065e00f6c534cfdab34412da",
+        "starts_on_line_boundary": true
+      }
+    },
+    "shim_req": {
+      "source_path": "/data/log/CubeShim/cube-shim-req.log",
+      "before": {
+        "observed_at": "2026-10-17T10:20:27.735541Z",
+        "device": 64768,
+        "inode": 18874392,
+        "size": 7435427276,
+        "mtime_ns": 1792232404152000000,
+        "status": "ok",
+        "anchor_offset": 7435423180,
+        "anchor_sha256": "36d0a044013e8b998110ba813b22948a1a2bf04118d626c613b8f529235f96f3",
+        "starts_on_line_boundary": true
+      }
+    },
+    "shim_stat": {
+      "source_path": "/data/log/CubeShim/cube-shim-stat.log",
+      "before": {
+        "observed_at": "2026-10-17T10:20:27.735566Z",
+        "device": 64768,
+        "inode": 18874393,
+        "size": 942893700,
+        "mtime_ns": 1792232404032000000,
+        "status": "ok",
+        "anchor_offset": 942889604,
+        "anchor_sha256": "c01a4d7baa27ae77a481f3752f4b77a659e9f19cf47e831001481e8bea50956e",
+        "starts_on_line_boundary": true
+      }
+    },
+    "master": {
+      "source_path": "/data/log/CubeMaster/cubemaster-req.log",
+      "before": {
+        "observed_at": "2026-10-17T10:20:27.735586Z",
+        "device": 64768,
+        "inode": 18874716,
+        "size": 86265766,
+        "mtime_ns": 1792232427272000000,
+        "status": "ok",
+        "anchor_offset": 86261670,
+        "anchor_sha256": "bcb5a6b487e12e5464646ac4568f1c0416d533353cd78f9b8a4da8ce22840a3a",
+        "starts_on_line_boundary": true
+      }
+    },
+    "master_stat": {
+      "source_path": "/data/log/CubeMaster/cubemaster-stat.log",
+      "before": {
+        "observed_at": "2026-10-17T10:20:27.735608Z",
+        "status": "unavailable",
+        "error_type": "FileNotFoundError",
+        "errno": 2
+      }
+    },
+    "vmm": {
+      "source_path": "/data/log/CubeVmm/vmm.log",
+      "before": {
+        "observed_at": "2026-10-17T10:20:27.735622Z",
+        "device": 64768,
+        "inode": 18874394,
+        "size": 14384195254,
+        "mtime_ns": 1792232404152000000,
+        "status": "ok",
+        "anchor_offset": 14384191158,
+        "anchor_sha256": "974b2b323da3c08af7087135af420a411b019bc40d096fcb91cc8fbeec376d26",
+        "starts_on_line_boundary": true
+      }
+    },
+    "api": {
+      "source_path": "/data/log/CubeAPI/cube-api-2026-10-17.log",
+      "before": {
+        "observed_at": "2026-10-17T10:20:27.735646Z",
+        "device": 64768,
+        "inode": 18916618,
+        "size": 5190377,
+        "mtime_ns": 1792232427276000000,
+        "status": "ok",
+        "anchor_offset": 5186281,
+        "anchor_sha256": "1782b8a41aac8575557f00d73691314f13d9bafe35d72653e9f5591910c4f5b2",
+        "starts_on_line_boundary": true
+      }
+    }
+  }
+}

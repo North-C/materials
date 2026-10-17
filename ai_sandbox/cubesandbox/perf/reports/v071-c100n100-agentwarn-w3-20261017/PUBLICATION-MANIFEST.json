@@ -1,0 +1,63 @@
+{
+  "schema_version": 1,
+  "source_archive_sha256": "b1228b26055a51a0875c85e17ec4104a47e8c72e7af4b30f0af4e0abf88bb46b",
+  "source_payload_files": 398,
+  "redacted_secret_type": "rootfs_artifact_download_token",
+  "distinct_secret_count": 1,
+  "replacement": "REDACTED_ARTIFACT_TOKEN_____________",
+  "total_replacements": 1236,
+  "modified_files": [
+    {
+      "path": "formal/round-01/runs/20261017T101851Z-4973571d/capture/evidence/cubelet_req-delta.log",
+      "replacements": 206,
+      "original_sha256": "c9818821cc50adfd1cc31d67ebe5e6546747e6cb9e45c8687ff8cb35bb96ae6d",
+      "published_sha256": "ec8d0a76c78f5e88ca47d0d8c71f0eefb44910032eda67081d91e6ccd5c5034c",
+      "original_bytes": 438327,
+      "published_bytes": 438327
+    },
+    {
+      "path": "formal/round-02/runs/20261017T101958Z-83e98662/capture/evidence/cubelet_req-delta.log",
+      "replacements": 206,
+      "original_sha256": "e673a7908a04841b3007492873373eed682bb76bafed5ee8585df174c4624152",
+      "published_sha256": "005d411fdbbc60c1a8ae6b7bf7e99782e0702c0ff05c1d9939f7a8a546cb8ce2",
+      "original_bytes": 424540,
+      "published_bytes": 424540
+    },
+    {
+      "path": "formal/round-03/runs/20261017T102027Z-d037c2c4/capture/evidence/cubelet_req-delta.log",
+      "replacements": 206,
+      "original_sha256": "31b6d53c6c446b7ec93537bff03654093545a463013f784def31536334c98a9f",
+      "published_sha256": "f4b928963f3909a3c8a0559060710ca75eb6b0156ff94da92b0b0aafbd5751ee",
+      "original_bytes": 431145,
+      "published_bytes": 431145
+    },
+    {
+      "path": "formal/round-04/runs/20261017T102056Z-492ebfb1/capture/evidence/cubelet_req-delta.log",
+      "replacements": 206,
+      "original_sha256": "bacb6032181c1d8c40e7840bc852d059bce6b6d471aab6ae2a6c0d37026d4f34",
+      "published_sha256": "dd642b7a2beac00b77a968f10a4dade0e071feb5c09d60848d53b06f97bef57a",
+      "original_bytes": 432650,
+      "published_bytes": 432650
+    },
+    {
+      "path": "formal/round-05/runs/20261017T102302Z-7423eb1a/capture/evidence/cubelet_req-delta.log",
+      "replacements": 206,
+      "original_sha256": "3ef688e5d7c6e3c1abcf28d07f749e99d21af906528d0aef0e99d7acb906d86b",
+      "published_sha256": "6d09241c8a3850f6d4a227a31b4dbb4487051e126ad120b996d545af62f9d8c5",
+      "original_bytes": 462773,
+      "published_bytes": 462773
+    },
+    {
+      "path": "pilot/round-01/runs/20261017T101729Z-4ead2b6a/capture/evidence/cubelet_req-delta.log",
+      "replacements": 206,
+      "original_sha256": "9a8199f7ca9d78d5cc8752706f8a1aa0303b18cb8a85744d09780be915096edc",
+      "published_sha256": "64d5c2fea67e92c2e436422b39506afb5b1bff7117d82b83d8d547375e70abd9",
+      "original_bytes": 436877,
+      "published_bytes": 436877
+    }
+  ],
+  "preserved": "All records, timestamps, durations, sandbox IDs, file lengths, benchmark results, and original collection metadata. Only token byte values are changed.",
+  "original_manifest_hashes": "Capture manifests and original derived reports retain source log hashes. Use SHA256SUMS for published bytes and this mapping for the six modified files.",
+  "api_key_scan": "Actual remote API key absent in original archive and nested tool.tar. No configuration with API key is included.",
+  "independent_scan": "Nested tool.tar included; no other real Bearer, cookie, private key or common access token found."
+}

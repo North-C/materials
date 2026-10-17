@@ -1,0 +1,5 @@
+NODE_SCOPE       all
+NODES_SCANNED    1/1
+SANDBOX_COUNT    0
+
+sandbox_id    status    backend    remote    pause_snap    host_id    create_at    pause_at    template_id    namespace    host_ip    labels

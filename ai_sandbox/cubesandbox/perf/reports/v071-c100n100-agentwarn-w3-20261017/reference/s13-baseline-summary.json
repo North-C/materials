@@ -1,0 +1,764 @@
+{
+  "rounds": [
+    {
+      "round": "round-01",
+      "total_ms": 154.36596,
+      "create": {
+        "avg": 130.02562000000003,
+        "count": 100,
+        "max": 153.324,
+        "min": 69.642,
+        "p50": 140.305,
+        "p90": 151.087,
+        "p95": 151.598,
+        "p99": 152.958,
+        "std": 24.708085954009206
+      },
+      "source": "/Users/liuyuqing/orca/workspaces/CubeSandbox/c100n100-perf-tuning-90/artifacts/c100n100-perf-tuning-90/20261016T104049Z/s13-madvrandom/round-01/runs/20261016T140245Z-455e9ebc/capture/startup-latency/benchmark.raw.json",
+      "source_sha256": "f6bcc3acd74eb9a999d92bcba1d018d48f1b439ec5b3b869bdd8ccafdc2c492d"
+    },
+    {
+      "round": "round-02",
+      "total_ms": 151.77846,
+      "create": {
+        "avg": 129.84287999999998,
+        "count": 100,
+        "max": 149.058,
+        "min": 82.115,
+        "p50": 137.036,
+        "p90": 145.78,
+        "p95": 147.084,
+        "p99": 148.975,
+        "std": 17.21291520586924
+      },
+      "source": "/Users/liuyuqing/orca/workspaces/CubeSandbox/c100n100-perf-tuning-90/artifacts/c100n100-perf-tuning-90/20261016T104049Z/s13-madvrandom/round-02/runs/20261016T140313Z-dd8bedea/capture/startup-latency/benchmark.raw.json",
+      "source_sha256": "0719368a24d442aa9ccd6e8d06e1c19152ff1e17b9643a9e3f295c1654addc10"
+    },
+    {
+      "round": "round-03",
+      "total_ms": 153.68424,
+      "create": {
+        "avg": 130.69598,
+        "count": 100,
+        "max": 152.182,
+        "min": 84.337,
+        "p50": 136.788,
+        "p90": 148.776,
+        "p95": 149.905,
+        "p99": 150.188,
+        "std": 18.856579572428114
+      },
+      "source": "/Users/liuyuqing/orca/workspaces/CubeSandbox/c100n100-perf-tuning-90/artifacts/c100n100-perf-tuning-90/20261016T104049Z/s13-madvrandom/round-03/runs/20261016T140340Z-95be3590/capture/startup-latency/benchmark.raw.json",
+      "source_sha256": "ec9d1811a396d21830afeaca2b0dfe7e267149add02ca234114178dbeafd48c4"
+    },
+    {
+      "round": "round-04",
+      "total_ms": 155.98646,
+      "create": {
+        "avg": 129.50457,
+        "count": 100,
+        "max": 153.391,
+        "min": 75.464,
+        "p50": 138.612,
+        "p90": 150.851,
+        "p95": 151.186,
+        "p99": 153.159,
+        "std": 22.205420000965823
+      },
+      "source": "/Users/liuyuqing/orca/workspaces/CubeSandbox/c100n100-perf-tuning-90/artifacts/c100n100-perf-tuning-90/20261016T104049Z/s13-madvrandom/round-04/runs/20261016T140511Z-c88f7b02/capture/startup-latency/benchmark.raw.json",
+      "source_sha256": "0d51ef30557ceeb1022fc18e972dc2639977c3602728a739a82a942566247daa"
+    },
+    {
+      "round": "round-05",
+      "total_ms": 149.01736,
+      "create": {
+        "avg": 126.44246999999996,
+        "count": 100,
+        "max": 148.765,
+        "min": 89.6,
+        "p50": 127.827,
+        "p90": 142.716,
+        "p95": 144.633,
+        "p99": 147.222,
+        "std": 14.43260943629062
+      },
+      "source": "/Users/liuyuqing/orca/workspaces/CubeSandbox/c100n100-perf-tuning-90/artifacts/c100n100-perf-tuning-90/20261016T104049Z/s13-madvrandom/round-05/runs/20261016T140539Z-463f1561/capture/startup-latency/benchmark.raw.json",
+      "source_sha256": "83747b2bd79c77f8115def881448924eb40af069fa1fdc808350c93248557dc4"
+    }
+  ],
+  "stages": {
+    "Cubelet/cgroup": [
+      {
+        "avg_ms": 7.186285714285715,
+        "observed": "7"
+      },
+      {
+        "avg_ms": 6.988875000000001,
+        "observed": "24"
+      },
+      {
+        "avg_ms": 7.378129032258064,
+        "observed": "31"
+      },
+      {
+        "avg_ms": 9.133472222222226,
+        "observed": "36"
+      },
+      {
+        "avg_ms": 7.2523333333333335,
+        "observed": "18"
+      }
+    ],
+    "Cubelet/create-sandbox-metadata": [
+      {
+        "avg_ms": 13.04585294117647,
+        "observed": "68"
+      },
+      {
+        "avg_ms": 8.181533333333334,
+        "observed": "30"
+      },
+      {
+        "avg_ms": 9.17927659574468,
+        "observed": "47"
+      },
+      {
+        "avg_ms": 8.042862068965515,
+        "observed": "29"
+      },
+      {
+        "avg_ms": 6.2190666666666665,
+        "observed": "15"
+      }
+    ],
+    "Cubelet/cube-sandbox-store": [
+      {
+        "avg_ms": 9.265600000000001,
+        "observed": "30"
+      },
+      {
+        "avg_ms": 7.736320000000001,
+        "observed": "25"
+      },
+      {
+        "avg_ms": 11.017264705882353,
+        "observed": "34"
+      },
+      {
+        "avg_ms": 8.0065,
+        "observed": "8"
+      }
+    ],
+    "Cubelet/cubebox": [
+      {
+        "avg_ms": 96.34374757281557,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 97.540572815534,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 95.22714563106796,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 89.96993203883495,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 94.6413300970874,
+        "observed": "103"
+      }
+    ],
+    "Cubelet/cubebox-service": [
+      {
+        "avg_ms": 106.16510679611655,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 108.54624271844662,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 107.63001941747575,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 105.4663786407767,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 104.52277669902914,
+        "observed": "103"
+      }
+    ],
+    "Cubelet/cubebox-service-inner": [
+      {
+        "avg_ms": 84.74799029126217,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 82.85483495145628,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 84.75648543689321,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 82.91098058252426,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 79.02583495145633,
+        "observed": "103"
+      }
+    ],
+    "Cubelet/gen-spec-sandbox": [
+      {
+        "avg_ms": 5.606999999999999,
+        "observed": "2"
+      }
+    ],
+    "Cubelet/sandbox-create": [
+      {
+        "avg_ms": 63.384582524271856,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 65.31277669902911,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 64.44342718446599,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 61.419912621359224,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 63.50098058252427,
+        "observed": "103"
+      }
+    ],
+    "Cubelet/sandbox-probe": [
+      {
+        "avg_ms": 21.36323300970873,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 25.644796116504853,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 22.820640776699033,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 22.502999999999997,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 25.438601941747578,
+        "observed": "103"
+      }
+    ],
+    "Cubelet/sandbox-start": [
+      {
+        "avg_ms": 64.73921359223303,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 66.78978640776701,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 65.84677669902912,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 62.62344660194176,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 65.13063106796118,
+        "observed": "103"
+      }
+    ],
+    "Cubelet/storage": [
+      {
+        "avg_ms": 10.21287234042553,
+        "observed": "47"
+      },
+      {
+        "avg_ms": 10.758749999999997,
+        "observed": "48"
+      },
+      {
+        "avg_ms": 9.90158823529412,
+        "observed": "51"
+      },
+      {
+        "avg_ms": 11.816350877192983,
+        "observed": "57"
+      },
+      {
+        "avg_ms": 10.328957446808511,
+        "observed": "47"
+      }
+    ],
+    "Cubelet/workflow": [
+      {
+        "avg_ms": 6.664999999999999,
+        "observed": "3"
+      },
+      {
+        "avg_ms": 7.305793103448275,
+        "observed": "9"
+      },
+      {
+        "avg_ms": 9.219837837837835,
+        "observed": "9"
+      }
+    ],
+    "CubeShim/CreateContainer": [
+      {
+        "avg_ms": 9.300970873786408,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 11.54368932038835,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 9.932038834951456,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 9.776699029126213,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 10.951456310679612,
+        "observed": "103"
+      }
+    ],
+    "CubeShim/CreatePodSandbox": [
+      {
+        "avg_ms": 51.23300970873787,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 56.25242718446602,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 53.679611650485434,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 51.49514563106796,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 53.56310679611651,
+        "observed": "103"
+      }
+    ],
+    "CubeShim/CreateSandbox": [
+      {
+        "avg_ms": 2.5533980582524274,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 2.854368932038835,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 2.9514563106796117,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 2.2524271844660193,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 3.1844660194174756,
+        "observed": "103"
+      }
+    ],
+    "CubeShim/LaunchVmm": [
+      {
+        "avg_ms": 1.4077669902912622,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 1.3980582524271845,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 1.233009708737864,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 1.2912621359223302,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 1.3883495145631068,
+        "observed": "103"
+      }
+    ],
+    "CubeShim/ResetVm": [
+      {
+        "avg_ms": 14.815533980582524,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 17.42718446601942,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 16.300970873786408,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 15.009708737864077,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 15.776699029126213,
+        "observed": "103"
+      }
+    ],
+    "CubeShim/RestoreVm": [
+      {
+        "avg_ms": 11.757281553398059,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 10.03883495145631,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 11.62135922330097,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 10.427184466019417,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 10.611650485436893,
+        "observed": "103"
+      }
+    ],
+    "CubeMaster/cube-e2e": [
+      {
+        "avg_ms": 113.70873786407768,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 114.3495145631068,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 114.0873786407767,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 112.60194174757281,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 109.97087378640776,
+        "observed": "103"
+      }
+    ],
+    "CubeMaster/sandbox-probe": [
+      {
+        "avg_ms": 20.83495145631068,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 25.16504854368932,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 22.300970873786408,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 22.0,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 24.97087378640777,
+        "observed": "103"
+      }
+    ],
+    "CubeMaster/all-probe": [
+      {
+        "avg_ms": 20.83495145631068,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 25.16504854368932,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 22.300970873786408,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 22.0,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 24.97087378640777,
+        "observed": "103"
+      }
+    ],
+    "Cubelet paired residual/service_outside_cubebox": [
+      {
+        "avg_ms": 9.82135922330097,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 11.005669902912615,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 12.402873786407769,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 15.496446601941747,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 9.881446601941748,
+        "observed": "103"
+      }
+    ],
+    "Cubelet paired residual/sandbox_after_newtask": [
+      {
+        "avg_ms": 1.3546310679611646,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 1.4770097087378635,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 1.4033495145631072,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 1.203533980582524,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 1.6296504854368927,
+        "observed": "103"
+      }
+    ],
+    "Cubelet paired residual/cubebox_outside_task_and_probe": [
+      {
+        "avg_ms": 10.24130097087379,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 5.105990291262136,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 6.559728155339804,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 4.843485436893204,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 4.072097087378643,
+        "observed": "103"
+      }
+    ],
+    "CreateContainer detail/shim_create_container": [
+      {
+        "avg_ms": 9.300970873786408,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 11.54368932038835,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 9.932038834951456,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 9.776699029126213,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 10.951456310679612,
+        "observed": "103"
+      }
+    ],
+    "CreateContainer detail/create_request_total": [
+      {
+        "avg_ms": 51.79793452290655,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 56.7807854217233,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 54.198884538076456,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 51.96581557190534,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 54.14675695919296,
+        "observed": "103"
+      }
+    ],
+    "CreateContainer detail/vm_start_to_agent_ready": [
+      {
+        "avg_ms": 23.277450413379853,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 23.044272413531555,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 23.157771730885923,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 22.952326209799757,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 22.297287431735437,
+        "observed": "103"
+      }
+    ],
+    "CreateContainer detail/load_spec_cumulative": [
+      {
+        "avg_ms": 0.0,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 0.0,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 0.0,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 0.0,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 0.0,
+        "observed": "103"
+      }
+    ],
+    "CreateContainer detail/sandbox_finish_cumulative": [
+      {
+        "avg_ms": 41.407766990291265,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 44.15533980582524,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 43.19417475728155,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 41.116504854368934,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 42.116504854368934,
+        "observed": "103"
+      }
+    ],
+    "CreateContainer detail/container_finish_cumulative": [
+      {
+        "avg_ms": 51.23300970873787,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 56.24271844660194,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 53.679611650485434,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 51.46601941747573,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 53.56310679611651,
+        "observed": "103"
+      }
+    ],
+    "CreateContainer detail/sandbox_to_container_finish": [
+      {
+        "avg_ms": 9.825242718446601,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 12.087378640776699,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 10.485436893203884,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 10.349514563106796,
+        "observed": "103"
+      },
+      {
+        "avg_ms": 11.446601941747574,
+        "observed": "103"
+      }
+    ],
+    "Cubelet/network": [
+      {
+        "avg_ms": 7.712,
+        "observed": "1"
+      },
+      {
+        "avg_ms": 10.042,
+        "observed": "1"
+      },
+      {
+        "avg_ms": 15.69636842105263,
+        "observed": "19"
+      }
+    ]
+  },
+  "kernel": "6.6.0-9999.sp3.vnmi.xarray.d383a36d",
+  "rcu_expedited": 1,
+  "snap_madv_random": true,
+  "thp_defrag": "never",
+  "phase": "unknown_phase_103_including_3_warmup"
+}

@@ -1,0 +1,1 @@
+Linux master 6.6.0-with-softdirty+ #25 SMP Sat Oct 17 11:34:55 CST 2026 aarch64 aarch64 aarch64 GNU/Linux

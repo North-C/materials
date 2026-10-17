@@ -1,0 +1,10 @@
+{
+  "status": "complete",
+  "errors": [],
+  "exit_code": 0,
+  "started_at": "2026-10-17T10:20:27.617733+00:00",
+  "ended_at": "2026-10-17T10:20:33.972345+00:00",
+  "capture_processes_stopped": true,
+  "ownership_verified_by_cli_sets": true,
+  "cleanup_status": "complete"
+}

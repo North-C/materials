@@ -1,0 +1,93 @@
+Preparing cube-bench: c100 n100 w3, mode=create-only
+Collecting cubemastercli baseline before starting cube-bench
+Starting cube-bench: c100 n100 w3, mode=create-only, -no-tui
+cube-bench JSON output: /root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-03/runs/20261017T102027Z-d037c2c4/capture/startup-latency/benchmark.raw.json
+                                                                                 
+   ██████╗██╗   ██╗██████╗ ███████╗    ██████╗ ███████╗███╗   ██╗ ██████╗██╗  ██╗
+  ██╔════╝██║   ██║██╔══██╗██╔════╝    ██╔══██╗██╔════╝████╗  ██║██╔════╝██║  ██║
+  ██║     ██║   ██║██████╔╝█████╗      ██████╔╝█████╗  ██╔██╗ ██║██║     ███████║
+  ██║     ██║   ██║██╔══██╗██╔══╝      ██╔══██╗██╔══╝  ██║╚██╗██║██║     ██╔══██║
+  ╚██████╗╚██████╔╝██████╔╝███████╗    ██████╔╝███████╗██║ ╚████║╚██████╗██║  ██║
+   ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝    ╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│     Configuration                                                            │
+│                                                                              │
+│     Template         tpl-381852bfe518c30bb815e163                            │
+│     API URL          http://127.0.0.1:3000                                   │
+│     Concurrency      100                                                     │
+│     Total Requests   100                                                     │
+│     Warmup Rounds    3                                                       │
+│     Mode             create-only                                             │
+│     Network Policy   none                                                    │
+│     Host             master                                                  │
+│     Go               go1.25.0                                                │
+│     Time             2026-10-17 10:20:27 UTC                                 │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    warmup [1/3] ok
+    warmup [2/3] ok
+    warmup [3/3] ok
+
+  Progress: 100% 100/100 (errors: 0)
+
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│     Summary                                                                  │
+│                                                                              │
+│     Total Time       0.16s                                                   │
+│     Success Rate     100.0%  (100/100)                                       │
+│     Throughput       632.79 sandboxes/sec                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│    CREATE Latency                                                            │
+│                                                                              │
+│          min      avg      std      P50      P90      P95      P99      max  │
+│    ────────────────────────────────────────────────────────────────────────  │
+│         72.7    122.7     29.1    133.6    152.4    154.7    155.0    157.3  │
+│                                                                              │
+│    Distribution:                                                             │
+│         73 -      80 ms  ████████████████▊                      11 (11.0%)   │
+│         80 -      87 ms  ███████████████▎                       10 (10.0%)   │
+│         87 -      94 ms  █▋                                      1 ( 1.0%)   │
+│         94 -     101 ms  ██████████████████▍                    12 (12.0%)   │
+│        101 -     108 ms  ███████▋                                5 ( 5.0%)   │
+│        108 -     115 ms                                          0 ( 0.0%)   │
+│        115 -     122 ms                                          0 ( 0.0%)   │
+│        122 -     129 ms  ██████▏                                 4 ( 4.0%)   │
+│        129 -     136 ms  ████████████████▊                      11 (11.0%)   │
+│        136 -     143 ms  ███████████████▎                       10 (10.0%)   │
+│        143 -     150 ms  ███████████████████▉                   13 (13.0%)   │
+│        150 -     157 ms  ███████████████████████████████████    23 (23.0%)   │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│     Latency Timeline                                                         │
+│     each char = avg of a time bucket, left=first right=last                  │
+│                                                                              │
+│     CREATE     ▁▁▁▁▁▁▁▁▁▂▂▂▃▃▃▃▃▃▃▄▅▅▆▆▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇█  73 ..     │
+│   157 ms                                                                     │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│             Performance Grade:   A    (P99=155ms, success=100.0%)            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-03/runs/20261017T102027Z-d037c2c4/capture/startup-latency/benchmark.raw.json
+cube-bench finished: exit_code=0
+Collecting cubemastercli final inventory
+Benchmark completed with limited observation: warmup_raw_absent: warmup outcomes and instance IDs are unavailable; cubemastercli_instance_ids_collected: 103 run IDs available under declared template exclusivity; inventory-only IDs remain unknown_phase (warmup + formal), without raw seq mapping; client_sample_id_mapping_unavailable: CLI inventory does not map client seq to server IDs

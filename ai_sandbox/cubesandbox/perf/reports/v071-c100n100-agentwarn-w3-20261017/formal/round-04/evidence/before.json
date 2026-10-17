@@ -1,0 +1,25 @@
+{
+  "time": "2026-10-17T10:20:56.156196+00:00",
+  "settings": {
+    "/proc/loadavg": "1.46 2.29 1.78 1/16682 999254",
+    "/proc/meminfo": "AnonHugePages:   8820736 kB\nShmemHugePages:        0 kB\nFileHugePages:  344487936 kB\nHugePages_Total:       0\nHugePages_Free:        0\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:               0 kB",
+    "/proc/mounts": "",
+    "/sys/kernel/mm/transparent_hugepage/enabled": "always madvise [never]",
+    "/sys/kernel/mm/transparent_hugepage/defrag": "always defer defer+madvise [madvise] never",
+    "/proc/sys/kernel/numa_balancing": "0"
+  },
+  "services": {
+    "cube-sandbox-cubelet.service": {
+      "pid": "25125",
+      "sha256": "6814fadeec55e27227686367ab3ed957411ca926caabc63dd12121cbeb190dac"
+    },
+    "cube-sandbox-cubemaster.service": {
+      "pid": "35295",
+      "sha256": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9"
+    },
+    "cube-sandbox-cube-api.service": {
+      "pid": "36249",
+      "sha256": "6a84128504f7e1575d5d86e4f6da9953c794356b2875acae968344d94421d34a"
+    }
+  }
+}

@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "status": "captured",
+  "concurrency": 100,
+  "requests": 100,
+  "warmup": 3,
+  "workload_verification": "declared_contract_not_actual_command_or_results_verification",
+  "ownership_mode": "explicit-owned-ids",
+  "template_id": "tpl-381852bfe518c30bb815e163",
+  "started_at": "2026-10-17T10:17:29.695875Z",
+  "ended_at": "2026-10-17T10:17:31.578252Z",
+  "logs": {
+    "cubelet_req": {
+      "source_path": "/data/log/Cubelet/Cubelet-req.log",
+      "before": {
+        "observed_at": "2026-10-17T10:17:29.695890Z",
+        "device": 64768,
+        "inode": 18916615,
+        "size": 241189993,
+        "mtime_ns": 1792232098784000000,
+        "status": "ok",
+        "anchor_offset": 241185897,
+        "anchor_sha256": "fd8da3082fc0dbd1d569986107269cad421751908d91a858703f8f8b1d8f5b93",
+        "starts_on_line_boundary": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18916615,
+        "size": 241626870,
+        "mtime_ns": 1792232250200000000,
+        "observed_at": "2026-10-17T10:17:31.572588Z"
+      },
+      "delta_path": "evidence/cubelet_req-delta.log",
+      "captured_bytes": 436877,
+      "gaps": [],
+      "available_bytes": 436877,
+      "omitted_bytes": 0,
+      "read_start": 241189993,
+      "read_end": 241626870,
+      "starts_on_line_boundary": true,
+      "sha256": "9a8199f7ca9d78d5cc8752706f8a1aa0303b18cb8a85744d09780be915096edc",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "cubelet_stat": {
+      "source_path": "/data/log/Cubelet/Cubelet-stat.log",
+      "before": {
+        "observed_at": "2026-10-17T10:17:29.695935Z",
+        "device": 64768,
+        "inode": 18916617,
+        "size": 163243658,
+        "mtime_ns": 1792232247360000000,
+        "status": "ok",
+        "anchor_offset": 163239562,
+        "anchor_sha256": "f8b2ead6a97ade1131a9418d31fd51e323225c96a94f548c96735fc4e6cc5dbf",
+        "starts_on_line_boundary": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18916617,
+        "size": 163584247,
+        "mtime_ns": 1792232250272000000,
+        "observed_at": "2026-10-17T10:17:31.573228Z"
+      },
+      "delta_path": "evidence/cubelet_stat-delta.log",
+      "captured_bytes": 340589,
+      "gaps": [],
+      "available_bytes": 340589,
+      "omitted_bytes": 0,
+      "read_start": 163243658,
+      "read_end": 163584247,
+      "starts_on_line_boundary": true,
+      "sha256": "7bcd9091f924135aa4d6e5cf37326570eb34f40247eccf076f5ecdb6cbc204de",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "shim_req": {
+      "source_path": "/data/log/CubeShim/cube-shim-req.log",
+      "before": {
+        "observed_at": "2026-10-17T10:17:29.695964Z",
+        "device": 64768,
+        "inode": 18874392,
+        "size": 7432423283,
+        "mtime_ns": 1792231359572000000,
+        "status": "ok",
+        "anchor_offset": 7432419187,
+        "anchor_sha256": "5d8d26385f1aca07251b25f186c25dbfa90651888f7cf78b44b1b2d64e1b134d",
+        "starts_on_line_boundary": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18874392,
+        "size": 7432980129,
+        "mtime_ns": 1792232250272000000,
+        "observed_at": "2026-10-17T10:17:31.573645Z"
+      },
+      "delta_path": "evidence/shim_req-delta.log",
+      "captured_bytes": 556846,
+      "gaps": [],
+      "available_bytes": 556846,
+      "omitted_bytes": 0,
+      "read_start": 7432423283,
+      "read_end": 7432980129,
+      "starts_on_line_boundary": true,
+      "sha256": "53b068b5bba908190d5b38e06a30d5e8f0ff77d17665107b6fcba7d5b44b382d",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "shim_stat": {
+      "source_path": "/data/log/CubeShim/cube-shim-stat.log",
+      "before": {
+        "observed_at": "2026-10-17T10:17:29.695988Z",
+        "device": 64768,
+        "inode": 18874393,
+        "size": 942372043,
+        "mtime_ns": 1792231359460000000,
+        "status": "ok",
+        "anchor_offset": 942367947,
+        "anchor_sha256": "322cdc72defbe50285cb3c7f55a75e694f8a9b3a810ee4be8b14a619a0e98705",
+        "starts_on_line_boundary": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18874393,
+        "size": 942520759,
+        "mtime_ns": 1792232250256000000,
+        "observed_at": "2026-10-17T10:17:31.574218Z"
+      },
+      "delta_path": "evidence/shim_stat-delta.log",
+      "captured_bytes": 148716,
+      "gaps": [],
+      "available_bytes": 148716,
+      "omitted_bytes": 0,
+      "read_start": 942372043,
+      "read_end": 942520759,
+      "starts_on_line_boundary": true,
+      "sha256": "40ec436849f363d89e71549cf14ca3870bcb32c17954b35f89c591adb8343e53",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "master": {
+      "source_path": "/data/log/CubeMaster/cubemaster-req.log",
+      "before": {
+        "observed_at": "2026-10-17T10:17:29.696009Z",
+        "device": 64768,
+        "inode": 18874716,
+        "size": 83724302,
+        "mtime_ns": 1792232249376000000,
+        "status": "ok",
+        "anchor_offset": 83720206,
+        "anchor_sha256": "75138a814f670247628cc68bd2e5dd81d7da4703dcf70a8acd2ff0b73da43429",
+        "starts_on_line_boundary": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18874716,
+        "size": 84426468,
+        "mtime_ns": 1792232251116000000,
+        "observed_at": "2026-10-17T10:17:31.574435Z"
+      },
+      "delta_path": "evidence/master-delta.log",
+      "captured_bytes": 702166,
+      "gaps": [],
+      "available_bytes": 702166,
+      "omitted_bytes": 0,
+      "read_start": 83724302,
+      "read_end": 84426468,
+      "starts_on_line_boundary": true,
+      "sha256": "ae488b57a375c14c88e6f0979a3561f140588415ce86b640b9a4a5228f8c7fed",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "master_stat": {
+      "source_path": "/data/log/CubeMaster/cubemaster-stat.log",
+      "before": {
+        "observed_at": "2026-10-17T10:17:29.696030Z",
+        "status": "unavailable",
+        "error_type": "FileNotFoundError",
+        "errno": 2
+      },
+      "after": {
+        "observed_at": "2026-10-17T10:17:31.575044Z",
+        "status": "unavailable",
+        "error_type": "FileNotFoundError",
+        "errno": 2
+      },
+      "delta_path": null,
+      "captured_bytes": 0,
+      "gaps": [
+        "no_readable_start_offset"
+      ],
+      "status": "unavailable"
+    },
+    "vmm": {
+      "source_path": "/data/log/CubeVmm/vmm.log",
+      "before": {
+        "observed_at": "2026-10-17T10:17:29.696045Z",
+        "device": 64768,
+        "inode": 18874394,
+        "size": 14376152789,
+        "mtime_ns": 1792231359572000000,
+        "status": "ok",
+        "anchor_offset": 14376148693,
+        "anchor_sha256": "d5e214d4fe9574544c825d035a87117193c02c88f2d20e07ebab4a09347ae854",
+        "starts_on_line_boundary": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18874394,
+        "size": 14378457458,
+        "mtime_ns": 1792232250256000000,
+        "observed_at": "2026-10-17T10:17:31.575089Z"
+      },
+      "delta_path": "evidence/vmm-delta.log",
+      "captured_bytes": 2304669,
+      "gaps": [],
+      "available_bytes": 2304669,
+      "omitted_bytes": 0,
+      "read_start": 14376152789,
+      "read_end": 14378457458,
+      "starts_on_line_boundary": true,
+      "sha256": "6081f2bca6002eb34ff8a74db04affa7eda2efdbf4a2a557953d0f4ca2c3d4e7",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "api": {
+      "source_path": "/data/log/CubeAPI/cube-api-2026-10-17.log",
+      "before": {
+        "observed_at": "2026-10-17T10:17:29.696069Z",
+        "device": 64768,
+        "inode": 18916618,
+        "size": 5087794,
+        "mtime_ns": 1792232249380000000,
+        "status": "ok",
+        "anchor_offset": 5083698,
+        "anchor_sha256": "33b819ff05505ede7532721ecc5c7a6b977117bcbb9f05035d7b7e8492b87eee",
+        "starts_on_line_boundary": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18916618,
+        "size": 5106434,
+        "mtime_ns": 1792232250272000000,
+        "observed_at": "2026-10-17T10:17:31.577185Z"
+      },
+      "delta_path": "evidence/api-delta.log",
+      "captured_bytes": 18640,
+      "gaps": [],
+      "available_bytes": 18640,
+      "omitted_bytes": 0,
+      "read_start": 5087794,
+      "read_end": 5106434,
+      "starts_on_line_boundary": true,
+      "sha256": "76f7acc408bcd9a74a5f0fa5349ae150e36f910aed69367d0f4d44727c92dd35",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    }
+  },
+  "metrics": {
+    "before": {
+      "url": "http://127.0.0.1:9998/v1/metrics",
+      "observed_at": "2026-10-17T10:17:29.696285Z",
+      "captured_bytes": 346650,
+      "gaps": [],
+      "http_status": 200,
+      "path": "evidence/metrics-before.prom",
+      "status": "captured"
+    },
+    "after": {
+      "url": "http://127.0.0.1:9998/v1/metrics",
+      "observed_at": "2026-10-17T10:17:31.550896Z",
+      "captured_bytes": 961090,
+      "gaps": [],
+      "http_status": 200,
+      "path": "evidence/metrics-after.prom",
+      "status": "captured"
+    }
+  },
+  "gaps": [
+    "ownership_phase_unknown",
+    "owned_counts_differ_from_declared_workload",
+    "master_stat:no_readable_start_offset"
+  ],
+  "log_schema_version": "v0.7.1",
+  "service_identity_verified": false,
+  "benchmark_binary": {
+    "path": "/root/profiler90-agentwarn-w3-20261017T101659Z/bin/cube-bench",
+    "expected_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+    "sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+    "verified": true,
+    "actual_invocation_verified": false
+  },
+  "command": {
+    "executed": true,
+    "started_at": "2026-10-17T10:17:29.704180Z",
+    "exit_code": 0,
+    "console": {
+      "path": "evidence/command.log",
+      "cap_bytes": 4194304,
+      "captured_bytes": 10147,
+      "omitted_bytes": 0,
+      "gaps": []
+    },
+    "ended_at": "2026-10-17T10:17:30.550757Z"
+  },
+  "host_sampling": {
+    "status": "disabled"
+  },
+  "limits": {
+    "per_log_bytes": 67108864,
+    "metrics_bytes": 2097152,
+    "metrics_timeout_seconds": 3
+  },
+  "limitations": [
+    "Capture success is not benchmark success or a verified service version.",
+    "The external command must implement safe explicit-ID ownership and cleanup.",
+    "No argv or environment values are persisted; private command.log contains capped child output and may be sensitive.",
+    "Only fixed-path log increments are read; rotation/truncation/caps are evidence gaps.",
+    "Cubelet v0.7.1 suppresses successful trace stages shorter than 5 ms.",
+    "Nested stages must not be added; missing stages are not zero."
+  ],
+  "ownership": {
+    "source_path": "/root/profiler90-agentwarn-w3-20261017T101659Z/pilot/round-01/runs/20261017T101729Z-4ead2b6a/capture/ownership-input.json",
+    "gaps": [
+      "ownership_phase_unknown",
+      "owned_counts_differ_from_declared_workload"
+    ],
+    "status": "loaded",
+    "sha256": "baa450cbf441adead45eeeb24b5e48d85fee0dcc19649c1598a90616c7dc6a0b",
+    "counts": {
+      "formal": 0,
+      "warmup": 0,
+      "unknown_phase": 103
+    }
+  }
+}

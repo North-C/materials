@@ -1,0 +1,15 @@
+{
+  "pid": 993874,
+  "process_group": 993874,
+  "started_at": "2026-10-17T10:20:27.619071+00:00",
+  "stopped": true,
+  "linux_start_ticks": "1063580",
+  "boot_id": "b0f9d3e8-597d-4a60-9b4c-c0ded801b28f",
+  "termination": {
+    "stopped": true,
+    "tracked": [],
+    "remaining": [],
+    "errors": []
+  },
+  "ended_at": "2026-10-17T10:20:31.127738+00:00"
+}

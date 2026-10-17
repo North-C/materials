@@ -1,0 +1,44 @@
+stage,median_of_round_means_ms,rounds_with_observation,min_observed_per_round,max_observed_per_round,baseline_median_of_round_means_ms,phase,includes_in_process_warmup
+Cubelet/cgroup,5.683999999999999,5,2,9,7.2523333333333335,unknown_phase,True
+Cubelet/create-sandbox-metadata,5.633999999999999,5,1,31,8.181533333333334,unknown_phase,True
+Cubelet/cube-sandbox-store,6.570625,2,1,8,8.636050000000001,unknown_phase,True
+Cubelet/cubebox,72.95998058252424,5,103,103,95.22714563106796,unknown_phase,True
+Cubelet/cubebox-service,82.03894174757278,5,103,103,106.16510679611655,unknown_phase,True
+Cubelet/cubebox-service-inner,63.96532038834951,5,103,103,82.91098058252426,unknown_phase,True
+Cubelet/network,,0,0,0,10.042,unknown_phase,True
+Cubelet/sandbox-create,50.01975728155342,5,103,103,63.50098058252427,unknown_phase,True
+Cubelet/sandbox-probe,18.694553398058257,5,103,103,22.820640776699033,unknown_phase,True
+Cubelet/sandbox-start,51.0136796116505,5,103,103,65.13063106796118,unknown_phase,True
+Cubelet/storage,7.476900000000003,5,31,56,10.328957446808511,unknown_phase,True
+CubeShim/CreateContainer,7.223300970873787,5,103,103,9.932038834951456,unknown_phase,True
+CubeShim/CreatePodSandbox,40.786407766990294,5,103,103,53.56310679611651,unknown_phase,True
+CubeShim/CreateSandbox,1.6213592233009708,5,103,103,2.854368932038835,unknown_phase,True
+CubeShim/LaunchVmm,1.2427184466019416,5,103,103,1.3883495145631068,unknown_phase,True
+CubeShim/ResetVm,11.300970873786408,5,103,103,15.776699029126213,unknown_phase,True
+CubeShim/RestoreVm,8.359223300970873,5,103,103,10.611650485436893,unknown_phase,True
+CubeMaster/cube-e2e,87.7378640776699,5,103,103,113.70873786407768,unknown_phase,True
+CubeMaster/sandbox-probe,18.184466019417474,5,103,103,22.300970873786408,unknown_phase,True
+CubeMaster/all-probe,18.184466019417474,5,103,103,22.300970873786408,unknown_phase,True
+CubeMaster trace/bufferhandle,,0,0,0,,unknown_phase,True
+CubeMaster trace/cube-e2e,,0,0,0,,unknown_phase,True
+CubeMaster trace/cubemaster-inner,,0,0,0,,unknown_phase,True
+CubeMaster trace/cubemaster-inner-handle,,0,0,0,,unknown_phase,True
+CubeMaster trace/cubemaster-post-redis,,0,0,0,,unknown_phase,True
+CubeMaster trace/cubemaster-post-spec,,0,0,0,,unknown_phase,True
+Cubelet paired residual/service_outside_cubebox,8.199582524271847,5,103,103,11.005669902912615,unknown_phase,True
+Cubelet paired residual/sandbox_after_newtask,0.9893883495145631,5,103,103,1.4033495145631072,unknown_phase,True
+Cubelet paired residual/cubebox_outside_task_and_probe,3.5710776699029148,5,103,103,5.105990291262136,unknown_phase,True
+CreateContainer detail/shim_create_container,7.223300970873787,5,103,103,9.932038834951456,unknown_phase,True
+CreateContainer detail/create_request_total,41.287424624544904,5,103,103,54.14675695919296,unknown_phase,True
+CreateContainer detail/vm_start_to_agent_ready,18.507622876213592,5,103,103,23.044272413531555,unknown_phase,True
+CreateContainer detail/load_spec_cumulative,0.0,5,103,103,0.0,unknown_phase,True
+CreateContainer detail/sandbox_finish_cumulative,33.067961165048544,5,103,103,42.116504854368934,unknown_phase,True
+CreateContainer detail/container_finish_cumulative,40.786407766990294,5,103,103,53.56310679611651,unknown_phase,True
+CreateContainer detail/sandbox_to_container_finish,7.718446601941747,5,103,103,10.485436893203884,unknown_phase,True
+CreateContainer detail/guest_receive_to_restore_branch,,0,0,0,,unknown_phase,True
+CreateContainer detail/normal_add_devices,,0,0,0,,unknown_phase,True
+CreateContainer detail/normal_add_storage,,0,0,0,,unknown_phase,True
+CreateContainer detail/normal_setup_bundle,,0,0,0,,unknown_phase,True
+CreateContainer detail/normal_init_container,,0,0,0,,unknown_phase,True
+CreateContainer detail/normal_start_container,,0,0,0,,unknown_phase,True
+CreateContainer detail/restore_path_unresolved,,0,0,0,,unknown_phase,True

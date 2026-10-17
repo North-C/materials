@@ -1,0 +1,16 @@
+{
+  "reference_workspace": "/Users/liuyuqing/orca/workspaces/CubeSandbox/c100n100-perf-tuning-90",
+  "scripts_sha256": {
+    "run_round_w3.py": "52e16580a956bb350e823bc44c5a4310bde7b7d756f465a2ff772eecc7ba9c8a",
+    "state_snapshot.py": "a1935f639e0be9d9eeb5b062fe3e977d3dff9d6ef39be0eed4b6d0a6bcad4bcc",
+    "run_series.py": "fc9564b80b093ecc6505e3629169be5730296d3841f331aa0242c21254b7e117",
+    "capture_w3.py": "b92f927f4f7cabbf185302b0052cb506911a413e1753eae9d874741be8ff3432"
+  },
+  "benchmark_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+  "template_id": "tpl-381852bfe518c30bb815e163",
+  "rounds": 5,
+  "warmup_mode": "same_process_w3",
+  "profiler_code_commit": "912b1ba2e65b6a261201cff1c4bb2de8e88f5ac5",
+  "scripts_modified": false,
+  "pilot_rounds_excluded": 1
+}

@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "original_files_retained": 398,
+  "unchanged_original_files": 392,
+  "redacted_files": 6,
+  "token_value_replacements": 1236,
+  "replacement_preserves_file_length": true,
+  "all_original_log_records_retained": true,
+  "benchmark_and_performance_files_byte_identical": true,
+  "all_published_json_parse": true,
+  "real_artifact_token_remaining": false,
+  "known_actual_api_key_scan": "0 matches in original 448 archive members including nested tool.tar; redaction adds no credentials",
+  "checked_existing_markdown_links": 79,
+  "missing_links": [],
+  "original_capture_hashes_preserved_as_source_metadata": true,
+  "source_archive_sha256": "b1228b26055a51a0875c85e17ec4104a47e8c72e7af4b30f0af4e0abf88bb46b"
+}

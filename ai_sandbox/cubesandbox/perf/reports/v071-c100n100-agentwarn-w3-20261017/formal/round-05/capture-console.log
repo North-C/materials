@@ -1,0 +1,122 @@
+提示：master_stat 日志不可读，将保留缺失状态。
+本地检查通过；可读日志：cubelet_req, cubelet_stat, shim_req, shim_stat, master, vmm
+本轮输出：/root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-05/runs/20261017T102302Z-7423eb1a
+使用已有 cube-bench；无需 Go，不重新编译。
+通过 cubemastercli 保存测试前后实例清单；不修改 cube-bench，不自动删除实例。
+cube-bench：/root/profiler90-agentwarn-w3-20261017T101659Z/bin/cube-bench
+实时输出同时保存到：/root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-05/runs/20261017T102302Z-7423eb1a/capture/evidence/command.log
+开始正式采集：100 并发上限 / 100 次正式创建 / cube-bench -w 0；预热和正式实例均保留。
+Preparing cube-bench: c100 n100 w3, mode=create-only
+Collecting cubemastercli baseline before starting cube-bench
+Starting cube-bench: c100 n100 w3, mode=create-only, -no-tui
+cube-bench JSON output: /root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-05/runs/20261017T102302Z-7423eb1a/capture/startup-latency/benchmark.raw.json
+                                                                                 
+   ██████╗██╗   ██╗██████╗ ███████╗    ██████╗ ███████╗███╗   ██╗ ██████╗██╗  ██╗
+  ██╔════╝██║   ██║██╔══██╗██╔════╝    ██╔══██╗██╔════╝████╗  ██║██╔════╝██║  ██║
+  ██║     ██║   ██║██████╔╝█████╗      ██████╔╝█████╗  ██╔██╗ ██║██║     ███████║
+  ██║     ██║   ██║██╔══██╗██╔══╝      ██╔══██╗██╔══╝  ██║╚██╗██║██║     ██╔══██║
+  ╚██████╗╚██████╔╝██████╔╝███████╗    ██████╔╝███████╗██║ ╚████║╚██████╗██║  ██║
+   ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝    ╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│     Configuration                                                            │
+│                                                                              │
+│     Template         tpl-381852bfe518c30bb815e163                            │
+│     API URL          http://127.0.0.1:3000                                   │
+│     Concurrency      100                                                     │
+│     Total Requests   100                                                     │
+│     Warmup Rounds    3                                                       │
+│     Mode             create-only                                             │
+│     Network Policy   none                                                    │
+│     Host             master                                                  │
+│     Go               go1.25.0                                                │
+│     Time             2026-10-17 10:23:02 UTC                                 │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    warmup [1/3] ok
+    warmup [2/3] ok
+    warmup [3/3] ok
+
+  Progress: 100% 100/100 (errors: 0)
+
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│     Summary                                                                  │
+│                                                                              │
+│     Total Time       0.17s                                                   │
+│     Success Rate     100.0%  (100/100)                                       │
+│     Throughput       602.97 sandboxes/sec                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│    CREATE Latency                                                            │
+│                                                                              │
+│          min      avg      std      P50      P90      P95      P99      max  │
+│    ────────────────────────────────────────────────────────────────────────  │
+│         73.3    122.1     33.7    139.8    159.3    161.7    163.6    164.8  │
+│                                                                              │
+│    Distribution:                                                             │
+│         73 -      81 ms  █████████████████████████▍             13 (13.0%)   │
+│         81 -      89 ms  ███████████████████████████████████    18 (18.0%)   │
+│         89 -      96 ms  ███████████████████████▍               12 (12.0%)   │
+│         96 -     104 ms                                          0 ( 0.0%)   │
+│        104 -     111 ms                                          0 ( 0.0%)   │
+│        111 -     119 ms                                          0 ( 0.0%)   │
+│        119 -     127 ms                                          0 ( 0.0%)   │
+│        127 -     134 ms                                          0 ( 0.0%)   │
+│        134 -     142 ms  ███████████████▋                        8 ( 8.0%)   │
+│        142 -     150 ms  ███████████████████████████████████    18 (18.0%)   │
+│        150 -     157 ms  ███████████████████████████████▏       16 (16.0%)   │
+│        157 -     165 ms  █████████████████████████████▎         15 (15.0%)   │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│     Latency Timeline                                                         │
+│     each char = avg of a time bucket, left=first right=last                  │
+│                                                                              │
+│     CREATE     ▁▁▁▁▁▁▁▁▁▁▁▁▁▂▁▂▂▂▂▂▂▄▅▆▆▆▆▆▆▆▆▆▆▆▆▆▇▆▇▇▇▇▇▇▇▇▇▇▇█  73 ..     │
+│   165 ms                                                                     │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│             Performance Grade:   A    (P99=164ms, success=100.0%)            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-05/runs/20261017T102302Z-7423eb1a/capture/startup-latency/benchmark.raw.json
+cube-bench finished: exit_code=0
+Collecting cubemastercli final inventory
+Benchmark completed with limited observation: warmup_raw_absent: warmup outcomes and instance IDs are unavailable; cubemastercli_instance_ids_collected: 103 run IDs available under declared template exclusivity; inventory-only IDs remain unknown_phase (warmup + formal), without raw seq mapping; client_sample_id_mapping_unavailable: CLI inventory does not map client seq to server IDs
+{"status": "captured", "command_exit_code": 0, "gaps": 3, "manifest": "/root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-05/runs/20261017T102302Z-7423eb1a/capture/capture-manifest.json"}
+采集命令退出码：0
+cube-bench 退出码：0；结果校验：limited
+提示：warmup_raw_absent: warmup outcomes and instance IDs are unavailable
+提示：cubemastercli_instance_ids_collected: 103 run IDs available under declared template exclusivity; inventory-only IDs remain unknown_phase (warmup + formal), without raw seq mapping
+提示：client_sample_id_mapping_unavailable: CLI inventory does not map client seq to server IDs
+CLI 归属：已采用；新增候选 103；预期 103
+正在根据已保留的数据生成报告。
+WARNING: Phase membership is unverified. Component results remain unknown_phase and are NOT a valid formal-only benchmark distribution.
+{
+  "status": "complete",
+  "output": "/root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-05/runs/20261017T102302Z-7423eb1a/analysis",
+  "classification_status": "unverified",
+  "owned_instances": {
+    "formal": 0,
+    "warmup": 0,
+    "unknown_phase": 103
+  }
+}
+报告：/root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-05/runs/20261017T102302Z-7423eb1a/analysis/report.html
+原始采集：/root/profiler90-agentwarn-w3-20261017T101659Z/formal/round-05/runs/20261017T102302Z-7423eb1a/capture
