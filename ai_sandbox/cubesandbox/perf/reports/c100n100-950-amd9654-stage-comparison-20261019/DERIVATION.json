@@ -1,0 +1,513 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "source_950": "../v071-c100n100-pr4-agentwarn-unbound-20261019/analysis/stage-latency.csv",
+  "source_950_commit": "370561a664b7f860a5e71fbcaec956fa021ce8af",
+  "source_950_sha256": "7e64784eb23553474eb9151bf9320958ad60f595ed2a63cae472e666b8aec190",
+  "source_amd": "amd9654-user-data.json",
+  "source_amd_scope": "Selected requested fields from the user-pasted 29-row table; not a raw request/log export. AMD run date, version and environment not independently confirmed.",
+  "output": "stage-latencies-950-vs-amd9654-review.csv",
+  "output_sha256": "09a1fe40ab1185f33dab9f54f149b05771fc38c72a31a72ddd73663b79139138",
+  "source_950_original_rows": 127,
+  "source_950_selected_rows": 45,
+  "source_amd_rows": 29,
+  "source_amd_rows_with_metrics": 23,
+  "output_rows": 54,
+  "output_columns": 19,
+  "metrics": [
+    "avg_ms",
+    "min_ms",
+    "p50_ms",
+    "p95_ms",
+    "max_ms"
+  ],
+  "method": "Match component/stage; use 950 formal API plus unknown_phase components and AMD formal rows. Preserve the approved nine-level order. For each metric emit 950 then AMD. Missing stages/measurements remain blank; do not infer duplicate or residual values. No aggregation or rounding.",
+  "rows": [
+    {
+      "csv_row": 2,
+      "source": "API/create",
+      "phase_950": "formal",
+      "count_950": "100",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 3,
+      "source": "CubeMaster/cube-e2e",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 4,
+      "source": "CubeMaster trace/bufferhandle",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": "formal",
+      "count_amd": null,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 5,
+      "source": "Cubelet/cubebox-service",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 6,
+      "source": null,
+      "phase_950": null,
+      "count_950": null,
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 7,
+      "source": null,
+      "phase_950": null,
+      "count_950": null,
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 8,
+      "source": "Cubelet/storage",
+      "phase_950": "unknown_phase",
+      "count_950": "66",
+      "phase_amd": "formal",
+      "count_amd": 77,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 9,
+      "source": "Cubelet/network",
+      "phase_950": "unknown_phase",
+      "count_950": "23",
+      "phase_amd": "formal",
+      "count_amd": 1,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 10,
+      "source": "Cubelet/cube-sandbox-store",
+      "phase_950": "unknown_phase",
+      "count_950": "31",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 11,
+      "source": null,
+      "phase_950": null,
+      "count_950": null,
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 12,
+      "source": "Cubelet/cgroup",
+      "phase_950": "unknown_phase",
+      "count_950": "38",
+      "phase_amd": "formal",
+      "count_amd": 3,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 13,
+      "source": "Cubelet/cubebox",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 14,
+      "source": "Cubelet/gen-spec-sandbox",
+      "phase_950": "unknown_phase",
+      "count_950": "3",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 15,
+      "source": "Cubelet/create-sandbox-metadata",
+      "phase_950": "unknown_phase",
+      "count_950": "54",
+      "phase_amd": "formal",
+      "count_amd": 2,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 16,
+      "source": "Cubelet/sandbox-start",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 17,
+      "source": "Cubelet/sandbox-create",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 18,
+      "source": "CubeShim/CreatePodSandbox",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 19,
+      "source": "CubeShim/LaunchVmm",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 20,
+      "source": "CubeShim/RestoreVm",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 21,
+      "source": null,
+      "phase_950": null,
+      "count_950": null,
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 22,
+      "source": "CubeShim/ResetVm",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 23,
+      "source": "CubeShim/CreateSandbox",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 24,
+      "source": "CubeShim/CreateContainer",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 25,
+      "source": "CreateContainer detail/guest_receive_to_restore_branch",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 26,
+      "source": null,
+      "phase_950": null,
+      "count_950": null,
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 27,
+      "source": "Cubelet/sandbox-probe",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 28,
+      "source": null,
+      "phase_950": null,
+      "count_950": null,
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 29,
+      "source": "CubeMaster trace/cubemaster-inner-handle",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": "formal",
+      "count_amd": null,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 30,
+      "source": "CubeMaster trace/cubemaster-post-redis",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": "formal",
+      "count_amd": null,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 31,
+      "source": "CubeMaster trace/cubemaster-post-spec",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": "formal",
+      "count_amd": null,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 32,
+      "source": null,
+      "phase_950": null,
+      "count_950": null,
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 33,
+      "source": "CubeMaster trace/cube-e2e",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": "formal",
+      "count_amd": null,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 34,
+      "source": "CreateContainer detail/create_request_total",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 35,
+      "source": "CreateContainer detail/load_spec_cumulative",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 36,
+      "source": "CreateContainer detail/vm_start_to_agent_ready",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 37,
+      "source": "CreateContainer detail/sandbox_finish_cumulative",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 38,
+      "source": "CreateContainer detail/sandbox_to_container_finish",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 39,
+      "source": "CreateContainer detail/container_finish_cumulative",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 40,
+      "source": "CreateContainer detail/shim_create_container",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 41,
+      "source": null,
+      "phase_950": null,
+      "count_950": null,
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 42,
+      "source": "CubeMaster trace/cubemaster-inner",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": "formal",
+      "count_amd": null,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 43,
+      "source": "Cubelet/cubebox-service-inner",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 44,
+      "source": "Cubelet paired residual/service_outside_cubebox",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 45,
+      "source": "Cubelet paired residual/cubebox_outside_task_and_probe",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 46,
+      "source": "Cubelet paired residual/sandbox_after_newtask",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 47,
+      "source": "CreateContainer detail/restore_path_unresolved",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 48,
+      "source": "CubeMaster/sandbox-probe",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 49,
+      "source": "CubeMaster/all-probe",
+      "phase_950": "unknown_phase",
+      "count_950": "103",
+      "phase_amd": "formal",
+      "count_amd": 100,
+      "amd_stage_supplied": true
+    },
+    {
+      "csv_row": 50,
+      "source": null,
+      "phase_950": null,
+      "count_950": null,
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 51,
+      "source": "CreateContainer detail/normal_add_devices",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 52,
+      "source": "CreateContainer detail/normal_add_storage",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 53,
+      "source": "CreateContainer detail/normal_setup_bundle",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 54,
+      "source": "CreateContainer detail/normal_init_container",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    },
+    {
+      "csv_row": 55,
+      "source": "CreateContainer detail/normal_start_container",
+      "phase_950": "unknown_phase",
+      "count_950": "",
+      "phase_amd": null,
+      "count_amd": null,
+      "amd_stage_supplied": false
+    }
+  ]
+}

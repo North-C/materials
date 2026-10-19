@@ -25,6 +25,8 @@
 
 ### 数据与时间轴
 
+- 2026-10-19 950（.90）与AMD 9654：[分级对比CSV](reports/c100n100-950-amd9654-stage-comparison-20261019/stage-latencies-950-vs-amd9654-review.csv)、[来源与口径说明](reports/c100n100-950-amd9654-stage-comparison-20261019/README.md)。按启动顺序和九级包含关系排列，五项指标相邻对照；AMD正式100、950组件含3次预热，不作为同条件硬件结论。
+
 - 2026-10-19 独立 PR4/warn：[逐轮CSV](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/round-summary.csv)、[历史整轮对比](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/historical-comparison.csv)、[历史阶段对比](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/stage-comparison.csv)、[folio采样摘要](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/folio-sample-summary.csv)、[时间轴HTML](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/analysis/timeline.html)、[公开文件SHA256](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/SHA256SUMS)、[数据包SHA256](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/result.tar.gz.sha256)。比较表注明各期模板、版本、CPU/NUMA和缓存差异，不能作为单因素补丁收益。
 
 - 2026-10-17 agentwarn/w3：[逐轮CSV](reports/v071-c100n100-agentwarn-w3-20261017/round-summary.csv)、[阶段对比CSV](reports/v071-c100n100-agentwarn-w3-20261017/stage-comparison.csv)、[每轮报告与原始数据入口](reports/v071-c100n100-agentwarn-w3-20261017/RESULT_REPORT.md#证据完整性与交付)、[数据包SHA256](reports/v071-c100n100-agentwarn-w3-20261017/result.tar.gz.sha256)。
