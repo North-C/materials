@@ -1,0 +1,83 @@
+{
+  "time": 1792383418.1875489,
+  "rounds": [
+    {
+      "label": "pilot",
+      "summary": {
+        "errors": 0,
+        "success_rate": 1,
+        "successful": 100,
+        "throughput_qps": 537.4165237631346,
+        "total_time_s": 0.18607541
+      },
+      "owned": 103,
+      "cleanup": "complete"
+    },
+    {
+      "label": "formal-01",
+      "summary": {
+        "errors": 0,
+        "success_rate": 1,
+        "successful": 100,
+        "throughput_qps": 526.8065791187885,
+        "total_time_s": 0.18982299
+      },
+      "owned": 103,
+      "cleanup": "complete"
+    },
+    {
+      "label": "formal-02",
+      "summary": {
+        "errors": 0,
+        "success_rate": 1,
+        "successful": 100,
+        "throughput_qps": 541.5920488221402,
+        "total_time_s": 0.18464082
+      },
+      "owned": 103,
+      "cleanup": "complete"
+    },
+    {
+      "label": "formal-03",
+      "summary": {
+        "errors": 0,
+        "success_rate": 1,
+        "successful": 100,
+        "throughput_qps": 507.3311121362582,
+        "total_time_s": 0.19710993
+      },
+      "owned": 103,
+      "cleanup": "complete"
+    },
+    {
+      "label": "bottleneck-c100",
+      "summary": {
+        "errors": 0,
+        "success_rate": 1,
+        "successful": 100,
+        "throughput_qps": 504.91828276282195,
+        "total_time_s": 0.19805185
+      },
+      "owned": 103,
+      "cleanup": "complete"
+    }
+  ],
+  "timed_requests": 500,
+  "successful_timed_requests": 500,
+  "unique_owned_instances": 516,
+  "own_remaining": [],
+  "inventory_count": 0,
+  "busy": [],
+  "identity_matches_baseline": true,
+  "cubelet_socket_audit": {
+    "unit": "AllowedCPUs=\nAllowedMemoryNodes=\nCPUAffinity=\nNUMAPolicy=n/a\nNUMAMask=",
+    "thread_allowed_lists": [
+      "Cpus_allowed_list:\t0-383",
+      "Mems_allowed_list:\t0-3"
+    ],
+    "numa_mapping_policies": {
+      "default": 518
+    }
+  },
+  "desired_exit": "PR4 retained; no CPU/socket/NUMA binding on Cubelet; other configuration unchanged"
+}

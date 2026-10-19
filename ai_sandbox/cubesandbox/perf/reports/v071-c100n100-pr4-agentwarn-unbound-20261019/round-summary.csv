@@ -1,0 +1,6 @@
+round,role,c,n,w,wall_ms,request_mean_ms,request_p50_ms,request_p95_ms,request_p99_ms,successful,errors,batch_requests_per_second,cleanup_confirmed_instances,raw
+pilot,pilot,100,100,3,186.07541,159.832820,164.927,180.87,184.551,100,0,537.4165237631346,103,results/evidence-export/pilot/benchmark.raw.json
+formal-01,formal,100,100,3,189.82299,152.102500,150.171,185.657,186.986,100,0,526.8065791187885,103,results/evidence-export/formal-01/benchmark.raw.json
+formal-02,formal,100,100,3,184.64082,153.342700,163.61,181.36,183.19,100,0,541.5920488221402,103,results/evidence-export/formal-02/benchmark.raw.json
+formal-03,formal,100,100,3,197.10993,142.084280,165.259,192.202,194.639,100,0,507.3311121362582,103,results/evidence-export/formal-03/benchmark.raw.json
+bottleneck-c100,diagnostic,100,100,3,198.05185,167.551600,173.016,193.639,195.455,100,0,504.91828276282195,103,results/evidence-export/bottleneck-c100/benchmark.raw.json

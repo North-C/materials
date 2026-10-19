@@ -1,0 +1,10 @@
+{
+  "c": 100,
+  "n": 100,
+  "w": 3,
+  "mode": "create-only",
+  "template": "tpl-9550591684db0b683bb6a3b5",
+  "cache": "as found; no eviction/prefault; pilot then three formal rounds; each uses 3 serial in-process warmups",
+  "configuration_changes": false,
+  "bench_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511"
+}

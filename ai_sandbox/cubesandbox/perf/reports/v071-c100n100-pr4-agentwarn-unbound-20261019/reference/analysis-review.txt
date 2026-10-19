@@ -1,0 +1,83 @@
+独立PR4 Shim切换后：单轮瓶颈抓取分析复核（2026-10-19）
+
+结论：本轮负载与基础采集有效。可见耗时主要集中在Cubelet整体创建流程（sandbox-create均64.0ms）与probe（均31.3ms），其上还有同实例可计算的其他流程时间；Shim整体CreatePodSandbox均48.4ms，而RestoreVm与CreateContainer均约10.1ms，不能把198ms整轮墙钟归因于其中任意单段。此为阶段定位，不是CPU热点/锁/RCU/NUMA根因证明。
+
+执行与错误区分
+三轮正式参考189.82299、184.64082、197.10993ms，中位189.82299ms（父代理提供）；本次单独bottleneck-c100抓取轮198.05185ms。保留四轮各自角色，不混入同一中位数，也未因抓取轮较慢重跑择优。
+抓取官方100/100成功、errors=0；安全runner exit_code=0/status complete、capture_processes_stopped=true；cleanup103个outcomes全部确认absent、remaining_owned_ids=[]，adapter-export complete。
+采集结束后的外层postcheck发生cmd函数被command list遮蔽的TypeError。该异常发生在成功采集/清理之后，是编排代码错误，不是负载错误。results/bottleneck-postcheck-recovery.json独立只读补审计：identity_matches_baseline=true、inventory_count=0、deleted=103、inner_status/cleanup_status=complete、benchmark_rerun=false。完整保留异常，不以补审计伪装原编排无错误。
+父代理已独立probe核验实际PR4 c887、四类rr、guest warn、CPU0–383；本离线分析不以manifest中的声明替代该现场证据。
+
+API正式100单独口径
+整轮198.05185ms；成功批次吞吐504.918283次/s；单请求mean167.551600、p50173.016、p95193.639、p99195.455、max197.336ms。
+独立核seq唯一100个且连续1..100，raw成功样本100。p95用nearest-rank排序第95个、p99第99个，不采用插值；不能将整轮墙钟除100当请求延迟。API终点为HTTP返回而非独立应用ready测量。
+
+组件阶段：103个owned unknown_phase，包含正式100和预热3；全部表格ms
+阶段 | n/103 | mean | p50 | p95 | max
+cubemaster_stages/cube-e2e | 103/103 | 124.272 | 115.000 | 161.000 | 173.000
+cubemaster_stages/sandbox-probe | 103/103 | 30.825 | 29.000 | 51.000 | 58.000
+cubelet_stages/cubebox-service | 103/103 | 119.951 | 110.034 | 155.971 | 167.286
+cubelet_stages/cubebox | 103/103 | 106.603 | 100.499 | 144.186 | 152.973
+cubelet_stages/sandbox-start | 103/103 | 65.205 | 61.157 | 89.165 | 102.615
+cubelet_stages/sandbox-create | 103/103 | 63.997 | 60.186 | 88.085 | 101.551
+cubelet_stages/sandbox-probe | 103/103 | 31.325 | 29.514 | 51.920 | 58.225
+shim_stages/CreatePodSandbox | 103/103 | 48.379 | 47.000 | 69.000 | 75.000
+shim_stages/LaunchVmm | 103/103 | 1.456 | 1.000 | 2.000 | 3.000
+shim_stages/RestoreVm | 103/103 | 10.146 | 10.000 | 12.000 | 12.000
+shim_stages/ResetVm | 103/103 | 11.583 | 11.000 | 23.000 | 32.000
+shim_stages/CreateSandbox | 103/103 | 1.107 | 1.000 | 3.000 | 6.000
+shim_stages/CreateContainer | 103/103 | 10.136 | 9.000 | 19.000 | 21.000
+
+这些是重叠/嵌套阶段，禁止相加；Master回传sandbox-probe为传播副本，不是额外31ms。统计母体103与API100不同，不得拿两组整体均值/P95相减计算网络等待。Cubelet/Shim共18个实际有值阶段已从对应原JSON日志按owned+Action=Create独立分组重算n/mean/p95，与analyze输出一致。
+
+同实例、同计时体系的残差（工具逐ID计算后再统计，非不同总体分位数相减）
+残差 | n | mean | p95 | 解释
+service_outside_cubebox | 103 | 13.347 | 26.961 | Cubelet service中cubebox之外的非连续工作，包含前置workflow；不是纯调度等待。
+sandbox_after_newtask | 103 | 1.207 | 1.926 | 同taskStart累计原点上NewTask之后到Wait/Start及后续处理的区间。
+cubebox_outside_task_and_probe | 103 | 10.074 | 22.621 | cubebox扣除同实例累计task-start及probe；包含spec/metadata等其余非连续工作。
+
+仅duration数据不能将这些残差进一步命名为锁、RCU、CPU等待或NUMA代价。
+
+部分Shim时间线
+timeline.json/html保留103实例，均partial，所有5种已有interval边界103/103，ordering_anomalies为0。create req墙钟窗口mean48.923ms/p9569.527ms；VM start→agent ready mean24.115ms/p9535.599ms；sandbox_finish→container_finish同Instant累计差mean10.660ms/p9520ms。
+timeline用ns整数端点后转换相对ms；analyze用epoch浮点ms，部分均值有约0.00002ms量化差异，不作为性能差异。host墙钟与Instant零点不同，仅近似对齐；Cubelet异步批量trace时间戳不是span边界；Shim stat无clock字段，721条time_unverifiable如实保留。
+未观测API/Master/Cubelet绝对阶段位置与每个VM stat的起止点，图不是完整端到端关键路径。load_spec累计显式0ms仅整数计时精度，不能说未执行。
+
+网络细阶段（有条件样本，原工具单位ns，此处转换ms）
+阶段 | n/103 | mean | p95 | max
+create_stages.total | 37/103 | 4.300817 | 8.652730 | 11.718660
+create_stages.apply_port_mappings | 37/103 | 2.800778 | 7.000020 | 7.710040
+create_stages.reserve_ports | 37/103 | 0.023154 | 0.294780 | 0.393910
+ensure_precheck.total | 43/103 | 4.303599 | 8.441680 | 11.976070
+ensure_precheck.lock_wait | 43/103 | 0.002322 | 0.005820 | 0.006410
+register_cubevs_tap.total | 12/103 | 2.026133 | 4.372680 | 4.372680
+tap_fd_handoff.total | 1/103 | 3.169380 | 3.169380 | 3.169380
+tap_fd_handoff.lock_wait | 1/103 | 0.003030 | 0.003030 | 0.003030
+
+93条网络timer记录全被接受，0foreign/ID冲突/窗口外/时间不可验证/重复。原版只在失败或其父操作总时间>=1ms时输出；上述分布是条件子集，不能代表全部103。尤其37条create stages中apply_port_mappings均2.801ms是该子集可见较多工作；不能据43条ensure lock_wait约0.0023ms推断系统所有锁无瓶颈。
+workflow network阶段仅23/103，mean12.677/p9519.172ms；storage66/103、cgroup38/103、metadata54/103、store31/103、gen-spec3/103。该层成功<5ms抑制与网络细层>=1ms门槛不同，不能用缺记录填0或直接归类“快”。
+
+完整性与未解边界
+外层采集2026-10-19T04:15:08.080883Z→2026-10-19T04:15:16.490058Z，约8.409s，包括inner准备、w3、正式100、inner分析/清理与tail，不等于198.052ms正式窗口。metrics差分包含该完整窗口及宿主其他活动，不作纯负载或VM独占开销主张。
+七份实际日志全部captured，SHA与manifest逐一相符、omitted=0、首尾整行、无轮转/截断gap；原capture与analysis-copy的manifest/raw/owned/日志bytes一致。唯一不可读master_stat路径/data/log/CubeMaster/cubemaster-stat.log，因而Master bufferhandle/inner/post-redis/post-spec无值。仅本地数据不能确定它没有生成还是其他路径。
+manifest另两个gap是ownership_phase_unknown与owned_counts_differ_from_declared_workload：103unknown不能分成明确100formal+3warmup；不代表漏了请求。分析器“rotation/truncation/capture gaps”警告是通用文案，此轮没有实际轮转缺口。
+Go +08:00和Shim request Z正常解析，所有来源outside_capture_window=0。删除日志确实在外层，但Action=Create已将其排除；主要阶段103条且0重复。
+guest warn下没有INFO级guest分支标记，细分guest_receive/normal_*全missing，path_counts unknown103；不能据此说没有快照恢复，也不能把guest未知成本补0。
+现有日志支持阶段定位与覆盖描述，不能确认具体RCU/锁/调度/NUMA因果；没有额外perf/pprof观测，也没有为追因增跑或改变现场。
+
+产物与出处
+本次在全新analysis-copy执行原指定workspace的analyze.mjs、network_details.mjs、timeline.mjs，三个命令退出0；新目录含analysis.json、stage-latency.csv、create-container-details.jsonl、network-details.json/csv、timeline.json/html。原始results和既有报告未改。
+分析器来源 /Users/liuyuqing/orca/workspaces/CubeSandbox/v071-c100n100-bottleneck/tools/bottleneck；HEAD31d911...且工作区有旧观测改动。时间解析analyze.mjs:24–39，Action=Create过滤95–114，逐实例残差117–143；网络和时间线均在原工具定义的证据边界内使用。
+
+SHA256
+capture-manifest.json 649d311e89d1283eb923079422a06a06bda6bbd97e0b2e28957180ec04df3e9e
+startup-latency/c100n100.raw.json 05c4508523766c6855b7ba0f51398cfd2715b0e67b1533219db939b3d724cf9d
+owned-sandbox-ids.json 4c25c5d92e071de9a50cb48fe554a6b81a8c1a601e9fbb3e1522e6d5d0bdaf08
+adapter-export.json 6fc8bb404dece3b5624e4d896d526c0fff5128e6344510f00b58b8983e007ffe
+analysis.json fd09272396cc2d01273ecdb4c17e879e03d11e178858734fdc595494e565a51b
+network-details.json 3dd389fafa965ac09d142e4efd8b4b9f54f23864b1ce0ce3d035a35e6b62e09c
+timeline.json bf25daa9ce92738fc7c3329679943d09543518cb5603157d030d62605b3a03f3
+results/bottleneck-postcheck-recovery.json 1e70a774bbd5ac02c2c0a988a649ae4eb7f8a7047e29e36b80701d6a59e12f4d
+tool/analyze.mjs 23d0239287d0c2242acffe125966ec33d9e1bfac7676f321210942b4debf77bb
+tool/network_details.mjs 3877078e85c247b966e1507f5f387c7cb28d6d3814e7e9059615b3e719ff1a4a
+tool/timeline.mjs 530c61006e182963233191bb6122b90872db97ea27f2677423b66e426d3a6204

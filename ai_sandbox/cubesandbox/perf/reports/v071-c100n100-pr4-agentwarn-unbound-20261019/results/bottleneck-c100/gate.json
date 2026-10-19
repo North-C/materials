@@ -1,0 +1,52 @@
+[
+  {
+    "clock": {
+      "realtime_ns": 1792383287208541700,
+      "monotonic_ns": 161495399130580,
+      "boottime_ns": 161495399131090
+    },
+    "inventory": 0,
+    "busy": [],
+    "load": 4.39
+  },
+  {
+    "clock": {
+      "realtime_ns": 1792383292320728800,
+      "monotonic_ns": 161500511318770,
+      "boottime_ns": 161500511322280
+    },
+    "inventory": 0,
+    "busy": [],
+    "load": 4.04
+  },
+  {
+    "clock": {
+      "realtime_ns": 1792383297430985010,
+      "monotonic_ns": 161505621574990,
+      "boottime_ns": 161505621578040
+    },
+    "inventory": 0,
+    "busy": [],
+    "load": 3.71
+  },
+  {
+    "clock": {
+      "realtime_ns": 1792383302539180960,
+      "monotonic_ns": 161510729770800,
+      "boottime_ns": 161510729774260
+    },
+    "inventory": 0,
+    "busy": [],
+    "load": 3.42
+  },
+  {
+    "clock": {
+      "realtime_ns": 1792383307648038260,
+      "monotonic_ns": 161515838627930,
+      "boottime_ns": 161515838631630
+    },
+    "inventory": 0,
+    "busy": [],
+    "load": 3.14
+  }
+]

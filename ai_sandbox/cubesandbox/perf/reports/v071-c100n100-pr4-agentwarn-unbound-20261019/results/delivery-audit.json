@@ -1,0 +1,17 @@
+{
+  "time": 1792383550.690458,
+  "identity_matches_baseline": true,
+  "inventory_count": 0,
+  "busy": [],
+  "cubelet": {
+    "pid": 1695013,
+    "sha256": "05fd2f62c8e01c18614a09d15625b696a02637e6d23cd0a8fdc4034c064581bf",
+    "cpu": [
+      "0-383"
+    ],
+    "numa_first": "default",
+    "env": [
+      "CUBE_FILE_BACKED_MEMORY_MADV_RANDOM=1"
+    ]
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "command": [
+    "/usr/bin/python3",
+    "/data/cubelet/c100n100-perf-tuning-90/20261016T104049Z/tool/capture_w3.py",
+    "--config",
+    "/data/cubelet/pr-patch-benchmark-20261018/capture100.newwarn.json",
+    "--benchmark-binary",
+    "/data/cubelet/pr-patch-benchmark-20261018/bin/cube-bench",
+    "--output-root",
+    "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/inner-round/runs"
+  ],
+  "started_at": "2026-10-19T04:15:08.261386+00:00",
+  "formal": {
+    "concurrency": 100,
+    "total": 100,
+    "warmup": 3,
+    "warmup_mode": "in_process_shared_client",
+    "mode": "create-only",
+    "no_tui": true
+  },
+  "prewarmup": null
+}

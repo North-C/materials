@@ -1,0 +1,15 @@
+{
+  "pid": 1955714,
+  "process_group": 1955714,
+  "started_at": "2026-10-19T04:15:08.555255+00:00",
+  "stopped": true,
+  "linux_start_ticks": "16151674",
+  "boot_id": "b0f9d3e8-597d-4a60-9b4c-c0ded801b28f",
+  "termination": {
+    "stopped": true,
+    "tracked": [],
+    "remaining": [],
+    "errors": []
+  },
+  "ended_at": "2026-10-19T04:15:12.422507+00:00"
+}

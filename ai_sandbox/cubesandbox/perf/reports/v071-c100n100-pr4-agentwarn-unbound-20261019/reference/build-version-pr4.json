@@ -1,0 +1,48 @@
+{
+  "label": "v0.7.1-pr4-madv-random-999e115a",
+  "base_tag": "v0.7.1",
+  "base_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+  "commit": "999e115abca7ae39dff86dffe28896b3155ebcf5",
+  "embedded_version": "v0.7.1-1-g999e115",
+  "pr_url": "https://gitcode.com/yuncongyue/CubeSandbox_6071/merge_requests/4",
+  "build_host": "192.168.25.140",
+  "architecture": "aarch64",
+  "builder_image": "sha256:0f7cdb96826b23df82f4d32230b8278b8c8a0fa6341a4a1e45f10bc60bd31205",
+  "source_identity": {
+    "head": "999e115abca7ae39dff86dffe28896b3155ebcf5",
+    "dirty": false,
+    "patch_sha256": "f370acc9d8b734d907d177ef29f70d4102a6226a969871eef36ce547b2944361",
+    "untracked": [],
+    "version": "v0.7.1-1-g999e115",
+    "commit": "999e115abca7ae39dff86dffe28896b3155ebcf5",
+    "build_time": "2026-10-18T21:35:43+08:00"
+  },
+  "build_result": "components=shim\nfinished_utc=2026-10-18T13:53:58Z\nelapsed_seconds=444\n",
+  "packaged_at_utc": "2026-10-18T13:54:21.352447+00:00",
+  "binary_feature_strings": {
+    "cmdline_alias": false,
+    "madv_random_env": true,
+    "legacy_madv_marker": false,
+    "legacy_populate_marker": false
+  },
+  "artifacts": [
+    {
+      "name": "containerd-shim-cube-rs",
+      "bytes": 15056992,
+      "architecture": "arm64",
+      "sha256": "c887a2ebcae57fe9998d8312ab19ba56ea7a5a79c89d11545cbed61e37c24b0f",
+      "version_output": "containerd-shim-cube-rs v0.7.1-1-g999e115 (999e115abca7ae39dff86dffe28896b3155ebcf5) built at 2026-10-18T21:35:43+08:00",
+      "maximum_required_glibc": "2.29"
+    },
+    {
+      "name": "cube-runtime",
+      "bytes": 9412312,
+      "architecture": "arm64",
+      "sha256": "76803184bd8069e88522eebea4e1bed564a7da9dde8c6c124a6bfcda8113f0fa",
+      "version_output": "cube-runtime v0.7.1-1-g999e115 (999e115abca7ae39dff86dffe28896b3155ebcf5) built at 2026-10-18T21:35:43+08:00",
+      "maximum_required_glibc": "2.29"
+    }
+  ],
+  "deployment_to_90": "not performed",
+  "validation": "Release build, clean source before/after, --version, ELF architecture, local dependency resolution, GLIBC <= 2.38, isolated feature strings; no guest boot/performance test"
+}

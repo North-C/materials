@@ -1,0 +1,427 @@
+{
+  "started_at": "2026-10-19T04:15:08.080883Z",
+  "logs": {
+    "cubelet_req": {
+      "source_path": "/data/log/Cubelet/Cubelet-req.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.080899Z",
+        "device": 64768,
+        "inode": 18916620,
+        "size": 372137922,
+        "mtime_ns": 1792383267968000000,
+        "status": "ok",
+        "anchor_offset": 372133826,
+        "anchor_sha256": "2f91c9ea4cb4169af35dfedd8c4c7d7658424bcfebd01bfaa979a5f7dec66dc3",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "5": {
+            "device": 64768,
+            "inode": 18874809,
+            "size": 524289274,
+            "mtime_ns": 1789611828620181420
+          },
+          "2": {
+            "device": 64768,
+            "inode": 18916609,
+            "size": 524288539,
+            "mtime_ns": 1792052215608000000
+          },
+          "9": {
+            "device": 64768,
+            "inode": 18874385,
+            "size": 524288401,
+            "mtime_ns": 1785243433444984970
+          },
+          "6": {
+            "device": 64768,
+            "inode": 18874730,
+            "size": 524288038,
+            "mtime_ns": 1789470279812181420
+          },
+          "3": {
+            "device": 64768,
+            "inode": 18916595,
+            "size": 524288653,
+            "mtime_ns": 1791819848081964710
+          },
+          "7": {
+            "device": 64768,
+            "inode": 18874693,
+            "size": 524288191,
+            "mtime_ns": 1789083929455643350
+          },
+          "0": {
+            "device": 64768,
+            "inode": 18916620,
+            "size": 372137922,
+            "mtime_ns": 1792383267968000000
+          },
+          "8": {
+            "device": 64768,
+            "inode": 18874613,
+            "size": 524288192,
+            "mtime_ns": 1786955261709120190
+          },
+          "1": {
+            "device": 64768,
+            "inode": 18916615,
+            "size": 524288263,
+            "mtime_ns": 1792347603824000000
+          },
+          "4": {
+            "device": 64768,
+            "inode": 18874851,
+            "size": 524288968,
+            "mtime_ns": 1790062618458465480
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 4,
+          "max_fd": 3
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 5,
+          "max_fd": 4
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      }
+    },
+    "cubelet_stat": {
+      "source_path": "/data/log/Cubelet/Cubelet-stat.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081253Z",
+        "device": 64768,
+        "inode": 18874386,
+        "size": 309269259,
+        "mtime_ns": 1792383299796000000,
+        "status": "ok",
+        "anchor_offset": 309265163,
+        "anchor_sha256": "94c7d81ebc57e8aea939b93e2232d82693188a68fc8fe5b20c211aa4e7701879",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "3": {
+            "device": 64768,
+            "inode": 18916599,
+            "size": 524288238,
+            "mtime_ns": 1791804669801964710
+          },
+          "1": {
+            "device": 64768,
+            "inode": 18916617,
+            "size": 524288324,
+            "mtime_ns": 1792351625200000000
+          },
+          "9": {
+            "device": 64768,
+            "inode": 18874572,
+            "size": 524288344,
+            "mtime_ns": 1785794834030578320
+          },
+          "0": {
+            "device": 64768,
+            "inode": 18874386,
+            "size": 309269259,
+            "mtime_ns": 1792383299796000000
+          },
+          "2": {
+            "device": 64768,
+            "inode": 18916608,
+            "size": 524288111,
+            "mtime_ns": 1792148357428000000
+          },
+          "7": {
+            "device": 64768,
+            "inode": 18874690,
+            "size": 524288205,
+            "mtime_ns": 1789071659395643350
+          },
+          "4": {
+            "device": 64768,
+            "inode": 18916590,
+            "size": 524288239,
+            "mtime_ns": 1790580308821568380
+          },
+          "5": {
+            "device": 64768,
+            "inode": 18874811,
+            "size": 524288127,
+            "mtime_ns": 1789754488690465480
+          },
+          "8": {
+            "device": 64768,
+            "inode": 18874662,
+            "size": 524288196,
+            "mtime_ns": 1786727418641120190
+          },
+          "6": {
+            "device": 64768,
+            "inode": 18874729,
+            "size": 524288330,
+            "mtime_ns": 1789535453184181420
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 5,
+          "max_fd": 4
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 6,
+          "max_fd": 5
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      }
+    },
+    "shim_req": {
+      "source_path": "/data/log/CubeShim/cube-shim-req.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081535Z",
+        "device": 64768,
+        "inode": 18874392,
+        "size": 749724222,
+        "mtime_ns": 1792383268028000000,
+        "status": "ok",
+        "anchor_offset": 749720126,
+        "anchor_sha256": "b3b30c0326aaf81edcec4b917d7b4238bc05d6f2a55319ca4e94cc6b54ad7485",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "0": {
+            "device": 64768,
+            "inode": 18874392,
+            "size": 749724222,
+            "mtime_ns": 1792383268028000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 6,
+          "max_fd": 5
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 7,
+          "max_fd": 6
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      }
+    },
+    "shim_stat": {
+      "source_path": "/data/log/CubeShim/cube-shim-stat.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081693Z",
+        "device": 64768,
+        "inode": 18874393,
+        "size": 126898650,
+        "mtime_ns": 1792383267968000000,
+        "status": "ok",
+        "anchor_offset": 126894554,
+        "anchor_sha256": "70bd570f3ac9594538189c25295b979442eb4e3a6e49d82b7fd40dc6c60a3019",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "0": {
+            "device": 64768,
+            "inode": 18874393,
+            "size": 126898650,
+            "mtime_ns": 1792383267968000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 7,
+          "max_fd": 6
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 8,
+          "max_fd": 7
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      }
+    },
+    "vmm": {
+      "source_path": "/data/log/CubeVmm/vmm.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081847Z",
+        "device": 64768,
+        "inode": 18874394,
+        "size": 1902852168,
+        "mtime_ns": 1792383268028000000,
+        "status": "ok",
+        "anchor_offset": 1902848072,
+        "anchor_sha256": "828a07e63bc41e5614f726803f4c8f2f8869f317f0b0e9aa522c9d58d2417254",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "0": {
+            "device": 64768,
+            "inode": 18874394,
+            "size": 1902852168,
+            "mtime_ns": 1792383268028000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 8,
+          "max_fd": 7
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 9,
+          "max_fd": 8
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      }
+    },
+    "master": {
+      "source_path": "/data/log/CubeMaster/cubemaster-req.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081982Z",
+        "device": 64768,
+        "inode": 18874726,
+        "size": 11384863,
+        "mtime_ns": 1792383307644000000,
+        "status": "ok",
+        "anchor_offset": 11380767,
+        "anchor_sha256": "96d55decbe359cfb4389e89bba6246e20a0c5bfe82d36996aaab5c558a7d4c89",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "8": {
+            "device": 64768,
+            "inode": 18874389,
+            "size": 104857636,
+            "mtime_ns": 1792220509048000000
+          },
+          "9": {
+            "device": 64768,
+            "inode": 18874727,
+            "size": 104857643,
+            "mtime_ns": 1792148254760000000
+          },
+          "0": {
+            "device": 64768,
+            "inode": 18874726,
+            "size": 11384863,
+            "mtime_ns": 1792383307644000000
+          },
+          "5": {
+            "device": 64768,
+            "inode": 18874721,
+            "size": 104857742,
+            "mtime_ns": 1792346713344000000
+          },
+          "1": {
+            "device": 64768,
+            "inode": 18874725,
+            "size": 104857945,
+            "mtime_ns": 1792381330524000000
+          },
+          "4": {
+            "device": 64768,
+            "inode": 18874722,
+            "size": 104857958,
+            "mtime_ns": 1792351625028000000
+          },
+          "7": {
+            "device": 64768,
+            "inode": 18874716,
+            "size": 104857945,
+            "mtime_ns": 1792239145952000000
+          },
+          "6": {
+            "device": 64768,
+            "inode": 18874720,
+            "size": 104857746,
+            "mtime_ns": 1792336987116000000
+          },
+          "3": {
+            "device": 64768,
+            "inode": 18874723,
+            "size": 104858177,
+            "mtime_ns": 1792354693104000000
+          },
+          "2": {
+            "device": 64768,
+            "inode": 18874724,
+            "size": 104857670,
+            "mtime_ns": 1792358101812000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 9,
+          "max_fd": 8
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 10,
+          "max_fd": 9
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      }
+    },
+    "master_stat": {
+      "source_path": "/data/log/CubeMaster/cubemaster-stat.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.082207Z",
+        "status": "unavailable",
+        "error_type": "FileNotFoundError"
+      }
+    },
+    "api": {
+      "source_path": "/data/log/CubeAPI/cube-api-2026-10-19.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.082316Z",
+        "device": 64768,
+        "inode": 18916621,
+        "size": 3460439,
+        "mtime_ns": 1792383307648000000,
+        "status": "ok",
+        "anchor_offset": 3456343,
+        "anchor_sha256": "f48d4ccf7e7fcc9c2fc9ffe371ff7e001501e3826cd0151260880fd0dda49dd8",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "0": {
+            "device": 64768,
+            "inode": 18916621,
+            "size": 3460439,
+            "mtime_ns": 1792383307648000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 10,
+          "max_fd": 9
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 11,
+          "max_fd": 10
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      }
+    }
+  }
+}

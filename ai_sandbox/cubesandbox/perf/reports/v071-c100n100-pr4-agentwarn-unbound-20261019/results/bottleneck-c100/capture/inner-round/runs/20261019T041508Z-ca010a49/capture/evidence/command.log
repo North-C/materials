@@ -1,0 +1,93 @@
+Preparing cube-bench: c100 n100 w3, mode=create-only
+Collecting cubemastercli baseline before starting cube-bench
+Starting cube-bench: c100 n100 w3, mode=create-only, -no-tui
+cube-bench JSON output: /data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/inner-round/runs/20261019T041508Z-ca010a49/capture/startup-latency/benchmark.raw.json
+                                                                                 
+   ██████╗██╗   ██╗██████╗ ███████╗    ██████╗ ███████╗███╗   ██╗ ██████╗██╗  ██╗
+  ██╔════╝██║   ██║██╔══██╗██╔════╝    ██╔══██╗██╔════╝████╗  ██║██╔════╝██║  ██║
+  ██║     ██║   ██║██████╔╝█████╗      ██████╔╝█████╗  ██╔██╗ ██║██║     ███████║
+  ██║     ██║   ██║██╔══██╗██╔══╝      ██╔══██╗██╔══╝  ██║╚██╗██║██║     ██╔══██║
+  ╚██████╗╚██████╔╝██████╔╝███████╗    ██████╔╝███████╗██║ ╚████║╚██████╗██║  ██║
+   ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝    ╚═════╝ ╚══════╝╚═╝  ╚═══╝ ╚═════╝╚═╝  ╚═╝
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│     Configuration                                                            │
+│                                                                              │
+│     Template         tpl-9550591684db0b683bb6a3b5                            │
+│     API URL          http://127.0.0.1:3000                                   │
+│     Concurrency      100                                                     │
+│     Total Requests   100                                                     │
+│     Warmup Rounds    3                                                       │
+│     Mode             create-only                                             │
+│     Network Policy   none                                                    │
+│     Host             master                                                  │
+│     Go               go1.25.0                                                │
+│     Time             2026-10-19 04:15:08 UTC                                 │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+    warmup [1/3] ok
+    warmup [2/3] ok
+    warmup [3/3] ok
+
+  Progress: 100% 100/100 (errors: 0)
+
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│     Summary                                                                  │
+│                                                                              │
+│     Total Time       0.20s                                                   │
+│     Success Rate     100.0%  (100/100)                                       │
+│     Throughput       504.92 sandboxes/sec                                    │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│    CREATE Latency                                                            │
+│                                                                              │
+│          min      avg      std      P50      P90      P95      P99      max  │
+│    ────────────────────────────────────────────────────────────────────────  │
+│         88.8    167.6     25.9    173.0    188.8    193.6    195.5    197.3  │
+│                                                                              │
+│    Distribution:                                                             │
+│         89 -      98 ms  ███████▌                                6 ( 6.0%)   │
+│         98 -     107 ms  █▎                                      1 ( 1.0%)   │
+│        107 -     116 ms  █▎                                      1 ( 1.0%)   │
+│        116 -     125 ms  █▎                                      1 ( 1.0%)   │
+│        125 -     134 ms  ██▌                                     2 ( 2.0%)   │
+│        134 -     143 ms  ███▊                                    3 ( 3.0%)   │
+│        143 -     152 ms  ██████▍                                 5 ( 5.0%)   │
+│        152 -     161 ms  ███▊                                    3 ( 3.0%)   │
+│        161 -     170 ms  ██████████████████████▋                18 (18.0%)   │
+│        170 -     179 ms  ███████████████████████▉               19 (19.0%)   │
+│        179 -     188 ms  ███████████████████████████████████    28 (28.0%)   │
+│        188 -     197 ms  ████████████████▍                      13 (13.0%)   │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│     Latency Timeline                                                         │
+│     each char = avg of a time bucket, left=first right=last                  │
+│                                                                              │
+│     CREATE     ▁▁▁▂▃▃▄▄▄▅▅▅▅▅▅▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▆▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇█  89 ..     │
+│   197 ms                                                                     │
+│                                                                              │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+╭──────────────────────────────────────────────────────────────────────────────╮
+│                                                                              │
+│             Performance Grade:   A    (P99=195ms, success=100.0%)            │
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/inner-round/runs/20261019T041508Z-ca010a49/capture/startup-latency/benchmark.raw.json
+cube-bench finished: exit_code=0
+Collecting cubemastercli final inventory
+Benchmark completed with limited observation: warmup_raw_absent: warmup outcomes and instance IDs are unavailable; cubemastercli_instance_ids_collected: 103 run IDs available under declared template exclusivity; inventory-only IDs remain unknown_phase (warmup + formal), without raw seq mapping; client_sample_id_mapping_unavailable: CLI inventory does not map client seq to server IDs

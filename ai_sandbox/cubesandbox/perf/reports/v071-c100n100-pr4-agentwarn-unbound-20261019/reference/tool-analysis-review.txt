@@ -1,0 +1,48 @@
+新 Shim 切换后瓶颈采集：工具与分析准备（只读，2026-10-19）
+
+结论
+最小组合是 analyze.mjs + network_details.mjs；timeline.mjs 适合查看逐实例 Shim 边界，作为第三项可选输出。无需先启用 perf、pprof 或部署 perftrace 插桩，便可获得本轮API耗时、Master/Cubelet/Shim阶段持续时间与覆盖率、网络细计时和部分Shim时间线。尚未收到本轮数据，本文件没有新的性能结论。
+
+必须先确认的身份声明
+父代理随后明确本次选回独立 PR4 999e...、Shim SHA c887a2ebcae57fe9998d8312ab19ba56ea7a5a79c89d11545cbed61e37c24b0f；因此下述默认声明与目标源码相符，本次不必修改它。仅变更Shim二进制，其他组件/CPU/NUMA/RCU保持；现场实际身份仍待本轮审计核验，参数使用本轮新R目录。
+现 capture_safe_w3.py:21/104/177 固定 PR4 commit 999e115abca7ae39dff86dffe28896b3155ebcf5 与版本v0.7.1+PR4。这不影响通用日志解析，但若新“失效Shim”不是该源码，沿用会形成错误声明。应由执行者在新隔离适配副本中提供实际声明，并保留二进制SHA、VERSION及/proc运行身份审计；不能将磁盘文件名或此默认值当生效证明。service_identity_verified=false必须保持，直至有独立审计。未修改现适配器。
+适配器实际核的是bench SHA ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511；若沿用相同官方bench即可，不随Shim切换更改。工作负载c100/n100/w3；config warmup=0仅禁单独预热，不是w0。
+目标workspace HEAD31d911e430fdf8a8879bd062b8e78066c1a8e89d，含此前未提交观测改动。分析器是本地脚本，不能由它的Git身份推断远端服务身份。旧run_verified/run_optimized/run_single_case仍不宜直接复用：身份/NUMA/TAP约束固定旧方案。
+
+最小实际CLI（只离线读取capture并在新的私有副本写产物）
+B=/Users/liuyuqing/orca/workspaces/CubeSandbox/v071-c100n100-bottleneck/tools/bottleneck
+CAP=/absolute/path/to/new/capture
+D=/absolute/path/to/new/analysis-copy
+python3 -c 'import shutil,sys; shutil.copytree(sys.argv[1],sys.argv[2])' "$CAP" "$D"
+# copytree在D已存在时拒绝，避免覆盖旧报告；副本包含私有原始日志，不发布整个目录。
+node "$B/analyze.mjs" "$D" --csv-out "$D/stage-latency.csv" --details-out "$D/create-container-details.jsonl" > "$D/analysis.json"
+node "$B/network_details.mjs" "$D"
+node "$B/timeline.mjs" "$D"
+
+输出
+analysis.json：官方raw100样本成功/失败、整轮summary.total_time_s、阶段统计、每阶段覆盖/重复、归属与采集完整性；内含metrics差分，无需另跑metrics.mjs。stage-latency.csv便于阶段表，CreateContainer details保留同实例边界和guest分支可见性。
+network-details.json/csv：Cubelet request的create stages、ensure precheck、register CubeVS TAP、TAP FD handoff，原Go duration保留ns单位与missing/zero/duplicate语义。
+timeline.json/html：以Shim create req start为参考的部分实例时间线；host wallclock与Instant累计起点分别显示，仅近似对齐，不是全链路绝对时间线。文件离线可看，无须服务端改造。
+不要默认跑precision/precision_timeline：需要实际PerfTrace schema事件。独立社区/PR4没有这些事件时，空结果不增加证据；设置环境变量不等于部署插桩代码。
+
+收到数据后的最小验收
+1. raw SHA与adapter-export来源关联；官方100请求完整性、成功/失败/seq；inner run-exit与cleanup complete，103owned确认，原始失败轮保留。
+2. manifest每份delta日志SHA、status/gaps/omitted、首尾整行与轮转段；必需master/shim_req/shim_stat及cubelet阶段数据分别检查。可选master_stat缺失只阻断对应Master内部细分，不能一概判整轮失败。
+3. Go +08:00与Shim Z转换、窗口外排除计数、Shim stat无时间戳的time_unverifiable。外层窗口含inner准备/采集/分析/清理，不可冒充正式窗口；metrics无VM独占归属。
+4. 组件owned103 unknown_phase与API正式100分开，不能把两群P95相减。不根据固定3/100数量强行划分；若另做时序推断，独立标inferred且不声称seq逐例映射。
+5. Action=Create过滤，确认外层清理Delete未进入创建阶段；同ID重复记录不能静默择一。成功短于5ms的Cubelettrace可能被抑制，network细计时有父操作>=1ms/失败输出门槛；缺失不是零也不能直接证明快。
+
+能回答什么
+可直接报告单轮100请求的墙钟与请求延迟分布，主要阶段分别多长、覆盖多少实例；定位较长的是restore、guest容器RPC、Shim整体创建、Cubelet创建/probe或Master服务窗口；若有稳定同实例端点，可区分部分Shim等待/排空窗口变化，并指出长尾集中位置。可检验“某阶段记录明显变长/本轮主要可见工作集中在哪里”的描述性结论。
+不能仅凭这些证明精确CPU热点、锁持有/争用、runqueue等待、RCU等待、NUMA远端访问或缺页因果；不能相加父子/累计阶段，不能将异步批量trace时间戳当实际阶段结束。guest warn关闭INFO会使guest内部分支计时不可见，不代表未执行快照恢复。一次约180ms也不证明稳定性能区间或补丁因果收益。
+若基础阶段指出无法解释的区间，才按明确假设选择单独诊断（例如只追某等待链）；perf/pprof有采样开销，200ms单波样本稀少，诊断轮须与基准轮分列。当前准备任务不自行追加采样或压测。
+
+验证范围
+本次只读检查本地适配器和三个CLI源码，未运行新负载、未SSH、未修改旧报告。适配器既有3个合成导出测试与一次真实capture核心+fake runner集成验收可作为接口证据，不能替代本次现场身份与完整性验收。
+
+文件SHA256
+artifacts/warn-madv-bottleneck-20261019/capture_safe_w3.py 9446f0412d70cfca9ccc4a9aeb61028bad1f40e9cde71c04f44521eb98d863e6
+/Users/liuyuqing/orca/workspaces/CubeSandbox/v071-c100n100-bottleneck/tools/bottleneck/analyze.mjs 23d0239287d0c2242acffe125966ec33d9e1bfac7676f321210942b4debf77bb
+/Users/liuyuqing/orca/workspaces/CubeSandbox/v071-c100n100-bottleneck/tools/bottleneck/network_details.mjs 3877078e85c247b966e1507f5f387c7cb28d6d3814e7e9059615b3e719ff1a4a
+/Users/liuyuqing/orca/workspaces/CubeSandbox/v071-c100n100-bottleneck/tools/bottleneck/timeline.mjs 530c61006e182963233191bb6122b90872db97ea27f2677423b66e426d3a6204
+/Users/liuyuqing/orca/workspaces/CubeSandbox/v071-c100n100-bottleneck/tools/bottleneck/capture.py 3263fd94872eb23a7a4737326616c5feae3ed0687d2189fa51e023aa28517ded

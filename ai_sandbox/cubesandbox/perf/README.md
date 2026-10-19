@@ -10,6 +10,7 @@
 
 | 文档 | 内容与状态 |
 | --- | --- |
+| [独立 PR4＋guest warn／Cubelet 不绑 NUMA（2026-10-19）](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/REPORT.md) | 三正式轮中位189.823 ms、300/300成功；另抓取轮198.052 ms、100/100成功，report.html、脱敏日志、配置/folio探针及历史对比齐全 |
 | [agentwarn 模板 / 同进程 w3 最新复测（2026-10-17）](reports/v071-c100n100-agentwarn-w3-20261017/REPORT.md) | 1 pilot + 5 正式轮，中位数159.490 ms、500/500成功；完整脱敏数据包、6轮日志和清理证据，组件每轮103个含预热 |
 | [原版 c100n100 实测报告](reports/v071-c100n100-20261012/REPORT.md) | 正式100次成功；主阶段时延、同实例残差、局部时间轴、metrics与覆盖缺口 |
 | [更细阶段时延分析报告](reports/v071-c100n100-fine-20261012/REPORT.md) | 旧日志网络微秒级补解析；Cubelet/Shim精细观测方案与构建验证。观测版重测仍待独占窗口，尚无该版本压测结果 |
@@ -18,9 +19,13 @@
 | [v0.7.1 源码阶段定义](scripts_v071/STAGES.md) | 整体阶段关系示意、同步/并行/异步与计时包含关系、源码计时点、阶段含义及不能直接相加的边界 |
 | [新版工具与复现步骤](scripts_v071/README.md) | 采集、正式/预热分类、网络细分、精细span解析、独立时钟时间轴 |
 
-最新报告入口：[agentwarn/w3 复测](reports/v071-c100n100-agentwarn-w3-20261017/REPORT.md) · [完整分析](reports/v071-c100n100-agentwarn-w3-20261017/RESULT_REPORT.md) · [完整脱敏数据包](reports/v071-c100n100-agentwarn-w3-20261017/result.tar.gz) · [发布说明](reports/v071-c100n100-agentwarn-w3-20261017/PUBLICATION.md)。
+最新报告入口：[PR4/warn 复测与瓶颈分析](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/REPORT.md) · [report.html](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/results/bottleneck-c100/capture/inner-round/runs/20261019T041508Z-ca010a49/analysis/report.html) · [脱敏数据包](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/result.tar.gz) · [发布说明](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/PUBLICATION.md)。
+
+2026-10-17 报告入口：[agentwarn/w3 复测](reports/v071-c100n100-agentwarn-w3-20261017/REPORT.md) · [完整分析](reports/v071-c100n100-agentwarn-w3-20261017/RESULT_REPORT.md) · [完整脱敏数据包](reports/v071-c100n100-agentwarn-w3-20261017/result.tar.gz) · [发布说明](reports/v071-c100n100-agentwarn-w3-20261017/PUBLICATION.md)。
 
 ### 数据与时间轴
+
+- 2026-10-19 独立 PR4/warn：[逐轮CSV](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/round-summary.csv)、[历史整轮对比](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/historical-comparison.csv)、[历史阶段对比](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/stage-comparison.csv)、[folio采样摘要](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/folio-sample-summary.csv)、[时间轴HTML](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/analysis/timeline.html)、[公开文件SHA256](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/SHA256SUMS)、[数据包SHA256](reports/v071-c100n100-pr4-agentwarn-unbound-20261019/result.tar.gz.sha256)。比较表注明各期模板、版本、CPU/NUMA和缓存差异，不能作为单因素补丁收益。
 
 - 2026-10-17 agentwarn/w3：[逐轮CSV](reports/v071-c100n100-agentwarn-w3-20261017/round-summary.csv)、[阶段对比CSV](reports/v071-c100n100-agentwarn-w3-20261017/stage-comparison.csv)、[每轮报告与原始数据入口](reports/v071-c100n100-agentwarn-w3-20261017/RESULT_REPORT.md#证据完整性与交付)、[数据包SHA256](reports/v071-c100n100-agentwarn-w3-20261017/result.tar.gz.sha256)。
 

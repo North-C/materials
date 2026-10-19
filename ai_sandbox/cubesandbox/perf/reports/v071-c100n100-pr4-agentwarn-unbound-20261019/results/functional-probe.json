@@ -1,0 +1,1317 @@
+{
+  "sandbox_id": "14b9846665064f84a842cd4e7319511e",
+  "template_id": "tpl-9550591684db0b683bb6a3b5",
+  "expected_madv": "1",
+  "time": 1792383267.0157979,
+  "rcu_expedited": "0",
+  "rcu_normal": "0",
+  "pid": 1954269,
+  "exe": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs",
+  "sha256": "c887a2ebcae57fe9998d8312ab19ba56ea7a5a79c89d11545cbed61e37c24b0f",
+  "advice_env": [
+    "CUBE_FILE_BACKED_MEMORY_MADV_RANDOM=1"
+  ],
+  "affinities": [
+    "0-383"
+  ],
+  "mappings": [
+    {
+      "mapping": "fffec5200000-ffff05200000 r--p 00000000 103:08 2148764012                /usr/local/services/cubetoolbox/cubebox_os_image/rfs-dd2b6baa7183b8077c714eb9-e5190241/rfs-dd2b6baa7183b8077c714eb9-e5190241.ext4",
+      "Size": "1048576 kB",
+      "KernelPageSize": "4 kB",
+      "MMUPageSize": "4 kB",
+      "Rss": "34816 kB",
+      "VmFlags": "rd mr mw me rr nr sd"
+    },
+    {
+      "mapping": "ffff05200000-ffff06800000 r--p 00000000 103:08 805342658                 /data/cubelet/root/component_versions/cube-agent/v0.7.1/cube-agent.ext4",
+      "Size": "22528 kB",
+      "KernelPageSize": "4 kB",
+      "MMUPageSize": "4 kB",
+      "Rss": "16384 kB",
+      "VmFlags": "rd mr mw me rr nr sd"
+    },
+    {
+      "mapping": "ffff06800000-ffff14000000 r--p 00000000 103:08 2147538894                /data/cubelet/root/component_versions/cube-image/guest-image-260820-1/cube-guest-image-cpu.img",
+      "Size": "221184 kB",
+      "KernelPageSize": "4 kB",
+      "MMUPageSize": "4 kB",
+      "Rss": "0 kB",
+      "VmFlags": "rd mr mw me rr nr sd"
+    },
+    {
+      "mapping": "ffff14000000-ffff94000000 rw-p 00000000 103:08 5370793730                /data/cubelet/storage/xfs/objects/volumes/tpl-tpl-9550591684db0b683bb6a3b5-memory/tpl-tpl-9550591684db0b683bb6a3b5-memory",
+      "Size": "2097152 kB",
+      "KernelPageSize": "4 kB",
+      "MMUPageSize": "4 kB",
+      "Rss": "60548 kB",
+      "VmFlags": "rd wr mr mw me rr nr sd"
+    }
+  ],
+  "guest_ip": "10.100.0.247",
+  "guest_cmdline_exit": 0,
+  "guest_cmdline": "root=/dev/pmem0 rootflags=dax,errors=remount-ro ro rootfstype=ext4 panic=1 printk.devkmsg=on console=ttyAMA0,115200 net.ifnames=0 audit=0 LANG=C raid=noautodetect earlyprintk=ttyS0 agent.debug_console agent.debug_console_vport=1026 mitigations=off quiet highres=off clocksource=kvm-clock agent.unified_cgroup_hierarchy=true agent.log=warn earlycon=pl011,mmio,0x09000000\n",
+  "guest_stderr": "",
+  "folio_sample": {
+    "file_sample_nodes_method": "present_file_PFN_times_page_size_divided_by_sysfs_memory_block_size",
+    "files": {
+      "/data/cubelet/root/component_versions/cube-agent/v0.7.1/cube-agent.ext4": {
+        "category": "agent_image",
+        "file_sample_nodes": {
+          "N2": 4096,
+          "unknown": 0
+        },
+        "file_sample_pages_by_folio_bytes": {
+          "2097152": 4096
+        },
+        "sample_counts": {
+          "compound_head": 8,
+          "compound_tail_unknown_order": 0,
+          "compound_tail_validated_head_observed": 4088,
+          "not_present": 1536
+        },
+        "vmas": 1
+      },
+      "/data/cubelet/root/component_versions/cube-image/guest-image-260820-1/cube-guest-image-cpu.img": {
+        "category": "guest_image",
+        "file_sample_nodes": {
+          "unknown": 0
+        },
+        "file_sample_pages_by_folio_bytes": {},
+        "sample_counts": {
+          "compound_tail_unknown_order": 0,
+          "compound_tail_validated_head_observed": 0,
+          "not_present": 55296
+        },
+        "vmas": 1
+      },
+      "/data/cubelet/storage/xfs/objects/volumes/tpl-tpl-9550591684db0b683bb6a3b5-memory/tpl-tpl-9550591684db0b683bb6a3b5-memory": {
+        "category": "snapshot_memory",
+        "file_sample_nodes": {
+          "N1": 15331,
+          "N2": 93,
+          "unknown": 0
+        },
+        "file_sample_pages_by_folio_bytes": {
+          "16384": 9977,
+          "4096": 4586,
+          "65536": 32,
+          "8192": 12
+        },
+        "sample_counts": {
+          "compound_head": 2722,
+          "compound_tail_unknown_order": 817,
+          "compound_tail_validated_head_observed": 7299,
+          "excluded_nonfile_or_cow": 2909,
+          "file_order0": 4586,
+          "not_present": 505954,
+          "unknown_raced_sample": 1
+        },
+        "vmas": 1
+      },
+      "/usr/local/services/cubetoolbox/cubebox_os_image/rfs-dd2b6baa7183b8077c714eb9-e5190241/rfs-dd2b6baa7183b8077c714eb9-e5190241.ext4": {
+        "category": "rootfs_ext4",
+        "file_sample_nodes": {
+          "N2": 12800,
+          "unknown": 0
+        },
+        "file_sample_pages_by_folio_bytes": {
+          "2097152": 12800
+        },
+        "sample_counts": {
+          "compound_head": 25,
+          "compound_tail_unknown_order": 0,
+          "compound_tail_validated_head_observed": 12775,
+          "not_present": 249344
+        },
+        "vmas": 1
+      }
+    },
+    "limitations": [
+      "Live procfs reads are not an atomic or pinned snapshot; repeated checks reduce but do not eliminate races.",
+      "Only existing present process mappings are sampled; unaccessed page-cache pages are not measured.",
+      "Histograms count observed base pages, not unique folios or whole-file residency.",
+      "Tail-only pages without an observed validated head remain unknown.",
+      "Discard mapping samples if vma_identity_stable_after_scan is false.",
+      "numa_maps reports the whole VMA, including anonymous COW; it does not locate each sampled file folio.",
+      "file_sample_nodes uses actual accepted file PFNs and excludes COW; missing, multi-node or changed block membership is unknown. Hotplug and migration races remain possible.",
+      "File identity comes from VMA plus pagemap FILE and absence of ANON/SWAPBACKED; PFNs require CAP_SYS_ADMIN."
+    ],
+    "mappings": [
+      {
+        "category": "rootfs_ext4",
+        "compound_evidence": [
+          {
+            "head_flags": 34363967592,
+            "head_pfn": 2696438272,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967592,
+            "head_pfn": 2713944576,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967592,
+            "head_pfn": 2695326720,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2701553664,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2693046784,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2696592384,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2711869952,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2712835072,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2708103680,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967592,
+            "head_pfn": 2692400128,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967592,
+            "head_pfn": 2706970112,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2690431488,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2710241792,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967592,
+            "head_pfn": 2715319808,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967592,
+            "head_pfn": 2703138304,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967592,
+            "head_pfn": 2714054656,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2708074496,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2696094720,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2702915584,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 0
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2696197632,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2710871040,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2693798912,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2693909504,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2697134080,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965548
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2701694464,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965548
+          }
+        ],
+        "compound_evidence_count": 25,
+        "compound_evidence_status_counts": {
+          "validated_compound": 25
+        },
+        "compound_evidence_truncated": false,
+        "device": "103:08",
+        "end": 281470767726592,
+        "file": "/usr/local/services/cubetoolbox/cubebox_os_image/rfs-dd2b6baa7183b8077c714eb9-e5190241/rfs-dd2b6baa7183b8077c714eb9-e5190241.ext4",
+        "file_sample_nodes": {
+          "N2": 12800,
+          "unknown": 0
+        },
+        "file_sample_pages_by_folio_bytes": {
+          "2097152": 12800
+        },
+        "inode": 2148764012,
+        "numa_maps": "fffec5200000 default file=/usr/local/services/cubetoolbox/cubebox_os_image/rfs-dd2b6baa7183b8077c714eb9-e5190241/rfs-dd2b6baa7183b8077c714eb9-e5190241.ext4 mapped=12800 N2=12800 kernelpagesize_kB=4",
+        "offset": 0,
+        "perms": "r--p",
+        "sample_counts": {
+          "compound_head": 25,
+          "compound_tail_unknown_order": 0,
+          "compound_tail_validated_head_observed": 12775,
+          "not_present": 249344
+        },
+        "smaps": {
+          "AnonHugePages": "0 kB",
+          "Anonymous": "0 kB",
+          "FilePmdMapped": "51200 kB",
+          "KernelPageSize": "4 kB",
+          "MMUPageSize": "4 kB",
+          "Private_Clean": "51200 kB",
+          "Private_Dirty": "0 kB",
+          "Pss": "51200 kB",
+          "Rss": "51200 kB",
+          "Shared_Clean": "0 kB",
+          "Shared_Dirty": "0 kB",
+          "VmFlags": "rd mr mw me rr nr sd"
+        },
+        "start": 281469693984768,
+        "unstable_samples": 0,
+        "vma_identity_stable_after_scan": true
+      },
+      {
+        "category": "agent_image",
+        "compound_evidence": [
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2707710976,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2709438464,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2707351552,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2696184832,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2716220416,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965548
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2689462272,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2700992000,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2699904512,
+            "order": 9,
+            "pages": 512,
+            "status": "validated_compound",
+            "tail_flags_first": 4261897,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          }
+        ],
+        "compound_evidence_count": 8,
+        "compound_evidence_status_counts": {
+          "validated_compound": 8
+        },
+        "compound_evidence_truncated": false,
+        "device": "103:08",
+        "end": 281470790795264,
+        "file": "/data/cubelet/root/component_versions/cube-agent/v0.7.1/cube-agent.ext4",
+        "file_sample_nodes": {
+          "N2": 4096,
+          "unknown": 0
+        },
+        "file_sample_pages_by_folio_bytes": {
+          "2097152": 4096
+        },
+        "inode": 805342658,
+        "numa_maps": "ffff05200000 default file=/data/cubelet/root/component_versions/cube-agent/v0.7.1/cube-agent.ext4 mapped=4096 N2=4096 kernelpagesize_kB=4",
+        "offset": 0,
+        "perms": "r--p",
+        "sample_counts": {
+          "compound_head": 8,
+          "compound_tail_unknown_order": 0,
+          "compound_tail_validated_head_observed": 4088,
+          "not_present": 1536
+        },
+        "smaps": {
+          "AnonHugePages": "0 kB",
+          "Anonymous": "0 kB",
+          "FilePmdMapped": "16384 kB",
+          "KernelPageSize": "4 kB",
+          "MMUPageSize": "4 kB",
+          "Private_Clean": "16384 kB",
+          "Private_Dirty": "0 kB",
+          "Pss": "16384 kB",
+          "Rss": "16384 kB",
+          "Shared_Clean": "0 kB",
+          "Shared_Dirty": "0 kB",
+          "VmFlags": "rd mr mw me rr nr sd"
+        },
+        "start": 281470767726592,
+        "unstable_samples": 0,
+        "vma_identity_stable_after_scan": true
+      },
+      {
+        "category": "guest_image",
+        "compound_evidence": [],
+        "compound_evidence_count": 0,
+        "compound_evidence_status_counts": {},
+        "compound_evidence_truncated": false,
+        "device": "103:08",
+        "end": 281471017287680,
+        "file": "/data/cubelet/root/component_versions/cube-image/guest-image-260820-1/cube-guest-image-cpu.img",
+        "file_sample_nodes": {
+          "unknown": 0
+        },
+        "file_sample_pages_by_folio_bytes": {},
+        "inode": 2147538894,
+        "numa_maps": "ffff06800000 default file=/data/cubelet/root/component_versions/cube-image/guest-image-260820-1/cube-guest-image-cpu.img",
+        "offset": 0,
+        "perms": "r--p",
+        "sample_counts": {
+          "compound_tail_unknown_order": 0,
+          "compound_tail_validated_head_observed": 0,
+          "not_present": 55296
+        },
+        "smaps": {
+          "AnonHugePages": "0 kB",
+          "Anonymous": "0 kB",
+          "FilePmdMapped": "0 kB",
+          "KernelPageSize": "4 kB",
+          "MMUPageSize": "4 kB",
+          "Private_Clean": "0 kB",
+          "Private_Dirty": "0 kB",
+          "Pss": "0 kB",
+          "Rss": "0 kB",
+          "Shared_Clean": "0 kB",
+          "Shared_Dirty": "0 kB",
+          "VmFlags": "rd mr mw me rr nr sd"
+        },
+        "start": 281470790795264,
+        "unstable_samples": 0,
+        "vma_identity_stable_after_scan": true
+      },
+      {
+        "category": "snapshot_memory",
+        "compound_evidence": [
+          {
+            "head_flags": 34363967528,
+            "head_pfn": 2454085700,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2455738304,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 17179891752
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2432033760,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 40
+          },
+          {
+            "head_flags": 34363967528,
+            "head_pfn": 2422138844,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 17179891752
+          },
+          {
+            "head_flags": 34363967528,
+            "head_pfn": 2422294520,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2452197820,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2431073924,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 40
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2453625576,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965548
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2447923580,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2432828636,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2439239364,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 17179891752
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2426027184,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 0
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2427675896,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965548
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2454213584,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2456888564,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 40
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2436255232,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 17179891752
+          },
+          {
+            "head_flags": 34363967532,
+            "head_pfn": 2429882124,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2456923512,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 17179891752
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2431014236,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2439391136,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 17179891752
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2439883124,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 104
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2447238024,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 40
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2440720748,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2426353972,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2434840516,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 40
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2440003280,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2437330240,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2434148664,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2434233144,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2430927108,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 40
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2431533120,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2429923456,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2446212180,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 0
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2454025908,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2438196472,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 104
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2455638156,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2455909628,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2430825628,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 44
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2436517820,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2431125924,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 40
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2435213512,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 17179891752
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2430522964,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 0
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2430692260,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2434217328,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965544
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2453878280,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 40
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2439799392,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 0
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2448482616,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363967596
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2448482620,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2455858496,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363967596
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2455858500,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967528,
+            "head_pfn": 2448361032,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363967528
+          },
+          {
+            "head_flags": 34363967528,
+            "head_pfn": 2448361036,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2430772400,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 17179891752
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2453486780,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 1024
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2454513152,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 0
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2431110468,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965480
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2436250216,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 0
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2432139944,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 17179891752
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2433715524,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 44
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2437549100,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965548
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2452529748,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2456398580,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 108
+          },
+          {
+            "head_flags": 34363967596,
+            "head_pfn": 2441565680,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 44
+          },
+          {
+            "head_flags": 34363967528,
+            "head_pfn": 2436489116,
+            "order": 2,
+            "pages": 4,
+            "status": "validated_compound",
+            "tail_flags_first": 4262144,
+            "tail_flags_last": 4261888,
+            "terminator_flags": 34363965548
+          }
+        ],
+        "compound_evidence_count": 2722,
+        "compound_evidence_status_counts": {
+          "validated_compound": 2722
+        },
+        "compound_evidence_truncated": true,
+        "device": "103:08",
+        "end": 281473164771328,
+        "file": "/data/cubelet/storage/xfs/objects/volumes/tpl-tpl-9550591684db0b683bb6a3b5-memory/tpl-tpl-9550591684db0b683bb6a3b5-memory",
+        "file_sample_nodes": {
+          "N1": 15331,
+          "N2": 93,
+          "unknown": 0
+        },
+        "file_sample_pages_by_folio_bytes": {
+          "16384": 9977,
+          "4096": 4586,
+          "65536": 32,
+          "8192": 12
+        },
+        "inode": 5370793730,
+        "numa_maps": "ffff14000000 default file=/data/cubelet/storage/xfs/objects/volumes/tpl-tpl-9550591684db0b683bb6a3b5-memory/tpl-tpl-9550591684db0b683bb6a3b5-memory anon=2850 dirty=2850 mapped=18268 active=10415 N1=18175 N2=93 kernelpagesize_kB=4",
+        "offset": 0,
+        "perms": "rw-p",
+        "sample_counts": {
+          "compound_head": 2722,
+          "compound_tail_unknown_order": 817,
+          "compound_tail_validated_head_observed": 7299,
+          "excluded_nonfile_or_cow": 2909,
+          "file_order0": 4586,
+          "not_present": 505954,
+          "unknown_raced_sample": 1
+        },
+        "smaps": {
+          "AnonHugePages": "0 kB",
+          "Anonymous": "11400 kB",
+          "FilePmdMapped": "0 kB",
+          "KernelPageSize": "4 kB",
+          "MMUPageSize": "4 kB",
+          "Private_Clean": "61672 kB",
+          "Private_Dirty": "11400 kB",
+          "Pss": "73072 kB",
+          "Rss": "73072 kB",
+          "Shared_Clean": "0 kB",
+          "Shared_Dirty": "0 kB",
+          "VmFlags": "rd wr mr mw me rr nr sd"
+        },
+        "start": 281471017287680,
+        "unstable_samples": 1,
+        "vma_identity_stable_after_scan": true
+      }
+    ],
+    "method": "existing_present_PTEs_only_no_fault_no_mmap",
+    "numa_topology": {
+      "ambiguous_blocks_after": 0,
+      "ambiguous_blocks_before": 0,
+      "block_count_after": 18400,
+      "block_count_before": 18400,
+      "block_size_bytes": 134217728,
+      "read_error_after": null,
+      "read_error_before": null,
+      "topology_stable": true
+    },
+    "page_size": 4096,
+    "pid": 1954269,
+    "sample_unix_time": 1792383267.9434967
+  },
+  "delete_status": 204,
+  "inventory_after": 0
+}

@@ -1,0 +1,1037 @@
+{
+  "schema_version": 1,
+  "status": "captured",
+  "concurrency": 100,
+  "requests": 100,
+  "warmup": 3,
+  "workload_verification": "declared_contract_not_actual_command_or_results_verification",
+  "ownership_mode": "explicit-owned-ids",
+  "template_id": "tpl-9550591684db0b683bb6a3b5",
+  "started_at": "2026-10-19T04:15:08.080883Z",
+  "ended_at": "2026-10-19T04:15:16.490058Z",
+  "logs": {
+    "cubelet_req": {
+      "source_path": "/data/log/Cubelet/Cubelet-req.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.080899Z",
+        "device": 64768,
+        "inode": 18916620,
+        "size": 372137922,
+        "mtime_ns": 1792383267968000000,
+        "status": "ok",
+        "anchor_offset": 372133826,
+        "anchor_sha256": "2f91c9ea4cb4169af35dfedd8c4c7d7658424bcfebd01bfaa979a5f7dec66dc3",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "5": {
+            "device": 64768,
+            "inode": 18874809,
+            "size": 524289274,
+            "mtime_ns": 1789611828620181420
+          },
+          "2": {
+            "device": 64768,
+            "inode": 18916609,
+            "size": 524288539,
+            "mtime_ns": 1792052215608000000
+          },
+          "9": {
+            "device": 64768,
+            "inode": 18874385,
+            "size": 524288401,
+            "mtime_ns": 1785243433444984970
+          },
+          "6": {
+            "device": 64768,
+            "inode": 18874730,
+            "size": 524288038,
+            "mtime_ns": 1789470279812181420
+          },
+          "3": {
+            "device": 64768,
+            "inode": 18916595,
+            "size": 524288653,
+            "mtime_ns": 1791819848081964710
+          },
+          "7": {
+            "device": 64768,
+            "inode": 18874693,
+            "size": 524288191,
+            "mtime_ns": 1789083929455643350
+          },
+          "0": {
+            "device": 64768,
+            "inode": 18916620,
+            "size": 372137922,
+            "mtime_ns": 1792383267968000000
+          },
+          "8": {
+            "device": 64768,
+            "inode": 18874613,
+            "size": 524288192,
+            "mtime_ns": 1786955261709120190
+          },
+          "1": {
+            "device": 64768,
+            "inode": 18916615,
+            "size": 524288263,
+            "mtime_ns": 1792347603824000000
+          },
+          "4": {
+            "device": 64768,
+            "inode": 18874851,
+            "size": 524288968,
+            "mtime_ns": 1790062618458465480
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 4,
+          "max_fd": 3
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 5,
+          "max_fd": 4
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18916620,
+        "size": 372780313,
+        "mtime_ns": 1792383314316000000,
+        "observed_at": "2026-10-19T04:15:16.480203Z"
+      },
+      "delta_path": "evidence/cubelet_req-delta.log",
+      "captured_bytes": 642391,
+      "gaps": [],
+      "segments": [
+        {
+          "index_at_end": null,
+          "device": 64768,
+          "inode": 18916620,
+          "size": 372780313,
+          "mtime_ns": 1792383314316000000,
+          "read_start": 372137922,
+          "read_end": 372780313,
+          "available_bytes": 642391,
+          "captured_bytes": 642391,
+          "sha256": "17b93ea14c34af81ae6ed8b69ff919a28ed032aa2cdb06cdf13cc31b5c3cde57"
+        }
+      ],
+      "reused_inode_observations": [],
+      "rotation_adapter": "numbered_rename_v2",
+      "completeness_basis": "pinned starting inode, unchanged anchor and contiguous numeric rename chain; retired backup inode reuse permitted with changed size/mtime; no timed polling",
+      "limitations": [
+        "Post offsets are per-file observations, not an atomic global instant.",
+        "Cannot recover overwritten copytruncate bytes or missing intermediate inodes."
+      ],
+      "rotation_after": {
+        "5": {
+          "device": 64768,
+          "inode": 18874809,
+          "size": 524289274,
+          "mtime_ns": 1789611828620181420
+        },
+        "2": {
+          "device": 64768,
+          "inode": 18916609,
+          "size": 524288539,
+          "mtime_ns": 1792052215608000000
+        },
+        "9": {
+          "device": 64768,
+          "inode": 18874385,
+          "size": 524288401,
+          "mtime_ns": 1785243433444984970
+        },
+        "6": {
+          "device": 64768,
+          "inode": 18874730,
+          "size": 524288038,
+          "mtime_ns": 1789470279812181420
+        },
+        "3": {
+          "device": 64768,
+          "inode": 18916595,
+          "size": 524288653,
+          "mtime_ns": 1791819848081964710
+        },
+        "7": {
+          "device": 64768,
+          "inode": 18874693,
+          "size": 524288191,
+          "mtime_ns": 1789083929455643350
+        },
+        "0": {
+          "device": 64768,
+          "inode": 18916620,
+          "size": 372780313,
+          "mtime_ns": 1792383314316000000
+        },
+        "8": {
+          "device": 64768,
+          "inode": 18874613,
+          "size": 524288192,
+          "mtime_ns": 1786955261709120190
+        },
+        "1": {
+          "device": 64768,
+          "inode": 18916615,
+          "size": 524288263,
+          "mtime_ns": 1792347603824000000
+        },
+        "4": {
+          "device": 64768,
+          "inode": 18874851,
+          "size": 524288968,
+          "mtime_ns": 1790062618458465480
+        }
+      },
+      "available_bytes": 642391,
+      "omitted_bytes": 0,
+      "starts_on_line_boundary": true,
+      "sha256": "17b93ea14c34af81ae6ed8b69ff919a28ed032aa2cdb06cdf13cc31b5c3cde57",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "cubelet_stat": {
+      "source_path": "/data/log/Cubelet/Cubelet-stat.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081253Z",
+        "device": 64768,
+        "inode": 18874386,
+        "size": 309269259,
+        "mtime_ns": 1792383299796000000,
+        "status": "ok",
+        "anchor_offset": 309265163,
+        "anchor_sha256": "94c7d81ebc57e8aea939b93e2232d82693188a68fc8fe5b20c211aa4e7701879",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "3": {
+            "device": 64768,
+            "inode": 18916599,
+            "size": 524288238,
+            "mtime_ns": 1791804669801964710
+          },
+          "1": {
+            "device": 64768,
+            "inode": 18916617,
+            "size": 524288324,
+            "mtime_ns": 1792351625200000000
+          },
+          "9": {
+            "device": 64768,
+            "inode": 18874572,
+            "size": 524288344,
+            "mtime_ns": 1785794834030578320
+          },
+          "0": {
+            "device": 64768,
+            "inode": 18874386,
+            "size": 309269259,
+            "mtime_ns": 1792383299796000000
+          },
+          "2": {
+            "device": 64768,
+            "inode": 18916608,
+            "size": 524288111,
+            "mtime_ns": 1792148357428000000
+          },
+          "7": {
+            "device": 64768,
+            "inode": 18874690,
+            "size": 524288205,
+            "mtime_ns": 1789071659395643350
+          },
+          "4": {
+            "device": 64768,
+            "inode": 18916590,
+            "size": 524288239,
+            "mtime_ns": 1790580308821568380
+          },
+          "5": {
+            "device": 64768,
+            "inode": 18874811,
+            "size": 524288127,
+            "mtime_ns": 1789754488690465480
+          },
+          "8": {
+            "device": 64768,
+            "inode": 18874662,
+            "size": 524288196,
+            "mtime_ns": 1786727418641120190
+          },
+          "6": {
+            "device": 64768,
+            "inode": 18874729,
+            "size": 524288330,
+            "mtime_ns": 1789535453184181420
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 5,
+          "max_fd": 4
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 6,
+          "max_fd": 5
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18874386,
+        "size": 309987922,
+        "mtime_ns": 1792383314316000000,
+        "observed_at": "2026-10-19T04:15:16.481335Z"
+      },
+      "delta_path": "evidence/cubelet_stat-delta.log",
+      "captured_bytes": 718663,
+      "gaps": [],
+      "segments": [
+        {
+          "index_at_end": null,
+          "device": 64768,
+          "inode": 18874386,
+          "size": 309987922,
+          "mtime_ns": 1792383314316000000,
+          "read_start": 309269259,
+          "read_end": 309987922,
+          "available_bytes": 718663,
+          "captured_bytes": 718663,
+          "sha256": "e9900977030009ce1b0a8ef609e1e5de0f4e12e6b18f7b42b5da96517ce88a22"
+        }
+      ],
+      "reused_inode_observations": [],
+      "rotation_adapter": "numbered_rename_v2",
+      "completeness_basis": "pinned starting inode, unchanged anchor and contiguous numeric rename chain; retired backup inode reuse permitted with changed size/mtime; no timed polling",
+      "limitations": [
+        "Post offsets are per-file observations, not an atomic global instant.",
+        "Cannot recover overwritten copytruncate bytes or missing intermediate inodes."
+      ],
+      "rotation_after": {
+        "3": {
+          "device": 64768,
+          "inode": 18916599,
+          "size": 524288238,
+          "mtime_ns": 1791804669801964710
+        },
+        "1": {
+          "device": 64768,
+          "inode": 18916617,
+          "size": 524288324,
+          "mtime_ns": 1792351625200000000
+        },
+        "9": {
+          "device": 64768,
+          "inode": 18874572,
+          "size": 524288344,
+          "mtime_ns": 1785794834030578320
+        },
+        "0": {
+          "device": 64768,
+          "inode": 18874386,
+          "size": 309987922,
+          "mtime_ns": 1792383314316000000
+        },
+        "2": {
+          "device": 64768,
+          "inode": 18916608,
+          "size": 524288111,
+          "mtime_ns": 1792148357428000000
+        },
+        "7": {
+          "device": 64768,
+          "inode": 18874690,
+          "size": 524288205,
+          "mtime_ns": 1789071659395643350
+        },
+        "4": {
+          "device": 64768,
+          "inode": 18916590,
+          "size": 524288239,
+          "mtime_ns": 1790580308821568380
+        },
+        "5": {
+          "device": 64768,
+          "inode": 18874811,
+          "size": 524288127,
+          "mtime_ns": 1789754488690465480
+        },
+        "8": {
+          "device": 64768,
+          "inode": 18874662,
+          "size": 524288196,
+          "mtime_ns": 1786727418641120190
+        },
+        "6": {
+          "device": 64768,
+          "inode": 18874729,
+          "size": 524288330,
+          "mtime_ns": 1789535453184181420
+        }
+      },
+      "available_bytes": 718663,
+      "omitted_bytes": 0,
+      "starts_on_line_boundary": true,
+      "sha256": "e9900977030009ce1b0a8ef609e1e5de0f4e12e6b18f7b42b5da96517ce88a22",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "shim_req": {
+      "source_path": "/data/log/CubeShim/cube-shim-req.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081535Z",
+        "device": 64768,
+        "inode": 18874392,
+        "size": 749724222,
+        "mtime_ns": 1792383268028000000,
+        "status": "ok",
+        "anchor_offset": 749720126,
+        "anchor_sha256": "b3b30c0326aaf81edcec4b917d7b4238bc05d6f2a55319ca4e94cc6b54ad7485",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "0": {
+            "device": 64768,
+            "inode": 18874392,
+            "size": 749724222,
+            "mtime_ns": 1792383268028000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 6,
+          "max_fd": 5
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 7,
+          "max_fd": 6
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18874392,
+        "size": 750725650,
+        "mtime_ns": 1792383314312000000,
+        "observed_at": "2026-10-19T04:15:16.482459Z"
+      },
+      "delta_path": "evidence/shim_req-delta.log",
+      "captured_bytes": 1001428,
+      "gaps": [],
+      "segments": [
+        {
+          "index_at_end": null,
+          "device": 64768,
+          "inode": 18874392,
+          "size": 750725650,
+          "mtime_ns": 1792383314312000000,
+          "read_start": 749724222,
+          "read_end": 750725650,
+          "available_bytes": 1001428,
+          "captured_bytes": 1001428,
+          "sha256": "1ac2cf26f1f032fcc722fa549ab0decd7ccd65fd529dc12ab83ab169e4ee326a"
+        }
+      ],
+      "reused_inode_observations": [],
+      "rotation_adapter": "numbered_rename_v2",
+      "completeness_basis": "pinned starting inode, unchanged anchor and contiguous numeric rename chain; retired backup inode reuse permitted with changed size/mtime; no timed polling",
+      "limitations": [
+        "Post offsets are per-file observations, not an atomic global instant.",
+        "Cannot recover overwritten copytruncate bytes or missing intermediate inodes."
+      ],
+      "rotation_after": {
+        "0": {
+          "device": 64768,
+          "inode": 18874392,
+          "size": 750725650,
+          "mtime_ns": 1792383314312000000
+        }
+      },
+      "available_bytes": 1001428,
+      "omitted_bytes": 0,
+      "starts_on_line_boundary": true,
+      "sha256": "1ac2cf26f1f032fcc722fa549ab0decd7ccd65fd529dc12ab83ab169e4ee326a",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "shim_stat": {
+      "source_path": "/data/log/CubeShim/cube-shim-stat.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081693Z",
+        "device": 64768,
+        "inode": 18874393,
+        "size": 126898650,
+        "mtime_ns": 1792383267968000000,
+        "status": "ok",
+        "anchor_offset": 126894554,
+        "anchor_sha256": "70bd570f3ac9594538189c25295b979442eb4e3a6e49d82b7fd40dc6c60a3019",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "0": {
+            "device": 64768,
+            "inode": 18874393,
+            "size": 126898650,
+            "mtime_ns": 1792383267968000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 7,
+          "max_fd": 6
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 8,
+          "max_fd": 7
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18874393,
+        "size": 127072593,
+        "mtime_ns": 1792383314212000000,
+        "observed_at": "2026-10-19T04:15:16.483897Z"
+      },
+      "delta_path": "evidence/shim_stat-delta.log",
+      "captured_bytes": 173943,
+      "gaps": [],
+      "segments": [
+        {
+          "index_at_end": null,
+          "device": 64768,
+          "inode": 18874393,
+          "size": 127072593,
+          "mtime_ns": 1792383314212000000,
+          "read_start": 126898650,
+          "read_end": 127072593,
+          "available_bytes": 173943,
+          "captured_bytes": 173943,
+          "sha256": "ece6645d57aa73a5d6dddaffbb14c40056dff4b53c3c79ed4caaf48dc56ab5b2"
+        }
+      ],
+      "reused_inode_observations": [],
+      "rotation_adapter": "numbered_rename_v2",
+      "completeness_basis": "pinned starting inode, unchanged anchor and contiguous numeric rename chain; retired backup inode reuse permitted with changed size/mtime; no timed polling",
+      "limitations": [
+        "Post offsets are per-file observations, not an atomic global instant.",
+        "Cannot recover overwritten copytruncate bytes or missing intermediate inodes."
+      ],
+      "rotation_after": {
+        "0": {
+          "device": 64768,
+          "inode": 18874393,
+          "size": 127072593,
+          "mtime_ns": 1792383314212000000
+        }
+      },
+      "available_bytes": 173943,
+      "omitted_bytes": 0,
+      "starts_on_line_boundary": true,
+      "sha256": "ece6645d57aa73a5d6dddaffbb14c40056dff4b53c3c79ed4caaf48dc56ab5b2",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "vmm": {
+      "source_path": "/data/log/CubeVmm/vmm.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081847Z",
+        "device": 64768,
+        "inode": 18874394,
+        "size": 1902852168,
+        "mtime_ns": 1792383268028000000,
+        "status": "ok",
+        "anchor_offset": 1902848072,
+        "anchor_sha256": "828a07e63bc41e5614f726803f4c8f2f8869f317f0b0e9aa522c9d58d2417254",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "0": {
+            "device": 64768,
+            "inode": 18874394,
+            "size": 1902852168,
+            "mtime_ns": 1792383268028000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 8,
+          "max_fd": 7
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 9,
+          "max_fd": 8
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18874394,
+        "size": 1905530614,
+        "mtime_ns": 1792383314312000000,
+        "observed_at": "2026-10-19T04:15:16.484299Z"
+      },
+      "delta_path": "evidence/vmm-delta.log",
+      "captured_bytes": 2678446,
+      "gaps": [],
+      "segments": [
+        {
+          "index_at_end": null,
+          "device": 64768,
+          "inode": 18874394,
+          "size": 1905530614,
+          "mtime_ns": 1792383314312000000,
+          "read_start": 1902852168,
+          "read_end": 1905530614,
+          "available_bytes": 2678446,
+          "captured_bytes": 2678446,
+          "sha256": "2c6f6927ca291cea978eeb4869369ccc28596aa3ee1447aa572763d03358b6b7"
+        }
+      ],
+      "reused_inode_observations": [],
+      "rotation_adapter": "numbered_rename_v2",
+      "completeness_basis": "pinned starting inode, unchanged anchor and contiguous numeric rename chain; retired backup inode reuse permitted with changed size/mtime; no timed polling",
+      "limitations": [
+        "Post offsets are per-file observations, not an atomic global instant.",
+        "Cannot recover overwritten copytruncate bytes or missing intermediate inodes."
+      ],
+      "rotation_after": {
+        "0": {
+          "device": 64768,
+          "inode": 18874394,
+          "size": 1905530614,
+          "mtime_ns": 1792383314312000000
+        }
+      },
+      "available_bytes": 2678446,
+      "omitted_bytes": 0,
+      "starts_on_line_boundary": true,
+      "sha256": "2c6f6927ca291cea978eeb4869369ccc28596aa3ee1447aa572763d03358b6b7",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "master": {
+      "source_path": "/data/log/CubeMaster/cubemaster-req.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.081982Z",
+        "device": 64768,
+        "inode": 18874726,
+        "size": 11384863,
+        "mtime_ns": 1792383307644000000,
+        "status": "ok",
+        "anchor_offset": 11380767,
+        "anchor_sha256": "96d55decbe359cfb4389e89bba6246e20a0c5bfe82d36996aaab5c558a7d4c89",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "8": {
+            "device": 64768,
+            "inode": 18874389,
+            "size": 104857636,
+            "mtime_ns": 1792220509048000000
+          },
+          "9": {
+            "device": 64768,
+            "inode": 18874727,
+            "size": 104857643,
+            "mtime_ns": 1792148254760000000
+          },
+          "0": {
+            "device": 64768,
+            "inode": 18874726,
+            "size": 11384863,
+            "mtime_ns": 1792383307644000000
+          },
+          "5": {
+            "device": 64768,
+            "inode": 18874721,
+            "size": 104857742,
+            "mtime_ns": 1792346713344000000
+          },
+          "1": {
+            "device": 64768,
+            "inode": 18874725,
+            "size": 104857945,
+            "mtime_ns": 1792381330524000000
+          },
+          "4": {
+            "device": 64768,
+            "inode": 18874722,
+            "size": 104857958,
+            "mtime_ns": 1792351625028000000
+          },
+          "7": {
+            "device": 64768,
+            "inode": 18874716,
+            "size": 104857945,
+            "mtime_ns": 1792239145952000000
+          },
+          "6": {
+            "device": 64768,
+            "inode": 18874720,
+            "size": 104857746,
+            "mtime_ns": 1792336987116000000
+          },
+          "3": {
+            "device": 64768,
+            "inode": 18874723,
+            "size": 104858177,
+            "mtime_ns": 1792354693104000000
+          },
+          "2": {
+            "device": 64768,
+            "inode": 18874724,
+            "size": 104857670,
+            "mtime_ns": 1792358101812000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 9,
+          "max_fd": 8
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 10,
+          "max_fd": 9
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18874726,
+        "size": 12216106,
+        "mtime_ns": 1792383315324000000,
+        "observed_at": "2026-10-19T04:15:16.487860Z"
+      },
+      "delta_path": "evidence/master-delta.log",
+      "captured_bytes": 831243,
+      "gaps": [],
+      "segments": [
+        {
+          "index_at_end": null,
+          "device": 64768,
+          "inode": 18874726,
+          "size": 12216106,
+          "mtime_ns": 1792383315324000000,
+          "read_start": 11384863,
+          "read_end": 12216106,
+          "available_bytes": 831243,
+          "captured_bytes": 831243,
+          "sha256": "72db9c4546b3eace38690a5424b1f931b770d7cd1d1b8eaed28a501904366d7c"
+        }
+      ],
+      "reused_inode_observations": [],
+      "rotation_adapter": "numbered_rename_v2",
+      "completeness_basis": "pinned starting inode, unchanged anchor and contiguous numeric rename chain; retired backup inode reuse permitted with changed size/mtime; no timed polling",
+      "limitations": [
+        "Post offsets are per-file observations, not an atomic global instant.",
+        "Cannot recover overwritten copytruncate bytes or missing intermediate inodes."
+      ],
+      "rotation_after": {
+        "8": {
+          "device": 64768,
+          "inode": 18874389,
+          "size": 104857636,
+          "mtime_ns": 1792220509048000000
+        },
+        "9": {
+          "device": 64768,
+          "inode": 18874727,
+          "size": 104857643,
+          "mtime_ns": 1792148254760000000
+        },
+        "0": {
+          "device": 64768,
+          "inode": 18874726,
+          "size": 12216106,
+          "mtime_ns": 1792383315324000000
+        },
+        "5": {
+          "device": 64768,
+          "inode": 18874721,
+          "size": 104857742,
+          "mtime_ns": 1792346713344000000
+        },
+        "1": {
+          "device": 64768,
+          "inode": 18874725,
+          "size": 104857945,
+          "mtime_ns": 1792381330524000000
+        },
+        "4": {
+          "device": 64768,
+          "inode": 18874722,
+          "size": 104857958,
+          "mtime_ns": 1792351625028000000
+        },
+        "7": {
+          "device": 64768,
+          "inode": 18874716,
+          "size": 104857945,
+          "mtime_ns": 1792239145952000000
+        },
+        "6": {
+          "device": 64768,
+          "inode": 18874720,
+          "size": 104857746,
+          "mtime_ns": 1792336987116000000
+        },
+        "3": {
+          "device": 64768,
+          "inode": 18874723,
+          "size": 104858177,
+          "mtime_ns": 1792354693104000000
+        },
+        "2": {
+          "device": 64768,
+          "inode": 18874724,
+          "size": 104857670,
+          "mtime_ns": 1792358101812000000
+        }
+      },
+      "available_bytes": 831243,
+      "omitted_bytes": 0,
+      "starts_on_line_boundary": true,
+      "sha256": "72db9c4546b3eace38690a5424b1f931b770d7cd1d1b8eaed28a501904366d7c",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    },
+    "master_stat": {
+      "source_path": "/data/log/CubeMaster/cubemaster-stat.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.082207Z",
+        "status": "unavailable",
+        "error_type": "FileNotFoundError"
+      },
+      "after": null,
+      "delta_path": null,
+      "captured_bytes": 0,
+      "gaps": [
+        "no_readable_start_offset"
+      ],
+      "segments": [],
+      "reused_inode_observations": [],
+      "rotation_adapter": "numbered_rename_v2",
+      "completeness_basis": "pinned starting inode, unchanged anchor and contiguous numeric rename chain; retired backup inode reuse permitted with changed size/mtime; no timed polling",
+      "limitations": [
+        "Post offsets are per-file observations, not an atomic global instant.",
+        "Cannot recover overwritten copytruncate bytes or missing intermediate inodes."
+      ],
+      "status": "unavailable"
+    },
+    "api": {
+      "source_path": "/data/log/CubeAPI/cube-api-2026-10-19.log",
+      "before": {
+        "observed_at": "2026-10-19T04:15:08.082316Z",
+        "device": 64768,
+        "inode": 18916621,
+        "size": 3460439,
+        "mtime_ns": 1792383307648000000,
+        "status": "ok",
+        "anchor_offset": 3456343,
+        "anchor_sha256": "f48d4ccf7e7fcc9c2fc9ffe371ff7e001501e3826cd0151260880fd0dda49dd8",
+        "starts_on_line_boundary": true,
+        "rotation_adapter": "numbered_rename_v2",
+        "rotation_before": {
+          "0": {
+            "device": 64768,
+            "inode": 18916621,
+            "size": 3460439,
+            "mtime_ns": 1792383307648000000
+          }
+        },
+        "rotation_snapshot_gaps": [],
+        "collector_fds_before": {
+          "available": true,
+          "count": 10,
+          "max_fd": 9
+        },
+        "collector_fds_after": {
+          "available": true,
+          "count": 11,
+          "max_fd": 10
+        },
+        "held_fd_non_inheritable": true,
+        "held_fd_below_64": true
+      },
+      "after": {
+        "device": 64768,
+        "inode": 18916621,
+        "size": 3493574,
+        "mtime_ns": 1792383315324000000,
+        "observed_at": "2026-10-19T04:15:16.489103Z"
+      },
+      "delta_path": "evidence/api-delta.log",
+      "captured_bytes": 33135,
+      "gaps": [],
+      "segments": [
+        {
+          "index_at_end": null,
+          "device": 64768,
+          "inode": 18916621,
+          "size": 3493574,
+          "mtime_ns": 1792383315324000000,
+          "read_start": 3460439,
+          "read_end": 3493574,
+          "available_bytes": 33135,
+          "captured_bytes": 33135,
+          "sha256": "f91b2b326d48d01830fa77eaaf61eef0c8ad2eed26f78e7f0eaaa8e1913787b7"
+        }
+      ],
+      "reused_inode_observations": [],
+      "rotation_adapter": "numbered_rename_v2",
+      "completeness_basis": "pinned starting inode, unchanged anchor and contiguous numeric rename chain; retired backup inode reuse permitted with changed size/mtime; no timed polling",
+      "limitations": [
+        "Post offsets are per-file observations, not an atomic global instant.",
+        "Cannot recover overwritten copytruncate bytes or missing intermediate inodes."
+      ],
+      "rotation_after": {
+        "0": {
+          "device": 64768,
+          "inode": 18916621,
+          "size": 3493574,
+          "mtime_ns": 1792383315324000000
+        }
+      },
+      "available_bytes": 33135,
+      "omitted_bytes": 0,
+      "starts_on_line_boundary": true,
+      "sha256": "f91b2b326d48d01830fa77eaaf61eef0c8ad2eed26f78e7f0eaaa8e1913787b7",
+      "ends_on_line_boundary": true,
+      "status": "captured"
+    }
+  },
+  "metrics": {
+    "before": {
+      "url": "http://127.0.0.1:9998/v1/metrics",
+      "observed_at": "2026-10-19T04:15:08.083107Z",
+      "captured_bytes": 346652,
+      "gaps": [],
+      "http_status": 200,
+      "path": "evidence/metrics-before.prom",
+      "status": "captured"
+    },
+    "after": {
+      "url": "http://127.0.0.1:9998/v1/metrics",
+      "observed_at": "2026-10-19T04:15:16.473425Z",
+      "captured_bytes": 346647,
+      "gaps": [],
+      "http_status": 200,
+      "path": "evidence/metrics-after.prom",
+      "status": "captured"
+    }
+  },
+  "gaps": [
+    "ownership_phase_unknown",
+    "owned_counts_differ_from_declared_workload",
+    "master_stat:no_readable_start_offset"
+  ],
+  "expected_service_version": "v0.7.1+PR4",
+  "expected_service_commit": "999e115abca7ae39dff86dffe28896b3155ebcf5",
+  "service_identity_verified": false,
+  "benchmark_binary": {
+    "path": "/data/cubelet/pr-patch-benchmark-20261018/bin/cube-bench",
+    "expected_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+    "sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+    "verified": true,
+    "actual_invocation_verified": false
+  },
+  "command": {
+    "executed": true,
+    "started_at": "2026-10-19T04:15:08.090583Z",
+    "exit_code": 0,
+    "console": {
+      "path": "evidence/command.log",
+      "cap_bytes": 4194304,
+      "captured_bytes": 149,
+      "omitted_bytes": 0,
+      "gaps": []
+    },
+    "ended_at": "2026-10-19T04:15:15.473290Z",
+    "forwarded_signals": []
+  },
+  "host_sampling": {
+    "status": "disabled"
+  },
+  "limits": {
+    "per_log_bytes": 67108864,
+    "metrics_bytes": 2097152,
+    "metrics_timeout_seconds": 3
+  },
+  "limitations": [
+    "Capture success is not benchmark success or a verified service version.",
+    "The external command must implement safe explicit-ID ownership and cleanup.",
+    "No argv or environment values are persisted; private command.log contains capped child output and may be sensitive.",
+    "Cubelet v0.7.1 suppresses successful trace stages shorter than 5 ms.",
+    "Nested stages must not be added; missing stages are not zero.",
+    "Anchored numeric rename chain captured after command; retention loss, copytruncate and caps remain gaps. Outer metrics include cleanup, not only timed requests."
+  ],
+  "ownership": {
+    "source_path": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/ownership-input.json",
+    "gaps": [
+      "ownership_phase_unknown",
+      "owned_counts_differ_from_declared_workload"
+    ],
+    "status": "loaded",
+    "sha256": "4c25c5d92e071de9a50cb48fe554a6b81a8c1a601e9fbb3e1522e6d5d0bdaf08",
+    "counts": {
+      "formal": 0,
+      "warmup": 0,
+      "unknown_phase": 103
+    }
+  },
+  "isolated_adapter": {
+    "adapter_sha256": "9446f0412d70cfca9ccc4a9aeb61028bad1f40e9cde71c04f44521eb98d863e6",
+    "capture_source_sha256": "3263fd94872eb23a7a4737326616c5feae3ed0687d2189fa51e023aa28517ded",
+    "rotation_source_sha256": "6235de4e71f459dff27922ce2a957e20b12c7f9c3133e2106e08dc92172afbc0",
+    "round_runner_sha256": "52e16580a956bb350e823bc44c5a4310bde7b7d756f465a2ff772eecc7ba9c8a",
+    "original_capture_bench_sha256": "d7d7685433bea7909b124504f4851517bdae146c4bb13e279fbb816c20bd032d",
+    "authorized_bench_sha256": "ae2f32cc4ca0e542543ce0200d26521416ca6a23c3377c63cd7ea5e9fbbfb511",
+    "bench_sha_source": "explicit caller instruction, checked against actual binary; not service identity",
+    "declared_shim_commit": "999e115abca7ae39dff86dffe28896b3155ebcf5",
+    "service_identity_verified": false,
+    "rotation_adapter": "numbered_rename_v2",
+    "timed_log_polling": false,
+    "outer_window_includes": [
+      "inner setup",
+      "w3",
+      "formal100",
+      "inner capture/analysis",
+      "owned-ID cleanup",
+      "tail"
+    ],
+    "formal_wall_source": "inner official raw summary.total_time_s",
+    "phase_mapping": "103 unknown_phase; no client seq to sandbox ID mapping",
+    "metrics_url_source": "private config metrics_url; value not exported here"
+  },
+  "rotation_capture_adapter": {
+    "version": "numbered_rename_v2",
+    "sha256": "6235de4e71f459dff27922ce2a957e20b12c7f9c3133e2106e08dc92172afbc0",
+    "held_fd_upper_bound_exclusive": 64,
+    "timed_log_polling": false
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "backups": [
+    {
+      "target": "/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs",
+      "backup": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/backup/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs",
+      "old_sha": "4ae9be881c4429358279d1fffed759c3e4203edb7479db57357e0ad7b0c7d0b6",
+      "new_sha": "c887a2ebcae57fe9998d8312ab19ba56ea7a5a79c89d11545cbed61e37c24b0f"
+    },
+    {
+      "target": "/usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime",
+      "backup": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/backup/usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime",
+      "old_sha": "76803184bd8069e88522eebea4e1bed564a7da9dde8c6c124a6bfcda8113f0fa",
+      "new_sha": "76803184bd8069e88522eebea4e1bed564a7da9dde8c6c124a6bfcda8113f0fa"
+    },
+    {
+      "target": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs",
+      "backup": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/backup/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs",
+      "old_sha": "73ac01df267e32d12235a8d64d0f453ece9a0f2122565c8100c018922c2c342a",
+      "new_sha": "c887a2ebcae57fe9998d8312ab19ba56ea7a5a79c89d11545cbed61e37c24b0f"
+    },
+    {
+      "target": "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/cube-runtime",
+      "backup": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/backup/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/cube-runtime",
+      "old_sha": "76803184bd8069e88522eebea4e1bed564a7da9dde8c6c124a6bfcda8113f0fa",
+      "new_sha": "76803184bd8069e88522eebea4e1bed564a7da9dde8c6c124a6bfcda8113f0fa"
+    }
+  ],
+  "source": "/data/cubelet/pr-patch-benchmark-20261018/v0.7.1-pr4-madv-random-999e115a/bin",
+  "restart": false,
+  "configuration_changes": false,
+  "desired_exit": "leave independent PR4 installed"
+}

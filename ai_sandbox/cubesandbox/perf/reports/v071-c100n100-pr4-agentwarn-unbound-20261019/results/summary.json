@@ -1,0 +1,64 @@
+{
+  "rounds": [
+    {
+      "label": "pilot",
+      "total_ms": 186.07541,
+      "successful": 100,
+      "errors": 0,
+      "p50_ms": 164.927,
+      "p95_ms": 180.87,
+      "p99_ms": 184.551,
+      "cleanup": "complete",
+      "deleted": 103,
+      "identity_unchanged": true,
+      "raw": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/pilot/runs/20261019T041056Z-5d743f10/capture/startup-latency/benchmark.raw.json"
+    },
+    {
+      "label": "formal-01",
+      "total_ms": 189.82299,
+      "successful": 100,
+      "errors": 0,
+      "p50_ms": 150.171,
+      "p95_ms": 185.657,
+      "p99_ms": 186.986,
+      "cleanup": "complete",
+      "deleted": 103,
+      "identity_unchanged": true,
+      "raw": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/formal-01/runs/20261019T041123Z-477becce/capture/startup-latency/benchmark.raw.json"
+    },
+    {
+      "label": "formal-02",
+      "total_ms": 184.64082000000002,
+      "successful": 100,
+      "errors": 0,
+      "p50_ms": 163.61,
+      "p95_ms": 181.36,
+      "p99_ms": 183.19,
+      "cleanup": "complete",
+      "deleted": 103,
+      "identity_unchanged": true,
+      "raw": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/formal-02/runs/20261019T041151Z-9e2c78cd/capture/startup-latency/benchmark.raw.json"
+    },
+    {
+      "label": "formal-03",
+      "total_ms": 197.10993,
+      "successful": 100,
+      "errors": 0,
+      "p50_ms": 165.259,
+      "p95_ms": 192.202,
+      "p99_ms": 194.639,
+      "cleanup": "complete",
+      "deleted": 103,
+      "identity_unchanged": true,
+      "raw": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/formal-03/runs/20261019T041401Z-652862c0/capture/startup-latency/benchmark.raw.json"
+    }
+  ],
+  "formal": {
+    "median_ms": 189.82299,
+    "mean_ms": 190.52458000000001,
+    "min_ms": 184.64082000000002,
+    "max_ms": 197.10993
+  },
+  "successful_total": 400,
+  "deleted_total": 412
+}

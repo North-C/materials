@@ -1,0 +1,35 @@
+{
+  "status": "ok",
+  "rows": [],
+  "errors": [],
+  "summary": {
+    "node_scope": "all",
+    "nodes_scanned": 1,
+    "nodes_total": 1,
+    "sandbox_count": 0,
+    "reported_scan_complete": true
+  },
+  "limitations": [
+    "healthy_nodes_inventory_only",
+    "node_query_failures_may_be_omitted_despite_complete_reported_scan"
+  ],
+  "stdout_path": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/inner-round/runs/20261019T041508Z-ca010a49/capture/evidence/cubemastercli/before.stdout",
+  "stderr_path": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/inner-round/runs/20261019T041508Z-ca010a49/capture/evidence/cubemastercli/before.stderr",
+  "evidence_path": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/inner-round/runs/20261019T041508Z-ca010a49/capture/evidence/cubemastercli/before.json",
+  "argv": [
+    "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemastercli",
+    "--address",
+    "127.0.0.1",
+    "--port",
+    "8089",
+    "--timeout",
+    "15s",
+    "list",
+    "--all",
+    "--wide"
+  ],
+  "exit_code": 0,
+  "started_at": "2026-10-19T04:15:08.706006+00:00",
+  "finished_at": "2026-10-19T04:15:08.936496+00:00",
+  "output_bytes": 203
+}

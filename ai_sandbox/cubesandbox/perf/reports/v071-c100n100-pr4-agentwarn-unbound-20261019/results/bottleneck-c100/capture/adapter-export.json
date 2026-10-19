@@ -1,0 +1,25 @@
+{
+  "status": "complete",
+  "capture_count": 1,
+  "files": {
+    "startup-latency/benchmark.raw.json": {
+      "source": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/inner-round/runs/20261019T041508Z-ca010a49/capture/startup-latency/benchmark.raw.json",
+      "sha256": "05c4508523766c6855b7ba0f51398cfd2715b0e67b1533219db939b3d724cf9d",
+      "destination": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/startup-latency/c100n100.raw.json"
+    },
+    "owned-sandbox-ids.json": {
+      "source": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/inner-round/runs/20261019T041508Z-ca010a49/capture/owned-sandbox-ids.json",
+      "sha256": "4c25c5d92e071de9a50cb48fe554a6b81a8c1a601e9fbb3e1522e6d5d0bdaf08",
+      "destination": "/data/cubelet/shim-switch-bottleneck-20261019T040949Z/bottleneck-c100/capture/ownership-input.json"
+    }
+  },
+  "issues": [],
+  "run-exit": {
+    "status": "complete",
+    "sha256": "5beb5c0b1760e854ee863f6372edba398a84344ee5aa5edeac070edfa2e32680"
+  },
+  "cleanup": {
+    "status": "complete",
+    "sha256": "1ead38e8adfee61371586dd636b55714d3f1ef4ad6e9de587f0725c29cf7cfd4"
+  }
+}

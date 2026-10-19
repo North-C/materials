@@ -1,0 +1,94 @@
+{
+  "time": 1792383369.2565584,
+  "identity_matches_baseline": true,
+  "identity": {
+    "binaries": {
+      "/usr/local/services/cubetoolbox/cube-shim/bin/containerd-shim-cube-rs": "c887a2ebcae57fe9998d8312ab19ba56ea7a5a79c89d11545cbed61e37c24b0f",
+      "/usr/local/services/cubetoolbox/cube-shim/bin/cube-runtime": "76803184bd8069e88522eebea4e1bed564a7da9dde8c6c124a6bfcda8113f0fa",
+      "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/containerd-shim-cube-rs": "c887a2ebcae57fe9998d8312ab19ba56ea7a5a79c89d11545cbed61e37c24b0f",
+      "/data/cubelet/root/component_versions/cube-shim/v0.7.1/bin/cube-runtime": "76803184bd8069e88522eebea4e1bed564a7da9dde8c6c124a6bfcda8113f0fa"
+    },
+    "services": {
+      "cube-sandbox-cubelet": {
+        "pid": 1695013,
+        "sha256": "05fd2f62c8e01c18614a09d15625b696a02637e6d23cd0a8fdc4034c064581bf",
+        "cpu": [
+          "0-383"
+        ],
+        "numa_first": "default",
+        "env": [
+          "CUBE_FILE_BACKED_MEMORY_MADV_RANDOM=1"
+        ]
+      },
+      "cube-sandbox-cubemaster": {
+        "pid": 35295,
+        "sha256": "2398ba285f612cb0e6cbfa5c0275488a1e655a34684065c06ea400182cfcdcb9",
+        "cpu": [
+          "96-191"
+        ],
+        "numa_first": "bind:1",
+        "env": [
+          "GOMEMLIMIT=8GiB",
+          "GOMAXPROCS=32",
+          "GOGC=800"
+        ]
+      },
+      "cube-sandbox-cube-api": {
+        "pid": 36249,
+        "sha256": "6a84128504f7e1575d5d86e4f6da9953c794356b2875acae968344d94421d34a",
+        "cpu": [
+          "96-191"
+        ],
+        "numa_first": "bind:1",
+        "env": []
+      },
+      "cube-sandbox-cube-templatecenter": {
+        "pid": 36360,
+        "sha256": "cfdab176aaa39f39352ce2c3eff98d5d7cab4837385a32f6363db835a94e8d65",
+        "cpu": [
+          "96-191"
+        ],
+        "numa_first": "bind:1",
+        "env": []
+      },
+      "cube-sandbox-cubeops": {
+        "pid": 33085,
+        "sha256": "1385bc6aed3f0f6a3ee8059da5e500aeff7af4333191b6cb8bdac3110031cbab",
+        "cpu": [
+          "96-191"
+        ],
+        "numa_first": "bind:1",
+        "env": []
+      }
+    },
+    "config_hashes": {
+      "/usr/local/services/cubetoolbox/Cubelet/config/config.toml": "26a93c91418e320cf2bb663091a643f0bc6f1d1b4cd835c7c6754a4b90e3b0aa",
+      "/usr/local/services/cubetoolbox/Cubelet/config/plugin.conf": "6ab53739d8112924255c2b7afd07e5f4ca88defb5b2ae0dde232130205bdb9f7",
+      "/usr/local/services/cubetoolbox/Cubelet/config/config.toml.bak-tap-20261009": "9dd9289f23cf0e1f3812a5e8c9f2fadd10395defee2f263cb3ef0acbad8e5bad",
+      "/usr/local/services/cubetoolbox/Cubelet/config/snapshot.sh": "16b6609aa2f9ebdd8133798190a92703daa7a2dec592b8aca3a939ed04ea7fcf",
+      "/usr/local/services/cubetoolbox/Cubelet/dynamicconf/resource.conf": "fa5f7d300fb6f16168006d50bc0d68cf5037d9b6055f92c2f27e1f6b081b5632",
+      "/usr/local/services/cubetoolbox/Cubelet/dynamicconf/conf.yaml.bak-quota-20261009": "d8445d985b55401820004afba7af3a3720dc104c190824c19edc78f997722c4e",
+      "/usr/local/services/cubetoolbox/Cubelet/dynamicconf/conf.yaml": "a373c07d6191c2a3378df81582c3d1869328ad347275d0142d2ce8df20f83e07",
+      "/etc/systemd/system/cube-sandbox-cubelet.service.d/zz-profiler-lifecycle.conf": "89fe3336a4e4efc2dfcf55f3dd64361919c3299d237e2f26a043dea3b1e5f2f7",
+      "/etc/systemd/system/cube-sandbox-cubelet.service.d/zzzzzz-warn-madv-bottleneck.conf": "6e2430cc2287ce4e359d081b8b7d2df8e6e37cfbf3d80643e12c1c9bb909bb70",
+      "/etc/systemd/system/cube-sandbox-cubelet.service.d/50-runtime-image-cache-mount.conf": "06d842fffe513973ffb8ea25a2a8aad2f2ac752b66a585c9804b30e7461992a7"
+    },
+    "rcu": {
+      "rcu_expedited": "0",
+      "rcu_normal": "0"
+    }
+  },
+  "inventory_count": 0,
+  "benchmark_summary": {
+    "errors": 0,
+    "success_rate": 1,
+    "successful": 100,
+    "throughput_qps": 504.91828276282195,
+    "total_time_s": 0.19805185
+  },
+  "cleanup_status": "complete",
+  "deleted": 103,
+  "inner_status": "complete",
+  "harness_postcheck_error": "cmd helper shadowed by command list after successful capture; recovered with independent read-only audit; no rerun",
+  "benchmark_rerun": false
+}

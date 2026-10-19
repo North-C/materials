@@ -1,0 +1,6 @@
+date,case,aggregation,rounds,successful_timed_requests,wall_ms,min_wall_ms,max_wall_ms,conditions,source
+2026-10-12,community-v071,single_valid_round,1,100,496.32901,496.32901,496.32901,T0; base31d911; xarray kernel; TAP4000; old bench d7d,../v071-c100n100-20261012/c100n100.raw.json
+2026-10-14,optimized-numa0,single_valid_round,1,100,364.89465,364.89465,364.89465,T0; combined9dce2f8; Cubelet/API CPU0-95 NUMA local; old bench d7d; drift round excluded,../v071-c100n100-optimized-20261014/capture/startup-latency/c100n100.raw.json
+2026-10-17,agentwarn-w3,median_of_formal_rounds,5,500,159.49012,156.8138,165.84701,old warn tpl-381852; Shim-C; Cubelet CPU0-191 bind0-1; softdirty; RCU0; legacy MADV file absent,../v071-c100n100-agentwarn-w3-20261017/result-summary.json
+2026-10-19,pr4-agentwarn-unbound,median_of_formal_rounds,3,300,189.82299,184.64082,197.10993,Tw; independent PR4; Cubelet CPU0-383 default NUMA; softdirty; RCU0; MADV env1; cache as found,results/summary.json
+2026-10-19,pr4-agentwarn-unbound-capture,single_diagnostic_round,1,100,198.05185,198.05185,198.05185,same deployment; separate log/metrics capture; excluded from formal median,results/evidence-export/bottleneck-c100/benchmark.raw.json

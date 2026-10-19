@@ -1,0 +1,14 @@
+{
+  "begin": {
+    "realtime_ns": 1792383308019140850,
+    "monotonic_ns": 161516209729430,
+    "boottime_ns": 161516209729920
+  },
+  "end": {
+    "realtime_ns": 1792383316501084900,
+    "monotonic_ns": 161524691674140,
+    "boottime_ns": 161524691675070
+  },
+  "exit_code": 0,
+  "perf_exit": null
+}
