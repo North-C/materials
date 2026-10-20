@@ -12,6 +12,7 @@
 | --- | --- | --- |
 | 了解架构与版本变化 | [架构图](architecture/cubesandbox-minimal-v2.png)、[v0.5.1 → v0.7.1 演进](version-evolution/cubesandbox-v0.5.1-to-v0.7.1-evolution.zh-CN.md) | 架构概览与指定版本间的变化 |
 | 分析创建时延 | [perf 索引](perf/README.md) | 各轮报告、阶段定义、计时口径、时间轴与工具状态 |
+| 比较机器配置 | [machine_config 快照与对比指南](machine_config/README.md) | 2026-10-20 `.90` 全模块 JSON / Markdown；已只读采集并校验，可离线对比 |
 | 复现 c100n100 优化 | [调优指南](c100n100-perf-tuning/README.zh-CN.md)、[测试指南](c100n100-perf-tuning/TESTING-GUIDE.zh-CN.md) | 配置、补丁、验证与回退方法；环境前提以正文为准 |
 | 选择 workload / 构建 benchmark 镜像 | [benchmark 索引](benchmark/README.md) | 镜像来源、上游 workload、runner、参数与报告 |
 | 测试回放密度 | [SWE 回放入口](benchmark/swe-replay-density/README.md)、[密度指南](benchmark/swe-replay-density/docs/CUBESANDBOX_DENSITY_GUIDE.md) | 镜像、模板、回放方法及独立运行证据 |
@@ -30,6 +31,7 @@
 | [benchmark/](benchmark/README.md) | 基准与功能测试 | `docker/` 构建上下文、`scripts/` runner、`docs/` 方法、`reports/` 报告、`analysis/` 内存专题、`swe-replay-density/` 回放专项 |
 | [perf/](perf/README.md) | 启动性能分析 | 阶段耗时、计时边界、观测脚本和逐轮报告；通用工具的后续维护地址见该索引 |
 | [c100n100-perf-tuning/](c100n100-perf-tuning/README.zh-CN.md) | 调优复现 | 指南、补丁、配置样例、辅助脚本与状态快照 |
+| [machine_config/](machine_config/README.md) | 机器配置基线 | 带采集时间的单机 JSON、可读表格、校验值与离线对比方法；不重复存放性能测试证据 |
 | [bug-fixes/](bug-fixes/) | 根因与修复归档 | 修复报告、分析及对应关键数据 |
 | [debug/](debug/) | 调查过程与复现包 | 按问题和日期组织的现场、实验及修复验证材料 |
 | [testcases_analysis/](testcases_analysis/README.md) | 测试源码解读 | 用例行为、时序、存储及源码证据 |

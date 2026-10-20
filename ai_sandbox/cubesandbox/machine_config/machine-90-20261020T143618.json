@@ -1,0 +1,960 @@
+{
+  "192.168.25.90": {
+    "hardware": [
+      {
+        "key": "内存容量",
+        "value": "24 × 96 GB = 2304 GB (2146 GiB)",
+        "note": ""
+      },
+      {
+        "key": "内存类型",
+        "value": "DDR5",
+        "note": ""
+      },
+      {
+        "key": "内存频率",
+        "value": "6400 MT/s",
+        "note": ""
+      },
+      {
+        "key": "磁盘 nvme0n1",
+        "value": "3.5T | NVMe SSD | 未挂载 | HWE62P443T8L005N",
+        "note": ""
+      },
+      {
+        "key": "磁盘 nvme1n1",
+        "value": "2.9T | NVMe SSD | 系统盘 | HWE6AP443T2M00KN",
+        "note": "/boot/efi, /boot, /usr/local/services/cubetoolbox/cubeletmnt, / 等 6 个挂载点"
+      },
+      {
+        "key": "磁盘 nvme3n1",
+        "value": "2.9T | NVMe SSD | 数据盘 | HWE6AP443T2M00KN",
+        "note": "/usr/local/services/cubetoolbox/cubebox_os_image, /data/CubeMaster/storage, /data/cubelet"
+      },
+      {
+        "key": "磁盘 nvme2n1",
+        "value": "5.8T | NVMe SSD | 未挂载 | HWE72P456T4M000N",
+        "note": ""
+      },
+      {
+        "key": "数据盘汇总",
+        "value": "1 块",
+        "note": "NVMe SSD | 数据盘 | HWE6AP443T2M00KN; 另有 2 块未挂载: nvme0n1, nvme2n1"
+      }
+    ],
+    "bios": [
+      {
+        "key": "BIOS 固件",
+        "value": "10.79",
+        "note": "发布日期 02/10/2026"
+      },
+      {
+        "key": "CPU 型号",
+        "value": "Kunpeng 950 7592C CPU @ 2.3GHz",
+        "note": ""
+      },
+      {
+        "key": "CPU 核心",
+        "value": "2 路 × 96 核 × 2 线程 = 384 逻辑 CPU",
+        "note": "SMT 开启 (sysfs)"
+      },
+      {
+        "key": "NUMA 节点分布",
+        "value": "4 个 NUMA 节点",
+        "note": "node0: CPU 0-95; node1: CPU 96-191; node2: CPU 192-287; node3: CPU 288-383"
+      },
+      {
+        "key": "CPU 调频策略 (governor)",
+        "value": "performance",
+        "note": "驱动: cppc_cpufreq; 频率范围 1200 ~ 2300 MHz"
+      },
+      {
+        "key": "C-state (空闲态)",
+        "value": "N.A.",
+        "note": "cpuidle 未导出 (ARM 平台常见, 由固件管理)"
+      },
+      {
+        "key": "睿频/超频 (Turbo)",
+        "value": "未检测到睿频 (推断)",
+        "note": "最大频率 2300 MHz ≈ 基础频率 2300 MHz"
+      }
+    ],
+    "os": [
+      {
+        "key": "发行版",
+        "value": "openEuler 24.03 (LTS-SP3)",
+        "note": ""
+      },
+      {
+        "key": "内核版本",
+        "value": "6.6.0-with-softdirty+",
+        "note": ""
+      },
+      {
+        "key": "静态大页 (HugeTLB)",
+        "value": "未配置",
+        "note": ""
+      },
+      {
+        "key": "透明大页 (THP)",
+        "value": "never",
+        "note": ""
+      }
+    ],
+    "numa": [
+      {
+        "key": "numa_balancing 开关",
+        "value": "0 (内核不做自动 NUMA 迁移)",
+        "note": ""
+      }
+    ],
+    "rcu": [
+      {
+        "key": "rcu_expedited",
+        "value": "0",
+        "note": "sysfs 读取快照；normal 优先于 expedited；不证明具体调用、耗时或性能收益"
+      },
+      {
+        "key": "rcu_normal",
+        "value": "0",
+        "note": "sysfs 读取快照；normal 优先于 expedited；不证明具体调用、耗时或性能收益"
+      },
+      {
+        "key": "rcu_normal_after_boot",
+        "value": "0",
+        "note": "/sys/module/rcupdate/parameters；启动后 normal 策略参数，不能替代两项运行时开关"
+      },
+      {
+        "key": "RCU 运行时组合策略",
+        "value": "unforced (未强制)",
+        "note": "两项均为 0：未由这两个开关强制 normal/expedited；不是关闭 RCU，调用方仍可请求 expedited；sysfs 读取快照；normal 优先于 expedited；不证明具体调用、耗时或性能收益；TINY_RCU 下不适用"
+      },
+      {
+        "key": "当前 cmdline rcupdate.rcu_expedited",
+        "value": "absent (未设置)",
+        "note": "当前 /proc/cmdline；仅启动参数证据，不代表当前 sysfs 值或内核已支持；重复项不推断生效顺序"
+      },
+      {
+        "key": "当前 cmdline rcupdate.rcu_normal",
+        "value": "absent (未设置)",
+        "note": "当前 /proc/cmdline；仅启动参数证据，不代表当前 sysfs 值或内核已支持；重复项不推断生效顺序"
+      },
+      {
+        "key": "当前 cmdline rcupdate.rcu_normal_after_boot",
+        "value": "absent (未设置)",
+        "note": "当前 /proc/cmdline；仅启动参数证据，不代表当前 sysfs 值或内核已支持；重复项不推断生效顺序"
+      },
+      {
+        "key": "RCU 内核配置来源",
+        "value": "/proc/config.gz",
+        "note": "运行内核内嵌配置"
+      },
+      {
+        "key": "CONFIG_TREE_RCU",
+        "value": "y",
+        "note": "运行内核内嵌配置"
+      },
+      {
+        "key": "CONFIG_TINY_RCU",
+        "value": "unknown (未见配置项)",
+        "note": "运行内核内嵌配置；TINY_RCU 下这些宽限期强制策略无效"
+      },
+      {
+        "key": "CONFIG_PREEMPT_RT",
+        "value": "unknown (未见配置项)",
+        "note": "运行内核内嵌配置；RT 内核的启动后 normal 策略需结合运行内核版本与 sysfs 观察"
+      }
+    ],
+    "kvm-arm": [
+      {
+        "key": "架构",
+        "value": "aarch64",
+        "note": ""
+      },
+      {
+        "key": "检测口径",
+        "value": "启动参数 / GRUB 源文件 / 默认启动项 / KVM 日志分别列示",
+        "note": "参数存在不证明内核支持或已经启用；日志可能受权限、环形缓冲覆盖影响"
+      },
+      {
+        "key": "当前 cmdline kvm-arm.vgic_v4_enable",
+        "value": "absent (未设置)",
+        "note": "/proc/cmdline，当前启动参数；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "当前 cmdline kvm-arm.virt_msi_bypass",
+        "value": "absent (未设置)",
+        "note": "/proc/cmdline，当前启动参数；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "当前 cmdline kvm-arm.dvmbm_enabled",
+        "value": "absent (未设置)",
+        "note": "/proc/cmdline，当前启动参数；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "当前 cmdline kvm-arm.ipiv_enabled",
+        "value": "absent (未设置)",
+        "note": "/proc/cmdline，当前启动参数；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "GRUB GRUB_CMDLINE_LINUX",
+        "value": "ok",
+        "note": "静态字面量；/etc/default/grub 源文件，不执行 source；不代表已生成的启动项"
+      },
+      {
+        "key": "GRUB_CMDLINE_LINUX kvm-arm.vgic_v4_enable",
+        "value": "absent (未设置)",
+        "note": "源文件静态字面量摘录；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "GRUB_CMDLINE_LINUX kvm-arm.virt_msi_bypass",
+        "value": "absent (未设置)",
+        "note": "源文件静态字面量摘录；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "GRUB_CMDLINE_LINUX kvm-arm.dvmbm_enabled",
+        "value": "absent (未设置)",
+        "note": "源文件静态字面量摘录；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "GRUB_CMDLINE_LINUX kvm-arm.ipiv_enabled",
+        "value": "absent (未设置)",
+        "note": "源文件静态字面量摘录；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "GRUB GRUB_CMDLINE_LINUX_DEFAULT",
+        "value": "absent",
+        "note": "未见赋值；/etc/default/grub 源文件，不执行 source；不代表已生成的启动项"
+      },
+      {
+        "key": "默认启动项 kernel",
+        "value": "/boot/vmlinuz-6.6.0-with-softdirty+",
+        "note": "grubby 默认启动项；不代表当前内核；不保证固件/一次性引导选择"
+      },
+      {
+        "key": "默认启动项 kvm-arm.vgic_v4_enable",
+        "value": "absent (未设置)",
+        "note": "grubby 默认启动项；不代表当前内核；不保证固件/一次性引导选择；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "默认启动项 kvm-arm.virt_msi_bypass",
+        "value": "absent (未设置)",
+        "note": "grubby 默认启动项；不代表当前内核；不保证固件/一次性引导选择；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "默认启动项 kvm-arm.dvmbm_enabled",
+        "value": "absent (未设置)",
+        "note": "grubby 默认启动项；不代表当前内核；不保证固件/一次性引导选择；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "默认启动项 kvm-arm.ipiv_enabled",
+        "value": "absent (未设置)",
+        "note": "grubby 默认启动项；不代表当前内核；不保证固件/一次性引导选择；未设置不等于 disabled；重复项不推断有效顺序"
+      },
+      {
+        "key": "dmesg 读取",
+        "value": "ok",
+        "note": ""
+      },
+      {
+        "key": "KVM GICv4",
+        "value": "disabled",
+        "note": "[   30.111673] kvm [1]: GICv4 support disabled"
+      },
+      {
+        "key": "KVM dvmbm",
+        "value": "disabled",
+        "note": "[   30.101934] kvm [1]: KVM dvmbm disabled"
+      },
+      {
+        "key": "KVM ipiv",
+        "value": "disabled",
+        "note": "[   30.138545] kvm [1]: KVM ipiv disabled"
+      },
+      {
+        "key": "KVM virt_msi_bypass",
+        "value": "not_observed",
+        "note": "未命中明确 KVM 日志，不能推断启用/禁用"
+      },
+      {
+        "key": "GICv4 控制器日志",
+        "value": "observed",
+        "note": "[    0.000000] GICv3: GICv4 features: DirectLPI RVPEID Valid+Dirty; [    0.000000] ITS@0x0000000488000000: Using GICv4.1 mode 00000000 00000001; [    0.000000] ITS@0x0000000588000000: Using GICv4.1 mode 01000000 00000001; [    0.000000] ITS@0x0000002888000000: Using GICv4.1 mode 02000000 00000001; [    0.000000] ITS@0x0000003010000000: Using GICv4.1 mode 03000000 00000001; [    0.000000] ITS@0x0000004488000000: Using GICv4.1 mode 08000000 00000001; [    0.000000] ITS@0x0000004588000000: Using GICv4.1 mode 09000000 00000001; [    0.000000] ITS@0x0000006888000000: Using GICv4.1 mode 0a000000 00000001; [    0.000000] ITS@0x0000007010000000: Using GICv4.1 mode 0b000000 00000001; [    0.000000] ITS: Enabling GICv4 support"
+      }
+    ],
+    "cube": [
+      {
+        "key": "CubeSandbox 结论",
+        "value": "不一致",
+        "note": "与社区 v0.7.1 不同: 二进制 3 个, 运行进程 1 个, 容器 0 个; 脚本/配置 17 项不同 (安装器会渲染部分配置, 不计入结论)"
+      },
+      {
+        "key": "CubeSandbox 对比基准",
+        "value": "社区 v0.7.1 (aarch64)",
+        "note": "cube-sandbox-one-click-v0.7.1-arm64.tar.gz, commit 31d911e430fd"
+      },
+      {
+        "key": "CubeSandbox 安装目录",
+        "value": "/usr/local/services/cubetoolbox",
+        "note": ""
+      },
+      {
+        "key": "CubeSandbox 部署版本",
+        "value": "v0.7.1-arm64 (commit 31d911e430fd)",
+        "note": "与基准相同; VERSION.txt: release_version=v0.7.1-arm64 / git_commit=31d911e430fdf8a8879bd062b8e78066c1a8e89d / built_at=2026-09-11T09:58:19Z / manifest=release-manifest.json"
+      },
+      {
+        "key": "组件 CubeAPI",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 CubeMaster",
+        "value": "一致 (二进制 3/3)",
+        "note": "脚本/配置 1 项不同, 仅供参考: conf.yaml"
+      },
+      {
+        "key": "组件 CubeOps",
+        "value": "一致 (二进制 2/2)",
+        "note": ""
+      },
+      {
+        "key": "组件 CubeS3lvol",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 CubeTemplateCenter",
+        "value": "一致 (二进制 1/1)",
+        "note": "脚本/配置 1 项不同, 仅供参考: conf.yaml"
+      },
+      {
+        "key": "组件 Cubelet",
+        "value": "不一致 (二进制 2/3 相同)",
+        "note": "不同: bin/cubelet; 脚本/配置 2 项不同, 仅供参考: config/config.toml, dynamicconf/conf.yaml"
+      },
+      {
+        "key": "组件 coredns",
+        "value": "一致 (脚本/配置 2/2)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-agent",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-egress",
+        "value": "一致 (脚本/配置 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-image",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-kernel-scf",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-lifecycle-manager",
+        "value": "一致 (脚本/配置 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cube-shim",
+        "value": "不一致 (二进制 0/2 相同)",
+        "note": "不同: bin/containerd-shim-cube-rs, bin/cube-runtime"
+      },
+      {
+        "key": "组件 cube-vs",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 cubeproxy",
+        "value": "有差异 (脚本/配置 33/34)",
+        "note": "脚本/配置 1 项不同, 仅供参考: global.conf.template"
+      },
+      {
+        "key": "组件 scripts",
+        "value": "有差异 (脚本/配置 81/87)",
+        "note": "脚本/配置 6 项不同, 仅供参考: common/validation.sh, one-click/up-cube-lifecycle-manager.sh, one-click/up-cube-proxy.sh, one-click/up.sh, systemd/cube-egress-start.sh 等 6 项"
+      },
+      {
+        "key": "组件 support",
+        "value": "一致 (二进制 1/1)",
+        "note": ""
+      },
+      {
+        "key": "组件 systemd",
+        "value": "有差异 (脚本/配置 17/18)",
+        "note": "脚本/配置 1 项不同, 仅供参考: cube-sandbox-s3lvol.service"
+      },
+      {
+        "key": "组件 terraform",
+        "value": "有差异 (脚本/配置 10/14)",
+        "note": "脚本/配置 4 项不同, 仅供参考: tencentcloud/build_images.sh, tencentcloud/create.sh, tencentcloud/env.example, tencentcloud/variables.tf"
+      },
+      {
+        "key": "组件 webui",
+        "value": "有差异 (脚本/配置 22/23)",
+        "note": "脚本/配置 1 项不同, 仅供参考: dist/index.html"
+      },
+      {
+        "key": "进程 CubeAPI/bin/cube-api",
+        "value": "一致 (pid 36249)",
+        "note": "exe /usr/local/services/cubetoolbox/CubeAPI/bin/cube-api"
+      },
+      {
+        "key": "进程 CubeMaster/bin/cubemaster",
+        "value": "一致 (pid 2429970)",
+        "note": "exe /usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster"
+      },
+      {
+        "key": "进程 CubeOps/bin/cubeops",
+        "value": "一致 (pid 2446430)",
+        "note": "exe /usr/local/services/cubetoolbox/CubeOps/bin/cubeops"
+      },
+      {
+        "key": "进程 CubeTemplateCenter/bin/templatecenter",
+        "value": "一致 (pid 36360)",
+        "note": "exe /usr/local/services/cubetoolbox/CubeTemplateCenter/bin/templatecenter"
+      },
+      {
+        "key": "进程 Cubelet/bin/cubelet",
+        "value": "不一致 (pid 2429890)",
+        "note": "pid 2429890 /usr/local/services/cubetoolbox/Cubelet/bin/cubelet 运行 sha256 05fd2f62c8e01c18…"
+      },
+      {
+        "key": "容器 cube-egress",
+        "value": "一致 (容器 running)",
+        "note": "cube-sandbox-int.tencentcloudcr.com/cube-sandbox/cube-egress:v0.7.1, image sha256:7363ab280b34…; 本地另有 5 个其它构建的镜像"
+      },
+      {
+        "key": "容器 cube-lifecycle-manager",
+        "value": "一致 (容器 running)",
+        "note": "cube-sandbox-int.tencentcloudcr.com/cube-sandbox/cube-lifecycle-manager:v0.7.1, image sha256:91dfa6829f4d…; 本地另有 5 个其它构建的镜像"
+      },
+      {
+        "key": "容器 cube-proxy",
+        "value": "一致 (容器 running)",
+        "note": "cube-sandbox-int.tencentcloudcr.com/cube-sandbox/cube-proxy:v0.7.1, image sha256:67957f63c92a…; 本地另有 5 个其它构建的镜像"
+      }
+    ],
+    "cube-runtime": [
+      {
+        "key": "采集时间",
+        "value": "2026-10-20T06:36:21.215416+00:00",
+        "note": ""
+      },
+      {
+        "key": "检测口径",
+        "value": "资源配置：Go / worker / CPU / NUMA / 内存 / 文件句柄 / 并发",
+        "note": "systemd 配置与运行进程/cgroup 分列；环境变量不是 Go API 实时值；仅输出资源白名单"
+      },
+      {
+        "key": "CubeMaster systemd",
+        "value": "ok",
+        "note": "cube-sandbox-cubemaster.service; LoadState=loaded; ActiveState=active; SubState=running; MainPID=2429970"
+      },
+      {
+        "key": "CubeMaster systemd.AllowedCPUs",
+        "value": "96-191",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.AllowedMemoryNodes",
+        "value": "1",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.CPUAffinity",
+        "value": "96-191",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.CPUQuotaPerSecUSec",
+        "value": "infinity",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.ControlGroup",
+        "value": "/system.slice/cube-sandbox-cubemaster.service",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.EffectiveCPUs",
+        "value": "(未设置)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.EffectiveMemoryNodes",
+        "value": "(未设置)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.EnvironmentFiles",
+        "value": "/usr/local/services/cubetoolbox/.one-click.env (ignore_errors=yes)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.LimitNOFILE",
+        "value": "524288",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.MemoryMax",
+        "value": "infinity",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.NUMAMask",
+        "value": "1",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.NUMAPolicy",
+        "value": "bind",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.NeedDaemonReload",
+        "value": "no",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "CubeMaster systemd.Environment 状态",
+        "value": "ok",
+        "note": "仅 Environment；EnvironmentFiles 列引用，文件内容不执行或求值"
+      },
+      {
+        "key": "CubeMaster systemd.env.GOGC",
+        "value": "800",
+        "note": ""
+      },
+      {
+        "key": "CubeMaster systemd.env.GOMAXPROCS",
+        "value": "32",
+        "note": ""
+      },
+      {
+        "key": "CubeMaster systemd.env.GOMEMLIMIT",
+        "value": "8GiB",
+        "note": ""
+      },
+      {
+        "key": "CubeMaster pid=2429970 exe",
+        "value": "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster",
+        "note": "identity=match; path=expected-path; expected=/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster; source=[\"proc-exe-scan\", \"systemd-mainpid\"]"
+      },
+      {
+        "key": "CubeMaster pid=2429970 环境读取",
+        "value": "ok",
+        "note": "/proc/<pid>/environ；启动环境快照，非程序内部实时参数"
+      },
+      {
+        "key": "CubeMaster pid=2429970 env.GOGC",
+        "value": "800",
+        "note": ""
+      },
+      {
+        "key": "CubeMaster pid=2429970 env.GOMAXPROCS",
+        "value": "32",
+        "note": ""
+      },
+      {
+        "key": "CubeMaster pid=2429970 env.GOMEMLIMIT",
+        "value": "8GiB",
+        "note": ""
+      },
+      {
+        "key": "CubeMaster pid=2429970 env对照.GOGC",
+        "value": "相同",
+        "note": "systemd Environment=800; process=800；不同可能来自 EnvironmentFile、启动脚本或尚未重启"
+      },
+      {
+        "key": "CubeMaster pid=2429970 env对照.GOMAXPROCS",
+        "value": "相同",
+        "note": "systemd Environment=32; process=32；不同可能来自 EnvironmentFile、启动脚本或尚未重启"
+      },
+      {
+        "key": "CubeMaster pid=2429970 env对照.GOMEMLIMIT",
+        "value": "相同",
+        "note": "systemd Environment=8GiB; process=8GiB；不同可能来自 EnvironmentFile、启动脚本或尚未重启"
+      },
+      {
+        "key": "CubeMaster pid=2429970 线程亲和性",
+        "value": "{\"affinity_groups\": [{\"count\": 38, \"cpus_allowed_list\": \"96-191\", \"mems_allowed_list\": \"0-3\"}], \"errors\": [], \"observed_count\": 38, \"status\": \"ok\", \"unreadable_count\": 0}",
+        "note": "实际观测线程的 CPU / NUMA allowed list；不等于内存分配位置"
+      },
+      {
+        "key": "CubeMaster pid=2429970 cgroup 状态",
+        "value": "ok",
+        "note": ""
+      },
+      {
+        "key": "CubeMaster pid=2429970 v1 [\"cpuset\"] /sys/fs/cgroup/cpuset 资源",
+        "value": "{\"cpuset.cpus\": \"0-383\", \"cpuset.effective_cpus\": \"0-383\", \"cpuset.effective_mems\": \"0-3\", \"cpuset.mems\": \"0-3\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "CubeMaster pid=2429970 v1 [\"memory\"] /sys/fs/cgroup/memory/system.slice/cube-sandbox-cubemaster.service 资源",
+        "value": "{\"memory.limit_in_bytes\": \"9223372036854771712\", \"memory.memsw.limit_in_bytes\": \"9223372036854771712\", \"memory.soft_limit_in_bytes\": \"9223372036854771712\", \"memory.use_hierarchy\": \"1\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "CubeMaster pid=2429970 v1 [\"memory\"] /sys/fs/cgroup/memory/system.slice 资源",
+        "value": "{\"memory.limit_in_bytes\": \"9223372036854771712\", \"memory.memsw.limit_in_bytes\": \"9223372036854771712\", \"memory.soft_limit_in_bytes\": \"9223372036854771712\", \"memory.use_hierarchy\": \"1\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "CubeMaster pid=2429970 v1 [\"memory\"] /sys/fs/cgroup/memory 资源",
+        "value": "{\"memory.limit_in_bytes\": \"9223372036854771712\", \"memory.memsw.limit_in_bytes\": \"9223372036854771712\", \"memory.soft_limit_in_bytes\": \"9223372036854771712\", \"memory.use_hierarchy\": \"1\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "CubeMaster pid=2429970 v1 [\"cpu\"] /sys/fs/cgroup/cpu,cpuacct/system.slice/cube-sandbox-cubemaster.service 资源",
+        "value": "{\"cpu.cfs_period_us\": \"100000\", \"cpu.cfs_quota_us\": \"-1\", \"cpu.shares\": \"1024\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "CubeMaster pid=2429970 v1 [\"cpu\"] /sys/fs/cgroup/cpu,cpuacct/system.slice 资源",
+        "value": "{\"cpu.cfs_period_us\": \"100000\", \"cpu.cfs_quota_us\": \"-1\", \"cpu.shares\": \"1024\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "CubeMaster pid=2429970 v1 [\"cpu\"] /sys/fs/cgroup/cpu,cpuacct 资源",
+        "value": "{\"cpu.cfs_period_us\": \"100000\", \"cpu.cfs_quota_us\": \"-1\", \"cpu.shares\": \"1024\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cubelet systemd",
+        "value": "ok",
+        "note": "cube-sandbox-cubelet.service; LoadState=loaded; ActiveState=active; SubState=running; MainPID=2429890"
+      },
+      {
+        "key": "cubelet systemd.AllowedCPUs",
+        "value": "(未设置)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.AllowedMemoryNodes",
+        "value": "(未设置)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.CPUAffinity",
+        "value": "96-191",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.CPUQuotaPerSecUSec",
+        "value": "infinity",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.ControlGroup",
+        "value": "/system.slice/cube-sandbox-cubelet.service",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.EffectiveCPUs",
+        "value": "(未设置)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.EffectiveMemoryNodes",
+        "value": "(未设置)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.EnvironmentFiles",
+        "value": "/usr/local/services/cubetoolbox/.one-click.env (ignore_errors=yes)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.LimitNOFILE",
+        "value": "524288",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.MemoryMax",
+        "value": "infinity",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.NUMAMask",
+        "value": "1",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.NUMAPolicy",
+        "value": "bind",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.NeedDaemonReload",
+        "value": "no",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cubelet systemd.Environment 状态",
+        "value": "empty",
+        "note": "仅 Environment；EnvironmentFiles 列引用，文件内容不执行或求值"
+      },
+      {
+        "key": "cubelet pid=2429890 exe",
+        "value": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+        "note": "identity=match; path=expected-path; expected=/usr/local/services/cubetoolbox/Cubelet/bin/cubelet; source=[\"proc-exe-scan\", \"systemd-mainpid\"]"
+      },
+      {
+        "key": "cubelet pid=2429890 环境读取",
+        "value": "ok",
+        "note": "/proc/<pid>/environ；启动环境快照，非程序内部实时参数"
+      },
+      {
+        "key": "cubelet pid=2429890 线程亲和性",
+        "value": "{\"affinity_groups\": [{\"count\": 85, \"cpus_allowed_list\": \"96-191\", \"mems_allowed_list\": \"0-3\"}], \"errors\": [], \"observed_count\": 85, \"status\": \"ok\", \"unreadable_count\": 0}",
+        "note": "实际观测线程的 CPU / NUMA allowed list；不等于内存分配位置"
+      },
+      {
+        "key": "cubelet pid=2429890 cgroup 状态",
+        "value": "ok",
+        "note": ""
+      },
+      {
+        "key": "cubelet pid=2429890 v1 [\"cpuset\"] /sys/fs/cgroup/cpuset 资源",
+        "value": "{\"cpuset.cpus\": \"0-383\", \"cpuset.effective_cpus\": \"0-383\", \"cpuset.effective_mems\": \"0-3\", \"cpuset.mems\": \"0-3\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cubelet pid=2429890 v1 [\"memory\"] /sys/fs/cgroup/memory/cube_sandbox/cubelet 资源",
+        "value": "{\"memory.limit_in_bytes\": \"9223372036854771712\", \"memory.memsw.limit_in_bytes\": \"9223372036854771712\", \"memory.soft_limit_in_bytes\": \"9223372036854771712\", \"memory.use_hierarchy\": \"1\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cubelet pid=2429890 v1 [\"memory\"] /sys/fs/cgroup/memory/cube_sandbox 资源",
+        "value": "{\"memory.limit_in_bytes\": \"9223372036854771712\", \"memory.memsw.limit_in_bytes\": \"9223372036854771712\", \"memory.soft_limit_in_bytes\": \"9223372036854771712\", \"memory.use_hierarchy\": \"1\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cubelet pid=2429890 v1 [\"memory\"] /sys/fs/cgroup/memory 资源",
+        "value": "{\"memory.limit_in_bytes\": \"9223372036854771712\", \"memory.memsw.limit_in_bytes\": \"9223372036854771712\", \"memory.soft_limit_in_bytes\": \"9223372036854771712\", \"memory.use_hierarchy\": \"1\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cubelet pid=2429890 v1 [\"cpu\"] /sys/fs/cgroup/cpu,cpuacct/cube_sandbox/cubelet 资源",
+        "value": "{\"cpu.cfs_period_us\": \"100000\", \"cpu.cfs_quota_us\": \"-1\", \"cpu.shares\": \"1024\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cubelet pid=2429890 v1 [\"cpu\"] /sys/fs/cgroup/cpu,cpuacct/cube_sandbox 资源",
+        "value": "{\"cpu.cfs_period_us\": \"100000\", \"cpu.cfs_quota_us\": \"-1\", \"cpu.shares\": \"1024\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cubelet pid=2429890 v1 [\"cpu\"] /sys/fs/cgroup/cpu,cpuacct 资源",
+        "value": "{\"cpu.cfs_period_us\": \"100000\", \"cpu.cfs_quota_us\": \"-1\", \"cpu.shares\": \"1024\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cube-api systemd",
+        "value": "ok",
+        "note": "cube-sandbox-cube-api.service; LoadState=loaded; ActiveState=active; SubState=running; MainPID=36249"
+      },
+      {
+        "key": "cube-api systemd.AllowedCPUs",
+        "value": "96-191",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.AllowedMemoryNodes",
+        "value": "1",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.CPUAffinity",
+        "value": "96-191",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.CPUQuotaPerSecUSec",
+        "value": "infinity",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.ControlGroup",
+        "value": "/system.slice/cube-sandbox-cube-api.service",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.EffectiveCPUs",
+        "value": "(未设置)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.EffectiveMemoryNodes",
+        "value": "(未设置)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.EnvironmentFiles",
+        "value": "/usr/local/services/cubetoolbox/.one-click.env (ignore_errors=yes)",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.LimitNOFILE",
+        "value": "65536",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.MemoryMax",
+        "value": "infinity",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.NUMAMask",
+        "value": "1",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.NUMAPolicy",
+        "value": "bind",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.NeedDaemonReload",
+        "value": "no",
+        "note": "systemd manager 当前加载值；不代表 /proc 实际限制"
+      },
+      {
+        "key": "cube-api systemd.Environment 状态",
+        "value": "empty",
+        "note": "仅 Environment；EnvironmentFiles 列引用，文件内容不执行或求值"
+      },
+      {
+        "key": "cube-api pid=36249 exe",
+        "value": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+        "note": "identity=match; path=expected-path; expected=/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api; source=[\"proc-exe-scan\", \"systemd-mainpid\"]"
+      },
+      {
+        "key": "cube-api pid=36249 环境读取",
+        "value": "ok",
+        "note": "/proc/<pid>/environ；启动环境快照，非程序内部实时参数"
+      },
+      {
+        "key": "cube-api pid=36249 线程亲和性",
+        "value": "{\"affinity_groups\": [{\"count\": 17, \"cpus_allowed_list\": \"96-191\", \"mems_allowed_list\": \"0-3\"}], \"errors\": [], \"observed_count\": 17, \"status\": \"ok\", \"unreadable_count\": 0}",
+        "note": "实际观测线程的 CPU / NUMA allowed list；不等于内存分配位置"
+      },
+      {
+        "key": "cube-api pid=36249 cgroup 状态",
+        "value": "ok",
+        "note": ""
+      },
+      {
+        "key": "cube-api pid=36249 v1 [\"cpuset\"] /sys/fs/cgroup/cpuset 资源",
+        "value": "{\"cpuset.cpus\": \"0-383\", \"cpuset.effective_cpus\": \"0-383\", \"cpuset.effective_mems\": \"0-3\", \"cpuset.mems\": \"0-3\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cube-api pid=36249 v1 [\"memory\"] /sys/fs/cgroup/memory/system.slice/cube-sandbox-cube-api.service 资源",
+        "value": "{\"memory.limit_in_bytes\": \"9223372036854771712\", \"memory.memsw.limit_in_bytes\": \"9223372036854771712\", \"memory.soft_limit_in_bytes\": \"9223372036854771712\", \"memory.use_hierarchy\": \"1\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cube-api pid=36249 v1 [\"memory\"] /sys/fs/cgroup/memory/system.slice 资源",
+        "value": "{\"memory.limit_in_bytes\": \"9223372036854771712\", \"memory.memsw.limit_in_bytes\": \"9223372036854771712\", \"memory.soft_limit_in_bytes\": \"9223372036854771712\", \"memory.use_hierarchy\": \"1\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cube-api pid=36249 v1 [\"memory\"] /sys/fs/cgroup/memory 资源",
+        "value": "{\"memory.limit_in_bytes\": \"9223372036854771712\", \"memory.memsw.limit_in_bytes\": \"9223372036854771712\", \"memory.soft_limit_in_bytes\": \"9223372036854771712\", \"memory.use_hierarchy\": \"1\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cube-api pid=36249 v1 [\"cpu\"] /sys/fs/cgroup/cpu,cpuacct/system.slice/cube-sandbox-cube-api.service 资源",
+        "value": "{\"cpu.cfs_period_us\": \"100000\", \"cpu.cfs_quota_us\": \"-1\", \"cpu.shares\": \"1024\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cube-api pid=36249 v1 [\"cpu\"] /sys/fs/cgroup/cpu,cpuacct/system.slice 资源",
+        "value": "{\"cpu.cfs_period_us\": \"100000\", \"cpu.cfs_quota_us\": \"-1\", \"cpu.shares\": \"1024\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "cube-api pid=36249 v1 [\"cpu\"] /sys/fs/cgroup/cpu,cpuacct 资源",
+        "value": "{\"cpu.cfs_period_us\": \"100000\", \"cpu.cfs_quota_us\": \"-1\", \"cpu.shares\": \"1024\"}",
+        "note": "实际 cgroup 文件；同层合并展示，保留祖先限制，不推断统一有效限额"
+      },
+      {
+        "key": "应用文件 /usr/local/services/cubetoolbox/CubeMaster/conf.yaml",
+        "value": "ok",
+        "note": "磁盘配置摘录，未验证运行时加载；不解析启动参数指定替代路径"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/CubeMaster/conf.yaml:51 cubelet_conf.create_concurrent_limit",
+        "value": "100",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      },
+      {
+        "key": "应用文件 /usr/local/services/cubetoolbox/Cubelet/config/config.toml",
+        "value": "ok",
+        "note": "磁盘配置摘录，未验证运行时加载；不解析启动参数指定替代路径"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/Cubelet/config/config.toml:60 plugins.\"io.cubelet.internal.v1.cgroup\".pool_workers",
+        "value": "1",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/Cubelet/config/config.toml:63 plugins.\"io.cubelet.internal.v1.cgroup\".vm_memory_overhead_base",
+        "value": "42Mi",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/Cubelet/config/config.toml:64 plugins.\"io.cubelet.internal.v1.cgroup\".vm_memory_overhead_coefficient",
+        "value": "64",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/Cubelet/config/config.toml:66 plugins.\"io.cubelet.internal.v1.cgroup\".host_memory_overhead_base",
+        "value": "20Mi",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/Cubelet/config/config.toml:74 plugins.\"io.cubelet.internal.v1.resource-metrics\".max_concurrent_requests",
+        "value": "8",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/Cubelet/config/config.toml:177 plugins.\"io.cubelet.workflow.v1.workflow\".flows.create.concurrent",
+        "value": "100",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/Cubelet/config/config.toml:180 plugins.\"io.cubelet.workflow.v1.workflow\".flows.destroy.concurrent",
+        "value": "100",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/Cubelet/config/config.toml:214 plugins.\"io.containerd.cri.v1.images\".max_concurrent_downloads",
+        "value": "10",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      },
+      {
+        "key": "应用文件 /usr/local/services/cubetoolbox/Cubelet/dynamicconf/conf.yaml",
+        "value": "ok",
+        "note": "磁盘配置摘录，未验证运行时加载；不解析启动参数指定替代路径"
+      },
+      {
+        "key": "/usr/local/services/cubetoolbox/Cubelet/dynamicconf/conf.yaml:30 host.quota.creation_concurrent_num",
+        "value": "0",
+        "note": "配置文件白名单摘录；不是当前运行时配置接口"
+      }
+    ]
+  }
+}
