@@ -1,0 +1,156 @@
+component,stage,parent_stage_id,timing_kind,round,avg_ms,p95_ms,observed_instances
+API,create,,client_observed,1,111.824,145.821,100
+Cubelet,cubebox,cubelet.cubebox-service,direct_outer,1,50.718,61.67,100
+Cubelet,cubebox-service,master.cube-e2e,direct_outer,1,68.303,85.268,100
+Cubelet,cubebox-service-inner,cubelet.cubebox-service,derived_residual,1,53.813,72.032,100
+Cubelet,sandbox-create,cubelet.sandbox-start,direct_inner,1,32.972,42.696,100
+Cubelet,sandbox-probe,cubelet.cubebox,direct_inner,1,14.423,16.861,100
+Cubelet,sandbox-start,cubelet.cubebox,direct_cumulative,1,33.857,43.734,100
+Cubelet,storage,cubelet.cubebox-service,thresholded_direct,1,20.404,40.91,72
+CubeShim,CreateContainer,shim.CreatePodSandbox,direct_inner,1,4.0,5.0,100
+CubeShim,CreatePodSandbox,cubelet.sandbox-create,direct_outer,1,26.62,37.0,100
+CubeShim,CreateSandbox,shim.CreatePodSandbox,direct_inner,1,0.58,1.0,100
+CubeShim,LaunchVmm,shim.CreatePodSandbox,direct_inner,1,0.95,1.0,100
+CubeShim,ResetVm,shim.CreatePodSandbox,direct_inner,1,2.91,5.0,100
+CubeShim,RestoreVm,shim.CreatePodSandbox,direct_inner,1,13.25,23.0,100
+CubeMaster,cube-e2e,api.create,direct_outer,1,76.77,94.0,100
+CubeMaster,sandbox-probe,cubelet.sandbox-probe,propagated_metric,1,13.88,16.0,100
+CubeMaster,all-probe,master.cube-e2e,derived_aggregate,1,13.88,16.0,100
+Cubelet paired residual,service_outside_cubebox,cubelet.cubebox-service,paired_duration_residual,1,17.586,42.648,100
+Cubelet paired residual,sandbox_after_newtask,cubelet.sandbox-start,paired_duration_residual,1,0.886,1.186,100
+Cubelet paired residual,cubebox_outside_task_and_probe,cubelet.cubebox,paired_duration_residual,1,2.438,6.8,100
+CreateContainer detail,shim_create_container,,per_instance_measurement,1,4.0,5.0,100
+CreateContainer detail,create_request_total,,per_instance_measurement,1,27.145,37.352,100
+CreateContainer detail,vm_start_to_agent_ready,,per_instance_measurement,1,17.866,27.471,100
+CreateContainer detail,load_spec_cumulative,,per_instance_measurement,1,0.0,0.0,100
+CreateContainer detail,sandbox_finish_cumulative,,per_instance_measurement,1,22.1,32.0,100
+CreateContainer detail,container_finish_cumulative,,per_instance_measurement,1,26.61,37.0,100
+CreateContainer detail,sandbox_to_container_finish,,per_instance_measurement,1,4.51,6.0,100
+CreateContainer detail,guest_receive_to_restore_branch,,per_instance_measurement,1,0.134,0.208,100
+CreateContainer detail,restore_path_unresolved,,diagnostic_residual,1,3.866,4.985,100
+API,create,,client_observed,2,129.234,162.35,100
+Cubelet,create-sandbox-metadata,cubelet.cubebox,thresholded_direct,2,10.366,17.249,16
+Cubelet,cube-sandbox-store,,direct_unknown,2,9.789,11.225,4
+Cubelet,cubebox,cubelet.cubebox-service,direct_outer,2,52.663,67.108,100
+Cubelet,cubebox-service,master.cube-e2e,direct_outer,2,70.404,90.432,100
+Cubelet,cubebox-service-inner,cubelet.cubebox-service,derived_residual,2,54.458,77.598,100
+Cubelet,network,cubelet.cubebox-service,thresholded_direct,2,8.511,8.511,1
+Cubelet,sandbox-create,cubelet.sandbox-start,direct_inner,2,32.519,44.712,100
+Cubelet,sandbox-probe,cubelet.cubebox,direct_inner,2,15.897,21.397,100
+Cubelet,sandbox-start,cubelet.cubebox,direct_cumulative,2,33.533,45.752,100
+Cubelet,storage,cubelet.cubebox-service,thresholded_direct,2,19.965,40.414,71
+Cubelet,workflow,,direct_unknown,2,6.961,11.104,4
+CubeShim,CreateContainer,shim.CreatePodSandbox,direct_inner,2,4.48,8.0,100
+CubeShim,CreatePodSandbox,cubelet.sandbox-create,direct_outer,2,25.71,38.0,100
+CubeShim,CreateSandbox,shim.CreatePodSandbox,direct_inner,2,0.57,1.0,100
+CubeShim,LaunchVmm,shim.CreatePodSandbox,direct_inner,2,1.42,4.0,100
+CubeShim,ResetVm,shim.CreatePodSandbox,direct_inner,2,3.19,5.0,100
+CubeShim,RestoreVm,shim.CreatePodSandbox,direct_inner,2,11.68,27.0,100
+CubeMaster,cube-e2e,api.create,direct_outer,2,81.61,99.0,100
+CubeMaster,sandbox-probe,cubelet.sandbox-probe,propagated_metric,2,15.36,21.0,100
+CubeMaster,all-probe,master.cube-e2e,derived_aggregate,2,15.36,21.0,100
+Cubelet paired residual,service_outside_cubebox,cubelet.cubebox-service,paired_duration_residual,2,17.741,44.362,100
+Cubelet paired residual,sandbox_after_newtask,cubelet.sandbox-start,paired_duration_residual,2,1.014,1.637,100
+Cubelet paired residual,cubebox_outside_task_and_probe,cubelet.cubebox,paired_duration_residual,2,3.233,13.621,100
+CreateContainer detail,shim_create_container,,per_instance_measurement,2,4.48,8.0,100
+CreateContainer detail,create_request_total,,per_instance_measurement,2,26.291,38.978,100
+CreateContainer detail,vm_start_to_agent_ready,,per_instance_measurement,2,16.141,30.378,100
+CreateContainer detail,load_spec_cumulative,,per_instance_measurement,2,0.0,0.0,100
+CreateContainer detail,sandbox_finish_cumulative,,per_instance_measurement,2,20.74,34.0,100
+CreateContainer detail,container_finish_cumulative,,per_instance_measurement,2,25.71,38.0,100
+CreateContainer detail,sandbox_to_container_finish,,per_instance_measurement,2,4.97,9.0,100
+CreateContainer detail,guest_receive_to_restore_branch,,per_instance_measurement,2,0.193,0.434,100
+CreateContainer detail,restore_path_unresolved,,diagnostic_residual,2,4.287,7.619,100
+API,create,,client_observed,3,117.666,151.947,100
+Cubelet,create-sandbox-metadata,cubelet.cubebox,thresholded_direct,3,9.391,15.048,11
+Cubelet,cube-sandbox-store,,direct_unknown,3,12.014,16.441,6
+Cubelet,cubebox,cubelet.cubebox-service,direct_outer,3,51.483,65.142,100
+Cubelet,cubebox-service,master.cube-e2e,direct_outer,3,69.962,88.462,100
+Cubelet,cubebox-service-inner,cubelet.cubebox-service,derived_residual,3,54.932,74.814,100
+Cubelet,network,cubelet.cubebox-service,thresholded_direct,3,6.068,6.068,1
+Cubelet,sandbox-create,cubelet.sandbox-start,direct_inner,3,32.993,47.497,100
+Cubelet,sandbox-probe,cubelet.cubebox,direct_inner,3,14.977,16.728,100
+Cubelet,sandbox-start,cubelet.cubebox,direct_cumulative,3,33.928,48.302,100
+Cubelet,storage,cubelet.cubebox-service,thresholded_direct,3,18.011,39.937,79
+Cubelet,workflow,,direct_unknown,3,8.373,12.046,17
+CubeShim,CreateContainer,shim.CreatePodSandbox,direct_inner,3,4.26,6.0,100
+CubeShim,CreatePodSandbox,cubelet.sandbox-create,direct_outer,3,26.13,41.0,100
+CubeShim,CreateSandbox,shim.CreatePodSandbox,direct_inner,3,0.71,1.0,100
+CubeShim,LaunchVmm,shim.CreatePodSandbox,direct_inner,3,1.23,3.0,100
+CubeShim,ResetVm,shim.CreatePodSandbox,direct_inner,3,3.54,7.0,100
+CubeShim,RestoreVm,shim.CreatePodSandbox,direct_inner,3,11.82,27.0,100
+CubeMaster,cube-e2e,api.create,direct_outer,3,78.45,96.0,100
+CubeMaster,sandbox-probe,cubelet.sandbox-probe,propagated_metric,3,14.48,16.0,100
+CubeMaster,all-probe,master.cube-e2e,derived_aggregate,3,14.48,16.0,100
+Cubelet paired residual,service_outside_cubebox,cubelet.cubebox-service,paired_duration_residual,3,18.479,45.063,100
+Cubelet paired residual,sandbox_after_newtask,cubelet.sandbox-start,paired_duration_residual,3,0.936,1.242,100
+Cubelet paired residual,cubebox_outside_task_and_probe,cubelet.cubebox,paired_duration_residual,3,2.578,9.683,100
+CreateContainer detail,shim_create_container,,per_instance_measurement,3,4.26,6.0,100
+CreateContainer detail,create_request_total,,per_instance_measurement,3,26.681,41.617,100
+CreateContainer detail,vm_start_to_agent_ready,,per_instance_measurement,3,16.314,31.236,100
+CreateContainer detail,load_spec_cumulative,,per_instance_measurement,3,0.0,0.0,100
+CreateContainer detail,sandbox_finish_cumulative,,per_instance_measurement,3,21.36,37.0,100
+CreateContainer detail,container_finish_cumulative,,per_instance_measurement,3,26.13,41.0,100
+CreateContainer detail,sandbox_to_container_finish,,per_instance_measurement,3,4.77,6.0,100
+CreateContainer detail,guest_receive_to_restore_branch,,per_instance_measurement,3,0.183,0.238,100
+CreateContainer detail,restore_path_unresolved,,diagnostic_residual,3,4.077,4.99,100
+API,create,,client_observed,4,109.775,140.304,100
+Cubelet,create-sandbox-metadata,cubelet.cubebox,thresholded_direct,4,9.3,16.219,13
+Cubelet,cube-sandbox-store,,direct_unknown,4,10.311,15.308,5
+Cubelet,cubebox,cubelet.cubebox-service,direct_outer,4,58.794,84.153,100
+Cubelet,cubebox-service,master.cube-e2e,direct_outer,4,75.638,88.277,100
+Cubelet,cubebox-service-inner,cubelet.cubebox-service,derived_residual,4,60.188,72.929,100
+Cubelet,sandbox-create,cubelet.sandbox-start,direct_inner,4,39.556,65.752,100
+Cubelet,sandbox-probe,cubelet.cubebox,direct_inner,4,15.396,18.116,100
+Cubelet,sandbox-start,cubelet.cubebox,direct_cumulative,4,40.586,66.746,100
+Cubelet,storage,cubelet.cubebox-service,thresholded_direct,4,18.734,36.439,72
+CubeShim,CreateContainer,shim.CreatePodSandbox,direct_inner,4,4.34,5.0,100
+CubeShim,CreatePodSandbox,cubelet.sandbox-create,direct_outer,4,32.5,60.0,100
+CubeShim,CreateSandbox,shim.CreatePodSandbox,direct_inner,4,0.78,2.0,100
+CubeShim,LaunchVmm,shim.CreatePodSandbox,direct_inner,4,1.45,4.0,100
+CubeShim,ResetVm,shim.CreatePodSandbox,direct_inner,4,3.32,5.0,100
+CubeShim,RestoreVm,shim.CreatePodSandbox,direct_inner,4,18.03,46.0,100
+CubeMaster,cube-e2e,api.create,direct_outer,4,83.66,99.0,100
+CubeMaster,sandbox-probe,cubelet.sandbox-probe,propagated_metric,4,14.92,18.0,100
+CubeMaster,all-probe,master.cube-e2e,derived_aggregate,4,14.92,18.0,100
+Cubelet paired residual,service_outside_cubebox,cubelet.cubebox-service,paired_duration_residual,4,16.844,40.224,100
+Cubelet paired residual,sandbox_after_newtask,cubelet.sandbox-start,paired_duration_residual,4,1.03,1.677,100
+Cubelet paired residual,cubebox_outside_task_and_probe,cubelet.cubebox,paired_duration_residual,4,2.812,10.131,100
+CreateContainer detail,shim_create_container,,per_instance_measurement,4,4.34,5.0,100
+CreateContainer detail,create_request_total,,per_instance_measurement,4,32.936,60.652,100
+CreateContainer detail,vm_start_to_agent_ready,,per_instance_measurement,4,22.588,49.857,100
+CreateContainer detail,load_spec_cumulative,,per_instance_measurement,4,0.0,0.0,100
+CreateContainer detail,sandbox_finish_cumulative,,per_instance_measurement,4,27.47,55.0,100
+CreateContainer detail,container_finish_cumulative,,per_instance_measurement,4,32.5,60.0,100
+CreateContainer detail,sandbox_to_container_finish,,per_instance_measurement,4,5.03,6.0,100
+CreateContainer detail,guest_receive_to_restore_branch,,per_instance_measurement,4,0.165,0.283,98
+CreateContainer detail,restore_path_unresolved,,diagnostic_residual,4,4.172,4.871,98
+API,create,,client_observed,5,168.169,198.376,100
+Cubelet,cubebox,cubelet.cubebox-service,direct_outer,5,90.291,136.422,100
+Cubelet,cubebox-service,master.cube-e2e,direct_outer,5,103.925,144.7,100
+Cubelet,cubebox-service-inner,cubelet.cubebox-service,derived_residual,5,88.828,129.507,100
+Cubelet,sandbox-create,cubelet.sandbox-start,direct_inner,5,72.334,118.594,100
+Cubelet,sandbox-probe,cubelet.cubebox,direct_inner,5,15.035,16.876,100
+Cubelet,sandbox-start,cubelet.cubebox,direct_cumulative,5,73.369,119.552,100
+Cubelet,storage,cubelet.cubebox-service,thresholded_direct,5,14.393,21.287,77
+CubeShim,CreateContainer,shim.CreatePodSandbox,direct_inner,5,4.12,5.0,100
+CubeShim,CreatePodSandbox,cubelet.sandbox-create,direct_outer,5,65.59,112.0,100
+CubeShim,CreateSandbox,shim.CreatePodSandbox,direct_inner,5,0.67,1.0,100
+CubeShim,LaunchVmm,shim.CreatePodSandbox,direct_inner,5,0.97,1.0,100
+CubeShim,ResetVm,shim.CreatePodSandbox,direct_inner,5,3.77,7.0,100
+CubeShim,RestoreVm,shim.CreatePodSandbox,direct_inner,5,51.52,98.0,100
+CubeMaster,cube-e2e,api.create,direct_outer,5,111.69,150.0,100
+CubeMaster,sandbox-probe,cubelet.sandbox-probe,propagated_metric,5,14.53,16.0,100
+CubeMaster,all-probe,master.cube-e2e,derived_aggregate,5,14.53,16.0,100
+Cubelet paired residual,service_outside_cubebox,cubelet.cubebox-service,paired_duration_residual,5,13.634,22.28,100
+Cubelet paired residual,sandbox_after_newtask,cubelet.sandbox-start,paired_duration_residual,5,1.036,1.621,100
+Cubelet paired residual,cubebox_outside_task_and_probe,cubelet.cubebox,paired_duration_residual,5,1.886,3.442,100
+CreateContainer detail,shim_create_container,,per_instance_measurement,5,4.12,5.0,100
+CreateContainer detail,create_request_total,,per_instance_measurement,5,66.116,112.875,100
+CreateContainer detail,vm_start_to_agent_ready,,per_instance_measurement,5,55.662,101.738,100
+CreateContainer detail,load_spec_cumulative,,per_instance_measurement,5,0.0,0.0,100
+CreateContainer detail,sandbox_finish_cumulative,,per_instance_measurement,5,60.94,107.0,100
+CreateContainer detail,container_finish_cumulative,,per_instance_measurement,5,65.59,112.0,100
+CreateContainer detail,sandbox_to_container_finish,,per_instance_measurement,5,4.65,6.0,100
+CreateContainer detail,guest_receive_to_restore_branch,,per_instance_measurement,5,0.132,0.271,99
+CreateContainer detail,restore_path_unresolved,,diagnostic_residual,5,3.989,5.729,99

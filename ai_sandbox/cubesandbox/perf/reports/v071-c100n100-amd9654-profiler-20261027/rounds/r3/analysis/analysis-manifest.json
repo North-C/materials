@@ -1,0 +1,151 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "offline": true,
+  "source_capture": "/home/lyq/cube-startup-profiler/results/c100-profiler-20261027-033318/r3/20261026T193425Z-dfd63ad0/capture",
+  "inputs": {
+    "capture-manifest.json": {
+      "bytes": 11427,
+      "sha256": "bd79fd52842fef0e7a311b1ae458628d2f2c6dbca75e1ed4f4cf6a7839a47c59"
+    },
+    "evidence/cubelet_req-delta.log": {
+      "bytes": 417890,
+      "sha256": "3b751508849b50e934f8a0188977be9b2f753bd994c3269b36486d453f9c94ca"
+    },
+    "evidence/cubelet_stat-delta.log": {
+      "bytes": 374411,
+      "sha256": "d36a70c179002067a02930cc487e77bed8e5476b6c007db8fd4c50b7c12c885e"
+    },
+    "evidence/cubemastercli/after.json": {
+      "bytes": 120047,
+      "sha256": "8b1fd9a328618b80d792106c025874d1c9b1e593cf4617af73ad5952e75439e7"
+    },
+    "evidence/cubemastercli/after.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/cubemastercli/after.stdout": {
+      "bytes": 85448,
+      "sha256": "3cbd377eb86f1578e3bb1ec71479dc98b7f3f395fbf3c077570287fe3f589bbd"
+    },
+    "evidence/cubemastercli/before.json": {
+      "bytes": 4647,
+      "sha256": "bd50d6cf3676578a0ef76be6f1b11dae6ad0cbdcba4fc375b1230c7d62328204"
+    },
+    "evidence/cubemastercli/before.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/cubemastercli/before.stdout": {
+      "bytes": 2746,
+      "sha256": "9f3c8441a0e7462e5e6ec17d2660c244e05d77ec5ce4e5e87e4e028502f01724"
+    },
+    "evidence/cubemastercli/ownership.json": {
+      "bytes": 4583,
+      "sha256": "09b7aabd366daffce685a753d07660ae793066bbf86ed24ea33837ec4f558f62"
+    },
+    "evidence/master-delta.log": {
+      "bytes": 691863,
+      "sha256": "94584210220f7757427ad797f5b1b258540b4ed49228dd66e8708d0c2fe9407a"
+    },
+    "evidence/master_stat-delta.log": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "evidence/metrics-after.prom": {
+      "bytes": 960782,
+      "sha256": "e769a1f6d0c2ab5bb72348caca1212720b1f13e1a1e7939fd4233125265c28fe"
+    },
+    "evidence/metrics-before.prom": {
+      "bytes": 369335,
+      "sha256": "fe67980e933a5583d51da35c5a44cfec64a271959e0a5bcac6a32157aaf06135"
+    },
+    "evidence/shim_req-delta.log": {
+      "bytes": 729836,
+      "sha256": "8016d85f4f67986a0e27cc377ba6f3f9e73bb7ceb6591b6ff6c920095f6525d3"
+    },
+    "evidence/shim_stat-delta.log": {
+      "bytes": 144326,
+      "sha256": "663fecbae58e5499afa89ff28e5926c46af68248d6b30c4f7f45684e35517c70"
+    },
+    "owned-sandbox-ids.json": {
+      "bytes": 4060,
+      "sha256": "54b74be3146cfe21b15dec8381721c7715e640106df70f293bbf25414395165c"
+    },
+    "startup-latency/benchmark.raw.json": {
+      "bytes": 8599,
+      "sha256": "74030f935a8ef0eec09ca7b8f9d3de989f0003160d1c36b58b2210bb82198c02"
+    },
+    "startup-latency/prewarmup.json": {
+      "bytes": 581,
+      "sha256": "a9586a7e3234e7e9c9110c15bb5ca48e19f701bccaac8a43773da1e359016779"
+    },
+    "startup-latency/prewarmup.raw.json": {
+      "bytes": 960,
+      "sha256": "b7b82aadea36d453c0529c449c779fbf8a0cfe22ce5053de66a08a603bc19fff"
+    },
+    "startup-latency/runner-validation.json": {
+      "bytes": 20818,
+      "sha256": "bae92d0fa4ffd1e5ff079a0b256844d47680a6284c0cb5ccc5ed54146d8f4155"
+    }
+  },
+  "runtime": {
+    "status": "ok",
+    "python": {
+      "version": "3.11.6",
+      "minimum": "3.9",
+      "ok": true
+    },
+    "node": {
+      "path": "/usr/bin/node",
+      "version": "v20.18.2",
+      "minimum": "18",
+      "ok": true
+    },
+    "scope": "Offline runtime only; does not validate a cluster, capture, or benchmark."
+  },
+  "phase_policy": "No automatic phase inference. An explicit map is caller-declared, never independently verified; without a map all unambiguous owned IDs remain unknown_phase.",
+  "phase_map_input": {
+    "path": "/home/lyq/cube-startup-profiler/results/c100-profiler-20261027-033318/r3/20261026T193425Z-dfd63ad0/capture/owned-sandbox-ids.json",
+    "bytes": 4060,
+    "sha256": "54b74be3146cfe21b15dec8381721c7715e640106df70f293bbf25414395165c"
+  },
+  "classification_status": "declared",
+  "ownership_downgraded_to_unknown": false,
+  "conflicting_ownership_ids": [],
+  "warnings": [
+    "Phase map is caller-declared, NOT independently verified against benchmark execution."
+  ],
+  "owned_instances": {
+    "formal": 100,
+    "warmup": 0,
+    "unknown_phase": 0
+  },
+  "outputs": [
+    "REPORT.md",
+    "analysis.json",
+    "benchmark-inputs/benchmark.raw.json",
+    "benchmark-inputs/prewarmup.json",
+    "benchmark-inputs/prewarmup.raw.json",
+    "benchmark-inputs/runner-validation.json",
+    "instances.jsonl",
+    "inventory-evidence/after.json",
+    "inventory-evidence/after.stderr",
+    "inventory-evidence/after.stdout",
+    "inventory-evidence/before.json",
+    "inventory-evidence/before.stderr",
+    "inventory-evidence/before.stdout",
+    "inventory-evidence/ownership.json",
+    "network-details.csv",
+    "network-details.json",
+    "phase-classification.json",
+    "precision-timeline.html",
+    "precision.csv",
+    "precision.json",
+    "report.html",
+    "run-summary.json",
+    "stage-latency.csv",
+    "timeline.html",
+    "timeline.json"
+  ]
+}

@@ -1,0 +1,2889 @@
+{
+  "schema_version": 1,
+  "duration_unit": "ns",
+  "phases": {
+    "formal": {
+      "owned_instance_count": 100,
+      "expected_request_count": 100,
+      "stages": {
+        "create_stages.total": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 8326781,
+            "min": 8326781,
+            "p50": 8326781,
+            "p95": 8326781,
+            "max": 8326781
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 8326781,
+            "min": 8326781,
+            "p50": 8326781,
+            "p95": 8326781,
+            "max": 8326781
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 8326781
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "create_stages.ensure_route": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 350,
+            "min": 350,
+            "p50": 350,
+            "p95": 350,
+            "max": 350
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 350,
+            "min": 350,
+            "p50": 350,
+            "p95": 350,
+            "max": 350
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 350
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.acquire_tap": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 4350,
+            "min": 4350,
+            "p50": 4350,
+            "p95": 4350,
+            "max": 4350
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 4350,
+            "min": 4350,
+            "p50": 4350,
+            "p95": 4350,
+            "max": 4350
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 4350
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.reserve_ports": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 7943921,
+            "min": 7943921,
+            "p50": 7943921,
+            "p95": 7943921,
+            "max": 7943921
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 7943921,
+            "min": 7943921,
+            "p50": 7943921,
+            "p95": 7943921,
+            "max": 7943921
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 7943921
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.write_tmp": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 96810,
+            "min": 96810,
+            "p50": 96810,
+            "p95": 96810,
+            "max": 96810
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 96810,
+            "min": 96810,
+            "p50": 96810,
+            "p95": 96810,
+            "max": 96810
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 96810
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.commit_creating": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 12830,
+            "min": 12830,
+            "p50": 12830,
+            "p95": 12830,
+            "max": 12830
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 12830,
+            "min": 12830,
+            "p50": 12830,
+            "p95": 12830,
+            "max": 12830
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 12830
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.apply_port_mappings": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 178930,
+            "min": 178930,
+            "p50": 178930,
+            "p95": 178930,
+            "max": 178930
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 178930,
+            "min": 178930,
+            "p50": 178930,
+            "p95": 178930,
+            "max": 178930
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 178930
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.register_cubevs_tap": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 73740,
+            "min": 73740,
+            "p50": 73740,
+            "p95": 73740,
+            "max": 73740
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 73740,
+            "min": 73740,
+            "p50": 73740,
+            "p95": 73740,
+            "max": 73740
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 73740
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.push_egress": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 750,
+            "min": 750,
+            "p50": 750,
+            "p95": 750,
+            "max": 750
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 750,
+            "min": 750,
+            "p50": 750,
+            "p95": 750,
+            "max": 750
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 750
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.commit_success": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 12710,
+            "min": 12710,
+            "p50": 12710,
+            "p95": 12710,
+            "max": 12710
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 12710,
+            "min": 12710,
+            "p50": 12710,
+            "p95": 12710,
+            "max": 12710
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 12710
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.commit_active": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 1580,
+            "min": 1580,
+            "p50": 1580,
+            "p95": 1580,
+            "max": 1580
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 1580,
+            "min": 1580,
+            "p50": 1580,
+            "p95": 1580,
+            "max": 1580
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 1580
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "ensure_precheck.total": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 8403591,
+            "min": 8403591,
+            "p50": 8403591,
+            "p95": 8403591,
+            "max": 8403591
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 8403591,
+            "min": 8403591,
+            "p50": 8403591,
+            "p95": 8403591,
+            "max": 8403591
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 8403591
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "ensure_precheck.lock_wait": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 1220,
+            "min": 1220,
+            "p50": 1220,
+            "p95": 1220,
+            "max": 1220
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 1220,
+            "min": 1220,
+            "p50": 1220,
+            "p95": 1220,
+            "max": 1220
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 1220
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.inmem_lookup": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 7950,
+            "min": 7950,
+            "p50": 7950,
+            "p95": 7950,
+            "max": 7950
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 7950,
+            "min": 7950,
+            "p50": 7950,
+            "p95": 7950,
+            "max": 7950
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 7950
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.exists_check": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 13640,
+            "min": 13640,
+            "p50": 13640,
+            "p95": 13640,
+            "max": 13640
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 13640,
+            "min": 13640,
+            "p50": 13640,
+            "p95": 13640,
+            "max": 13640
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 13640
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.legacy_check": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 23230,
+            "min": 23230,
+            "p50": 23230,
+            "p95": 23230,
+            "max": 23230
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 23230,
+            "min": 23230,
+            "p50": 23230,
+            "p95": 23230,
+            "max": 23230
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 23230
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.create_state": {
+          "stats_ns": {
+            "count": 1,
+            "avg": 8354511,
+            "min": 8354511,
+            "p50": 8354511,
+            "p95": 8354511,
+            "max": 8354511
+          },
+          "successful_stats_ns": {
+            "count": 1,
+            "avg": 8354511,
+            "min": 8354511,
+            "p50": 8354511,
+            "p95": 8354511,
+            "max": 8354511
+          },
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 1,
+            "record_count": 1,
+            "measured_instances": 1,
+            "fraction": 0.01
+          },
+          "status_counts": {
+            "measured": 1,
+            "missing_record": 99,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 1,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [
+            {
+              "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+              "outcome": "success",
+              "duration_ns": 8354511
+            }
+          ],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "register_cubevs_tap.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": 0
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 100,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "tap_fd_handoff.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": 0
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 100,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "tap_fd_handoff.lock_wait": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": 0
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 100,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        },
+        "tap_fd_handoff.snapshot": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": 0
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 100,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        },
+        "tap_fd_handoff.open_tap": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": 0
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 100,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        },
+        "tap_fd_handoff.dup_fd": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 100,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": 0
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 100,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        }
+      }
+    },
+    "warmup": {
+      "owned_instance_count": 0,
+      "expected_request_count": 0,
+      "stages": {
+        "create_stages.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "create_stages.ensure_route": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.acquire_tap": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.reserve_ports": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.write_tmp": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.commit_creating": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.apply_port_mappings": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.register_cubevs_tap": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.push_egress": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.commit_success": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.commit_active": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "ensure_precheck.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "ensure_precheck.lock_wait": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.inmem_lookup": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.exists_check": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.legacy_check": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.create_state": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "register_cubevs_tap.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "tap_fd_handoff.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "tap_fd_handoff.lock_wait": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        },
+        "tap_fd_handoff.snapshot": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        },
+        "tap_fd_handoff.open_tap": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        },
+        "tap_fd_handoff.dup_fd": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        }
+      }
+    },
+    "unknown_phase": {
+      "owned_instance_count": 0,
+      "expected_request_count": null,
+      "stages": {
+        "create_stages.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "create_stages.ensure_route": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.acquire_tap": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.reserve_ports": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.write_tmp": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.commit_creating": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.apply_port_mappings": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.register_cubevs_tap": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.push_egress": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.commit_success": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "create_stages.commit_active": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "create_stages.total"
+        },
+        "ensure_precheck.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "ensure_precheck.lock_wait": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.inmem_lookup": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.exists_check": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.legacy_check": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "ensure_precheck.create_state": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "ensure_precheck.total"
+        },
+        "register_cubevs_tap.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "tap_fd_handoff.total": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": null
+        },
+        "tap_fd_handoff.lock_wait": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        },
+        "tap_fd_handoff.snapshot": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        },
+        "tap_fd_handoff.open_tap": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        },
+        "tap_fd_handoff.dup_fd": {
+          "stats_ns": null,
+          "successful_stats_ns": null,
+          "coverage": {
+            "owned_instances": 0,
+            "recorded_instances": 0,
+            "record_count": 0,
+            "measured_instances": 0,
+            "fraction": null
+          },
+          "status_counts": {
+            "measured": 0,
+            "missing_record": 0,
+            "missing_field": 0,
+            "invalid_duration": 0,
+            "unknown_execution": 0,
+            "ambiguous_duplicate": 0
+          },
+          "outcomes": {
+            "success": 0,
+            "failure": 0,
+            "unknown": 0
+          },
+          "samples": [],
+          "additivity": "do_not_sum",
+          "parent": "tap_fd_handoff.total"
+        }
+      }
+    }
+  },
+  "instances": [
+    {
+      "instance_id": "084c9767d88e4754bff7971b23ef90c0",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "08aa289b53e24402b81ad6cfd42cebc3",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "093f7c6fc45c467fb5384d196ef85549",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "0d8e37ca849b490ea265dc793670f591",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "0e9a817d1e5c4897b90a0fa01df0724b",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "10437f7126bb4744b442d479ec8e5a3b",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "146a783466054ad3a5e229f54ee18d7e",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "14a5044aca974cbbad3fc7dd50483e4c",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "1ac87df2a0cd4df09afc3e5bc7f34d83",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "1ced348e6f524198bd6c724c1ddd4776",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "1e833f5800a7466f8bd74da52a785585",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "209cea045b834200b3f92ab5abe75094",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "2204aee0754241788adbae230aa4b346",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "22529790bd954b9ead4661a7c1bc85e2",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "2258cc403db14ae9b31297df5457a1e4",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "225e63c893ce4a2ba73a2807bbb504a4",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "243ed832164e4ecca3a55aa2a9b6f55b",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "297f771571474bbc949743425445d918",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "29b549427d884d159e6f9024224c68f8",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "2c572e5abee14f1c9f31f824f1245a0e",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "300ca957061f4927991e6ab1be67c174",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "33a37450dd174f8aa434c4d21af3a302",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "33cdb201b6ab4f66a6d100de89312417",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "35ddcfdf79de4f86a315816ccc1c3b16",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "3682d1ed10ff42529dca636fe4813dc8",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "399c8fd1be734836a2e8ed49ff5abb1b",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "3cf2a0d15ee2467c807238e1be964b32",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "3e198bc8a7034ad38ba2260f7bb99ba3",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "3ec47e52449247b79fd6013cdde1fe02",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "3fb111784d5842cf966d4d0349607745",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "43b5233e537144ac9e6a8fcb82a2b18f",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "48ad9f84e96847b5925b3284568200e3",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "49799b85f65046279039b4eaf64ffa6b",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "4b8fb652f8b047c4ad3f7afcc7ac4adf",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "4bf560c70cca4a7380335ad8ff8a6e5d",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "4c41fbc03f3347f69da4537df2399df0",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "4c473ad6b6e042bfbd5ce0ee6eb84e39",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "500573d923664600850bf7f2c20b0129",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "50faa799727d45c8adedd375b6b55773",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "51e7e901b8d94b26ace7556ae5c9bcb2",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "537e4c5981a443f991320b2e72fb68ab",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "5edfd876d88e4848b2df820f4b358bd5",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "62ab86041ea74cd99c371450815011d7",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "62b316b37c8a47738f9f0f0356e5d988",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "68c81c67f0b74a268df17f0ae14f16a0",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "69647abd3a064034b3d9a4ab7f99eb4f",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "6c944659ef604f679acfe19a9279b5ca",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "6f72eca8f15d4238b8ba3bf8b2cd31c4",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "729f520e0636488682df88c815e89cc7",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "74f9ab5060bd4c3185e608d416494b67",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "77e25bab4d4f4889a58b5f4f3b6f7396",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "77f2fc80d4fa4082940b905604b2383d",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "7a06c94b73a840ceaa7562ddf41f87f8",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "7d502bd097694f3d91b3ce9979ef5c55",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "7d6e62fc298d47cb8eb0cca29ed5c5f6",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "827cdaa6d6e74814928976103163e226",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "83f95eb25609422896db76d92d40a486",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "85cceaf277194d4488eb5455b80156f1",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "8925a04d425d422ebf598c99dec05891",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "8e2c7123edf64a4b895e093d781ce0a7",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "9017b66dbfc2411d9e1f98ad29317fa8",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "91c0d51be0c542f2bad1cdd845be8bf7",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "937d087737804cec967326862a853b2c",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "946ca6ef4d854b24889ce96cf3eb325a",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "9482f47ca15349658f89651e30f6caeb",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "96baf7a237304830b010723a091fb8ea",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "993949c3b95f42a19bef13e23fa4e142",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "9c605a57c0e940c4b82699ade2cff397",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "9d9516c4f6364976948afc52ad5ebed5",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "a1384ddcb81a41a7affb67b478ac9890",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "a2fa4cb07129449fa0e33006b750613f",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "a3d4d3bd79bd406f90e08e5b063a9734",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "abe13e94b5fd4471847b2ad1aaaf71fe",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "b088adac737542f0920133f0e25a794c",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "b09b56cde8c344299985bfae105d1ba2",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "b65609b6d7c8405d94c5b6c8d1491c67",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "b804e329af424531870a522cffdb5ec1",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "baf71d871739440fa3c075c1b8d51675",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "bf704015bf8541199177d44a8c620589",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "c2ab92dd0368429c8fac9516bc416f11",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "c4a0cb924d3e42128ca27c9a4774b4d7",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "c7bd136b9f2c485b8a0d8122f95cf904",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "c91a27d529494824a1c8dcecfb076027",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "ce10bc42b77e426d9b64f3e1514fca0c",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "ceb7fc79aebd469e9400a22598676bd4",
+      "phase": "formal",
+      "operations": {
+        "create_stages": [
+          {
+            "timestamp": "2026-10-27T03:33:52.393875994+08:00",
+            "request_id": "be8047f9-0d3f-4eca-a20a-8fffac7dd4bb",
+            "outcome": "success",
+            "idempotent": null,
+            "attempts": null,
+            "port_mappings": 2,
+            "durations": {
+              "total": {
+                "raw": "8.326781ms",
+                "recorded_ns": 8326781,
+                "duration_ns": 8326781,
+                "status": "measured"
+              },
+              "ensure_route": {
+                "raw": "350ns",
+                "recorded_ns": 350,
+                "duration_ns": 350,
+                "status": "measured"
+              },
+              "acquire_tap": {
+                "raw": "4.35µs",
+                "recorded_ns": 4350,
+                "duration_ns": 4350,
+                "status": "measured"
+              },
+              "reserve_ports": {
+                "raw": "7.943921ms",
+                "recorded_ns": 7943921,
+                "duration_ns": 7943921,
+                "status": "measured"
+              },
+              "write_tmp": {
+                "raw": "96.81µs",
+                "recorded_ns": 96810,
+                "duration_ns": 96810,
+                "status": "measured"
+              },
+              "commit_creating": {
+                "raw": "12.83µs",
+                "recorded_ns": 12830,
+                "duration_ns": 12830,
+                "status": "measured"
+              },
+              "apply_port_mappings": {
+                "raw": "178.93µs",
+                "recorded_ns": 178930,
+                "duration_ns": 178930,
+                "status": "measured"
+              },
+              "register_cubevs_tap": {
+                "raw": "73.74µs",
+                "recorded_ns": 73740,
+                "duration_ns": 73740,
+                "status": "measured"
+              },
+              "push_egress": {
+                "raw": "750ns",
+                "recorded_ns": 750,
+                "duration_ns": 750,
+                "status": "measured"
+              },
+              "commit_success": {
+                "raw": "12.71µs",
+                "recorded_ns": 12710,
+                "duration_ns": 12710,
+                "status": "measured"
+              },
+              "commit_active": {
+                "raw": "1.58µs",
+                "recorded_ns": 1580,
+                "duration_ns": 1580,
+                "status": "measured"
+              }
+            }
+          }
+        ],
+        "ensure_precheck": [
+          {
+            "timestamp": "2026-10-27T03:33:52.393905364+08:00",
+            "request_id": "be8047f9-0d3f-4eca-a20a-8fffac7dd4bb",
+            "outcome": "success",
+            "idempotent": false,
+            "attempts": null,
+            "port_mappings": null,
+            "durations": {
+              "total": {
+                "raw": "8.403591ms",
+                "recorded_ns": 8403591,
+                "duration_ns": 8403591,
+                "status": "measured"
+              },
+              "lock_wait": {
+                "raw": "1.22µs",
+                "recorded_ns": 1220,
+                "duration_ns": 1220,
+                "status": "measured"
+              },
+              "inmem_lookup": {
+                "raw": "7.95µs",
+                "recorded_ns": 7950,
+                "duration_ns": 7950,
+                "status": "measured"
+              },
+              "exists_check": {
+                "raw": "13.64µs",
+                "recorded_ns": 13640,
+                "duration_ns": 13640,
+                "status": "measured"
+              },
+              "legacy_check": {
+                "raw": "23.23µs",
+                "recorded_ns": 23230,
+                "duration_ns": 23230,
+                "status": "measured"
+              },
+              "create_state": {
+                "raw": "8.354511ms",
+                "recorded_ns": 8354511,
+                "duration_ns": 8354511,
+                "status": "measured"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "instance_id": "cfc2b2aaeda64a4ea85f179879e3330b",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "d2e09c64765348ecb2821b7b9c362180",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "d8a64012998a40939d4290bd13e43d43",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "d9c67e02c415480092bed5dac3b8c4ad",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "db8492592226452e8d0418d712bb959a",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "e2ed7b02d09a4d3daeb55a0e5c39e8be",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "e34951c26e904e929f1ec6d27a79cb28",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "e6387166281c449382dee32520c3b4df",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "edd45b6dbe924e9c9d37fa8f3bd06ee8",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "ee067d1d162f49b3ba72d4da83d1b10e",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "f04eb0d63f374924a83c7403ada3a607",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "f0b0ae642ba743a6b6595f426ffe33dc",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "f54b837acff8466bb56deae7f1474d7f",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "f79d16df422343bb976e2f554eb32194",
+      "phase": "formal",
+      "operations": {}
+    },
+    {
+      "instance_id": "fb144f8d9dbb4e729cce38c78f23d46d",
+      "phase": "formal",
+      "operations": {}
+    }
+  ],
+  "integrity": {
+    "path": "evidence/cubelet_req-delta.log",
+    "bytes": 417867,
+    "sha256": "ae05d75d0d80f12b29b80ef199e438e557e124c9bba1a3aed8df2a061d97b368",
+    "malformed_json_lines": 0,
+    "final_newline_present": true,
+    "log_status": "captured",
+    "log_gaps": [],
+    "matched_records": 2,
+    "foreign_or_unattributed": 0,
+    "mismatched_instance_id": 0,
+    "outside_capture_window": 0,
+    "time_unverifiable": 0,
+    "repeated_field_records": 0,
+    "accepted_records": 2,
+    "duplicate_kind_instances": 0,
+    "conflicting_ownership_ids": [],
+    "capture_window_verified": true
+  },
+  "phase_classification": {
+    "status": "declared",
+    "method": "Explicit caller-supplied phase map; structural checks only"
+  },
+  "interpretation": [
+    "Stock v0.7.1 emits each timing record only on failure or when its own parent operation total >= 1 ms. Its child durations are a conditionally observed subset, not all requests.",
+    "An instrumented build may remove this gate; actual coverage is reported. This parser does not infer the active gate from log presence.",
+    "Missing records cannot be classified as fast: log loss, skips, failures and threshold suppression are distinct possibilities.",
+    "Zero accumulators have unknown_execution status and are excluded from latency statistics. A failing stage can return before its timer assignment; zero does not prove it was unexecuted.",
+    "Duplicate operation records for one instance are retained in per-instance output and excluded from stage statistics because retry/copy identity is unavailable.",
+    "ensure precheck total includes create_state. create_state nests create stages; register_cubevs_tap includes registration logging and AddTAPDevice, while register cubevs tap total measures only AddTAPDevice.",
+    "tap fd handoff snapshot/open_tap/dup_fd accumulate across attempts; open_tap includes branch overhead even when a cached FD avoids opening a TAP. lock_wait includes lookup/lock setup.",
+    "Each duration uses Go monotonic time. Log emission timestamps do not define precise stage boundaries. Do not add nested stages or subtract unrelated aggregate percentiles."
+  ]
+}

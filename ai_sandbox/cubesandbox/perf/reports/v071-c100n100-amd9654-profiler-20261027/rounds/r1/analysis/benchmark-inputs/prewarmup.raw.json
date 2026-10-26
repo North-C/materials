@@ -1,0 +1,51 @@
+{
+  "config": {
+    "api_url": "http://127.0.0.1:3000",
+    "concurrency": 1,
+    "host_mount": "",
+    "mode": "create-only",
+    "network_allow_out": 0,
+    "network_inject_rules": 0,
+    "network_policy": "none",
+    "network_rules": 0,
+    "template": "tpl-947123cfa84540d68f7c5933",
+    "total": 3,
+    "warmup": 0
+  },
+  "create": {
+    "avg": 47.290333333333336,
+    "count": 3,
+    "max": 57.133,
+    "min": 40.089,
+    "p50": 44.649,
+    "p90": 57.133,
+    "p95": 57.133,
+    "p99": 57.133,
+    "std": 8.823659407146978
+  },
+  "raw": [
+    {
+      "create_ms": 57.133,
+      "delete_ms": 0,
+      "seq": 1
+    },
+    {
+      "create_ms": 44.649,
+      "delete_ms": 0,
+      "seq": 2
+    },
+    {
+      "create_ms": 40.089,
+      "delete_ms": 0,
+      "seq": 3
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "success_rate": 1,
+    "successful": 3,
+    "throughput_qps": 21.095346769423788,
+    "total_time_s": 0.142211457
+  },
+  "timestamp": "2026-10-26T19:33:18Z"
+}

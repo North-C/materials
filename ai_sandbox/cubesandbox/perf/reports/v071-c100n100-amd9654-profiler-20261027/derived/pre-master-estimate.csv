@@ -1,0 +1,6 @@
+round,total_time_ms,first_master_start_after_t0_ms,master_start_spread_ms,pre_master_avg_ms,pre_master_max_ms,master_reply_to_api_created_avg_ms,master_reply_to_api_created_p95_ms,paired
+1,152.041,3.937,54.65,38.865,58.587,0.442,2.232,100
+2,169.79,3.791,66.153,49.464,69.943,0.221,0.374,100
+3,162.249,3.521,61.416,45.587,64.937,0.319,0.411,100
+4,147.564,3.475,42.723,32.431,46.199,0.203,0.356,100
+5,207.966,5.055,124.71,57.736,129.766,0.205,0.362,100

@@ -1,0 +1,26 @@
+01:53:14.942 round 1 start run_id=c100n100-r1-1793037194 sandboxes=0 memavail_kb=1099747180
+01:53:15.265 round 1 bench rc=0 sandboxes=0 memavail_kb=1097852448
+01:53:15.321 round 1 deleting 103 tagged
+    103 204
+01:53:15.940 round 1 cleaned sandboxes=0
+01:53:45.958 round 2 start run_id=c100n100-r2-1793037225 sandboxes=0 memavail_kb=1099731280
+01:53:46.299 round 2 bench rc=0 sandboxes=0 memavail_kb=1098029272
+01:53:46.354 round 2 deleting 103 tagged
+    103 204
+01:53:46.949 round 2 cleaned sandboxes=0
+01:54:16.967 round 3 start run_id=c100n100-r3-1793037256 sandboxes=0 memavail_kb=1099710700
+01:54:17.301 round 3 bench rc=0 sandboxes=0 memavail_kb=1098043864
+01:54:17.346 round 3 deleting 103 tagged
+    103 204
+01:54:17.952 round 3 cleaned sandboxes=0
+01:54:47.970 round 4 start run_id=c100n100-r4-1793037287 sandboxes=0 memavail_kb=1099650820
+01:54:48.285 round 4 bench rc=0 sandboxes=0 memavail_kb=1097971164
+01:54:48.342 round 4 deleting 103 tagged
+    103 204
+01:54:48.929 round 4 cleaned sandboxes=0
+01:55:18.947 round 5 start run_id=c100n100-r5-1793037318 sandboxes=0 memavail_kb=1099679164
+01:55:19.273 round 5 bench rc=0 sandboxes=0 memavail_kb=1098019804
+01:55:19.319 round 5 deleting 103 tagged
+    103 204
+01:55:19.947 round 5 cleaned sandboxes=0
+01:55:49.955 DONE

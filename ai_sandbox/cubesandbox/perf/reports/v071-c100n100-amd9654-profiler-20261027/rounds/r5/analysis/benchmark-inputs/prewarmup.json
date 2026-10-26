@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "mode": "separate_process",
+  "count": 3,
+  "status": "complete",
+  "successful": 3,
+  "benchmark_exit_code": 0,
+  "started_at": "2026-10-26T19:35:32.749570+00:00",
+  "problems": [],
+  "binary_sha256": "8f68ae5c690d9ac8af82b7777e23bda190e1baa97717423e8fef38afd9de8c60",
+  "capture_scope": "outside_formal_capture",
+  "cleanup": "not_performed",
+  "client_connection_reused": false,
+  "raw_sha256": "4d3d355fab9add8ade4128ef1cfac72c28498ebc8a133957e73acd67c0e1d6a7",
+  "ended_at": "2026-10-26T19:35:33.042509+00:00",
+  "duration_ms": 292.9479540325701
+}

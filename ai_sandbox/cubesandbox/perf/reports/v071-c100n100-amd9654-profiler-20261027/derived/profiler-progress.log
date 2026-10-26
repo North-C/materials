@@ -1,0 +1,26 @@
+03:33:18.198 round 1 start run_id=prof-r1-1793043198
+03:33:21.078 round 1 capture rc=0 live=103
+03:33:21.135 round 1 deleting 103 tagged
+    103 204
+03:33:21.746 round 1 cleaned live=0
+03:33:51.766 round 2 start run_id=prof-r2-1793043231
+03:33:54.587 round 2 capture rc=0 live=103
+03:33:54.644 round 2 deleting 103 tagged
+    103 204
+03:33:55.324 round 2 cleaned live=0
+03:34:25.344 round 3 start run_id=prof-r3-1793043265
+03:34:28.144 round 3 capture rc=0 live=103
+03:34:28.209 round 3 deleting 103 tagged
+    103 204
+03:34:28.944 round 3 cleaned live=0
+03:34:58.966 round 4 start run_id=prof-r4-1793043298
+03:35:01.835 round 4 capture rc=0 live=103
+03:35:01.898 round 4 deleting 103 tagged
+    103 204
+03:35:02.647 round 4 cleaned live=0
+03:35:32.669 round 5 start run_id=prof-r5-1793043332
+03:35:39.760 round 5 capture rc=0 live=103
+03:35:39.806 round 5 deleting 103 tagged
+    103 204
+03:35:40.457 round 5 cleaned live=0
+03:36:10.470 DONE
