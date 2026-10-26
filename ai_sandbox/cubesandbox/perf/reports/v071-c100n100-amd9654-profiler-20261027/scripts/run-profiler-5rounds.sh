@@ -1,6 +1,6 @@
 #!/bin/bash
 OUT=$1; T=/home/lyq/cube-startup-profiler
-export E2B_API_URL=http://127.0.0.1:3000 E2B_API_KEY=<redacted>
+export E2B_API_URL=http://127.0.0.1:3000 E2B_API_KEY="<redacted>"
 log(){ echo "$(date +%T.%3N) $*" >> $OUT/progress.log; }
 cnt(){ curl -s $E2B_API_URL/sandboxes | jq length; }
 for r in 1 2 3 4 5; do

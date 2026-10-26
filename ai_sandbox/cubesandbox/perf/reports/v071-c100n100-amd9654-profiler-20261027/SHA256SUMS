@@ -108,5 +108,5 @@ d2c32a8d8424e33cc8a70336b81b13df52f2ccf2ab3f2bd80e74d6875772d14b  ./rounds/r5/an
 6b6e1da8b8855fdf2c49a8a66327a692d61afcfb55c5aa69bc0a194bbf91775c  ./rounds/r5/analysis/timeline.json
 78f11c65bbe26a151fcdac37bd6a25702d5e5c50f0c873f6a5120148632d2dd1  ./scripts/derive.py
 f21ea0581c8f05639d340d683038530c50282b1743ca22a4b624ad529933e6fe  ./scripts/pair_host_boundaries.py
-cc518aee3bad13daefd23fd3ce5d33eb5f2f14be6475f06a15f26e1ffa728313  ./scripts/run-bash-baseline-5rounds.sh
-48c188762f08fac608cdbab6ee5c6a7349aa3a84ceb7b5d0d7adecd6a690446d  ./scripts/run-profiler-5rounds.sh
+1cc4d5c1c66ba82c10b7f66ac15547c30fbdeae3d9a54cb727101f587187bb56  ./scripts/run-bash-baseline-5rounds.sh
+acb3c8c66c5201634e89b9ceab10d913969b5fd5896c4bc3be85f6e403e76a5b  ./scripts/run-profiler-5rounds.sh

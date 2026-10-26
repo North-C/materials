@@ -1,6 +1,6 @@
 #!/bin/bash
 OUT=$1
-export E2B_API_URL=http://127.0.0.1:3000 E2B_API_KEY=<redacted> CUBE_TEMPLATE_ID=tpl-947123cfa84540d68f7c5933
+export E2B_API_URL=http://127.0.0.1:3000 E2B_API_KEY="<redacted>" CUBE_TEMPLATE_ID=tpl-947123cfa84540d68f7c5933
 BENCH=/home/lyq/cube-perf-suite/examples/cube-bench/bin/cube-bench
 log(){ echo "$(date +%T.%3N) $*" >> $OUT/progress.log; }
 count(){ curl -s $E2B_API_URL/health | jq -r .sandboxes; }
