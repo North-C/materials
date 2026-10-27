@@ -4,6 +4,10 @@
 
 **后续通用工具维护迁至 [GitCode 私有仓库 cubesandbox-startup-profiler](https://gitcode.com/yuncongyue/cubesandbox-startup-profiler)**，访问需要相应成员权限。新仓库仅包含通用分析与参数化采集代码、阶段文档和合成样例，不携带本目录中的测试机信息、实测报告或运行证据。本目录脚本作为历史版本保留，不再同步工具功能更新。
 
+## 对比测试身份与补丁清单
+
+- [二进制 × 生效补丁 × 内核 × 性能，以及内核基线/附加补丁清单（2026-10-27）](../comparison-inventory-20261027/README.md)：独立专题保留两份公开报告、来源哈希与未公开证据说明。区分 original/kit/stack/hotset/自动学习 prewrite、旧K2与V2，不跨条件聚合；本次仅资料发布，没有新增测试。
+
 ## v0.7.1 · 90机器 · Template c100n100
 
 测试模板基于 sandbox-code，规格为 **2 vCPU / 2048 MiB / 1G 可写层**。下表收录历次分析报告，另附阶段定义、审计和工具文档；各次模板、版本和预热方法以报告为准。

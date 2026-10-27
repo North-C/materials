@@ -11,6 +11,7 @@
 | 任务 | 首选入口 | 阅读范围 |
 | --- | --- | --- |
 | 了解架构与版本变化 | [架构图](architecture/cubesandbox-minimal-v2.png)、[v0.5.1 → v0.7.1 演进](version-evolution/cubesandbox-v0.5.1-to-v0.7.1-evolution.zh-CN.md) | 架构概览与指定版本间的变化 |
+| 核对对比测试版本与补丁 | [二进制与内核清单](comparison-inventory-20261027/README.md) | 2026-10-27 公开报告：源码/组件SHA、生效条件、内核补丁和性能边界；原始证据未公开 |
 | 分析创建时延 | [perf 索引](perf/README.md) | 各轮报告、阶段定义、计时口径、时间轴与工具状态 |
 | 比较机器配置 | [machine_config 快照与对比指南](machine_config/README.md) | 2026-10-20 `.90` 全模块 JSON / Markdown；已只读采集并校验，可离线对比 |
 | 复现 c100n100 优化 | [调优指南](c100n100-perf-tuning/README.zh-CN.md)、[测试指南](c100n100-perf-tuning/TESTING-GUIDE.zh-CN.md) | 配置、补丁、验证与回退方法；环境前提以正文为准 |
@@ -31,6 +32,7 @@
 | [benchmark/](benchmark/README.md) | 基准与功能测试 | `docker/` 构建上下文、`scripts/` runner、`docs/` 方法、`reports/` 报告、`analysis/` 内存专题、`swe-replay-density/` 回放专项 |
 | [perf/](perf/README.md) | 启动性能分析 | 阶段耗时、计时边界、观测脚本和逐轮报告；通用工具的后续维护地址见该索引 |
 | [c100n100-perf-tuning/](c100n100-perf-tuning/README.zh-CN.md) | 调优复现 | 指南、补丁、配置样例、辅助脚本与状态快照 |
+| [comparison-inventory-20261027/](comparison-inventory-20261027/README.md) | 对比测试身份清单 | 二进制与内核两份报告、补丁生效与性能对应、来源缺口和发布校验；不重复发布原始实验包 |
 | [machine_config/](machine_config/README.md) | 机器配置基线 | 带采集时间的单机 JSON、可读表格、校验值与离线对比方法；不重复存放性能测试证据 |
 | [bug-fixes/](bug-fixes/) | 根因与修复归档 | 修复报告、分析及对应关键数据 |
 | [debug/](debug/) | 调查过程与复现包 | 按问题和日期组织的现场、实验及修复验证材料 |
