@@ -1,0 +1,6 @@
+2026-10-28T13:00:34Z bench=1 inventory=0 load1=2.18 ok=0
+2026-10-28T13:00:44Z bench=1 inventory=0 load1=2.17 ok=0
+2026-10-28T13:00:55Z bench=1 inventory=0 load1=2.37 ok=0
+2026-10-28T13:01:06Z bench=0 inventory=0 load1=2.30 ok=1
+2026-10-28T13:01:16Z bench=0 inventory=0 load1=2.17 ok=2
+quiet; launching run-origtpl-c50.sh

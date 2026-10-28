@@ -1,0 +1,141 @@
+{
+    "ret": {
+        "ret_code": 200,
+        "ret_msg": "success"
+    },
+    "template_id": "tpl-eafc8a2936c54876ad51c042",
+    "instance_type": "cubebox",
+    "version": "v2",
+    "status": "READY",
+    "display_name": "peer-isnotfc-bench-1028",
+    "created_at": "2026-10-28T11:13:09Z",
+    "image_info": "127.0.0.1:5000/sandbox-code:isnotfc-20261022-amd64@sha256:801e470367dc873c3387346df8be4aa2ca994bd7d665410ca4f1cece341a6b62",
+    "job_id": "b0880f9f-71f6-4ef3-b822-b6c9928e3f82",
+    "replicas": [
+        {
+            "node_id": "host-lan-ip",
+            "node_ip": "host-lan-ip",
+            "instance_type": "cubebox",
+            "spec": "cpu=2000m,mem=2000Mi",
+            "status": "READY",
+            "phase": "READY"
+        }
+    ],
+    "create_request": {
+        "requestID": "4e8109d2-4fea-4ffe-b01f-bfa5f0fe72a8",
+        "volumes": [
+            {
+                "name": "cube_rootfs_rw",
+                "volume_source": {
+                    "empty_dir": {
+                        "size_limit": "20Gi"
+                    }
+                }
+            }
+        ],
+        "containers": [
+            {
+                "name": "cubebox-name-0",
+                "image": {
+                    "image": "rfs-1ab81e504f1fcb3e6070991f-9eca4471",
+                    "annotations": {
+                        "cube.master.rootfs.artifact.id": "rfs-1ab81e504f1fcb3e6070991f-9eca4471",
+                        "cube.master.rootfs.artifact.sha256": "bb73a1952f7c90da934bdd04611824a4e8597ef3beee029518ac204a6d310da2",
+                        "cube.master.rootfs.artifact.size_bytes": "1073741824",
+                        "cube.master.rootfs.artifact.token": "[REDACTED]",
+                        "cube.master.rootfs.artifact.url": "http://host-lan-ip:8089/cube/template/artifact/download?[query-removed]",
+                        "cube.master.rootfs.writable_layer_size": "20Gi",
+                        "cube.master.template.spec_fingerprint": "1ab81e504f1fcb3e6070991f20ba6f4fbd51be3cad2ce1ffd61ece3d95309d22"
+                    },
+                    "storage_media": "ext4",
+                    "writable_layer_size": "20Gi"
+                },
+                "args": [
+                    "/usr/local/bin/start-lightweight-code-interpreter.sh"
+                ],
+                "working_dir": "/workspace",
+                "envs": [
+                    {
+                        "key": "CODE_INTERPRETER_HOST",
+                        "value": "0.0.0.0"
+                    },
+                    {
+                        "key": "CODE_INTERPRETER_PORT",
+                        "value": "49999"
+                    },
+                    {
+                        "key": "CODE_INTERPRETER_WORKDIR",
+                        "value": "/workspace"
+                    },
+                    {
+                        "key": "DEBIAN_FRONTEND",
+                        "value": "noninteractive"
+                    },
+                    {
+                        "key": "GPG_KEY",
+                        "value": "7169605F62C751356D054A26A821E680E5FA6305"
+                    },
+                    {
+                        "key": "LANG",
+                        "value": "C.UTF-8"
+                    },
+                    {
+                        "key": "PATH",
+                        "value": "/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                    },
+                    {
+                        "key": "PYTHONDONTWRITEBYTECODE",
+                        "value": "1"
+                    },
+                    {
+                        "key": "PYTHONUNBUFFERED",
+                        "value": "1"
+                    },
+                    {
+                        "key": "PYTHON_SHA256",
+                        "value": "fb85a13414b028c49ba18bbd523c2d055a30b56b18b92ce454ea2c51edc656c4"
+                    },
+                    {
+                        "key": "PYTHON_VERSION",
+                        "value": "3.12.12"
+                    },
+                    {
+                        "key": "UV_TOOL_BIN_DIR",
+                        "value": "/usr/local/bin"
+                    }
+                ],
+                "volume_mounts": [
+                    {
+                        "name": "cube_rootfs_rw",
+                        "container_path": "/"
+                    }
+                ],
+                "r_limit": {
+                    "no_file": 1000000
+                },
+                "resources": {
+                    "cpu": "2000m",
+                    "mem": "2000Mi"
+                },
+                "security_context": {
+                    "privileged": true
+                }
+            }
+        ],
+        "annotations": {
+            "cube.master.appsnapshot.template.id": "tpl-eafc8a2936c54876ad51c042",
+            "cube.master.appsnapshot.template.version": "v2",
+            "cube.master.appsnapshot.version": "v2",
+            "cube.master.components.envd.version": "0.5.11",
+            "cube.master.rootfs.artifact.id": "rfs-1ab81e504f1fcb3e6070991f-9eca4471",
+            "cube.master.rootfs.writable_layer_size": "20Gi",
+            "cube.master.system_disk_size": "20",
+            "cube.master.template.spec_fingerprint": "1ab81e504f1fcb3e6070991f20ba6f4fbd51be3cad2ce1ffd61ece3d95309d22"
+        },
+        "instance_type": "cubebox",
+        "network_type": "tap"
+    },
+    "cube_egress_ca_baked": true,
+    "cube_egress_ca_fingerprint": "65d70c1a9158f8b4939a403f0993e1b19846f077ededb3e361bde4af01498884",
+    "cube_egress_ca_targets_written": 2
+}

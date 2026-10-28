@@ -1,0 +1,62 @@
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:21:21.047335200Z c100-warmup rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-2021/c100-warmup/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":725.3033782651281,"total_time_s":0.137873341},"create":{"avg":101.93405000000001,"count":100,"max":136.434,"min":64.74,"p50":107.4,"p90":129.681,"p95":132.63,"p99":135.732,"std":23.131856602667316}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:21:38.319905236Z c100-1 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-2021/c100-1/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":795.5941206899256,"total_time_s":0.125692231},"create":{"avg":95.31182999999999,"count":100,"max":124.552,"min":49.489,"p50":102.159,"p90":122.008,"p95":122.136,"p99":123.922,"std":22.093507187852655}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:21:55.643948248Z c100-2 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-2021/c100-2/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":785.1283438704493,"total_time_s":0.127367711},"create":{"avg":90.06103000000002,"count":100,"max":125.832,"min":47.756,"p50":91.235,"p90":119.311,"p95":122.022,"p99":123.788,"std":22.60154862641545}}
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 2
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:23:14.073125546Z c100-3 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-2021/c100-3/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":789.430872127861,"total_time_s":0.126673536},"create":{"avg":87.83702000000001,"count":100,"max":122.847,"min":49.3,"p50":86.603,"p90":115.063,"p95":115.958,"p99":119.527,"std":21.2123595437598}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:23:31.494072884Z c100-4 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-2021/c100-4/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":766.5456541483679,"total_time_s":0.130455374},"create":{"avg":97.33233999999999,"count":100,"max":126.969,"min":49.623,"p50":100.094,"p90":121.979,"p95":122.813,"p99":126.749,"std":19.911007422280296}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:23:48.857794789Z c100-5 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-2021/c100-5/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":750.347309507415,"total_time_s":0.133271618},"create":{"avg":90.00598,"count":100,"max":129.352,"min":53.678,"p50":91.454,"p90":115.397,"p95":120.515,"p99":123.45,"std":21.42256836405773}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+ALL DONE 2026-10-28T12:24:06Z

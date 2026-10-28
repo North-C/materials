@@ -1,0 +1,9 @@
+2026-10-28T12:01:14Z
+test-host x86_64
+ 20:01:14 up 20 days, 10:02,  4 users,  load average: 2.59, 5.32, 9.43
+               total        used        free      shared  buff/cache   available
+Mem:         1547178      416961      626671        7381      518535     1130216
+Swap:           4095        1592        2503
+WARNING: native commands may leave resources, including on failure. No automatic cleanup.
+Startup create-only leaves measured instances. Manually verify ownership before cleanup; the next run requires empty inventory.
+native exit=0; raw outputs in /path/to/workdir/nvme1-peertpl-20261028/results-rerun-1956/c100-5

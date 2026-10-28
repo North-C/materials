@@ -1,0 +1,12 @@
+2026-10-28T11:51:36.434Z bash c100 done; starting profiler rounds
+2026-10-28T11:52:07.029Z round 1 start load1=2.94
+2026-10-28T11:52:11.872Z round 1 capture rc=0 live=103
+2026-10-28T11:52:11.942Z round 1 deleting 103 instances of tpl-8a157507644a426f9e7a6326 started after 2026-10-28T11:52:07.027713409Z
+    103 204
+2026-10-28T11:52:13.147Z round 1 cleaned live=0
+2026-10-28T11:54:15.301Z round 2 start load1=3.59
+2026-10-28T11:54:20.893Z round 2 capture rc=0 live=103
+2026-10-28T11:54:20.960Z round 2 deleting 103 instances of tpl-8a157507644a426f9e7a6326 started after 2026-10-28T11:54:15.299497391Z
+    103 204
+2026-10-28T11:54:22.131Z round 2 cleaned live=0
+2026-10-28T11:55:28.496Z ABORT: stopped by user (19:56 CST request)

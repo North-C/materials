@@ -1,0 +1,16 @@
+79ef0cd758c794ffac73c73718e39c759078694b69ef71890f3bb83337bde532  /path/to/workdir/nvme1-peertpl-20261028/tools/after-profiler-diag.sh
+68c6da0306b3939ad65d504d055cbd164c9690be7c4a512b56f84fa8c5b1766c  /path/to/workdir/nvme1-peertpl-20261028/tools/audit_windows.py
+189f476e0c369cca43780f6b70e09946d0ecc94e56191187b9e75b6f763b8fc7  /path/to/workdir/nvme1-peertpl-20261028/tools/gate.py
+f44736005b3c9c376edfeb8dd133fff37c46013a55fabcfd98560a8a4b3b5ecf  /path/to/workdir/nvme1-peertpl-20261028/tools/run-diag-eafc.sh
+e74cf829ee6d79a7f8612348709eda56335ff76210e9c79c1925da3084441590  /path/to/workdir/nvme1-peertpl-20261028/tools/run-peertpl.sh
+592ba62c67e1dfe26113b7e23e052d483868d90854e0e6c4978284edb9798f4a  /path/to/workdir/nvme1-peertpl-20261028/tools/run-origtpl.sh
+4387b69142398f587835c8a4184792242a445dce791a8f1b9bf360d704a159f8  /path/to/workdir/nvme1-peertpl-20261028/tools/run-profiler.sh
+cd3ead2f489dbf9093df8852659842eab7ff9029f4c1bd22822c56c635ee9123  /path/to/workdir/nvme1-peertpl-20261028/tools/run-rerun-1956.sh
+dc0da17ca32be34b3f6e0d489f433cb3c348d8bf6171ff058714a6cb04a12c3b  /path/to/workdir/nvme1-peertpl-20261028/tools/test-env-eafc.sh
+f25e3a079b31d8b955f1709482a365c213041602974f2194c45a62e7a89045be  /path/to/workdir/nvme1-peertpl-20261028/tools/test-env-origtpl.sh
+74fb3a4ad9d737b028d34c5c39e32ab886ef81073a4a4ee894e0407fae396acf  /path/to/workdir/nvme1-peertpl-20261028/tools/test-env.sh
+ef0c9107a72a303c1849d66a9ea0157e9b7886c7114de44fa2d9100b36333be5  /path/to/workdir/nvme1-peertpl-20261028/tools/wait-clean.sh
+0bec1577402166c81a8592dd0a3c61372c0717ffad5a7b6aaa483722b5b8e974  /path/to/workdir/nvme1-peertpl-20261028/tools/wait-then-run-origtpl.sh
+9e4aa17b5a68c1caf15c2e4e64b6dd795ceeefb404bffed549b3d86ba9127cc4  /path/to/workdir/nvme1-peertpl-20261028/tools/wait-then-run-rerun.sh
+d3438bd69c89f6f5757e7bcf6fef7a8c3a341c62ac815bce1cff8aae1b0ba791  /path/to/workdir/nvme1-peertpl-20261028/tools/wait-then-run.sh
+6b577a3ee98d541f40f96b38ebc1fedbf216a9498a8e666fa0fc993164f81af9  cube-perf-bench/scripts/community-native.sh

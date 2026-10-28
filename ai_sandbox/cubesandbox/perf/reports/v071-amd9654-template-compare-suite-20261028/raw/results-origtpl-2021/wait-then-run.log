@@ -1,0 +1,3 @@
+2026-10-28T12:20:54Z bench=0 inventory=0 load1=1.98 ok=1
+2026-10-28T12:21:04Z bench=0 inventory=0 load1=1.98 ok=2
+quiet; launching run-origtpl.sh

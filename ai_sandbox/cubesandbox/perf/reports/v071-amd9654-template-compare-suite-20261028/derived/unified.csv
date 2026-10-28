@@ -1,0 +1,39 @@
+case,status,source,total_ms,avg,p95,wall_avg,wall_p95,per_avg,pause_avg,resume_avg,resume_p95,snap_avg,create_avg,dirty_MB_avg
+startup-c1n20,有效,results-origtpl-rest-2115,897.3,44.8,47.1,,,,,,,,,
+startup-c10n200,有效,results-origtpl-rest-2115,975.9,47.8,52.4,,,,,,,,,
+startup-c20n300,有效,results-origtpl-rest-2115,774.8,50.6,55.8,,,,,,,,,
+startup-c50n500,有效；五次中位；total_ms 逐次 665.3 / 638.3 / 657.7 / 643.3 / 682.2,results-origtpl-c50-2101,657.7,63.0,77.3,,,,,,,,,
+extended-startup-c100n100,有效；五次中位；total_ms 逐次 125.7 / 127.4 / 126.7 / 130.5 / 133.3,results-origtpl-2021,127.4,90.1,122.0,,,,,,,,,
+extended-startup-c200n200,有效,results-origtpl-rerun4-2152,214.9,140.1,203.6,,,,,,,,,
+extended-startup-c200n200 (首测，外部创建),窗口有外部创建，不作样本,results-origtpl-rest-2115,242.0,156.0,235.5,,,,,,,,,
+extended-startup-c300n300,有效,results-origtpl-rest-2115,306.7,179.5,299.3,,,,,,,,,
+snapshot-c1,有效,results-origtpl-rest-2115,,,,30.9,31.9,30.9,,,,,,
+snapshot-c5,有效,results-origtpl-rest-2115,,,,55.0,56.7,11.0,,,,,,
+snapshot-c10,有效；五次中位；wall_avg 逐次 97.4 / 90.9 / 92.8 / 93.6 / 96.0,results-origtpl-snap10-2055,,,,93.6,97.0,9.4,,,,,,
+rollback-c1,有效,results-origtpl-rest-2115,,,,79.1,124.8,79.1,,,,,,
+rollback-c5,有效,results-origtpl-rest-2115,,,,164.8,175.7,33.0,,,,,,
+rollback-c10,有效,results-origtpl-rest-2115,,,,351.1,373.6,35.1,,,,,,
+pause-c1,有效,results-origtpl-rest-2115,,,,,,,38.7,85.5,105.0,,,
+pause-c5,有效,results-origtpl-rest-2115,,,,,,,70.4,197.1,208.9,,,
+pause-c10,有效,results-origtpl-rest-2115,,,,,,,104.3,607.9,907.2,,,
+extended-pause-c100,有效,results-origtpl-rest-2115,,,,,,,1558.4,5264.7,5362.7,,,
+dirty-d0,有效,results-origtpl-rest-2115,,,,,,,,,,31.4,58.4,-1.0
+dirty-d10,有效,results-origtpl-rest-2115,,,,,,,,,,47.1,70.7,-1.0
+dirty-d50,有效,results-origtpl-rest-2115,,,,,,,,,,51.4,66.1,-1.0
+dirty-d100,工作量无效（shm 64 MiB）,results-origtpl-rest-2115,,,,,,,,,,60.3,73.6,-1.0
+dirty-d200,工作量无效（shm 64 MiB）,results-origtpl-rest-2115,,,,,,,,,,70.5,67.0,-1.0
+dirty-d500,工作量无效（shm 64 MiB）,results-origtpl-rest-2115,,,,,,,,,,97.8,67.2,-1.0
+dirty-d800,工作量无效（shm 64 MiB）,results-origtpl-rest-2115,,,,,,,,,,115.9,61.3,-1.0
+dirty-d1024,工作量无效（shm 64 MiB）,results-origtpl-rest-2115,,,,,,,,,,130.9,55.6,-1.0
+create-c1,有效,results-origtpl-rest-2115,,,,66.9,72.1,66.9,,,,,,
+create-c10,有效,results-origtpl-rest-2115,,,,85.0,94.8,8.5,,,,,,
+create-c20,有效,results-origtpl-rest-2115,,,,123.1,150.9,6.2,,,,,,
+create-c50,有效,results-origtpl-rerun4-2152,,,,183.5,207.3,3.7,,,,,,
+create-c50 (首测，外部创建),窗口有外部创建，不作样本,results-origtpl-rest-2115,,,,176.5,178.4,3.5,,,,,,
+clone-c1n1,有效,results-origtpl-rest-2115,,,,138.5,147.3,138.5,,,,,,
+clone-c10n100,有效,results-origtpl-rerun-clone10-2158,,,,909.9,928.1,9.1,,,,,,
+clone-c10n100 (重测1，外部创建),窗口有外部创建，不作样本,results-origtpl-rerun4-2152,,,,800.4,845.5,8.0,,,,,,
+clone-c10n100 (首测，外部创建),窗口有外部创建，不作样本,results-origtpl-rest-2115,,,,859.0,861.5,8.6,,,,,,
+clone-c20n100,有效,results-origtpl-rest-2115,,,,781.9,805.0,7.8,,,,,,
+clone-c50n100,有效,results-origtpl-rerun4-2152,,,,1624.1,1625.9,16.2,,,,,,
+clone-c50n100 (首测，外部创建),窗口有外部创建，不作样本,results-origtpl-rest-2115,,,,1649.9,1765.1,16.5,,,,,,

@@ -1,0 +1,5 @@
+Dirty page per sandbox: 0 MB
+
+concurrency  rounds    wall_avg    wall_min    wall_p95    wall_max     per_avg
+-------------------------------------------------------------------------------------
+          1       5        79.1        52.1       124.8       124.8        79.1

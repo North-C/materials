@@ -1,0 +1,3 @@
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T11:30:40.432856019Z c100-warmup rc=2
+failed c100-warmup rc=2

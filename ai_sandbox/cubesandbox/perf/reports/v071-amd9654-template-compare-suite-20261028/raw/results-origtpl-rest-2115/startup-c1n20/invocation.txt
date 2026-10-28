@@ -1,0 +1,2 @@
+case=startup-c1n20 profile=community source_ref=31d911e430fdf8a8879bd062b8e78066c1a8e89d
+/path/to/workdir/bench-build/cube-bench -c 1 -n 20 -w 3 -m create-only --no-tui -o /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-rest-2115/startup-c1n20/cube-bench.json 

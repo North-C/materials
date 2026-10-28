@@ -1,0 +1,13 @@
+2026-10-28T11:44:17Z bench=0 inventory=0 load1=11.17 ok=0
+2026-10-28T11:44:28Z bench=0 inventory=0 load1=9.92 ok=0
+2026-10-28T11:44:39Z bench=0 inventory=0 load1=8.78 ok=0
+2026-10-28T11:44:50Z bench=0 inventory=0 load1=7.50 ok=0
+2026-10-28T11:45:02Z bench=0 inventory=0 load1=6.66 ok=0
+2026-10-28T11:45:13Z bench=0 inventory=0 load1=5.85 ok=0
+2026-10-28T11:45:24Z bench=0 inventory=0 load1=5.56 ok=0
+2026-10-28T11:45:35Z bench=0 inventory=0 load1=5.00 ok=0
+2026-10-28T11:45:46Z bench=0 inventory=0 load1=4.61 ok=0
+2026-10-28T11:45:57Z bench=0 inventory=0 load1=4.21 ok=0
+2026-10-28T11:46:08Z bench=0 inventory=0 load1=3.86 ok=1
+2026-10-28T11:46:20Z bench=0 inventory=0 load1=3.74 ok=2
+quiet; launching run-peertpl.sh

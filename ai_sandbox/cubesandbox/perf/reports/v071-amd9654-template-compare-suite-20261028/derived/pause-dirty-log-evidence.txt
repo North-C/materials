@@ -1,0 +1,15 @@
+# 2026-10-28 22:1x CST read-only check on the test host: did pause go through the PR #32 dirty-log path?
+# Sandbox IDs = 32-hex IDs in the CubeAPI log byte window of each item (results-origtpl-rest-2115/windows.tsv).
+# Counted in /data/log/CubeVmm/vmm.log: "API request event: VmPauseToSnapshot", "snapshot_type: Incremental",
+# and memory_manager.rs:3095 "Saving dirty guest memory to snapshot image file." (only reached when the
+# VM was started with dirty_log armed and dirty_log_serves(type, restored) is true).
+pause-c1 ids=6 pause_req=6 incremental=6 dirty_save=6
+pause-c5 ids=30 pause_req=30 incremental=30 dirty_save=30
+pause-c10 ids=60 pause_req=60 incremental=60 dirty_save=60
+extended-pause-c100 ids=600 pause_req=600 incremental=600 dirty_save=600
+# Whole vmm.log (2026-10-28 10:48 CST onward, all users): VmPauseToSnapshot 2019 (all Incremental),
+# VmSnapshot 565, "Saving dirty guest memory" 2583 = 2019 + 564.
+# Source: 2babb6f7 contains boostkit/CubeSandbox PR #32 as 86f6d9b9 (git log 2babb6f7); conf.yaml 5cb8ed03 has
+# host.memory.dirty_log: true; Cubelet stamps cube.memory.dirty_log on every create from that host setting
+# (Cubelet/plugins/cbri/cubeboxcbri/cubebox.go:172) and strips caller-supplied values, so the value used at
+# template build time does not carry over.

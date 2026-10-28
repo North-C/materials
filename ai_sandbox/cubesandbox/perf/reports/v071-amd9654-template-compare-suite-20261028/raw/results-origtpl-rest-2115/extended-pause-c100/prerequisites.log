@@ -1,0 +1,10 @@
+httpx=0.28.1
+requests=2.34.2
+SDK cubesandbox=0.7.0
+2026-10-28T13:46:26Z
+test-host x86_64
+ 21:46:26 up 20 days, 11:47,  4 users,  load average: 3.46, 4.67, 4.30
+               total        used        free      shared  buff/cache   available
+Mem:         1547178      416507      622122        7444      523599     1130670
+Swap:           4095        1592        2503
+check passed (read-only; not execution approval or exclusive reservation)

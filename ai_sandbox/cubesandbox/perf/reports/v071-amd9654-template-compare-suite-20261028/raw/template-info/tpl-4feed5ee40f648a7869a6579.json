@@ -1,0 +1,158 @@
+{
+    "ret": {
+        "ret_code": 200,
+        "ret_msg": "success"
+    },
+    "template_id": "tpl-4feed5ee40f648a7869a6579",
+    "instance_type": "cubebox",
+    "version": "v2",
+    "status": "READY",
+    "display_name": "user-nvme1-v071-rebuild-1028",
+    "storage_backend": "xfs",
+    "backend": "xfs",
+    "created_at": "2026-10-28T12:20:24Z",
+    "image_info": "127.0.0.1:5000/sandbox-code:isnotfc-20261022-amd64@sha256:801e470367dc873c3387346df8be4aa2ca994bd7d665410ca4f1cece341a6b62",
+    "job_id": "2c321018-d1a1-418c-88bf-bfac8efa4e3e",
+    "replicas": [
+        {
+            "node_id": "host-lan-ip",
+            "node_ip": "host-lan-ip",
+            "instance_type": "cubebox",
+            "spec": "cpu=2000m,mem=2048Mi",
+            "status": "READY",
+            "phase": "READY"
+        }
+    ],
+    "create_request": {
+        "requestID": "e88c5a7f-ed68-4f11-b428-6a9352b08caa",
+        "volumes": [
+            {
+                "name": "cube_rootfs_rw",
+                "volume_source": {
+                    "empty_dir": {
+                        "size_limit": "1G"
+                    }
+                }
+            }
+        ],
+        "containers": [
+            {
+                "name": "cubebox-name-0",
+                "image": {
+                    "image": "rfs-79da86b8852082e098eb5cd3-9500fa43",
+                    "annotations": {
+                        "cube.master.rootfs.artifact.id": "rfs-79da86b8852082e098eb5cd3-9500fa43",
+                        "cube.master.rootfs.artifact.sha256": "b4c615ede90bdd362751e7b7c11e532c8c11a2b35af99bbaee9f4486f10dca88",
+                        "cube.master.rootfs.artifact.size_bytes": "1073741824",
+                        "cube.master.rootfs.artifact.token": "[REDACTED]",
+                        "cube.master.rootfs.artifact.url": "http://host-lan-ip:8089/cube/template/artifact/download?[query-removed]",
+                        "cube.master.rootfs.writable_layer_size": "1G",
+                        "cube.master.template.spec_fingerprint": "79da86b8852082e098eb5cd3c43c898686c65877be9115f9b737aa43966b2777"
+                    },
+                    "storage_media": "ext4",
+                    "writable_layer_size": "1G"
+                },
+                "args": [
+                    "/usr/local/bin/start-lightweight-code-interpreter.sh"
+                ],
+                "working_dir": "/workspace",
+                "envs": [
+                    {
+                        "key": "CODE_INTERPRETER_HOST",
+                        "value": "0.0.0.0"
+                    },
+                    {
+                        "key": "CODE_INTERPRETER_PORT",
+                        "value": "49999"
+                    },
+                    {
+                        "key": "CODE_INTERPRETER_WORKDIR",
+                        "value": "/workspace"
+                    },
+                    {
+                        "key": "DEBIAN_FRONTEND",
+                        "value": "noninteractive"
+                    },
+                    {
+                        "key": "GPG_KEY",
+                        "value": "7169605F62C751356D054A26A821E680E5FA6305"
+                    },
+                    {
+                        "key": "LANG",
+                        "value": "C.UTF-8"
+                    },
+                    {
+                        "key": "PATH",
+                        "value": "/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+                    },
+                    {
+                        "key": "PYTHONDONTWRITEBYTECODE",
+                        "value": "1"
+                    },
+                    {
+                        "key": "PYTHONUNBUFFERED",
+                        "value": "1"
+                    },
+                    {
+                        "key": "PYTHON_SHA256",
+                        "value": "fb85a13414b028c49ba18bbd523c2d055a30b56b18b92ce454ea2c51edc656c4"
+                    },
+                    {
+                        "key": "PYTHON_VERSION",
+                        "value": "3.12.12"
+                    },
+                    {
+                        "key": "UV_TOOL_BIN_DIR",
+                        "value": "/usr/local/bin"
+                    }
+                ],
+                "volume_mounts": [
+                    {
+                        "name": "cube_rootfs_rw",
+                        "container_path": "/"
+                    }
+                ],
+                "r_limit": {
+                    "no_file": 1000000
+                },
+                "resources": {
+                    "cpu": "2000m",
+                    "mem": "2048Mi"
+                },
+                "security_context": {
+                    "privileged": true
+                },
+                "probe": {
+                    "probe_handler": {
+                        "http_get": {
+                            "path": "/health",
+                            "port": 49999,
+                            "host": ""
+                        }
+                    },
+                    "timeout_ms": 30000,
+                    "period_ms": 500,
+                    "success_threshold": 1,
+                    "failure_threshold": 60
+                }
+            }
+        ],
+        "annotations": {
+            "com.exposed_ports": "49999",
+            "cube.master.appsnapshot.template.id": "tpl-4feed5ee40f648a7869a6579",
+            "cube.master.appsnapshot.template.version": "v2",
+            "cube.master.appsnapshot.version": "v2",
+            "cube.master.rootfs.artifact.id": "rfs-79da86b8852082e098eb5cd3-9500fa43",
+            "cube.master.rootfs.writable_layer_size": "1G",
+            "cube.master.storage.backend": "xfs",
+            "cube.master.system_disk_size": "1",
+            "cube.master.template.spec_fingerprint": "79da86b8852082e098eb5cd3c43c898686c65877be9115f9b737aa43966b2777"
+        },
+        "instance_type": "cubebox",
+        "network_type": "tap",
+        "backend": "xfs"
+    },
+    "cube_egress_ca_baked": true,
+    "cube_egress_ca_fingerprint": "65d70c1a9158f8b4939a403f0993e1b19846f077ededb3e361bde4af01498884",
+    "cube_egress_ca_targets_written": 2
+}

@@ -1,0 +1,26 @@
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:54:49.119862535Z snap10-warmup rc=0
+         10       5        96.8        91.6       103.7       103.7         9.7
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:55:21.106918152Z snap10-1 rc=0
+         10       5        97.4        93.7       102.0       102.0         9.7
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:55:53.282770305Z snap10-2 rc=0
+         10       5        90.9        88.4        95.5        95.5         9.1
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:56:25.374729445Z snap10-3 rc=0
+         10       5        92.8        90.5        94.4        94.4         9.3
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:56:57.523298456Z snap10-4 rc=0
+         10       5        93.6        91.3        97.0        97.0         9.4
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T12:57:29.821686884Z snap10-5 rc=0
+         10       5        96.0        90.8        99.9        99.9         9.6
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+ALL DONE 2026-10-28T12:57:45Z

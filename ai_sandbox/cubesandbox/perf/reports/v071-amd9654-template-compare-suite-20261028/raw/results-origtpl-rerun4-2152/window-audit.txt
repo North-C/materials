@@ -1,0 +1,5 @@
+create-c50                   rc=0 ours=   1 snap= 151 snap_ids=1 foreign={}
+clone-c10n100                rc=0 ours=   3 snap= 300 snap_ids=3 foreign={'tpl-eafc8a2936c54876ad51c042': 1}
+clone-c50n100                rc=0 ours=   3 snap= 300 snap_ids=3 foreign={}
+extended-startup-c200n200    rc=0 ours= 203 snap=   0 snap_ids=0 foreign={}
+windows with non-snapshot foreign creates: 1

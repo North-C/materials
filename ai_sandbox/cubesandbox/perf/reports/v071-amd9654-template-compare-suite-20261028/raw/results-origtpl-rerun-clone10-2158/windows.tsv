@@ -1,0 +1,2 @@
+case	start_utc	end_utc	api_log	api_off_start	api_off_end	rc
+clone-c10n100	2026-10-28T13:59:13.909985218Z	2026-10-28T13:59:48.931903046Z	/data/log/CubeAPI/cube-api-2026-10-28.log	14358590	14455063	0

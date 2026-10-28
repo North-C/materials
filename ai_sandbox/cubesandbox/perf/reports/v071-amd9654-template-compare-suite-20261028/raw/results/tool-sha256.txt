@@ -1,0 +1,8 @@
+68c6da0306b3939ad65d504d055cbd164c9690be7c4a512b56f84fa8c5b1766c  /path/to/workdir/nvme1-peertpl-20261028/tools/audit_windows.py
+189f476e0c369cca43780f6b70e09946d0ecc94e56191187b9e75b6f763b8fc7  /path/to/workdir/nvme1-peertpl-20261028/tools/gate.py
+e74cf829ee6d79a7f8612348709eda56335ff76210e9c79c1925da3084441590  /path/to/workdir/nvme1-peertpl-20261028/tools/run-peertpl.sh
+4387b69142398f587835c8a4184792242a445dce791a8f1b9bf360d704a159f8  /path/to/workdir/nvme1-peertpl-20261028/tools/run-profiler.sh
+74fb3a4ad9d737b028d34c5c39e32ab886ef81073a4a4ee894e0407fae396acf  /path/to/workdir/nvme1-peertpl-20261028/tools/test-env.sh
+ef0c9107a72a303c1849d66a9ea0157e9b7886c7114de44fa2d9100b36333be5  /path/to/workdir/nvme1-peertpl-20261028/tools/wait-clean.sh
+d3438bd69c89f6f5757e7bcf6fef7a8c3a341c62ac815bce1cff8aae1b0ba791  /path/to/workdir/nvme1-peertpl-20261028/tools/wait-then-run.sh
+e93ba36d2ca6dbad1bb6f3605f95c90e807f10cab7ab9103e2cdb0793911623e  /path/to/workdir/nvme1-peertpl-20261028/cube-perf-bench-2000mi/scripts/community-native.sh

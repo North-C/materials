@@ -1,0 +1,16 @@
+{
+  "requestID": "38cd500e-1b9f-4f82-bc67-bea86144447e",
+  "ret": {
+    "ret_code": 200,
+    "ret_msg": "success"
+  },
+  "job": {
+    "job_id": "2c321018-d1a1-418c-88bf-bfac8efa4e3e",
+    "template_id": "tpl-4feed5ee40f648a7869a6579",
+    "request_id": "38cd500e-1b9f-4f82-bc67-bea86144447e",
+    "attempt_no": 1,
+    "operation": "CREATE",
+    "status": "PENDING",
+    "phase": "PULLING"
+  }
+}

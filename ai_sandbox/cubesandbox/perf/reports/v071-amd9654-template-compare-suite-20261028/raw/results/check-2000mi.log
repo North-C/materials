@@ -1,0 +1,7 @@
+2026-10-28T11:31:20Z
+test-host x86_64
+ 19:31:20 up 20 days,  9:32,  4 users,  load average: 1.90, 8.47, 18.77
+               total        used        free      shared  buff/cache   available
+Mem:         1547178      414665      631141        7202      516182     1132513
+Swap:           4095        1592        2503
+check passed (read-only; not execution approval or exclusive reservation)

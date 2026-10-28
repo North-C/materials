@@ -1,0 +1,7 @@
+2026-10-28T13:20:10Z bench=0 inventory=5 load1=2.31 ok=0
+2026-10-28T13:20:21Z bench=0 inventory=5 load1=2.41 ok=0
+2026-10-28T13:20:31Z bench=0 inventory=5 load1=2.63 ok=0
+2026-10-28T13:20:41Z bench=0 inventory=5 load1=2.46 ok=0
+2026-10-28T13:20:52Z bench=0 inventory=0 load1=2.23 ok=1
+2026-10-28T13:21:02Z bench=0 inventory=0 load1=2.20 ok=2
+quiet; launching run-origtpl-rest.sh

@@ -1,0 +1,23 @@
+2026-10-28T13:22:53Z bench=0 inventory=10 load1=3.90 ok=0
+2026-10-28T13:23:03Z bench=0 inventory=10 load1=3.60 ok=0
+2026-10-28T13:23:14Z bench=0 inventory=10 load1=9.12 ok=0
+2026-10-28T13:23:24Z bench=0 inventory=10 load1=8.17 ok=0
+2026-10-28T13:23:35Z bench=0 inventory=10 load1=7.37 ok=0
+2026-10-28T13:23:45Z bench=0 inventory=10 load1=6.47 ok=0
+2026-10-28T13:23:56Z bench=0 inventory=10 load1=5.72 ok=0
+2026-10-28T13:24:06Z bench=0 inventory=10 load1=5.03 ok=0
+2026-10-28T13:24:17Z bench=0 inventory=10 load1=4.56 ok=0
+2026-10-28T13:24:27Z bench=0 inventory=0 load1=4.41 ok=0
+2026-10-28T13:24:37Z bench=0 inventory=0 load1=4.11 ok=0
+2026-10-28T13:24:48Z bench=0 inventory=1 load1=3.78 ok=0
+2026-10-28T13:24:58Z bench=0 inventory=1 load1=3.75 ok=0
+2026-10-28T13:25:09Z bench=0 inventory=1 load1=3.48 ok=0
+2026-10-28T13:25:19Z bench=0 inventory=1 load1=3.18 ok=0
+2026-10-28T13:25:30Z bench=0 inventory=1 load1=2.85 ok=0
+2026-10-28T13:25:40Z bench=0 inventory=1 load1=2.80 ok=0
+2026-10-28T13:25:51Z bench=0 inventory=0 load1=2.52 ok=1
+2026-10-28T13:26:01Z bench=0 inventory=1 load1=2.79 ok=0
+2026-10-28T13:26:12Z bench=0 inventory=0 load1=2.68 ok=1
+2026-10-28T13:26:22Z bench=0 inventory=0 load1=2.43 ok=2
+2026-10-28T13:26:32Z bench=0 inventory=0 load1=2.20 ok=3
+quiet; launching run-origtpl-rest.sh

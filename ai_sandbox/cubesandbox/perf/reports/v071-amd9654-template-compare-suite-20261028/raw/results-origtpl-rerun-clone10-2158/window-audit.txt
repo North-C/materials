@@ -1,0 +1,2 @@
+clone-c10n100                rc=0 ours=   3 snap= 300 snap_ids=3 foreign={}
+windows with non-snapshot foreign creates: 0

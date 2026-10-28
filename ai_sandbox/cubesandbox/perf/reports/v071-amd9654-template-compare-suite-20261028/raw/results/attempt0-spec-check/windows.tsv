@@ -1,0 +1,2 @@
+case	start_utc	end_utc	api_log	api_off_start	api_off_end	rc
+c100-warmup	2026-10-28T11:30:39.977301120Z	2026-10-28T11:30:40.432856019Z	/data/log/CubeAPI/cube-api-2026-10-28.log	3869933	3870058	2

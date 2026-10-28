@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 23, in <module>
+    assert api==[], 'nonempty inventory'
+           ^^^^^^^
+AssertionError: nonempty inventory
+2026-10-28T13:58:39Z gate refused before clone-c10n100 (try 1); waiting for the host to be quiet
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T13:59:48.931903046Z clone-c10n100 rc=0
+ 100    10       2       909.9       891.6       928.1       928.1         9.1
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 23, in <module>
+    assert api==[], 'nonempty inventory'
+           ^^^^^^^
+AssertionError: nonempty inventory
+2026-10-28T14:00:05Z gate refused before after (try 1); waiting for the host to be quiet
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+ALL DONE 2026-10-28T14:00:50Z

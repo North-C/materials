@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 23, in <module>
+    assert api==[], 'nonempty inventory'
+           ^^^^^^^
+AssertionError: nonempty inventory

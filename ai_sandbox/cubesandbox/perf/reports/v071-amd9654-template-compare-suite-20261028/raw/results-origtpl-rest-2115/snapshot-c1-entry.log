@@ -1,0 +1,11 @@
+httpx=0.28.1
+requests=2.34.2
+SDK cubesandbox=0.7.0
+2026-10-28T13:28:16Z
+test-host x86_64
+ 21:28:16 up 20 days, 11:29,  4 users,  load average: 2.54, 3.22, 3.85
+               total        used        free      shared  buff/cache   available
+Mem:         1547178      417898      622102        7414      522201     1129279
+Swap:           4095        1592        2503
+WARNING: native commands may leave resources, including on failure. No automatic cleanup.
+native exit=0; raw outputs in /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-rest-2115/snapshot-c1

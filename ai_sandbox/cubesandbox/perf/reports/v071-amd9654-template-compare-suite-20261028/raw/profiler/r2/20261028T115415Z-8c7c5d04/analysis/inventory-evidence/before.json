@@ -1,0 +1,35 @@
+{
+  "status": "ok",
+  "rows": [],
+  "errors": [],
+  "summary": {
+    "node_scope": "all",
+    "nodes_scanned": 1,
+    "nodes_total": 1,
+    "sandbox_count": 0,
+    "reported_scan_complete": true
+  },
+  "limitations": [
+    "healthy_nodes_inventory_only",
+    "node_query_failures_may_be_omitted_despite_complete_reported_scan"
+  ],
+  "stdout_path": "/path/to/workdir/nvme1-peertpl-20261028/profiler/r2/20261028T115415Z-8c7c5d04/capture/evidence/cubemastercli/before.stdout",
+  "stderr_path": "/path/to/workdir/nvme1-peertpl-20261028/profiler/r2/20261028T115415Z-8c7c5d04/capture/evidence/cubemastercli/before.stderr",
+  "evidence_path": "/path/to/workdir/nvme1-peertpl-20261028/profiler/r2/20261028T115415Z-8c7c5d04/capture/evidence/cubemastercli/before.json",
+  "argv": [
+    "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemastercli",
+    "--address",
+    "127.0.0.1",
+    "--port",
+    "8089",
+    "--timeout",
+    "15s",
+    "list",
+    "--all",
+    "--wide"
+  ],
+  "exit_code": 0,
+  "started_at": "2026-10-28T11:54:15.475339+00:00",
+  "finished_at": "2026-10-28T11:54:15.845044+00:00",
+  "output_bytes": 203
+}

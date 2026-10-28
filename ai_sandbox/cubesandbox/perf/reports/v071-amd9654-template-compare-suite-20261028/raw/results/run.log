@@ -1,0 +1,86 @@
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T11:46:38.184263820Z c100-warmup rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results/c100-warmup/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":107.21446993761639,"total_time_s":0.932709923},"create":{"avg":683.4334,"count":100,"max":931.417,"min":58.997,"p50":835.171,"p90":902.267,"p95":915.863,"p99":925.129,"std":312.2074591713696}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T11:46:58.119789261Z c100-1 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results/c100-1/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":107.00620654831071,"total_time_s":0.934525232},"create":{"avg":674.5289099999999,"count":100,"max":933.225,"min":61.231,"p50":832.505,"p90":909.666,"p95":923.184,"p99":930.459,"std":320.39925398985326}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T11:47:17.256032827Z c100-2 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results/c100-2/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":107.4760620689606,"total_time_s":0.930439747},"create":{"avg":681.1252099999999,"count":100,"max":929.138,"min":51.494,"p50":840.881,"p90":904.948,"p95":913.284,"p99":922.416,"std":310.06347887464005}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T11:47:36.468428496Z c100-3 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results/c100-3/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":107.05261962229663,"total_time_s":0.934120065},"create":{"avg":640.8618600000003,"count":100,"max":933.048,"min":53.8,"p50":829.93,"p90":908.379,"p95":920.024,"p99":928.378,"std":340.84338263057253}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T11:47:55.569065979Z c100-4 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results/c100-4/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":107.17813076714134,"total_time_s":0.933026162},"create":{"avg":677.8129399999999,"count":100,"max":931.921,"min":65.508,"p50":833.436,"p90":905.483,"p95":921.473,"p99":928.365,"std":317.86501987923214}}
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 2
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 3
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 4
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+2026-10-28T11:50:16.448954718Z c100-5 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-peertpl-20261028/results/c100-5/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":106.33892770947408,"total_time_s":0.940389396},"create":{"avg":628.5273099999998,"count":100,"max":937.015,"min":52.04,"p50":825.012,"p90":907.199,"p95":923.39,"p99":934.858,"std":343.0556430072019}}
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-peertpl-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 2
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [], load <=4
+ALL DONE 2026-10-28T11:51:34Z

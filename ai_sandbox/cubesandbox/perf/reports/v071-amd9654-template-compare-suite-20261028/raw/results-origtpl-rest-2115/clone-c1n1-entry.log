@@ -1,0 +1,11 @@
+httpx=0.28.1
+requests=2.34.2
+SDK cubesandbox=0.7.0
+2026-10-28T13:38:40Z
+test-host x86_64
+ 21:38:40 up 20 days, 11:39,  4 users,  load average: 3.39, 3.25, 3.58
+               total        used        free      shared  buff/cache   available
+Mem:         1547178      416216      622616        7419      523372     1130961
+Swap:           4095        1592        2503
+WARNING: native commands may leave resources, including on failure. No automatic cleanup.
+native exit=0; raw outputs in /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-rest-2115/clone-c1n1

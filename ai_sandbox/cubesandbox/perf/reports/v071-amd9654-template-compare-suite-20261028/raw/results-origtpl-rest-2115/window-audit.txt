@@ -1,0 +1,31 @@
+startup-c1n20                rc=0 ours=  23 snap=   0 snap_ids=0 foreign={}
+startup-c10n200              rc=0 ours= 203 snap=   0 snap_ids=0 foreign={}
+startup-c20n300              rc=0 ours= 303 snap=   0 snap_ids=0 foreign={}
+snapshot-c1                  rc=0 ours=   6 snap=   0 snap_ids=0 foreign={}
+snapshot-c5                  rc=0 ours=  30 snap=   0 snap_ids=0 foreign={}
+rollback-c1                  rc=0 ours=   6 snap=   0 snap_ids=0 foreign={}
+rollback-c5                  rc=0 ours=  30 snap=   0 snap_ids=0 foreign={}
+rollback-c10                 rc=0 ours=  60 snap=   0 snap_ids=0 foreign={}
+pause-c1                     rc=0 ours=   6 snap=   0 snap_ids=0 foreign={}
+pause-c5                     rc=0 ours=  30 snap=   0 snap_ids=0 foreign={}
+pause-c10                    rc=0 ours=  60 snap=   0 snap_ids=0 foreign={}
+dirty-d0                     rc=0 ours=   3 snap=   6 snap_ids=3 foreign={}
+dirty-d10                    rc=0 ours=   3 snap=   6 snap_ids=3 foreign={}
+dirty-d50                    rc=0 ours=   3 snap=   6 snap_ids=3 foreign={}
+dirty-d100                   rc=0 ours=   3 snap=   6 snap_ids=3 foreign={}
+dirty-d200                   rc=0 ours=   3 snap=   6 snap_ids=3 foreign={}
+dirty-d500                   rc=0 ours=   3 snap=   6 snap_ids=3 foreign={}
+dirty-d800                   rc=0 ours=   3 snap=   6 snap_ids=3 foreign={}
+dirty-d1024                  rc=0 ours=   3 snap=   6 snap_ids=3 foreign={}
+create-c1                    rc=0 ours=   1 snap=   4 snap_ids=1 foreign={}
+create-c10                   rc=0 ours=   1 snap=  31 snap_ids=1 foreign={}
+create-c20                   rc=0 ours=   1 snap=  61 snap_ids=1 foreign={}
+create-c50                   rc=0 ours=   1 snap= 151 snap_ids=1 foreign={'tpl-eafc8a2936c54876ad51c042': 3}
+clone-c1n1                   rc=0 ours=   6 snap=   6 snap_ids=6 foreign={}
+clone-c10n100                rc=0 ours=   3 snap= 300 snap_ids=3 foreign={'tpl-eafc8a2936c54876ad51c042': 9}
+clone-c20n100                rc=0 ours=   3 snap= 300 snap_ids=3 foreign={}
+clone-c50n100                rc=0 ours=   3 snap= 300 snap_ids=3 foreign={'tpl-eafc8a2936c54876ad51c042': 80}
+extended-startup-c200n200    rc=0 ours= 203 snap=   0 snap_ids=0 foreign={'tpl-eafc8a2936c54876ad51c042': 5}
+extended-startup-c300n300    rc=0 ours= 303 snap=   0 snap_ids=0 foreign={}
+extended-pause-c100          rc=0 ours= 600 snap=   0 snap_ids=0 foreign={}
+windows with non-snapshot foreign creates: 4

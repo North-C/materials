@@ -1,0 +1,7 @@
+c100-warmup                  rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+c100-1                       rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+c100-2                       rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+c100-3                       rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+c100-4                       rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+c100-5                       rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+windows with non-snapshot foreign creates: 0

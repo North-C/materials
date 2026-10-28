@@ -1,0 +1,12 @@
+2026-10-28T13:50:21Z bench=2 inventory=0 load1=8.58 ok=0
+2026-10-28T13:50:32Z bench=2 inventory=0 load1=7.95 ok=0
+2026-10-28T13:50:43Z bench=2 inventory=0 load1=7.42 ok=0
+2026-10-28T13:50:54Z bench=2 inventory=0 load1=6.74 ok=0
+2026-10-28T13:51:05Z bench=0 inventory=0 load1=6.16 ok=0
+2026-10-28T13:51:16Z bench=0 inventory=0 load1=5.17 ok=0
+2026-10-28T13:51:27Z bench=0 inventory=0 load1=4.90 ok=0
+2026-10-28T13:51:38Z bench=0 inventory=0 load1=4.46 ok=0
+2026-10-28T13:51:49Z bench=0 inventory=0 load1=3.99 ok=1
+2026-10-28T13:52:00Z bench=0 inventory=0 load1=3.76 ok=2
+2026-10-28T13:52:11Z bench=0 inventory=0 load1=3.45 ok=3
+quiet; launching run-origtpl-rerun4.sh

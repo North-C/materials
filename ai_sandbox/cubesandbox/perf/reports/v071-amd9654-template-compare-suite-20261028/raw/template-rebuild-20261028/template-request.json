@@ -1,0 +1,41 @@
+{
+  "source_image_ref": "127.0.0.1:5000/sandbox-code:isnotfc-20261022-amd64@sha256:801e470367dc873c3387346df8be4aa2ca994bd7d665410ca4f1cece341a6b62",
+  "alias": "user-nvme1-v071-rebuild-1028",
+  "writable_layer_size": "1G",
+  "distribution_scope": [
+    "host-lan-ip"
+  ],
+  "exposed_ports": [
+    49999
+  ],
+  "instance_type": "cubebox",
+  "network_type": "tap",
+  "backend": "xfs",
+  "with_cube_ca": true,
+  "container_overrides": {
+    "resources": {
+      "cpu": "2000m",
+      "mem": "2048Mi"
+    },
+    "security_context": {
+      "privileged": true
+    },
+    "probe": {
+      "probe_handler": {
+        "http_get": {
+          "path": "/health",
+          "port": 49999,
+          "host": ""
+        }
+      },
+      "timeout_ms": 30000,
+      "period_ms": 500,
+      "success_threshold": 1,
+      "failure_threshold": 60
+    },
+    "r_limit": {
+      "no_file": 1000000
+    }
+  },
+  "requestID": "38cd500e-1b9f-4f82-bc67-bea86144447e"
+}

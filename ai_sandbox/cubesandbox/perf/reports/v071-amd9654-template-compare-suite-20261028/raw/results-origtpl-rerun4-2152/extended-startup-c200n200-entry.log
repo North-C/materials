@@ -1,0 +1,9 @@
+2026-10-28T13:57:13Z
+test-host x86_64
+ 21:57:13 up 20 days, 11:58,  4 users,  load average: 3.18, 6.84, 7.70
+               total        used        free      shared  buff/cache   available
+Mem:         1547178      413826      624612        7452      523799     1133351
+Swap:           4095        1592        2503
+WARNING: native commands may leave resources, including on failure. No automatic cleanup.
+Startup create-only leaves measured instances. Manually verify ownership before cleanup; the next run requires empty inventory.
+native exit=0; raw outputs in /path/to/workdir/nvme1-peertpl-20261028/results-origtpl-rerun4-2152/extended-startup-c200n200
