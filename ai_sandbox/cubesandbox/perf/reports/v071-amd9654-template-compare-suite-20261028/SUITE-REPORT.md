@@ -133,9 +133,25 @@
 - **推测（未验证）**：模板恢复的实例共享同一个热的模板内存文件；pause 快照恢复的实例各自映射自己的快照内存文件（日志为 `restore non-shared map`）。这些文件的页缓存可能是冷的，例如 dirty-log 增量快照先克隆底座再写脏页，克隆部分在新 inode 上没有缓存，guest 缺页时需要读盘或走更慢的路径，并发越高越慢。需要用页缓存驻留、块设备读量或缺页 profile 验证。
 - 10-27 两组 resume c10 都约 0.9 s，社区组也在内，所以这不是 BoostKit 2babb6f7 引入的退化。
 
+**与另一用户模板的 resume 对照（22:3x 只读，Cubelet 侧耗时）**：
+
+用户指出另一用户的模板 resume 好很多。按 CubeAPI 当日日志把 resume 按模板和批次分组，取每个实例 resume Create 的 Cubelet 耗时（脚本 [scripts/resume_by_tpl.py](scripts/resume_by_tpl.py)，输出 [derived/resume-by-template.txt](derived/resume-by-template.txt)）。数值为“各批 p50 的中位”；“批内最大”近似服务端整批耗时。
+
+| 并发 | 重建原模板 tpl-4feed5ee（有探针）：批次 / sandbox-create / sandbox-probe / 批内最大 | 另一用户 tpl-eafc8a29（无探针）：批次 / sandbox-create / 批内最大 |
+| --- | --- | --- |
+| 1 | 6 / 54 / 16 / 72 | 155 / 53 / 55 |
+| 5 | 6 / 146 / 34 / 185 | 53 / 154 / 173 |
+| 10 | 6 / 308 / 76 / 407（两批 886、895） | 68 / 290 / 327（最大 488） |
+
+- **重建 VM 的部分两模板相同**：c10 的 `sandbox-create` 为 308 对 290 ms，c1、c5 也接近。
+- **差别全部在就绪探针**：另一用户的模板没有探针，Cubelet 在 `sandbox-create` 结束后就返回。重建原模板多一个 `sandbox-probe`，常态约 76 ms，首探失败时约 600 ms。
+- 所以另一用户模板的 c10 整批约 330 ms，落在 260–330 ms 的合理范围；我们的模板常态约 410 ms，偶发约 0.9 s。
+- **口径不同**：无探针时 resume 返回不代表 guest 内服务已就绪。同一个无探针模板的 c100n100 创建慢 7 倍（约 932 ms，见 [REPORT.md](REPORT.md)）。
+- **限制**：两组数据来自不同用户、不同时段、不同客户端，只比较 Cubelet 服务端阶段，不计算客户端收益。
+
 **可能的改进方向（未测）**：
-- 降低模板探针周期，或让 resume 不走完整探针等待，以去掉 500 ms 量化长尾。
-- 处理 pause 快照内存文件的冷缓存或独立映射问题，以降低常态约 300 ms 的 `sandbox-create`。
+- 缩短模板探针周期，或让 resume 首探更早或重试更密，以去掉 500 ms 量化长尾，并缩小常态约 76 ms 的探针开销。
+- `sandbox-create` 随并发线性增长（c10 约 300 ms、c100 约 3.2 s），两个模板都一样。这是 resume 常态耗时的主体，原因待查（冷页缓存为推测）。
 
 ## 执行记录
 

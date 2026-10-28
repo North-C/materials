@@ -200,7 +200,7 @@
 - 模板 ID、沙箱 ID、组件 SHA 保留原值。
 - `raw/*/tool-sha256.txt` 是测试机上脚本原件的哈希，发布副本经替换后与之不一致；`SHA256SUMS` 只证明本目录发布副本的字节。
 - 路径占位后脚本仍能通过 `bash -n`，但不能直接在测试机上运行。
-- `derived/rest-2115.csv`、`rerun4-2152.csv`、`rerun-clone10-2158.csv` 由 10-27 报告的 `scripts/summarize.py` 生成。`derived/pause-dirty-log-evidence.txt`（22:1x）和 `derived/resume-stage-breakdown.txt`（22:2x，由 `scripts/resume_stages.py` 在测试机上运行）是只读统计测试机日志的结果；所依据的 CubeAPI / Cubelet / vmm 日志未公开。
+- `derived/rest-2115.csv`、`rerun4-2152.csv`、`rerun-clone10-2158.csv` 由 10-27 报告的 `scripts/summarize.py` 生成。`derived/pause-dirty-log-evidence.txt`（22:1x）、`derived/resume-stage-breakdown.txt`（22:2x，`scripts/resume_stages.py`）和 `derived/resume-by-template.txt`（22:3x，`scripts/resume_by_tpl.py`），都在测试机上运行是只读统计测试机日志的结果；所依据的 CubeAPI / Cubelet / vmm 日志未公开。
 
 | 路径 | 内容 |
 | --- | --- |
@@ -212,7 +212,7 @@
 | `raw/profiler/` | peer-final-check 两轮 profiler 的 `analysis/` 与驱动日志 |
 | `raw/template-info/`、`raw/template-rebuild-20261028/` | 三个模板的 create request 与重建回执 |
 | `raw/tools/` | 驱动、门禁、看守、窗口审计脚本副本；驱动调用的 `tools/cleanup-owned.py`、`tools/host-conditions.py` 在工作目录中，未包含 |
-| `derived/`、`scripts/` | 统一汇总表与生成脚本 `make_summary.py`；pause dirty-log 核对与 resume 阶段拆解（`resume_stages.py`） |
+| `derived/`、`scripts/` | 统一汇总表与生成脚本 `make_summary.py`；pause dirty-log 核对、resume 阶段拆解（`resume_stages.py`）与按模板的 resume 对照（`resume_by_tpl.py`） |
 | `SHA256SUMS` | 本目录发布文件的校验值 |
 
 从本目录重新生成统一汇总表（只读输入，需同级的 10-27 报告目录）：
