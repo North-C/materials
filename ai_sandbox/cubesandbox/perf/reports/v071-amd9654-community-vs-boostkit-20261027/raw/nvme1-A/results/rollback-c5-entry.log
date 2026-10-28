@@ -1,0 +1,11 @@
+httpx=0.28.1
+requests=2.34.2
+SDK cubesandbox=0.7.0
+2026-10-27T15:54:10Z
+test-host x86_64
+ 23:54:10 up 19 days, 13:55,  4 users,  load average: 2.88, 2.59, 2.78
+               total        used        free      shared  buff/cache   available
+Mem:         1547178      408851      673462        6704      479177     1138326
+Swap:           4095        1591        2504
+WARNING: native commands may leave resources, including on failure. No automatic cleanup.
+native exit=0; raw outputs in /path/to/workdir/nvme1-A-20261027/results/rollback-c5

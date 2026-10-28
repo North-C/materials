@@ -1,0 +1,2 @@
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+stat: cannot statx '/data/log/CubeAPI/cube-api-2026-10-28.log': No such file or directory

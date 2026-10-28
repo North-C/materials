@@ -1,0 +1,6 @@
+68c6da0306b3939ad65d504d055cbd164c9690be7c4a512b56f84fa8c5b1766c  /path/to/workdir/nvme1-vm-20261028/tools/audit_windows.py
+b0f3faf9caa401a4133a2849f1422a1524b9881754ed7f2d518d3d6937feea3d  /path/to/workdir/nvme1-vm-20261028/tools/gate.py
+79ad249e67ebbb63ac604a445297aa19cb162fde7b0352c0e7c4c462b93fe9de  /path/to/workdir/nvme1-vm-20261028/tools/run-aba.sh
+2d7bc3e8b7e5a3e8c02fc0d231c470b092edb85cd563688b3411d2a5310dfcd9  /path/to/workdir/nvme1-vm-20261028/tools/swap-components.sh
+774e682f7396f2a44f23b146e7daad0b5323d34085a0ef6f4881b559748edff7  /path/to/workdir/nvme1-vm-20261028/tools/test-env.sh
+0866929a9b5c298420d8d842a558b47aff969e3d37431491b1947d1b2130e1d2  /path/to/workdir/nvme1-vm-20261028/tools/wait-clean.sh

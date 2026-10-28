@@ -1,0 +1,23 @@
+2026-10-27T15:41:53.765969+00:00 BEGIN A2; no benchmark will be launched
+2026-10-27T15:41:53.950212+00:00 PASS before-backup
+2026-10-27T15:41:54.921405+00:00 PASS before-stop
+2026-10-27T15:41:55.031522+00:00 RUN systemctl stop cube-sandbox-cubelet.service
+2026-10-27T15:41:56.975131+00:00 PASS after-stop
+2026-10-27T15:41:57.514461+00:00 RUN systemctl start cube-sandbox-cubelet.service
+2026-10-27T15:41:58.894521+00:00 RUN systemctl start --no-block cube-sandbox-cube-egress-net.service cube-sandbox-cube-egress.service
+2026-10-27T15:43:00.971523+00:00 RUN bash /usr/local/services/cubetoolbox/scripts/one-click/quickcheck.sh
+2026-10-27T15:45:00.711381+00:00 FAILED CalledProcessError(1, ['bash', '/usr/local/services/cubetoolbox/scripts/one-click/quickcheck.sh'])
+2026-10-27T15:45:00.887638+00:00 PASS rollback-inventory
+2026-10-27T15:45:00.887686+00:00 RUN systemctl stop cube-sandbox-cubelet.service
+2026-10-27T15:45:02.715574+00:00 PASS after-stop
+2026-10-27T15:45:03.211569+00:00 RUN systemctl start cube-sandbox-cubelet.service
+2026-10-27T15:45:04.594704+00:00 RUN systemctl start --no-block cube-sandbox-cube-egress-net.service cube-sandbox-cube-egress.service
+2026-10-27T15:46:12.668629+00:00 RUN bash /usr/local/services/cubetoolbox/scripts/one-click/quickcheck.sh
+2026-10-27T15:48:12.441313+00:00 ROLLBACK FAILED; manual review required: CalledProcessError(1, ['bash', '/usr/local/services/cubetoolbox/scripts/one-click/quickcheck.sh'])
+Traceback (most recent call last):
+  File "<stdin>", line 172, in <module>
+  File "<stdin>", line 123, in ready
+  File "<stdin>", line 25, in call
+  File "/usr/lib64/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['bash', '/usr/local/services/cubetoolbox/scripts/one-click/quickcheck.sh']' returned non-zero exit status 1.

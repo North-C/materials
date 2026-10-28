@@ -1,0 +1,119 @@
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [421105], load <=4
+2026-10-28T01:49:06.002617844Z A-c100-warmup rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-vm-20261028/results/A-c100-warmup/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":685.2150075187957,"total_time_s":0.145939594},"create":{"avg":107.03186000000001,"count":100,"max":144.89,"min":51.423,"p50":112.25,"p90":138.425,"p95":140.17,"p99":144.382,"std":28.211614723612243}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [421105], load <=4
+2026-10-28T01:49:23.081986407Z A-c100-1 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-vm-20261028/results/A-c100-1/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":853.8399286305942,"total_time_s":0.117117971},"create":{"avg":84.37072999999997,"count":100,"max":116.247,"min":48.924,"p50":84.744,"p90":109.605,"p95":111.427,"p99":115.524,"std":18.28876988692429}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [421105], load <=4
+2026-10-28T01:49:40.259541903Z A-c100-2 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-vm-20261028/results/A-c100-2/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":768.7591295912333,"total_time_s":0.130079756},"create":{"avg":97.57929999999999,"count":100,"max":129.504,"min":49.781,"p50":101.521,"p90":120.345,"p95":123.028,"p99":127.283,"std":19.29692339559219}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [421105], load <=4
+2026-10-28T01:49:57.509895307Z A-c100-3 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-vm-20261028/results/A-c100-3/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":801.030310818745,"total_time_s":0.124839221},"create":{"avg":88.62051000000001,"count":100,"max":124.342,"min":52.65,"p50":89.241,"p90":117.959,"p95":119.137,"p99":120.625,"std":21.34057528192564}}
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-vm-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-vm-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 2
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [421105], load <=4
+2026-10-28T01:51:15.937672573Z A-c100-4 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-vm-20261028/results/A-c100-4/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":798.5179634361499,"total_time_s":0.125231998},"create":{"avg":90.30438000000002,"count":100,"max":120.074,"min":47.787,"p50":101.659,"p90":113.969,"p95":115.327,"p99":118.021,"std":22.422385321158515}}
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-vm-20261028/tools/gate.py", line 26, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [421105], load <=4
+2026-10-28T01:52:03.887278206Z A-c100-5 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-vm-20261028/results/A-c100-5/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":781.7263645033692,"total_time_s":0.127922},"create":{"avg":95.93324999999997,"count":100,"max":127.655,"min":47.642,"p50":99.789,"p90":118.241,"p95":120.992,"p99":125.499,"std":20.741085440253578}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes except allowed foreign VM [421105], load <=4
+2026-10-28T01:53:47.853014+00:00 SUCCESS B; inventory empty, 600 Ready, egress active, quickcheck passed
+Cube-Hypervisor version v0.7.1 (31d911e430fdf8a8879bd062b8e78066c1a8e89d) built at 2026-09-11T09:58:48Z
+Traceback (most recent call last):
+  File "/usr/lib64/python3.11/urllib/request.py", line 1361, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/usr/lib64/python3.11/http/client.py", line 1315, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/usr/lib64/python3.11/http/client.py", line 1361, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/usr/lib64/python3.11/http/client.py", line 1310, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib64/python3.11/http/client.py", line 1070, in _send_output
+    self.send(msg)
+  File "/usr/lib64/python3.11/http/client.py", line 1008, in send
+    self.connect()
+  File "/usr/lib64/python3.11/http/client.py", line 974, in connect
+    self.sock = self._create_connection(
+                ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/socket.py", line 863, in create_connection
+    raise exceptions[0]
+  File "/usr/lib64/python3.11/socket.py", line 848, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-vm-20261028/tools/gate.py", line 5, in <module>
+    api=get('http://127.0.0.1:3000/v2/sandboxes?limit=10000')
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/path/to/workdir/nvme1-vm-20261028/tools/gate.py", line 4, in get
+    with urllib.request.urlopen(url,timeout=15) as r:return json.load(r)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/usr/lib64/python3.11/urllib/request.py", line 1390, in http_open
+    return self.do_open(http.client.HTTPConnection, req)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/urllib/request.py", line 1364, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 111] Connection refused>
+jq: error: Could not open file /path/to/workdir/nvme1-vm-20261028/results/gates/B-c100-warmup-before-attempt-1.json: No such file or directory

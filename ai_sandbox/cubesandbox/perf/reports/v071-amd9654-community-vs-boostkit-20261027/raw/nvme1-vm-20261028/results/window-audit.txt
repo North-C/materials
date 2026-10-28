@@ -1,0 +1,7 @@
+extended-startup-c100n100    rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+extended-startup-c100n100    rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+extended-startup-c100n100    rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+extended-startup-c100n100    rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+extended-startup-c100n100    rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+extended-startup-c100n100    rc=0 ours= 103 snap=   0 snap_ids=0 foreign={}
+windows with non-snapshot foreign creates: 0

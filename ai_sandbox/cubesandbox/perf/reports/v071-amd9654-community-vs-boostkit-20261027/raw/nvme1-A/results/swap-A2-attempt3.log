@@ -1,0 +1,10 @@
+2026-10-27T15:48:53.979459+00:00 BEGIN A2; no benchmark will be launched
+2026-10-27T15:48:54.162823+00:00 PASS before-backup
+2026-10-27T15:48:55.133955+00:00 PASS before-stop
+2026-10-27T15:48:55.241623+00:00 RUN systemctl stop cube-sandbox-cubelet.service
+2026-10-27T15:48:57.182631+00:00 PASS after-stop
+2026-10-27T15:48:57.720854+00:00 RUN systemctl start cube-sandbox-cubelet.service
+2026-10-27T15:48:59.093258+00:00 RUN systemctl start --no-block cube-sandbox-cube-egress-net.service cube-sandbox-cube-egress.service
+2026-10-27T15:49:59.165311+00:00 RUN bash /usr/local/services/cubetoolbox/scripts/one-click/quickcheck.sh
+2026-10-27T15:49:59.560196+00:00 PASS after-start
+2026-10-27T15:49:59.923056+00:00 SUCCESS A2; inventory empty, 600 Ready, egress active, quickcheck passed

@@ -1,0 +1,308 @@
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:51:20.309260397Z startup-c1n20 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/startup-c1n20/cube-bench.json
+Cleanup verified: 23 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:51:37.421441867Z startup-c10n200 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/startup-c10n200/cube-bench.json
+Cleanup verified: 203 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:51:56.026119240Z startup-c20n300 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/startup-c20n300/cube-bench.json
+Cleanup verified: 303 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:52:15.300779381Z startup-c50n500 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/startup-c50n500/cube-bench.json
+Cleanup verified: 503 owned sandboxes deleted; inventory empty
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 2
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 3
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:54:14.800182494Z snapshot-c1 rc=0
+concurrency  rounds    wall_avg    wall_min    wall_p95    wall_max     per_avg
+------------------------------------------------------------------------------------------
+          1       5        36.2        30.0        44.8        44.8        36.2
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:54:41.878628162Z snapshot-c5 rc=0
+          5       5        55.0        51.9        61.4        61.4        11.0
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:55:13.758773001Z snapshot-c10 rc=0
+         10       5        92.4        86.1        97.7        97.7         9.2
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:55:38.007542293Z rollback-c1 rc=0
+
+concurrency  rounds    wall_avg    wall_min    wall_p95    wall_max     per_avg
+-------------------------------------------------------------------------------------
+          1       5        73.2        65.6        78.3        78.3        73.2
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:56:07.568091553Z rollback-c5 rc=0
+          5       5       172.4       155.0       201.2       201.2        34.5
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:57:14.808107741Z rollback-c10 rc=0
+         10       5       327.5       313.6       342.0       342.0        32.8
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:57:44.682467010Z pause-c1 rc=0
+concurrency  rounds   pause_avg   pause_min   pause_p95   pause_max   per_pause   resume_avg   resume_min   resume_p95   resume_max   per_resume
+----------------------------------------------------------------------------------------------------------------------------------
+          1       5        34.1        31.9        35.7        35.7        34.1         83.4         82.6         84.1         84.1         83.4
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:58:17.005186087Z pause-c5 rc=0
+          5       5        63.2        55.8        70.9        70.9        12.6        191.8        190.0        193.7        193.7         38.4
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:58:55.689295939Z pause-c10 rc=0
+         10       5        94.7        89.2        98.6        98.6         9.5        913.9        886.4        933.7        933.7         91.4
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:59:15.426243841Z dirty-d0 rc=0
+write_MB  dirty_MB_avg    snap_avg    snap_min    snap_p95    snap_max   create_avg   create_min   create_p95   create_max
+----------------------------------------------------------------------------------------------------------------------------------
+       0          -1.0        41.9        34.6        46.0        46.0         59.2         58.7         59.7         59.7
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:59:35.470348535Z dirty-d10 rc=0
+      10          -1.0        48.8        44.5        52.1        52.1         65.3         64.6         65.9         65.9
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T14:59:55.863340334Z dirty-d50 rc=0
+      50          -1.0        57.4        49.1        66.0        66.0         63.1         60.9         64.3         64.3
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:00:16.704483766Z dirty-d100 rc=0
+     100          -1.0        66.3        58.7        70.8        70.8         64.9         58.5         73.5         73.5
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:00:37.974156495Z dirty-d200 rc=0
+     200          -1.0        78.2        73.7        82.0        82.0         65.0         58.4         75.8         75.8
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:01:00.550405412Z dirty-d500 rc=0
+     500          -1.0        94.9        86.6       104.5       104.5         61.0         55.9         69.6         69.6
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:01:24.397057608Z dirty-d800 rc=0
+     800          -1.0       119.4       114.6       127.1       127.1         59.4         55.7         63.0         63.0
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:01:49.318344912Z dirty-d1024 rc=0
+    1024          -1.0       133.6       130.8       138.6       138.6         64.2         63.8         64.9         64.9
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:02:10.270753934Z create-c1 rc=0
+concurrency  n_total  rounds    wall_avg    wall_min    wall_p95    wall_max     per_avg
+-----------------------------------------------------------------------------------------------
+          1        1       3        63.5        61.6        67.1        67.1        63.5
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:02:33.767143763Z create-c10 rc=0
+         10       10       3        92.5        85.2        97.5        97.5         9.3
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:03:00.175812542Z create-c20 rc=0
+         20       20       3       106.7        99.3       111.7       111.7         5.3
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:03:35.491679062Z create-c50 rc=0
+         50       50       3       168.8       162.4       181.2       181.2         3.4
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:04:00.161375620Z clone-c1n1 rc=0
+
+   n  conc  rounds    wall_avg    wall_min    wall_p95    wall_max     per_avg
+--------------------------------------------------------------------------------
+   1     1       5       145.1       135.7       153.8       153.8       145.1
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:04:50.344356026Z clone-c10n100 rc=0
+ 100    10       2       748.7       743.9       753.5       753.5         7.5
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:05:40.583732593Z clone-c20n100 rc=0
+ 100    20       2       710.5       620.4       800.6       800.6         7.1
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:06:34.672376044Z clone-c50n100 rc=0
+ 100    50       2      1892.0      1855.6      1928.4      1928.4        18.9
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 2
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 3
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 4
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:08:53.595415241Z extended-startup-c200n200 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/extended-startup-c200n200/cube-bench.json
+Cleanup verified: 203 owned sandboxes deleted; inventory empty
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:09:42.545573251Z extended-startup-c300n300 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/extended-startup-c300n300/cube-bench.json
+Cleanup verified: 303 owned sandboxes deleted; inventory empty
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:10:01.425498632Z c100-warmup rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/c100-warmup/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":836.2116784570422,"total_time_s":0.119586945},"create":{"avg":85.78810999999997,"count":100,"max":117.068,"min":52.965,"p50":91.772,"p90":109.21,"p95":113.064,"p99":117.005,"std":19.666535219332154}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:10:18.709020474Z c100-1 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/c100-1/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":856.6609682150169,"total_time_s":0.116732294},"create":{"avg":84.04560999999998,"count":100,"max":113.059,"min":45.806,"p50":83.641,"p90":107.425,"p95":109.217,"p99":112.783,"std":18.10145296634578}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:10:36.016159015Z c100-2 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/c100-2/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":776.0492814885644,"total_time_s":0.128857796},"create":{"avg":90.16781,"count":100,"max":124.883,"min":53.737,"p50":89.977,"p90":116.709,"p95":120.502,"p99":124.373,"std":21.375164029943015}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:10:53.337860903Z c100-3 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/c100-3/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":801.7368634994004,"total_time_s":0.124729203},"create":{"avg":92.97764000000001,"count":100,"max":123.745,"min":47.285,"p50":100.238,"p90":119.448,"p95":121.989,"p99":123.38,"std":22.8866391368458}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:11:10.639432600Z c100-4 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/c100-4/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":834.4407474639844,"total_time_s":0.119840744},"create":{"avg":85.30613000000001,"count":100,"max":117.544,"min":49.436,"p50":80.393,"p90":112.221,"p95":114.694,"p99":116.972,"std":19.550829905997148}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:11:28.028128000Z c100-5 rc=0
+│                                                                              │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+  Report saved to /path/to/workdir/nvme1-B-20261027/results/c100-5/cube-bench.json
+Cleanup verified: 103 owned sandboxes deleted; inventory empty
+{"summary":{"errors":0,"success_rate":1,"successful":100,"throughput_qps":864.3684837420932,"total_time_s":0.1156914},"create":{"avg":85.00183999999999,"count":100,"max":113.522,"min":54.241,"p50":88.105,"p90":106.86,"p95":110.865,"p99":113.399,"std":17.85388269105235}}
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+2026-10-27T15:13:20.398732407Z extended-pause-c100 rc=0
+concurrency  rounds   pause_avg   pause_min   pause_p95   pause_max   per_pause   resume_avg   resume_min   resume_p95   resume_max   per_resume
+----------------------------------------------------------------------------------------------------------------------------------
+        100       5      1734.0      1687.7      1770.1      1770.1        17.3       5303.5       5168.1       5401.8       5401.8         53.0
+Cleanup verified: 0 owned sandboxes deleted; inventory empty
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 1
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 2
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 3
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 4
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 5
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 6
+Traceback (most recent call last):
+  File "/path/to/workdir/nvme1-B-20261027/tools/gate.py", line 21, in <module>
+    assert float(record['loadavg'].split()[0])<=4.0, 'load gate'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: load gate
+Waiting 30s for load gate; attempt 7
+gate passed: empty inventory, 600 Ready/free TAPs, no VM/perf/build/benchmark processes, load <=4
+ALL DONE 2026-10-27T15:17:10Z

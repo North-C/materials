@@ -1,0 +1,2 @@
+case=startup-c50n500 profile=community source_ref=31d911e430fdf8a8879bd062b8e78066c1a8e89d
+/path/to/workdir/bench-build/cube-bench -c 50 -n 500 -w 3 -m create-only --no-tui -o /path/to/workdir/nvme1-B-20261027/results/startup-c50n500/cube-bench.json 

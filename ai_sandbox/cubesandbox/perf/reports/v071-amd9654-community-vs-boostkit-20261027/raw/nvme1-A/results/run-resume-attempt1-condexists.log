@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/path/to/workdir/tools/host-conditions.py", line 10, in <module>
+    assert not p.exists();p.write_text(json.dumps(data,indent=2)+'\n')
+    ^^^^^^^^^^^^^^^^^^^^^
+AssertionError

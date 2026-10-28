@@ -1,0 +1,32 @@
+{
+  "captured_utc": "2026-10-27T15:17:10.505210+00:00",
+  "kernel": "6.6.0",
+  "files": {
+    "/proc/sys/kernel/random/boot_id": "d95db03f-a344-4b80-9654-40bc3f0cb630",
+    "/proc/cmdline": "BOOT_IMAGE=/vmlinuz-6.6.0 root=/dev/mapper/openeuler-root ro resume=/dev/mapper/openeuler-swap rd.lvm.lv=openeuler/root rd.lvm.lv=openeuler/swap cgroup_disable=files apparmor=0 crashkernel=512M rhgb quiet",
+    "/proc/meminfo": "MemTotal:       1584310688 kB\nMemFree:        691557620 kB\nMemAvailable:   1166462220 kB\nBuffers:         8058960 kB\nCached:         461788248 kB\nSwapCached:        35912 kB\nActive:         243611948 kB\nInactive:       287582864 kB\nActive(anon):    5250444 kB\nInactive(anon): 62952740 kB\nActive(file):   238361504 kB\nInactive(file): 224630124 kB\nUnevictable:       10856 kB\nMlocked:            1856 kB\nSwapTotal:       4194300 kB\nSwapFree:        2564860 kB\nZswap:                 0 kB\nZswapped:              0 kB\nDirty:               112 kB\nWriteback:             0 kB\nAnonPages:      60784412 kB\nMapped:          1972708 kB\nShmem:           6857244 kB\nKReclaimable:   19706168 kB\nSlab:           69267972 kB\nSReclaimable:   19706168 kB\nSUnreclaim:     49561804 kB\nKernelStack:      475088 kB\nPageTables:       496668 kB\nSecPageTables:         0 kB\nNFS_Unstable:          0 kB\nBounce:                0 kB\nWritebackTmp:          0 kB\nCommitLimit:    693589196 kB\nCommitted_AS:   123350368 kB\nVmallocTotal:   13743895347199 kB\nVmallocUsed:     1259684 kB\nVmallocChunk:          0 kB\nPercpu:         82352640 kB\nHardwareCorrupted:     0 kB\nAnonHugePages:  33409024 kB\nShmemHugePages:        0 kB\nShmemPmdMapped:        0 kB\nFileHugePages:  38076416 kB\nFilePmdMapped:    962560 kB\nCmaTotal:              0 kB\nCmaFree:               0 kB\nUnaccepted:            0 kB\nHugePages_Total:   100352\nHugePages_Free:    100352\nHugePages_Rsvd:        0\nHugePages_Surp:        0\nHugepagesize:       2048 kB\nHugetlb:        205520896 kB\nDirectMap4k:      722924 kB\nDirectMap2M:    85995520 kB\nDirectMap1G:    1523580928 kB",
+    "/proc/swaps": "Filename\t\t\t\tType\t\tSize\t\tUsed\t\tPriority\n/dev/dm-1                               partition\t4194300\t\t1629440\t\t-2",
+    "/proc/sys/kernel/numa_balancing": "1",
+    "/sys/kernel/mm/transparent_hugepage/enabled": "[always] madvise never",
+    "/sys/kernel/mm/transparent_hugepage/defrag": "always defer defer+madvise [madvise] never",
+    "/proc/sys/vm/nr_hugepages": "100352",
+    "/sys/block/loop0/queue/read_ahead_kb": "4096",
+    "/sys/devices/system/cpu/online": "0-383",
+    "/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor": "performance"
+  },
+  "data_mount": {
+    "exit": 0,
+    "output": "{\n   \"filesystems\": [\n      {\n         \"target\": \"/data\",\n         \"source\": \"/dev/nvme1n1\",\n         \"fstype\": \"xfs\",\n         \"options\": \"rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota\"\n      }\n   ]\n}\n",
+    "stderr": ""
+  },
+  "loop": {
+    "exit": 1,
+    "output": "",
+    "stderr": "losetup: /dev/loop0: No such file or directory\n"
+  },
+  "disk_space": {
+    "exit": 0,
+    "output": "Filesystem                     1B-blocks          Used    Available Use% Mounted on\n/dev/mapper/openeuler-root   73391005696   66757615616   2858516480  96% /\n/dev/mapper/openeuler-home 1809214308352 1493296652288 233546088448  87% /home\n/dev/nvme1n1                959728279552   22243147776 937485131776   3% /data\n",
+    "stderr": ""
+  }
+}

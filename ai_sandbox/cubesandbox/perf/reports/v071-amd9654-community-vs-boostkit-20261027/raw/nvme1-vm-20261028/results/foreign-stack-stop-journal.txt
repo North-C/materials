@@ -1,0 +1,4 @@
+2026-10-28T09:53:50+08:00 test-host systemctl[1969617]: [systemctl stop cube-sandbox-control.target] called by PID 1969587 (IDE agent shell of another user; command: systemctl stop cube-sandbox-control.target; sleep 3; systemctl stop cube-sandbox-compute.target)
+2026-10-28T09:53:50+08:00 test-host systemd[1]: Stopped target Cube Sandbox control-plane stack.
+2026-10-28T09:53:51+08:00 test-host systemctl[1969989]: [systemctl restart NetworkManager] called by PID 1969963 (/usr/local/services/cubetoolbox/scripts/systemd/dns-host-route-down.sh, part of the stack stop)
+2026-10-28T09:53:53+08:00 test-host systemctl[1970344]: [systemctl stop cube-sandbox-compute.target] called by PID 1969587 (IDE agent shell of another user; command: systemctl stop cube-sandbox-control.target; sleep 3; systemctl stop cube-sandbox-compute.target)

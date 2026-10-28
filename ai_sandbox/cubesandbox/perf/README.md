@@ -47,6 +47,7 @@
 | 文档 | 内容与状态 |
 | --- | --- |
 | [profiler 五轮启动阶段剖析（2026-10-27）](reports/v071-c100n100-amd9654-profiler-20261027/REPORT.md) | 实测报告：v0.7.1-amd64 单节点，五轮各 100/100 成功、归属已采用、精确清理；r1–r4 客户端 avg 109.8–129.2 ms，进入 Master 前估算约 42 ms 为最大段，r5 RestoreVm 尖峰原因未查明；附同日 bash 基线五轮。只发布派生数据和 profiler 分析输出，原始日志未公开 |
+| [社区 v0.7.1 vs BoostKit 2babb6f7 cube-perf-bench 全矩阵（2026-10-27/28）](reports/v071-amd9654-community-vs-boostkit-20261027/REPORT.md) | 实测报告，部分完成：nvme1 全新部署，BoostKit 33/33 项、社区 27/33 项，均为单次调用，只作描述；pause c1/c5/c10 低 56–70%，resume 无明确改善，dirty d100 及以上工作量无效。c100 五轮：BoostKit 119.8 ms（无外部 VM）、社区 125.2 ms（外部 VM 在场），条件不同，**未判定**。附逐项原始输出与脚本，地址、主机名、路径已替换 |
 
 ## 早期工具与专题资料
 

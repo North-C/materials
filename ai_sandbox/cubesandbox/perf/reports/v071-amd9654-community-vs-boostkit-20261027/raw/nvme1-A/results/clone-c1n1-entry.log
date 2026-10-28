@@ -1,0 +1,11 @@
+httpx=0.28.1
+requests=2.34.2
+SDK cubesandbox=0.7.0
+2026-10-27T16:04:18Z
+test-host x86_64
+ 00:04:18 up 19 days, 14:05,  4 users,  load average: 3.34, 3.21, 3.15
+               total        used        free      shared  buff/cache   available
+Mem:         1547178      408487      673778        6720      479241     1138690
+Swap:           4095        1591        2504
+WARNING: native commands may leave resources, including on failure. No automatic cleanup.
+native exit=0; raw outputs in /path/to/workdir/nvme1-A-20261027/results/clone-c1n1

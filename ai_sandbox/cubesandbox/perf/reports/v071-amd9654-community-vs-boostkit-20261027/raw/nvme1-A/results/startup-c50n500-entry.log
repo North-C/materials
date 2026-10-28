@@ -1,0 +1,9 @@
+2026-10-27T15:52:01Z
+test-host x86_64
+ 23:52:01 up 19 days, 13:53,  4 users,  load average: 2.96, 2.28, 2.72
+               total        used        free      shared  buff/cache   available
+Mem:         1547178      410446      671942        6705      479103     1136732
+Swap:           4095        1591        2504
+WARNING: native commands may leave resources, including on failure. No automatic cleanup.
+Startup create-only leaves measured instances. Manually verify ownership before cleanup; the next run requires empty inventory.
+native exit=0; raw outputs in /path/to/workdir/nvme1-A-20261027/results/startup-c50n500

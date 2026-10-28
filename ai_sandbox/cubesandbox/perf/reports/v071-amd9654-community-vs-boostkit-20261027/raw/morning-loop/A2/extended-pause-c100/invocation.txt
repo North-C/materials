@@ -1,0 +1,3 @@
+case=extended-pause-c100 profile=extended source_ref=31d911e430fdf8a8879bd062b8e78066c1a8e89d
+/path/to/workdir/smoke-venv/bin/python -E -s -B /path/to/workdir/community-source/examples/snapshot-rollback-clone/bench_pause_resume_concurrency.py -c 100 -n 5 
+Separate extension; same prerequisites as native pause-c10; not a CPB built-in case.

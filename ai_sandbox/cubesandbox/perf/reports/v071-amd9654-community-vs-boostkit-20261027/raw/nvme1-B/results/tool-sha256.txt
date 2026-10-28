@@ -1,0 +1,7 @@
+3fa2df66811a81a5cbf2e4776a500e0fe744520f6b5982a502b651531191d586  /path/to/workdir/nvme1-B-20261027/tools/gate.py
+dfe6897e18b2217e6316d19f900070c19c3ee3f54fe1b980b84d91f5944373cb  /path/to/workdir/nvme1-B-20261027/tools/run-all.sh
+774e682f7396f2a44f23b146e7daad0b5323d34085a0ef6f4881b559748edff7  /path/to/workdir/nvme1-B-20261027/tools/test-env.sh
+2833eea882436e07c768fec0fd93803b19e86f7692f9d512e56669aeb06f264b  /path/to/workdir/nvme1-B-20261027/tools/wait-clean.sh
+6b577a3ee98d541f40f96b38ebc1fedbf216a9498a8e666fa0fc993164f81af9  cube-perf-bench/scripts/community-native.sh
+1b27103647b1ba36de2de45d3b7840210fd2f725a9ee393be4184976e58c40be  tools/cleanup-owned.py
+d38060bed58f10b7f6add1b3405e6760b197efd40ab9e1ef80c455aea5654fd8  tools/host-conditions.py

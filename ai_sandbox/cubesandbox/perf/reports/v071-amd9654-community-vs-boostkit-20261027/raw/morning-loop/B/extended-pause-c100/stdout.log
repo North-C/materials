@@ -1,0 +1,3 @@
+concurrency  rounds   pause_avg   pause_min   pause_p95   pause_max   per_pause   resume_avg   resume_min   resume_p95   resume_max   per_resume
+----------------------------------------------------------------------------------------------------------------------------------
+        100       5      1762.1      1731.7      1805.5      1805.5        17.6       5116.7       5047.5       5200.2       5200.2         51.2

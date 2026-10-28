@@ -1,0 +1,30 @@
+Traceback (most recent call last):
+  File "/path/to/workdir/community-source/examples/snapshot-rollback-clone/bench_clone_concurrency.py", line 106, in <module>
+    main()
+  File "/path/to/workdir/community-source/examples/snapshot-rollback-clone/bench_clone_concurrency.py", line 91, in main
+    r = run_round(args.num, args.concurrency, args.dirty_mb)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/path/to/workdir/community-source/examples/snapshot-rollback-clone/bench_clone_concurrency.py", line 54, in run_round
+    clones = src.clone(n=n, concurrency=concurrency)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/path/to/workdir/smoke-venv/lib64/python3.11/site-packages/cubesandbox/sandbox.py", line 869, in clone
+    raise first_error
+  File "/path/to/workdir/smoke-venv/lib64/python3.11/site-packages/cubesandbox/sandbox.py", line 846, in clone
+    sandboxes.append(fut.result())
+                     ^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib64/python3.11/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/lib64/python3.11/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/path/to/workdir/smoke-venv/lib64/python3.11/site-packages/cubesandbox/sandbox.py", line 819, in _create_one
+    return Sandbox.create(template=snap_id, config=cfg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/path/to/workdir/smoke-venv/lib64/python3.11/site-packages/cubesandbox/sandbox.py", line 304, in create
+    _check_response(resp)
+  File "/path/to/workdir/smoke-venv/lib64/python3.11/site-packages/cubesandbox/sandbox.py", line 82, in _check_response
+    raise ApiError(msg, code)
+cubesandbox._exceptions.ApiError: CubeMaster returned error code 130597: no more resource

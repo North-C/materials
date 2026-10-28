@@ -1,0 +1,2 @@
+case=extended-startup-c100n100 profile=extended source_ref=31d911e430fdf8a8879bd062b8e78066c1a8e89d
+/path/to/workdir/bench-build/cube-bench -c 100 -n 100 -w 3 -m create-only --no-tui -o /path/to/workdir/results/A2/c100-2/cube-bench.json 

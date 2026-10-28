@@ -1,0 +1,14 @@
+2026-10-28T01:52:20.545457+00:00 BEGIN B; no benchmark will be launched
+2026-10-28T01:52:20.661199+00:00 ALLOWED foreign VM pid 421105 guest=foreign-vm
+2026-10-28T01:52:21.033410+00:00 PASS before-backup
+2026-10-28T01:52:22.644378+00:00 ALLOWED foreign VM pid 421105 guest=foreign-vm
+2026-10-28T01:52:23.018616+00:00 PASS before-stop
+2026-10-28T01:52:23.127498+00:00 RUN systemctl stop cube-sandbox-cubelet.service
+2026-10-28T01:52:25.798502+00:00 ALLOWED foreign VM pid 421105 guest=foreign-vm
+2026-10-28T01:52:26.166145+00:00 PASS after-stop
+2026-10-28T01:52:26.693333+00:00 RUN systemctl start cube-sandbox-cubelet.service
+2026-10-28T01:52:28.704820+00:00 RUN systemctl start --no-block cube-sandbox-cube-egress-net.service cube-sandbox-cube-egress.service
+2026-10-28T01:53:46.797265+00:00 RUN bash /usr/local/services/cubetoolbox/scripts/one-click/quickcheck.sh
+2026-10-28T01:53:47.124508+00:00 ALLOWED foreign VM pid 421105 guest=foreign-vm
+2026-10-28T01:53:47.496622+00:00 PASS after-start
+2026-10-28T01:53:47.853014+00:00 SUCCESS B; inventory empty, 600 Ready, egress active, quickcheck passed

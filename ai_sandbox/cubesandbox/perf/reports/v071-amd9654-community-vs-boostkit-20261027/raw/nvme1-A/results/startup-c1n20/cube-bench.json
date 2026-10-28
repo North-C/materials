@@ -1,0 +1,136 @@
+{
+  "config": {
+    "api_url": "http://127.0.0.1:3000",
+    "concurrency": 1,
+    "host_mount": "",
+    "mode": "create-only",
+    "network_allow_out": 0,
+    "network_inject_rules": 0,
+    "network_policy": "none",
+    "network_rules": 0,
+    "template": "tpl-3d73a6599076488fa140c6da",
+    "total": 20,
+    "warmup": 3
+  },
+  "create": {
+    "avg": 43.3318,
+    "count": 20,
+    "max": 45.082,
+    "min": 41.859,
+    "p50": 43.161,
+    "p90": 44.677,
+    "p95": 44.86,
+    "p99": 45.082,
+    "std": 0.9307671764958756
+  },
+  "raw": [
+    {
+      "create_ms": 44.677,
+      "delete_ms": 0,
+      "seq": 1
+    },
+    {
+      "create_ms": 42.771,
+      "delete_ms": 0,
+      "seq": 2
+    },
+    {
+      "create_ms": 42.225,
+      "delete_ms": 0,
+      "seq": 3
+    },
+    {
+      "create_ms": 45.082,
+      "delete_ms": 0,
+      "seq": 4
+    },
+    {
+      "create_ms": 43.168,
+      "delete_ms": 0,
+      "seq": 5
+    },
+    {
+      "create_ms": 43.135,
+      "delete_ms": 0,
+      "seq": 6
+    },
+    {
+      "create_ms": 42.915,
+      "delete_ms": 0,
+      "seq": 7
+    },
+    {
+      "create_ms": 43.161,
+      "delete_ms": 0,
+      "seq": 8
+    },
+    {
+      "create_ms": 44.86,
+      "delete_ms": 0,
+      "seq": 9
+    },
+    {
+      "create_ms": 42.566,
+      "delete_ms": 0,
+      "seq": 10
+    },
+    {
+      "create_ms": 43.442,
+      "delete_ms": 0,
+      "seq": 11
+    },
+    {
+      "create_ms": 44.39,
+      "delete_ms": 0,
+      "seq": 12
+    },
+    {
+      "create_ms": 43.916,
+      "delete_ms": 0,
+      "seq": 13
+    },
+    {
+      "create_ms": 43.506,
+      "delete_ms": 0,
+      "seq": 14
+    },
+    {
+      "create_ms": 42.338,
+      "delete_ms": 0,
+      "seq": 15
+    },
+    {
+      "create_ms": 42.08,
+      "delete_ms": 0,
+      "seq": 16
+    },
+    {
+      "create_ms": 41.859,
+      "delete_ms": 0,
+      "seq": 17
+    },
+    {
+      "create_ms": 43.62,
+      "delete_ms": 0,
+      "seq": 18
+    },
+    {
+      "create_ms": 42.956,
+      "delete_ms": 0,
+      "seq": 19
+    },
+    {
+      "create_ms": 43.969,
+      "delete_ms": 0,
+      "seq": 20
+    }
+  ],
+  "summary": {
+    "errors": 0,
+    "success_rate": 1,
+    "successful": 20,
+    "throughput_qps": 23.043541086579605,
+    "total_time_s": 0.867922162
+  },
+  "timestamp": "2026-10-27T15:51:07Z"
+}

@@ -1,0 +1,9 @@
+68c6da0306b3939ad65d504d055cbd164c9690be7c4a512b56f84fa8c5b1766c  /path/to/workdir/nvme1-A-20261027/tools/audit_windows.py
+3fa2df66811a81a5cbf2e4776a500e0fe744520f6b5982a502b651531191d586  /path/to/workdir/nvme1-A-20261027/tools/gate.py
+d29bc60d378b0896c0ce5d6dc8757351503ed0c269c982039bee182004435049  /path/to/workdir/nvme1-A-20261027/tools/run-all.sh
+ee96b8f60ce29f7bd6cb039f988771f3e11c9e6902f93297ab44b1e94ac37cd2  /path/to/workdir/nvme1-A-20261027/tools/swap-components.sh
+774e682f7396f2a44f23b146e7daad0b5323d34085a0ef6f4881b559748edff7  /path/to/workdir/nvme1-A-20261027/tools/test-env.sh
+fd619812db55b6f7569554ff4582bfbe1d7025dac46671c7ad657926786cb3fe  /path/to/workdir/nvme1-A-20261027/tools/wait-clean.sh
+6b577a3ee98d541f40f96b38ebc1fedbf216a9498a8e666fa0fc993164f81af9  cube-perf-bench/scripts/community-native.sh
+1b27103647b1ba36de2de45d3b7840210fd2f725a9ee393be4184976e58c40be  tools/cleanup-owned.py
+d38060bed58f10b7f6add1b3405e6760b197efd40ab9e1ef80c455aea5654fd8  tools/host-conditions.py

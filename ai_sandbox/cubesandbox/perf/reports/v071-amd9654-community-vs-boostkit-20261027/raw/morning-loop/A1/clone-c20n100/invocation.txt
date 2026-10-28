@@ -1,0 +1,2 @@
+case=clone-c20n100 profile=community source_ref=31d911e430fdf8a8879bd062b8e78066c1a8e89d
+/path/to/workdir/smoke-venv/bin/python -E -s -B /path/to/workdir/community-source/examples/snapshot-rollback-clone/bench_clone_concurrency.py -n 100 -c 20 --rounds 2 --no-header 
