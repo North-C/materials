@@ -1,0 +1,53 @@
+
+== pause-c1: 6 instances
+  initial create sandbox-create  n=6 min=25 p50=41 p90=43 max=47
+  initial create sandbox-probe   n=6 min=12 p50=12 p90=12 max=12
+  initial create cubebox         n=6 min=39 p50=54 p90=57 max=61
+  resume         sandbox-create  n=6 min=52 p50=54 p90=57 max=77
+  resume         sandbox-probe   n=6 min=16 p50=16 p90=17 max=17
+  resume         cubebox         n=6 min=70 p50=72 p90=75 max=95
+  resume probe histogram (100 ms bins): {0: 6}
+== pause-c5: 30 instances
+  initial create sandbox-create  n=30 min=22 p50=24 p90=39 max=52
+  initial create sandbox-probe   n=30 min=11 p50=12 p90=12 max=13
+  initial create cubebox         n=30 min=35 p50=38 p90=52 max=65
+  resume         sandbox-create  n=30 min=128 p50=143 p90=164 max=171
+  resume         sandbox-probe   n=30 min=25 p50=34 p90=40 max=41
+  resume         cubebox         n=30 min=169 p50=182 p90=196 max=198
+  resume probe histogram (100 ms bins): {0: 30}
+== pause-c10: 60 instances
+  initial create sandbox-create  n=60 min=22 p50=24 p90=27 max=50
+  initial create sandbox-probe   n=60 min=11 p50=12 p90=13 max=13
+  initial create cubebox         n=60 min=34 p50=37 p90=42 max=63
+  resume         sandbox-create  n=60 min=259 p50=304 p90=356 max=382
+  resume         sandbox-probe   n=60 min=21 p50=78 p90=97 max=603
+  resume         cubebox         n=60 min=351 p50=385 p90=419 max=895
+  resume probe histogram (100 ms bins): {0: 57, 600: 3}
+== extended-pause-c100: 600 instances
+  initial create sandbox-create  n=600 min=21 p50=24 p90=26 max=51
+  initial create sandbox-probe   n=600 min=11 p50=12 p90=13 max=15
+  initial create cubebox         n=600 min=34 p50=37 p90=40 max=64
+  resume         sandbox-create  n=600 min=1017 p50=3182 p90=4323 max=4806
+  resume         sandbox-probe   n=600 min=16 p50=604 p90=1205 max=2407
+  resume         cubebox         n=600 min=1750 p50=4154 p90=4900 max=5338
+  resume probe histogram (100 ms bins): {0: 19, 600: 359, 700: 1, 1200: 182, 1800: 32, 2400: 7}
+
+# pause-c10 per-round resume completion (CubeAPI sandbox.resumed minus the round's last sandbox.paused, ms;
+# round 0 = upstream warm-up):
+0 373 373 374 380 392 393 393 398 398 419
+1 398 400 400 417 417 417 421 422 436 436
+2 378 378 390 390 395 403 403 407 410 411
+3 409 409 422 431 432 433 437 437 911 914
+4 382 390 395 395 401 401 402 402 404 405
+5 406 406 420 426 434 434 443 443 445 912
+# Example (round 3), Cubelet-stat cost ms: normal b9706c29 sandbox-create 305 / probe 81 / cubebox 389;
+# straggler 5c454b7c sandbox-create 282 / probe 602 / cubebox 887. Template probe period is 500 ms.
+# vmm.log b9706c29: template restore -> "vm has been restored" at 7 ms, first vsock established at 9 ms (1.4 ms);
+# pause-snapshot restore -> "vm has been restored" at 11 ms, first vsock established at 146 ms (115.5 ms),
+# then 205 ms and 270 ms.
+# vmm.log, first three vsock connections after each restore (process ms offset, "established" us):
+6edcfc2c(c1)  tpl-restore: restored@8 vsock 10ms(1605us) 14ms(68us) 18ms(64us) | pause-restore: restored@9 vsock 27ms(15491us) 35ms(133us) 47ms(110us)
+7b150a4b(c1)  tpl-restore: restored@8 vsock 10ms(1557us) 14ms(47us) 19ms(64us) | pause-restore: restored@11 vsock 28ms(13918us) 38ms(377us) 51ms(43us)
+5c454b7c(c10) tpl-restore: restored@7 vsock 9ms(1496us) 13ms(129us) 17ms(72us) | pause-restore: restored@31 vsock 152ms(108842us) 171ms(55us) 247ms(100us)
+cfc18b2b(c10) tpl-restore: restored@7 vsock 9ms(1481us) 12ms(83us) 16ms(60us) | pause-restore: restored@34 vsock 154ms(107865us) 184ms(109us) 250ms(94us)
+2fa78c55(c10) tpl-restore: restored@7 vsock 9ms(1358us) 12ms(221us) 16ms(54us) | pause-restore: restored@36 vsock 150ms(101837us) 171ms(55us) 248ms(75us)

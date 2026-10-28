@@ -17,7 +17,7 @@
   - 表中并列 10-27 nvme1 的 BoostKit（B）与社区（A）单次结果，只供参考。它们用的是已删除的 `tpl-3d73a659` 和不同的组件构建，不计算收益。
 - **描述性观察**（单次、跨条件，不是结论）：
   - pause c1/c5/c10 暂停 38.7 / 70.4 / 104.3 ms，与 10-27 BoostKit（34.1 / 63.2 / 94.7）同一量级，远低于 10-27 社区（114–216 ms）。vmm.log 显示本次 696 次 pause 全部走了 PR #32 的 dirty-log 写出路径，见“pause 与 dirty_log”一节。
-  - pause-c10 resume avg 607.9 ms，但 5 轮内 min 397.6、max 907.2，呈双峰。10-27 两组都约 0.9 s，这一项只能说本次有部分轮次未出现约 0.9 s 的等待。
+  - pause-c10 resume avg 607.9 ms，但 5 轮内 min 397.6、max 907.2，呈双峰。10-27 两组都约 0.9 s，这一项只能说本次有部分轮次未出现约 0.9 s 的等待。拆解后，0.9 s 来自少数实例的就绪探针多等一个 500 ms 周期；常态约 400 ms 主要是 resume 重建 VM 后 guest 变慢，随并发线性增长。见“resume c10 约 0.9 s 的来源”一节。
   - snapshot c1 为 30.9 ms（10-27：B 36.2、A 54.6）。dirty d0/d10/d50 快照 31.4 / 47.1 / 51.4 ms，与 10-27 BoostKit 接近。
   - clone-c10n100 三次结果分别是 859.0、800.4、909.9 ms：前两次窗口有外部创建，干净的一次反而最高，比 10-27 BoostKit 的 748.7 高 21.5%。上游每次调用只跑 `--rounds 2`，离散很大，10-27 报告也已指出 clone 结果不稳定。不作判定。
   - startup、create、rollback、clone 多数与 10-27 两组在 ±10% 内，个别项（create-c20 +15%、rollback-c10 +7%、clone-c20n100 +10%）高于 10-27 BoostKit。单次调用，不判定。
@@ -113,6 +113,29 @@
 
   该日志行只有在 VM 以 dirty_log 启动、且请求类型允许时才会出现，所以本次每一次 pause 都走了 PR #32 的脏页写出路径。证据见 [derived/pause-dirty-log-evidence.txt](derived/pause-dirty-log-evidence.txt)。
 - **结论**：pause 38.7 / 70.4 / 104.3 ms 是 dirty_log 开启后的预期量级（只写恢复后被改动的页），不是功能缺失。10-27 社区组没有该补丁，pause 114–216 ms。两者条件不同，仍不计算收益；要量化开关本身，应在同一构建上做 `dirty_log` false/true 对照（需改共享部署的 conf.yaml 并重启 Cubelet，本次未做）。
+
+## resume c10 约 0.9 s 的来源（22:2x 只读诊断）
+
+用户指出 resume c10 约 900 ms 明显偏高，合理范围约 260–330 ms。用 CubeAPI 事件、Cubelet-stat 与 vmm.log 拆解本次 pause 各项（脚本 [scripts/resume_stages.py](scripts/resume_stages.py)，输出 [derived/resume-stage-breakdown.txt](derived/resume-stage-breakdown.txt)）：
+
+- **0.9 s 是长尾，不是常态**：pause-c10 每轮 10 个 resume 中，多数在最后一次 pause 后 373–445 ms 完成。第 3、5 轮各有 1–2 个实例在约 911 ms 完成，客户端 wall 取最慢一个，所以 5 轮为 436 / 411 / 914 / 405 / 912，平均 607.9。
+- **长尾 = 就绪探针多等一个周期**：慢实例的 Cubelet `sandbox-probe` 为 602 ms，正常实例 21–97 ms。模板探针周期 500 ms，第一次探测失败就要等到下一次。c10 共 60 次 resume 中有 3 次落在 600 ms 档；c100 的 600 次 resume 中只有 19 次在 100 ms 内，其余落在 600 / 1200 / 1800 / 2400 ms 档。
+- **常态约 400 ms 也高于 260–330**，主要在 `sandbox-create`（resume 重建 VM）。它随并发近似线性增长，首次从模板创建则不随并发变化：
+
+  | 项 | 首次创建 sandbox-create p50 | resume sandbox-create p50 | resume sandbox-probe p50 | resume cubebox p50 |
+  | --- | --- | --- | --- | --- |
+  | pause-c1 | 41 | 54 | 16 | 72 |
+  | pause-c5 | 24 | 143 | 34 | 182 |
+  | pause-c10 | 24 | 304 | 78 | 385 |
+  | extended-pause-c100 | 24 | 3182 | 604 | 4154 |
+
+- **VMM 本身恢复很快，慢在恢复后的 guest**：vmm.log 中 pause 快照恢复的 `vm has been restored` 在进程启动后 9–36 ms，与模板恢复（7–8 ms）接近。但恢复后第一个 vsock 连接的建立耗时，模板恢复约 1.5 ms；pause 快照恢复在 c1 为 14–15 ms，c10 为 102–109 ms。guest 在恢复后响应变慢，且随并发加重。
+- **推测（未验证）**：模板恢复的实例共享同一个热的模板内存文件；pause 快照恢复的实例各自映射自己的快照内存文件（日志为 `restore non-shared map`）。这些文件的页缓存可能是冷的，例如 dirty-log 增量快照先克隆底座再写脏页，克隆部分在新 inode 上没有缓存，guest 缺页时需要读盘或走更慢的路径，并发越高越慢。需要用页缓存驻留、块设备读量或缺页 profile 验证。
+- 10-27 两组 resume c10 都约 0.9 s，社区组也在内，所以这不是 BoostKit 2babb6f7 引入的退化。
+
+**可能的改进方向（未测）**：
+- 降低模板探针周期，或让 resume 不走完整探针等待，以去掉 500 ms 量化长尾。
+- 处理 pause 快照内存文件的冷缓存或独立映射问题，以降低常态约 300 ms 的 `sandbox-create`。
 
 ## 执行记录
 
