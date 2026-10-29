@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-29",
+  "machine": "AMD EPYC 9654",
+  "status": "prepared",
+  "operation": "existing-running-services-only",
+  "client": "existing SID/warmup-export cube-bench",
+  "client_sha256": "baaeba5908c5734e6616039d1434cbda4634c726eda266e93b10a94bd1182675",
+  "workload": {
+    "concurrency": 100,
+    "requests": 100,
+    "warmup": 3,
+    "mode": "create-only",
+    "template_id": "template-A"
+  },
+  "decision_before_profile": {
+    "valid_rounds": 5,
+    "success_per_round": 100,
+    "service_identity": "unchanged PID/exe SHA/env/config/kernel/source snapshot",
+    "historical_scale_ms": [
+      129,
+      198
+    ],
+    "operational_screen": "median <= 200 ms, all rounds <= 250 ms, no failed requests or conflicting workload; this is a diagnostic gate, not an equivalence or optimization claim"
+  },
+  "phases": [
+    "five direct baseline rounds",
+    "if gate passes: five pairs of full capture and direct comparison, alternating order"
+  ],
+  "service_restart": false,
+  "cache_flush": false,
+  "frontdoor_server": "current source lacks patch; no deployment planned; missing entry boundaries remain missing",
+  "limitations": [
+    "current source checkout does not prove exact compiled dirty tree",
+    "base client has SID/warmup export, no HTTP trace",
+    "whole collector overhead excludes comparison against a different client binary"
+  ],
+  "status_note": "Historical pre-test plan, not current execution status; all 15 rounds subsequently completed."
+}

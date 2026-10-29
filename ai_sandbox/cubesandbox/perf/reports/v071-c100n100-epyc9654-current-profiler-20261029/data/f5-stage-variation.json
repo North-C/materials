@@ -1,0 +1,44 @@
+[
+  {
+    "stage": "snapshot_init_to_cgroup_join",
+    "first_four_round_means_average_ms": 0.56580462,
+    "f5_mean_ms": 5.7865148,
+    "difference_ms": 5.22071018,
+    "f5_p95_ms": 23.745132
+  },
+  {
+    "stage": "shim_finish_to_master_reply",
+    "first_four_round_means_average_ms": 18.731110605,
+    "f5_mean_ms": 23.57923299,
+    "difference_ms": 4.848122385,
+    "f5_p95_ms": 31.265886
+  },
+  {
+    "stage": "master.cubemaster-post-spec",
+    "first_four_round_means_average_ms": 2.1598475,
+    "f5_mean_ms": 4.77433,
+    "difference_ms": 2.6144825,
+    "f5_p95_ms": 11.17
+  },
+  {
+    "stage": "cubelet.sandbox-probe",
+    "first_four_round_means_average_ms": 14.7889775,
+    "f5_mean_ms": 16.03352,
+    "difference_ms": 1.2445424999999997,
+    "f5_p95_ms": 19.691
+  },
+  {
+    "stage": "vm_start_to_agent_ready",
+    "first_four_round_means_average_ms": 16.01253725,
+    "f5_mean_ms": 17.77023116,
+    "difference_ms": 1.7576939100000004,
+    "f5_p95_ms": 20.582323
+  },
+  {
+    "stage": "cubelet_start_to_resolved",
+    "first_four_round_means_average_ms": 19.5137298125,
+    "f5_mean_ms": 20.41239573,
+    "difference_ms": 0.8986659175000007,
+    "f5_p95_ms": 47.235407
+  }
+]

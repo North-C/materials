@@ -1,0 +1,66 @@
+{
+  "selection": "one highest-client-latency formal request per round",
+  "identity_policy": "Within each round, formal client latency rank 1; source load sequence is retained as a non-runtime identifier. Sandbox and request identifiers and their reverse mapping are omitted. Metrics in one row belong to the same original request.",
+  "requests": [
+    {
+      "round": "F-r1",
+      "phase": "formal",
+      "request_alias": "F-r1-formal-rank-1",
+      "client_latency_rank": 1,
+      "client_ms": 130.911,
+      "master.templateresolve": 13.857,
+      "master.cube-e2e": 105.825,
+      "cubelet_start_to_resolved": 50.033789,
+      "cubelet.storage": 46.311,
+      "seq": 16
+    },
+    {
+      "round": "F-r2",
+      "phase": "formal",
+      "request_alias": "F-r2-formal-rank-1",
+      "client_latency_rank": 1,
+      "client_ms": 133.226,
+      "master.templateresolve": 11.175,
+      "master.cube-e2e": 105.505,
+      "cubelet_start_to_resolved": 53.452428,
+      "cubelet.storage": 45.717,
+      "seq": 94
+    },
+    {
+      "round": "F-r3",
+      "phase": "formal",
+      "request_alias": "F-r3-formal-rank-1",
+      "client_latency_rank": 1,
+      "client_ms": 125.557,
+      "master.templateresolve": 11.217,
+      "master.cube-e2e": 95.107,
+      "cubelet_start_to_resolved": 42.977733,
+      "cubelet.storage": 41.428,
+      "seq": 36
+    },
+    {
+      "round": "F-r4",
+      "phase": "formal",
+      "request_alias": "F-r4-formal-rank-1",
+      "client_latency_rank": 1,
+      "client_ms": 126.652,
+      "master.templateresolve": 12.685,
+      "master.cube-e2e": 95.397,
+      "cubelet_start_to_resolved": 46.226654,
+      "cubelet.storage": 39.622,
+      "seq": 55
+    },
+    {
+      "round": "F-r5",
+      "phase": "formal",
+      "request_alias": "F-r5-formal-rank-1",
+      "client_latency_rank": 1,
+      "client_ms": 132.144,
+      "master.templateresolve": 11.365,
+      "master.cube-e2e": 108.805,
+      "cubelet_start_to_resolved": 52.450615,
+      "cubelet.storage": 44.52,
+      "seq": 40
+    }
+  ]
+}

@@ -1,0 +1,387 @@
+{
+  "metric": "formal 100 request whole-run time in ms; warmup excluded",
+  "statistical_unit": "round, not request",
+  "rounds": [
+    {
+      "id": "B-r1",
+      "group": "B",
+      "pair": 1,
+      "started_at": "2026-10-29T09:27:29.234487201Z",
+      "wall_ms": 144.056006,
+      "request_mean_ms": 107.817,
+      "request_p95_ms": 139.788,
+      "request_max_ms": 142.821,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "B-r2",
+      "group": "B",
+      "pair": 2,
+      "started_at": "2026-10-29T09:27:46.995839030Z",
+      "wall_ms": 130.50104100000001,
+      "request_mean_ms": 93.16127,
+      "request_p95_ms": 121.862,
+      "request_max_ms": 126.85,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "B-r3",
+      "group": "B",
+      "pair": 3,
+      "started_at": "2026-10-29T09:28:04.885929911Z",
+      "wall_ms": 130.114583,
+      "request_mean_ms": 90.38243,
+      "request_p95_ms": 120.712,
+      "request_max_ms": 126.85,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "B-r4",
+      "group": "B",
+      "pair": 4,
+      "started_at": "2026-10-29T09:28:22.920637805Z",
+      "wall_ms": 141.294374,
+      "request_mean_ms": 101.46845,
+      "request_p95_ms": 137.499,
+      "request_max_ms": 140.993,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "B-r5",
+      "group": "B",
+      "pair": 5,
+      "started_at": "2026-10-29T09:28:40.998841210Z",
+      "wall_ms": 124.03517,
+      "request_mean_ms": 89.2867,
+      "request_p95_ms": 119.576,
+      "request_max_ms": 122.762,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "D-r1",
+      "group": "D",
+      "pair": 1,
+      "started_at": "2026-10-29T09:29:37.256042288Z",
+      "wall_ms": 131.157147,
+      "request_mean_ms": 88.16327,
+      "request_p95_ms": 123.818,
+      "request_max_ms": 129.935,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "D-r2",
+      "group": "D",
+      "pair": 2,
+      "started_at": "2026-10-29T09:29:55.417816794Z",
+      "wall_ms": 124.438029,
+      "request_mean_ms": 89.01173,
+      "request_p95_ms": 119.602,
+      "request_max_ms": 123.33,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "D-r3",
+      "group": "D",
+      "pair": 3,
+      "started_at": "2026-10-29T09:30:55.982168134Z",
+      "wall_ms": 122.70786799999999,
+      "request_mean_ms": 89.6689,
+      "request_p95_ms": 118.198,
+      "request_max_ms": 120.549,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "D-r4",
+      "group": "D",
+      "pair": 4,
+      "started_at": "2026-10-29T09:31:14.246198726Z",
+      "wall_ms": 129.46797700000002,
+      "request_mean_ms": 91.67724,
+      "request_p95_ms": 124.075,
+      "request_max_ms": 128.72,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "D-r5",
+      "group": "D",
+      "pair": 5,
+      "started_at": "2026-10-29T09:32:14.961506041Z",
+      "wall_ms": 133.990379,
+      "request_mean_ms": 95.80105,
+      "request_p95_ms": 126.018,
+      "request_max_ms": 132.745,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "F-r1",
+      "group": "F",
+      "pair": 1,
+      "started_at": "2026-10-29T09:29:16.156819293Z",
+      "wall_ms": 132.244899,
+      "request_mean_ms": 94.73908,
+      "request_p95_ms": 125.68,
+      "request_max_ms": 130.911,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "F-r2",
+      "group": "F",
+      "pair": 2,
+      "started_at": "2026-10-29T09:30:13.674643140Z",
+      "wall_ms": 134.78973399999998,
+      "request_mean_ms": 95.63717,
+      "request_p95_ms": 129.007,
+      "request_max_ms": 133.226,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "F-r3",
+      "group": "F",
+      "pair": 3,
+      "started_at": "2026-10-29T09:30:34.836201289Z",
+      "wall_ms": 127.861267,
+      "request_mean_ms": 88.54436,
+      "request_p95_ms": 119.268,
+      "request_max_ms": 125.557,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "F-r4",
+      "group": "F",
+      "pair": 4,
+      "started_at": "2026-10-29T09:31:32.481000799Z",
+      "wall_ms": 127.81675800000001,
+      "request_mean_ms": 86.97357,
+      "request_p95_ms": 118.213,
+      "request_max_ms": 126.652,
+      "successful": 100,
+      "errors": 0
+    },
+    {
+      "id": "F-r5",
+      "group": "F",
+      "pair": 5,
+      "started_at": "2026-10-29T09:31:53.687430400Z",
+      "wall_ms": 132.81035699999998,
+      "request_mean_ms": 106.95158,
+      "request_p95_ms": 126.635,
+      "request_max_ms": 132.144,
+      "successful": 100,
+      "errors": 0
+    }
+  ],
+  "groups": {
+    "B": {
+      "wall_ms": {
+        "values": [
+          144.056006,
+          130.50104100000001,
+          130.114583,
+          141.294374,
+          124.03517
+        ],
+        "median": 130.50104100000001,
+        "mean": 134.00023480000002,
+        "min": 124.03517,
+        "max": 144.056006
+      },
+      "request_mean_ms": {
+        "values": [
+          107.817,
+          93.16127,
+          90.38243,
+          101.46845,
+          89.2867
+        ],
+        "median": 93.16127,
+        "mean": 96.42317,
+        "min": 89.2867,
+        "max": 107.817
+      },
+      "request_p95_ms": {
+        "values": [
+          139.788,
+          121.862,
+          120.712,
+          137.499,
+          119.576
+        ],
+        "median": 121.862,
+        "mean": 127.8874,
+        "min": 119.576,
+        "max": 139.788
+      },
+      "request_max_ms": {
+        "values": [
+          142.821,
+          126.85,
+          126.85,
+          140.993,
+          122.762
+        ],
+        "median": 126.85,
+        "mean": 132.05519999999999,
+        "min": 122.762,
+        "max": 142.821
+      }
+    },
+    "D": {
+      "wall_ms": {
+        "values": [
+          131.157147,
+          124.438029,
+          122.70786799999999,
+          129.46797700000002,
+          133.990379
+        ],
+        "median": 129.46797700000002,
+        "mean": 128.35228,
+        "min": 122.70786799999999,
+        "max": 133.990379
+      },
+      "request_mean_ms": {
+        "values": [
+          88.16327,
+          89.01173,
+          89.6689,
+          91.67724,
+          95.80105
+        ],
+        "median": 89.6689,
+        "mean": 90.86443799999999,
+        "min": 88.16327,
+        "max": 95.80105
+      },
+      "request_p95_ms": {
+        "values": [
+          123.818,
+          119.602,
+          118.198,
+          124.075,
+          126.018
+        ],
+        "median": 123.818,
+        "mean": 122.3422,
+        "min": 118.198,
+        "max": 126.018
+      },
+      "request_max_ms": {
+        "values": [
+          129.935,
+          123.33,
+          120.549,
+          128.72,
+          132.745
+        ],
+        "median": 128.72,
+        "mean": 127.0558,
+        "min": 120.549,
+        "max": 132.745
+      }
+    },
+    "F": {
+      "wall_ms": {
+        "values": [
+          132.244899,
+          134.78973399999998,
+          127.861267,
+          127.81675800000001,
+          132.81035699999998
+        ],
+        "median": 132.244899,
+        "mean": 131.104603,
+        "min": 127.81675800000001,
+        "max": 134.78973399999998
+      },
+      "request_mean_ms": {
+        "values": [
+          94.73908,
+          95.63717,
+          88.54436,
+          86.97357,
+          106.95158
+        ],
+        "median": 94.73908,
+        "mean": 94.569152,
+        "min": 86.97357,
+        "max": 106.95158
+      },
+      "request_p95_ms": {
+        "values": [
+          125.68,
+          129.007,
+          119.268,
+          118.213,
+          126.635
+        ],
+        "median": 125.68,
+        "mean": 123.7606,
+        "min": 118.213,
+        "max": 129.007
+      },
+      "request_max_ms": {
+        "values": [
+          130.911,
+          133.226,
+          125.557,
+          126.652,
+          132.144
+        ],
+        "median": 130.911,
+        "mean": 129.698,
+        "min": 125.557,
+        "max": 133.226
+      }
+    }
+  },
+  "paired_F_minus_D": [
+    {
+      "pair": 1,
+      "order": "F then D",
+      "F_minus_D_ms": 1.0877519999999947
+    },
+    {
+      "pair": 2,
+      "order": "D then F",
+      "F_minus_D_ms": 10.351704999999981
+    },
+    {
+      "pair": 3,
+      "order": "F then D",
+      "F_minus_D_ms": 5.153399000000007
+    },
+    {
+      "pair": 4,
+      "order": "D then F",
+      "F_minus_D_ms": -1.6512190000000118
+    },
+    {
+      "pair": 5,
+      "order": "F then D",
+      "F_minus_D_ms": -1.1800220000000081
+    }
+  ],
+  "contrast": {
+    "median_difference_ms": 2.776921999999985,
+    "median_change_percent": 2.1448717005904783,
+    "paired_mean_ms": 2.7523229999999925,
+    "paired_range_ms": [
+      -1.6512190000000118,
+      10.351704999999981
+    ]
+  },
+  "scope": "existing-log full collector vs direct; same SID-export client and existing services; no frontdoor instrumentation overhead claim"
+}

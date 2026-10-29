@@ -13,6 +13,7 @@
 | 了解架构与版本变化 | [架构图](architecture/cubesandbox-minimal-v2.png)、[v0.5.1 → v0.7.1 演进](version-evolution/cubesandbox-v0.5.1-to-v0.7.1-evolution.zh-CN.md) | 架构概览与指定版本间的变化 |
 | 核对对比测试版本与补丁 | [二进制与内核清单](comparison-inventory-20261027/README.md) | 2026-10-27 公开报告：源码/组件SHA、生效条件、内核补丁和性能边界；原始证据未公开 |
 | 分析创建时延 | [perf 索引](perf/README.md) | 各轮报告、阶段定义、计时口径、时间轴与工具状态 |
+| 查看 EPYC 9654 当前持续运行 c100 | [2026-10-29 17:27–17:34 复测与瓶颈](perf/reports/v071-c100n100-epyc9654-current-profiler-20261029/README.md) | 15轮对照、五轮阶段抓取；无换版重启，storage长尾区间，当前入口缺口与公开数据边界明确 |
 | 查看 EPYC 9654 c100 入口与工具开销 | [2026-10-29 报告与数据](perf/reports/v071-c100n100-epyc9654-frontdoor-profiler-20261029/README.md) | 七组五轮、完整入口与模板子阶段、匿名逐请求数据及公开复算；原始日志未公开 |
 | 比较机器配置 | [machine_config 快照与对比指南](machine_config/README.md) | 2026-10-20 `.90` 全模块 JSON / Markdown；已只读采集并校验，可离线对比 |
 | 复现 c100n100 优化 | [调优指南](c100n100-perf-tuning/README.zh-CN.md)、[测试指南](c100n100-perf-tuning/TESTING-GUIDE.zh-CN.md) | 配置、补丁、验证与回退方法；环境前提以正文为准 |

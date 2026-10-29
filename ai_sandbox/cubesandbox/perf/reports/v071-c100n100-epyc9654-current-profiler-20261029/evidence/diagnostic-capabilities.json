@@ -1,0 +1,8 @@
+{
+  "api_contains_frontdoor_marker": false,
+  "master_contains_frontdoor_marker": false,
+  "pprof_index": {
+    "http_status": 404,
+    "available": false
+  }
+}

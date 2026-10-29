@@ -1,0 +1,13 @@
+{
+  "scope": "SHA256 identifiers of unpublished local originals, not public attachments or proof of reproducibility",
+  "sources": {
+    "REPORT.zh-CN.md": "cef6adfd2d3e7cfa2a978c9f769128287d36e61f38366eb7819d820115d88abe",
+    "PROVENANCE.json": "35e2ad23eaa5737fe0d6520a44354688cc60276588b5ac3add5b9befba5fda4d",
+    "PLAN.json": "024bf81fdc26f056d11694de4bcc34b54028d8b66eeb2c9f7b2c1acab30500ab",
+    "baseline-decision.json": "7bab3680287df3bcc657b7b8842dbd3cb0d83088c8e826c8aa7c616330f68ad4",
+    "diagnostic-capabilities.json": "688f2f1626c317ea68f174b15763759af4d5e071a976935253db9f53f0654030",
+    "analysis/bottleneck/REPORT.zh-CN.md": "903e7f9031436f21be70b95472baf63a92e9cebb9d41355290721ad764c0f9fd",
+    "analysis/bottleneck/validation.json": "821c686849a988f851bd54c3702ec73a940925814a2ba50c4326ff51e02cda2d",
+    "validation/independent-audit.json": "25366c2dc4ca385766c3b5a60ffdfde1de31f9021036aba0baa9228ee16f1aab"
+  }
+}

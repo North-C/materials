@@ -1,0 +1,17 @@
+{
+  "valid_rounds": 5,
+  "wall_ms": [
+    144.056006,
+    130.50104100000001,
+    130.114583,
+    141.294374,
+    124.03517
+  ],
+  "median_ms": 130.50104100000001,
+  "range_ms": [
+    124.03517,
+    144.056006
+  ],
+  "reasonable_for_profile": true,
+  "criterion": "PLAN.json diagnostic screening; not historical equivalence"
+}

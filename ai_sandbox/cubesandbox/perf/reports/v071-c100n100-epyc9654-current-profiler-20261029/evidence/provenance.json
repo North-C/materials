@@ -1,0 +1,119 @@
+{
+  "machine": "AMD EPYC 9654",
+  "observed_source": {
+    "repository": "https://gitcode.com/boostkit/CubeSandbox",
+    "head": "d095826ad6f3d9c56c6a2f04e5d104eb83b802f7",
+    "head_tree": "d38fc0a8b77869c8c84b2af53d1dbca7c740309c",
+    "working_diff_sha256": "9961d9b62235f51638285f3af2f5e253b69273debcb0b0236368458bb804c479",
+    "status": [
+      " M CubeAPI/src/cubemaster/mod.rs",
+      " M CubeAPI/src/services/sandboxes.rs",
+      " M CubeMaster/pkg/sandboxspec/store.go",
+      " M CubeMaster/pkg/service/httpservice/cube/info.go",
+      " M CubeMaster/pkg/service/sandbox/sandbox_info.go",
+      " M CubeMaster/pkg/service/sandbox/types/types.go"
+    ],
+    "recent_commits": [
+      "d095826ad6f3d9c56c6a2f04e5d104eb83b802f7 !41 fix(templatecenter): respect native Go target architecture",
+      "0d5b53ea9e31b93324a599f04637a457e088dd29 fix(templatecenter): respect native Go target architecture",
+      "2babb6f7405677c04b7fed1563c6a5d53a8e771b !35 test(cubelet): serialize volume attach stub tests",
+      "319ca90da900277f7768d8909ba8aca5da909444 test(cubelet): serialize volume attach stub tests",
+      "86f6d9b9e20015706c2da0f2604b5731015bfc2f !32 perf(hypervisor): write pause snapshots from the KVM dirty log behind a host opt-in",
+      "32004501e28e569b4dcb8afaf91ac561a8ab4f09 !29 perf(pause): keep the agent's connections across the freeze, reset on restore"
+    ],
+    "actual_compiled_final_tree": "unknown; checkout identity is not a build provenance record"
+  },
+  "client": {
+    "repository": "https://github.com/TencentCloud/CubeSandbox",
+    "base_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+    "patch_order": [
+      "SID export",
+      "separate warmup result export"
+    ],
+    "final_commit_tree": "no commit; patched file hashes in referenced client build manifest",
+    "sha256": "baaeba5908c5734e6616039d1434cbda4634c726eda266e93b10a94bd1182675",
+    "build_manifest": "../../v071-c100n100-epyc9654-frontdoor-profiler-20261029/evidence/provenance.json"
+  },
+  "profiler": {
+    "repository": "https://gitcode.com/yuncongyue/cubesandbox-startup-profiler",
+    "commit": "054e931ee1fe0ef63ae0a09f39fce534897a4111",
+    "tree": "7b90cd7fcbe3532b6c913d4ab5737d1ba5e17c67",
+    "status": "",
+    "archive_sha256": "d318734a550c193db1ac2956888b8cc47f4dac9118a0e5e1702f4389cbc7ff22",
+    "capture_100_sha256": "dc0aeff996dcb9002a947280e834b79fb3917027452db0bbaaefed04a61a73f8"
+  },
+  "patch_matrix": [
+    {
+      "patch": "frontdoor server instrumentation",
+      "source_status": "absent from observed source",
+      "binary_evidence": "profiler.frontdoor marker absent from both running executables",
+      "runtime_environment": "unset",
+      "events": "none observed",
+      "precise_compiled_tree": "unknown"
+    },
+    {
+      "patch": "SID/warmup export",
+      "compiled": "yes, pinned client SHA",
+      "runtime_switch": "none",
+      "evidence": "100 formal + 3 warmup exported unique SIDs each round"
+    },
+    {
+      "patch": "HTTP client trace",
+      "compiled": "not in selected base client",
+      "runtime_switch": "none",
+      "evidence": "no client_trace records"
+    },
+    {
+      "patch": "six observed dirty source files",
+      "compiled": "unknown for existing API/Master binaries",
+      "runtime_switch": "not inferred",
+      "evidence": "observed-working-tree.patch and source SHA only"
+    }
+  ],
+  "treatment": "capture_100.sh collection vs direct shell invocation; same client and continuous running services",
+  "not_changed": [
+    "API binary/PID",
+    "Master binary/PID",
+    "Cubelet binary/PID",
+    "Shim/runtime component files",
+    "kernel/boot",
+    "configuration hashes",
+    "template",
+    "THP",
+    "NUMA balancing"
+  ],
+  "services": {
+    "api": {
+      "sha256": "0a6b96f81750d516e6e154e462c776f04606a0bd33247338e588e62c731abf91",
+      "frontdoor": "unset",
+      "start_time": "Thu 2026-10-29 14:17:00 CST"
+    },
+    "master": {
+      "sha256": "0983434d4794fcd4a424b6536be6d2a24c9e7b9b31fc80facb6327dfbac703f4",
+      "frontdoor": "unset",
+      "start_time": "Thu 2026-10-29 14:16:59 CST"
+    },
+    "cubelet": {
+      "sha256": "506b8a83d0859036e17a1cbda9e3392023f989af2162a3f9293a9a3e702afdf3",
+      "frontdoor": "unset",
+      "start_time": "Wed 2026-10-28 19:19:36 CST"
+    }
+  },
+  "service_identity_check": "same PID, executable SHA256 and start time before/after every round; actual PIDs and host paths omitted",
+  "kernel": {
+    "release": "6.6.0",
+    "source_commit": "unknown",
+    "boot_unchanged": true
+  },
+  "actual_runtime_components_sha256": {
+    "cubelet": "506b8a83d0859036e17a1cbda9e3392023f989af2162a3f9293a9a3e702afdf3",
+    "active_component_version_shim": "2153cb465d4069872ad3abcf88695380cbf786986fb16a4fcbacfaf303614bfa",
+    "active_component_version_runtime": "c887554030a5be9e39b26e582abda56286c7248039898ec494c712ecf57003b2"
+  },
+  "configuration_sha256": {
+    "cubelet_static": "54b93a53f8204859fb717346117fec083132349707954c70aab54025a9d16f06",
+    "cubelet_dynamic": "5cb8ed03b47e10d51b865b270af701a84b80b14d33e8d66d8a1b61999bc82c0b",
+    "master": "3f9903dad8ace3c4a2f475a751c5d71a37f50470deafa0438cb6e76a180e5a75"
+  },
+  "source_scope": "Observed checkout and unpublished diff only; actual service compiled tree/toolchain/flags unknown. No service changes or restarts in this experiment."
+}
