@@ -15,6 +15,7 @@
 | 分析创建时延 | [perf 索引](perf/README.md) | 各轮报告、阶段定义、计时口径、时间轴与工具状态 |
 | 比较机器配置 | [machine_config 快照与对比指南](machine_config/README.md) | 2026-10-20 `.90` 全模块 JSON / Markdown；已只读采集并校验，可离线对比 |
 | 复现 c100n100 优化 | [调优指南](c100n100-perf-tuning/README.zh-CN.md)、[测试指南](c100n100-perf-tuning/TESTING-GUIDE.zh-CN.md) | 配置、补丁、验证与回退方法；环境前提以正文为准 |
+| 使能 dirty_log / 绑定 Cubelet NUMA | [配置指南](c100n100-perf-tuning/feature-enable-20261029/GUIDE.zh-CN.md) | 2026-10-29：PR32 动态配置、Cubelet systemd drop-in、实际生效与撤销；源码/语法已核对，未部署或新增性能测试 |
 | 选择 workload / 构建 benchmark 镜像 | [benchmark 索引](benchmark/README.md) | 镜像来源、上游 workload、runner、参数与报告 |
 | 测试回放密度 | [SWE 回放入口](benchmark/swe-replay-density/README.md)、[密度指南](benchmark/swe-replay-density/docs/CUBESANDBOX_DENSITY_GUIDE.md) | 镜像、模板、回放方法及独立运行证据 |
 | 分析内存占用 | [内存测量指南](benchmark/analysis/cubesandbox-memory-density-measurement-guide.md)、[CoW 记账模型](benchmark/analysis/cubesandbox-cow-memory-accounting-model.md) | 内存测量口径、分析报告与勘误 |
