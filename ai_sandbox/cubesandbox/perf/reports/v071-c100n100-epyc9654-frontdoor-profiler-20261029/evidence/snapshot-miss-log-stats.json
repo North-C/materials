@@ -1,0 +1,870 @@
+{
+  "schema_version": 1,
+  "unit": "cube-sandbox-cubemaster.service",
+  "window_utc": {
+    "since": "2026-10-29 04:39:06 UTC",
+    "until": "2026-10-29 04:39:11 UTC"
+  },
+  "collection_mode": "read_only_existing_journal",
+  "counts": {
+    "journal_entries_read": 318,
+    "source_record_not_found_lines": 105,
+    "matched_snapshot_queries": 105,
+    "unmatched_source_markers": 0,
+    "unattributed_snapshot_query_lines": 0
+  },
+  "summary": {
+    "count": 105,
+    "mean_ms": 6.338790476190476,
+    "median_ms": 2.714,
+    "min_ms": 0.221,
+    "p95_nearest_rank_ms": 14.96,
+    "max_ms": 29.837,
+    "sum_ms": 665.573
+  },
+  "samples": [
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.630908+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.537,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.632236+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.346,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.632862+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.221,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.704146+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.425,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.750243+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.38,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.797941+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.434,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.798579+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.41,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.798612+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.503,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.798923+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.631,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.798950+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.692,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.799206+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.731,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.799312+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.739,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.799760+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.554,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.799920+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.205,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.800116+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.792,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.800218+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.732,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.800575+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.707,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.800647+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.453,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.800714+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.868,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.800885+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.652,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.801021+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.812,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.811587+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.463,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.811637+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.473,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.811686+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.485,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.811750+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.565,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.811779+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.514,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.819909+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 8.163,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.824957+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.478,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.824957+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.192,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.825055+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.614,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.825160+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.913,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.825224+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.836,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.825256+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 3.041,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.825256+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.646,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.825308+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.729,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.825405+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.946,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.825434+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.572,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.825535+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 7.127,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.826068+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.858,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.830728+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 14.166,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.837457+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 9.35,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.838710+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.481,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.838784+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.525,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.838813+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.468,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.838841+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 27.351,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.838872+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.654,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.838970+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.589,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839083+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.521,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839233+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.892,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839262+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 7.983,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839291+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 7.256,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839329+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.682,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839329+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.623,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839329+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.865,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839406+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.905,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839406+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.469,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839406+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 6.811,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839487+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 0.582,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839487+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 5.321,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839626+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.018,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839742+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.508,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839818+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.78,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839848+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.947,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839848+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.304,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839902+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.364,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839902+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.149,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839902+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.478,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.839902+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.923,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840003+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.502,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840155+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.175,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840256+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.497,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840284+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 6.186,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840312+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.942,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840346+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.681,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840346+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 6.49,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840346+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 14.745,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840423+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.096,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840423+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.83,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840476+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 1.915,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840476+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.128,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840529+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.886,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840609+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.414,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840637+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.84,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840672+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.771,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840882+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 7.599,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840911+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.597,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840939+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.714,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840939+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 3.217,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.840939+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.667,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.841015+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.464,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.841044+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.339,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.841086+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 3.23,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.841992+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 2.884,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.843943+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 5.473,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.847717+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 9.6,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.847884+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 9.949,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.852223+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 10.612,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.852436+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 14.53,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.852482+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 13.947,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.852991+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 14.96,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.853037+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 15.246,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.853105+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 14.583,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.853149+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 15.114,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.854671+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 16.509,
+      "rows": 0
+    },
+    {
+      "journal_time_utc": "2026-10-29T04:39:06.867742+00:00",
+      "source": "snapshot_table.go:29",
+      "error_kind": "record_not_found",
+      "table": "t_cube_snapshot",
+      "sql_elapsed_ms": 29.837,
+      "rows": 0
+    }
+  ],
+  "scope_note": "The F1 load is 3 warmup plus 100 formal creates, but this outer journal window may also contain other queries. No sample is assigned to formal or warmup by ordering; these logs lack request identity. The matched count must not be equated with the formal sample count.",
+  "timing_note": "GORM Trace captures elapsed before its own formatting/Printf. SQL elapsed includes the GORM/database call, potentially pool wait, but excludes this log's own formatting/write; it does not isolate server execution.",
+  "privacy_note": "Only source line, error class, SQL elapsed, rows, table name and journal timestamp are emitted. SQL text and journal messages are discarded."
+}

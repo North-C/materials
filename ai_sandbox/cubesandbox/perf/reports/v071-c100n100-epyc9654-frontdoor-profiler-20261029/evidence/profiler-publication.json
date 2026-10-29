@@ -1,0 +1,17 @@
+{
+  "repository": "https://gitcode.com/yuncongyue/cubesandbox-startup-profiler",
+  "branch": "main",
+  "commit": "054e931ee1fe0ef63ae0a09f39fce534897a4111",
+  "tree": "7b90cd7fcbe3532b6c913d4ab5737d1ba5e17c67",
+  "capture_version": "f1f6b0156d7b0c53094326f04527bb45aaeca382",
+  "change": "offline pre-SID Master template metric correlation; capture/runtime binaries unchanged",
+  "patch_sha256": "101feec735eb8b37b64899824e2fbb8aceddb5befc190cf5ea6abc74a9384deb",
+  "tests": {
+    "scripts": 245,
+    "integration": 42,
+    "node": 108,
+    "skipped": 0
+  },
+  "remote_readback_verified": true,
+  "remote_main": "054e931ee1fe0ef63ae0a09f39fce534897a4111"
+}

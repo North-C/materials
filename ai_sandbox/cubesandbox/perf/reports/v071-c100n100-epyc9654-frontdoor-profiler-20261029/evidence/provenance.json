@@ -1,0 +1,498 @@
+{
+  "schema_version": 1,
+  "document_type": "public_allowlisted_build_and_environment_evidence",
+  "date": "2026-10-29",
+  "machine_display_name": "EPYC 9654 机器",
+  "publication_action": "offline preparation only; no new collection, build, deployment or test",
+  "environment": {
+    "cpu_evidence": {
+      "source_kind": "existing archived read-only lscpu result",
+      "recorded_at_utc": "2026-10-28T20:09:36.611098+00:00",
+      "model": "AMD EPYC 9654 96-Core Processor",
+      "architecture": "x86_64",
+      "logical_cpus": 384,
+      "sockets": 2,
+      "cores_per_socket": 96,
+      "threads_per_core": 2,
+      "numa_nodes": 8,
+      "safe_excerpt": "Architecture:                         x86_64\nCPU(s):                               384\nModel name:                           AMD EPYC 9654 96-Core Processor\nThread(s) per core:                   2\nCore(s) per socket:                   96\nSocket(s):                            2\nNUMA node(s):                         8",
+      "new_remote_collection": false
+    },
+    "kernel_release": "6.6.0",
+    "kernel_source_commit": "not independently verified in this experiment",
+    "THP": "madvise",
+    "numa_balancing": 0,
+    "ready_tap_gate": 738,
+    "load1_gate_max": 4,
+    "clock_comparability": "Linux monotonic clock kind and common clock domain checked; identifying clock values omitted",
+    "known_application_config": {
+      "log.level": "info",
+      "log.enable_log_metric": true,
+      "instance_db_config.driver": "mysql",
+      "instance_db_config.max_idle_conns": 5,
+      "instance_db_config.max_open_conns": 20
+    },
+    "workload": {
+      "concurrency": 100,
+      "formal_requests_per_round": 100,
+      "warmup_per_round": 3,
+      "warmup_method": "same process; sequential creates before formal timing",
+      "mode": "create-only",
+      "template_identity": "same fixed app-template across all rounds; resource identifier omitted",
+      "cpu_millicores": 2000,
+      "memory_mib": 2048,
+      "writable_layer": "1G",
+      "filesystem": "XFS",
+      "readiness_probe_port": 49999,
+      "readiness_probe_path": "health endpoint"
+    },
+    "unknown_or_not_revalidated": [
+      "guest kernel commit and source image digest",
+      "explicit process CPU affinity",
+      "storage topology and other network placement details"
+    ],
+    "kernel_or_cubelet_changed": false
+  },
+  "server_source": {
+    "repository": "https://gitcode.com/boostkit/CubeSandbox",
+    "base_commit": "2babb6f7405677c04b7fed1563c6a5d53a8e771b",
+    "base_tree": "608397465872e2050e823fd4ebf1207d3d1208f0",
+    "patch_order": [
+      {
+        "order": 1,
+        "name": "observed-working-tree.patch",
+        "sha256": "d10d4366db67aaeb0acfae63fe16058152ba829cd5dff25b8e5aae7cc3192c13",
+        "description": "Three observed API/Master source changes preserved in both U and P",
+        "runtime_switch": "none"
+      },
+      {
+        "order": 2,
+        "name": "frontdoor-server.patch",
+        "sha256": "c24254fc66a1d1e3d1536f0029d64eb8dd07bb475a6369a861860ddf58683eeb",
+        "description": "Client-facing API/Master ingress and response boundary observation",
+        "included_in": [
+          "P"
+        ],
+        "runtime_switch": "CUBE_FRONTDOOR_TRACE; valid correlation header also required"
+      }
+    ],
+    "variants": {
+      "U": {
+        "commit": "9ddc0a6f4501d72c155bfbb4f0b1a7054b06aeb0",
+        "tree": "285f21316b8fbbe1b402a50ae94d660e4582c414",
+        "patch_order": [
+          "observed-working-tree.patch"
+        ]
+      },
+      "P": {
+        "commit": "747e5c1b71d992f780df4a1e7aa12b5bfa82b96a",
+        "tree": "a679b91d35a1a3cc317c21f0dbd566397dc8b446",
+        "patch_order": [
+          "observed-working-tree.patch",
+          "frontdoor-server.patch"
+        ]
+      }
+    },
+    "snapshot_status": "U/P commits identify isolated local build snapshots; public remote availability of these commits is not asserted",
+    "apply_result": "git apply --check and application passed; no conflict or semantic adaptation; clean source before and after build"
+  },
+  "client_source": {
+    "repository": "https://github.com/TencentCloud/CubeSandbox",
+    "base_commit": "31d911e430fdf8a8879bd062b8e78066c1a8e89d",
+    "subdirectory": "examples/cube-bench",
+    "base_archive_sha256": "bd38126e6ad05977784d1f28ade795d97c0e2f8a5024d7873b8eb495d45e40d5",
+    "preparation_script": {
+      "relative_source_path": "scripts/cube_bench_runner.py",
+      "profiler_commit": "f1f6b0156d7b0c53094326f04527bb45aaeca382",
+      "sha256": "ab0ebc016fcef00ea5df63ec9cdcb3a2d04bbf4e0dd22ced22b445ef2e452ad0"
+    },
+    "final_git_commit_tree": "not archived as separate client commits; file hashes below identify the final source",
+    "variants": {
+      "base": {
+        "patch_order": [
+          "SID and separate warmup-result export"
+        ],
+        "runtime_toggle": "none; distinct builds",
+        "source_file_sha256": {
+          "go.mod": "7e87006f2aadf8d673fff66ab087dbd3d3153601ee4e70aa2ece37a2ba62390f",
+          "go.sum": "1f42e737a91100fc5890c3c6e9c16a8a9b90b4558d8172361c7878fcad3f8e2e",
+          "main.go": "853c7ae9aac97ea99c0186e908f01cfd3a89b9ffebecf82c651bdb34c1230167",
+          "main_test.go": "bc261cb4808bb73d4f4a1566189390b5f9c8fcfddcc5b1079e0dde5c02989a23",
+          "network_policy.go": "35f1256459c45d782fa736f37bb943108ddd36f4c4df9c4e9f963b60e90014c5",
+          "report.go": "7ad9ef7ede52e4e80682acf0e8e88f30b8325cf7b0ec0dd95f9013ac2f7faac6",
+          "runner.go": "91087b507ec059a2d21ad33b4a0c790ac8e0f5e1f05123ca26f1da8fb99b2640",
+          "runner_test.go": "c3357eaac5d5ed34688e44496e28f18f9052c2528bf9e94a565f998b25b51c93",
+          "stats.go": "f9f8bc59b62b90717503435417238818ae49b4c93f324ab8f2734153af750950",
+          "theme.go": "d1b1fce3c69a3c8876f06d448fdd0cd01b10b70b0f77efe13ebbc06598d375d0",
+          "ui.go": "1603d9efe0502eb73075976212c8c6c0c237d9796de1bc4ae8cc186ffdfd15fb"
+        },
+        "patched_file_sha256": {
+          "main.go": "8ddbff3f36d96513b4b7e1fe870f0b6ac53ae0421478b80f13790b6a770fe9b2",
+          "runner.go": "ecd88f1f1825803896211032e8ceab17eaf606d7796e3fe2c2bd657906361731"
+        },
+        "helper_file_sha256": {},
+        "binary_sha256": "baaeba5908c5734e6616039d1434cbda4634c726eda266e93b10a94bd1182675",
+        "patch_file_sha256": null,
+        "patch_note": "Programmatic preparation; no standalone client patch file was archived. Exact preparation script commit/SHA and resulting file hashes identify the transformation."
+      },
+      "trace": {
+        "patch_order": [
+          "SID and separate warmup-result export",
+          "HTTP trace and correlation header"
+        ],
+        "runtime_toggle": "none; distinct builds",
+        "source_file_sha256": {
+          "go.mod": "7e87006f2aadf8d673fff66ab087dbd3d3153601ee4e70aa2ece37a2ba62390f",
+          "go.sum": "1f42e737a91100fc5890c3c6e9c16a8a9b90b4558d8172361c7878fcad3f8e2e",
+          "main.go": "853c7ae9aac97ea99c0186e908f01cfd3a89b9ffebecf82c651bdb34c1230167",
+          "main_test.go": "bc261cb4808bb73d4f4a1566189390b5f9c8fcfddcc5b1079e0dde5c02989a23",
+          "network_policy.go": "35f1256459c45d782fa736f37bb943108ddd36f4c4df9c4e9f963b60e90014c5",
+          "report.go": "7ad9ef7ede52e4e80682acf0e8e88f30b8325cf7b0ec0dd95f9013ac2f7faac6",
+          "runner.go": "91087b507ec059a2d21ad33b4a0c790ac8e0f5e1f05123ca26f1da8fb99b2640",
+          "runner_test.go": "c3357eaac5d5ed34688e44496e28f18f9052c2528bf9e94a565f998b25b51c93",
+          "stats.go": "f9f8bc59b62b90717503435417238818ae49b4c93f324ab8f2734153af750950",
+          "theme.go": "d1b1fce3c69a3c8876f06d448fdd0cd01b10b70b0f77efe13ebbc06598d375d0",
+          "ui.go": "1603d9efe0502eb73075976212c8c6c0c237d9796de1bc4ae8cc186ffdfd15fb"
+        },
+        "patched_file_sha256": {
+          "main.go": "ed9e9191055ddeb85a41bbcd5cae4079b2e9f49191afab478ff364ab291bd7df",
+          "runner.go": "137d484dfe2c863db1537d05dc6b6e07279875cf4b2280817895a1f9e271e1a2"
+        },
+        "helper_file_sha256": {
+          "client_clock_linux.go": "9c362534cf13c08fc81bd9a61d2eb64380022a2e8785c00fe93db286ed3518c6",
+          "client_clock_other.go": "b50e1c73932db88af66bfa79f4dda66d7330c92734e16ab3ded46cca6eff1d55",
+          "client_trace.go": "a0f631abb7cf2d488ac34867e5052045840b4fbab0b905bbd037c98863345562"
+        },
+        "binary_sha256": "8b4ff0ab9eb0500ee72de69f25ad732007e6f11626dd130a2ad0854fc54e5d1a",
+        "patch_file_sha256": null,
+        "patch_note": "Programmatic preparation; no standalone client patch file was archived. Exact preparation script commit/SHA and resulting file hashes identify the transformation."
+      }
+    }
+  },
+  "profiler": {
+    "capture_commit": "f1f6b0156d7b0c53094326f04527bb45aaeca382",
+    "offline_analysis_commit": "054e931ee1fe0ef63ae0a09f39fce534897a4111",
+    "offline_analysis_tree": "7b90cd7fcbe3532b6c913d4ab5737d1ba5e17c67",
+    "offline_analysis_patch_sha256": "101feec735eb8b37b64899824e2fbb8aceddb5befc190cf5ea6abc74a9384deb",
+    "analysis_fix": "Unique bidirectional RequestId/SID correlation includes pre-SID Master template metrics; does not change capture/runtime binaries",
+    "tests": {
+      "scripts": 245,
+      "integration": 42,
+      "node": 108,
+      "skipped": 0
+    },
+    "remote_revision_readback_verified": true,
+    "repository_visibility": "private tool repository; source access is not part of this public evidence subset"
+  },
+  "builder": {
+    "display_name": "构建机",
+    "host_architecture": "aarch64",
+    "output_architecture": "x86_64",
+    "isolated_source_and_output": true,
+    "same_toolchain_for_U_and_P": true,
+    "image_id": "sha256:6f2de1e0c80a9ca665477189cd05e7ecd5d35271a85f0ba8558deaf70f2e2be3",
+    "rust": "1.89.0",
+    "cargo": "1.89.0",
+    "go": "1.25.7 linux/arm64",
+    "cross_gcc": "9.4.0",
+    "qemu_x86_64": "4.2.1",
+    "container_cpus": 12,
+    "cargo_jobs": 8,
+    "go_jobs": 8,
+    "cargo_locked": true,
+    "go_mod": "readonly",
+    "api_release_flags": "committed profile: opt-level3, fatLTO,codegen-units1,panic=abort,strip=symbols",
+    "master_cgo_enabled": false,
+    "embedded_build_time": "2026-10-29T04:21:57Z",
+    "api_max_required_glibc": "2.29",
+    "master_and_client_linking": "static; CGO_ENABLED=0",
+    "rust_override": "cargo +1.89; committed source toolchain file unchanged"
+  },
+  "binaries_sha256": {
+    "U": {
+      "api": "d17fb1700509b2e590f997e0270590c29cfc74df42eea5a1df07262d87608f47",
+      "master": "f3f0fd3afe2618c2ba01af5ac39d9249020db77daefdb8887eddbaf2235c7da3"
+    },
+    "P": {
+      "api": "6d1b92f96b6f3daa06a4a04c3fd4473d884dcfc3d697f0e080f57f098c610f9b",
+      "master": "be2c5163a602503723534ab30cad2f2f12cd6e49c4df27d0f74f434b073d37ea"
+    },
+    "original": {
+      "api": "51542159b0732529a3bc3f489717122d2d2a9b015e912c4fb9773878aaea38b6",
+      "master": "cce1af8250cefdb4488a8cef62521dccebedc0faf231d20dc3590f273d15f3ea"
+    },
+    "client": {
+      "base": "baaeba5908c5734e6616039d1434cbda4634c726eda266e93b10a94bd1182675",
+      "trace": "8b4ff0ab9eb0500ee72de69f25ad732007e6f11626dd130a2ad0854fc54e5d1a"
+    },
+    "historical_anchor_client": "3614d21c38f1a50d261272c7fbb74f54dc1f80356a54ddb5986e55c2f3d89ba3"
+  },
+  "fixed_component_binaries_sha256": {
+    "Cubelet": "506b8a83d0859036e17a1cbda9e3392023f989af2162a3f9293a9a3e702afdf3",
+    "active_component_version_Shim": "2153cb465d4069872ad3abcf88695380cbf786986fb16a4fcbacfaf303614bfa",
+    "active_component_version_runtime": "c887554030a5be9e39b26e582abda56286c7248039898ec494c712ecf57003b2"
+  },
+  "switch_matrix": [
+    {
+      "group": "A_before",
+      "rounds": 5,
+      "server_build": "historical_anchor",
+      "common_observed_patch": "exact_compiled_tree_unknown",
+      "frontdoor_patch": "historical_anchor_not_used_as_patch_baseline",
+      "server_CUBE_FRONTDOOR_TRACE": null,
+      "client_build": "historical_anchor",
+      "client_runtime_toggle": "none; distinct builds",
+      "extra_capture_100": false
+    },
+    {
+      "group": "U",
+      "rounds": 5,
+      "server_build": "U",
+      "common_observed_patch": "compiled; no runtime switch",
+      "frontdoor_patch": "not_compiled",
+      "server_CUBE_FRONTDOOR_TRACE": null,
+      "client_build": "base",
+      "client_runtime_toggle": "none; distinct builds",
+      "extra_capture_100": false
+    },
+    {
+      "group": "P",
+      "rounds": 5,
+      "server_build": "P",
+      "common_observed_patch": "compiled; no runtime switch",
+      "frontdoor_patch": "compiled",
+      "server_CUBE_FRONTDOOR_TRACE": 0,
+      "client_build": "base",
+      "client_runtime_toggle": "none; distinct builds",
+      "extra_capture_100": false
+    },
+    {
+      "group": "C",
+      "rounds": 5,
+      "server_build": "P",
+      "common_observed_patch": "compiled; no runtime switch",
+      "frontdoor_patch": "compiled",
+      "server_CUBE_FRONTDOOR_TRACE": 0,
+      "client_build": "trace",
+      "client_runtime_toggle": "none; distinct builds",
+      "extra_capture_100": false
+    },
+    {
+      "group": "S",
+      "rounds": 5,
+      "server_build": "P",
+      "common_observed_patch": "compiled; no runtime switch",
+      "frontdoor_patch": "compiled",
+      "server_CUBE_FRONTDOOR_TRACE": 1,
+      "client_build": "trace",
+      "client_runtime_toggle": "none; distinct builds",
+      "extra_capture_100": false
+    },
+    {
+      "group": "F",
+      "rounds": 5,
+      "server_build": "P",
+      "common_observed_patch": "compiled; no runtime switch",
+      "frontdoor_patch": "compiled",
+      "server_CUBE_FRONTDOOR_TRACE": 1,
+      "client_build": "trace",
+      "client_runtime_toggle": "none; distinct builds",
+      "extra_capture_100": true
+    },
+    {
+      "group": "A_after",
+      "rounds": 5,
+      "server_build": "historical_anchor",
+      "common_observed_patch": "exact_compiled_tree_unknown",
+      "frontdoor_patch": "historical_anchor_not_used_as_patch_baseline",
+      "server_CUBE_FRONTDOOR_TRACE": null,
+      "client_build": "historical_anchor",
+      "client_runtime_toggle": "none; distinct builds",
+      "extra_capture_100": false
+    }
+  ],
+  "validation": {
+    "build_status": "build_and_scoped_linux_validation_passed",
+    "build_stages": 18,
+    "build_stages_all_exit_zero": true,
+    "build_tests": {
+      "api_native_arm64": {
+        "passed": 150,
+        "failed": 0,
+        "ignored": 0
+      },
+      "api_qemu_amd64_frontdoor": {
+        "passed": 7,
+        "failed": 0,
+        "ignored": 0,
+        "filtered": 143
+      },
+      "master_native_arm64_race": {
+        "PASS": 6,
+        "FAIL": 0,
+        "SKIP": 1
+      },
+      "client_native_arm64_race": {
+        "PASS": 23,
+        "FAIL": 0,
+        "SKIP": 0
+      },
+      "client_qemu_amd64_frontdoor": {
+        "PASS": 10,
+        "FAIL": 0,
+        "SKIP": 0
+      }
+    },
+    "skip_note": "Master non-Linux clock null test skips on Linux by design",
+    "native_x86_64_checks": [
+      {
+        "name": "api-ldd",
+        "exit_code": 0
+      },
+      {
+        "name": "api-native-frontdoor",
+        "exit_code": 0
+      },
+      {
+        "name": "master-native-frontdoor",
+        "exit_code": 0
+      },
+      {
+        "name": "client-native-frontdoor",
+        "exit_code": 0
+      }
+    ],
+    "native_binary_hashes_verified": true,
+    "formal_rounds": 35,
+    "valid_rounds": 35,
+    "formal_successes": 3500,
+    "groups_complete": [
+      "A_before",
+      "U",
+      "P",
+      "C",
+      "S",
+      "F",
+      "A_after"
+    ],
+    "incomplete_rounds": 0,
+    "closing_audit_errors": 0,
+    "cleanup": {
+      "rounds_with_103_owned_ids_cleaned": 35,
+      "total_owned_ids": 3605,
+      "unique_owned_ids": 3605,
+      "all_post_cleanup_inventories_empty": true
+    },
+    "runtime_effect_evidence": {
+      "U": {
+        "rounds": 5,
+        "client_trace_records_including_warmup": 0,
+        "api_trace_records_including_warmup": 0,
+        "master_trace_records_including_warmup": 0,
+        "cross_service_id_and_clock_matching": "not_applicable_no_server_trace"
+      },
+      "P": {
+        "rounds": 5,
+        "client_trace_records_including_warmup": 0,
+        "api_trace_records_including_warmup": 0,
+        "master_trace_records_including_warmup": 0,
+        "cross_service_id_and_clock_matching": "not_applicable_no_server_trace"
+      },
+      "C": {
+        "rounds": 5,
+        "client_trace_records_including_warmup": 515,
+        "api_trace_records_including_warmup": 0,
+        "master_trace_records_including_warmup": 0,
+        "cross_service_id_and_clock_matching": "not_applicable_no_server_trace"
+      },
+      "S": {
+        "rounds": 5,
+        "client_trace_records_including_warmup": 515,
+        "api_trace_records_including_warmup": 515,
+        "master_trace_records_including_warmup": 515,
+        "cross_service_id_and_clock_matching": "verified"
+      },
+      "F": {
+        "rounds": 5,
+        "client_trace_records_including_warmup": 515,
+        "api_trace_records_including_warmup": 515,
+        "master_trace_records_including_warmup": 515,
+        "cross_service_id_and_clock_matching": "verified"
+      }
+    },
+    "core_chain_formal_coverage": 500,
+    "F_warmup_separate": 15,
+    "anchor_limitations": [
+      "Original historical API/Master compiled source tree and toolchain are not fully known; anchors do not measure patch overhead against U.",
+      "Ten historical-anchor rounds do not export direct formal SID or separate warmup outcomes. Cleanup ownership was independently reconciled."
+    ],
+    "gate_method": "Common before/after identity, inventory, TAP, conflicting-work and load gates. Retry waits may vary cache age; not proof of zero host background activity.",
+    "no_page_cache_drop_or_template_rebuild": true
+  },
+  "additional_runtime_trace": {
+    "status": "not_collected",
+    "real_trace_samples": 0,
+    "reason": "Extra diagnostic was stopped at the initial gate by external build activity; subsequent read-only observation found another session deployment.",
+    "diagnostic_service_or_configuration_changes": false,
+    "diagnostic_load_started": false,
+    "pool_wait_log_lock_scheduler_proportions": "not proven",
+    "local_analysis_script_validation": "Only local synthetic trace validation passed; not a performance sample"
+  },
+  "closing_state": {
+    "statement": "Original deployment restoration and five A_after rounds completed before the later external deployment. That later deployment was preserved. No present host state is asserted.",
+    "new_deployment_details_publication": "omitted as unrelated service state"
+  },
+  "public_evidence_limits": [
+    "This document is an allowlisted derivative, not the full original evidence archive.",
+    "No full configuration, raw service log, source bundle, binary, host access information or unrelated service state is included.",
+    "Original record hashes identify private source bytes; they do not make omitted records publicly reproducible.",
+    "Public-file checksums must be regenerated after final placement and any redaction."
+  ],
+  "private_source_record_fingerprints": [
+    {
+      "role": "build-provenance",
+      "original_sha256": "329a7231d8af3cf937422ff5dd10ec45d9fb8f5efb0ef0a463707ab3d6c2800e",
+      "publication_scope": "Original not included; allowlisted fields or validation summary reproduced here."
+    },
+    {
+      "role": "build-validation",
+      "original_sha256": "57f5e46560524e8e408b8f45c337e4c8dcf9e1ccf071213e4425d2b18dbfd726",
+      "publication_scope": "Original not included; allowlisted fields or validation summary reproduced here."
+    },
+    {
+      "role": "native-validation",
+      "original_sha256": "a11e5b8e4b64b4ea943f82eef0a3c435762cacf9a23a7ae87097fed68753a2ec",
+      "publication_scope": "Original not included; allowlisted fields or validation summary reproduced here."
+    },
+    {
+      "role": "binary-manifest",
+      "original_sha256": "06e2d8cd19e0e3598794d657e63bcffd6131c70473b16684f6f103988534c8f3",
+      "publication_scope": "Original not included; allowlisted fields or validation summary reproduced here."
+    },
+    {
+      "role": "comparison-manifest",
+      "original_sha256": "1acd970ee9d7915e68e777d295d4c84b071c98f1f5e95e4d6f6fdd358fe2adb2",
+      "publication_scope": "Original not included; allowlisted fields or validation summary reproduced here."
+    },
+    {
+      "role": "independent-audit",
+      "original_sha256": "d878125d9a6b1ab83b6c04321b6cb75346395742a5ee432918a7bf1b793dcd94",
+      "publication_scope": "Original not included; allowlisted fields or validation summary reproduced here."
+    },
+    {
+      "role": "safe-configuration",
+      "original_sha256": "2cbd7af7f9529c40dd10d00f66ea9d175364102d5ea1366960725fc1ffef65fd",
+      "publication_scope": "Original not included; allowlisted fields or validation summary reproduced here."
+    },
+    {
+      "role": "tool-publication",
+      "original_sha256": "47ef0873262248af7659e91b611f138a1ebfa8a5161ccee616893241c20f3282",
+      "publication_scope": "Original not included; allowlisted fields or validation summary reproduced here."
+    },
+    {
+      "role": "archived-cpu-identity",
+      "original_sha256": "eb204e951e9a50e54ad181c5d5ebdb90985f976ab41da5751d5673e88c6b33cd",
+      "publication_scope": "Only seven lscpu lines reproduced; original identity is not included."
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "rounds": 35,
+  "successful_formal_requests": 3500,
+  "complete_groups": 7,
+  "contrasts": 6,
+  "validated_contrast_metric_sets": 24,
+  "profiled_requests": 515,
+  "profiled_formal": 500,
+  "profiled_warmup": 15,
+  "stages": 79,
+  "validated_stage_rounds": 395,
+  "comparison_method": "All four metrics, seven group distributions and six block/ordinal contrasts recomputed from public samples.",
+  "stage_method": "395 mean/median/nearest-rank P95/max/coverage/status rows and 79 aggregate summaries recomputed from the 500 eligible formal requests; warmup excluded.",
+  "numeric_tolerance": {
+    "relative": 1e-12,
+    "absolute_ms": 1e-12
+  },
+  "scope": "Offline public-data consistency only; raw logs, ownership, clock domain and deployment provenance are not independently reverified.",
+  "privacy_projection": {
+    "method": "allowlisted fields only; exact original identifier scan and address/absolute user path/UUID pattern scan",
+    "status": "passed",
+    "original_identifiers_retained": 0
+  }
+}

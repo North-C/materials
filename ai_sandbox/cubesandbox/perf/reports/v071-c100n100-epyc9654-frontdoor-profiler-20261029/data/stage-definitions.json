@@ -1,0 +1,456 @@
+{
+  "schema_version": 1,
+  "stages": {
+    "frontdoor.client_total_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 完整调用",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_before_do_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 请求准备",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_http_headers_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client HTTP 调用至响应头",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_get_connection_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 获取连接",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_write_after_connection_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 获取连接后至请求写完",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_wait_response_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 写完请求至首响应字节",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_response_headers_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 首字节至响应头返回",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_read_body_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 读取响应体",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_decode_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 解码响应体",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_after_decode_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 解码后收尾",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.client_to_api_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Client 开始至 API 入口",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.api_before_master_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "API 入口至派发 Master",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.api_master_headers_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "API 调用 Master 至响应头",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.api_master_roundtrip_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "API 调用 Master 至解码完成",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.api_after_master_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "API Master 完成后至响应就绪",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.api_total_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "API 入口至响应就绪",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.api_to_master_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "API 派发至 Master 入口",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.master_total_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Master 入口至响应处理中间件返回",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.master_to_api_complete_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "Master 中间件返回至 API 解码完成",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.api_to_client_headers_ms": {
+      "kind": "frontdoor_monotonic",
+      "scope": "API 响应就绪至 Client 收到响应头",
+      "clock_basis": "same_record_offset_or_verified_shared_linux_monotonic",
+      "additive": false
+    },
+    "frontdoor.legacy_create_headers_ms": {
+      "kind": "client_duration",
+      "scope": "旧 create_ms：请求准备至响应头，不含 body/decode",
+      "additive": false
+    },
+    "host.master_start_to_cubelet_start": {
+      "kind": "host_log_envelope",
+      "scope": "Master dispatch envelope; not pure queue time",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.cubelet_start_to_resolved": {
+      "kind": "host_log_envelope",
+      "scope": "Early Cubelet restore preparation envelope",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.resolved_to_shim_start": {
+      "kind": "host_log_envelope",
+      "scope": "Remaining Cubelet preparation/containerd/IPC; unresolved",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.cubelet_start_to_shim_start": {
+      "kind": "host_log_envelope",
+      "scope": "Cubelet pre-Shim outer envelope",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.shim_start_to_snapshot_init": {
+      "kind": "host_log_envelope",
+      "scope": "Shim spec/initialization envelope",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.snapshot_init_to_cgroup_join": {
+      "kind": "host_log_envelope",
+      "scope": "Initialization through cgroup join marker; not a cgroup syscall duration",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.cgroup_join_to_vm_start": {
+      "kind": "host_log_envelope",
+      "scope": "Gap after join marker before start_vm marker",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.shim_start_to_vm_start": {
+      "kind": "host_log_envelope",
+      "scope": "Shim pre-VM outer envelope",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.vm_start_to_agent_ready": {
+      "kind": "host_log_envelope",
+      "scope": "Launch/restore/agent connect/retries/ResetVm in reference schema 2babb6f7",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.agent_ready_to_shim_finish": {
+      "kind": "host_log_envelope",
+      "scope": "Guest sandbox/container creation and Shim completion envelope",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.shim_start_to_shim_finish": {
+      "kind": "host_log_envelope",
+      "scope": "Shim request outer envelope",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.shim_finish_to_master_reply": {
+      "kind": "host_log_envelope",
+      "scope": "Cubelet Start/probe/persist and Master completion; unresolved",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.master_reply_to_api_created": {
+      "kind": "host_log_envelope",
+      "scope": "Master response to API created log; excludes client receive",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.master_start_to_master_reply": {
+      "kind": "host_log_envelope",
+      "scope": "Master log boundary outer envelope",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.master_start_to_api_created": {
+      "kind": "host_log_envelope",
+      "scope": "Server log boundary outer envelope; not client latency",
+      "additive": false,
+      "clock_basis": "host_wall_log"
+    },
+    "host.load_spec_to_sandbox_finish": {
+      "kind": "shim_cumulative_difference",
+      "scope": "Same request Instant origin; integer-ms quantization",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.sandbox_finish_to_container_finish": {
+      "kind": "shim_cumulative_difference",
+      "scope": "Same request Instant origin; integer-ms quantization",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.cubebox-service": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.storage": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.network": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.cgroup": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.create-sandbox-metadata": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.cube-sandbox-store": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.sandbox-create": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.sandbox-start": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.sandbox-probe": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubelet.cubebox": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.shim.LaunchVmm": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.shim.RestoreVm": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.shim.ResetVm": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.shim.CreateSandbox": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.shim.CreateContainer": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.shim.CreatePodSandbox": {
+      "kind": "component_duration",
+      "scope": "May overlap parent/child; missing is not zero",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.service_outside_cubebox": {
+      "kind": "paired_duration_residual",
+      "scope": "Same-instance Cubelet duration residual; not a contiguous exclusive stage",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.sandbox_after_newtask": {
+      "kind": "paired_duration_residual",
+      "scope": "Same-instance Cubelet duration residual; not a contiguous exclusive stage",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "host.cubebox_outside_start_and_probe": {
+      "kind": "paired_duration_residual",
+      "scope": "Same-instance Cubelet duration residual; not a contiguous exclusive stage",
+      "additive": false,
+      "clock_basis": "component_reported_duration"
+    },
+    "master_stat.bufferhandle": {
+      "kind": "component_reported_duration",
+      "scope": "startTime→startHandleTime，含调度缓冲等待及处理前开销",
+      "additive": false
+    },
+    "master_stat.cube-e2e": {
+      "kind": "component_reported_duration",
+      "scope": "Master trace 整体；与入口 middleware 的边界不同",
+      "additive": false
+    },
+    "master_stat.cubemaster-inner": {
+      "kind": "component_reported_duration",
+      "scope": "Master 整体减 Cubelet 调用窗口的残差，非独占 CPU",
+      "additive": false
+    },
+    "master_stat.cubemaster-inner-handle": {
+      "kind": "component_reported_duration",
+      "scope": "Cubelet 调用结束→Master endTime 后处理外层",
+      "additive": false
+    },
+    "master_stat.cubemaster-post-redis": {
+      "kind": "component_reported_duration",
+      "scope": "后处理 Redis 写入，与 spec 并行，不能相加",
+      "additive": false
+    },
+    "master_stat.cubemaster-post-spec": {
+      "kind": "component_reported_duration",
+      "scope": "后处理 spec 写入，与 Redis 并行，不能相加",
+      "additive": false
+    },
+    "template_stat.templateresolve": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "CreateSandbox 业务 startTime 前的模板解析外层",
+      "additive": false
+    },
+    "template_stat.tpl-resolve-request": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "GetTemplateRequest 调用及其内部 metric 输出",
+      "additive": false
+    },
+    "template_stat.tpl-resolve-locality": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "EnsureTemplateLocalityReady 调用及其 deferred metric 输出",
+      "additive": false
+    },
+    "template_stat.tpl-resolve-kind": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "GetTemplateKind 调用",
+      "additive": false
+    },
+    "template_stat.tpl-resolve-bind": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "模板绑定、请求合并及其日志外层（defer）",
+      "additive": false
+    },
+    "template_stat.templatelocality": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "EnsureTemplateLocalityReady 内层，取值在 deferred metric 输出前",
+      "additive": false
+    },
+    "template_stat.templatecachehit": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "请求模板缓存命中取值，输出 metric 之前",
+      "additive": false
+    },
+    "template_stat.templatecachemiss": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "模板缓存未命中取值，输出 metric 之前",
+      "additive": false
+    },
+    "template_stat.templatelocalityhit": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "命中事件；CostTime 固定为0，并非实测时延",
+      "additive": false
+    },
+    "template_stat.templatelocalitymiss": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "未命中事件；CostTime 固定为0，并非实测时延",
+      "additive": false
+    },
+    "template_stat.templategetdefinition": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "未命中缓存后读取模板定义，仅该路径有值",
+      "additive": false
+    },
+    "template_stat.templatereplicadbfallback": {
+      "kind": "master_same_process_monotonic_duration",
+      "scope": "locality fallback 查询，仅该路径有值",
+      "additive": false
+    },
+    "paired_residual.master_wrapper_outside_business": {
+      "kind": "same_master_process_monotonic_duration_residual",
+      "scope": "Master middleware 总时长减同请求 cube-e2e，含业务前处理/业务返回后的运行时引用及序列化",
+      "additive": false
+    },
+    "paired_residual.master_wrapper_outside_business_and_resolve": {
+      "kind": "same_master_process_monotonic_duration_residual",
+      "scope": "Master middleware 扣除先后执行的 templateresolve 与 cube-e2e，剩余外围区间，不是独占CPU",
+      "additive": false
+    },
+    "paired_residual.locality_outer_minus_inner": {
+      "kind": "same_master_process_monotonic_duration_residual",
+      "scope": "locality 外层减内层，含 skipTemplateLocalityReady 的 snapshot 查询、内层 deferred metric 输出及外围调度；不能单归SQL/日志",
+      "additive": false
+    },
+    "paired_residual.request_outer_minus_cache_hit": {
+      "kind": "same_master_process_monotonic_duration_residual",
+      "scope": "request 外层减cachehit，含 metric 输出、ensureRuntimeTemplateRequest 与外围执行/调度",
+      "additive": false
+    }
+  }
+}

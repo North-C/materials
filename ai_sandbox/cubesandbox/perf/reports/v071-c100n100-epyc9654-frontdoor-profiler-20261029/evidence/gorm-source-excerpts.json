@@ -1,0 +1,46 @@
+{
+  "source": "existing isolated build-machine module cache used for P build",
+  "files": [
+    {
+      "module": "gorm.io/gorm@v1.25.10",
+      "path": "gorm.go",
+      "file_sha256": "c94e4f7bda43d067ea7edb9914efaa42d3cf31fc9ee28b51784c94f7fc1e5aa2",
+      "excerpts": [
+        {
+          "start_line": 148,
+          "end_line": 157,
+          "text": "148: \n149: \tif config.NamingStrategy == nil {\n150: \t\tconfig.NamingStrategy = schema.NamingStrategy{IdentifierMaxLength: 64} // Default Identifier length is 64\n151: \t}\n152: \n153: \tif config.Logger == nil {\n154: \t\tconfig.Logger = logger.Default\n155: \t}\n156: \n157: \tif config.NowFunc == nil {"
+        }
+      ]
+    },
+    {
+      "module": "gorm.io/gorm@v1.25.10",
+      "path": "logger/logger.go",
+      "file_sha256": "544e0824c00e6359af8fd9a2a76ad65b0cd7aad9341f4f29bb9547a046e63d96",
+      "excerpts": [
+        {
+          "start_line": 70,
+          "end_line": 84,
+          "text": "70: \n71: var (\n72: \t// Discard logger will print any log to io.Discard\n73: \tDiscard = New(log.New(io.Discard, \"\", log.LstdFlags), Config{})\n74: \t// Default Default logger\n75: \tDefault = New(log.New(os.Stdout, \"\\r\\n\", log.LstdFlags), Config{\n76: \t\tSlowThreshold:             200 * time.Millisecond,\n77: \t\tLogLevel:                  Warn,\n78: \t\tIgnoreRecordNotFoundError: false,\n79: \t\tColorful:                  true,\n80: \t})\n81: \t// Recorder logger records running SQL into a recorder instance\n82: \tRecorder = traceRecorder{Interface: Default, BeginAt: time.Now()}\n83: )\n84: "
+        },
+        {
+          "start_line": 155,
+          "end_line": 180,
+          "text": "155: func (l *logger) Trace(ctx context.Context, begin time.Time, fc func() (string, int64), err error) {\n156: \tif l.LogLevel <= Silent {\n157: \t\treturn\n158: \t}\n159: \n160: \telapsed := time.Since(begin)\n161: \tswitch {\n162: \tcase err != nil && l.LogLevel >= Error && (!errors.Is(err, ErrRecordNotFound) || !l.IgnoreRecordNotFoundError):\n163: \t\tsql, rows := fc()\n164: \t\tif rows == -1 {\n165: \t\t\tl.Printf(l.traceErrStr, utils.FileWithLineNum(), err, float64(elapsed.Nanoseconds())/1e6, \"-\", sql)\n166: \t\t} else {\n167: \t\t\tl.Printf(l.traceErrStr, utils.FileWithLineNum(), err, float64(elapsed.Nanoseconds())/1e6, rows, sql)\n168: \t\t}\n169: \tcase elapsed > l.SlowThreshold && l.SlowThreshold != 0 && l.LogLevel >= Warn:\n170: \t\tsql, rows := fc()\n171: \t\tslowLog := fmt.Sprintf(\"SLOW SQL >= %v\", l.SlowThreshold)\n172: \t\tif rows == -1 {\n173: \t\t\tl.Printf(l.traceWarnStr, utils.FileWithLineNum(), slowLog, float64(elapsed.Nanoseconds())/1e6, \"-\", sql)\n174: \t\t} else {\n175: \t\t\tl.Printf(l.traceWarnStr, utils.FileWithLineNum(), slowLog, float64(elapsed.Nanoseconds())/1e6, rows, sql)\n176: \t\t}\n177: \tcase l.LogLevel == Info:\n178: \t\tsql, rows := fc()\n179: \t\tif rows == -1 {\n180: \t\t\tl.Printf(l.traceStr, utils.FileWithLineNum(), float64(elapsed.Nanoseconds())/1e6, \"-\", sql)"
+        }
+      ]
+    },
+    {
+      "module": "gorm.io/gorm@v1.25.10",
+      "path": "utils/utils.go",
+      "file_sha256": "6de58eabb44f582425a6c00b6d53f92208e094bb5c3291ecc48aef5226a1bb18",
+      "excerpts": [
+        {
+          "start_line": 30,
+          "end_line": 58,
+          "text": "30: \treturn filepath.ToSlash(s) + \"/\"\n31: }\n32: \n33: // FileWithLineNum return the file name and line number of the current file\n34: func FileWithLineNum() string {\n35: \tpcs := [13]uintptr{}\n36: \t// the third caller usually from gorm internal\n37: \tlen := runtime.Callers(3, pcs[:])\n38: \tframes := runtime.CallersFrames(pcs[:len])\n39: \tfor i := 0; i < len; i++ {\n40: \t\t// second return value is \"more\", not \"ok\"\n41: \t\tframe, _ := frames.Next()\n42: \t\tif (!strings.HasPrefix(frame.File, gormSourceDir) ||\n43: \t\t\tstrings.HasSuffix(frame.File, \"_test.go\")) && !strings.HasSuffix(frame.File, \".gen.go\") {\n44: \t\t\treturn string(strconv.AppendInt(append([]byte(frame.File), ':'), int64(frame.Line), 10))\n45: \t\t}\n46: \t}\n47: \n48: \treturn \"\"\n49: }\n50: \n51: func IsValidDBNameChar(c rune) bool {\n52: \treturn !unicode.IsLetter(c) && !unicode.IsNumber(c) && c != '.' && c != '*' && c != '_' && c != '$' && c != '@'\n53: }\n54: \n55: // CheckTruth check string true or not\n56: func CheckTruth(vals ...string) bool {\n57: \tfor _, val := range vals {\n58: \t\tif val != \"\" && !strings.EqualFold(val, \"false\") {"
+        }
+      ]
+    }
+  ]
+}

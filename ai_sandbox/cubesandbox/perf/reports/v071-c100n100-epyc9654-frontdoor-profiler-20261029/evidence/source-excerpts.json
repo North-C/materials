@@ -1,0 +1,421 @@
+{
+  "source_commit": "747e5c1b71d992f780df4a1e7aa12b5bfa82b96a",
+  "source_tree": "a679b91d35a1a3cc317c21f0dbd566397dc8b446",
+  "source_worktree_clean": true,
+  "files": [
+    {
+      "path": "CubeMaster/pkg/templatecenter/snapshot_table.go",
+      "file_sha256": "3b318662fc0706a7445220901d6b29ca71167e82047d98288a6bd09af777db62",
+      "excerpts": [
+        {
+          "start_line": 19,
+          "end_line": 35,
+          "text": "19: func getSnapshotRecord(ctx context.Context, snapshotID string) (*models.SnapshotRecord, error) {\n20: \tif !isReady() {\n21: \t\treturn nil, ErrTemplateStoreNotInitialized\n22: \t}\n23: \tsnapshotID = strings.TrimSpace(snapshotID)\n24: \tif snapshotID == \"\" {\n25: \t\treturn nil, ErrSnapshotNotFound\n26: \t}\n27: \trec := &models.SnapshotRecord{}\n28: \terr := store.db.WithContext(ctx).Table(constants.SnapshotTableName).\n29: \t\tWhere(\"snapshot_id = ?\", snapshotID).First(rec).Error\n30: \tif errors.Is(err, gorm.ErrRecordNotFound) {\n31: \t\treturn nil, ErrSnapshotNotFound\n32: \t}\n33: \tif err != nil {\n34: \t\treturn nil, err\n35: \t}"
+        },
+        {
+          "start_line": 187,
+          "end_line": 205,
+          "text": "187: // GetSnapshotRestoreSource loads backend, remote_status, origin node and\n188: // frozen host facts for §3.1 placement. Does not consult the template table.\n189: func GetSnapshotRestoreSource(ctx context.Context, snapshotID string) (*RestoreSource, error) {\n190: \trec, err := getSnapshotRecord(ctx, snapshotID)\n191: \tif err != nil {\n192: \t\treturn nil, err\n193: \t}\n194: \tif snapshotRejectsNewUse(rec.Status) {\n195: \t\treturn nil, wrapSnapshotNotFound(snapshotID)\n196: \t}\n197: \treturn &RestoreSource{\n198: \t\tSnapshotID:          rec.SnapshotID,\n199: \t\tBackend:             rec.Backend,\n200: \t\tRemoteStatus:        rec.RemoteStatus,\n201: \t\tOriginNodeID:        rec.OriginNodeID,\n202: \t\tOriginNodeIP:        rec.OriginNodeIP,\n203: \t\tOriginHostFactsJSON: rec.OriginHostFactsJSON,\n204: \t\tInstanceType:        rec.InstanceType,\n205: \t\tExportUUIDs:         rec.ExportUUIDs,"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/templatecenter/store.go",
+      "file_sha256": "c91ca7377c85ca402998ec2355c86bfeaebb29a25cbf88fd94c402c4fc8d8c56",
+      "excerpts": [
+        {
+          "start_line": 341,
+          "end_line": 353,
+          "text": "341: func initCommon(ctx context.Context, includeSnapshotSide bool) error {\n342: \t_ = ctx\n343: \tif config.GetDbConfig() == nil {\n344: \t\treturn ErrTemplateStoreNotInitialized\n345: \t}\n346: \tvar initErr error\n347: \tstoreOnce.Do(func() {\n348: \t\t// Schema is owned by pkgs/cubedb/migrate and applied in main.go\n349: \t\t// before any business package Init runs; here we only attach to\n350: \t\t// the existing *gorm.DB.\n351: \t\tstore.db = db.Init(config.GetDbConfig())\n352: \t\tstore.dbAddr = config.GetDbConfig().Addr\n353: \t\tif includeSnapshotSide {"
+        },
+        {
+          "start_line": 1723,
+          "end_line": 1742,
+          "text": "1723: func GetTemplateRequest(ctx context.Context, templateID string) (*sandboxtypes.CreateCubeSandboxReq, error) {\n1724: \tcacheStart := time.Now()\n1725: \tif req, hit, err := getCachedTemplateRequest(templateID); err != nil {\n1726: \t\treturn nil, err\n1727: \t} else if hit {\n1728: \t\treportTemplateCacheMetric(ctx, constants.ActionTemplateCacheHit, time.Since(cacheStart))\n1729: \t\tensureRuntimeTemplateRequest(req)\n1730: \t\treturn req, nil\n1731: \t}\n1732: \treportTemplateCacheMetric(ctx, constants.ActionTemplateCacheMiss, time.Since(cacheStart))\n1733: \n1734: \tv, err := templateRequestFetchGroup.Do(templateID, func() (interface{}, error) {\n1735: \t\tvar req *sandboxtypes.CreateCubeSandboxReq\n1736: \t\terr := withTemplateReadLock(templateID, func() error {\n1737: \t\t\tdbStart := time.Now()\n1738: \t\t\tif rec, snapErr := getSnapshotRecord(ctx, templateID); snapErr == nil && rec != nil {\n1739: \t\t\t\tif snapshotRejectsNewUse(rec.Status) {\n1740: \t\t\t\t\treturn ErrTemplateNotFound\n1741: \t\t\t\t}\n1742: \t\t\t\treportTemplateMetric(ctx, constants.MySQL, store.dbAddr, constants.ActionTemplateGetDefinition, time.Since(dbStart), 0)"
+        },
+        {
+          "start_line": 1799,
+          "end_line": 1807,
+          "text": "1799: func ListReplicas(ctx context.Context, templateID string) ([]models.TemplateReplica, error) {\n1800: \tif !isReady() {\n1801: \t\treturn nil, ErrTemplateStoreNotInitialized\n1802: \t}\n1803: \tvar replicas []models.TemplateReplica\n1804: \terr := store.db.WithContext(ctx).Table(constants.TemplateReplicaTableName).\n1805: \t\tWhere(\"template_id = ?\", templateID).\n1806: \t\tOrder(\"node_id asc\").Find(&replicas).Error\n1807: \treturn replicas, err"
+        },
+        {
+          "start_line": 2009,
+          "end_line": 2059,
+          "text": "2009: func ResolveTemplateReadyReplica(ctx context.Context, templateID, preferredNodeID string) (ReplicaStatus, error) {\n2010: \treplicas, err := ListReplicas(ctx, templateID)\n2011: \tif err != nil {\n2012: \t\treturn ReplicaStatus{}, err\n2013: \t}\n2014: \tpreferredNodeID = strings.TrimSpace(preferredNodeID)\n2015: \tfor _, item := range replicas {\n2016: \t\treplica := replicaModelToStatus(item)\n2017: \t\tif !isReplicaSchedulableNow(ctx, replica) {\n2018: \t\t\tcontinue\n2019: \t\t}\n2020: \t\tif preferredNodeID == \"\" || strings.TrimSpace(replica.NodeID) == preferredNodeID {\n2021: \t\t\treturn replica, nil\n2022: \t\t}\n2023: \t}\n2024: \treturn ReplicaStatus{}, ErrTemplateHasNoReadyReplica\n2025: }\n2026: \n2027: func isTemplateReplicaSchedulable(ctx context.Context, templateID, nodeID string) bool {\n2028: \tif !isReady() || strings.TrimSpace(templateID) == \"\" || strings.TrimSpace(nodeID) == \"\" {\n2029: \t\treturn false\n2030: \t}\n2031: \treplica := models.TemplateReplica{}\n2032: \terr := store.db.WithContext(ctx).Table(constants.TemplateReplicaTableName).\n2033: \t\tWhere(\"template_id = ? AND node_id = ?\", templateID, nodeID).\n2034: \t\tFirst(&replica).Error\n2035: \tif err != nil {\n2036: \t\treturn false\n2037: \t}\n2038: \treturn isReplicaSchedulableNow(ctx, replicaModelToStatus(replica))\n2039: }\n2040: \n2041: func isReplicaSchedulableNow(ctx context.Context, replica ReplicaStatus) bool {\n2042: \t_ = ctx\n2043: \treturn strings.TrimSpace(replica.Status) == ReplicaStatusReady\n2044: }\n2045: \n2046: func EnsureTemplateLocalityReady(ctx context.Context, templateID, instanceType string) error {\n2047: \tstart := time.Now()\n2048: \tdefer func() {\n2049: \t\treportTemplateMetric(ctx, constants.CubeMasterTemplateID, constants.CubeMasterTemplateID, constants.ActionTemplateLocality, time.Since(start), 0)\n2050: \t}()\n2051: \tnodes := localcache.GetHealthyNodesByInstanceType(-1, instanceType)\n2052: \thealthyNodeIDs := make(map[string]struct{}, len(nodes))\n2053: \thealthyNodeIPs := make(map[string]struct{}, len(nodes))\n2054: \tfor i := range nodes {\n2055: \t\tif localcache.GetImageStateByNode(templateID, nodes[i].ID()) != nil {\n2056: \t\t\tif isTemplateReplicaSchedulable(ctx, templateID, nodes[i].ID()) {\n2057: \t\t\t\treportTemplateCacheMetric(ctx, constants.ActionTemplateLocalityHit, 0)\n2058: \t\t\t\treturn nil\n2059: \t\t\t}"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/service/httpservice/cube/cubeboxutil.go",
+      "file_sha256": "74ac60bd32485429186fd50778e50a336e111783ab8dca680c81ab5a5339488e",
+      "excerpts": [
+        {
+          "start_line": 29,
+          "end_line": 36,
+          "text": "29: var (\n30: \tresolveSnapshotReadyNodeScopeFn = templatecenter.ResolveSnapshotReadyNodeScope\n31: \tresolveSnapshotReadyReplicaFn   = templatecenter.ResolveSnapshotReadyReplica\n32: \tresolveTemplateReadyReplicaFn   = templatecenter.ResolveTemplateReadyReplica\n33: \tgetSnapshotRestoreSourceFn      = templatecenter.GetSnapshotRestoreSource\n34: \tdecideRestorePlacementFn        = restoreplace.Decide\n35: \tensureSnapshotReadyForNewUseFn  = templatecenter.EnsureSnapshotReadyForNewUse\n36: )"
+        },
+        {
+          "start_line": 438,
+          "end_line": 503,
+          "text": "438: func dealCubeboxCreateReqWithTemplateCenter(ctx context.Context, templateID string, reqInOut *types.CreateCubeSandboxReq) error {\n439: \tstart := time.Now()\n440: \tdefer func() {\n441: \t\ttemplatecenter.ReportResolveMetric(ctx, time.Since(start))\n442: \t}()\n443: \tif templateID == \"\" {\n444: \t\treturn errors.New(\"templateID is empty\")\n445: \t}\n446: \tstageStart := time.Now()\n447: \ttemplateReq, err := templatecenter.GetTemplateRequest(ctx, templateID)\n448: \ttemplatecenter.ReportResolveStageMetric(ctx, constants.ActionTemplateResolveRequest, time.Since(stageStart))\n449: \tif err != nil {\n450: \t\treturn fmt.Errorf(\"failed to get template param from store: %w\", err)\n451: \t}\n452: \tconstants.NormalizeAppSnapshotAnnotations(templateReq.Annotations)\n453: \tstageStart = time.Now()\n454: \tif !skipTemplateLocalityReady(ctx, templateID) {\n455: \t\terr = templatecenter.EnsureTemplateLocalityReady(ctx, templateID, reqInOut.InstanceType)\n456: \t\ttemplatecenter.ReportResolveStageMetric(ctx, constants.ActionTemplateResolveLocality, time.Since(stageStart))\n457: \t\tif err != nil {\n458: \t\t\treturn fmt.Errorf(\"template %s is not ready on any healthy node: %w\", templateID, err)\n459: \t\t}\n460: \t} else {\n461: \t\ttemplatecenter.ReportResolveStageMetric(ctx, constants.ActionTemplateResolveLocality, time.Since(stageStart))\n462: \t}\n463: \tstageStart = time.Now()\n464: \ttemplateKind, err := templatecenter.GetTemplateKind(ctx, templateID)\n465: \ttemplatecenter.ReportResolveStageMetric(ctx, constants.ActionTemplateResolveKind, time.Since(stageStart))\n466: \tif err != nil {\n467: \t\treturn fmt.Errorf(\"failed to resolve template kind: %w\", err)\n468: \t}\n469: \t// Pause-produced snaps (Kind=pause_snapshot) are internal Resume artifacts:\n470: \t// invisible on Snapshot List/Info and not usable to create a new sandbox.\n471: \tif strings.EqualFold(strings.TrimSpace(templateKind), pausesnap.KindPauseSnapshot) {\n472: \t\treturn fmt.Errorf(\"%w: %s\", templatecenter.ErrSnapshotNotFound, templateID)\n473: \t}\n474: \tif resolved := templateResolveResultFromContext(ctx); resolved != nil {\n475: \t\tresolved.TemplateID = templateID\n476: \t\tresolved.Kind = templateKind\n477: \t}\n478: \tbindStart := time.Now()\n479: \tdefer func() {\n480: \t\ttemplatecenter.ReportResolveStageMetric(ctx, constants.ActionTemplateResolveBind, time.Since(bindStart))\n481: \t}()\n482: \tif strings.EqualFold(templateKind, templatecenter.TemplateKindSnapshot) {\n483: \t\tpinToOrigin := snapshotRestoreHasRawHostMount(reqInOut, templateReq)\n484: \t\tif err := bindSnapshotCreateReplicaWithHostMount(ctx, templateID, reqInOut, pinToOrigin); err != nil {\n485: \t\t\treturn err\n486: \t\t}\n487: \t}\n488: \tif log.IsDebug() {\n489: \t\tlog.G(ctx).Debugf(\"getTemplateParam success:%s\", utils.InterfaceToString(templateReq))\n490: \t} else {\n491: \t\tlog.G(ctx).Infof(\"getTemplateParam success:template=%s %s\", templateID, summarizeTemplateRequest(templateReq))\n492: \t}\n493: \n494: \tapplyTemplateAnnotationsAndLabels(templateReq, reqInOut)\n495: \tif err := templatecenter.InheritCreateBackendFromTemplate(reqInOut, templateReq); err != nil {\n496: \t\treturn err\n497: \t}\n498: \tif !strings.EqualFold(templateKind, templatecenter.TemplateKindSnapshot) {\n499: \t\tif err := bindAppSnapshotTemplateReplica(ctx, templateID, reqInOut); err != nil {\n500: \t\t\treturn err\n501: \t\t}\n502: \t}\n503: \treqInOut.CubeNetworkConfig = mergeCubeNetworkConfigs(templateReq.CubeNetworkConfig, reqInOut.CubeNetworkConfig)"
+        },
+        {
+          "start_line": 531,
+          "end_line": 550,
+          "text": "531: \t}\n532: \tif log.IsDebug() {\n533: \t\tlog.G(ctx).Debugf(\"dealCubeboxCreateReqWithTemplateCenter success:%s\", utils.InterfaceToString(reqInOut))\n534: \t} else {\n535: \t\tlog.G(ctx).Infof(\"dealCubeboxCreateReqWithTemplateCenter success:template=%s %s\", templateID, summarizeTemplateRequest(reqInOut))\n536: \t}\n537: \treturn nil\n538: }\n539: \n540: func snapshotRestoreHasRawHostMount(req, templateReq *types.CreateCubeSandboxReq) bool {\n541: \treturn sandbox.CreateRequestHasHostMount(req) ||\n542: \t\tsandbox.CreateRequestHasHostMount(templateReq)\n543: }\n544: \n545: func skipTemplateLocalityReady(ctx context.Context, templateID string) bool {\n546: \tsrc, err := getSnapshotRestoreSourceFn(ctx, templateID)\n547: \tif err != nil || src == nil {\n548: \t\treturn false\n549: \t}\n550: \treturn restoreplace.CanCrossNode(src.Backend, src.RemoteStatus)"
+        },
+        {
+          "start_line": 764,
+          "end_line": 774,
+          "text": "764: func bindAppSnapshotTemplateReplica(ctx context.Context, templateID string, reqInOut *types.CreateCubeSandboxReq) error {\n765: \tpreferredNodeID := preferredDistributionNodeID(reqInOut)\n766: \treplica, err := resolveTemplateReadyReplicaFn(ctx, templateID, preferredNodeID)\n767: \tif err != nil {\n768: \t\treturn fmt.Errorf(\"template %s has no bindable ready replica: %w\", templateID, err)\n769: \t}\n770: \tif reqInOut.Annotations == nil {\n771: \t\treqInOut.Annotations = map[string]string{}\n772: \t}\n773: \tinjectReplicaComponentVersionAnnotations(reqInOut.Annotations, replica)\n774: \treturn nil"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/templatecenter/cache.go",
+      "file_sha256": "88e8c5755dee3e86ebf111d2a169e9d39f6dc082ff0f01d4d187b20316794b0e",
+      "excerpts": [
+        {
+          "start_line": 135,
+          "end_line": 150,
+          "text": "135: func getCachedTemplateRequest(templateID string) (*sandboxtypes.CreateCubeSandboxReq, bool, error) {\n136: \tv, ok := templateDefinitionCache.Get(templateID)\n137: \tif !ok {\n138: \t\treturn nil, false, nil\n139: \t}\n140: \treq, ok := v.(*sandboxtypes.CreateCubeSandboxReq)\n141: \tif !ok || req == nil {\n142: \t\ttemplateDefinitionCache.Delete(templateID)\n143: \t\treturn nil, false, nil\n144: \t}\n145: \tcloned, err := cloneCreateRequest(req)\n146: \tif err != nil {\n147: \t\ttemplateDefinitionCache.Delete(templateID)\n148: \t\treturn nil, false, err\n149: \t}\n150: \treturn cloned, true, nil"
+        },
+        {
+          "start_line": 397,
+          "end_line": 415,
+          "text": "397: func reportTemplateMetric(ctx context.Context, callee, endpoint, calleeAction string, cost time.Duration, code int64) {\n398: \tlog.ReportExt(ctx, callee, endpoint, \"Create\", calleeAction, cost, code)\n399: }\n400: \n401: func reportTemplateCacheMetric(ctx context.Context, calleeAction string, cost time.Duration) {\n402: \treportTemplateMetric(ctx, constants.CubeMasterTemplateID, constants.CubeMasterTemplateID, calleeAction, cost, 0)\n403: }\n404: \n405: func ReportResolveMetric(ctx context.Context, cost time.Duration) {\n406: \treportTemplateMetric(ctx, constants.CubeMasterTemplateID, constants.CubeMasterTemplateID, constants.ActionTemplateResolve, cost, 0)\n407: }\n408: \n409: // ReportResolveStageMetric emits a per-stage trace for the four sub-phases of\n410: // dealCubeboxCreateReqWithTemplateCenter (request / locality / kind / bind).\n411: // It re-uses the same Callee/Action shape as ReportResolveMetric so the\n412: // existing log.ReportExt sink handles it without additional config.\n413: func ReportResolveStageMetric(ctx context.Context, action string, cost time.Duration) {\n414: \treportTemplateMetric(ctx, constants.CubeMasterTemplateID, constants.CubeMasterTemplateID, action, cost, 0)\n415: }"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/templatecenter/snapshot_view.go",
+      "file_sha256": "c0727e382212b64527e74d8b4319aa69793eca53eff8f5f4c5e7bc0017bc1fab",
+      "excerpts": [
+        {
+          "start_line": 156,
+          "end_line": 184,
+          "text": "156: func GetTemplateKind(ctx context.Context, templateID string) (string, error) {\n157: \tid := strings.TrimSpace(templateID)\n158: \tif id == \"\" {\n159: \t\treturn \"\", ErrTemplateNotFound\n160: \t}\n161: \tif kind, ok := getCachedTemplateKind(id); ok {\n162: \t\treturn kind, nil\n163: \t}\n164: \trec, snapErr := getSnapshotRecord(ctx, id)\n165: \tif snapErr != nil && !errors.Is(snapErr, ErrSnapshotNotFound) && !errors.Is(snapErr, ErrTemplateStoreNotInitialized) {\n166: \t\treturn \"\", snapErr\n167: \t}\n168: \tif rec != nil && !snapshotRejectsNewUse(rec.Status) {\n169: \t\tsetTemplateKindCache(id, TemplateKindSnapshot)\n170: \t\treturn TemplateKindSnapshot, nil\n171: \t}\n172: \tif rec, err := pausesnap.GetBySnapshotID(ctx, id); err == nil && rec != nil {\n173: \t\tsetTemplateKindCache(id, pausesnap.KindPauseSnapshot)\n174: \t\treturn pausesnap.KindPauseSnapshot, nil\n175: \t} else if err != nil && !errors.Is(err, pausesnap.ErrNotFound) && !errors.Is(err, pausesnap.ErrNotReady) {\n176: \t\treturn \"\", err\n177: \t}\n178: \tdef, err := GetDefinition(ctx, id)\n179: \tif err != nil {\n180: \t\treturn \"\", err\n181: \t}\n182: \tkind := strings.TrimSpace(def.Kind)\n183: \tsetTemplateKindCache(id, kind)\n184: \treturn kind, nil"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/base/db/db.go",
+      "file_sha256": "40d66a513df209130dd82210fb13291c668d244c780f086169426c4c5962ad4d",
+      "excerpts": [
+        {
+          "start_line": 19,
+          "end_line": 48,
+          "text": "19: // the connection is already established by dao.Open before any business\n20: // package Init runs.\n21: func Init(cfg *config.DBConfig) *gorm.DB {\n22: \t_ = cfg\n23: \treturn dao.Default()\n24: }\n25: \n26: // ConfigFromDBConfig maps a config.DBConfig to the dao.Config used to open\n27: // the shared database handle. dao.Open keys its idempotence on this config\n28: // identity, so every call site that opens the handle before app startup\n29: // (schema init, integration/mock-debug bootstrap) must build the dao config\n30: // through this helper — keeping the two mappings from drifting.\n31: func ConfigFromDBConfig(src *config.DBConfig) (dao.Config, error) {\n32: \tif src == nil {\n33: \t\treturn dao.Config{}, errors.New(\"db config is nil\")\n34: \t}\n35: \treturn dao.Config{\n36: \t\tDriver:                      src.Driver,\n37: \t\tAddr:                        src.Addr,\n38: \t\tUser:                        src.User,\n39: \t\tPwd:                         src.Pwd,\n40: \t\tDBName:                      src.DBName,\n41: \t\tConnTimeoutSeconds:          src.ConnTimeout,\n42: \t\tReadTimeoutSeconds:          src.ReadTimeout,\n43: \t\tWriteTimeoutSeconds:         src.WriteTimeout,\n44: \t\tMaxIdleConns:                src.MaxIdleConns,\n45: \t\tMaxOpenConns:                src.MaxOpenConns,\n46: \t\tMaxConnLifeTimeSeconds:      src.MaxConnLifeTimeSeconds,\n47: \t\tMigrationLockTimeoutSeconds: src.MigrationLockTimeoutSeconds,\n48: \t}, nil"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/base/config/config.go",
+      "file_sha256": "528e890763fe1f27eb13673ef4320b6244adec172fd9e857447e8053e96cd37e",
+      "excerpts": [
+        {
+          "start_line": 70,
+          "end_line": 79,
+          "text": "70: \tMockCreateSleep        time.Duration `yaml:\"mock_create_sleep\"`\n71: \tMockPercents           []float64     `yaml:\"mock_percents\"`\n72: \tCubeDestroyCheckFilter bool          `yaml:\"cube_destroy_check_filter\"`\n73: \tDebug                  Debug         `toml:\"debug\"`\n74: \tHttpPort               int           `yaml:\"http_port\"`\n75: \t// HttpBind is the HTTP listen address. Empty means <REDACTED_LISTEN_ADDRESS> (all\n76: \t// interfaces); set to <REDACTED_LISTEN_ADDRESS> to keep the API loopback-only.\n77: \tHttpBind                  string `yaml:\"http_bind\"`\n78: \tWriteTimeout              int    `yaml:\"http_writetimeout\"`\n79: \tReadTimeout               int    `yaml:\"http_readtimeout\"`"
+        },
+        {
+          "start_line": 148,
+          "end_line": 150,
+          "text": "148: type Debug struct {\n149: \tAddress string `toml:\"address\"`\n150: }"
+        },
+        {
+          "start_line": 165,
+          "end_line": 167,
+          "text": "165: \tMaxIdleConns           int    `yaml:\"max_idle_conns\"`\n166: \tMaxOpenConns           int    `yaml:\"max_open_conns\"`\n167: \tMaxConnLifeTimeSeconds int    `yaml:\"max_conn_life_time_seconds\"`"
+        },
+        {
+          "start_line": 663,
+          "end_line": 665,
+          "text": "663: func GetDbConfig() *DBConfig {\n664: \treturn cfg.InstanceDBConfig\n665: }"
+        }
+      ]
+    },
+    {
+      "path": "pkgs/cubedb/dao/dao.go",
+      "file_sha256": "cbd9014114d731f64482e710451b8095b977f28a22a23e9fa53b0b6ca2c3cd98",
+      "excerpts": [
+        {
+          "start_line": 86,
+          "end_line": 108,
+          "text": "86: \tsqlDB, gormDB, err := drv.Open(ctx, cfg)\n87: \tif err != nil {\n88: \t\treturn nil, fmt.Errorf(\"dao: open %q: %w\", drv.Name(), err)\n89: \t}\n90: \tglobal = &handle{\n91: \t\tsqlDB:    sqlDB,\n92: \t\tgormDB:   gormDB,\n93: \t\tdriver:   drv,\n94: \t\tidentity: identity,\n95: \t\tlocker:   drv.SessionLocker(cfg),\n96: \t}\n97: \treturn gormDB, nil\n98: }\n99: \n100: func normalizeConfig(cfg Config) Config {\n101: \tif cfg.Driver == \"\" {\n102: \t\t// Backwards-compat: callers that pre-date the multi-driver split\n103: \t\t// pass empty Driver to mean \"MySQL\". The mysql driver registers\n104: \t\t// itself under the name \"mysql\".\n105: \t\tcfg.Driver = \"mysql\"\n106: \t}\n107: \tcfg.Addr = normalizeAddr(cfg.Addr)\n108: \treturn cfg"
+        }
+      ]
+    },
+    {
+      "path": "pkgs/cubedb/dao/driver/mysql/mysql.go",
+      "file_sha256": "3652bd6b2599cb544d5fc9d896d75abd7d547e13586f78eab20e98f41a3a6ede",
+      "excerpts": [
+        {
+          "start_line": 45,
+          "end_line": 66,
+          "text": "45: func (d *driver) Open(ctx context.Context, cfg dao.Config) (*sql.DB, *gorm.DB, error) {\n46: \t_ = ctx\n47: \tdsn := buildDSN(cfg)\n48: \tsqlDB, err := sql.Open(\"mysql\", dsn)\n49: \tif err != nil {\n50: \t\treturn nil, nil, fmt.Errorf(\"sql.Open: %w\", err)\n51: \t}\n52: \tif cfg.MaxIdleConns > 0 {\n53: \t\tsqlDB.SetMaxIdleConns(cfg.MaxIdleConns)\n54: \t}\n55: \tif cfg.MaxOpenConns > 0 {\n56: \t\tsqlDB.SetMaxOpenConns(cfg.MaxOpenConns)\n57: \t}\n58: \tif cfg.MaxConnLifeTimeSeconds > 0 {\n59: \t\tsqlDB.SetConnMaxLifetime(time.Duration(cfg.MaxConnLifeTimeSeconds) * time.Second)\n60: \t}\n61: \tgormDB, err := gorm.Open(gormmysql.New(gormmysql.Config{Conn: sqlDB}), &gorm.Config{})\n62: \tif err != nil {\n63: \t\t_ = sqlDB.Close()\n64: \t\treturn nil, nil, fmt.Errorf(\"gorm.Open: %w\", err)\n65: \t}\n66: \treturn sqlDB, gormDB, nil"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/base/log/log.go",
+      "file_sha256": "79470fcfb40463a337a989cc61e953ba528696e29e7ba1b9865196c576b4d8df",
+      "excerpts": [
+        {
+          "start_line": 17,
+          "end_line": 50,
+          "text": "17: func Init(conf *Conf) {\n18: \tCubeLog.SetRegion(CubeLog.Region(conf.Region))\n19: \tCubeLog.SetModuleName(conf.Module)\n20: \tCubeLog.SetCluster(conf.Cluster)\n21: \n22: \tCubeLog.EnableFileLog()\n23: \tCubeLog.SetLevel(CubeLog.StringToLevel(conf.Level))\n24: \tCubeLog.SetSkipCallerDepth(0)\n25: \tCubeLog.SetCallerPrettyfier(CubeLog.SuccinctCallerPath)\n26: \tif IsDebug() {\n27: \t\tCubeLog.SetReportCaller(true)\n28: \t}\n29: \tif conf.EnableLogMetric {\n30: \t\tCubeLog.EnableLogMetric()\n31: \t}\n32: \tCubeLog.SetVersion(version.ShowVersion())\n33: \n34: \tlogPath := conf.Path\n35: \tif logPath == \"\" {\n36: \t\tlogPath = \"/data/log/\" + conf.Module\n37: \t}\n38: \tCubeLog.Create(logPath)\n39: \n40: \ttraceLogName := conf.Module + \"-stat\"\n41: \ttraceLogWriter := CubeLog.NewRollFileWriter(logPath, traceLogName, conf.FileNum, conf.FileSize)\n42: \tCubeLog.SetTraceOutput(traceLogWriter)\n43: \n44: \tlogName := conf.Module + \"-req\"\n45: \treqLogWriter := CubeLog.NewRollFileWriter(logPath, logName, conf.FileNum, conf.FileSize)\n46: \tCubeLog.SetOutput(reqLogWriter)\n47: \n48: \tonionLogName := \"onion\" + \"-req\"\n49: \tonionStdoutLogger := CubeLog.GetLogger(\"onion\")\n50: \tonionStdoutLogger.SetOutput(CubeLog.NewRollFileWriter(logPath, onionLogName, conf.FileNum, conf.FileSize))"
+        },
+        {
+          "start_line": 90,
+          "end_line": 132,
+          "text": "90: func ReportExt(ctx context.Context, callee, endpoint, action,\n91: \tcalleeAction string, cost time.Duration, code int64) {\n92: \n93: \trt := CubeLog.GetTraceInfo(ctx)\n94: \tif rt == nil {\n95: \t\treturn\n96: \t}\n97: \n98: \trt = rt.DeepCopy()\n99: \n100: \trt.Cost = cost\n101: \tif callee != \"\" {\n102: \n103: \t\trt.Callee = callee\n104: \t}\n105: \tif endpoint != \"\" {\n106: \n107: \t\trt.CalleeEndpoint = endpoint\n108: \t}\n109: \tif action != \"\" {\n110: \n111: \t\trt.Action = action\n112: \t}\n113: \tif calleeAction != \"\" {\n114: \n115: \t\trt.CalleeAction = calleeAction\n116: \t}\n117: \trt.RetCode = int64(code)\n118: \n119: \tcontainerID, _ := ctx.Value(CubeLog.KeyContainerId).(string)\n120: \tft, _ := ctx.Value(CubeLog.KeyFunctionType).(string)\n121: \tns, _ := ctx.Value(CubeLog.KeyNamespace).(string)\n122: \tif containerID != \"\" {\n123: \t\trt.ContainerID = containerID\n124: \t}\n125: \tif ft != \"\" {\n126: \t\trt.FunctionType = ft\n127: \t}\n128: \tif ns != \"\" {\n129: \t\trt.Namespace = ns\n130: \t}\n131: \n132: \tCubeLog.Trace(rt)"
+        }
+      ]
+    },
+    {
+      "path": "pkgs/CubeLog/log.go",
+      "file_sha256": "ed22d2a46a247a33e14465be77a392e4a590a2d073b5564aefcb590f5acb8e7d",
+      "excerpts": [
+        {
+          "start_line": 24,
+          "end_line": 74,
+          "text": "24: \n25: type Config struct {\n26: \tNet Net\n27: \n28: \tPath string\n29: \n30: \tCount int\n31: \n32: \tSize int\n33: \n34: \tAsyncFlush string\n35: \tasyncFlush bool\n36: }\n37: \n38: func Init(cfg Config) {\n39: \tconfig = cfg\n40: \n41: \tif cfg.Net == CloudVpc {\n42: \t\tif cfg.Path == \"\" {\n43: \t\t\tdir, err := filepath.Abs(filepath.Dir(os.Args[0]))\n44: \t\t\tif err != nil {\n45: \t\t\t\tfmt.Println(err)\n46: \t\t\t\tpanic(err.Error())\n47: \t\t\t}\n48: \t\t\tconfig.Path = dir\n49: \t\t\tif err := os.MkdirAll(config.Path, 0755); err != nil {\n50: \t\t\t\tpanic(err)\n51: \t\t\t}\n52: \t\t}\n53: \n54: \t\treturn\n55: \t}\n56: \n57: \tconfig.asyncFlush = false\n58: \tif cfg.AsyncFlush == \"true\" {\n59: \t\tconfig.asyncFlush = true\n60: \t}\n61: }\n62: \n63: type RemoteConfig struct {\n64: \tEnableLocal string\n65: \tenablelocal bool\n66: \n67: \tRetmoteLogAddr string\n68: \tRetmoteLogPort int\n69: \n70: \tReqTimeout int\n71: }\n72: \n73: var config Config\n74: "
+        }
+      ]
+    },
+    {
+      "path": "pkgs/CubeLog/entry.go",
+      "file_sha256": "e1af9af74d5533bc30d5022fc02d158b3405dd99bfb1517f7d3550eea27aab7f",
+      "excerpts": [
+        {
+          "start_line": 120,
+          "end_line": 145,
+          "text": "120: func getCallerPath() string {\n121: \tif !reportCaller {\n122: \t\treturn \"\"\n123: \t}\n124: \n125: \tpcs := make([]uintptr, maximumCallerDepth)\n126: \tdepth := runtime.Callers(minimumCallerDepth, pcs)\n127: \tframes := runtime.CallersFrames(pcs[:depth])\n128: \n129: \tsd := skipCallerDepth\n130: \tfor f, again := frames.Next(); again; f, again = frames.Next() {\n131: \t\tpkg := getPackageName(f.Function)\n132: \n133: \t\tif pkg != cubelogPackage {\n134: \t\t\tif sd == 0 {\n135: \t\t\t\tif CallerPrettyfier != nil {\n136: \t\t\t\t\tfile := CallerPrettyfier(&f)\n137: \t\t\t\t\treturn fmt.Sprintf(\"%s:%d\", file, f.Line)\n138: \t\t\t\t}\n139: \t\t\t\treturn fmt.Sprintf(\"%s:%d\", f.File, f.Line)\n140: \t\t\t}\n141: \t\t\tsd = sd - 1\n142: \t\t}\n143: \t}\n144: \n145: \treturn \"errorCallerPath\""
+        },
+        {
+          "start_line": 247,
+          "end_line": 315,
+          "text": "247: func (entry *Entry) writef(ctx context.Context, level LogLevel, format string, v []interface{}) {\n248: \t_, ok := entry.data[\"RegionInvokeLog\"]\n249: \tif !ok && level < logLevel {\n250: \t\treturn\n251: \t}\n252: \n253: \tfields := make(Fields, 6+len(entry.data))\n254: \tfields[\"LocalIp\"] = LocalIP\n255: \tfields[\"Module\"] = moduleName\n256: \tfields[\"CodeLine\"] = getCallerPath()\n257: \tnow := time.Now()\n258: \tfields[\"@timestamp\"] = now.Format(time.RFC3339Nano)\n259: \tfields[\"LogLevel\"] = level.String()\n260: \n261: \tfor k, v := range entry.data {\n262: \t\tfields[k] = v\n263: \t}\n264: \n265: \tif format == \"\" {\n266: \t\tfields[\"LogContent\"] = fmt.Sprint(v...)\n267: \t} else {\n268: \t\tfields[\"LogContent\"] = fmt.Sprintf(format, v...)\n269: \t}\n270: \n271: \tvar bs []byte\n272: \tvar err error\n273: \tl := entry.logger\n274: \tswitch l.format {\n275: \tcase JSONFormat:\n276: \t\tbs, err = jsonCodec.Marshal(fields)\n277: \t\tif err != nil {\n278: \t\t\treturn\n279: \t\t}\n280: \t\tbs = append(bs, '\\n')\n281: \tcase TextFormat:\n282: \t\tbuf := getBuffer()\n283: \t\tdefer putBuffer(buf)\n284: \t\tfmt.Fprintf(buf, \"%s|%s|%s|%s|%s|%s|%s|%s|%s|%s\", now.Format(\"2006-01-02 15:04:05.000\"), fields[\"Region\"],\n285: \t\t\tfields[\"CodeLine\"], level.String(), fields[\"RequestId\"], fields[\"Module\"], LocalIP, fields[\"ErrorCode\"],\n286: \t\t\tfields[\"SubErrorCode\"], fields[\"LogContent\"])\n287: \t\tbuf.WriteString(\"\\n\")\n288: \t\tbs = buf.Bytes()\n289: \t}\n290: \n291: \tl.mu.Lock()\n292: \tdefer l.mu.Unlock()\n293: \n294: \tif l.debug {\n295: \t\tswitch config.Net {\n296: \t\tcase CloudVpc:\n297: \n298: \t\t\tselect {\n299: \t\t\tcase logQueue <- &logValue{value: bs, logger: l}:\n300: \t\t\tdefault:\n301: \n302: \t\t\t}\n303: \t\tdefault:\n304: \t\t\tif config.asyncFlush {\n305: \t\t\t\tselect {\n306: \t\t\t\tcase logQueue <- &logValue{value: bs, logger: l}:\n307: \t\t\t\tdefault:\n308: \n309: \t\t\t\t}\n310: \t\t\t} else {\n311: \t\t\t\tl.writer.Write(bs)\n312: \t\t\t}\n313: \t\t}\n314: \t}\n315: }"
+        }
+      ]
+    },
+    {
+      "path": "pkgs/CubeLog/logger.go",
+      "file_sha256": "f448933a30a125e669f38991adcfc38478575b92ab825ff58a5b1251798468bd",
+      "excerpts": [
+        {
+          "start_line": 65,
+          "end_line": 74,
+          "text": "65: type Logger struct {\n66: \tname         string\n67: \tformat       logFormat\n68: \twriter       io.Writer\n69: \tdebug        bool\n70: \tmu           sync.Mutex\n71: \tentryPool    sync.Pool\n72: \tcustomFields Fields\n73: }\n74: "
+        },
+        {
+          "start_line": 99,
+          "end_line": 116,
+          "text": "99: \tcase ERROR:\n100: \t\treturn \"ERROR\"\n101: \tcase FATAL:\n102: \t\treturn \"FATAL\"\n103: \tdefault:\n104: \t\treturn \"UNKNOWN\"\n105: \t}\n106: }\n107: \n108: func GetLogger(name string) *Logger {\n109: \tmu.Lock()\n110: \tdefer mu.Unlock()\n111: \n112: \tif lg, ok := loggerMap[name]; ok {\n113: \t\treturn lg\n114: \t}\n115: \tlg := &Logger{\n116: \t\tname:   name,"
+        },
+        {
+          "start_line": 343,
+          "end_line": 351,
+          "text": "343: }\n344: \n345: func flushLog(sync bool) {\n346: \tif sync {\n347: \t\tfor v := range logQueue {\n348: \t\t\tv.logger.writer.Write(v.value)\n349: \t\t}\n350: \t} else {\n351: \t\tfor {"
+        }
+      ]
+    },
+    {
+      "path": "pkgs/CubeLog/metric.go",
+      "file_sha256": "155c6ea3e6e63120e998296133a941d2fb06d0e0edbdbce152e3c446aa94ee37",
+      "excerpts": [
+        {
+          "start_line": 189,
+          "end_line": 214,
+          "text": "189: func Trace(trace *RequestTrace) {\n190: \tcost := float64(trace.Cost.Nanoseconds()/1000) / 1000\n191: \n192: \tregion := trace.Region\n193: \tif region == \"\" {\n194: \t\tregion = string(defaultRegion)\n195: \t}\n196: \ttmcluster := trace.Cluster\n197: \tif tmcluster == \"\" {\n198: \t\ttmcluster = cluster\n199: \t}\n200: \tversion := trace.Version\n201: \tif version == \"\" {\n202: \t\tversion = moduleVersion\n203: \t}\n204: \n205: \tif enableLogMetric {\n206: \t\tfields := makeLogFieldsFromTrace(trace)\n207: \t\tfields[\"CostTime\"] = cost\n208: \n209: \t\tif traceStd.writer != nil {\n210: \t\t\ttraceStd.WithFields(fields).Errorf(\"\")\n211: \t\t} else {\n212: \t\t\tstd.WithFields(fields).Errorf(\"\")\n213: \t\t}\n214: \t}"
+        }
+      ]
+    },
+    {
+      "path": "pkgs/CubeLog/logwriter.go",
+      "file_sha256": "92cf3d25f447a15f92b4cd5a6a8c0e507772f3ea55cfd1074884e247103b9937",
+      "excerpts": [
+        {
+          "start_line": 59,
+          "end_line": 139,
+          "text": "59: func reOpenFile(path string, currFile **os.File, openTime *int64) {\n60: \t*openTime = currUnixTime\n61: \tif *currFile != nil {\n62: \t\t(*currFile).Close()\n63: \t}\n64: \tof, err := os.OpenFile(path, os.O_WRONLY|os.O_APPEND|os.O_CREATE, 0666)\n65: \tif err == nil {\n66: \t\t*currFile = of\n67: \t} else {\n68: \t\tfmt.Println(\"open log file error\", err)\n69: \t}\n70: }\n71: \n72: func (w *ConsoleWriter) Write(v []byte) (int, error) {\n73: \treturn os.Stdout.Write(v)\n74: }\n75: \n76: func (w *RollFileWriter) Write(v []byte) (int, error) {\n77: \tif w.currFile == nil || w.openTime+10 < currUnixTime {\n78: \t\tfullPath := filepath.Join(w.logpath, fmt.Sprintf(\"%s.log\", w.name))\n79: \t\treOpenFile(fullPath, &w.currFile, &w.openTime)\n80: \t}\n81: \tif w.currFile == nil {\n82: \t\treturn 0, errors.New(\"w.currFile was nil\")\n83: \t}\n84: \tn, _ := w.currFile.Write(v)\n85: \tw.currSize += int64(n)\n86: \tif w.size > 0 && w.num >= 1 && w.currSize >= w.size {\n87: \t\t// file_num is total retained files (live + numbered backups), matching\n88: \t\t// Cubelet config.toml. Shift only through `.log.(num-1)` so we do\n89: \t\t// not keep an extra `.log.num` after dropping the racy async delete.\n90: \t\tlive := filepath.Join(w.logpath, fmt.Sprintf(\"%s.log\", w.name))\n91: \t\tif w.num == 1 {\n92: \t\t\tif w.currFile != nil {\n93: \t\t\t\t_ = w.currFile.Close()\n94: \t\t\t\tw.currFile = nil\n95: \t\t\t}\n96: \t\t\tif err := os.Truncate(live, 0); err != nil && !os.IsNotExist(err) {\n97: \t\t\t\tfmt.Fprintf(os.Stderr, \"cubelog: failed to truncate %s: %v\\n\", live, err)\n98: \t\t\t\treturn n, nil\n99: \t\t\t}\n100: \t\t\tw.currSize = 0\n101: \t\t\treOpenFile(live, &w.currFile, &w.openTime)\n102: \t\t\treturn n, nil\n103: \t\t}\n104: \t\tvar liveRenameErr error\n105: \t\tfor i := w.num - 1; i >= 1; i-- {\n106: \t\t\tvar n1, n2 string\n107: \t\t\tif i > 1 {\n108: \t\t\t\tn1 = strconv.Itoa(i - 1)\n109: \t\t\t}\n110: \t\t\tn2 = strconv.Itoa(i)\n111: \t\t\tp1 := filepath.Join(w.logpath, fmt.Sprintf(\"%s.log.%s\", w.name, n1))\n112: \t\t\tp2 := filepath.Join(w.logpath, fmt.Sprintf(\"%s.log.%s\", w.name, n2))\n113: \t\t\tif n1 == \"\" {\n114: \t\t\t\tp1 = live\n115: \t\t\t}\n116: \t\t\terr := os.Rename(p1, p2)\n117: \t\t\tif i == 1 {\n118: \t\t\t\tliveRenameErr = err\n119: \t\t\t}\n120: \t\t\tif err != nil && !os.IsNotExist(err) {\n121: \t\t\t\tfmt.Fprintf(os.Stderr, \"cubelog: failed to rotate %s to %s: %v\\n\", p1, p2, err)\n122: \t\t\t}\n123: \t\t}\n124: \t\tif liveRenameErr != nil && !os.IsNotExist(liveRenameErr) {\n125: \t\t\t// Keep currSize so a failed live rename cannot restart the\n126: \t\t\t// unbounded-append path this PR is closing. ENOENT means the\n127: \t\t\t// live path is gone (e.g. operator deleted it); fall through\n128: \t\t\t// and reopen so later writes are not lost on the unlinked inode.\n129: \t\t\t// This guard only fires when `.log.1` itself cannot be replaced\n130: \t\t\t// (typical num==2). For num>=3 a blocker at `.log.1` is shifted\n131: \t\t\t// to `.log.2` first, so the live rename usually succeeds.\n132: \t\t\treturn n, nil\n133: \t\t}\n134: \t\tw.currSize = 0\n135: \t\treOpenFile(live, &w.currFile, &w.openTime)\n136: \t}\n137: \n138: \treturn n, nil\n139: }"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/service/httpservice/middleware/gin_middleware.go",
+      "file_sha256": "72fb5d98c6a7106ad34ae01bf14bba6c012d75d17ab4df1a175f8e514acaeb35",
+      "excerpts": [
+        {
+          "start_line": 32,
+          "end_line": 90,
+          "text": "32: func GinRequestMiddleware() gin.HandlerFunc {\n33: \treturn func(c *gin.Context) {\n34: \t\tstart := time.Now()\n35: \t\tprofile := startFrontdoor(c.Request)\n36: \t\trt := &CubeLog.RequestTrace{\n37: \t\t\tAction:         c.Request.Method,\n38: \t\t\tCallerIP:       c.Request.RemoteAddr,\n39: \t\t\tCaller:         getCaller(c.Request),\n40: \t\t\tCallee:         constants.CubeMasterServiceID,\n41: \t\t\tCalleeAction:   c.Request.URL.Path,\n42: \t\t\tCalleeEndpoint: \"localhost\",\n43: \t\t}\n44: \n45: \t\t// Context setup (identical to the original MiddlewareLogging)\n46: \t\tctx := getHTTPUA(c.Request.Context(), c.Request)\n47: \t\tif callerHostIP := getCallerHostIP(c.Request); callerHostIP != \"\" {\n48: \t\t\tctx = constants.WithHostIP(ctx, callerHostIP)\n49: \t\t}\n50: \t\tctx = CubeLog.WithRequestTrace(ctx, rt)\n51: \t\tctx = log.WithLogger(ctx, CubeLog.WithContext(ctx))\n52: \t\tc.Request = c.Request.WithContext(ctx)\n53: \n54: \t\tvar dump []byte\n55: \t\tif log.IsDebug() {\n56: \t\t\tdump, _ = httputil.DumpRequest(c.Request, config.GetConfig().Common.DebugDumpHttpBody)\n57: \t\t}\n58: \n59: \t\tdefer func() {\n60: \t\t\tpanicked := false\n61: \t\t\tif err := recover(); err != nil {\n62: \t\t\t\tpanicked = true\n63: \t\t\t\tlog.G(ctx).Fatalf(\"HandlerFunc panic:%s\", string(debug.Stack()))\n64: \t\t\t\tcommon.WriteAPI(c, &types.Res{\n65: \t\t\t\t\tRet: &types.Ret{\n66: \t\t\t\t\t\tRetCode: -1,\n67: \t\t\t\t\t\tRetMsg:  http.StatusText(http.StatusInternalServerError),\n68: \t\t\t\t\t},\n69: \t\t\t\t})\n70: \t\t\t\tc.Abort()\n71: \t\t\t}\n72: \t\t\trt.Cost = time.Since(start)\n73: \t\t\tselect {\n74: \t\t\tcase <-ctx.Done():\n75: \t\t\t\tif errors.Is(ctx.Err(), context.Canceled) {\n76: \t\t\t\t\trt.RetCode = int64(errorcode.ErrorCode_ClientCancel)\n77: \t\t\t\t}\n78: \t\t\tdefault:\n79: \t\t\t}\n80: \t\t\tif profile != nil {\n81: \t\t\t\tprofile.finish(ctx, rt, c.Writer.Status(), panicked)\n82: \t\t\t}\n83: \t\t\tCubeLog.Trace(rt)\n84: \t\t\tif log.IsDebug() {\n85: \t\t\t\tlog.G(ctx).WithFields(map[string]interface{}{\n86: \t\t\t\t\t\"CallerIP\":  c.Request.RemoteAddr,\n87: \t\t\t\t\t\"RequestId\": rt.RequestID,\n88: \t\t\t\t}).Debugf(\"http_request_coming: %s\", string(dump))\n89: \t\t\t}\n90: \t\t}()"
+        },
+        {
+          "start_line": 119,
+          "end_line": 121,
+          "text": "119: \t\tc.Next()\n120: \t}\n121: }"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/service/httpservice/middleware/frontdoor.go",
+      "file_sha256": "b8f7ddba83b7184f8cf08a8ef9331af851c12fbd25710cae8d80144cb02e2673",
+      "excerpts": [
+        {
+          "start_line": 65,
+          "end_line": 112,
+          "text": "65: \t\treturn nil\n66: \t}\n67: \treturn newFrontdoorTrace(values[0])\n68: }\n69: func newFrontdoorTrace(id string) *frontdoorTrace {\n70: \tclock := frontdoorClock()\n71: \ttrace := &frontdoorTrace{SchemaVersion: 1, Component: \"master\", RequestID: id, Clock: clock, start: time.Now()}\n72: \ttrace.Events = append(trace.Events, trace.event(\"master_ingress\"))\n73: \treturn trace\n74: }\n75: func (trace *frontdoorTrace) event(name string) frontdoorEvent {\n76: \tvar mono *string\n77: \tif trace.Clock != nil {\n78: \t\tmono = frontdoorMonotonicNS()\n79: \t}\n80: \treturn frontdoorEvent{Name: name, OffsetNS: time.Since(trace.start).Nanoseconds(), MonoNS: mono}\n81: }\n82: func (trace *frontdoorTrace) complete(rt *CubeLog.RequestTrace, status int, outcome string) {\n83: \tevent := trace.event(\"master_response_ready\")\n84: \tevent.MasterRequestID, event.StatusCode, event.Outcome = rt.RequestID, status, outcome\n85: \t// The body RequestID becomes available only after the ingress boundary.\n86: \ttrace.Events[0].MasterRequestID = rt.RequestID\n87: \ttrace.Events = append(trace.Events, event)\n88: }\n89: func (trace *frontdoorTrace) finish(ctx context.Context, rt *CubeLog.RequestTrace, status int, panicked bool) {\n90: \toutcome := \"http_success\"\n91: \tif status >= 400 {\n92: \t\toutcome = \"http_error\"\n93: \t} else if rt.RetCode != 0 && rt.RetCode != 200 {\n94: \t\toutcome = \"backend_error\"\n95: \t}\n96: \tif ctx.Err() != nil {\n97: \t\toutcome = \"cancelled\"\n98: \t}\n99: \tif panicked {\n100: \t\toutcome = \"panic\"\n101: \t}\n102: \ttrace.complete(rt, status, outcome)\n103: \t// Existing request logger puts this bounded JSON into LogContent; no bodies,\n104: \t// URLs, headers or error strings are copied into the profiler record.\n105: \tpayload, err := json.Marshal(struct {\n106: \t\tEvent     string          `json:\"event\"`\n107: \t\tFrontdoor *frontdoorTrace `json:\"frontdoor\"`\n108: \t}{\"profiler.frontdoor\", trace})\n109: \tif err == nil {\n110: \t\tlog.G(ctx).Infof(\"%s\", payload)\n111: \t}\n112: }"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/service/httpservice/cube/sandbox_create.go",
+      "file_sha256": "c2959ff19e681a73789323ff7f28f7c871949e7d7f83456539025accce715f06",
+      "excerpts": [
+        {
+          "start_line": 41,
+          "end_line": 97,
+          "text": "41: \treq, err := constructCreateReq(r)\n42: \tif err != nil {\n43: \t\trsp.Ret.RetCode = int(errorcode.ErrorCode_MasterParamsError)\n44: \t\trsp.Ret.RetMsg = err.Error()\n45: \t\trt.RetCode = int64(errorcode.ErrorCode_MasterParamsError)\n46: \t\treturn rsp\n47: \t}\n48: \trsp.RequestID = req.RequestID\n49: \trt.RequestID = req.RequestID\n50: \trt.InstanceType = req.InstanceType\n51: \tctx := log.WithLogger(r.Context(), log.G(r.Context()).WithFields(map[string]any{\n52: \t\t\"RequestId\":    req.RequestID,\n53: \t\t\"InstanceType\": req.InstanceType,\n54: \t}))\n55: \tresolveResult := &templateResolveResult{}\n56: \tctx = withTemplateResolveResult(ctx, resolveResult)\n57: \n58: \tif err := createSandboxDealCubeboxCreateReqWithTemplateFn(ctx, req); err != nil {\n59: \t\tretCode := errorcode.ErrorCode_MasterParamsError\n60: \t\tif errors.Is(err, templatecenter.ErrTemplateNotFound) {\n61: \t\t\tretCode = errorcode.ErrorCode_NotFound\n62: \t\t}\n63: \t\trsp.Ret.RetCode = int(retCode)\n64: \t\trsp.Ret.RetMsg = err.Error()\n65: \t\trt.RetCode = int64(retCode)\n66: \t\tlog.G(ctx).Error(err)\n67: \t\treturn rsp\n68: \t}\n69: \n70: \tctx, err = runInsReq2Affinity(ctx, req)\n71: \tif err != nil {\n72: \t\trsp.Ret.RetCode = int(errorcode.ErrorCode_MasterParamsError)\n73: \t\trsp.Ret.RetMsg = err.Error()\n74: \t\trt.RetCode = int64(errorcode.ErrorCode_MasterParamsError)\n75: \t\tlog.G(ctx).Error(err)\n76: \t\treturn rsp\n77: \t}\n78: \tret := createSandboxRunFn(ctx, req)\n79: \tif ret != nil && ret.Ret != nil && ret.Ret.RetCode == int(errorcode.ErrorCode_Success) {\n80: \t\tif err := registerCreatedSandboxRuntimeRef(ctx, req, ret); err != nil {\n81: \t\t\tlog.G(ctx).Warnf(\"register snapshot runtime ref after create failed: %v\", err)\n82: \t\t}\n83: \t\t// Echo the envd version (propagated from the template annotation onto the\n84: \t\t// create request) back to the caller via the existing ext_info map, so\n85: \t\t// CubeAPI can surface it without an extra round-trip. Success branch only.\n86: \t\tif v := strings.TrimSpace(req.Annotations[constants.CubeAnnotationComponentEnvdVersion]); v != \"\" {\n87: \t\t\tif ret.ExtInfo == nil {\n88: \t\t\t\tret.ExtInfo = make(map[string]string)\n89: \t\t\t}\n90: \t\t\tret.ExtInfo[constants.CubeAnnotationComponentEnvdVersion] = v\n91: \t\t}\n92: \t}\n93: \trt.RetCode = int64(ret.Ret.RetCode)\n94: \treturn ret\n95: }\n96: \n97: func registerCreatedSandboxRuntimeRef(ctx context.Context, req *types.CreateCubeSandboxReq, ret *types.CreateCubeSandboxRes) error {"
+        },
+        {
+          "start_line": 119,
+          "end_line": 130,
+          "text": "119: \t\t}\n120: \t}\n121: \tif !strings.EqualFold(strings.TrimSpace(kind), templatecenter.TemplateKindSnapshot) {\n122: \t\treturn nil\n123: \t}\n124: \tif resolved != nil && resolved.HasChosenReplica &&\n125: \t\tstrings.EqualFold(strings.TrimSpace(resolved.TemplateID), templateID) {\n126: \t\treturn createSandboxRegisterRuntimeRefWithReplicaFn(\n127: \t\t\tctx, templateID, ret.SandboxID, ret.HostID, ret.HostIP, resolved.ChosenReplica,\n128: \t\t)\n129: \t}\n130: \treturn createSandboxRegisterRuntimeRefFn(ctx, templateID, ret.SandboxID, ret.HostID, ret.HostIP)"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/service/sandbox/sandbox_run.go",
+      "file_sha256": "c6e7ffe3a36bad404cff900aac98027614acb530229381dcc394ccfa69f0f976",
+      "excerpts": [
+        {
+          "start_line": 116,
+          "end_line": 167,
+          "text": "116: \tstartTime := time.Now()\n117: \tcreateCtx := &createSandboxContext{\n118: \t\tctx:        ctx,\n119: \t\tstartTime:  startTime,\n120: \t\tmasterRsp:  rsp,\n121: \t\treschedule: true,\n122: \t\tretryCost:  time.Duration(0),\n123: \t}\n124: \tif log.IsDebug() {\n125: \t\tlog.G(ctx).Debugf(\"CreateSandbox:%s\", safePrintCreateCubeSandboxReq(req))\n126: \t} else {\n127: \t\tlog.G(ctx).Infof(\"CreateSandbox:%s\", simplePrintCreateCubeSandboxReq(req))\n128: \t}\n129: \n130: \tdefer func() {\n131: \t\tcreateCtx.setProbeInfo()\n132: \t\tif rsp.Ret.RetCode != int(errorcode.ErrorCode_Success) {\n133: \t\t\tmsg := \"\"\n134: \t\t\tif !filterErrMsg(rsp.Ret.RetCode) {\n135: \t\t\t\tmsg = utils.InterfaceToString(rsp)\n136: \t\t\t}\n137: \t\t\tlog.G(ctx).WithFields(map[string]interface{}{\n138: \t\t\t\t\"RetCode\": int64(rsp.Ret.RetCode),\n139: \t\t\t}).Errorf(\"CreateSandbox_rsp fail:%+v\", msg)\n140: \t\t} else {\n141: \t\t\tlog.G(ctx).Infof(\"CreateSandbox_rsp:%s\", safePrintCreateCubeSandboxRes(rsp))\n142: \t\t}\n143: \t}()\n144: \n145: \tif config.GetConfig().Common.MockCreateDirect {\n146: \t\tcreateCtx.setMasterRsp(int(errorcode.ErrorCode_Success), \"\")\n147: \t\ttime.Sleep(time.Duration(1+rand.Intn(5)) * time.Millisecond)\n148: \t\treturn\n149: \t}\n150: \n151: \tif err := createCtx.newContext(ctx, req); err != nil {\n152: \t\terr, _ := ret.FromError(err)\n153: \t\tcreateCtx.setMasterRsp(int(err.Code()), err.Message())\n154: \t\treturn\n155: \t}\n156: \n157: \tif config.GetConfig().Common.MockCreateDirectHandle {\n158: \t\tcreateCtx.Handle()\n159: \t} else {\n160: \n161: \t\tscheduler.AddBufferTask(createCtx, req.InstanceType)\n162: \t}\n163: \tcreateCtx.Wait()\n164: \tcreateCtx.endTime = time.Now()\n165: \n166: \tgo createCtx.dealMetric()\n167: \treturn"
+        },
+        {
+          "start_line": 500,
+          "end_line": 529,
+          "text": "500: func (c *createSandboxContext) dealMetric() {\n501: \tif c == nil {\n502: \t\treturn\n503: \t}\n504: \tdefer func() {\n505: \t\tif r := recover(); r != nil {\n506: \t\t\tlog.G(c.ctx).Fatalf(\"dealMetric:%+v\", string(debug.Stack()))\n507: \t\t}\n508: \t}()\n509: \n510: \tbaseRt := CubeLog.GetTraceInfo(c.ctx).DeepCopy()\n511: \tbaseRt.Callee = constants.CubeLet\n512: \tbaseRt.InstanceID = c.masterRsp.SandboxID\n513: \tbaseRt.Action = \"Create\"\n514: \tbaseRt.InstanceType = c.cubeletReq.GetInstanceType()\n515: \n516: \tif c.selectHost != nil {\n517: \t\tbaseRt.CalleeEndpoint = cubelet.GetCubeletAddr(c.selectHost.HostIP())\n518: \t\tbaseRt.CalleeCluster = c.selectHost.ClusterLabel\n519: \t}\n520: \tbaseRt.RetCode = int64(c.masterRsp.Ret.RetCode)\n521: \tbaseRt.ErrorCode = CubeLog.CodeSuccess\n522: \n523: \tcost := c.endTime.Sub(c.startTime)\n524: \tbaseRt.CalleeAction = constants.ExtInfoCubeE2E\n525: \tbaseRt.Cost = cost\n526: \tCubeLog.Trace(baseRt)\n527: \n528: \tbaseRt.CalleeAction = constants.CubeMasterInnerId\n529: \tbaseRt.Cost = cost - c.cubeletEndTime.Sub(c.cubeletStartTime)"
+        }
+      ]
+    },
+    {
+      "path": "CubeAPI/src/cubemaster/mod.rs",
+      "file_sha256": "0d24c78043c8eacc2fdeeb3b7867e817884633ad69073565decac4660074d2e6",
+      "excerpts": [
+        {
+          "start_line": 60,
+          "end_line": 115,
+          "text": "60:     pub async fn create_sandbox(\n61:         &self,\n62:         req: &CreateSandboxRequest,\n63:     ) -> Result<CreateSandboxResponse, CubeMasterError> {\n64:         let profile = crate::frontdoor::current();\n65:         if let Some(trace) = &profile {\n66:             trace.mark(\"api_master_dispatch\", Some(&req.request_id), None, None);\n67:         }\n68:         let url = format!(\"{}/cube/sandbox\", self.base_url);\n69:         let mut builder = self.inner.post(&url).json(req);\n70:         if let Some(trace) = &profile {\n71:             builder = builder.header(crate::frontdoor::HEADER, trace.request_id());\n72:         }\n73:         let resp = match builder.send().await {\n74:             Ok(resp) => resp,\n75:             Err(error) => {\n76:                 if let Some(trace) = &profile {\n77:                     trace.mark(\n78:                         \"api_master_complete\",\n79:                         Some(&req.request_id),\n80:                         None,\n81:                         Some(if error.is_timeout() {\n82:                             \"timeout\"\n83:                         } else {\n84:                             \"transport_error\"\n85:                         }),\n86:                     );\n87:                 }\n88:                 return Err(CubeMasterError::Http(error));\n89:             }\n90:         };\n91:         let status = resp.status().as_u16();\n92:         if let Some(trace) = &profile {\n93:             trace.mark(\n94:                 \"api_master_headers\",\n95:                 Some(&req.request_id),\n96:                 Some(status),\n97:                 None,\n98:             );\n99:         }\n100:         let result = parse_response(resp).await;\n101:         if let Some(trace) = &profile {\n102:             let outcome = match &result {\n103:                 Ok(_) => \"ok\",\n104:                 Err(CubeMasterError::Http(error)) if error.is_timeout() => \"timeout\",\n105:                 Err(CubeMasterError::Http(_)) => \"transport_error\",\n106:                 Err(CubeMasterError::Api { .. }) => \"backend_error\",\n107:                 Err(CubeMasterError::Deserialize(_)) => \"decode_error\",\n108:                 Err(CubeMasterError::InvalidPathParameter { .. }) => \"invalid_parameter\",\n109:             };\n110:             trace.mark(\n111:                 \"api_master_complete\",\n112:                 Some(&req.request_id),\n113:                 Some(status),\n114:                 Some(outcome),\n115:             );"
+        }
+      ]
+    },
+    {
+      "path": "CubeAPI/src/state.rs",
+      "file_sha256": "2e94f0c24018ebe3576c8f177064c6a95ee9748c058156cb53dcc65371d2c506",
+      "excerpts": [
+        {
+          "start_line": 38,
+          "end_line": 49,
+          "text": "38:     pub async fn new(config: crate::config::ServerConfig, logger: ArcLogger) -> Self {\n39:         let quota = Quota::per_second(NonZeroU32::new(config.rate_limit_per_sec.max(1)).unwrap());\n40:         let rate_limiter = Arc::new(RateLimiter::keyed(quota));\n41: \n42:         let http_client = reqwest::Client::builder()\n43:             .pool_max_idle_per_host(100)\n44:             .connection_verbose(false)\n45:             .build()\n46:             .expect(\"failed to build HTTP client\");\n47: \n48:         let cubemaster = CubeMasterClient::new(config.cubemaster_url.clone(), http_client.clone());\n49:         let services = AppServices::new(&config, cubemaster);"
+        }
+      ]
+    },
+    {
+      "path": "CubeAPI/src/main.rs",
+      "file_sha256": "53470608b7c8fcad1557073490520029d592663a89839f1d03967758c55a25c2",
+      "excerpts": [
+        {
+          "start_line": 183,
+          "end_line": 200,
+          "text": "183:         auth_enabled = cfg.auth_callback_url.is_some()\n184:             || cfg.cube_api_key.is_some(),\n185:         \"cube-api starting\"\n186:     );\n187: \n188:     // ── Tokio runtime ──────────────────────────────────────────────────────\n189:     let mut builder = tokio::runtime::Builder::new_multi_thread();\n190:     if cfg.worker_threads > 0 {\n191:         builder.worker_threads(cfg.worker_threads);\n192:     }\n193:     let rt = builder\n194:         .enable_all()\n195:         .thread_name(\"cube-api-worker\")\n196:         .build()?;\n197: \n198:     rt.block_on(async_main(cfg, cli.debug))\n199: }\n200: "
+        }
+      ]
+    },
+    {
+      "path": "CubeAPI/src/logging/file.rs",
+      "file_sha256": "00abd240539db83af1288f67f3f41b6749355c65733215089446b78c3c134607",
+      "excerpts": [
+        {
+          "start_line": 53,
+          "end_line": 64,
+          "text": "53: \n54:         // Ensure the directory exists.\n55:         fs::create_dir_all(&log_dir).await?;\n56: \n57:         let (tx, mut rx) = mpsc::unbounded_channel::<Msg>();\n58: \n59:         tokio::spawn(async move {\n60:             // Current open file state\n61:             let mut current_date = String::new();\n62:             let mut file: Option<tokio::fs::File> = None;\n63: \n64:             while let Some(msg) = rx.recv().await {"
+        },
+        {
+          "start_line": 96,
+          "end_line": 107,
+          "text": "96:                                 }\n97:                             }\n98:                         }\n99: \n100:                         // Serialise and write.\n101:                         if let Some(ref mut f) = file {\n102:                             match serde_json::to_string(&event) {\n103:                                 Ok(mut line) => {\n104:                                     line.push('\\n');\n105:                                     if let Err(e) = f.write_all(line.as_bytes()).await {\n106:                                         error!(\"FileLogger: write error: {}\", e);\n107:                                     }"
+        },
+        {
+          "start_line": 127,
+          "end_line": 137,
+          "text": "127: \n128: #[async_trait]\n129: impl Logger for FileLogger {\n130:     async fn log(&self, event: LogEvent) {\n131:         // Non-blocking: if the channel is full (it's unbounded, so only OOM\n132:         // would fail) just drop and log a tracing warning.\n133:         if self.tx.send(Msg::Event(event)).is_err() {\n134:             error!(\"FileLogger: writer task is gone, dropping event\");\n135:         }\n136:     }\n137: "
+        }
+      ]
+    },
+    {
+      "path": "CubeAPI/src/frontdoor.rs",
+      "file_sha256": "12d91e0d3e4f813f39cab8e3d9d163ded3e5eddaeba7a51840bfdc6c63a931ce",
+      "excerpts": [
+        {
+          "start_line": 117,
+          "end_line": 143,
+          "text": "117:     pub fn mark(\n118:         &self,\n119:         name: &'static str,\n120:         master_id: Option<&str>,\n121:         status: Option<u16>,\n122:         outcome: Option<&'static str>,\n123:     ) {\n124:         let event = Event {\n125:             name,\n126:             offset_ns: self\n127:                 .start\n128:                 .elapsed()\n129:                 .as_nanos()\n130:                 .try_into()\n131:                 .unwrap_or(u64::MAX),\n132:             mono_ns: monotonic_ns(),\n133:             master_request_id: master_id.map(str::to_owned),\n134:             status_code: status,\n135:             outcome,\n136:         };\n137:         self.events\n138:             .lock()\n139:             .unwrap_or_else(|poison| poison.into_inner())\n140:             .push(event);\n141:     }\n142:     fn log_event(&self) -> LogEvent {\n143:         let events = self"
+        },
+        {
+          "start_line": 194,
+          "end_line": 214,
+          "text": "194:     let mut guard = CancelGuard {\n195:         trace: trace.clone(),\n196:         logger: logger.clone(),\n197:         armed: true,\n198:     };\n199:     let response = ACTIVE.scope(trace.clone(), next.run(request)).await;\n200:     let status = response.status();\n201:     trace.mark(\n202:         \"api_response_ready\",\n203:         None,\n204:         Some(status.as_u16()),\n205:         Some(if status.is_success() {\n206:             \"http_success\"\n207:         } else {\n208:             \"http_error\"\n209:         }),\n210:     );\n211:     let event = trace.log_event();\n212:     logger.log(event).await;\n213:     guard.armed = false;\n214:     response"
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/pkg/server/server.go",
+      "file_sha256": "6b82f7dccb7a12cc34f5b4876688cd185b97a583bf8dc9545f4473eeeff1089c",
+      "excerpts": [
+        {
+          "start_line": 78,
+          "end_line": 96,
+          "text": "78: func NewInternalHttp(ctx context.Context, cfg *config.Config) (*internalHttp, error) {\n79: \tif cfg == nil || cfg.Common == nil {\n80: \t\treturn nil, errors.New(\"config is nil\")\n81: \t}\n82: \n83: \tengine := newEngine()\n84: \ts := &internalHttp{\n85: \t\tServer: &http.Server{\n86: \t\t\tAddr:         net.JoinHostPort(cfg.Common.HttpBind, strconv.Itoa(cfg.Common.HttpPort)),\n87: \t\t\tReadTimeout:  time.Second * time.Duration(cfg.Common.ReadTimeout),\n88: \t\t\tWriteTimeout: time.Second * time.Duration(cfg.Common.WriteTimeout),\n89: \t\t\tIdleTimeout:  time.Second * time.Duration(cfg.Common.IdleTimeout),\n90: \t\t\tHandler:      engine,\n91: \t\t},\n92: \t\tengine: engine,\n93: \t}\n94: \n95: \ts.registerRoutes()\n96: \treturn s, nil"
+        },
+        {
+          "start_line": 107,
+          "end_line": 116,
+          "text": "107: \t// treats StatusCode == 200 as success — the shared-token gate in the\n108: \t// handler would never run. gin.Recovery keeps panic handling; the token\n109: \t// gate is the only auth on these routes (same shape as TC's internal API).\n110: \tinternal := s.engine.Group(\"\", gin.Recovery())\n111: \tcube.RegisterInternalTemplateRoutes(internal)\n112: \n113: \troot := s.engine.Group(\"\")\n114: \troot.Use(middleware.GinRequestMiddleware())\n115: \troot.GET(\"/metrics\", gin.WrapH(promhttp.Handler()))\n116: "
+        }
+      ]
+    },
+    {
+      "path": "CubeMaster/cmd/cubemaster/app/main.go",
+      "file_sha256": "34a06533675a6034a296f8c9c53705c4a3d557771b7863ab2cc8ca663f18835d",
+      "excerpts": [
+        {
+          "start_line": 283,
+          "end_line": 310,
+          "text": "283: func serveDebug(ctx context.Context, cfg *config.Config) error {\n284: \tif cfg.Common.Debug.Address != \"\" {\n285: \t\tif l, err := net.Listen(\"tcp\", cfg.Common.Debug.Address); err != nil {\n286: \t\t\tCubeLog.Errorf(\"cubemaster start debug:%v\", fmt.Errorf(\"failed to get listener for debug endpoint: %w\", err))\n287: \t\t\treturn err\n288: \t\t} else {\n289: \t\t\trecov.GoWithRecover(func() {\n290: \t\t\t\trecov.GoWithRecover(func() {\n291: \t\t\t\t\t<-ctx.Done()\n292: \t\t\t\t\tCubeLog.Infof(\"cubemaster stop debug\")\n293: \t\t\t\t\t_ = l.Close()\n294: \t\t\t\t})\n295: \t\t\t\tm := http.NewServeMux()\n296: \t\t\t\tm.Handle(\"/debug/vars\", expvar.Handler())\n297: \t\t\t\tm.Handle(\"/debug/pprof/\", http.HandlerFunc(pprof.Index))\n298: \t\t\t\tm.Handle(\"/debug/pprof/cmdline\", http.HandlerFunc(pprof.Cmdline))\n299: \t\t\t\tm.Handle(\"/debug/pprof/profile\", http.HandlerFunc(pprof.Profile))\n300: \t\t\t\tm.Handle(\"/debug/pprof/symbol\", http.HandlerFunc(pprof.Symbol))\n301: \t\t\t\tm.Handle(\"/debug/pprof/trace\", http.HandlerFunc(pprof.Trace))\n302: \t\t\t\tm.Handle(\"/debug/loglevel\", http.HandlerFunc(setLogLevel))\n303: \n304: \t\t\t\tif err := trapClosedConnErr(http.Serve(l, m)); err != nil {\n305: \t\t\t\t\tstdlog.Fatalf(\"serve failure,%v\", err)\n306: \t\t\t\t}\n307: \t\t\t})\n308: \t\t}\n309: \t}\n310: \treturn nil"
+        }
+      ]
+    }
+  ],
+  "publication": {
+    "full_file_sha256_scope": "SHA256 values identify the complete original source files, not these published excerpts. Source line numbers are preserved.",
+    "excerpt_redactions": [
+      {
+        "path": "CubeMaster/pkg/base/config/config.go",
+        "line": 75,
+        "kind": "static_listen_address_literal",
+        "count": 1
+      },
+      {
+        "path": "CubeMaster/pkg/base/config/config.go",
+        "line": 76,
+        "kind": "static_listen_address_literal",
+        "count": 1
+      }
+    ],
+    "unpublished_evidence": "../PUBLICATION.md#unpublished"
+  }
+}

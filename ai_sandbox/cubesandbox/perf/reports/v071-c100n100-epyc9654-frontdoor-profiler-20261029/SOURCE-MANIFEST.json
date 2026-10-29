@@ -1,0 +1,101 @@
+{
+  "date": "2026-10-29T07:07:06.588309+00:00",
+  "type": "document and evidence source mapping",
+  "records": [
+    {
+      "source_id": "REPORT.zh-CN.md",
+      "source_sha256": "a94ae8919385d4ae2ee477a63030257e1e55221f818620b0ef2c192a889de0ed",
+      "public_file": "REPORT.md",
+      "public_sha256": "778c29b1e7e9a5210494346da2e2f071d11874355bd471c3bfd43dbe4cc62a6b",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "REPORT.zh-CN.md",
+      "source_sha256": "a94ae8919385d4ae2ee477a63030257e1e55221f818620b0ef2c192a889de0ed",
+      "public_file": "report.html",
+      "public_sha256": "64b2ab2256f6dbabb30e61d99367d20cac05320df3e7b9ccb51d4f9cf954d9d3",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/stages-five-rounds/REPORT.zh-CN.md",
+      "source_sha256": "ed4f5c678cbd88a04314a908028d265a3518bef20d85be2352d8c09a9fb5d106",
+      "public_file": "STAGES.md",
+      "public_sha256": "93c724344b23cbf19330569d66e75edcb9dc53993cbfad6d82338a7e95dd626b",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/comparison/REPORT.md",
+      "source_sha256": "50dc1521826a9dce0b73767b7569014608ce07d8da53e53425f581dbb3478ff4",
+      "public_file": "COMPARISON.md",
+      "public_sha256": "20d8074b7a8b8c766cf0da620069c4ed126363b547b747a703d65f34b475a101",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/EXECUTION-NOTES.zh-CN.md",
+      "source_sha256": "ff0abef6e047372546f90c767e1766e8ae31d7197d5362e95fc0184280cbb047",
+      "public_file": "EXECUTION-NOTES.md",
+      "public_sha256": "b6dd30186dfb1d491fa50405ce670039f0492e4c0a431023d9980ea8c96019ad",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/runtime-trace/REPORT.zh-CN.md",
+      "source_sha256": "4319bc62c9cc3a5f051eafadb1de64a95c812a4056b4d5920818d82093dd2742",
+      "public_file": "RUNTIME-TRACE-STATUS.md",
+      "public_sha256": "432f609dc3f1ac9dff0b420932ed95f47cb3c5cf66b7d4854a647d711a2b49d8",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/figures/overhead.svg",
+      "source_sha256": "6af81337f1243fdb21ab53a6ba88ef49bf05da0a79716dc6ef293a5b3a8508f4",
+      "public_file": "figures/overhead.svg",
+      "public_sha256": "a058e72e6d876b648872ecc00961df8337257c1f77a62ef00601cf5b6e2a046f",
+      "relationship": "matplotlib SVG with trailing line whitespace normalized; plotting data and visual paths unchanged"
+    },
+    {
+      "source_id": "publication.json",
+      "source_sha256": "47ef0873262248af7659e91b611f138a1ebfa8a5161ccee616893241c20f3282",
+      "public_file": "evidence/profiler-publication.json",
+      "public_sha256": "47ef0873262248af7659e91b611f138a1ebfa8a5161ccee616893241c20f3282",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/source-audit/REPORT.zh-CN.md",
+      "source_sha256": "5713ce67ee71022989d550c888d28256b737007728cb5a72759adf9b033a4f4c",
+      "public_file": "evidence/SOURCE-AUDIT.zh-CN.md",
+      "public_sha256": "0e8f9afc0f0ce9d910ec5a24a1890e99ab8f29d0930fb5fc3abb77ee9fde156c",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/source-audit/source-excerpts.json",
+      "source_sha256": "abbbccfab581046071c2e84942a26566f83218dedf02e7693db22838882ef13f",
+      "public_file": "evidence/source-excerpts.json",
+      "public_sha256": "d01c429c310e49d4afff17252636fa7a07e0c707249fd775c782895fb5759397",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/source-audit/gorm-source-excerpts.json",
+      "source_sha256": "55cda1edc3fd6decca33374402193d5dabe2d4c8d3463693863eda8c68f8fbf8",
+      "public_file": "evidence/gorm-source-excerpts.json",
+      "public_sha256": "94bea6177b2c67165cd60ed5eee5c45fe00de87c32213e406878ceafe99ceff0",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/source-audit/snapshot-miss-log-stats.json",
+      "source_sha256": "54e413526ee31faa6efea9c36badd9370f5cf734929c47bf4b7ea668c1c29730",
+      "public_file": "evidence/snapshot-miss-log-stats.json",
+      "public_sha256": "54e413526ee31faa6efea9c36badd9370f5cf734929c47bf4b7ea668c1c29730",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    },
+    {
+      "source_id": "analysis/source-audit/extract-snapshot-miss-log-stats.py",
+      "source_sha256": "927fe33494e935e85e23c1c04df76c56195e1227846409dc753b1509159f6c23",
+      "public_file": "evidence/extract-snapshot-miss-log-stats.py",
+      "public_sha256": "927fe33494e935e85e23c1c04df76c56195e1227846409dc753b1509159f6c23",
+      "relationship": "public derivative; label, prose, links, and allowed field projection may differ; timing observations unchanged"
+    }
+  ],
+  "data_sources": "data/SOURCE-MANIFEST.json",
+  "build_sources": "evidence/provenance.json",
+  "original_sources_public": false,
+  "public_checksums": "SHA256SUMS"
+}
