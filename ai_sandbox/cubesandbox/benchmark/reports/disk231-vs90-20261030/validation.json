@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "validated_at": "2026-10-30T11:29:59.875756+08:00",
+  "raw_files_verified": 40,
+  "formal_fio_results_recomputed": 20,
+  "historical_fio_results_recomputed": 6,
+  "excluded_preliminary_attempts": 2,
+  "local_links_checked": 39,
+  "new_remote_actions": 0,
+  "limitations": [
+    "Historical single-run reference is not a simultaneous controlled comparison.",
+    "Exact HWE6A SKU-to-vendor-performance mapping remains unverified."
+  ]
+}

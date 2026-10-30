@@ -1,0 +1,98 @@
+{
+  "retrieved_at": "2026-10-30T02:11:53.579872+00:00",
+  "kind": "public document research; no remote host access or new benchmark",
+  "sources": [
+    {
+      "file": "raw/public-specs-20261030/huawei-v6-brochure.pdf",
+      "url": "https://e-file.huawei.com/marketingcloud/pep/asset/20000001/Material/66dc6d761a4649ebb372db3775887472/M3T1A669N1245661972953940210/%E9%B2%B2%E9%B9%8F%E9%83%A8%E4%BB%B6R25-%E5%BD%A9%E9%A1%B5_25H2_-ES3000%20V6%E7%B3%BB%E5%88%97NVMe%20SSD.pdf",
+      "sha256": "9ae7eeeb3cf716ccdf9ee063d5167d1e170d4f5c611a0f1ebce42c2d9f84c42e",
+      "note": "厂家官网彩页；系列Up to，非分容量性能表"
+    },
+    {
+      "file": "raw/public-specs-20261030/huawei-v6-technical-2023.pdf",
+      "url": "https://www.jointyou.com/uploads/20241212/6078e8e771c21e8c9c6a6dafd26a70a3.pdf",
+      "sha256": "3c2b5f10d64e8db9f93a11eb4bdc2d0a088da6859f9907dd2a16f657a657b4bb",
+      "note": "华为作者署名技术白皮书04，2023-08-30；第三方公开镜像，未核实本机00KN子版本适用性"
+    },
+    {
+      "file": "raw/public-specs-20261030/huawei-v6-brochure-page.html",
+      "url": "https://e.huawei.com/cn/documents/solutions/computing/66dc6d761a4649ebb372db3775887472",
+      "sha256": "d1bfb813c5681729b2f97c568ffdf9ab9eea0c2818cfe52a37c2dfd19c181dc3",
+      "note": "厂家下载入口；公开attachmentUrl"
+    },
+    {
+      "file": "raw/public-specs-20261030/huawei-v7-brochure.pdf",
+      "url": "https://e-file.huawei.com/marketingcloud/pep/asset/20000001/Material/396fa5acac9344098956958887cbf78e/M3T1A669N1245662291552948489/%E9%B2%B2%E9%B9%8F%E9%83%A8%E4%BB%B6R25-%E5%BD%A9%E9%A1%B5_25H2_-ES3000%20V7%E7%B3%BB%E5%88%97NVMe%20SSD.pdf",
+      "sha256": "f95067257dba041776a0fc2980ef28b99eacd1727373892c76ff00c92a014015",
+      "note": "厂家官网彩页；系列上限，无HWE72P456T4M000N精确型号映射"
+    },
+    {
+      "file": "raw/public-specs-20261030/huawei-nvme-product-page.html",
+      "url": "https://e.huawei.com/cn/products/computing/kunpeng/components/nvmessd",
+      "sha256": "6c786fc74970cd007325a0b2c1ecd40c9eb7679eef458e019551d46afcdb9801",
+      "note": "厂家官网V6/V7系列规格，合并单元格不能当分容量值"
+    }
+  ],
+  "exact_model_to_performance_table_verified": false,
+  "host90_models": [
+    "HWE6AP443T2M00KN",
+    "HWE72P456T4M000N",
+    "HWE62P443T8L005N"
+  ],
+  "es3600p_v6_2023_whitepaper_3200gb": {
+    "source": "huawei-v6-technical-2023.pdf",
+    "pdf_pages": [
+      18,
+      19,
+      20,
+      21
+    ],
+    "printed_pages": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "sequential_read_MB_s": 7000,
+    "sequential_write_MB_s": 4200,
+    "random_4KiB_read_iops": 1600000,
+    "random_4KiB_write_iops": 300000,
+    "read_qd1_mean_us": 96,
+    "write_qd1_mean_us": 14,
+    "random_read_jobs": 16,
+    "random_read_iodepth_per_job": 128,
+    "random_write_jobs": 8,
+    "random_write_iodepth_per_job": 32,
+    "sequential_read_bs": "128k",
+    "sequential_read_iodepth": 128,
+    "sequential_write_bs": "128k",
+    "sequential_write_iodepth": 64,
+    "environment": "maximum power; TaiShan 200 Model 2280; EulerOS 2.0 SP8; fio version not specified; random stable-state",
+    "applies_to_exact_host90_KN_revision": "unverified",
+    "lba_format_bytes": 512
+  },
+  "es3600p_v6_official_family_up_to": {
+    "source": "huawei-v6-brochure.pdf",
+    "pdf_page": 2,
+    "sequential_read_MB_s": 7400,
+    "sequential_write_MB_s": 4800,
+    "random_4KiB_read_iops": 1700000,
+    "random_4KiB_write_iops": 400000,
+    "per_capacity": false
+  },
+  "es3600p_v7_official_family_up_to": {
+    "source": "huawei-v7-brochure.pdf",
+    "pdf_page": 2,
+    "sequential_read_MB_s": 14800,
+    "sequential_write_MB_s": 11000,
+    "random_4KiB_read_iops": 3450000,
+    "random_4KiB_write_iops": 900000,
+    "per_capacity": false
+  },
+  "review": {
+    "independent_review": "passed",
+    "checked": "capacity table, random/seq queue settings, scope caveats, five source SHA256 values",
+    "new_benchmark_samples": 0
+  },
+  "publication_note": "Source paths identify original workspace evidence; external PDFs are not bundled. Use listed public URLs. Extracted facts preserve original qualifications."
+}

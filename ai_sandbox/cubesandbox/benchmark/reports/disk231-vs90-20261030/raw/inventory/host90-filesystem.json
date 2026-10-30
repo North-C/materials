@@ -1,0 +1,62 @@
+{
+  "time": {
+    "exit_code": 0,
+    "data": "2026-10-29T23:12:46+08:00",
+    "stderr": ""
+  },
+  "filesystem": {
+    "exit_code": 0,
+    "data": "meta-data=/dev/nvme2n1           isize=512    agcount=32, agsize=24414080 blks\n         =                       sectsz=512   attr=2, projid32bit=1\n         =                       crc=1        finobt=1, sparse=1, rmapbt=1\n         =                       reflink=1    bigtime=1 inobtcount=1 nrext64=1\ndata     =                       bsize=4096   blocks=781250000, imaxpct=5\n         =                       sunit=32     swidth=32 blks\nnaming   =version 2              bsize=4096   ascii-ci=0, ftype=1\nlog      =internal log           bsize=4096   blocks=381472, version=2\n         =                       sectsz=512   sunit=32 blks, lazy-count=1\nrealtime =none                   extsz=4096   blocks=0, rtextents=0",
+    "stderr": ""
+  },
+  "capacity": {
+    "exit_code": 0,
+    "data": "Filesystem                       Type     1B-blocks         Used     Available Use% Mounted on\n/dev/mapper/openeuler2403s3-root ext4  527295578112 474324897792   26110357504  95% /\n/dev/nvme2n1                     xfs  3198437490688 940952510464 2257484980224  30% /data/cubelet",
+    "stderr": ""
+  },
+  "fio_version": {
+    "exit_code": 0,
+    "data": "fio-3.34",
+    "stderr": ""
+  },
+  "namespace_format": {
+    "exit_code": 0,
+    "data": {
+      "nsze": 6250000000,
+      "ncap": 6250000000,
+      "nuse": 6250000000,
+      "nlbaf": 4,
+      "flbas": 16,
+      "lbafs": [
+        {
+          "ms": 0,
+          "ds": 9,
+          "rp": 0
+        },
+        {
+          "ms": 8,
+          "ds": 9,
+          "rp": 1
+        },
+        {
+          "ms": 64,
+          "ds": 12,
+          "rp": 1
+        },
+        {
+          "ms": 0,
+          "ds": 12,
+          "rp": 0
+        },
+        {
+          "ms": 8,
+          "ds": 12,
+          "rp": 1
+        }
+      ],
+      "dlfeat": 1,
+      "nsfeat": 16
+    },
+    "stderr": ""
+  }
+}

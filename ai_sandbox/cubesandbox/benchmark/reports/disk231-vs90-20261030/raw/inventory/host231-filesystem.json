@@ -1,0 +1,47 @@
+{
+  "time": {
+    "exit_code": 0,
+    "data": "2026-10-29T23:12:54+08:00",
+    "stderr": ""
+  },
+  "filesystem": {
+    "exit_code": 0,
+    "data": "meta-data=/dev/nvme1n1           isize=512    agcount=4, agsize=58605782 blks\n         =                       sectsz=512   attr=2, projid32bit=1\n         =                       crc=1        finobt=1, sparse=1, rmapbt=1\n         =                       reflink=1    bigtime=1 inobtcount=1 nrext64=1\ndata     =                       bsize=4096   blocks=234423126, imaxpct=25\n         =                       sunit=0      swidth=0 blks\nnaming   =version 2              bsize=4096   ascii-ci=0, ftype=1\nlog      =internal log           bsize=4096   blocks=114464, version=2\n         =                       sectsz=512   sunit=0 blks, lazy-count=1\nrealtime =none                   extsz=4096   blocks=0, rtextents=0",
+    "stderr": ""
+  },
+  "capacity": {
+    "exit_code": 0,
+    "data": "Filesystem                 Type    1B-blocks        Used    Available Use% Mounted on\n/dev/mapper/openeuler-root ext4  73391005696 65597186048   4018946048  95% /\n/dev/nvme1n1               xfs  959728279552 35151069184 924577210368   4% /data",
+    "stderr": ""
+  },
+  "fio_version": {
+    "exit_code": 0,
+    "data": "fio-3.34",
+    "stderr": ""
+  },
+  "namespace_format": {
+    "exit_code": 0,
+    "data": {
+      "nsze": 1875385008,
+      "ncap": 1875385008,
+      "nuse": 1875385008,
+      "nlbaf": 1,
+      "flbas": 0,
+      "lbafs": [
+        {
+          "ms": 0,
+          "ds": 9,
+          "rp": 2
+        },
+        {
+          "ms": 0,
+          "ds": 12,
+          "rp": 2
+        }
+      ],
+      "dlfeat": 25,
+      "nsfeat": 0
+    },
+    "stderr": ""
+  }
+}

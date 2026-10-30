@@ -1,0 +1,80 @@
+{
+  "captured_at": "2026-10-30T01:50:13.604959+00:00",
+  "operation": "read-only device model and link inventory; no I/O benchmark",
+  "block_devices": {
+    "blockdevices": [
+      {
+        "name": "nvme2n1",
+        "size": 960197124096,
+        "model": "INTEL SSDPF2KX960HZ",
+        "rev": "YCV10200",
+        "tran": "nvme",
+        "rota": false
+      },
+      {
+        "name": "nvme0n1",
+        "size": 960197124096,
+        "model": "INTEL SSDPF2KX960HZ",
+        "rev": "YCV10200",
+        "tran": "nvme",
+        "rota": false
+      },
+      {
+        "name": "nvme4n1",
+        "size": 960197124096,
+        "model": "INTEL SSDPF2KX960HZ",
+        "rev": "YCV10200",
+        "tran": "nvme",
+        "rota": false
+      },
+      {
+        "name": "nvme1n1",
+        "size": 960197124096,
+        "model": "INTEL SSDPF2KX960HZ",
+        "rev": "YCV10200",
+        "tran": "nvme",
+        "rota": false
+      },
+      {
+        "name": "nvme3n1",
+        "size": 960197124096,
+        "model": "INTEL SSDPF2KX960HZ",
+        "rev": "YCV10200",
+        "tran": "nvme",
+        "rota": false
+      }
+    ]
+  },
+  "controllers": {
+    "nvme3": {
+      "model": "INTEL SSDPF2KX960HZ",
+      "firmware_rev": "YCV10200",
+      "device/current_link_speed": "16.0 GT/s PCIe",
+      "device/current_link_width": "4"
+    },
+    "nvme1": {
+      "model": "INTEL SSDPF2KX960HZ",
+      "firmware_rev": "YCV10200",
+      "device/current_link_speed": "16.0 GT/s PCIe",
+      "device/current_link_width": "4"
+    },
+    "nvme4": {
+      "model": "INTEL SSDPF2KX960HZ",
+      "firmware_rev": "YCV10200",
+      "device/current_link_speed": "16.0 GT/s PCIe",
+      "device/current_link_width": "4"
+    },
+    "nvme2": {
+      "model": "INTEL SSDPF2KX960HZ",
+      "firmware_rev": "YCV10200",
+      "device/current_link_speed": "16.0 GT/s PCIe",
+      "device/current_link_width": "4"
+    },
+    "nvme0": {
+      "model": "INTEL SSDPF2KX960HZ",
+      "firmware_rev": "YCV10200",
+      "device/current_link_speed": "16.0 GT/s PCIe",
+      "device/current_link_width": "4"
+    }
+  }
+}

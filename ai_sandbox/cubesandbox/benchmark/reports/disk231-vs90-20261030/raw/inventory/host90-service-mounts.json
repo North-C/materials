@@ -1,0 +1,175 @@
+{
+  "time": "2026-10-29T15:09:08.494055+00:00",
+  "processes": [
+    {
+      "pid": 3208689,
+      "comm": "cube-api",
+      "exe": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+      "mnt_namespace": "mnt:[4026531841]",
+      "mounts": {
+        "/": {
+          "filesystems": [
+            {
+              "source": "/dev/mapper/openeuler2403s3-root",
+              "target": "/",
+              "fstype": "ext4",
+              "options": "rw,relatime,stripe=32",
+              "maj:min": "253:0"
+            }
+          ]
+        },
+        "/data": {
+          "filesystems": [
+            {
+              "source": "/dev/mapper/openeuler2403s3-root",
+              "target": "/",
+              "fstype": "ext4",
+              "options": "rw,relatime,stripe=32",
+              "maj:min": "253:0"
+            }
+          ]
+        },
+        "/data/cubelet": {
+          "filesystems": [
+            {
+              "source": "/dev/nvme2n1",
+              "target": "/data/cubelet",
+              "fstype": "xfs",
+              "options": "rw,noatime,attr2,inode64,logbufs=8,logbsize=128k,sunit=256,swidth=256,noquota",
+              "maj:min": "259:8"
+            }
+          ]
+        },
+        "/data/cubelet/root": {
+          "filesystems": [
+            {
+              "source": "/dev/nvme2n1",
+              "target": "/data/cubelet",
+              "fstype": "xfs",
+              "options": "rw,noatime,attr2,inode64,logbufs=8,logbsize=128k,sunit=256,swidth=256,noquota",
+              "maj:min": "259:8"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pid": 4146593,
+      "comm": "cubemaster",
+      "exe": "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster",
+      "mnt_namespace": "mnt:[4026531841]",
+      "mounts": {
+        "/": {
+          "filesystems": [
+            {
+              "source": "/dev/mapper/openeuler2403s3-root",
+              "target": "/",
+              "fstype": "ext4",
+              "options": "rw,relatime,stripe=32",
+              "maj:min": "253:0"
+            }
+          ]
+        },
+        "/data": {
+          "filesystems": [
+            {
+              "source": "/dev/mapper/openeuler2403s3-root",
+              "target": "/",
+              "fstype": "ext4",
+              "options": "rw,relatime,stripe=32",
+              "maj:min": "253:0"
+            }
+          ]
+        },
+        "/data/cubelet": {
+          "filesystems": [
+            {
+              "source": "/dev/nvme2n1",
+              "target": "/data/cubelet",
+              "fstype": "xfs",
+              "options": "rw,noatime,attr2,inode64,logbufs=8,logbsize=128k,sunit=256,swidth=256,noquota",
+              "maj:min": "259:8"
+            }
+          ]
+        },
+        "/data/cubelet/root": {
+          "filesystems": [
+            {
+              "source": "/dev/nvme2n1",
+              "target": "/data/cubelet",
+              "fstype": "xfs",
+              "options": "rw,noatime,attr2,inode64,logbufs=8,logbsize=128k,sunit=256,swidth=256,noquota",
+              "maj:min": "259:8"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "pid": 4147492,
+      "comm": "cubelet",
+      "exe": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+      "mnt_namespace": "mnt:[4026541601]",
+      "mounts": {
+        "/": {
+          "filesystems": [
+            {
+              "source": "/dev/mapper/openeuler2403s3-root",
+              "target": "/",
+              "fstype": "ext4",
+              "options": "rw,relatime,stripe=32",
+              "maj:min": "253:0"
+            }
+          ]
+        },
+        "/data": {
+          "filesystems": [
+            {
+              "source": "/dev/mapper/openeuler2403s3-root",
+              "target": "/",
+              "fstype": "ext4",
+              "options": "rw,relatime,stripe=32",
+              "maj:min": "253:0"
+            }
+          ]
+        },
+        "/data/cubelet": {
+          "filesystems": [
+            {
+              "source": "/dev/nvme2n1",
+              "target": "/data/cubelet",
+              "fstype": "xfs",
+              "options": "rw,noatime,attr2,inode64,logbufs=8,logbsize=128k,sunit=256,swidth=256,noquota",
+              "maj:min": "259:8"
+            }
+          ]
+        },
+        "/data/cubelet/root": {
+          "filesystems": [
+            {
+              "source": "/dev/nvme2n1[/root]",
+              "target": "/data/cubelet/root",
+              "fstype": "xfs",
+              "options": "rw,noatime,attr2,inode64,logbufs=8,logbsize=128k,sunit=256,swidth=256,noquota",
+              "maj:min": "259:8"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "paths": {
+    "/data": {
+      "realpath": "/data",
+      "is_symlink": false
+    },
+    "/data/cubelet": {
+      "realpath": "/data/cubelet",
+      "is_symlink": false
+    },
+    "/data/cubelet/root": {
+      "realpath": "/data/cubelet/root",
+      "is_symlink": false
+    }
+  }
+}

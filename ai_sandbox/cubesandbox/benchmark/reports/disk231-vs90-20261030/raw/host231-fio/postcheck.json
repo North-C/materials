@@ -1,0 +1,314 @@
+{
+  "started_at": "2026-10-29T15:56:26.868360+00:00",
+  "fio_sha256": "73f61966e65792098502c332374519a81bc4972cb4d23195bf675dd0e2791b74",
+  "mount": {
+    "command": [
+      "findmnt",
+      "-J",
+      "-T",
+      "/data",
+      "-o",
+      "SOURCE,TARGET,FSTYPE,OPTIONS,MAJ:MIN"
+    ],
+    "exit_code": 0,
+    "data": {
+      "filesystems": [
+        {
+          "source": "/dev/nvme1n1",
+          "target": "/data",
+          "fstype": "xfs",
+          "options": "rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota",
+          "maj:min": "259:6"
+        }
+      ]
+    },
+    "stderr": ""
+  },
+  "services": [
+    {
+      "pid": 802641,
+      "comm": "cubelet",
+      "exe": "/usr/local/services/cubetoolbox/Cubelet/bin/cubelet",
+      "sha256": "506b8a83d0859036e17a1cbda9e3392023f989af2162a3f9293a9a3e702afdf3",
+      "mnt_namespace": "mnt:[4026540098]",
+      "cubelet_root_mount": {
+        "command": [
+          "nsenter",
+          "-t",
+          "802641",
+          "-m",
+          "--",
+          "findmnt",
+          "-J",
+          "-T",
+          "/data/cubelet/root",
+          "-o",
+          "SOURCE,TARGET,FSTYPE,OPTIONS,MAJ:MIN"
+        ],
+        "exit_code": 0,
+        "data": {
+          "filesystems": [
+            {
+              "source": "/dev/nvme1n1[/cubelet/root]",
+              "target": "/data/cubelet/root",
+              "fstype": "xfs",
+              "options": "rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota",
+              "maj:min": "259:6"
+            }
+          ]
+        },
+        "stderr": ""
+      }
+    },
+    {
+      "pid": 2691780,
+      "comm": "cubemaster",
+      "exe": "/usr/local/services/cubetoolbox/CubeMaster/bin/cubemaster",
+      "sha256": "0983434d4794fcd4a424b6536be6d2a24c9e7b9b31fc80facb6327dfbac703f4",
+      "mnt_namespace": "mnt:[4026531841]",
+      "cubelet_root_mount": {
+        "command": [
+          "nsenter",
+          "-t",
+          "2691780",
+          "-m",
+          "--",
+          "findmnt",
+          "-J",
+          "-T",
+          "/data/cubelet/root",
+          "-o",
+          "SOURCE,TARGET,FSTYPE,OPTIONS,MAJ:MIN"
+        ],
+        "exit_code": 0,
+        "data": {
+          "filesystems": [
+            {
+              "source": "/dev/nvme1n1",
+              "target": "/data",
+              "fstype": "xfs",
+              "options": "rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota",
+              "maj:min": "259:6"
+            }
+          ]
+        },
+        "stderr": ""
+      }
+    },
+    {
+      "pid": 2691896,
+      "comm": "cube-api",
+      "exe": "/usr/local/services/cubetoolbox/CubeAPI/bin/cube-api",
+      "sha256": "0a6b96f81750d516e6e154e462c776f04606a0bd33247338e588e62c731abf91",
+      "mnt_namespace": "mnt:[4026531841]",
+      "cubelet_root_mount": {
+        "command": [
+          "nsenter",
+          "-t",
+          "2691896",
+          "-m",
+          "--",
+          "findmnt",
+          "-J",
+          "-T",
+          "/data/cubelet/root",
+          "-o",
+          "SOURCE,TARGET,FSTYPE,OPTIONS,MAJ:MIN"
+        ],
+        "exit_code": 0,
+        "data": {
+          "filesystems": [
+            {
+              "source": "/dev/nvme1n1",
+              "target": "/data",
+              "fstype": "xfs",
+              "options": "rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota",
+              "maj:min": "259:6"
+            }
+          ]
+        },
+        "stderr": ""
+      }
+    }
+  ],
+  "workspaces_remaining": [],
+  "blockers": [],
+  "samples": [
+    {
+      "time": "2026-10-29T15:56:27.090533+00:00",
+      "monotonic": 1864664.723231693,
+      "cpu": [
+        5824499341,
+        1075899326,
+        381744620,
+        64011381249,
+        11007689,
+        157801086,
+        38054929,
+        0
+      ],
+      "procs": [
+        "procs_running 5",
+        "procs_blocked 0"
+      ],
+      "loadavg": "2.00 2.88 2.87 6/20165 1718101",
+      "disk": [
+        100399371,
+        58478,
+        6605113388,
+        906749927,
+        45632727,
+        201514,
+        1550484966,
+        74132046,
+        0,
+        2188801,
+        980882013,
+        448,
+        0,
+        1875385008,
+        39,
+        0,
+        0
+      ]
+    },
+    {
+      "time": "2026-10-29T15:56:29.091613+00:00",
+      "monotonic": 1864666.724316048,
+      "cpu": [
+        5824499454,
+        1075899326,
+        381744756,
+        64011457778,
+        11007689,
+        157801107,
+        38054950,
+        0
+      ],
+      "procs": [
+        "procs_running 3",
+        "procs_blocked 0"
+      ],
+      "loadavg": "2.00 2.88 2.87 3/20162 1718269",
+      "disk": [
+        100399371,
+        58478,
+        6605113388,
+        906749927,
+        45632727,
+        201514,
+        1550484966,
+        74132046,
+        0,
+        2188801,
+        980882013,
+        448,
+        0,
+        1875385008,
+        39,
+        0,
+        0
+      ]
+    },
+    {
+      "time": "2026-10-29T15:56:31.092744+00:00",
+      "monotonic": 1864668.725446902,
+      "cpu": [
+        5824499567,
+        1075899326,
+        381744890,
+        64011534310,
+        11007689,
+        157801127,
+        38054971,
+        0
+      ],
+      "procs": [
+        "procs_running 4",
+        "procs_blocked 0"
+      ],
+      "loadavg": "1.92 2.85 2.86 3/20171 1718387",
+      "disk": [
+        100399371,
+        58478,
+        6605113388,
+        906749927,
+        45632727,
+        201514,
+        1550484966,
+        74132046,
+        0,
+        2188801,
+        980882013,
+        448,
+        0,
+        1875385008,
+        39,
+        0,
+        0
+      ]
+    },
+    {
+      "time": "2026-10-29T15:56:33.093935+00:00",
+      "monotonic": 1864670.726638017,
+      "cpu": [
+        5824499895,
+        1075899326,
+        381745068,
+        64011610589,
+        11007689,
+        157801149,
+        38054993,
+        0
+      ],
+      "procs": [
+        "procs_running 4",
+        "procs_blocked 0"
+      ],
+      "loadavg": "1.92 2.85 2.86 3/20163 1718496",
+      "disk": [
+        100399371,
+        58478,
+        6605113388,
+        906749927,
+        45632727,
+        201514,
+        1550484966,
+        74132046,
+        0,
+        2188801,
+        980882013,
+        448,
+        0,
+        1875385008,
+        39,
+        0,
+        0
+      ]
+    }
+  ],
+  "deltas": [
+    {
+      "seconds": 2.001084354938939,
+      "cpu_busy_percent": 0.3788076021869305,
+      "disk_read_bytes_s": 0.0,
+      "disk_write_bytes_s": 0.0,
+      "disk_util_percent": 0.0
+    },
+    {
+      "seconds": 2.0011308540124446,
+      "cpu_busy_percent": 0.3749023691746941,
+      "disk_read_bytes_s": 0.0,
+      "disk_write_bytes_s": 0.0,
+      "disk_util_percent": 0.0
+    },
+    {
+      "seconds": 2.0011911150068045,
+      "cpu_busy_percent": 0.7158755157557694,
+      "disk_read_bytes_s": 0.0,
+      "disk_write_bytes_s": 0.0,
+      "disk_util_percent": 0.0
+    }
+  ],
+  "finished_at": "2026-10-29T15:56:33.094198+00:00"
+}

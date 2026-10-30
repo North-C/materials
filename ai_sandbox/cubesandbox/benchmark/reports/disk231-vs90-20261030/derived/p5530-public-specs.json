@@ -1,0 +1,98 @@
+{
+  "checked_at": "2026-10-30T10:01:49.864701+08:00",
+  "kind": "public manufacturer specifications research; no new device load",
+  "source_page": "https://www.solidigmtechnology.cn/products/data-center/d5/p5530.html",
+  "source_api": "https://www.solidigmtechnology.cn/bin/solidigm/productConfigurator?path=%2Fcontent%2Fsolidigm%2Fcn%2Fzh%2Fproducts%2Fdata-center%2Fd5%2Fp5530",
+  "source_js": "https://www.solidigmtechnology.cn/etc.clientlibs/solidigm/clientlibs/clientlib-site.min.js",
+  "discovery": "Public page data-path /content/solidigm/cn/zh/products/data-center/d5/p5530; public clientlib fetches /bin/solidigm/productConfigurator?path=${data-path}. No credentials or login.",
+  "source_raw_file": "raw/p5530-official-product-20261030.json",
+  "source_sha256": "8217064c3864b3393c450a6347be609a008ae0e42ecaaf7b0fe800348b9bb2ce",
+  "source_retrieved_utc": "2026-10-30T01:59:12.309893+00:00",
+  "capacity_rows": [
+    {
+      "product_id": "122513",
+      "capacity": "3.84TB",
+      "seq_read_MB_s": 6500,
+      "seq_write_MB_s": 3500,
+      "rand_read_4k_iops": 875000,
+      "rand_write_4k_iops": 100000,
+      "latency_random_read": "65 µs (4K Blocks)",
+      "latency_random_write": "16 µs (4K Blocks)",
+      "ordering_codes": [
+        "SSDPF2KX038XZN1",
+        "SSDPF2KX038TZN1"
+      ]
+    },
+    {
+      "product_id": "122511",
+      "capacity": "1.92TB",
+      "seq_read_MB_s": 6500,
+      "seq_write_MB_s": 3000,
+      "rand_read_4k_iops": 550000,
+      "rand_write_4k_iops": 100000,
+      "latency_random_read": "65 µs (4K Blocks)",
+      "latency_random_write": "16 µs (4K Blocks)",
+      "ordering_codes": [
+        "SSDPF2KX019XZN1",
+        "SSDPF2KX019TZN1"
+      ]
+    },
+    {
+      "product_id": "122512",
+      "capacity": "960GB",
+      "seq_read_MB_s": 5500,
+      "seq_write_MB_s": 1600,
+      "rand_read_4k_iops": 300000,
+      "rand_write_4k_iops": 75000,
+      "latency_random_read": "65 µs (4K Blocks)",
+      "latency_random_write": "16 µs (4K Blocks)",
+      "ordering_codes": [
+        "SSDPF2KX960HZN1",
+        "SSDPF2KX960GZN1"
+      ]
+    }
+  ],
+  "local_measurement_comparison": {
+    "seq-read": {
+      "measured_median": 6217021990,
+      "published_value": 5500000000,
+      "arithmetic_change_percent": 13.036763454545452,
+      "strict_same_conditions": false
+    },
+    "seq-write": {
+      "measured_median": 1834064910,
+      "published_value": 1600000000,
+      "arithmetic_change_percent": 14.629056875000002,
+      "strict_same_conditions": false
+    },
+    "rand-read": {
+      "measured_median": 316931.27583,
+      "published_value": 300000,
+      "arithmetic_change_percent": 5.643758609999994,
+      "strict_same_conditions": false
+    },
+    "rand-write": {
+      "measured_median": 424243.634182,
+      "published_value": 75000,
+      "arithmetic_change_percent": 465.6581789093334,
+      "strict_same_conditions": false
+    }
+  },
+  "method_reference": {
+    "url": "https://www.ssd.group/wp-content/uploads/2023/01/Solidigm-D5-P5530-Product-Spec-349827-002US.pdf",
+    "revision": "349827-002US / January 2022",
+    "pages": [
+      43,
+      44
+    ],
+    "tables": [
+      38,
+      40,
+      41
+    ],
+    "status": "Intel/Solidigm-authored historical document on third-party public mirror; Confidential label and not-final/not-official disclaimer; supplementary method reference only, numeric product values independently confirmed by live official endpoint",
+    "random": "4KiB, QD32 x8, full LBA span, PM0, matched-transfer-size write preconditioning for reads",
+    "sequential": "128KiB, QD256 x1, full LBA span, steady state, PM0, CentOS7.5/kernel4.14.74"
+  },
+  "publication_note": "Source paths identify original workspace evidence; external PDFs are not bundled. Use listed public URLs. Extracted facts preserve original qualifications."
+}

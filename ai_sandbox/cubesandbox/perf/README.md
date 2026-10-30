@@ -4,6 +4,10 @@
 
 **后续通用工具维护迁至 [GitCode 私有仓库 cubesandbox-startup-profiler](https://gitcode.com/yuncongyue/cubesandbox-startup-profiler)**，访问需要相应成员权限。新仓库仅包含通用分析与参数化采集代码、阶段文档和合成样例，不携带本目录中的测试机信息、实测报告或运行证据。本目录脚本作为历史版本保留，不再同步工具功能更新。
 
+## 磁盘能力与业务瓶颈的边界
+
+- [123.60.230.231与192.168.25.90磁盘综合报告（2026-10-30）](../benchmark/reports/disk231-vs90-20261030/REPORT.md)：在用数据盘均Gen4×4；.231顺读6.217GB/s、随机读31.69万IOPS，对.90历史单轮低17.1%/63.7%。P5530 960GB官网随机读30万；不能据跨型号差值判异常，也不能把fio倍率直接换算c100/resume收益。原始证据统一保存在benchmark专题包。
+
 ## 对比测试身份与补丁清单
 
 - [二进制 × 生效补丁 × 内核 × 性能，以及内核基线/附加补丁清单（2026-10-27）](../comparison-inventory-20261027/README.md)：独立专题保留两份公开报告、来源哈希与未公开证据说明。区分 original/kit/stack/hotset/自动学习 prewrite、旧K2与V2，不跨条件聚合；本次仅资料发布，没有新增测试。

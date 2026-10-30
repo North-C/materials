@@ -1,0 +1,703 @@
+{
+  "started_at": "2026-10-29T15:08:35.392304+00:00",
+  "kind": "read-only inventory, no benchmark, no cache changes",
+  "kernel": "6.6.0-sp3-tlbi3-1027",
+  "cpu_arch": "aarch64",
+  "mounts": {
+    "/": {
+      "exit_code": 0,
+      "data": {
+        "filesystems": [
+          {
+            "source": "/dev/mapper/openeuler2403s3-root",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,stripe=32",
+            "size": "491.1G",
+            "used": "441.7G",
+            "avail": "24.3G",
+            "use%": "90%",
+            "maj:min": "253:0"
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    "/boot": {
+      "exit_code": 0,
+      "data": {
+        "filesystems": [
+          {
+            "source": "/dev/nvme1n1p2",
+            "target": "/boot",
+            "fstype": "ext4",
+            "options": "rw,relatime,stripe=32",
+            "size": "1.9G",
+            "used": "1.8G",
+            "avail": "0",
+            "use%": "96%",
+            "maj:min": "259:6"
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    "/data": {
+      "exit_code": 0,
+      "data": {
+        "filesystems": [
+          {
+            "source": "/dev/mapper/openeuler2403s3-root",
+            "target": "/",
+            "fstype": "ext4",
+            "options": "rw,relatime,stripe=32",
+            "size": "491.1G",
+            "used": "441.7G",
+            "avail": "24.3G",
+            "use%": "90%",
+            "maj:min": "253:0"
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    "/data/cubelet": {
+      "exit_code": 0,
+      "data": {
+        "filesystems": [
+          {
+            "source": "/dev/nvme2n1",
+            "target": "/data/cubelet",
+            "fstype": "xfs",
+            "options": "rw,noatime,attr2,inode64,logbufs=8,logbsize=128k,sunit=256,swidth=256,noquota",
+            "size": "2.9T",
+            "used": "876.3G",
+            "avail": "2.1T",
+            "use%": "29%",
+            "maj:min": "259:8"
+          }
+        ]
+      },
+      "stderr": ""
+    },
+    "/data/cubelet/root": {
+      "exit_code": 0,
+      "data": {
+        "filesystems": [
+          {
+            "source": "/dev/nvme2n1",
+            "target": "/data/cubelet",
+            "fstype": "xfs",
+            "options": "rw,noatime,attr2,inode64,logbufs=8,logbsize=128k,sunit=256,swidth=256,noquota",
+            "size": "2.9T",
+            "used": "876.3G",
+            "avail": "2.1T",
+            "use%": "29%",
+            "maj:min": "259:8"
+          }
+        ]
+      },
+      "stderr": ""
+    }
+  },
+  "lsblk": {
+    "exit_code": 0,
+    "data": {
+      "blockdevices": [
+        {
+          "name": "nvme3n1",
+          "kname": "nvme3n1",
+          "path": "/dev/nvme3n1",
+          "type": "disk",
+          "size": 3840755982336,
+          "rota": false,
+          "tran": "nvme",
+          "model": "HWE62P443T8L005N",
+          "rev": "8318",
+          "fstype": null,
+          "mountpoint": null,
+          "pkname": null,
+          "log-sec": 512,
+          "phy-sec": 512,
+          "sched": "none",
+          "ro": false,
+          "children": [
+            {
+              "name": "nvme3n1p1",
+              "kname": "nvme3n1p1",
+              "path": "/dev/nvme3n1p1",
+              "type": "part",
+              "size": 629145600,
+              "rota": false,
+              "tran": "nvme",
+              "model": null,
+              "rev": null,
+              "fstype": "vfat",
+              "mountpoint": null,
+              "pkname": "nvme3n1",
+              "log-sec": 512,
+              "phy-sec": 512,
+              "sched": "none",
+              "ro": false
+            },
+            {
+              "name": "nvme3n1p2",
+              "kname": "nvme3n1p2",
+              "path": "/dev/nvme3n1p2",
+              "type": "part",
+              "size": 2147483648,
+              "rota": false,
+              "tran": "nvme",
+              "model": null,
+              "rev": null,
+              "fstype": "xfs",
+              "mountpoint": null,
+              "pkname": "nvme3n1",
+              "log-sec": 512,
+              "phy-sec": 512,
+              "sched": "none",
+              "ro": false
+            },
+            {
+              "name": "nvme3n1p3",
+              "kname": "nvme3n1p3",
+              "path": "/dev/nvme3n1p3",
+              "type": "part",
+              "size": 2508265095168,
+              "rota": false,
+              "tran": "nvme",
+              "model": null,
+              "rev": null,
+              "fstype": "LVM2_member",
+              "mountpoint": null,
+              "pkname": "nvme3n1",
+              "log-sec": 512,
+              "phy-sec": 512,
+              "sched": "none",
+              "ro": false,
+              "children": [
+                {
+                  "name": "opencloudos-home",
+                  "kname": "dm-2",
+                  "path": "/dev/mapper/opencloudos-home",
+                  "type": "lvm",
+                  "size": 1649267441664,
+                  "rota": false,
+                  "tran": null,
+                  "model": null,
+                  "rev": null,
+                  "fstype": "xfs",
+                  "mountpoint": null,
+                  "pkname": "nvme3n1p3",
+                  "log-sec": 512,
+                  "phy-sec": 512,
+                  "sched": null,
+                  "ro": false
+                },
+                {
+                  "name": "opencloudos-root",
+                  "kname": "dm-4",
+                  "path": "/dev/mapper/opencloudos-root",
+                  "type": "lvm",
+                  "size": 858993459200,
+                  "rota": false,
+                  "tran": null,
+                  "model": null,
+                  "rev": null,
+                  "fstype": "xfs",
+                  "mountpoint": null,
+                  "pkname": "nvme3n1p3",
+                  "log-sec": 512,
+                  "phy-sec": 512,
+                  "sched": null,
+                  "ro": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "nvme1n1",
+          "kname": "nvme1n1",
+          "path": "/dev/nvme1n1",
+          "type": "disk",
+          "size": 3200631791616,
+          "rota": false,
+          "tran": "nvme",
+          "model": "HWE6AP443T2M00KN",
+          "rev": "1573",
+          "fstype": null,
+          "mountpoint": null,
+          "pkname": null,
+          "log-sec": 512,
+          "phy-sec": 512,
+          "sched": "none",
+          "ro": false,
+          "children": [
+            {
+              "name": "nvme1n1p1",
+              "kname": "nvme1n1p1",
+              "path": "/dev/nvme1n1p1",
+              "type": "part",
+              "size": 629145600,
+              "rota": false,
+              "tran": "nvme",
+              "model": null,
+              "rev": null,
+              "fstype": "vfat",
+              "mountpoint": "/boot/efi",
+              "pkname": "nvme1n1",
+              "log-sec": 512,
+              "phy-sec": 512,
+              "sched": "none",
+              "ro": false
+            },
+            {
+              "name": "nvme1n1p2",
+              "kname": "nvme1n1p2",
+              "path": "/dev/nvme1n1p2",
+              "type": "part",
+              "size": 2147483648,
+              "rota": false,
+              "tran": "nvme",
+              "model": null,
+              "rev": null,
+              "fstype": "ext4",
+              "mountpoint": "/boot",
+              "pkname": "nvme1n1",
+              "log-sec": 512,
+              "phy-sec": 512,
+              "sched": "none",
+              "ro": false
+            },
+            {
+              "name": "nvme1n1p3",
+              "kname": "nvme1n1p3",
+              "path": "/dev/nvme1n1p3",
+              "type": "part",
+              "size": 2740197523456,
+              "rota": false,
+              "tran": "nvme",
+              "model": null,
+              "rev": null,
+              "fstype": "LVM2_member",
+              "mountpoint": null,
+              "pkname": "nvme1n1",
+              "log-sec": 512,
+              "phy-sec": 512,
+              "sched": "none",
+              "ro": false,
+              "children": [
+                {
+                  "name": "openeuler2403s3-root",
+                  "kname": "dm-0",
+                  "path": "/dev/mapper/openeuler2403s3-root",
+                  "type": "lvm",
+                  "size": 536870912000,
+                  "rota": false,
+                  "tran": null,
+                  "model": null,
+                  "rev": null,
+                  "fstype": "ext4",
+                  "mountpoint": "/",
+                  "pkname": "nvme1n1p3",
+                  "log-sec": 512,
+                  "phy-sec": 512,
+                  "sched": null,
+                  "ro": false
+                },
+                {
+                  "name": "openeuler2403s3-swap",
+                  "kname": "dm-1",
+                  "path": "/dev/mapper/openeuler2403s3-swap",
+                  "type": "lvm",
+                  "size": 4294967296,
+                  "rota": false,
+                  "tran": null,
+                  "model": null,
+                  "rev": null,
+                  "fstype": "swap",
+                  "mountpoint": null,
+                  "pkname": "nvme1n1p3",
+                  "log-sec": 512,
+                  "phy-sec": 512,
+                  "sched": null,
+                  "ro": false
+                },
+                {
+                  "name": "openeuler2403s3-home",
+                  "kname": "dm-3",
+                  "path": "/dev/mapper/openeuler2403s3-home",
+                  "type": "lvm",
+                  "size": 2199023255552,
+                  "rota": false,
+                  "tran": null,
+                  "model": null,
+                  "rev": null,
+                  "fstype": "ext4",
+                  "mountpoint": "/home",
+                  "pkname": "nvme1n1p3",
+                  "log-sec": 512,
+                  "phy-sec": 512,
+                  "sched": null,
+                  "ro": false
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "nvme2n1",
+          "kname": "nvme2n1",
+          "path": "/dev/nvme2n1",
+          "type": "disk",
+          "size": 3200000000000,
+          "rota": false,
+          "tran": "nvme",
+          "model": "HWE6AP443T2M00KN",
+          "rev": "1069",
+          "fstype": "xfs",
+          "mountpoint": "/data/cubelet",
+          "pkname": null,
+          "log-sec": 512,
+          "phy-sec": 512,
+          "sched": "none",
+          "ro": false
+        },
+        {
+          "name": "nvme0n1",
+          "kname": "nvme0n1",
+          "path": "/dev/nvme0n1",
+          "type": "disk",
+          "size": 6400000000000,
+          "rota": false,
+          "tran": "nvme",
+          "model": "HWE72P456T4M000N",
+          "rev": "1049",
+          "fstype": "xfs",
+          "mountpoint": null,
+          "pkname": null,
+          "log-sec": 512,
+          "phy-sec": 512,
+          "sched": "none",
+          "ro": false
+        }
+      ]
+    },
+    "stderr": ""
+  },
+  "df": {
+    "exit_code": 0,
+    "data": "Filesystem                       Type    1B-blocks         Used   Available Use% Mounted on\n/dev/mapper/openeuler2403s3-root ext4 527295578112 474321514496 26113740800  95% /\n/dev/mapper/openeuler2403s3-root ext4 527295578112 474321514496 26113740800  95% /",
+    "stderr": ""
+  },
+  "lvm": {
+    "exit_code": 0,
+    "data": {
+      "report": [
+        {
+          "lv": [
+            {
+              "lv_name": "home",
+              "vg_name": "opencloudos",
+              "lv_size": "1649267441664",
+              "devices": "/dev/nvme3n1p3(0)"
+            },
+            {
+              "lv_name": "root",
+              "vg_name": "opencloudos",
+              "lv_size": "858993459200",
+              "devices": "/dev/nvme3n1p3(393216)"
+            },
+            {
+              "lv_name": "home",
+              "vg_name": "openeuler2403s3",
+              "lv_size": "2199023255552",
+              "devices": "/dev/nvme1n1p3(128000)"
+            },
+            {
+              "lv_name": "root",
+              "vg_name": "openeuler2403s3",
+              "lv_size": "536870912000",
+              "devices": "/dev/nvme1n1p3(0)"
+            },
+            {
+              "lv_name": "swap",
+              "vg_name": "openeuler2403s3",
+              "lv_size": "4294967296",
+              "devices": "/dev/nvme1n1p3(652288)"
+            }
+          ]
+        }
+      ]
+    },
+    "stderr": ""
+  },
+  "nvme": {
+    "nvme3": {
+      "model": "HWE62P443T8L005N",
+      "firmware_rev": "8318",
+      "state": "live",
+      "numa_node": "0",
+      "pci_address": "0000:21:00.0",
+      "pci": {
+        "vendor": "0x19e5",
+        "device": "0x3754",
+        "numa_node": "0",
+        "current_link_speed": "16.0 GT/s PCIe",
+        "current_link_width": "4",
+        "max_link_speed": "16.0 GT/s PCIe",
+        "max_link_width": "4"
+      },
+      "pci_topology": "/sys/devices/pci0000:20/0000:20:00.0/0000:21:00.0",
+      "link_capability_status": [
+        "21:00.0 Non-Volatile memory controller: Huawei Technologies Co., Ltd. ES3000 V6 NVMe PCIe SSD (prog-if 02 [NVM Express])",
+        "DevCtl:\tCorrErr+ NonFatalErr+ FatalErr+ UnsupReq+",
+        "LnkCap:\tPort #0, Speed 16GT/s, Width x4, ASPM not supported",
+        "LnkSta:\tSpeed 16GT/s, Width x4",
+        "Kernel driver in use: nvme"
+      ],
+      "smart": {
+        "critical_warning": 0,
+        "temperature": 320,
+        "avail_spare": 100,
+        "spare_thresh": 10,
+        "percent_used": 0,
+        "data_units_read": 60428204,
+        "data_units_written": 411536000,
+        "host_read_commands": 4635063043,
+        "host_write_commands": 2055206178,
+        "controller_busy_time": 8120,
+        "power_cycles": 325,
+        "power_on_hours": 9571,
+        "unsafe_shutdowns": 189,
+        "media_errors": 0,
+        "num_err_log_entries": 0,
+        "warning_temp_time": 0,
+        "critical_comp_time": 0
+      }
+    },
+    "nvme1": {
+      "model": "HWE6AP443T2M00KN",
+      "firmware_rev": "1573",
+      "state": "live",
+      "numa_node": "0",
+      "pci_address": "0000:22:00.0",
+      "pci": {
+        "vendor": "0x19e5",
+        "device": "0x37d4",
+        "numa_node": "0",
+        "current_link_speed": "16.0 GT/s PCIe",
+        "current_link_width": "4",
+        "max_link_speed": "16.0 GT/s PCIe",
+        "max_link_width": "4"
+      },
+      "pci_topology": "/sys/devices/pci0000:20/0000:20:02.0/0000:22:00.0",
+      "link_capability_status": [
+        "22:00.0 Non-Volatile memory controller: Huawei Technologies Co., Ltd. Device 37d4 (rev 21) (prog-if 02 [NVM Express])",
+        "DevCtl:\tCorrErr+ NonFatalErr+ FatalErr+ UnsupReq+",
+        "LnkCap:\tPort #0, Speed 16GT/s, Width x4, ASPM not supported",
+        "LnkSta:\tSpeed 16GT/s, Width x4",
+        "Kernel driver in use: nvme"
+      ],
+      "smart": {
+        "critical_warning": 0,
+        "temperature": 318,
+        "avail_spare": 100,
+        "spare_thresh": 10,
+        "percent_used": 0,
+        "data_units_read": 153078197,
+        "data_units_written": 566961616,
+        "host_read_commands": 14626316489,
+        "host_write_commands": 48123357436,
+        "controller_busy_time": 2346,
+        "power_cycles": 253,
+        "power_on_hours": 9100,
+        "unsafe_shutdowns": 118,
+        "media_errors": 0,
+        "num_err_log_entries": 1853,
+        "warning_temp_time": 0,
+        "critical_comp_time": 0
+      }
+    },
+    "nvme2": {
+      "model": "HWE6AP443T2M00KN",
+      "firmware_rev": "1069",
+      "state": "live",
+      "numa_node": "0",
+      "pci_address": "0000:29:00.0",
+      "pci": {
+        "vendor": "0x19e5",
+        "device": "0x37d4",
+        "numa_node": "0",
+        "current_link_speed": "16.0 GT/s PCIe",
+        "current_link_width": "4",
+        "max_link_speed": "16.0 GT/s PCIe",
+        "max_link_width": "4"
+      },
+      "pci_topology": "/sys/devices/pci0000:20/0000:20:16.0/0000:29:00.0",
+      "link_capability_status": [
+        "29:00.0 Non-Volatile memory controller: Huawei Technologies Co., Ltd. Device 37d4 (rev 21) (prog-if 02 [NVM Express])",
+        "DevCtl:\tCorrErr+ NonFatalErr+ FatalErr+ UnsupReq+",
+        "LnkCap:\tPort #0, Speed 16GT/s, Width x4, ASPM not supported",
+        "LnkSta:\tSpeed 16GT/s, Width x4",
+        "Kernel driver in use: nvme"
+      ],
+      "smart": {
+        "critical_warning": 0,
+        "temperature": 314,
+        "avail_spare": 100,
+        "spare_thresh": 10,
+        "percent_used": 0,
+        "data_units_read": 92398589,
+        "data_units_written": 144390649,
+        "host_read_commands": 1435179556,
+        "host_write_commands": 2022007402,
+        "controller_busy_time": 998,
+        "power_cycles": 220,
+        "power_on_hours": 13717,
+        "unsafe_shutdowns": 120,
+        "media_errors": 0,
+        "num_err_log_entries": 0,
+        "warning_temp_time": 0,
+        "critical_comp_time": 0
+      }
+    },
+    "nvme0": {
+      "model": "HWE72P456T4M000N",
+      "firmware_rev": "1049",
+      "state": "live",
+      "numa_node": "0",
+      "pci_address": "0000:28:00.0",
+      "pci": {
+        "vendor": "0x19e5",
+        "device": "0x3755",
+        "numa_node": "0",
+        "current_link_speed": "32.0 GT/s PCIe",
+        "current_link_width": "4",
+        "max_link_speed": "32.0 GT/s PCIe",
+        "max_link_width": "4"
+      },
+      "pci_topology": "/sys/devices/pci0000:20/0000:20:14.0/0000:28:00.0",
+      "link_capability_status": [
+        "28:00.0 Non-Volatile memory controller: Huawei Technologies Co., Ltd. Device 3755 (rev 21) (prog-if 02 [NVM Express])",
+        "DevCtl:\tCorrErr+ NonFatalErr+ FatalErr+ UnsupReq+",
+        "LnkCap:\tPort #0, Speed 32GT/s, Width x4, ASPM L0s L1, Exit Latency L0s <4us, L1 <64us",
+        "LnkSta:\tSpeed 32GT/s, Width x4",
+        "Kernel driver in use: nvme"
+      ],
+      "smart": {
+        "critical_warning": 0,
+        "temperature": 312,
+        "avail_spare": 100,
+        "spare_thresh": 10,
+        "percent_used": 0,
+        "data_units_read": 230083834,
+        "data_units_written": 196327743,
+        "host_read_commands": 12292800957,
+        "host_write_commands": 8231151377,
+        "controller_busy_time": 599,
+        "power_cycles": 270,
+        "power_on_hours": 9557,
+        "unsafe_shutdowns": 150,
+        "media_errors": 0,
+        "num_err_log_entries": 0,
+        "warning_temp_time": 0,
+        "critical_comp_time": 0
+      }
+    }
+  },
+  "disks": {
+    "nvme0n1": {
+      "rotational": "0",
+      "scheduler": "[none] mq-deadline kyber bfq",
+      "read_ahead_kb": "4096",
+      "nr_requests": "1023",
+      "max_sectors_kb": "128",
+      "logical_block_size": "512",
+      "physical_block_size": "512",
+      "write_cache": "write through",
+      "fua": "0",
+      "io_poll": "0",
+      "nomerges": "0",
+      "rq_affinity": "1",
+      "discard_max_bytes": "2199023255040",
+      "size_sectors": "12500000000",
+      "device_path": "/sys/devices/pci0000:20/0000:20:14.0/0000:28:00.0/nvme/nvme0"
+    },
+    "nvme3n1": {
+      "rotational": "0",
+      "scheduler": "[none] mq-deadline kyber bfq",
+      "read_ahead_kb": "4096",
+      "nr_requests": "1023",
+      "max_sectors_kb": "128",
+      "logical_block_size": "512",
+      "physical_block_size": "512",
+      "write_cache": "write through",
+      "fua": "0",
+      "io_poll": "0",
+      "nomerges": "0",
+      "rq_affinity": "1",
+      "discard_max_bytes": "2199023255040",
+      "size_sectors": "7501476528",
+      "device_path": "/sys/devices/pci0000:20/0000:20:00.0/0000:21:00.0/nvme/nvme3"
+    },
+    "nvme2n1": {
+      "rotational": "0",
+      "scheduler": "[none] mq-deadline kyber bfq",
+      "read_ahead_kb": "4096",
+      "nr_requests": "1023",
+      "max_sectors_kb": "128",
+      "logical_block_size": "512",
+      "physical_block_size": "512",
+      "write_cache": "write through",
+      "fua": "0",
+      "io_poll": "0",
+      "nomerges": "0",
+      "rq_affinity": "1",
+      "discard_max_bytes": "2199023255040",
+      "size_sectors": "6250000000",
+      "device_path": "/sys/devices/pci0000:20/0000:20:16.0/0000:29:00.0/nvme/nvme2"
+    },
+    "nvme1n1": {
+      "rotational": "0",
+      "scheduler": "[none] mq-deadline kyber bfq",
+      "read_ahead_kb": "4096",
+      "nr_requests": "1023",
+      "max_sectors_kb": "128",
+      "logical_block_size": "512",
+      "physical_block_size": "512",
+      "write_cache": "write through",
+      "fua": "0",
+      "io_poll": "0",
+      "nomerges": "0",
+      "rq_affinity": "1",
+      "discard_max_bytes": "2199023255040",
+      "size_sectors": "6251233968",
+      "device_path": "/sys/devices/pci0000:20/0000:20:02.0/0000:22:00.0/nvme/nvme1"
+    }
+  },
+  "services": {},
+  "load_before": "1.22 0.77 0.50 2/5872 4149392",
+  "diskstats_before": "259       0 nvme3n1 379 0 22416 29 0 0 0 0 0 20 29 0 0 0 0 0 0\n 259       1 nvme3n1p1 68 0 4688 5 0 0 0 0 0 4 5 0 0 0 0 0 0\n 259       2 nvme3n1p2 64 0 4672 6 0 0 0 0 0 4 6 0 0 0 0 0 0\n 259       3 nvme3n1p3 133 0 8144 11 0 0 0 0 0 4 11 0 0 0 0 0 0\n 259       4 nvme1n1 1825837 117288 328305664 887500 6965509 3167800 285501648 1810397 0 148952 2697897 0 0 0 0 0 0\n 259       5 nvme1n1p1 232 64 22624 21 29 0 32 0 0 16 21 0 0 0 0 0 0\n 259       6 nvme1n1p2 1602 23 361122 697 14 4 144 0 0 104 698 0 0 0 0 0 0\n 259       7 nvme1n1p3 1823691 117201 327896158 886750 6965466 3167796 285501472 1810396 0 155252 2697147 0 0 0 0 0 0\n 259       8 nvme2n1 18709986 13494 2749679445 156550930 1260527 27485 92628200 1583643 0 277752 158134573 0 0 0 0 0 0\n 259       9 nvme0n1 46 0 6416 3 0 0 0 0 0 0 3 0 0 0 0 0 0\n 253       0 dm-0 192780 0 56136626 35176 7928752 0 170892376 260772 0 79384 295948 0 0 0 0 0 0\n 253       1 dm-1 78 0 11008 4 0 0 0 0 0 4 4 0 0 0 0 0 0\n 253       3 dm-3 650150 0 271734316 119564 1969504 0 114609096 162844 0 125284 282408 0 0 0 0 0 0\n 253       2 dm-2 51 0 2088 4 0 0 0 0 0 4 4 0 0 0 0 0 0\n 253       4 dm-4 51 0 2088 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n   7       0 loop0 1679 0 76434 55 228 46 1648 51 0 44 135 0 0 0 0 102 28",
+  "tools": {
+    "fio": "/usr/bin/fio",
+    "nvme": "/usr/sbin/nvme",
+    "smartctl": null,
+    "iostat": "/usr/bin/iostat",
+    "lspci": "/usr/bin/lspci",
+    "dmsetup": "/usr/sbin/dmsetup",
+    "lsblk": "/usr/bin/lsblk"
+  },
+  "process_counts": {},
+  "loop_devices": {
+    "exit_code": 0,
+    "data": {
+      "loopdevices": []
+    },
+    "stderr": ""
+  },
+  "diskstats_after": "259       0 nvme3n1 379 0 22416 29 0 0 0 0 0 20 29 0 0 0 0 0 0\n 259       1 nvme3n1p1 68 0 4688 5 0 0 0 0 0 4 5 0 0 0 0 0 0\n 259       2 nvme3n1p2 64 0 4672 6 0 0 0 0 0 4 6 0 0 0 0 0 0\n 259       3 nvme3n1p3 133 0 8144 11 0 0 0 0 0 4 11 0 0 0 0 0 0\n 259       4 nvme1n1 1825852 117288 328308432 887504 6965509 3167800 285501648 1810397 0 148952 2697902 0 0 0 0 0 0\n 259       5 nvme1n1p1 232 64 22624 21 29 0 32 0 0 16 21 0 0 0 0 0 0\n 259       6 nvme1n1p2 1602 23 361122 697 14 4 144 0 0 104 698 0 0 0 0 0 0\n 259       7 nvme1n1p3 1823706 117201 327898926 886755 6965466 3167796 285501472 1810396 0 155252 2697151 0 0 0 0 0 0\n 259       8 nvme2n1 18709986 13494 2749679445 156550930 1260527 27485 92628200 1583643 0 277752 158134573 0 0 0 0 0 0\n 259       9 nvme0n1 46 0 6416 3 0 0 0 0 0 0 3 0 0 0 0 0 0\n 253       0 dm-0 192787 0 56139394 35176 7928752 0 170892376 260772 0 79384 295948 0 0 0 0 0 0\n 253       1 dm-1 78 0 11008 4 0 0 0 0 0 4 4 0 0 0 0 0 0\n 253       3 dm-3 650150 0 271734316 119564 1969504 0 114609096 162844 0 125284 282408 0 0 0 0 0 0\n 253       2 dm-2 51 0 2088 4 0 0 0 0 0 4 4 0 0 0 0 0 0\n 253       4 dm-4 51 0 2088 0 0 0 0 0 0 0 0 0 0 0 0 0 0\n   7       0 loop0 1679 0 76434 55 228 46 1648 51 0 44 135 0 0 0 0 102 28",
+  "load_after": "1.28 0.79 0.51 1/5868 4149431",
+  "finished_at": "2026-10-29T15:08:37.555898+00:00"
+}

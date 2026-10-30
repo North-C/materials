@@ -283,6 +283,10 @@ python3 scripts/summarize_cube_bench_sdk_csv.py \
 - `scripts/CUBE_BENCH_SDK_GUIDE.md`
 - `scripts/RUN_CUBE_BENCH_ENVD_GUIDE.md`
 
+## 磁盘与存储路径对比
+
+- [123.60.230.231与192.168.25.90：系统盘、数据盘及性能完整对比（2026-10-30）](reports/disk231-vs90-20261030/REPORT.md)：.231四类各五轮、.90六份历史fio；型号/挂载、TB与TiB、内核/平台/预处理、公开规格及业务归因边界。含40份原始附件与离线复算；未新增实验，跨机差值不是单因素收益。
+
 ## v0.7.1 核心性能数据
 
 - [GICv3 / Kunpeng 950 核心性能结果（2026-10-08–09）](reports/CUBESANDBOX_V071_GICV3_CORE_PERFORMANCE_20261009.md)：32个非密度档位完成；1500密度目标未达，最高完整健康采样档为1000。
